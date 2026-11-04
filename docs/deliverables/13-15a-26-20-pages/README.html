@@ -218,6 +218,70 @@ blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;backgrou
 </table>
 <h2>Side-by-side compares (reference left, build right, 1440 wide)</h2>
 <p>In compare/: one image per section pair, in page order. <code>13-registration-00-popup</code> to <code>08-footer</code> (9 images), <code>14-thank-you-01</code> to <code>04</code> (4), <code>15a-watch-01</code> to <code>03</code> (3), <code>26-recording-01</code> to <code>04</code> (4), <code>20-due-diligence-01</code> to <code>08</code> (8). Phone (375 wide) contact sheets of every page and state in the default view, including the popup sheet: compare/mobile-375/.</p>
+<h2>Registration, palette B (/palette-b/)</h2>
+<p>Adi, 2026-11-05: a second version of the registration page in Midnight Black #02070A, Electric Blue #0297DE and Cantaloupe Orange #FC734D. The page at / is unchanged (checked: <code>site/index.html</code> is byte for byte the same after the build).</p>
+<ul>
+<li>URL: <code>/palette-b/</code> (live after the next publish: https://adisuja.github.io/tantra-enterprise-webinar-pages/palette-b/). States work the same: <code>?state=invalid</code>, <code>?state=error</code>, <code>?review=1</code>, <code>#register</code>.</li>
+<li>How: <code>src/pages/registration-b.mjs</code> renders the same <code>registration.mjs</code> with <code>theme: 'b'</code>, which adds <code>assets/theme-b.css</code> (loaded only on this page) and <code>body.theme-b</code>. Content, section order, form, payload, Turnstile live mode and the review stub are identical; the stub redirects to <code>/thank-you/</code>.</li>
+<li>Design: Midnight ground with elevations #071016, #0B161D, #0F1D25, fine grain and a blue light on dark bands, one blue edge on the slanted dividers; Mist #F4F7F8 light sections with white cards; dark product-style dashboards and host card; blue buttons, ticks, links and focus; orange only on the highlighter boxes, the tracker dot and the centre bonus cover. Inter only.</li>
+<li><code>node build.mjs --version &lt;key&gt;</code> pins the <code>?v=</code> cache key, so a rebuild can be diffed against the last one.</li>
+<li>Side by side (current left, palette B right), full page at 375, 768, 1440 and 1920: compare/palette-b/.</li>
+</ul>
+<p>Contrast pairs (WCAG, all text pairs pass AA):</p>
+<table>
+<thead>
+<tr>
+<th>Text on ground</th>
+<th>Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#02070A on Electric Blue #0297DE (buttons, avatars, bars)</td>
+<td>6.25:1</td>
+</tr>
+<tr>
+<td>#02070A on Cantaloupe #FC734D (highlighter, bonus cover)</td>
+<td>7.42:1</td>
+</tr>
+<tr>
+<td>White on Electric Blue / on Cantaloupe (not used: fails)</td>
+<td>3.24:1 / 2.73:1</td>
+</tr>
+<tr>
+<td>Electric Blue #0297DE on #02070A / #071016 / #0B161D (links, labels on dark)</td>
+<td>6.25 / 5.92 / 5.65:1</td>
+</tr>
+<tr>
+<td>Orange #FC734D on #071016 (required marks)</td>
+<td>7.03:1</td>
+</tr>
+<tr>
+<td>Blue Ink #016A9E on Mist #F4F7F8 / white (links, timer on light)</td>
+<td>5.48 / 5.90:1</td>
+</tr>
+<tr>
+<td>Body #1C2830 on Mist / white</td>
+<td>13.98 / 15.05:1</td>
+</tr>
+<tr>
+<td>Muted #4F5E67 on Mist / white</td>
+<td>6.23 / 6.71:1</td>
+</tr>
+<tr>
+<td>Text #D6DEE3 on #02070A / #071016</td>
+<td>14.86 / 14.08:1</td>
+</tr>
+<tr>
+<td>Muted #8A9BA5 on #02070A / #0B161D / #0F1D25</td>
+<td>7.05 / 6.38 / 5.98:1</td>
+</tr>
+<tr>
+<td>Footer small #7F8E97 on #02070A</td>
+<td>5.99:1</td>
+</tr>
+</tbody>
+</table>
 <h2>What is here</h2>
 <table>
 <thead>
