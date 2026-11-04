@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tantra Enterprise: Case Studies</title>
+<link rel="stylesheet" href="assets/collateral.css">
+<style>
+@page{size:1280px 720px;margin:0}
+body{counter-reset:slide;background:#d9dce4}
+.slide{width:1280px;height:720px;padding:60px 72px 56px;position:relative;overflow:hidden;background:var(--paper);break-after:page;counter-increment:slide;display:flex;flex-direction:column}
+@media screen{.slide{margin:0 auto 24px;box-shadow:0 2px 10px rgba(0,0,0,.12)}}
+.slide.dark{background:var(--ink);color:#fff}
+.slide.night{background:var(--night);color:#fff}
+.slide .foot{position:absolute;left:72px;right:72px;bottom:24px;display:flex;justify-content:space-between;font:500 11px var(--body);color:var(--slate)}
+.slide.dark .foot,.slide.night .foot{color:#8d86b5}
+.slide .foot::after{content:counter(slide)}
+h1{font-size:60px;line-height:1.04}
+h2{font-size:42px;line-height:1.08;margin-top:10px}
+.lede{font:500 21px/1.45 var(--human);color:var(--slate);margin-top:16px;max-width:900px}
+.dark .lede,.night .lede{color:var(--haze)}
+.dark .kicker,.night .kicker{color:var(--iris)}
+.glow{position:absolute;right:-220px;top:-200px;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(109,74,255,.42),rgba(109,74,255,0) 66%)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:34px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 30px}
+.panel h3{font-size:24px;margin-bottom:14px}
+.panel li{font:400 20px/1.45 var(--body);margin-bottom:10px}
+.panel p{font:400 20px/1.5 var(--body)}
+.label{font:600 13px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-bottom:6px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+.stat b{display:block;font:700 52px/1 var(--display);letter-spacing:-.01em}
+.stat span{display:block;font:500 16px var(--human);color:var(--slate);margin-top:8px}
+.stat.hi{background:var(--volt);border-color:var(--volt);color:#fff}
+.stat.hi span{color:#e4ddff}
+.source{font:500 13px var(--body);color:var(--slate);margin-top:auto;padding-top:14px}
+.dark .source,.night .source{color:#8d86b5}
+/* stages */
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.stage{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);border-radius:14px;padding:22px 22px}
+.stage .n{font:700 13px var(--body);color:var(--iris);letter-spacing:.08em}
+.stage h3{font-size:21px;margin:6px 0 6px}
+.stage p{font:400 17px/1.45 var(--body);color:var(--haze)}
+.agent{margin-top:14px;border-radius:14px;padding:16px 20px;background:var(--volt);font:500 18px var(--human)}
+/* compare */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:28px}
+.vs .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 26px}
+.vs .card.best{border:2px solid var(--volt)}
+.vs h3{font-size:22px}
+.vs .when{font:600 13px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--slate);margin-top:4px}
+.vs table{width:100%;border-collapse:collapse;margin-top:12px}
+.vs td{padding:9px 0;border-bottom:1px solid var(--line);font:400 16px var(--body)}
+.vs td.v{text-align:right;font:700 22px var(--display)}
+.vs .best td.v{color:var(--volt-deep)}
+/* bars */
+.bars{margin-top:30px;display:flex;flex-direction:column;gap:24px}
+.bar-row .t{font:600 18px var(--human);margin-bottom:8px}
+.bar{height:30px;border-radius:8px;display:flex;align-items:center;padding-left:12px;font:700 15px var(--body);color:#fff;margin-bottom:6px;white-space:nowrap}
+.bar.target{background:#c8cdd8;color:var(--ink)}
+.bar.actual{background:var(--volt)}
+.ep{display:grid;grid-template-columns:150px 1fr 230px;align-items:center;gap:18px;padding:10px 0;border-bottom:1px solid var(--line)}
+.ep .name{font:600 17px var(--human)}
+.ep .name small{display:block;font:500 13px var(--body);color:var(--slate)}
+.ep .track{height:34px;background:#eceef3;border-radius:8px;overflow:hidden}
+.ep .fillbar{height:100%;background:var(--volt);color:#fff;font:700 15px var(--body);display:flex;align-items:center;padding-left:12px;white-space:nowrap}
+.ep .out{font:500 15px var(--body)}
+.ep .out b{font:700 24px var(--display);color:var(--volt-deep)}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.three .panel h3{font-size:24px}
+.three .panel p{font-size:18px}
+.three .panel .big{font:700 34px var(--display);color:var(--volt-deep);margin-bottom:8px}
+.price{font:700 96px/1 var(--display);letter-spacing:-.02em;margin-top:22px}
+.offer-list{list-style:none;padding:0;margin-top:22px}
+.offer-list li{font:500 22px/1.4 var(--human);padding:10px 0 10px 34px;border-bottom:1px solid rgba(255,255,255,.12);position:relative}
+.offer-list li::before{content:"";position:absolute;left:0;top:18px;width:14px;height:14px;border-radius:50%;background:var(--iris)}
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.phase{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 20px;border-top:5px solid var(--volt)}
+.phase .w{font:700 14px var(--body);color:var(--volt);letter-spacing:.06em;text-transform:uppercase}
+.phase h3{font-size:26px;margin:8px 0 14px}
+.phase li{font:400 18px/1.45 var(--body);margin-bottom:8px}
+.cs-slide{padding:26px 150px 46px;background:var(--paper);justify-content:flex-start}
+.cs-slide .cs{flex:none}
+.cs-top{justify-content:center;padding:20px 110px 50px}
+.cs-top .cs{--u:1.32px}
+.cs-note{font:500 12px var(--body);color:var(--slate);text-align:center;margin-top:12px}
+.cs-slide .cs-video{width:640px;margin:0 auto}
+.cta{margin-top:34px;display:inline-block;background:var(--volt);color:#fff;border-radius:14px;padding:20px 26px;font:600 22px var(--human)}
+</style>
+</head>
+<body>
+
+<!-- 1 cover -->
+<section class="slide dark">
+  <div class="glow"></div>
+  <div class="brand" style="position:relative"><img src="assets/tantra-mark-white.png" alt="" style="height:54px"><img src="assets/tantra-word-white.png" alt="Tantra" style="height:20px"></div>
+  <div style="margin-top:auto;position:relative">
+    <div class="kicker">Enterprise case studies</div>
+    <h1 style="margin-top:14px;max-width:1000px">Two Webinar Funnels, Built With the Client and Measured Every Week</h1>
+    <p class="lede">What each business had, what we built with them, and what their own trackers recorded.</p>
+  </div>
+  <div class="foot"><span>Adithya Murali, Founder, Tantra</span></div>
+</section>
+
+<!-- 2 the problem -->
+<section class="slide">
+  <div class="kicker">The problem</div>
+  <h2 style="max-width:1000px">You Close Well on a Call. You Just Do Not Get Enough Calls.</h2>
+  <div class="cols">
+    <div class="panel"><h3>What it looks like</h3><ul>
+      <li>New clients come from referrals and your own events, so the pipeline moves when you do.</li>
+      <li>You have tried a webinar or a campaign. People signed up, few showed, fewer booked.</li>
+      <li>Nobody can tell you what next month's calls will be.</li>
+    </ul></div>
+    <div class="panel"><h3>What this deck shows</h3><p>Two businesses that built a recurring webinar engine with us. Every number comes from the client's own tracker, row by row. No modelled figures, no projections.</p></div>
+  </div>
+  <div class="foot"><span>Enterprise case studies</span></div>
+</section>
+
+<!-- 3 how it works -->
+<section class="slide night">
+  <div class="kicker">How it works</div>
+  <h2>Six Stages, One Platform, Built With Your Team</h2>
+  <div class="stages">
+    <div class="stage"><div class="n">01</div><h3>Traffic</h3><p>Cold email, calendar invites, LinkedIn outreach, paid ads and content, every channel tracked to revenue</p></div>
+    <div class="stage"><div class="n">02</div><h3>Landing and registration</h3><p>Branded pages and forms that turn clicks into registrations</p></div>
+    <div class="stage"><div class="n">03</div><h3>Multi-channel nurture</h3><p>Email, WhatsApp and AI voice reminders that get people to show up</p></div>
+    <div class="stage"><div class="n">04</div><h3>Conversion mechanism</h3><p>A live event, a video sales funnel or a multi-day workshop, whichever fits your offer</p></div>
+    <div class="stage"><div class="n">05</div><h3>Revenue pipeline</h3><p>An 11-stage pipeline with discovery, demo and closing scripts, checkout and onboarding</p></div>
+    <div class="stage"><div class="n">06</div><h3>52-week growth</h3><p>A full year of follow-up that keeps turning your list into repeat revenue</p></div>
+  </div>
+  <div class="agent">One AI agent that writes, sends, routes, books and reports across all six stages.</div>
+  <div class="foot"><span>Enterprise case studies</span></div>
+</section>
+
+<!-- 4a Growth Idea: case study card, top half (header bar, profile and challenge, results, KPI strip) -->
+<section class="slide cs-slide cs-top">
+  <div class="cs">
+    <div class="cs-bar">Growth Idea</div>
+    <div class="cs-cols">
+      <div class="cs-left">
+        <h4>Company Profile</h4><p>A <b>UK business-coaching group</b> for <b>owner-led SMBs</b>.</p>
+        <h4>Challenge</h4><p>Needed a <b>repeatable way to fill its programme</b> with the right owners, <b>webinar after webinar</b>.</p>
+      </div>
+      <div class="cs-right"><h4>Results</h4><div class="cs-pill"><b>4 clients won</b> and <b>47 MQLs</b> across 11 webinars, May 2025 to Feb 2026.</div><div class="cs-pill"><b>80 sales calls booked</b> from <b>1,384 live attendees</b>.</div><div class="cs-pill">Registration rate up from <b>0.23% to 2.0%</b>, first webinar to best.</div></div>
+    </div>
+    <div class="cs-kpis"><div><span>Reached / webinar</span><b>12,898 &rarr; 99,859</b></div><div><span>Registered / webinar</span><b>30 &rarr; 1,990</b></div><div><span>Came live / webinar</span><b>7 &rarr; 321</b></div></div>
+  </div>
+  <p class="cs-note">KPI strip: first webinar (6 May 2025) to best webinar (28 Aug 2025). Source: the client's own tracker, measured. Not a guarantee of your results.</p>
+  <div class="foot"><span>Enterprise case studies</span></div>
+</section>
+
+<!-- 4b Growth Idea: case study card, bottom half (case study video, quote slot, LinkedIn button) -->
+<section class="slide cs-slide">
+  <div class="cs">
+    <div class="cs-bar">Growth Idea</div>
+    <div class="cs-media">
+      <h4>Case Study</h4>
+      <div class="cs-video"><div class="cs-play"></div><span class="fill">FILL: case study video (item 28)</span></div>
+      <div class="cs-li"><div><span class="in">in</span>Shweta<small><span class="fill">FILL: LinkedIn profile link (item 28)</span></small></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Enterprise case studies</span></div>
+</section>
+
+<!-- 6a FintechCircle: case study card, top half (header bar, profile and challenge, results, KPI strip) -->
+<section class="slide cs-slide cs-top">
+  <div class="cs">
+    <div class="cs-bar">FintechCircle</div>
+    <div class="cs-cols">
+      <div class="cs-left">
+        <h4>Company Profile</h4><p>A <b>London fintech network</b> selling a <b>board-readiness programme</b>.</p>
+        <h4>Challenge</h4><p>Needed a <b>monthly flow of the right people</b> into a webinar, then into the <b>programme application</b>.</p>
+      </div>
+      <div class="cs-right"><h4>Results</h4><div class="cs-pill"><b>17 sales calls booked</b> in episodes 1 to 3.</div><div class="cs-pill"><b>175 programme applications</b>, 12 Mar to 1 Oct 2026.</div><div class="cs-pill">Outreach grew from <b>10,000 reached</b> to <b>38,138 invites</b> by episode 4.</div></div>
+    </div>
+    <div class="cs-kpis"><div><span>Outreach / episode</span><b>10,000 &rarr; 30,000</b></div><div><span>Came live / episode</span><b>59 &rarr; 89</b></div><div><span>Calls booked / episode</span><b>1 &rarr; 7</b></div></div>
+  </div>
+  <p class="cs-note">KPI strip: episode 1 (5 Mar 2026) to episode 3 (17 Apr 2026). Source: the client's own tracker, measured. Not a guarantee of your results.</p>
+  <div class="foot"><span>Enterprise case studies</span></div>
+</section>
+
+<!-- 6b FintechCircle: case study card, bottom half (case study video, quote slot, LinkedIn button) -->
+<section class="slide cs-slide">
+  <div class="cs">
+    <div class="cs-bar">FintechCircle</div>
+    <div class="cs-media">
+      <h4>Case Study</h4>
+      <div class="cs-video"><div class="cs-play"></div><span class="fill">FILL: case study video (item 28)</span></div>
+      <div class="cs-li"><div><span class="in">in</span>Susanne<small><span class="fill">FILL: LinkedIn profile link (item 28)</span></small></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Enterprise case studies</span></div>
+</section>
+
+<!-- 8 the pattern -->
+<section class="slide">
+  <div class="kicker">The pattern</div>
+  <h2>What the Two Funnels Have in Common</h2>
+  <div class="three">
+    <div class="panel"><div class="big">98,000</div><h3>Calendar Invites Carry the Traffic</h3><p>Of the 99,859 people Growth Idea reached on its best webinar, 98,000 came by calendar invite. FintechCircle ran calendar-first from episode 1.</p></div>
+    <div class="panel"><div class="big">1 sheet</div><h3>Every Number in One Place</h3><p>Reach, registrations, attendance, calls and clients, logged after every session, so each change is judged on numbers, not on feel.</p></div>
+    <div class="panel"><div class="big">38,138</div><h3>Scale Up Step by Step</h3><p>10,000 reached in episode 1, then 20,046 to 38,138 invites, with every episode measured in the tracker.</p></div>
+  </div>
+  <div class="foot"><span>Enterprise case studies</span></div>
+</section>
+
+<!-- 9 the offer -->
+<section class="slide dark">
+  <div class="glow"></div>
+  <div style="position:relative">
+    <div class="kicker">The offer</div>
+    <h2>Tantra Enterprise: We Build It With You</h2>
+    <div style="display:grid;grid-template-columns:420px 1fr;gap:50px;margin-top:6px">
+      <div><div class="price">$9,999</div><p class="lede" style="font-size:18px">Right for you if you want it built with you and have $10,000 or more to invest in the next 12 months.</p></div>
+      <ul class="offer-list"><li>3 months of 1:1 coaching and implementation with your team</li><li>A done-with-you build of your funnel</li><li>1 year of access to the Tantra platform</li><li>The full course, the community and group coaching calls</li></ul>
+    </div>
+  </div>
+  <div class="foot"><span>Enterprise case studies</span></div>
+</section>
+
+<!-- 10 the first 3 months -->
+<section class="slide">
+  <div class="kicker">Your first 3 months</div>
+  <h2>What Happens After You Say Yes</h2>
+  <div class="phases">
+    <div class="phase"><div class="w">Weeks 1 to 2</div><h3>Map and Design</h3><ul><li>Your numbers today</li><li>Buyer, offer and conversion mechanism</li><li>Platform account and pipeline set up</li></ul></div>
+    <div class="phase"><div class="w">Weeks 3 to 6</div><h3>Build</h3><ul><li>Traffic and lists</li><li>Pages and registration</li><li>Nurture, mechanism and sales scripts</li></ul></div>
+    <div class="phase"><div class="w">Weeks 7 to 10</div><h3>Launch</h3><ul><li>First live runs with us beside you</li><li>Weekly numbers review</li><li>Fix the leakiest stage first</li></ul></div>
+    <div class="phase"><div class="w">Weeks 11 to 13</div><h3>Hand Over</h3><ul><li>Your team runs it, we coach</li><li>52-week follow-up live</li><li>Plan for months 4 to 12</li></ul></div>
+  </div>
+  <div class="foot"><span>Enterprise case studies</span></div>
+</section>
+
+<!-- 11 next step -->
+<section class="slide night">
+  <div class="glow"></div>
+  <div style="position:relative;margin-top:auto;margin-bottom:auto">
+    <div class="kicker">Next step</div>
+    <h2 style="max-width:980px">If It Fits, You Get a Written Proposal Within One Business Day</h2>
+    <p class="lede">It puts your situation back to you in your words, names the stage where your revenue leaks, and lays out the 3-month build, who does what and the investment. Then we go through it together on a 30-minute Proposal Review and decide.</p>
+    <div class="cta">Book: <span class="fill">{{booking.round_robin_url}}</span></div>
+  </div>
+  <p class="source" style="position:relative">Results referenced are those of specific clients and are not a guarantee of your own results.</p>
+  <div class="foot"><span>Enterprise case studies</span></div>
+</section>
+
+</body>
+</html>

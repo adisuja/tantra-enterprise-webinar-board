@@ -1,0 +1,55 @@
+/* Tantra sales collateral: shared tokens, type and print rules (values from brand/tokens.json) */
+@font-face{font-family:"Clash Display";src:url(fonts/clash-600.woff2) format("woff2");font-weight:600}
+@font-face{font-family:"Clash Display";src:url(fonts/clash-700.woff2) format("woff2");font-weight:700}
+@font-face{font-family:"Satoshi";src:url(fonts/satoshi-400.woff2) format("woff2");font-weight:400}
+@font-face{font-family:"Satoshi";src:url(fonts/satoshi-500.woff2) format("woff2");font-weight:500}
+@font-face{font-family:"Satoshi";src:url(fonts/satoshi-700.woff2) format("woff2");font-weight:700}
+@font-face{font-family:"Inter";src:url(fonts/inter-var.woff2) format("woff2");font-weight:100 900}
+
+:root{
+  --ink:#0b0d12;--paper:#f7f8fb;--white:#fff;--slate:#5b6472;--line:#e2e8f0;
+  --volt:#6d4aff;--volt-deep:#4b2fd6;--iris:#a78bfa;--lilac:#f1efff;--haze:#c9c3ec;--night:#1a1033;
+  --signal:#34d399;--signal-ink:#047857;--ember:#c2410c;--cream:#fef3c7;--amber:#fbbf24;
+  --display:"Clash Display","Satoshi","Inter",system-ui,sans-serif;
+  --human:"Satoshi","Inter",system-ui,sans-serif;
+  --body:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--body);color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;background:var(--white)}
+h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.005em;word-spacing:.12em;margin:0;text-wrap:balance}
+p{margin:0}
+ul{margin:0;padding-left:16px}
+.kicker{font:600 8pt var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--volt)}
+.muted{color:var(--slate)}
+.brand{display:flex;align-items:center;gap:8px}
+.fill{background:var(--cream);color:#7c2d12;border:1px dashed #d97706;border-radius:4px;padding:0 4px;font-weight:600;word-break:break-all}
+.adi{background:var(--cream);color:#7c2d12;border-radius:4px;padding:1px 5px;font-weight:600;font-size:.92em}
+
+/* Case study card: mirrors the reference case study card (header bar with the company name, two columns:
+   Company Profile, Company Size, Challenge / Results with 3 pills; KPI strip with 3 from-to KPIs; case study
+   video; quote; LinkedIn button). Tantra palette: volt-deep bar and frame, lilac pills, slate KPI strip.
+   Size it by setting --u on a parent (1px on the deck, smaller on the one-pager). */
+.cs{--u:1px;background:#fff;border:calc(var(--u)*9) solid var(--volt-deep);border-top:0;border-radius:calc(var(--u)*16);box-shadow:0 calc(var(--u)*6) calc(var(--u)*18) rgba(11,13,18,.22);overflow:hidden;color:var(--ink);font-family:var(--body)}
+.cs-bar{background:var(--volt-deep);color:#fff;text-align:center;font:600 calc(var(--u)*30) var(--display);word-spacing:.1em;padding:calc(var(--u)*14) calc(var(--u)*20) calc(var(--u)*13)}
+.cs-bar small{display:block;font:600 calc(var(--u)*12) var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--haze);margin-top:calc(var(--u)*3)}
+.cs-cols{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*26);padding:calc(var(--u)*20) calc(var(--u)*26) calc(var(--u)*22);align-items:center}
+.cs h4{font:600 calc(var(--u)*21) var(--display);color:var(--volt-deep);text-align:center;margin:calc(var(--u)*12) 0 calc(var(--u)*5)}
+.cs h4:first-child{margin-top:0}
+.cs-left p{font:400 calc(var(--u)*18)/1.4 var(--body);text-align:center;margin:0}
+.cs-left b,.cs-pill b{font-weight:700}
+.cs-pill{background:var(--lilac);border:1px solid var(--haze);color:var(--ink);border-radius:calc(var(--u)*9);padding:calc(var(--u)*9) calc(var(--u)*14);font:400 calc(var(--u)*17)/1.35 var(--body);text-align:center;margin-top:calc(var(--u)*10);box-shadow:0 calc(var(--u)*3) calc(var(--u)*6) rgba(75,47,214,.16)}
+.cs-kpis{background:var(--slate);display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u)*5);padding:calc(var(--u)*7)}
+.cs-kpis div{background:#6b7482;border:1px solid #8a93a1;border-radius:calc(var(--u)*4);color:#fff;text-align:center;padding:calc(var(--u)*9) calc(var(--u)*6)}
+.cs-kpis span{display:block;font:700 calc(var(--u)*14) var(--body);letter-spacing:.06em;text-transform:uppercase}
+.cs-kpis b{display:block;font:700 calc(var(--u)*20) var(--body);margin-top:calc(var(--u)*3)}
+.cs-kpinote{font:500 calc(var(--u)*12) var(--body);color:var(--slate);text-align:center;padding:calc(var(--u)*6) calc(var(--u)*10) 0}
+.cs-media{padding:calc(var(--u)*16) calc(var(--u)*26) calc(var(--u)*20)}
+.cs-media h4{text-align:left;margin:0 0 calc(var(--u)*8)}
+.cs-video{aspect-ratio:16/9;background:linear-gradient(135deg,var(--night),var(--ink));border-radius:calc(var(--u)*6);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--u)*14);color:#fff}
+.cs-play{width:calc(var(--u)*72);height:calc(var(--u)*72);border-radius:50%;background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.55);position:relative}
+.cs-play::after{content:"";position:absolute;left:54%;top:50%;transform:translate(-50%,-50%);border-left:calc(var(--u)*22) solid #fff;border-top:calc(var(--u)*14) solid transparent;border-bottom:calc(var(--u)*14) solid transparent}
+.cs-li{display:flex;justify-content:center;margin-top:calc(var(--u)*14)}
+.cs-li a,.cs-li div{background:var(--ink);color:#fff;border-radius:calc(var(--u)*7);padding:calc(var(--u)*8) calc(var(--u)*18);text-align:center;font:700 calc(var(--u)*15) var(--body);text-decoration:none;box-shadow:0 calc(var(--u)*3) calc(var(--u)*8) rgba(11,13,18,.25)}
+.cs-li small{display:block;font:500 calc(var(--u)*12) var(--body);color:var(--haze);margin-top:calc(var(--u)*2)}
+.cs-li .in{display:inline-block;background:#fff;color:var(--ink);border-radius:2px;font:800 calc(var(--u)*11)/1 var(--body);padding:1px 3px;margin-right:calc(var(--u)*6)}

@@ -7,6 +7,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { makeCtx, icsFile } from './src/lib.mjs';
 import * as registration from './src/pages/registration.mjs';
+import * as registrationB from './src/pages/registration-b.mjs';
 import * as thankYou from './src/pages/thank-you.mjs';
 import * as watch from './src/pages/watch.mjs';
 import * as recording from './src/pages/recording.mjs';
@@ -24,7 +25,7 @@ fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
 fs.cpSync(path.join(here, 'src', 'assets'), path.join(out, 'assets'), { recursive: true });
 
-const pages = [registration, thankYou, watch, recording, ...dd.pages];
+const pages = [registration, registrationB, thankYou, watch, recording, ...dd.pages];
 let ics = null;
 for (const page of pages) {
   const ctx = makeCtx(cfg, page.route);

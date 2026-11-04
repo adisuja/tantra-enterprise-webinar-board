@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Client Journey: payment to renewal · Tantra Enterprise</title>
+<style>
+/*FONTS*/
+:root{--ink:#0b0d12;--paper:#f7f8fb;--white:#fff;--slate:#5b6472;--line:#e2e8f0;--volt:#6d4aff;--volt-deep:#4b2fd6;--iris:#a78bfa;--lilac:#f1efff;--haze:#c9c3ec;--ember:#c2410c;--amber-ink:#b45309;--cream:#fef3c7;--signal-ink:#047857;--box:#f2f3f7;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--display:'Clash Display','Inter',system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1360px;margin:0 auto;padding:0 44px 90px}
+a{color:var(--volt-deep)}
+.strip{display:flex;align-items:center;gap:10px;padding:30px 0 24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.strip img{height:22px;width:auto}
+.strip .brand{font:700 12.5px/1 Inter;letter-spacing:.1em}
+.strip .labels{font:500 10px/1 var(--mono);letter-spacing:.2em;color:var(--slate);text-transform:uppercase}
+.eyebrow{font:600 10.5px/1 var(--mono);letter-spacing:.2em;color:var(--volt);text-transform:uppercase;margin:46px 0 10px}
+h1{font:600 48px/1.06 var(--display);letter-spacing:-.01em;max-width:640px;margin:0}
+.intro{font-size:17px;line-height:1.5;color:#3c4350;max-width:660px;margin:18px 0 12px}
+.source{font-size:11.5px;line-height:1.55;color:var(--slate);max-width:660px;margin:0}
+section{margin-top:84px}
+h2{font:600 32px/1.15 var(--display);margin:0 0 8px}
+.sub{color:var(--slate);margin:0 0 24px;max-width:880px}
+.fill{display:inline-block;font:600 9.5px/1.5 var(--mono);letter-spacing:.06em;background:var(--cream);color:var(--amber-ink);padding:0 5px;border-radius:3px;vertical-align:1px}
+.draft{display:inline-block;font:600 8.5px/1.5 var(--mono);letter-spacing:.1em;background:var(--cream);color:var(--amber-ink);padding:0 4px;border-radius:3px;vertical-align:1px}
+.prop{display:inline-block;font:600 8.5px/1.5 var(--mono);letter-spacing:.1em;background:var(--lilac);color:var(--volt-deep);border:1px dashed var(--volt);padding:0 4px;border-radius:3px;vertical-align:1px}
+.hint{display:none;font:500 10px/1.4 var(--mono);color:var(--slate);margin:0 0 8px}
+.bm{display:block;font:500 8.5px/1.3 var(--mono);letter-spacing:.04em;color:var(--slate);margin-top:2px;text-transform:uppercase}
+
+/* legend */
+.legend{display:flex;gap:24px;flex-wrap:wrap;font-size:12px;color:var(--slate);margin:0 0 14px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{display:inline-block;width:20px;height:12px}
+.sw.main{border-top:3px solid var(--volt);background:var(--box)}
+.sw.dec{background:var(--lilac);border:1px solid var(--volt)}
+.sw.rec{background:#fff6e6;border:1px dashed #dd9a2b}
+.sw.exit{background:var(--box);border-left:3px solid var(--ember)}
+
+/* journey diagram */
+.panel{background:var(--white);border:1px solid var(--line);padding:26px 22px 30px;overflow-x:auto}
+.journey{min-width:1150px}
+.jg{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr))}
+.phase{font:600 9px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding-bottom:7px;border-bottom:2px solid var(--ink);margin-right:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.phase b{color:var(--volt);font-weight:600;margin-right:5px}
+.nodes{margin-top:14px}
+.node{position:relative;padding-right:18px;display:flex}
+.node .box{flex:1;background:var(--box);border-top:3px solid var(--volt);padding:10px 8px 10px;min-height:76px}
+.node h4{font:600 11px/1.25 Inter;margin:0 0 3px}
+.node p{font-size:10px;line-height:1.35;color:var(--slate);margin:0}
+.node::after{content:"";position:absolute;right:3px;top:50%;width:14px;border-top:1px solid #8a919c}
+.node::before{content:"";position:absolute;right:0;top:calc(50% - 3.5px);border-left:5px solid #8a919c;border-top:3.5px solid transparent;border-bottom:3.5px solid transparent}
+.node.last::after,.node.last::before{display:none}
+.endshape{align-self:center;margin-left:4px;height:54px;background:linear-gradient(120deg,var(--volt),var(--volt-deep));transform:skewX(-12deg);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(77,47,214,.25)}
+.endshape span{transform:skewX(12deg);text-align:center;color:#fff;font:700 9.5px/1.25 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.endshape small{display:block;font:500 9px/1.2 Inter;letter-spacing:0;text-transform:none;opacity:.85}
+.cont{align-self:center;font:500 9px/1.3 var(--mono);color:var(--slate);padding-left:4px}
+.droplabel{font:600 8.5px/1 var(--mono);letter-spacing:.18em;color:var(--slate);text-transform:uppercase;margin:22px 0 0;padding-top:16px;border-top:1px solid #eef0f4}
+.drops{margin-top:2px}
+.dcol{padding-right:18px;display:flex;flex-direction:column;gap:7px}
+.dcol:not(:empty)::before{content:"";display:block;height:22px;border-left:1px dashed #9aa1ab;margin-left:14px;margin-bottom:-7px}
+.card{padding:8px 7px 9px;font-size:10px;line-height:1.38}
+.card .k{font:600 7.5px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.card h5{font:600 10.5px/1.25 Inter;margin:0 0 2px}
+.card p{margin:0;color:#3c4350}
+.card .back{display:block;font:600 8px/1.3 var(--mono);letter-spacing:.04em;margin-top:5px}
+.card.exit{background:var(--box);border-left:3px solid var(--ember)}
+.card.exit .k{color:var(--ember)}
+.card.rec{background:#fff6e6;border:1px dashed #dd9a2b}
+.card.rec .k,.card.rec .back{color:var(--amber-ink)}
+.card.dec{background:var(--lilac);border:1px solid var(--volt)}
+.card.dec .k,.card.dec .back{color:var(--volt-deep)}
+
+/* time to close */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
+.step{position:relative;background:var(--white);border-top:2px solid var(--volt);padding:20px 18px 18px}
+.step:not(:last-child)::after{content:"";position:absolute;right:-15px;top:50%;border-left:6px solid #8a919c;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.step .k{font:600 9.5px/1 var(--mono);letter-spacing:.16em;color:var(--volt);text-transform:uppercase}
+.step h3{font:600 15px/1.2 Inter;margin:8px 0 2px}
+.step .ft{font-size:11px;color:var(--slate)}
+.step .val{font:600 30px/1 var(--display);margin:18px 0 6px}
+.step .val small{font:500 11px Inter;color:var(--slate);margin-left:3px}
+.step .val .fill{font-size:16px;padding:2px 7px}
+.step .note{font-size:10.5px;color:var(--slate);line-height:1.4}
+.step .tgt{font:500 9.5px/1.4 var(--mono);color:var(--slate);margin-top:8px}
+.totals{display:grid;grid-template-columns:2fr 1fr;gap:22px;margin-top:22px}
+.tot{display:flex;justify-content:space-between;align-items:center;padding:30px 26px;gap:16px}
+.tot.dark{background:var(--ink);color:#fff}
+.tot.light{background:var(--white);border:1px solid var(--line)}
+.tot .k{font:600 10px/1.4 var(--mono);letter-spacing:.18em;text-transform:uppercase}
+.tot .k small{display:block;font:500 9.5px/1.4 var(--mono);letter-spacing:.04em;text-transform:none;opacity:.6;margin-top:10px}
+.tot .big{font:600 40px/1 var(--display);white-space:nowrap}
+.tot.dark .big{color:var(--iris)}
+.tot .big small{font:500 11px Inter;opacity:.6;margin-left:4px}
+.tot .big .fill{font-size:20px;padding:3px 9px}
+.foot{font-size:11px;color:var(--slate);margin-top:12px;max-width:980px}
+
+/* stage cards */
+.keyline{display:flex;gap:18px;flex-wrap:wrap;font-size:11.5px;color:var(--slate);margin-bottom:16px;align-items:center}
+.keyline b{font:600 11px var(--mono);color:var(--ink)}
+.keyline .tg{background:var(--lilac);border-left:3px solid var(--volt);padding:1px 7px;font:600 11px var(--mono);color:var(--ink)}
+.keyline .g{color:var(--signal-ink);font:600 11px var(--mono)}
+.keyline .r{color:var(--ember);font:600 11px var(--mono)}
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sc{background:var(--white);border:1px solid var(--line);padding:26px 24px 24px;display:flex;flex-direction:column}
+.sc .k{font:600 9.5px/1 var(--mono);letter-spacing:.16em;color:var(--volt);text-transform:uppercase}
+.sc h3{font:600 21px/1.2 var(--display);margin:8px 0 8px}
+.sc .lead{font-size:14.5px;line-height:1.45;margin:0 0 14px}
+.sc ul{margin:0 0 18px;padding-left:16px;font-size:12px;line-height:1.5;color:#3c4350}
+.sc li{margin-bottom:6px}
+.sc li::marker{color:var(--volt)}
+.sc .lab{font:600 9px/1 var(--mono);letter-spacing:.16em;color:var(--slate);text-transform:uppercase;margin:6px 0 6px}
+.sc .sw2{font-size:11.5px;color:#3c4350;margin:0 0 16px}
+.sc .kpis{margin-top:auto}
+table.kt{width:100%;border-collapse:collapse;font-size:12px}
+table.kt th{font:600 8.5px var(--mono);letter-spacing:.12em;color:var(--slate);text-transform:uppercase;text-align:left;padding:4px 6px;border-bottom:1px solid var(--line)}
+table.kt td{padding:8px 6px;border-bottom:1px solid #eef0f4;vertical-align:top}
+table.kt td.a{font:500 11.5px var(--mono);color:#a0a6b0;width:62px}
+table.kt td.t{font:600 11.5px var(--mono);background:var(--lilac);border-left:3px solid var(--volt);width:118px}
+
+/* KPI sheet */
+.tablewrap{background:var(--white);border:1px solid var(--line);overflow-x:auto}
+table.sheet{width:100%;border-collapse:collapse;font-size:12.5px;min-width:860px}
+table.sheet th{font:600 9px var(--mono);letter-spacing:.12em;color:var(--slate);text-transform:uppercase;text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+table.sheet td{padding:11px 14px;border-bottom:1px solid #eef0f4;vertical-align:top}
+table.sheet td.s{font:500 11.5px var(--mono);color:var(--slate);width:60px}
+table.sheet td.n{font-weight:600;width:190px}
+table.sheet td.m{color:#3c4350}
+table.sheet td.m code{font:500 10.5px var(--mono);background:var(--box);padding:0 4px;border-radius:3px}
+table.sheet td.a{font:500 11.5px var(--mono);color:#a0a6b0;width:110px}
+table.sheet td.t{font:500 11.5px var(--mono);width:170px}
+
+/* questions */
+.qcard{background:var(--white);border:1px solid var(--line);padding:24px 24px 18px}
+.qcard .k{font:600 9.5px/1 var(--mono);letter-spacing:.18em;color:var(--volt);text-transform:uppercase;margin-bottom:14px}
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);column-gap:28px}
+.qgrid.one{grid-template-columns:1fr}
+.q{display:flex;gap:10px;padding:10px 0 12px;border-bottom:1px solid #eef0f4;cursor:pointer}
+.q input{margin:2px 0 0;accent-color:var(--volt);width:14px;height:14px;flex:none}
+.q .t{font-size:12.5px;font-weight:500}
+.q .d{display:block;font-size:11px;line-height:1.45;color:var(--slate);margin-top:3px}
+.q input:checked + span .t{text-decoration:line-through;color:var(--slate)}
+.qrow{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.btns{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.btn{font:700 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;padding:13px 24px;border:1px solid var(--volt);background:var(--white);color:var(--volt-deep);transform:skewX(-12deg);cursor:pointer}
+.btn span{display:inline-block;transform:skewX(12deg)}
+.btn.primary{background:linear-gradient(120deg,var(--volt),var(--volt-deep));color:#fff;border-color:var(--volt-deep);box-shadow:0 6px 14px rgba(77,47,214,.22)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.field{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #e9ecf1;font-size:12.5px;gap:12px}
+.field input{width:112px;font:500 12.5px var(--mono);padding:6px 8px;border:1px solid #b9bfc9;background:var(--white);border-radius:0}
+.field input:focus{outline:2px solid var(--volt);outline-offset:-1px}
+table.out{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--line);font-size:12.5px}
+table.out th{font:600 9px var(--mono);letter-spacing:.12em;color:var(--slate);text-transform:uppercase;text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+table.out td{padding:10px 14px;border-bottom:1px solid #eef0f4}
+table.out td+td{font:500 12px var(--mono)}
+.implied{font-size:12px;color:#3c4350;margin:14px 0 16px}
+
+@media (max-width:1100px){.stages{grid-template-columns:1fr 1fr}.qgrid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){
+ .wrap{padding:0 18px 60px}
+ h1{font-size:34px}
+ .intro{font-size:15.5px}
+ section{margin-top:60px}
+ h2{font-size:26px}
+ .steps,.stages,.qgrid,.qrow,.calc,.totals{grid-template-columns:1fr}
+ .step:not(:last-child)::after{display:none}
+ .tot{padding:22px 18px}
+ .tot .big{font-size:32px}
+ .panel{padding:18px 14px 22px}
+ .hint{display:block}
+}
+
+/* client journey additions */
+.journey.wide{min-width:1180px}
+.rowsep{height:1px;background:var(--line);margin:30px 0 26px}
+.cont{display:flex;align-items:center;gap:6px}
+.anycards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:4px}
+.any{background:#fff6e6;border:1px dashed #dd9a2b;border-left:3px solid #dd9a2b;padding:14px 14px 16px;font-size:12.5px;line-height:1.5;color:#3c4350}
+.any h4{font:600 13px/1.3 Inter;color:var(--ink);margin:0 0 4px}
+.any a{color:var(--volt-deep)}
+h3.h3{font:600 22px/1.2 var(--display);margin:44px 0 4px}
+.small{font-size:12px;color:var(--slate);margin:0 0 14px}
+.footnote{font-size:12px;line-height:1.6;color:#3c4350;margin-top:18px;max-width:1150px}
+@media (max-width:1100px){.anycards{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){.anycards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="strip">
+  <img src="{{LOGO}}" alt="Tantra">
+  <span class="brand">TANTRA</span>
+  <span class="labels">· Client delivery · Internal</span>
+</header>
+
+<div class="eyebrow">Draft v1 · 5 Nov 2026</div>
+<h1>Client Journey: payment to renewal</h1>
+<p class="intro">What happens to a {{offer.name}} client from the moment they pay, through onboarding, the build and the first webinars, to running it themselves and the platform renewal at month 12, and how long each part takes.</p>
+<p class="source">Built from the offer (PROOF_PACK section 6), the Closed Won steps in item 18, and the draft 13-week plan in the proposal template and <code>tantra-enterprise-proposals/config/offer.json</code>, 5 Nov 2026. No client has been through it yet, so no timing comes from real work. <span class="draft">DRAFT</span> marks every step Adi has not confirmed (BLOCKERS A4).</p>
+
+<section id="journey">
+  <h2>1. The journey</h2>
+  <p class="sub">The top line is the path a client is meant to take. Everything below it is where clients drop off or loop back.</p>
+  <div class="legend">
+    <span><i class="sw main"></i>Main journey</span>
+    <span><i class="sw dec"></i>Decision branch</span>
+    <span><i class="sw rec"></i>Drop-off with a recovery loop</span>
+    <span><i class="sw exit"></i>Drop-off that exits</span>
+  </div>
+  <p class="hint">Scroll sideways to see the whole journey →</p>
+  <div class="panel">
+    <div class="journey wide" style="--cols:11">
+
+      <!-- row 1 -->
+      <div class="jg">
+        <div class="phase" style="grid-column:span 2"><b>01</b>Handoff</div>
+        <div class="phase" style="grid-column:span 2"><b>02</b>Pre-onboarding</div>
+        <div class="phase"><b>03</b>Onboarding</div>
+        <div class="phase" style="grid-column:span 5"><b>04</b>Build · weeks 1 to 6</div>
+      </div>
+      <div class="jg nodes">
+        <div class="node"><div class="box"><h4>Agreement + payment</h4><p>Signed and paid, {{offer.price}}</p></div></div>
+        <div class="node"><div class="box"><h4>Marked Closed Won in the CRM</h4><p>Triggers the welcome, handover and testimonial tasks</p></div></div>
+        <div class="node"><div class="box"><h4>Welcome email + WhatsApp</h4><p>Onboarding booking link</p></div></div>
+        <div class="node"><div class="box"><h4>Handover + access <span class="draft">DRAFT</span></h4><p>Closer's notes in; client gives domain, calendar, CRM and brand access</p></div></div>
+        <div class="node"><div class="box"><h4>Kickoff call <span class="draft">DRAFT</span></h4><p>Today's numbers, buyer, offer, mechanism · week 1</p></div></div>
+        <div class="node"><div class="box"><h4>Platform setup <span class="draft">DRAFT</span></h4><p>Tantra account, tracking sheet, 11-stage pipeline · weeks 1 to 2</p></div></div>
+        <div class="node"><div class="box"><h4>Traffic <span class="draft">DRAFT</span></h4><p>Lists and channels, tracked to revenue · weeks 3 to 6</p></div></div>
+        <div class="node"><div class="box"><h4>Pages + nurture <span class="draft">DRAFT</span></h4><p>Registration pages; email, WhatsApp and AI voice</p></div></div>
+        <div class="node"><div class="box"><h4>Mechanism + scripts <span class="draft">DRAFT</span></h4><p>Event, video or workshop; discovery, demo, closing</p></div></div>
+        <div class="node"><div class="box"><h4>Copy approval <span class="draft">DRAFT</span></h4><p>Client approves copy on time · by week 6</p></div></div>
+        <div class="cont">→ continues below</div>
+      </div>
+      <div class="droplabel">Drop-off points</div>
+      <div class="jg drops">
+        <div class="dcol">
+          <div class="card exit"><div class="k">Exit</div><h5>Payment fails or is disputed</h5><p>Process <span class="fill">FILL</span>: payment terms not set (A4)</p></div>
+        </div>
+        <div class="dcol"></div>
+        <div class="dcol">
+          <div class="card rec"><div class="k">Recovery loop</div><h5>Onboarding link missing</h5><p>The welcome waits as blocked until <code>onboarding_link</code> is set</p><span class="back">Back to Welcome ↑</span></div>
+        </div>
+        <div class="dcol">
+          <div class="card rec"><div class="k">Recovery loop <span class="draft">DRAFT</span></div><h5>Access comes late</h5><p>Build waits; the weekly review flags it</p><span class="back">Back to Handover ↑</span></div>
+        </div>
+        <div class="dcol"></div>
+        <div class="dcol"></div>
+        <div class="dcol"></div>
+        <div class="dcol"></div>
+        <div class="dcol"></div>
+        <div class="dcol">
+          <div class="card rec"><div class="k">Recovery loop <span class="draft">DRAFT</span></div><h5>Copy needs changes</h5><p>Revise and re-approve before launch</p><span class="back">Back to Copy approval ↑</span></div>
+        </div>
+        <div class="dcol"></div>
+      </div>
+
+      <div class="rowsep"></div>
+
+      <!-- row 2 -->
+      <div class="jg">
+        <div class="phase" style="grid-column:span 2"><b>05</b>Launch · weeks 7 to 10</div>
+        <div class="phase" style="grid-column:span 2"><b>06</b>Webinars 2 to 3 · decide</div>
+        <div class="phase" style="grid-column:span 3"><b>07</b>Run · week 11 to month 12</div>
+        <div class="phase" style="grid-column:span 2"><b>08</b>After the term</div>
+      </div>
+      <div class="jg nodes">
+        <div class="node"><div class="box"><h4>Webinar 1 <span class="draft">DRAFT</span></h4><p>First live run, with us beside your team · week 7</p></div></div>
+        <div class="node"><div class="box"><h4>Weekly numbers review <span class="draft">DRAFT</span></h4><p>Against the client's targets, plus a change log</p></div></div>
+        <div class="node"><div class="box"><h4>Webinar 2 + review <span class="draft">DRAFT</span></h4><p>The leaking stage gets fixed first</p></div></div>
+        <div class="node"><div class="box"><h4>Webinar 3 + review <span class="draft">DRAFT</span></h4><p>Decide: hand over, or keep fixing</p></div></div>
+        <div class="node"><div class="box"><h4>Hand over <span class="draft">DRAFT</span></h4><p>Their team runs it, we coach; 52-week follow-up live · weeks 11 to 13</p></div></div>
+        <div class="node"><div class="box"><h4>Community + group calls</h4><p>Course, community and group coaching calls</p></div></div>
+        <div class="node"><div class="box"><h4>Platform, months 4 to 12</h4><p>1 year of Tantra; plan for months 4 to 12 agreed in week 13</p></div></div>
+        <div class="node"><div class="box"><h4>Platform renewal · month 12</h4><p>Plan and price after year 1: <span class="fill">FILL</span> (A4)</p></div></div>
+        <div class="node"><div class="box"><h4>Post-term options <span class="draft">DRAFT</span></h4><p>Pro or Scale plan, or a new engagement</p></div></div>
+        <div class="endshape"><span>Continues<small>on a renewal</small></span></div>
+        <div></div>
+      </div>
+      <div class="droplabel">Drop-off points</div>
+      <div class="jg drops">
+        <div class="dcol">
+          <div class="card rec"><div class="k">Recovery loop <span class="draft">DRAFT</span></div><h5>Few registrations or few live</h5><p>Fix the stage that leaks first, then rerun</p><span class="back">Back to Build ↑</span></div>
+        </div>
+        <div class="dcol"></div>
+        <div class="dcol">
+          <div class="card dec"><div class="k">Decision <span class="draft">DRAFT</span></div><h5>Numbers hold after webinars 1 and 2</h5><p>Skip the third fix round and hand over early</p><span class="back">Go to Hand over →</span></div>
+        </div>
+        <div class="dcol">
+          <div class="card dec"><div class="k">Decision <span class="draft">DRAFT</span></div><h5>Calls booked, leak fixed</h5><p>Hand over at week 11</p><span class="back">Go to Hand over →</span></div>
+          <div class="card rec"><div class="k">Recovery loop <span class="draft">DRAFT</span></div><h5>Still leaking after 3 webinars</h5><p>Keep fixing with the coach; escalation <span class="fill">FILL</span></p><span class="back">Back to Webinar 2 ↑</span></div>
+        </div>
+        <div class="dcol"></div>
+        <div class="dcol">
+          <div class="card rec"><div class="k">Recovery loop <span class="draft">DRAFT</span></div><h5>Stops attending</h5><p>Coach checks in; owner and timing <span class="fill">FILL</span></p><span class="back">Back to group calls ↑</span></div>
+        </div>
+        <div class="dcol"></div>
+        <div class="dcol">
+          <div class="card dec"><div class="k">Decision</div><h5>Renews the platform</h5><p>Stays on Tantra after year 1</p><span class="back">Go to Post-term →</span></div>
+          <div class="card exit"><div class="k">Exit</div><h5>Doesn't renew</h5><p>Data export if a client leaves: <span class="fill">FILL</span> (A4)</p></div>
+        </div>
+        <div class="dcol"></div>
+        <div class="dcol"></div>
+        <div class="dcol"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <h3 class="h3">Can happen at any stage</h3>
+  <p class="small">These loops aren't tied to one step, so they're not drawn on the map. Each links to the document to use.</p>
+  <div class="anycards">
+    <div class="any"><h4>Client goes quiet <span class="draft">DRAFT</span></h4>The coach follows up the same week. Who owns it and when it escalates to {{brand.host_name}}: <span class="fill">FILL</span>. Roles: <a href="https://github.com/adisuja/tantra-enterprise-proposals/blob/main/config/offer.json">your role and ongoing operations (draft)</a></div>
+    <div class="any"><h4>It's taking too long</h4>Compare the client against the 13-week plan in their proposal. The weekly numbers review is where it shows first (<a href="https://github.com/adisuja/tantra-enterprise-proposals/blob/main/template/proposal.html">the 3-month plan in the proposal</a>)</div>
+    <div class="any"><h4>Client asks to pause payments, wants a refund, or disputes a charge</h4>Payment terms are not set, and no guarantee is offered. {{brand.host_name}} decides the rule (<a href="https://github.com/adisuja/tantra-enterprise-webinar/blob/main/BLOCKERS.md">BLOCKERS A4</a>)</div>
+    <div class="any"><h4>Client asks for something outside scope <span class="draft">DRAFT</span></h4>Not included: paid ad spend, third-party tools and data, hiring or managing their sales team. Quote it separately or say no (<a href="https://github.com/adisuja/tantra-enterprise-proposals/blob/main/config/offer.json">not included list</a>)</div>
+  </div>
+  <p class="footnote">{{offer.name}} ({{offer.price}}) is 3 months of 1:1 coaching and implementation, a done-with-you build of the client's funnel, 1 year of the Tantra platform, and the course, community and group coaching calls. The client <b>builds</b> with us in weeks 1 to 6, <b>launches</b> their first webinars in weeks 7 to 10 with a numbers review after each, and from week 11 <b>runs</b> it themselves with coaching, on the platform to month 12. The renewal at month 12 is the platform, not the coaching. Steps marked DRAFT come from the draft plan and are not confirmed; nothing here promises a result.</p>
+</section>
+
+</div>
+</body>
+</html>

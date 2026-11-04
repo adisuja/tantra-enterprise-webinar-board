@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Sales Journey: first touch to signed client · Tantra Enterprise</title>
+<style>
+/*FONTS*/
+:root{--ink:#0b0d12;--paper:#f7f8fb;--white:#fff;--slate:#5b6472;--line:#e2e8f0;--volt:#6d4aff;--volt-deep:#4b2fd6;--iris:#a78bfa;--lilac:#f1efff;--haze:#c9c3ec;--ember:#c2410c;--amber-ink:#b45309;--cream:#fef3c7;--signal-ink:#047857;--box:#f2f3f7;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--display:'Clash Display','Inter',system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1360px;margin:0 auto;padding:0 44px 90px}
+a{color:var(--volt-deep)}
+.strip{display:flex;align-items:center;gap:10px;padding:30px 0 24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.strip img{height:22px;width:auto}
+.strip .brand{font:700 12.5px/1 Inter;letter-spacing:.1em}
+.strip .labels{font:500 10px/1 var(--mono);letter-spacing:.2em;color:var(--slate);text-transform:uppercase}
+.eyebrow{font:600 10.5px/1 var(--mono);letter-spacing:.2em;color:var(--volt);text-transform:uppercase;margin:46px 0 10px}
+h1{font:600 48px/1.06 var(--display);letter-spacing:-.01em;max-width:640px;margin:0}
+.intro{font-size:17px;line-height:1.5;color:#3c4350;max-width:660px;margin:18px 0 12px}
+.source{font-size:11.5px;line-height:1.55;color:var(--slate);max-width:660px;margin:0}
+section{margin-top:84px}
+h2{font:600 32px/1.15 var(--display);margin:0 0 8px}
+.sub{color:var(--slate);margin:0 0 24px;max-width:880px}
+.fill{display:inline-block;font:600 9.5px/1.5 var(--mono);letter-spacing:.06em;background:var(--cream);color:var(--amber-ink);padding:0 5px;border-radius:3px;vertical-align:1px}
+.draft{display:inline-block;font:600 8.5px/1.5 var(--mono);letter-spacing:.1em;background:var(--cream);color:var(--amber-ink);padding:0 4px;border-radius:3px;vertical-align:1px}
+.hint{display:none;font:500 10px/1.4 var(--mono);color:var(--slate);margin:0 0 8px}
+.bm{display:block;font:500 8.5px/1.3 var(--mono);letter-spacing:.04em;color:var(--slate);margin-top:2px;text-transform:uppercase}
+
+/* legend */
+.legend{display:flex;gap:24px;flex-wrap:wrap;font-size:12px;color:var(--slate);margin:0 0 14px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{display:inline-block;width:20px;height:12px}
+.sw.main{border-top:3px solid var(--volt);background:var(--box)}
+.sw.dec{background:var(--lilac);border:1px solid var(--volt)}
+.sw.rec{background:#fff6e6;border:1px dashed #dd9a2b}
+.sw.exit{background:var(--box);border-left:3px solid var(--ember)}
+
+/* journey diagram */
+.panel{background:var(--white);border:1px solid var(--line);padding:26px 22px 30px;overflow-x:auto}
+.journey{min-width:1150px}
+.jg{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr))}
+.phase{font:600 9px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding-bottom:7px;border-bottom:2px solid var(--ink);margin-right:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.phase b{color:var(--volt);font-weight:600;margin-right:5px}
+.nodes{margin-top:14px}
+.node{position:relative;padding-right:18px;display:flex}
+.node .box{flex:1;background:var(--box);border-top:3px solid var(--volt);padding:10px 8px 10px;min-height:76px}
+.node h4{font:600 11px/1.25 Inter;margin:0 0 3px}
+.node p{font-size:10px;line-height:1.35;color:var(--slate);margin:0}
+.node::after{content:"";position:absolute;right:3px;top:50%;width:14px;border-top:1px solid #8a919c}
+.node::before{content:"";position:absolute;right:0;top:calc(50% - 3.5px);border-left:5px solid #8a919c;border-top:3.5px solid transparent;border-bottom:3.5px solid transparent}
+.node.last::after,.node.last::before{display:none}
+.endshape{align-self:center;margin-left:4px;height:54px;background:linear-gradient(120deg,var(--volt),var(--volt-deep));transform:skewX(-12deg);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(77,47,214,.25)}
+.endshape span{transform:skewX(12deg);text-align:center;color:#fff;font:700 9.5px/1.25 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.endshape small{display:block;font:500 9px/1.2 Inter;letter-spacing:0;text-transform:none;opacity:.85}
+.cont{align-self:center;font:500 9px/1.3 var(--mono);color:var(--slate);padding-left:4px}
+.droplabel{font:600 8.5px/1 var(--mono);letter-spacing:.18em;color:var(--slate);text-transform:uppercase;margin:22px 0 0;padding-top:16px;border-top:1px solid #eef0f4}
+.drops{margin-top:2px}
+.dcol{padding-right:18px;display:flex;flex-direction:column;gap:7px}
+.dcol:not(:empty)::before{content:"";display:block;height:22px;border-left:1px dashed #9aa1ab;margin-left:14px;margin-bottom:-7px}
+.card{padding:8px 7px 9px;font-size:10px;line-height:1.38}
+.card .k{font:600 7.5px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.card h5{font:600 10.5px/1.25 Inter;margin:0 0 2px}
+.card p{margin:0;color:#3c4350}
+.card .back{display:block;font:600 8px/1.3 var(--mono);letter-spacing:.04em;margin-top:5px}
+.card.exit{background:var(--box);border-left:3px solid var(--ember)}
+.card.exit .k{color:var(--ember)}
+.card.rec{background:#fff6e6;border:1px dashed #dd9a2b}
+.card.rec .k,.card.rec .back{color:var(--amber-ink)}
+.card.dec{background:var(--lilac);border:1px solid var(--volt)}
+.card.dec .k,.card.dec .back{color:var(--volt-deep)}
+
+/* time to close */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
+.step{position:relative;background:var(--white);border-top:2px solid var(--volt);padding:20px 18px 18px}
+.step:not(:last-child)::after{content:"";position:absolute;right:-15px;top:50%;border-left:6px solid #8a919c;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.step .k{font:600 9.5px/1 var(--mono);letter-spacing:.16em;color:var(--volt);text-transform:uppercase}
+.step h3{font:600 15px/1.2 Inter;margin:8px 0 2px}
+.step .ft{font-size:11px;color:var(--slate)}
+.step .val{font:600 30px/1 var(--display);margin:18px 0 6px}
+.step .val small{font:500 11px Inter;color:var(--slate);margin-left:3px}
+.step .val .fill{font-size:16px;padding:2px 7px}
+.step .note{font-size:10.5px;color:var(--slate);line-height:1.4}
+.step .tgt{font:500 9.5px/1.4 var(--mono);color:var(--slate);margin-top:8px}
+.totals{display:grid;grid-template-columns:2fr 1fr;gap:22px;margin-top:22px}
+.tot{display:flex;justify-content:space-between;align-items:center;padding:30px 26px;gap:16px}
+.tot.dark{background:var(--ink);color:#fff}
+.tot.light{background:var(--white);border:1px solid var(--line)}
+.tot .k{font:600 10px/1.4 var(--mono);letter-spacing:.18em;text-transform:uppercase}
+.tot .k small{display:block;font:500 9.5px/1.4 var(--mono);letter-spacing:.04em;text-transform:none;opacity:.6;margin-top:10px}
+.tot .big{font:600 40px/1 var(--display);white-space:nowrap}
+.tot.dark .big{color:var(--iris)}
+.tot .big small{font:500 11px Inter;opacity:.6;margin-left:4px}
+.tot .big .fill{font-size:20px;padding:3px 9px}
+.foot{font-size:11px;color:var(--slate);margin-top:12px;max-width:980px}
+
+/* stage cards */
+.keyline{display:flex;gap:18px;flex-wrap:wrap;font-size:11.5px;color:var(--slate);margin-bottom:16px;align-items:center}
+.keyline b{font:600 11px var(--mono);color:var(--ink)}
+.keyline .tg{background:var(--lilac);border-left:3px solid var(--volt);padding:1px 7px;font:600 11px var(--mono);color:var(--ink)}
+.keyline .g{color:var(--signal-ink);font:600 11px var(--mono)}
+.keyline .r{color:var(--ember);font:600 11px var(--mono)}
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sc{background:var(--white);border:1px solid var(--line);padding:26px 24px 24px;display:flex;flex-direction:column}
+.sc .k{font:600 9.5px/1 var(--mono);letter-spacing:.16em;color:var(--volt);text-transform:uppercase}
+.sc h3{font:600 21px/1.2 var(--display);margin:8px 0 8px}
+.sc .lead{font-size:14.5px;line-height:1.45;margin:0 0 14px}
+.sc ul{margin:0 0 18px;padding-left:16px;font-size:12px;line-height:1.5;color:#3c4350}
+.sc li{margin-bottom:6px}
+.sc li::marker{color:var(--volt)}
+.sc .lab{font:600 9px/1 var(--mono);letter-spacing:.16em;color:var(--slate);text-transform:uppercase;margin:6px 0 6px}
+.sc .sw2{font-size:11.5px;color:#3c4350;margin:0 0 16px}
+.sc .kpis{margin-top:auto}
+table.kt{width:100%;border-collapse:collapse;font-size:12px}
+table.kt th{font:600 8.5px var(--mono);letter-spacing:.12em;color:var(--slate);text-transform:uppercase;text-align:left;padding:4px 6px;border-bottom:1px solid var(--line)}
+table.kt td{padding:8px 6px;border-bottom:1px solid #eef0f4;vertical-align:top}
+table.kt td.a{font:500 11.5px var(--mono);color:#a0a6b0;width:62px}
+table.kt td.t{font:600 11.5px var(--mono);background:var(--lilac);border-left:3px solid var(--volt);width:118px}
+
+/* KPI sheet */
+.tablewrap{background:var(--white);border:1px solid var(--line);overflow-x:auto}
+table.sheet{width:100%;border-collapse:collapse;font-size:12.5px;min-width:860px}
+table.sheet th{font:600 9px var(--mono);letter-spacing:.12em;color:var(--slate);text-transform:uppercase;text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+table.sheet td{padding:11px 14px;border-bottom:1px solid #eef0f4;vertical-align:top}
+table.sheet td.s{font:500 11.5px var(--mono);color:var(--slate);width:60px}
+table.sheet td.n{font-weight:600;width:190px}
+table.sheet td.m{color:#3c4350}
+table.sheet td.m code{font:500 10.5px var(--mono);background:var(--box);padding:0 4px;border-radius:3px}
+table.sheet td.a{font:500 11.5px var(--mono);color:#a0a6b0;width:110px}
+table.sheet td.t{font:500 11.5px var(--mono);width:170px}
+
+/* questions */
+.qcard{background:var(--white);border:1px solid var(--line);padding:24px 24px 18px}
+.qcard .k{font:600 9.5px/1 var(--mono);letter-spacing:.18em;color:var(--volt);text-transform:uppercase;margin-bottom:14px}
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);column-gap:28px}
+.qgrid.one{grid-template-columns:1fr}
+.q{display:flex;gap:10px;padding:10px 0 12px;border-bottom:1px solid #eef0f4;cursor:pointer}
+.q input{margin:2px 0 0;accent-color:var(--volt);width:14px;height:14px;flex:none}
+.q .t{font-size:12.5px;font-weight:500}
+.q .d{display:block;font-size:11px;line-height:1.45;color:var(--slate);margin-top:3px}
+.q input:checked + span .t{text-decoration:line-through;color:var(--slate)}
+.qrow{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.btns{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.btn{font:700 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;padding:13px 24px;border:1px solid var(--volt);background:var(--white);color:var(--volt-deep);transform:skewX(-12deg);cursor:pointer}
+.btn span{display:inline-block;transform:skewX(12deg)}
+.btn.primary{background:linear-gradient(120deg,var(--volt),var(--volt-deep));color:#fff;border-color:var(--volt-deep);box-shadow:0 6px 14px rgba(77,47,214,.22)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.field{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #e9ecf1;font-size:12.5px;gap:12px}
+.field input{width:112px;font:500 12.5px var(--mono);padding:6px 8px;border:1px solid #b9bfc9;background:var(--white);border-radius:0}
+.field input:focus{outline:2px solid var(--volt);outline-offset:-1px}
+table.out{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--line);font-size:12.5px}
+table.out th{font:600 9px var(--mono);letter-spacing:.12em;color:var(--slate);text-transform:uppercase;text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+table.out td{padding:10px 14px;border-bottom:1px solid #eef0f4}
+table.out td+td{font:500 12px var(--mono)}
+.implied{font-size:12px;color:#3c4350;margin:14px 0 16px}
+
+@media (max-width:1100px){.stages{grid-template-columns:1fr 1fr}.qgrid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){
+ .wrap{padding:0 18px 60px}
+ h1{font-size:34px}
+ .intro{font-size:15.5px}
+ section{margin-top:60px}
+ h2{font-size:26px}
+ .steps,.stages,.qgrid,.qrow,.calc,.totals{grid-template-columns:1fr}
+ .step:not(:last-child)::after{display:none}
+ .tot{padding:22px 18px}
+ .tot .big{font-size:32px}
+ .panel{padding:18px 14px 22px}
+ .hint{display:block}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="strip">
+  <img src="{{LOGO}}" alt="Tantra">
+  <span class="brand">TANTRA</span>
+  <span class="labels">· Sales · Enterprise · Internal</span>
+</header>
+
+<div class="eyebrow">{{brand.host_name}} · Working draft</div>
+<h1>Sales Journey: first touch to signed client</h1>
+<p class="intro">The path a prospect takes from a cold calendar invite to a signed {{offer.name}} client, how long it takes, and how each stage is measured.</p>
+<p class="source">Built from the funnel deliverables (items 2 to 27) and the CRM contract, 5 Nov 2026. No webinar has run yet, so every Actual column is blank until the CRM has live data. Targets come only from Growth Idea's measured rates (PROOF_PACK) or our own build plan; everything else says FILL.</p>
+
+<!-- 1 -->
+<section id="journey">
+  <h2>1. The journey</h2>
+  <p class="sub">Everything on the top line is the path to a signed deal. Everything below it is a drop-off.</p>
+  <div class="legend">
+    <span><i class="sw main"></i>Main journey</span>
+    <span><i class="sw dec"></i>Decision branch</span>
+    <span><i class="sw rec"></i>Drop-off with a recovery loop</span>
+    <span><i class="sw exit"></i>Drop-off that exits</span>
+  </div>
+  <p class="hint">Scroll sideways to see the whole journey →</p>
+  <div class="panel">
+    <div class="journey" style="--cols:12">
+      <div class="jg">
+        <div class="phase" style="grid-column:span 2"><b>01</b>List building</div>
+        <div class="phase"><b>02</b>Invites</div>
+        <div class="phase" style="grid-column:span 2"><b>03</b>Registration</div>
+        <div class="phase"><b>04</b>Webinar</div>
+        <div class="phase"><b>05</b>Booking</div>
+        <div class="phase"><b>06</b>Call 1</div>
+        <div class="phase"><b>07</b>Proposal</div>
+        <div class="phase"><b>08</b>Call 2</div>
+        <div class="phase"><b>09</b>Close</div>
+      </div>
+      <div class="jg nodes">
+        <div class="node"><div class="box"><h4>Source list</h4><p>Master calendar list</p></div></div>
+        <div class="node"><div class="box"><h4>Filter + slice</h4><p>100,000 a week, 60-day gap</p></div></div>
+        <div class="node"><div class="box"><h4>Invites sent out</h4><p>Calendar invites, cold email, LinkedIn</p></div></div>
+        <div class="node"><div class="box"><h4>Registers</h4><p>Page form or Yes / Maybe</p></div></div>
+        <div class="node"><div class="box"><h4>Pre-webinar reminders</h4><p>Email, WhatsApp, AI call</p></div></div>
+        <div class="node"><div class="box"><h4>Weekly live webinar</h4><p>{{webinar.duration_minutes}} min on {{webinar.platform}}, 3 offer cues</p></div></div>
+        <div class="node"><div class="box"><h4>Books the call</h4><p>Cal.com + qualifying questions</p></div></div>
+        <div class="node"><div class="box"><h4>Call 1</h4><p>{{booking.duration_minutes}}-min Enterprise Evaluation Call</p></div></div>
+        <div class="node"><div class="box"><h4>Proposal + due diligence</h4><p>Within one business day</p></div></div>
+        <div class="node"><div class="box"><h4>Call 2</h4><p>{{booking.call2.duration_minutes}}-min Proposal Review: the decision</p></div></div>
+        <div class="node"><div class="box"><h4>Agreement + payment</h4><p>Signed and paid: Closed Won</p></div></div>
+        <div class="endshape"><span>Handoff<small>to onboarding</small></span></div>
+      </div>
+      <div class="droplabel">Drop-off points</div>
+      <div class="jg drops">
+        <div class="dcol"></div>
+        <div class="dcol">
+          <div class="card exit"><div class="k">Exit</div><h5>Filtered out or held</h5><p>Fails a filter or sits in the EU/UK hold (A10)</p></div>
+        </div>
+        <div class="dcol">
+          <div class="card exit"><div class="k">Exit</div><h5>Complains or opts out</h5><p>STOP sets Do Not Contact</p></div>
+        </div>
+        <div class="dcol">
+          <div class="card exit"><div class="k">Exit</div><h5>Declines or doesn't reply</h5><p>Not registered; no follow-up</p></div>
+        </div>
+        <div class="dcol">
+          <div class="card rec"><div class="k">Recovery loop</div><h5>Replies CANT</h5><p>Replay track: recording + call link</p><span class="back">Go to Booking →</span></div>
+        </div>
+        <div class="dcol">
+          <div class="card rec"><div class="k">Recovery loop</div><h5>No-show or leaves before minute {{webinar.retarget_cutoff_minute}}</h5><p>Track B or C, retargeting to day 42</p><span class="back">Go to Booking →</span></div>
+          <div class="card exit"><div class="k">Exit</div><h5>Day 42, no booking or reply</h5><p>Dropped; newsletter if opted in</p></div>
+        </div>
+        <div class="dcol">
+          <div class="card rec"><div class="k">Recovery loop</div><h5>Stays to the offer, doesn't book</h5><p>Track A, 14 days; an offer click gets a call</p><span class="back">Back to Booking ↑</span></div>
+          <div class="card rec"><div class="k">Recovery loop</div><h5>Cancels the booking</h5><p>Seq. E: 4 messages in 2 days</p><span class="back">Back to Booking ↑</span></div>
+          <div class="card dec"><div class="k">Decision</div><h5>No to the $10,000 question</h5><p>Timing or budget? Timing keeps the call</p><span class="back">Go to Call 1 →</span></div>
+        </div>
+        <div class="dcol">
+          <div class="card exit"><div class="k">Exit</div><h5>No-show</h5><p>Not rebooked while the switch is off (A8); Nurture day 7</p></div>
+          <div class="card rec"><div class="k">Recovery loop</div><h5>Not ready</h5><p>Seq. F; Nurture at day 44</p><span class="back">Back to Booking ↑</span></div>
+          <div class="card exit"><div class="k">Exit</div><h5>Not a fit</h5><p>Closed Lost with a reason</p></div>
+        </div>
+        <div class="dcol">
+          <div class="card rec"><div class="k">Recovery loop</div><h5>Doesn't book Call 2</h5><p>Seq. D on days 1, 3 and 7; Follow-Up from day 8</p><span class="back">Go to Call 2 →</span></div>
+        </div>
+        <div class="dcol">
+          <div class="card exit"><div class="k">Exit</div><h5>Misses Call 2</h5><p>Not rebooked while the switch is off (A8); Nurture day 7</p></div>
+          <div class="card rec"><div class="k">Recovery loop</div><h5>Cancels Call 2</h5><p>Seq. RC: rebook link; Follow-Up day 7</p><span class="back">Back to Call 2 ↑</span></div>
+        </div>
+        <div class="dcol">
+          <div class="card rec"><div class="k">Recovery loop</div><h5>No decision on Call 2</h5><p>Seq. RS; Follow-Up from day 7: 4 touches in 14 days</p><span class="back">Back to Call 2 ↑</span></div>
+          <div class="card exit"><div class="k">Exit</div><h5>Lost with a reason</h5><p>Timing goes to Nurture: check-in every 75 days</p></div>
+        </div>
+        <div class="dcol"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="time">
+  <h2>2. Time to close</h2>
+  <p class="sub">How long it takes from the day a list slice is ready to a signed deal, in five steps.</p>
+  <div class="steps">
+    <div class="step"><div class="k">Step 1</div><h3>Build the list</h3><div class="ft">Slice ready → invites out</div><div class="val">0<small>days</small></div><div class="note">All 20 weekly slices are already cut (item 2)</div><div class="tgt">Target: <span class="fill">FILL</span></div></div>
+    <div class="step"><div class="k">Step 2</div><h3>Send invites</h3><div class="ft">Invites out → webinar day</div><div class="val">8 to 12<small>days</small></div><div class="note">The send window in item 12</div><div class="tgt">Target: <span class="fill">FILL</span></div></div>
+    <div class="step"><div class="k">Step 3</div><h3>Book Call 1</h3><div class="ft">Webinar → Call 1</div><div class="val"><span class="fill">FILL</span></div><div class="note">Cal.com shows slots 4 hours to 21 days ahead</div><div class="tgt">Target: <span class="fill">FILL</span></div></div>
+    <div class="step"><div class="k">Step 4</div><h3>Proposal</h3><div class="ft">Call 1 → proposal sent</div><div class="val">≤ 1<small>business day</small></div><div class="note">The promise in the booking description</div><div class="tgt">Target: 1 business day</div></div>
+    <div class="step"><div class="k">Step 5</div><h3>Close</h3><div class="ft">Proposal → Call 2 → signed</div><div class="val"><span class="fill">FILL</span></div><div class="note">Call 2 window: {{booking.call2.book_within_days}} days</div><div class="tgt">Estimated · Target: <span class="fill">FILL</span></div></div>
+  </div>
+  <div class="totals">
+    <div class="tot dark"><div class="k">Total · slice to signed deal<small>Target: FILL</small></div><div class="big"><span class="fill">FILL</span><small>days</small></div></div>
+    <div class="tot light"><div class="k">Webinar to signed deal<small>Range: from the first deals · target: FILL</small></div><div class="big"><span class="fill">FILL</span><small>days</small></div></div>
+  </div>
+  <p class="foot">Steps 2 and 4 come from our own plan (the item 12 send window and the one-business-day promise). Every other figure fills from the CRM once deals close: <code>call_date</code>, <code>proposal_sent_at</code> and <code>paid_at</code> on the Pipeline tab. Step 5 is bounded by the built pipeline: with no Call 2 booked, Seq. D moves the deal to Follow-Up on day 8; after a Call 2 with no decision, Follow-Up starts on day 7; Follow-Up ends 14 days later. The Call 2 booking window is Adi's to set. Targets still to set.</p>
+</section>
+
+<!-- 3 -->
+<section id="stages">
+  <h2>3. Stage by stage</h2>
+  <p class="sub">What happens at each stage, the software that runs it, and how it will be measured.</p>
+  <div class="keyline"><span><b>Actual</b> = from the CRM once live (blank now)</span><span><span class="tg">Target</span> = Growth Idea benchmark, our plan, or FILL</span><span><span class="g">Green</span> on or above target</span><span><span class="r">Red</span> below target</span></div>
+  <div class="stages">
+
+    <div class="sc"><div class="k">Stage 01</div><h3>List building</h3><p class="lead">We cut the list of people to invite to each week's webinar.</p>
+      <ul><li>The master calendar list (2,752,479 rows) filters down to 2,037,463 usable cold rows.</li><li>1,000,000 rows go into 10 weekly slices of 100,000, after 10 ramp weeks led by the warm list.</li><li>No row is invited within 60 days of its last invite. 393,755 EU, UK and Swiss rows are held.</li><li>Each recipient domain is tied to one sender pool, so a company only hears from one Workspace.</li></ul>
+      <div class="lab">Software</div><p class="sw2">Master CSV · item 2 slicing script · Tantra (contact import)</p>
+      <div class="kpis"><div class="lab">Key KPIs</div><table class="kt"><tr><th>KPI</th><th>Actual</th><th>Target</th></tr><tr><td>Rows ready per weekly slice</td><td class="a">·</td><td class="t">100,000<span class="bm">Plan, item 2</span></td></tr></table></div>
+    </div>
+
+    <div class="sc"><div class="k">Stage 02</div><h3>Invites</h3><p class="lead">Cold calendar invites put the webinar straight into prospects' calendars.</p>
+      <ul><li>Tantra sends the invites from 440 senders on 80 domains, 8 to 12 days before the session.</li><li>Full volume, 100,000 a week, starts the week of 8 Feb 2027 if the Workspaces are paid by 9 Nov 2026.</li><li>Three cold email templates and LinkedIn messages run alongside.</li><li>A decline gets no follow-up. STOP in any channel sets Do Not Contact.</li></ul>
+      <div class="lab">Software</div><p class="sw2">Tantra (calendar invites, cold email, LinkedIn) · Google Workspace senders</p>
+      <div class="kpis"><div class="lab">Key KPIs</div><table class="kt"><tr><th>KPI</th><th>Actual</th><th>Target</th></tr><tr><td>Invites per webinar</td><td class="a">·</td><td class="t">100,000<span class="bm">Plan, item 3</span></td></tr></table></div>
+    </div>
+
+    <div class="sc"><div class="k">Stage 03</div><h3>Registration</h3><p class="lead">Registrants get a personal join link and a reminder run that gets them to the room.</p>
+      <ul><li>The page form goes through the register Worker into {{webinar.platform}}, which emails the personal join link.</li><li>Yes and Maybe replies to the calendar invite are registered the same way.</li><li>Email and WhatsApp reminders run from 7 days out to 10 minutes after the start, plus up to two Vodex AI calls.</li><li>CANT moves a registrant to the replay track; CAL sends the calendar link.</li></ul>
+      <div class="lab">Software</div><p class="sw2">Registration page · Cloudflare Worker · {{webinar.platform}} · Tantra (email, WhatsApp) · Vodex · CRM sheet</p>
+      <div class="kpis"><div class="lab">Key KPIs</div><table class="kt"><tr><th>KPI</th><th>Actual</th><th>Target</th></tr><tr><td>Registration rate</td><td class="a">·</td><td class="t">0.23% to 2.0%<span class="bm">Growth Idea benchmark</span></td></tr></table></div>
+    </div>
+
+    <div class="sc"><div class="k">Stage 04</div><h3>Webinar</h3><p class="lead">The weekly live webinar is where prospects decide whether to talk to us.</p>
+      <ul><li>{{webinar.duration_minutes}} minutes on {{webinar.platform}}: {{webinar.presentation_minutes}} of teaching, {{webinar.qa_minutes}} of Q&amp;A.</li><li>{{brand.host_name}} presents. A second presenter, camera off, runs chat, polls and the offer boxes at 11, 26 and 41 minutes.</li><li>Attendance splits people into stayed to offer ({{webinar.retarget_cutoff_minute}}+ minutes), early leaver and no-show.</li><li>Each segment gets its own 14-day follow-up track (item 22).</li></ul>
+      <div class="lab">Software</div><p class="sw2">{{webinar.platform}} · CRM sheet (attendance import, polls, offer clicks)</p>
+      <div class="kpis"><div class="lab">Key KPIs</div><table class="kt"><tr><th>KPI</th><th>Actual</th><th>Target</th></tr><tr><td>Attendance rate</td><td class="a">·</td><td class="t">About 16%<span class="bm">Growth Idea benchmark</span></td></tr><tr><td>Stayed to offer</td><td class="a">·</td><td class="t"><span class="fill">FILL</span></td></tr></table></div>
+    </div>
+
+    <div class="sc"><div class="k">Stage 05</div><h3>Booking</h3><p class="lead">Attendees book the {{booking.event_title}}. The booking questions are the application.</p>
+      <ul><li>One Cal.com round-robin link spreads bookings evenly between {{closer.0}} and {{closer.1}}.</li><li>The questions qualify the lead: revenue band, $10,000 to invest in 12 months, main channel, bottleneck and who signs off.</li><li>The closer confirms by phone or WhatsApp voice note inside 5 minutes.</li><li>Offer clicks with no booking get a call inside 5 minutes; cancellations get Seq. E.</li></ul>
+      <div class="lab">Software</div><p class="sw2">Cal.com · CRM sheet · Tantra (WhatsApp, email)</p>
+      <div class="kpis"><div class="lab">Key KPIs</div><table class="kt"><tr><th>KPI</th><th>Actual</th><th>Target</th></tr><tr><td>Book call rate</td><td class="a">·</td><td class="t">About 8%<span class="bm">Growth Idea benchmark</span></td></tr></table></div>
+    </div>
+
+    <div class="sc"><div class="k">Stage 06</div><h3>Call 1</h3><p class="lead">A {{booking.duration_minutes}}-minute call to find the stage that loses the most revenue and check fit.</p>
+      <ul><li>Reminders 24 hours, 3 hours and 15 minutes before; a 10-minute research task 2 hours before.</li><li>The closer runs the discovery call script and logs the outcome within the hour.</li><li>Fit: wants it built with us and has $10,000 or more to invest in the next 12 months.</li><li>A missed call is not rescheduled while the rebooking switch is off.</li></ul>
+      <div class="lab">Software</div><p class="sw2">Google Meet · Cal.com · CRM sheet (Tantra CRM menu)</p>
+      <div class="kpis"><div class="lab">Key KPIs</div><table class="kt"><tr><th>KPI</th><th>Actual</th><th>Target</th></tr><tr><td>Call 1 show rate</td><td class="a">·</td><td class="t"><span class="fill">FILL</span></td></tr><tr><td>Proposal rate</td><td class="a">·</td><td class="t"><span class="fill">FILL</span></td></tr></table></div>
+    </div>
+
+    <div class="sc"><div class="k">Stage 07</div><h3>Written proposal + due diligence</h3><p class="lead">Between calls, the prospect sees what working with us would look like.</p>
+      <ul><li>A written proposal within one business day: their situation, the leak, the build, the 3-month plan and the {{offer.price}} investment.</li><li>The due diligence page: review the proposal, watch the deep-dive and the replay, read the case studies and testimonials.</li><li>The proposal and Seq. D carry the closer's own Proposal Review link, with reminders to book it on days 1, 3 and 7. No Call 2 and no decision by day 8 moves the deal to Follow-Up.</li></ul>
+      <div class="lab">Software</div><p class="sw2">Proposal generator (item 24) · due diligence page (item 20) · Tantra · CRM sheet</p>
+      <div class="kpis"><div class="lab">Key KPIs</div><table class="kt"><tr><th>KPI</th><th>Actual</th><th>Target</th></tr><tr><td>Proposals sent within one business day</td><td class="a">·</td><td class="t">100%<span class="bm">The promise</span></td></tr></table></div>
+    </div>
+
+    <div class="sc"><div class="k">Stage 08</div><h3>Call 2</h3><p class="lead">The {{booking.call2.event_title}}, where the decision is made.</p>
+      <ul><li>{{booking.call2.duration_minutes}} minutes with the closer who ran Call 1, booked from the proposal email on that closer's own Cal.com link.</li><li>Reminders 24 hours, 3 hours and 15 minutes before; a prep task 2 hours before.</li><li>The closer walks through the proposal, answers objections from the FAQ and asks for the decision. A yes gets the agreement and payment link on the call.</li><li>No decision 7 days after Call 2 moves the deal to Follow-Up. A missed Call 2 follows the same rebooking switch as Call 1.</li></ul>
+      <div class="lab">Software</div><p class="sw2">Google Meet · Cal.com (Proposal Review event type per closer) · CRM sheet (Tantra CRM menu) · Tantra</p>
+      <div class="kpis"><div class="lab">Key KPIs</div><table class="kt"><tr><th>KPI</th><th>Actual</th><th>Target</th></tr><tr><td>Call 2 show rate</td><td class="a">·</td><td class="t"><span class="fill">FILL</span></td></tr><tr><td>Close rate</td><td class="a">·</td><td class="t"><span class="fill">FILL</span></td></tr></table></div>
+    </div>
+
+    <div class="sc"><div class="k">Stage 09</div><h3>Agreement + payment</h3><p class="lead">The agreement is signed and paid, then the client moves to onboarding.</p>
+      <ul><li>Payment received moves the deal to Closed Won.</li><li>The client gets a welcome email and WhatsApp with the onboarding booking link.</li><li>The closer hands over the call notes, the proposal and the bottleneck the client named.</li><li>Payment terms and the signing tool: <span class="fill">FILL</span> (A4).</li></ul>
+      <div class="lab">Software</div><p class="sw2">CRM sheet · Tantra · payment and signing tool <span class="fill">FILL</span></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="kpis">
+  <h2>4. KPI sheet</h2>
+  <p class="sub">Last 90 days against target, read from the CRM. Green is on or above target, red is below. Blank until the first webinar runs.</p>
+  <div class="tablewrap"><table class="sheet">
+    <tr><th>Stage</th><th>KPI</th><th>How it's measured</th><th>Last 90 days</th><th>Target</th></tr>
+    <tr><td class="s">02</td><td class="n">Invites sent</td><td class="m">Calendar invites sent per webinar, from the Tantra campaign stats (not in the CRM yet)</td><td class="a">·</td><td class="t">100,000 (plan)</td></tr>
+    <tr><td class="s">03</td><td class="n">Registration rate</td><td class="m">Webinar rows with <code>registered_at</code> for the date ÷ invites sent</td><td class="a">·</td><td class="t">0.23% to 2.0% (GI)</td></tr>
+    <tr><td class="s">04</td><td class="n">Attendance rate</td><td class="m"><code>attended</code> TRUE (from <code>webinar.attended</code>) ÷ registered</td><td class="a">·</td><td class="t">About 16% (GI)</td></tr>
+    <tr><td class="s">04</td><td class="n">Stayed to offer</td><td class="m"><code>segment</code> = stayed_to_offer (<code>minutes_in_room</code> ≥ {{webinar.retarget_cutoff_minute}}) ÷ attended</td><td class="a">·</td><td class="t"><span class="fill">FILL</span></td></tr>
+    <tr><td class="s">05</td><td class="n">Book call rate</td><td class="m">Attendees with <code>booking.created</code> ÷ attended</td><td class="a">·</td><td class="t">About 8% (GI)</td></tr>
+    <tr><td class="s">05</td><td class="n">Offer click rate</td><td class="m"><code>cta_clicked</code> TRUE ÷ attended</td><td class="a">·</td><td class="t"><span class="fill">FILL</span></td></tr>
+    <tr><td class="s">06</td><td class="n">Call 1 show rate</td><td class="m"><code>show_status</code> Showed ÷ (Showed + No-Show)</td><td class="a">·</td><td class="t"><span class="fill">FILL</span></td></tr>
+    <tr><td class="s">06</td><td class="n">Proposal rate</td><td class="m">Deals with <code>proposal.sent</code> ÷ Showed</td><td class="a">·</td><td class="t"><span class="fill">FILL</span></td></tr>
+    <tr><td class="s">07</td><td class="n">Proposal on time</td><td class="m"><code>proposal_sent_at</code> within one business day of <code>call_date</code></td><td class="a">·</td><td class="t">100% (the promise)</td></tr>
+    <tr><td class="s">08</td><td class="n">Call 2 show rate</td><td class="m"><code>call2_status</code> Showed ÷ (Showed + No-Show)</td><td class="a">·</td><td class="t"><span class="fill">FILL</span></td></tr>
+    <tr><td class="s">08</td><td class="n">Close rate</td><td class="m">Closed Won with <code>call2_status</code> Showed ÷ Call 2 Showed</td><td class="a">·</td><td class="t"><span class="fill">FILL</span></td></tr>
+    <tr><td class="s">09</td><td class="n">Paid on signature</td><td class="m">Closed Won with <code>paid_at</code> set</td><td class="a">·</td><td class="t"><span class="fill">FILL</span></td></tr>
+  </table></div>
+  <p class="foot">GI = Growth Idea benchmark: measured on their 11 webinars, May 2025 to Feb 2026 (registration 0.23% on the first to 2.0% on the best; about 16% of registrants live and about 8 sales calls per 100 live, both on the best). Their offer is not ours, so these are a reference line, not a forecast.</p>
+</section>
+
+<!-- 5 -->
+<section id="questions">
+  <h2>5. Questions to ask</h2>
+  <p class="sub">The open decisions behind this journey. Tick them off as you get answers. Ticks save in this browser.</p>
+  <div class="qcard"><div class="k">Tools and decisions by stage</div>
+    <div class="qgrid">
+      <label class="q"><input type="checkbox" data-q="s01"><span><span class="t">01 · List building</span><span class="d">Planned: master calendar list, item 2 script. Keep the hold on 393,755 EU, UK and Swiss contacts? (A10a)</span></span></label>
+      <label class="q"><input type="checkbox" data-q="s02"><span><span class="t">02 · Invites</span><span class="d">Planned: Tantra senders on Google Workspace. 80 domains or the floor of 20? 440 or 800 senders? (A10b, A10c)</span></span></label>
+      <label class="q"><input type="checkbox" data-q="s03"><span><span class="t">03 · Registration + reminders</span><span class="d">Planned: page, Worker, WebinarJam, Tantra, Vodex. Waive the 8am to 8pm WhatsApp window on live-day steps? (A9)</span></span></label>
+      <label class="q"><input type="checkbox" data-q="s04"><span><span class="t">04 · Webinar</span><span class="d">Planned: WebinarJam, Basic or higher. Pick the title (A1) and the day, time, zone and first date (A3).</span></span></label>
+      <label class="q"><input type="checkbox" data-q="s05"><span><span class="t">05 · Booking</span><span class="d">Planned: Cal.com team round robin. Who is the setter: the closer (default) or a named person? (A8b)</span></span></label>
+      <label class="q"><input type="checkbox" data-q="s06"><span><span class="t">06 · Call 1</span><span class="d">Planned: Google Meet, CRM sheet. Keep no-show rebooking off, as the call description promises? (A8a)</span></span></label>
+      <label class="q"><input type="checkbox" data-q="s07"><span><span class="t">07 · Written proposal + due diligence</span><span class="d">Planned: proposal generator, due diligence page. Payment terms, 13-week plan, Who Does What (A4). One business day or 1 hour? (A8c)</span></span></label>
+      <label class="q"><input type="checkbox" data-q="s08"><span><span class="t">08 · Call 2</span><span class="d">Planned: a Proposal Review event type per closer on Cal.com, Google Meet, CRM sheet. A missed Call 2 follows the Call 1 rebooking switch: keep that, or always rebook? (Item 18, decision 7)</span></span></label>
+      <label class="q"><input type="checkbox" data-q="s09"><span><span class="t">09 · Agreement + payment</span><span class="d">How is the agreement signed and paid: which tool and which link?</span></span></label>
+    </div>
+  </div>
+  <div class="qrow">
+    <div class="qcard"><div class="k">Time to close</div><div class="qgrid one">
+      <label class="q"><input type="checkbox" data-q="t1"><span><span class="t">What's the target for each step and for the total?</span><span class="d">Steps 1, 3 and 5 have no number until deals close.</span></span></label>
+      <label class="q"><input type="checkbox" data-q="t2"><span><span class="t">How many days between the proposal and Call 2?</span><span class="d">Sets Limit future bookings on the two Proposal Review event types (<code>booking.call2.book_within_days</code>).</span></span></label>
+    </div></div>
+    <div class="qcard"><div class="k">Handoff</div><div class="qgrid one">
+      <label class="q"><input type="checkbox" data-q="h1"><span><span class="t">What triggers the handoff to delivery: signed agreement, first payment, or both?</span><span class="d">Today the CRM hands over on payment received (deal.won).</span></span></label>
+      <label class="q"><input type="checkbox" data-q="h2"><span><span class="t">What is the onboarding booking link?</span><span class="d">The welcome message waits as blocked until <code>onboarding_link</code> is on the Lists tab.</span></span></label>
+    </div></div>
+    <div class="qcard"><div class="k">Offer and proof</div><div class="qgrid one">
+      <label class="q"><input type="checkbox" data-q="o1"><span><span class="t">Approve or source "400+ founders" and "$100K to $300K a month"</span><span class="d">Claim to verify (A2).</span></span></label>
+      <label class="q"><input type="checkbox" data-q="o2"><span><span class="t">Bonus stack, fast-action deadline, guarantee: decide or refuse each</span><span class="d">Until then none is shown anywhere (A5).</span></span></label>
+      <label class="q"><input type="checkbox" data-q="o3"><span><span class="t">OK to use the nine published testimonials?</span><span class="d">No written clearance on record (A11).</span></span></label>
+    </div></div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="calculator">
+  <h2>6. Funnel calculator</h2>
+  <p class="sub">Load the Growth Idea benchmark, then adjust. Rates are % of the step before; new clients are close rate × Call 2 shows. A blank rate stops the chain.</p>
+  <div class="calc">
+    <div>
+      <div class="btns">
+        <button class="btn primary" id="load-bm" type="button"><span>Load benchmark</span></button>
+        <button class="btn" type="button" disabled title="Available once the CRM has 90 days of data"><span>Load last 90 days</span></button>
+      </div>
+      <div id="inputs"></div>
+    </div>
+    <div>
+      <table class="out"><thead><tr><th>Step</th><th>Per webinar</th><th>Per month (×4.33)</th></tr></thead><tbody id="out"></tbody></table>
+      <p class="implied" id="implied"></p>
+      <button class="btn" id="reset" type="button"><span>Reset</span></button>
+    </div>
+  </div>
+</section>
+
+</div>
+<script>
+(function(){
+  // Questions: ticks persist in localStorage
+  var KEY = "tantra-sales-journey-questions-v1";
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+  document.querySelectorAll("input[data-q]").forEach(function(box){
+    box.checked = !!saved[box.dataset.q];
+    box.addEventListener("change", function(){
+      saved[box.dataset.q] = box.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+
+  // Funnel calculator
+  var PRICE = {{offer.price_usd}};
+  var FIELDS = [
+    ["invites", "Invites sent / webinar", ""],
+    ["reg", "Registration rate %", "Registered"],
+    ["att", "Attendance rate %", "Attended"],
+    ["book", "Book call rate %", "Booked Call 1"],
+    ["show1", "Call 1 show rate %", "Showed Call 1"],
+    ["prop", "Proposal rate %", "Proposals sent"],
+    ["show2", "Call 2 show rate %", "Showed Call 2"],
+    ["close", "Close rate % (of Call 2 shows)", "New clients"]
+  ];
+  // Growth Idea measured rates (PROOF_PACK section 3, best webinar); invites = our plan (item 3)
+  var BENCH = {invites: 100000, reg: 2.0, att: 16, book: 8};
+  var inputs = document.getElementById("inputs");
+  FIELDS.forEach(function(f){
+    var row = document.createElement("label");
+    row.className = "field";
+    row.innerHTML = "<span>" + f[1] + "</span><input type=\"number\" min=\"0\" step=\"any\" inputmode=\"decimal\" id=\"f-" + f[0] + "\">";
+    inputs.appendChild(row);
+  });
+  function fmt(n){
+    if (n === null) return "·";
+    if (n >= 100) return Math.round(n).toLocaleString("en-US");
+    return (Math.round(n * 10) / 10).toLocaleString("en-US");
+  }
+  function read(id){
+    var v = document.getElementById("f-" + id).value.trim();
+    return v === "" ? null : Number(v);
+  }
+  function calc(){
+    var rows = [["Invites", read("invites")]];
+    var cur = rows[0][1];
+    FIELDS.slice(1).forEach(function(f){
+      var r = read(f[0]);
+      cur = (cur === null || r === null) ? null : cur * r / 100;
+      rows.push([f[2], cur]);
+    });
+    document.getElementById("out").innerHTML = rows.map(function(r){
+      return "<tr><td>" + r[0] + "</td><td>" + fmt(r[1]) + "</td><td>" + fmt(r[1] === null ? null : r[1] * 4.33) + "</td></tr>";
+    }).join("");
+    var shows = rows[4][1], clients = rows[7][1];
+    var el = document.getElementById("implied");
+    if (shows && clients !== null) {
+      el.innerHTML = "Overall close rate implied by these inputs: <b>" + fmt(clients / shows * 100) + "%</b> of Call 1 shows. At " +
+        "$" + PRICE.toLocaleString("en-US") + " a client that is <b>$" + Math.round(clients * 4.33 * PRICE).toLocaleString("en-US") + "</b> a month (target and last 90 days: not set).";
+    } else {
+      el.textContent = "Fill every rate down to the close rate to see the implied close rate and revenue. The benchmark stops at Booked Call 1: we have no measured rate past it.";
+    }
+  }
+  inputs.addEventListener("input", calc);
+  document.getElementById("load-bm").addEventListener("click", function(){
+    FIELDS.forEach(function(f){ document.getElementById("f-" + f[0]).value = BENCH[f[0]] !== undefined ? BENCH[f[0]] : ""; });
+    calc();
+  });
+  document.getElementById("reset").addEventListener("click", function(){
+    FIELDS.forEach(function(f){ document.getElementById("f-" + f[0]).value = ""; });
+    calc();
+  });
+  document.getElementById("load-bm").click();
+})();
+</script>
+</body>
+</html>

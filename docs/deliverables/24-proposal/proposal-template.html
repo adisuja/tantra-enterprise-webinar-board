@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tantra Enterprise Proposal for {{client_company}}</title>
+<!--
+  Tantra Enterprise proposal template (rebuilt 2026-11-05 to mirror Adi's proposal layout:
+  contents rail, title card, introduction with two person cards and a letter, scenario overview in two columns,
+  framework card, recommended strategy rows, phased implementation timeline, coaching, your role, investment,
+  tools and costs, ongoing roles, commitments, review and next steps, ready to get started).
+  Slots in double curly braces are filled by generate.py. Never type a price, an include or a proof number here:
+  they come from config/offer.json (or the live funnel config) and config/proof.json.
+-->
+<style>
+@font-face{font-family:"Clash Display";src:url(assets/fonts/clash-600.woff2) format("woff2");font-weight:600}
+@font-face{font-family:"Clash Display";src:url(assets/fonts/clash-700.woff2) format("woff2");font-weight:700}
+@font-face{font-family:"Satoshi";src:url(assets/fonts/satoshi-400.woff2) format("woff2");font-weight:400}
+@font-face{font-family:"Satoshi";src:url(assets/fonts/satoshi-500.woff2) format("woff2");font-weight:500}
+@font-face{font-family:"Satoshi";src:url(assets/fonts/satoshi-700.woff2) format("woff2");font-weight:700}
+@font-face{font-family:"Inter";src:url(assets/fonts/inter-var.woff2) format("woff2");font-weight:100 900}
+
+:root{
+  /* Tantra tokens (context/from-workshop-project/brand/tokens.json) */
+  --ink:#0b0d12;--night:#1a1033;--white:#fff;--haze:#c9c3ec;--slate:#5b6472;
+  --volt:#6d4aff;--volt-deep:#4b2fd6;--iris:#a78bfa;--lilac:#f1efff;--cyan:#22d3ee;--signal:#34d399;
+  --ember:#c2410c;--amber:#fbbf24;--cream:#fef3c7;
+  /* roles on the dark ground */
+  --card:#151024;--card-2:#1d1636;--card-line:#2f2557;--body-c:#d6d2ee;--meta:#9d97c0;
+  --display:"Clash Display","Satoshi","Inter",system-ui,sans-serif;
+  --human:"Satoshi","Inter",system-ui,sans-serif;
+  --body:"Inter",system-ui,sans-serif;
+}
+{{paper_css}}
+@page{
+  margin:13mm 13mm 15mm;background:#0b0d12;
+  @bottom-left{content:"Tantra Enterprise proposal  |  {{client_company_plain}}  |  Confidential";font:500 7pt "Inter",sans-serif;color:#9d97c0}
+  @bottom-right{content:"Page " counter(page) " of " counter(pages);font:500 7pt "Inter",sans-serif;color:#9d97c0}
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--body);color:var(--body-c);background:var(--ink);font-size:9.3pt;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3,h4{font-family:var(--display);color:var(--white);margin:0;font-weight:600;letter-spacing:-.003em;word-spacing:.1em;text-wrap:balance}
+p{margin:0 0 7px}
+ul{margin:0;padding-left:15px}
+li{margin:0 0 3px}
+strong,b{font-weight:600;color:var(--white)}
+.hl{color:var(--iris);font-weight:600}
+
+/* screen: centred column plus the contents rail, as in the reference */
+.rail{display:none}
+.toc{margin-top:14px;background:#05060a;border:1px solid var(--card-line);border-left:3px solid var(--volt);border-radius:12px;padding:12px 16px;box-shadow:0 0 22px rgba(109,74,255,.18);break-inside:avoid}
+.toc h5{margin:0 0 8px;font:700 8.5pt var(--body);letter-spacing:.1em;color:var(--iris);text-transform:uppercase;border-bottom:1px solid var(--card-line);padding-bottom:7px}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:22px}
+.toc li{font:600 7.5pt/1.3 var(--body);letter-spacing:.05em;text-transform:uppercase;color:#e9e6fb;padding:4px 0;border-bottom:1px solid rgba(47,37,87,.6);break-inside:avoid}
+.toc li span{color:var(--iris);margin-right:8px}
+@media screen{.toc{display:none}}
+@media screen{
+  body{background:radial-gradient(circle at 10% 8%,#1d1640 0%,var(--ink) 62%) fixed;font-size:10pt}
+  .wrap{max-width:900px;margin:0 auto;padding:32px 28px 60px}
+  .rail{display:block;position:fixed;left:16px;top:24px;width:168px;background:#05060a;border:1px solid var(--card-line);border-left:3px solid var(--volt);border-radius:10px;padding:14px 12px;box-shadow:0 0 22px rgba(109,74,255,.22)}
+  .rail h5{margin:0 0 10px;font:700 9pt var(--body);letter-spacing:.08em;color:var(--iris);text-transform:uppercase;border-bottom:1px solid var(--card-line);padding-bottom:9px}
+  .rail a{display:block;font:600 7.5pt/1.35 var(--body);letter-spacing:.05em;text-transform:uppercase;color:#e9e6fb;text-decoration:none;padding:5px 6px;border-radius:5px}
+  .rail a:hover{background:var(--card-2);color:var(--iris)}
+}
+@media screen and (max-width:1260px){.rail{display:none}
+.toc{margin-top:14px;background:#05060a;border:1px solid var(--card-line);border-left:3px solid var(--volt);border-radius:12px;padding:12px 16px;box-shadow:0 0 22px rgba(109,74,255,.18);break-inside:avoid}
+.toc h5{margin:0 0 8px;font:700 8.5pt var(--body);letter-spacing:.1em;color:var(--iris);text-transform:uppercase;border-bottom:1px solid var(--card-line);padding-bottom:7px}
+.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:22px}
+.toc li{font:600 7.5pt/1.3 var(--body);letter-spacing:.05em;text-transform:uppercase;color:#e9e6fb;padding:4px 0;border-bottom:1px solid rgba(47,37,87,.6);break-inside:avoid}
+.toc li span{color:var(--iris);margin-right:8px}
+@media screen{.toc{display:none}}}
+
+/* section frame: centred title with a short volt bar, divider between sections */
+.sec{padding:4px 0 6px}
+.sec.newpage{break-before:page}
+.sec > h2{font-size:17pt;line-height:1.2;text-align:center;margin:0 0 6px}
+.sec > h2::after{content:"";display:block;width:34px;height:3px;background:var(--volt);border-radius:2px;margin:8px auto 0}
+.sub{text-align:center;color:var(--meta);margin:0 0 12px}
+.lead{margin:0 0 12px}
+.divider{height:1px;background:linear-gradient(90deg,rgba(167,139,250,0),var(--iris),rgba(167,139,250,0));margin:16px 0 14px;border:0}
+.keep{break-inside:avoid}
+
+/* 1. title card */
+.titlecard{background:linear-gradient(180deg,#191233,#120d24);border:1px solid var(--card-line);border-radius:16px;padding:16px 22px 18px;box-shadow:0 0 34px rgba(109,74,255,.18);break-inside:avoid}
+.brand{display:flex;align-items:center;justify-content:center;gap:8px}
+.brand .mark{height:10mm}
+.brand .word{height:4mm}
+.titlecard h1{font-size:22pt;line-height:1.14;text-align:center;margin:12px auto 6px;max-width:150mm}
+.titlecard .date{text-align:center;font:600 7.5pt var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--meta)}
+.titlecard .date span{color:var(--haze)}
+.example-band{display:block;width:max-content;margin:0 auto 10px;background:var(--amber);color:var(--ink);font:700 7.5pt var(--body);letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:6px}
+
+/* 2. introduction: person card, letter, person card */
+.intro{display:grid;grid-template-columns:40mm 1fr 40mm;gap:12px;align-items:center;margin-top:12px;break-inside:avoid}
+.person{text-align:center}
+.avatar{width:22mm;height:22mm;border-radius:50%;margin:0 auto 7px;border:2.5px solid var(--volt);box-shadow:0 0 16px rgba(109,74,255,.45);overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--card-2);font:700 18pt var(--display);color:var(--iris)}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.person h3{font-size:12pt}
+.person .role{color:var(--haze);font-size:8.5pt;margin-top:2px}
+.person .org{color:var(--iris);font:600 8.5pt var(--body);margin-top:2px}
+.letter{background:var(--card-2);border:1px solid var(--card-line);border-radius:10px;padding:12px 14px;font-size:8.8pt;line-height:1.55;color:#e7e4fb}
+.letter .hi{color:var(--iris);font-weight:600;margin-bottom:5px}
+.letter p:last-child{margin:0}
+.letter .sig{margin-top:6px;font:600 8.5pt var(--human);color:var(--white)}
+
+/* 3. scenario overview: two coloured columns of items, pull quote, numbers */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.col{border-radius:14px;padding:12px;break-inside:avoid}
+.col.client{background:linear-gradient(160deg,#0f3a46,#0d2733);border:1px solid #1e5d6b}
+.col.ours{background:linear-gradient(160deg,var(--volt),var(--volt-deep));border:1px solid #8a6dff}
+.colhead{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.ico{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex:none}
+.col.client .ico{background:var(--cyan);color:var(--ink)}
+.col.ours .ico{background:var(--lilac);color:var(--volt-deep)}
+.ico svg{width:14px;height:14px}
+.eyebrow{font:700 6.5pt var(--body);letter-spacing:.14em;text-transform:uppercase}
+.col.client .eyebrow{color:var(--cyan)}
+.col.ours .eyebrow{color:var(--lilac)}
+.colhead h3{font-size:12pt}
+.item{background:rgba(255,255,255,.07);border-left:3px solid;border-radius:0 9px 9px 0;padding:8px 10px;margin-bottom:7px;break-inside:avoid}
+.col.client .item{border-color:var(--cyan)}
+.col.ours .item{border-color:var(--lilac)}
+.item:last-child{margin-bottom:0}
+.item h4{font-size:9.5pt;margin-bottom:3px}
+.col.client .item p,.col.client .item li{color:#bfeaf2}
+.col.ours .item p{color:#efeaff}
+.item p{font-size:8.5pt;line-height:1.5;margin:0}
+.quotes{list-style:none;padding:0;margin:0}
+.quotes li{font:500 8.7pt/1.45 var(--human);margin:0 0 5px;padding-left:9px;border-left:1px solid rgba(34,211,238,.45)}
+.quotes li:last-child{margin:0}
+.pull{margin:12px 0 0;background:var(--card);border:1px solid var(--card-line);border-top:2px solid var(--iris);border-radius:10px;padding:11px 16px;text-align:center;font:italic 500 9.5pt/1.55 var(--human);color:#e7e4fb;break-inside:avoid}
+.pull .q{color:var(--iris);font-style:normal}
+
+/* tables (reference table style: dark rows, caps header in volt tint) */
+.tbl{background:var(--card);border:1px solid var(--card-line);border-radius:12px;overflow:hidden;break-inside:avoid;margin-top:12px}
+.tbl .cap{background:linear-gradient(90deg,#1d1640,#2a1a5e);padding:8px 12px;font:600 9.5pt var(--display);color:var(--white)}
+table{width:100%;border-collapse:collapse;font-size:8.7pt}
+th{font:700 6.5pt var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--iris);text-align:left;padding:7px 12px;background:#18122d;border-bottom:1px solid var(--card-line)}
+td{padding:6px 12px;border-bottom:1px solid rgba(47,37,87,.7);vertical-align:top;color:var(--body-c)}
+tr:last-child td{border-bottom:0}
+tr{break-inside:avoid}
+td.lbl{color:var(--white);font-weight:600}
+td.num{font:600 9.5pt var(--human);white-space:nowrap;color:var(--white)}
+td.target{color:var(--iris)}
+.chip{display:inline-block;font:700 6pt var(--body);letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;border-radius:4px;background:#2a1f55;color:var(--iris);white-space:nowrap}
+.chip.in{background:rgba(52,211,153,.14);color:var(--signal)}
+.tnote{padding:7px 12px;border-top:1px solid var(--card-line);font-size:7.8pt;color:var(--meta)}
+.tnote b{color:var(--iris)}
+
+/* 4. framework card */
+.frame{background:#05060a;border:1px solid var(--card-line);border-radius:18px;padding:14px 18px;break-inside:avoid}
+.frame h2{font-size:17pt;text-align:center}
+.frame h2::after{content:"";display:block;width:34px;height:3px;background:var(--volt);border-radius:2px;margin:8px auto 0}
+.frame .tag{text-align:center;font:italic 500 8.8pt var(--human);color:var(--meta);margin:8px 0 12px}
+.phases{display:grid;grid-template-columns:1fr 12px 1fr 12px 1fr 12px 1fr;align-items:center;gap:4px;margin-bottom:12px}
+.ph{border-radius:9px;padding:8px 6px;text-align:center;border:1px solid}
+.ph small{display:block;font:700 6pt var(--body);letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.ph b{font:600 9pt/1.2 var(--display)}
+.ph.p1{background:#0c2a33;border-color:#1e5d6b}.ph.p1 small{color:var(--cyan)}
+.ph.p2{background:#0b2b22;border-color:#1f6b52}.ph.p2 small{color:var(--signal)}
+.ph.p3{background:#221646;border-color:#4b3a8f}.ph.p3 small{color:var(--iris)}
+.ph.p4{background:#2b1d63;border-color:var(--volt)}.ph.p4 small{color:var(--lilac)}
+.arrow{color:var(--meta);text-align:center;font-size:9pt}
+.philo{background:var(--card);border:1px solid var(--card-line);border-radius:10px;padding:10px 16px;text-align:center;margin-bottom:10px}
+.philo p{font:italic 500 9.5pt/1.5 var(--human);color:var(--white);margin:0 0 5px}
+.philo .by{font:700 6.5pt var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--iris)}
+.story{background:linear-gradient(180deg,#120f1d,#0d0b16);border:1px solid var(--card-line);border-radius:10px;padding:12px 16px}
+.story .open{text-align:center;font:italic 500 9.3pt var(--human);color:var(--white);margin:0 0 9px}
+.story p{font-size:8.4pt;margin-bottom:5px}
+.story .close{border-top:1px solid var(--card-line);padding-top:8px;margin:8px 0 0;text-align:center;font-size:8.3pt;color:var(--meta)}
+
+/* proof cards */
+.proofs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.proof{background:var(--card);border:1px solid var(--card-line);border-radius:14px;padding:12px;break-inside:avoid}
+.proof .eyebrow{color:var(--iris)}
+.proof h3{font-size:12pt;margin:2px 0 2px}
+.proof .who{font-size:8.2pt;color:var(--meta);margin-bottom:8px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.stat{background:var(--card-2);border-left:3px solid var(--iris);border-radius:0 8px 8px 0;padding:6px 8px}
+.stats.s3{grid-template-columns:1fr 1fr 1fr}
+.stat b{display:block;font:700 12pt/1.1 var(--display)}
+.stat span{display:block;font-size:7.3pt;line-height:1.25;color:var(--meta);margin-top:1px}
+.proof .line{font:500 8.7pt var(--human);color:var(--white);margin-bottom:5px}
+.proof .built{font-size:7.9pt;color:var(--meta);margin:0}
+.foot{font-size:7.6pt;color:var(--meta);text-align:center;margin:9px 0 0}
+
+/* 5. recommended strategy rows */
+.rows{display:grid;gap:7px}
+.row{display:grid;grid-template-columns:26px 1fr auto;gap:11px;align-items:center;background:var(--card);border:1px solid var(--card-line);border-radius:11px;padding:9px 12px;break-inside:avoid}
+.n{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--iris),var(--volt));color:var(--white);font:700 9.5pt/26px var(--body);text-align:center}
+.row h4{font:600 9.5pt var(--display);letter-spacing:.04em;text-transform:uppercase}
+.row p{margin:1px 0 0;font-size:8.3pt;color:var(--meta)}
+.btn{font:700 6.5pt var(--body);letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:6px;background:var(--volt);color:var(--white);white-space:nowrap}
+.btn.alt{background:#2a1f55;color:var(--iris)}
+.row.leak{border-color:var(--ember);box-shadow:inset 3px 0 0 var(--ember)}
+.row.leak .n{background:var(--ember)}
+.row.leak .btn{background:var(--ember)}
+.row.agent .n{background:var(--night);border:1px solid var(--iris);line-height:24px}
+
+/* 6. implementation timeline */
+.timeline{position:relative;padding-left:0}
+.phase{position:relative;background:var(--card);border:1px solid var(--card-line);border-left:3px solid var(--iris);border-radius:12px;padding:10px 12px;margin-bottom:9px;break-inside:avoid}
+.phase .ph-head{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--card-line);padding-bottom:7px;margin-bottom:8px}
+.phase .ph-head .n{flex:none}
+.phase .ph-head h3{font-size:11pt}
+.phase .ph-head small{margin-left:auto;font:700 6.5pt var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--iris)}
+.weeks{display:grid;gap:7px}
+.weeks.w2{grid-template-columns:1fr 1fr}
+.weeks.w3{grid-template-columns:1fr 1fr 1fr}
+.wk{background:var(--card-2);border-left:2px solid var(--iris);border-radius:0 8px 8px 0;padding:7px 9px;font-size:8.2pt;line-height:1.45}
+.wk h4{font-size:8.8pt;margin-bottom:3px}
+.ms{color:var(--iris);font-weight:600}
+.client-note{margin-top:7px;font-size:8.3pt;background:rgba(109,74,255,.16);border:1px solid #3b2d78;border-radius:7px;padding:5px 9px;color:#e7e4fb}
+.client-note strong{color:var(--iris)}
+
+/* 7. coaching checklist */
+.checks{list-style:none;padding:0;margin:0 auto;max-width:150mm}
+.checks li{position:relative;padding-left:20px;margin-bottom:6px;font-size:9pt}
+.checks li::before{content:"";position:absolute;left:2px;top:3px;width:9px;height:5px;border-left:2px solid var(--iris);border-bottom:2px solid var(--iris);transform:rotate(-45deg)}
+
+/* 8. your role cards */
+.rolecard{border-radius:14px;padding:10px 11px;margin-bottom:9px;break-inside:avoid}
+.rolecard.r1{background:linear-gradient(160deg,#2a2370,#1b1650);border:1px solid #3e36a0}
+.rolecard.r2{background:linear-gradient(160deg,var(--volt),var(--volt-deep));border:1px solid #8a6dff}
+.rolecard .rhead{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.rolecard .rhead .ico{background:rgba(255,255,255,.16);color:var(--white)}
+.rolecard .eyebrow{color:var(--haze)}
+.rolecard h3{font-size:12pt}
+.rolecard .rsub{font-size:7.8pt;color:var(--haze)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pair .panel{margin-top:0}
+.panel{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:8px 9px;margin-top:8px}
+.panel h4{font-size:9.3pt;margin-bottom:5px;display:flex;align-items:center;gap:6px}
+.resp{background:rgba(255,255,255,.06);border-radius:7px;padding:4px 8px;margin-bottom:3px;font-size:8pt;line-height:1.4;color:#ece9ff}
+.resp:last-child{margin-bottom:0}
+.resp b{display:block;font-size:8.5pt}
+
+/* 9. investment */
+.reco{background:var(--card);border:1px solid var(--card-line);border-left:3px solid var(--iris);border-radius:10px;padding:10px 14px;margin-bottom:12px;break-inside:avoid}
+.reco h4{font:600 9pt var(--body);color:var(--iris);margin-bottom:4px}
+.reco ul{margin-top:3px}
+.plan-wrap{display:flex;justify-content:center}
+.plan{width:105mm;background:var(--card);border:1px solid #4b3a8f;border-radius:16px;overflow:hidden;break-inside:avoid;box-shadow:0 0 26px rgba(109,74,255,.2)}
+.plan .top{background:linear-gradient(135deg,var(--volt),var(--volt-deep));padding:13px 14px 12px;text-align:center}
+.plan .pill{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:20px;font:700 6pt var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--white);padding:3px 9px;margin-bottom:6px}
+.plan .top h3{font-size:13pt}
+.plan .top .price{font:700 24pt/1.1 var(--display);color:var(--white);margin-top:4px;letter-spacing:-.01em}
+.plan .top .per{font-size:7.8pt;color:var(--lilac)}
+.plan .body{padding:11px 14px 12px}
+.plan h4{font:700 7pt var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--white);display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.plan h4 i{width:13px;height:13px;border-radius:50%;background:var(--signal);display:inline-block}
+.plan ul.inc{list-style:none;padding:0;margin:0 0 9px}
+.plan ul.inc li{position:relative;padding:4px 0 4px 18px;border-bottom:1px solid rgba(47,37,87,.8);font-size:8.6pt}
+.plan ul.inc li::before{content:"";position:absolute;left:3px;top:8px;width:7px;height:4px;border-left:2px solid var(--signal);border-bottom:2px solid var(--signal);transform:rotate(-45deg)}
+.terms{background:var(--card-2);border-radius:9px;padding:8px 10px}
+.terms .t{display:flex;justify-content:space-between;gap:10px;font-size:8.5pt}
+.terms .t b{white-space:nowrap}
+.note{margin-top:12px;background:#1c1435;border:1px solid var(--card-line);border-left:3px solid var(--volt);border-radius:9px;padding:8px 12px;font-size:8.5pt;break-inside:avoid}
+.note b{color:var(--iris)}
+
+/* 11. ongoing roles */
+.cols.roles .col{padding:11px}
+.col.blue{background:linear-gradient(160deg,#2a2370,#1b1650);border:1px solid #3e36a0}
+.req{background:rgba(255,255,255,.08);border-radius:8px;padding:6px 9px;margin-top:6px}
+.req small{display:block;font:700 6pt var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--haze);margin-bottom:2px}
+.req p{margin:0;font-size:8.4pt;color:#efeaff}
+
+/* 12. commitments */
+.commit h3{font-size:11pt;text-align:center;margin:10px 0 5px}
+.commit p{font-size:8.8pt}
+
+/* 13. review card */
+.review{background:#05060a;border:1px solid var(--card-line);border-top:2px solid var(--volt);border-radius:16px;padding:16px 20px;text-align:center;break-inside:avoid}
+.review h2{font-size:16pt}
+.review h2::after{content:"";display:block;width:34px;height:3px;background:var(--volt);border-radius:2px;margin:8px auto 0}
+.review .steps{font-size:9.3pt;margin:10px 0 0}
+.review .steps b{color:var(--iris)}
+ol.next{list-style:none;padding:0;margin:12px auto 0;max-width:150mm;text-align:left;counter-reset:s}
+ol.next li{counter-increment:s;position:relative;padding:0 0 7px 28px;font-size:8.8pt}
+ol.next li::before{content:counter(s);position:absolute;left:0;top:-1px;width:19px;height:19px;border-radius:50%;background:var(--volt);color:#fff;font:700 8pt/19px var(--body);text-align:center}
+.firsts{margin-top:12px;break-inside:avoid}
+.firsts h4{font:600 9pt var(--body);color:var(--iris);margin-bottom:4px}
+.firsts ul{font-size:8.6pt}
+.signoff{margin-top:9px;font-size:8.8pt}
+.signoff .warm{color:var(--iris);font-weight:600;margin-bottom:5px}
+
+/* 14. ready to get started */
+.ready{background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:16px 18px;break-inside:avoid}
+.ready h2{font-size:16pt;text-align:center}
+.ready h2::after{content:"";display:block;width:34px;height:3px;background:var(--volt);border-radius:2px;margin:8px auto 10px}
+.accept{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.party{background:var(--card-2);border:1px solid var(--card-line);border-radius:12px;padding:10px 12px}
+.party h3{font-size:9.8pt;margin-bottom:7px}
+.field{border-bottom:1px solid #6b6390;height:22px;margin-bottom:3px}
+.prefill{font:500 9pt var(--human);color:var(--white);height:22px;border-bottom:1px solid #6b6390;margin-bottom:3px;padding-top:4px}
+.flabel{font:700 6.3pt var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--meta);margin-bottom:7px}
+.ask{background:#05060a;border:1px solid var(--card-line);border-radius:12px;padding:10px 14px}
+.ask h3{font-size:10.5pt;margin-bottom:4px}
+.ask p{margin:0;font-size:8.6pt}
+.ask b{color:var(--iris)}
+a.c2link{color:var(--iris);text-decoration:underline;white-space:nowrap}
+.closing{text-align:center;color:var(--white);margin:12px 0 0;font-size:9pt}
+
+/* unfilled merge fields and draft notes: impossible to miss */
+.draftnote{margin:0 0 8px;font-size:8pt;text-align:center}
+.fill{background:var(--cream);color:#7c2d12;border:1px dashed #d97706;border-radius:4px;padding:0 4px;font-weight:600}
+</style>
+</head>
+<body>
+
+<nav class="rail" aria-label="Contents">
+  <h5>Contents</h5>
+  <a href="#introduction">Introduction</a>
+  <a href="#scenario">Scenario overview</a>
+  <a href="#framework">The Tantra framework</a>
+  <a href="#proof">Proof</a>
+  <a href="#strategy">Funnel strategy</a>
+  <a href="#plan">Implementation plan</a>
+  <a href="#coaching">Coaching and support</a>
+  <a href="#role">Your role</a>
+  <a href="#investment">Investment</a>
+  <a href="#tools">Tools and costs</a>
+  <a href="#operations">Ongoing operations</a>
+  <a href="#commitments">Commitments</a>
+  <a href="#review">Review and next steps</a>
+  <a href="#start">Get started</a>
+</nav>
+
+<div class="wrap">
+
+<!-- 1. Title card -->
+<header class="titlecard">
+  {{example_band}}
+  <div class="brand"><img class="mark" src="assets/tantra-mark-white.png" alt=""><img class="word" src="assets/tantra-word-white.png" alt="Tantra"></div>
+  <h1>Tantra Enterprise Revenue Engine Proposal for {{client_company}}</h1>
+  <div class="date">{{proposal_date}} <span>&nbsp;|&nbsp; Based on our call on {{call_date}}</span>{{valid_until_block}}</div>
+</header>
+
+<!-- 2. Introduction -->
+<section class="sec" id="introduction" style="margin-top:14px">
+  <h2>Introduction</h2>
+  <div class="intro">
+    <div class="person">
+      <div class="avatar">{{client_initial}}</div>
+      <h3>{{client_contact}}</h3>
+      <div class="role">{{client_role}}</div>
+      <div class="org">{{client_company}}</div>
+    </div>
+    <div class="letter">
+      <div class="hi">Hi {{client_contact}},</div>
+      <p>Thank you for the time on the call. You told us where your funnel hurts. This proposal puts that back to you in your own words, shows the one stage I would fix first, and lays out what my team builds with yours over the next 3 months.</p>
+      <p>{{closer}} and I wrote it from your answers. If anything here is not how you see it, reply and we will change it before you sign.</p>
+      <div class="sig">{{host_name}}, {{host_title}}</div>
+    </div>
+    <div class="person">
+      <div class="avatar"><img src="assets/adi-avatar.jpg" alt="{{host_name}}"></div>
+      <h3>{{host_full_name}}</h3>
+      <div class="role">{{host_title}}</div>
+      <div class="org">Tantra</div>
+    </div>
+  </div>
+</section>
+
+<nav class="toc" aria-hidden="true"><h5>Contents</h5><ol><li><span>01</span>Introduction</li><li><span>02</span>Scenario overview</li><li><span>03</span>The Tantra framework</li><li><span>04</span>Proof</li><li><span>05</span>Funnel strategy</li><li><span>06</span>Implementation plan</li><li><span>07</span>Coaching and support</li><li><span>08</span>Your role</li><li><span>09</span>Investment</li><li><span>10</span>Tools and costs</li><li><span>11</span>Ongoing operations</li><li><span>12</span>Commitments</li><li><span>13</span>Review and next steps</li><li><span>14</span>Get started</li></ol></nav>
+
+<!-- 3. Scenario overview -->
+<section class="sec newpage" id="scenario">
+  <h2>Scenario Overview</h2>
+  <p class="sub">A summary of our call and the opportunity ahead.</p>
+  <div class="cols">
+    <div class="col client">
+      <div class="colhead"><div class="ico"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="5" r="3"/><path d="M2 15c0-3.3 2.7-5 6-5s6 1.7 6 5z"/></svg></div>
+        <div><div class="eyebrow">{{client_company}}</div><h3>Where You Are Today</h3></div></div>
+      <div class="item"><h4>In Your Words</h4><ul class="quotes">{{situation_block}}</ul></div>
+      <div class="item"><h4>Your Goal</h4><p>{{goal}}</p></div>
+      <div class="item"><h4>Where Revenue Leaks: {{leak_stage_title}}</h4>{{leak_detail}}</div>
+    </div>
+    <div class="col ours">
+      <div class="colhead"><div class="ico"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l2 5h5l-4 3 1.6 5L8 11l-4.6 3L5 9 1 6h5z"/></svg></div>
+        <div><div class="eyebrow">Tantra</div><h3>Our Approach</h3></div></div>
+      <div class="item"><h4>Fix {{leak_stage_title}} First</h4><p>It is where your revenue leaks today. Until it holds, more traffic only pushes more people through the gap.</p></div>
+      <div class="item"><h4>Build All Six Stages With Your Team</h4><p>One funnel on one platform, built beside your people so they can run it. Your conversion mechanism: {{conversion_mechanism}}.</p></div>
+      <div class="item"><h4>Measure Every Week</h4><p>A weekly numbers review against your targets, and a log of every change we test and what it did.</p></div>
+    </div>
+  </div>
+  <div class="pull"><span class="q">&ldquo;</span> Our goal is a revenue engine your team runs after month 3, measured every week against the targets you set on the call. <span class="q">&rdquo;</span></div>
+  <div class="tbl">
+    <div class="cap">The Numbers You Gave Us</div>
+    <table>
+      <thead><tr><th>What we measure</th><th style="width:22%">Today</th><th style="width:22%">Your target</th></tr></thead>
+      <tbody>{{numbers_rows}}</tbody>
+    </table>
+    <div class="tnote">Targets are the ones you set on the call. They steer the build. They are not a promise of results.</div>
+  </div>
+</section>
+
+<!-- 4. Framework -->
+<section class="sec newpage" id="framework">
+  <div class="frame">
+    <h2>The Tantra Enterprise Framework</h2>
+    <p class="tag">Six stages, one platform, built with your team in 13 weeks.</p>
+    <div class="phases">
+      <div class="ph p1"><small>Phase 1</small><b>Map and Design</b></div><div class="arrow">&rarr;</div>
+      <div class="ph p2"><small>Phase 2</small><b>Build</b></div><div class="arrow">&rarr;</div>
+      <div class="ph p3"><small>Phase 3</small><b>Launch and Fix the Leak</b></div><div class="arrow">&rarr;</div>
+      <div class="ph p4"><small>Phase 4</small><b>Hand Over and Scale</b></div>
+    </div>
+    <div class="philo">
+      <p>&ldquo;Fix the leak before you buy more traffic. A funnel that loses people in the middle only loses more of them when you push harder.&rdquo;</p>
+      <div class="by">How we build at Tantra</div>
+    </div>
+    <div class="story">
+      <p class="open">&ldquo;Every stage gets a number, so you always know where the next sale is lost.&rdquo;</p>
+      <p>In <span class="hl">Phase 1</span>, we take your numbers today, agree your buyer and your offer, and choose the conversion mechanism that fits it. Your platform account, tracking sheet and pipeline are set up before anything goes live.</p>
+      <p><span class="hl">Phase 2</span> is the build: traffic tracked to revenue, landing and registration pages, nurture across email, WhatsApp and AI voice, the conversion mechanism and the sales scripts.</p>
+      <p>In <span class="hl">Phase 3</span>, we run it live with your team beside us, review the numbers every week and fix {{leak_stage_name}} first.</p>
+      <p>Then comes <span class="hl">Phase 4</span>: your team runs the engine and we coach. The 52-week follow-up keeps turning your list into revenue after month 3.</p>
+      <p class="close">We have worked with 250+ brands in 47+ industries across 21+ countries over 10+ years. <span class="hl">This one we build with you.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- Proof (not in the reference layout; required by the brief) -->
+<section class="sec" id="proof" style="margin-top:10px">
+  <h2>Two Funnels We Built This Way</h2>
+  <p class="sub">Measured from each client's own tracker, week by week.</p>
+  <div class="proofs">{{proof_block}}</div>
+  <p class="foot">{{proof_footnote}}</p>
+</section>
+
+<!-- 5. Recommended funnel strategy -->
+<section class="sec newpage" id="strategy">
+  <h2>Recommended Funnel Strategy for {{client_company}}</h2>
+  <p class="lead">Based on our call, I recommend building all six stages with your team, with <span class="hl">{{leak_stage_name}} fixed first</span>. Your conversion mechanism: {{conversion_mechanism}}.</p>
+  <div class="rows">{{strategy_rows}}
+    <div class="row agent"><div class="n">+</div><div><h4>One AI Agent Across All Six</h4><p>{{agent_line}}.</p></div><span class="btn alt">Every stage</span></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 6. Implementation plan -->
+<section class="sec" id="plan">
+  <h2>Your 3-Month Implementation Plan</h2>
+  <p class="sub">Built with your team in 13 weeks, in four phases. Each phase ends on a milestone.</p>
+  {{plan_status}}
+  <div class="timeline">
+    <div class="phase">
+      <div class="ph-head"><div class="n">1</div><h3>Map and Design</h3><small>Weeks 1 to 2</small></div>
+      <div class="weeks w2">
+        <div class="wk"><h4>Week 1</h4>Kickoff with your team. We take your numbers today: traffic, conversion and close rate.</div>
+        <div class="wk"><h4>Week 2</h4>Agree your buyer, your offer and the conversion mechanism that fits it. <span class="ms">Milestone 1:</span> your Tantra platform account, tracking sheet and 11-stage pipeline are set up.</div>
+      </div>{{plan_note_1}}
+    </div>
+    <div class="phase">
+      <div class="ph-head"><div class="n">2</div><h3>Build</h3><small>Weeks 3 to 6</small></div>
+      <div class="weeks w3">
+        <div class="wk"><h4>Weeks 3 to 4</h4>Traffic: your lists and the channels we pick together, tracked to revenue.</div>
+        <div class="wk"><h4>Week 5</h4>Landing and registration pages, then nurture across email, WhatsApp and AI voice.</div>
+        <div class="wk"><h4>Week 6</h4><span class="ms">Milestone 2:</span> the conversion mechanism and the pipeline scripts (discovery, demo, closing, checkout and onboarding) are ready to run.</div>
+      </div>{{plan_note_2}}
+    </div>
+    <div class="phase">
+      <div class="ph-head"><div class="n">3</div><h3>Launch and Fix the Leak</h3><small>Weeks 7 to 10</small></div>
+      <div class="weeks w3">
+        <div class="wk"><h4>Weeks 7 to 8</h4>First live runs, with us working beside your team.</div>
+        <div class="wk"><h4>Week 9</h4>A weekly numbers review against your targets, and a log of every change we test and what it did.</div>
+        <div class="wk"><h4>Week 10</h4><span class="ms">Milestone 3:</span> {{leak_stage_name}} is fixed first and holding.</div>
+      </div>{{plan_note_3}}
+    </div>
+    <div class="phase">
+      <div class="ph-head"><div class="n">4</div><h3>Hand Over and Scale</h3><small>Weeks 11 to 13</small></div>
+      <div class="weeks w3">
+        <div class="wk"><h4>Week 11</h4>Your team runs the engine. We coach.</div>
+        <div class="wk"><h4>Week 12</h4>The 52-week follow-up is live, so your list keeps working after month 3.</div>
+        <div class="wk"><h4>Week 13</h4><span class="ms">Milestone 4:</span> we agree the plan for months 4 to 12 on the platform.</div>
+      </div>{{plan_note_4}}
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 7. Coaching and support -->
+<section class="sec keep" id="coaching">
+  <h2>Coaching and Support After the Build</h2>
+  <p class="sub">What stays with you once your team runs the engine.</p>
+  <ul class="checks">{{after_build_checks}}</ul>
+</section>
+
+<hr class="divider">
+
+<!-- 8. Your role -->
+<section class="sec newpage" id="role">
+  <h2>Your Role ({{client_contact}} and Your Team)</h2>
+  {{roles_status}}
+  <div class="rolecard r1">
+    <div class="rhead"><div class="ico"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9 1L3 9h4l-1 6 6-8H8z"/></svg></div>
+      <div><div class="eyebrow">Phase 1 to 3</div><h3>During the 3-Month Build</h3><div class="rsub">Build, launch and fix the leak</div></div></div>
+    <div class="pair"><div class="panel"><h4>Your Team's Responsibilities</h4>
+      <div class="resp"><b>Strategy</b>Decide the offer, the price and the buyer.</div>
+      <div class="resp"><b>Build</b>Give access to domains, calendars, CRM and brand assets; approve copy on time.</div>
+      <div class="resp"><b>Traffic</b>Approve the messaging; fund any ad spend.</div>
+      <div class="resp"><b>Conversion</b>Present it: your face, your voice, your offer.</div>
+      <div class="resp"><b>Sales</b>Take the calls and close.</div>
+      <div class="resp"><b>Numbers</b>Share your numbers each week.</div>
+    </div>
+    <div class="panel"><h4>Tantra's Responsibilities</h4>
+      <div class="resp"><b>Strategy</b>Design the funnel and choose the mechanism with you.</div>
+      <div class="resp"><b>Build</b>Build pages, sequences, pipeline and the AI agent set-up with you.</div>
+      <div class="resp"><b>Traffic</b>Set up the channels and the lists.</div>
+      <div class="resp"><b>Conversion</b>Script and structure the event, video or workshop.</div>
+      <div class="resp"><b>Sales</b>Discovery, demo and closing scripts; call reviews.</div>
+      <div class="resp"><b>Numbers</b>The weekly review and the change log.</div>
+    </div></div>
+    {{team_block}}
+  </div>
+  <div class="rolecard r2">
+    <div class="rhead"><div class="ico"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 12l4-4 3 3 5-6v3h1V3h-5v1h3L9 9 6 6l-5 5z"/></svg></div>
+      <div><div class="eyebrow">Phase 4 onward</div><h3>After Hand-Over</h3><div class="rsub">Months 4 to 12</div></div></div>
+    <div class="panel"><h4>Your Team's Responsibilities</h4>
+      <div class="resp"><b>Run the engine weekly</b>Your operator runs lists, sends, pages and the pipeline on the platform.</div>
+      <div class="resp"><b>Keep the numbers review</b>The same weekly review against your targets, now run by your team.</div>
+      <div class="resp"><b>Bring questions to coaching</b>Take what you see in the numbers to the group coaching calls.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Investment -->
+<section class="sec newpage" id="investment">
+  <h2>Your Investment</h2>
+  <div class="reco">
+    <h4>Investment Recommendation for {{client_company}}</h4>
+    <p style="margin:0">Based on what you told us on the call, I recommend {{offer_name}}.</p>
+    <h4 style="margin-top:6px">Why?</h4>
+    <ul>
+      <li><b>Your leak:</b> {{leak_stage_name}} gets fixed first, by people who have built this stage many times.</li>
+      <li><b>Built with your team:</b> your people learn to run it, so it keeps working after month 3.</li>
+      <li><b>One platform:</b> traffic, pages, nurture, pipeline and follow-up in one place.</li>
+    </ul>
+  </div>
+  <div class="plan-wrap">
+    <div class="plan">
+      <div class="top">
+        <div class="pill">Recommended</div>
+        <h3>{{offer_name}}</h3>
+        <div class="price">{{price}}</div>
+        <div class="per">One engagement, built with your team</div>
+      </div>
+      <div class="body">
+        <h4><i></i>What's included</h4>
+        <ul class="inc">{{includes_list}}</ul>
+        <div class="terms"><div class="t"><b>Payment terms</b></div>{{payment_terms}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="note"><b>Note:</b> prices are in US dollars. What is not included is listed under Tools and Third-Party Costs below.</div>
+</section>
+
+<hr class="divider">
+
+<!-- 10. Tools and third-party costs -->
+<section class="sec keep" id="tools">
+  <h2>Tools and Third-Party Costs</h2>
+  <p class="lead">Your funnel runs on the Tantra platform. A few costs sit outside it, and you pay those directly.</p>
+  {{not_included_status}}
+  <div class="tbl" style="margin-top:0">
+    <div class="cap">Complete Cost Breakdown</div>
+    <table>
+      <thead><tr><th style="width:32%">Item</th><th style="width:15%">Type</th><th>Notes</th></tr></thead>
+      <tbody>{{cost_rows}}</tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 11. Ongoing operations -->
+<section class="sec keep" id="operations">
+  <h2>Ongoing Funnel Operations (After Month 3)</h2>
+  <p class="lead">To keep the engine running after hand-over, two roles on your side matter most.</p>
+  {{roles_status}}
+  <div class="cols roles">
+    <div class="col blue">
+      <div class="colhead"><div class="ico" style="background:rgba(255,255,255,.16);color:#fff"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="5" r="3"/><path d="M2 15c0-3.3 2.7-5 6-5s6 1.7 6 5z"/></svg></div><h3>The Face of the Funnel</h3></div>
+      <div class="req"><small>Who</small><p>{{client_contact}}, or the leader your buyers trust</p></div>
+      <div class="req"><small>Why this role</small><p>Presents the conversion event, owns the offer and leads the sales calls. Your buyers come for you, so this role stays with your team.</p></div>
+    </div>
+    <div class="col ours">
+      <div class="colhead"><div class="ico"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l1.5 3 3.2-1-1 3.2L15 6.6l-3 1.5 1 3.2-3.2-1L8 13.3 6.5 10.3l-3.2 1 1-3.2L1 6.6l3.2-1.4-1-3.2 3.2 1z"/></svg></div><h3>The Funnel Operator</h3></div>
+      <div class="req"><small>Who</small><p>One person on your team, named in week 1</p></div>
+      <div class="req"><small>Why this role</small><p>Runs the platform each week: lists, sends, pages, the pipeline and the numbers review. Trained by us during the 13 weeks.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 12. Commitments (the reference's guarantees slot: we offer no guarantee, so this says so) -->
+<section class="sec keep commit" id="commitments">
+  <h2>What We Commit To</h2>
+  <h3>1. Built With Your Team, Measured Every Week</h3>
+  <p>You get a weekly numbers review against the targets you set, and a log of every change we test and what it did. You always know what we did and what it moved.</p>
+  <h3>2. No Promised Results</h3>
+  <p>Your targets steer the build. They are not a promise of results, and we do not offer a guarantee. The proof in this proposal is what two clients measured, not a forecast for you.</p>
+</section>
+
+<!-- 13. Review and next steps -->
+<hr class="divider">
+
+<section class="sec keep" id="review">
+  <div class="review">
+    <h2>Proposal Review and Next Steps</h2>
+    <p class="steps"><b>Step 1</b> is reading this proposal. <b>Step 2</b> is your Proposal Review with {{closer}}, where we decide together.</p>
+    <ol class="next">
+      <li>Book your Proposal Review with {{closer}} ({{call2_minutes}} minutes): {{call2_link}}</li>
+      <li>On the call, with whoever signs off, we go through it and decide together.</li>
+      <li>If we go ahead, {{closer}} sends the agreement and the payment link.</li>
+      <li>Sign and pay. Week 1 starts on {{start_date}} with the kickoff call.</li>
+    </ol>
+  </div>
+  <div class="firsts">
+    <h4>When You See First Results</h4>
+    <ul>
+      <li>Week 1: your kickoff call and your numbers today</li>
+      <li>Week 2: platform, tracking sheet and pipeline set up</li>
+      <li>Week 6: conversion mechanism and pipeline scripts ready</li>
+      <li>Weeks 7 to 10: first live runs and {{leak_stage_name}} fixed</li>
+      <li>Week 13: your team runs the engine; plan for months 4 to 12 agreed</li>
+    </ul>
+  </div>
+  <div class="signoff">
+    <p class="warm">I'm looking forward to building this with you, {{client_contact}}.</p>
+    <p style="margin:0">{{host_full_name}}<br>{{host_title}}</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 14. Ready to get started -->
+<section class="sec keep" id="start">
+  <div class="ready">
+    <h2>Ready to Get Started?</h2>
+    <p style="text-align:center">Going ahead after your Proposal Review? Sign below and send it back to {{closer}}. By signing, you accept this proposal: the scope in the strategy, plan and role sections and the investment above.</p>
+    <div class="accept">
+      <div class="party"><h3>For {{client_company}}</h3>
+        <div class="field"></div><div class="flabel">Name</div>
+        <div class="field"></div><div class="flabel">Title</div>
+        <div class="field"></div><div class="flabel">Signature</div>
+        <div class="field"></div><div class="flabel">Date</div>
+      </div>
+      <div class="party"><h3>For Tantra</h3>
+        <div class="prefill">{{host_full_name}}</div><div class="flabel">Name</div>
+        <div class="prefill">{{host_title}}</div><div class="flabel">Title</div>
+        <div class="field"></div><div class="flabel">Signature</div>
+        <div class="field"></div><div class="flabel">Date</div>
+      </div>
+    </div>
+    <div class="ask">
+      <h3>Questions Before You Sign?</h3>
+      <p>Bring them to your Proposal Review, or reply to <b>{{closer}}</b> before it. Nothing here is final until you are happy with it.</p>
+    </div>
+    <p class="closing">Looking forward to working with your team, {{client_contact}}.</p>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

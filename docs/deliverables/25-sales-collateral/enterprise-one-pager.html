@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tantra Enterprise: One-Pager</title>
+<link rel="stylesheet" href="assets/collateral.css">
+<style>
+@page{size:A4}
+@page{margin:0}
+@media screen{body{background:#d9dce4}.page{margin:20px auto;box-shadow:0 2px 10px rgba(0,0,0,.12)}}
+.page{width:100%;max-width:210mm;height:var(--h,auto);background:#fff;font-size:9pt;line-height:1.5}
+@media print{.page{max-width:none;height:100vh;overflow:hidden;display:flex;flex-direction:column}}
+.top{flex:0 0 auto;background:var(--ink);color:#fff;padding:7mm 14mm 5mm;position:relative;overflow:hidden}
+.top::after{content:"";position:absolute;right:-40mm;top:-50mm;width:120mm;height:120mm;border-radius:50%;background:radial-gradient(circle,rgba(109,74,255,.45),rgba(109,74,255,0) 66%)}
+.top > *{position:relative;z-index:1}
+.top .kicker{color:var(--iris);margin-top:3mm}
+.top h1{font-size:18pt;line-height:1.1;margin-top:2.5mm;max-width:170mm}
+.top p{margin-top:2mm;font:400 9pt/1.5 var(--human);color:#e7e4fb;max-width:165mm}
+.body{padding:4.5mm 14mm 0;flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+h2{font-size:11pt;margin:0 0 2mm}
+.grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8mm}
+.st{border:1px solid var(--line);border-radius:7px;padding:1.6mm 2.4mm;background:var(--paper)}
+.st b{display:block;font:600 8.6pt var(--display);word-spacing:.1em}
+.st span{font-size:7pt;color:var(--slate);line-height:1.3;display:block;margin-top:.5mm}
+.agent{margin-top:1.8mm;background:var(--night);color:#fff;border-radius:7px;padding:1.6mm 3mm;font:500 8pt var(--human)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:5mm}
+.proof{border:1px solid var(--line);border-radius:10px;padding:3.5mm 4mm}
+.proof h3{font-size:10pt}
+.proof .p{font-size:7.5pt;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;font-weight:600;margin-top:.5mm}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:2mm;margin-top:2.5mm}
+.nums div{background:var(--paper);border-radius:6px;padding:2mm 2.2mm}
+.nums b{display:block;font:700 13pt/1.1 var(--display)}
+.nums span{font-size:7pt;color:var(--slate);line-height:1.3;display:block;margin-top:.6mm}
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.cases .cs{--u:.56px;border-width:calc(var(--u)*7)}
+.cases .cs-bar{font-size:11pt;padding:1.1mm 3mm}
+.cases .cs-cols{gap:2.5mm;padding:1.8mm 2.6mm 2mm}
+.cases .cs h4{font-size:8pt;margin:1.2mm 0 .4mm}
+.cases .cs-left p{font-size:7.2pt;line-height:1.32}
+.cases .cs-pill{font-size:7pt;line-height:1.25;padding:.9mm 1.5mm;margin-top:1mm}
+.cases .cs-kpis span{font-size:6.2pt}
+.cases .cs-kpis{padding:1mm;gap:1mm}
+.cases .cs-kpis div{padding:1mm .8mm}
+.cases .cs-kpis b{font-size:8.2pt;margin-top:.3mm}
+.cases .cs-kpinote{font-size:6.6pt;padding-top:1mm}
+.cs-slots .fill{word-break:normal;white-space:nowrap}
+.cs-slots{display:flex;justify-content:center;align-items:center;gap:1.5mm;padding:1mm 1.5mm 1.4mm;font-size:6.3pt;color:var(--slate)}
+.offer{display:grid;grid-template-columns:48mm 1fr;gap:6mm;margin-top:3.5mm;border:1.5px solid var(--ink);border-radius:12px;padding:3mm 5mm;font-size:8.6pt}
+.price{font:700 24pt/1 var(--display);letter-spacing:-.02em}
+.price small{display:block;font:500 8pt var(--body);color:var(--slate);margin-top:2mm;letter-spacing:0;line-height:1.4}
+.offer ul{list-style:none;padding:0}
+.offer li{padding-left:4.5mm;position:relative;margin-bottom:1.2mm}
+.offer li::before{content:"";position:absolute;left:0;top:1.6mm;width:2.2mm;height:2.2mm;border-radius:50%;background:var(--volt)}
+.next{flex:0 0 auto;margin-top:auto;background:var(--volt);color:#fff;padding:3.5mm 14mm;display:flex;justify-content:space-between;align-items:center;gap:6mm}
+.next b{font:600 12pt var(--display);word-spacing:.1em;display:block}
+.next span{font-size:8.5pt;color:#e4ddff}
+.next .link .fill{font-size:8.5pt}
+.next .link{background:#fff;color:var(--ink);border-radius:8px;padding:2.5mm 4mm;font:600 9pt var(--body);white-space:nowrap}
+.foot{flex:0 0 auto;padding:3mm 14mm 4mm;font-size:7pt;color:var(--slate);display:flex;justify-content:space-between;gap:6mm}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top">
+    <div class="brand"><img src="assets/tantra-mark-white.png" alt="" style="height:11mm"><img src="assets/tantra-word-white.png" alt="Tantra" style="height:4mm"></div>
+    <div class="kicker">Tantra Enterprise</div>
+    <h1>We Build Your Revenue Engine With You, From Cold Traffic to Closed Revenue</h1>
+    <p>You close well once the right buyer is on a call. The hard part is getting enough of those calls every week without carrying the whole funnel yourself. I built Enterprise for exactly that: my team builds the funnel with yours, runs it beside you, and coaches your people until they can run it alone.</p>
+  </div>
+  <div class="body">
+    <h2>What We Build Together</h2>
+    <div class="grid6">
+      <div class="st"><b>1. Traffic</b><span>Cold email, calendar invites, LinkedIn outreach, paid ads and content, every channel tracked to revenue</span></div>
+      <div class="st"><b>2. Landing and registration</b><span>Branded pages and forms that turn clicks into registrations</span></div>
+      <div class="st"><b>3. Multi-channel nurture</b><span>Email, WhatsApp and AI voice reminders that get people to show up</span></div>
+      <div class="st"><b>4. Conversion mechanism</b><span>A live event, a video sales funnel or a multi-day workshop, whichever fits your offer</span></div>
+      <div class="st"><b>5. Revenue pipeline</b><span>An 11-stage pipeline with discovery, demo and closing scripts, checkout and onboarding</span></div>
+      <div class="st"><b>6. 52-week growth</b><span>A full year of follow-up that keeps turning your list into repeat revenue</span></div>
+    </div>
+    <div class="agent">One AI agent that writes, sends, routes, books and reports across all six stages.</div>
+
+    <h2 style="margin-top:3.5mm">Two Funnels We Built With the Client</h2>
+    <div class="cases">
+      <div class="cs">
+        <div class="cs-bar">Growth Idea</div>
+        <div class="cs-cols">
+          <div class="cs-left"><h4>Company Profile</h4><p>A <b>UK business-coaching group</b> for <b>owner-led SMBs</b>.</p><h4>Challenge</h4><p>Needed a <b>repeatable way to fill its programme</b>, webinar after webinar.</p></div>
+          <div class="cs-right"><h4>Results</h4><div class="cs-pill"><b>4 clients won</b>, 47 MQLs, 11 webinars</div><div class="cs-pill"><b>80 sales calls</b> from 1,384 live</div><div class="cs-pill">Registration rate <b>0.23% to 2.0%</b></div></div>
+        </div>
+        <div class="cs-kpis"><div><span>Reached</span><b>12,898 &rarr; 99,859</b></div><div><span>Registered</span><b>30 &rarr; 1,990</b></div><div><span>Came live</span><b>7 &rarr; 321</b></div></div>
+        <div class="cs-kpinote">First webinar (May 2025) to best (Aug 2025)</div>
+        <div class="cs-slots"><span class="fill">FILL: case study video (item 28)</span><span class="fill">FILL: LinkedIn button (item 28)</span></div>
+      </div>
+      <div class="cs">
+        <div class="cs-bar">FintechCircle</div>
+        <div class="cs-cols">
+          <div class="cs-left"><h4>Company Profile</h4><p>A <b>London fintech network</b> selling a <b>board-readiness programme</b>.</p><h4>Challenge</h4><p>Needed a <b>monthly flow of the right people</b> into the programme application.</p></div>
+          <div class="cs-right"><h4>Results</h4><div class="cs-pill"><b>17 sales calls</b>, episodes 1 to 3</div><div class="cs-pill"><b>175 programme applications</b></div><div class="cs-pill">Outreach <b>10,000 to 38,138</b> by episode 4</div></div>
+        </div>
+        <div class="cs-kpis"><div><span>Outreach</span><b>10,000 &rarr; 30,000</b></div><div><span>Came live</span><b>59 &rarr; 89</b></div><div><span>Calls booked</span><b>1 &rarr; 7</b></div></div>
+        <div class="cs-kpinote">Episode 1 (Mar 2026) to episode 3 (Apr 2026)</div>
+        <div class="cs-slots"><span class="fill">FILL: case study video (item 28)</span><span class="fill">FILL: LinkedIn button (item 28)</span></div>
+      </div>
+    </div>
+
+    <div class="offer">
+      <div class="price">$9,999<small>Right for you if you want it built with you and have $10,000 or more to invest in the next 12 months.</small></div>
+      <div><h2 style="font-size:10.5pt">What is included</h2><ul><li>3 months of 1:1 coaching and implementation with your team</li><li>A done-with-you build of your funnel</li><li>1 year of access to the Tantra platform</li><li>The full course, the community and group coaching calls</li></ul></div>
+    </div>
+  </div>
+  <div class="next">
+    <div><b>Book a 30-Minute Tantra Enterprise Evaluation Call</b><span>If it fits, you get a written proposal within one business day, then a 30-minute Proposal Review with the same person, where we decide together. If it does not fit, we tell you on the call.</span></div>
+    <div class="link"><span class="fill">{{booking.round_robin_url}}</span></div>
+  </div>
+  <div class="foot"><span>Adithya Murali, Founder, Tantra. 250+ brands, 21+ countries, 47+ industries, 10+ years.</span><span>Client numbers from each client's own tracker. Not a guarantee of your results.</span></div>
+</div>
+</body>
+</html>
