@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<title>Your calendar link for {{webinar_date_local}}</title>
+<style>
+  body{margin:0;padding:0;background:#f7f8fb;-webkit-text-size-adjust:100%;}
+  table{border-collapse:collapse;}
+  img{border:0;display:block;}
+  @media only screen and (max-width:620px){ .card{width:100%!important;} .pad{padding-left:22px!important;padding-right:22px!important;} h1{font-size:24px!important;} }
+</style>
+</head>
+<body style="margin:0;background:#f7f8fb;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#f7f8fb;">One click adds the session.&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f8fb;">
+<tr><td align="center" style="padding:28px 12px;">
+  <table role="presentation" class="card" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background:#ffffff;border:1px solid #e2e8f0;border-radius:14px;">
+    <tr><td class="pad" style="padding:30px 40px 0;">
+      <img src="img/tantra-mark-ink.png" width="40" height="40" alt="Tantra" style="width:40px;height:40px;">
+    </td></tr>
+    <tr><td class="pad" style="padding:26px 40px 34px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:0 0 14px;font-family:'Inter', 'Satoshi', -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#6d4aff;">Calendar</td></tr><tr><td style="padding:0 0 18px;"><h1 style="margin:0;font-family:'Clash Display', 'Satoshi', 'Helvetica Neue', Arial, sans-serif;font-weight:600;font-size:28px;line-height:1.2;color:#0b0d12;">Add the Session to Your Calendar</h1></td></tr><tr><td style="padding:0 0 16px;font-family:'Inter', 'Satoshi', -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;font-size:16px;line-height:1.6;color:#0b0d12;">Hi {{first_name}},</td></tr><tr><td style="padding:0 0 16px;font-family:'Inter', 'Satoshi', -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;font-size:16px;line-height:1.6;color:#0b0d12;">Here&#x27;s your calendar link. One click adds {{webinar_title}} on {{webinar_date_local}} at {{webinar_time_local}}.</td></tr>
+<tr><td align="center" style="padding:10px 0 6px;">
+  <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="{{calendar_url}}" style="height:52px;v-text-anchor:middle;width:360px;" arcsize="18%" stroke="f" fillcolor="#6d4aff"><center style="color:#ffffff;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">Add It to My Calendar</center></v:roundrect><![endif]-->
+  <!--[if !mso]><!-- -->
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:360px;margin:0 auto;"><tr>
+    <td align="center" bgcolor="#6d4aff" style="border-radius:10px;">
+      <a href="{{calendar_url}}" style="display:block;padding:16px 24px;font-family:'Inter', 'Satoshi', -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:10px;">Add It to My Calendar</a>
+    </td></tr></table>
+  <!--<![endif]-->
+</td></tr><tr><td style="padding:24px 0 0;font-family:'Inter', 'Satoshi', -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;font-size:16px;line-height:1.5;color:#0b0d12;">Adi<br><span style="font-size:13px;color:#5b6472;">Founder, Tantra</span></td></tr></table>
+    </td></tr>
+    <tr><td class="pad" style="padding:20px 40px 28px;border-top:1px solid #e2e8f0;font-family:'Inter', 'Satoshi', -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;font-size:12px;line-height:1.7;color:#5b6472;">
+      You&#x27;re getting this because you registered for {{webinar_title}}.<br>
+      {{company_address}}<br>
+      <a href="{{unsubscribe_url}}" style="color:#5b6472;">Unsubscribe</a>
+    </td></tr>
+  </table>
+</td></tr>
+</table>
+</body>
+</html>

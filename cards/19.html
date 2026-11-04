@@ -1,0 +1,638 @@
+<details class="doc" open><summary>19-calcom-round-robin.md</summary><div class="md"><h1>Cal.com Round-Robin Link for Conor and Scott</h1>
+<p>One public link for Call 1. Every booking goes to whichever of Conor or Scott is free, spread evenly, and lands in the CRM within seconds. Call 2, the Proposal Review, is a second event type on each closer's own profile (section 8), booked only from the proposal email.</p>
+<p><strong>The link (after Adi creates it):</strong> <code>https://cal.com/team/tantra/enterprise-evaluation-call</code>
+This value goes into <code>booking.round_robin_url</code> in funnel-config.json and the <code>booking_url</code> setting on the CRM Lists tab. The embed path is <code>team/tantra/enterprise-evaluation-call</code> (<code>booking.embed_namespace</code>). If the team slug <code>tantra</code> is taken on Cal.com, use <code>usetantra</code> and change both values.</p>
+<p>This team event supersedes the personal event <code>cal.com/adisuja/tantra-enterprise-evaluation-call</code> from T-072. The /enterprise page embed must change to the team slug; that page lives in a Usetantra repo, so the change is an Adi or Bharath step, never an agent's.</p>
+<h2>1. Team</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Team name</td>
+<td>Tantra</td>
+</tr>
+<tr>
+<td>Team URL (slug)</td>
+<td>tantra</td>
+</tr>
+<tr>
+<td>Logo</td>
+<td><code>context/from-workshop-project/brand/assets/tantra-mark-ink.png</code></td>
+</tr>
+<tr>
+<td>Brand color</td>
+<td>#6d4aff (Settings, Appearance)</td>
+</tr>
+<tr>
+<td>Members</td>
+<td>Adi (Owner), Conor (Member), Scott (Member)</td>
+</tr>
+<tr>
+<td>Plan</td>
+<td>Cal.com Teams (paid per seat; Adi approves the cost on the checkout page)</td>
+</tr>
+</tbody>
+</table>
+<h2>2. Each Host's Own Setup (Conor and Scott)</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Where</th>
+<th>What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accept the invite</td>
+<td>The invite email from Cal.com</td>
+<td>Sign up or sign in with the work email Adi invited</td>
+</tr>
+<tr>
+<td>Connect the calendar calls are really taken on</td>
+<td>https://app.cal.com/apps/installed/calendar</td>
+<td>Google Calendar, signed in with their own Google account. Busy times then block slots</td>
+</tr>
+<tr>
+<td>Install Google Meet</td>
+<td>https://app.cal.com/apps/google-meet</td>
+<td>Install, so each booking gets a Meet link on the host's calendar</td>
+</tr>
+<tr>
+<td>Working hours</td>
+<td>https://app.cal.com/availability</td>
+<td>One schedule named "Enterprise calls" with the hours they take calls, in their own timezone</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>https://app.cal.com/settings/my-account/profile</td>
+<td>Full name. Leave the photo empty: funnel images of people are AI avatars only, and only Adi has one</td>
+</tr>
+</tbody>
+</table>
+<h2>3. Event Type</h2>
+<p>Create it at https://app.cal.com/event-types, New, pick the team <strong>Tantra</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create dialog</td>
+<td>Title</td>
+<td>Tantra Enterprise Evaluation Call</td>
+</tr>
+<tr>
+<td>Create dialog</td>
+<td>URL</td>
+<td>enterprise-evaluation-call</td>
+</tr>
+<tr>
+<td>Create dialog</td>
+<td>Duration</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Create dialog</td>
+<td>Assignment</td>
+<td>Round Robin</td>
+</tr>
+<tr>
+<td>Event Setup</td>
+<td>Location</td>
+<td>Google Meet</td>
+</tr>
+<tr>
+<td>Event Setup</td>
+<td>Description</td>
+<td>The corrected text in section 4, word for word</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>Before event (buffer)</td>
+<td>10 minutes (the closer reads the prep notes)</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>After event (buffer)</td>
+<td>15 minutes (notes and outcome logged inside the hour)</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>Minimum notice</td>
+<td>4 hours (leaves room for the 5-minute confirmation and the 2-hour prep task)</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>Time-slot intervals</td>
+<td>30 minutes</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>Limit booking frequency</td>
+<td>6 per day (check whether your Cal.com version applies this per host or per event; per host is the intent)</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>Limit future bookings</td>
+<td>21 days into the future</td>
+</tr>
+<tr>
+<td>Assignment</td>
+<td>Round-robin hosts</td>
+<td>Conor and Scott (do not tick "add all team members", so Adi is not a host)</td>
+</tr>
+<tr>
+<td>Assignment</td>
+<td>Fixed hosts</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Assignment</td>
+<td>Distribution</td>
+<td>Even: weights on, 50 and 50 (labels differ by Cal.com version: pick the option that spreads bookings equally, not "maximize availability" alone)</td>
+</tr>
+<tr>
+<td>Assignment</td>
+<td>Rescheduling</td>
+<td>Keep the same host on a reschedule, if your version shows this option</td>
+</tr>
+<tr>
+<td>Advanced</td>
+<td>Requires confirmation</td>
+<td>Off (the human confirmation happens by phone and WhatsApp)</td>
+</tr>
+<tr>
+<td>Advanced</td>
+<td>Booking questions</td>
+<td>Section 5</td>
+</tr>
+<tr>
+<td>Advanced</td>
+<td>Redirect on booking</td>
+<td>Off for now. Item 26 may set a thank-you page later</td>
+</tr>
+<tr>
+<td>Webhooks</td>
+<td>New webhook</td>
+<td>Section 6</td>
+</tr>
+<tr>
+<td>Workflows</td>
+<td>None</td>
+<td>Reminders run from the CRM through Tantra so WhatsApp and email follow the stop rules</td>
+</tr>
+</tbody>
+</table>
+<p>Cal.com sends its own confirmation and cancellation emails with the calendar invite. Keep them on: they carry the .ics and the Meet link. The CRM's Seq. A email is the closer's personal note on top.</p>
+<h2>4. Description (Corrected by Adi, Word for Word)</h2>
+<p>Paste exactly this into Event Setup, Description. It is the T-072 text word for word with one addition Adi approved on 2026-11-05 for Call 2, at the end of the first sentence of the last paragraph: ", and we'll book a short call to walk you through it".</p>
+<pre><code>A quick note before you book: this time is reserved only for you, and our team prepares for your call in advance. If you need to reschedule or cancel, please do it at least 24 hours before the call using the link in your confirmation email. If the call is missed without notice, we won't be able to reschedule it or arrange another conversation in the future. Thank you for understanding.
+
+Tantra Enterprise: we build your complete revenue engine with you, from cold traffic to closed revenue.
+
+Tantra Enterprise is our highest level of coaching and hands-on support. Our team works alongside yours to design, build and launch the entire funnel that turns cold traffic into revenue, then coaches your team until they can run it themselves, with one AI agent operating every stage on the Tantra platform.
+
+What we build together:
+
+- Traffic: cold email, calendar invites, LinkedIn outreach, paid ads and content, every channel tracked to revenue
+- Landing and registration: branded pages and forms that turn clicks into registrations
+- Multi-channel nurture: email, WhatsApp and AI voice reminders that get people to show up
+- Conversion mechanism: a live event, a video sales funnel or a multi-day workshop, whichever fits your offer
+- Revenue pipeline: an 11-stage pipeline with discovery, demo and closing scripts, checkout and onboarding
+- 52-week growth: a full year of follow-up that keeps turning your list into repeat revenue
+- One AI agent that writes, sends, routes, books and reports across all six stages
+
+How we work with you:
+
+- Three months of 1:1 coaching and implementation with your team
+- 1 year of access to the Tantra platform
+- The full course, the community and group coaching calls
+
+On this 30 minute call, we will:
+
+- Map your offer, your buyers and your numbers today: traffic, conversion and close rate
+- Find the stage where your funnel is losing the most revenue
+- Choose the conversion mechanism that fits your offer
+- Agree on scope, timeline and who on your team will be involved
+- Decide together, on the call, whether Tantra Enterprise is the right fit
+
+To get the most from the call:
+
+- Join on time from a laptop, with your camera on
+- Have your offer, pricing and rough monthly numbers ready
+- Bring the person who signs off on growth investment
+
+If it's a fit, you'll receive a written Enterprise proposal within one business day, and we'll book a short call to walk you through it. If it isn't, we'll tell you honestly on the call.
+</code></pre>
+<h2>5. Booking Questions</h2>
+<p>Advanced tab, Booking questions, Add a question. The <strong>Identifier</strong> must match exactly: the CRM reads these names.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Identifier</th>
+<th>Input type</th>
+<th>Label (what the lead sees)</th>
+<th>Required</th>
+<th>Options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>whatsapp</code></td>
+<td>Phone</td>
+<td>Your WhatsApp number (for your call reminders)</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>company</code></td>
+<td>Short Text</td>
+<td>Company name and website</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>revenue_band</code></td>
+<td>Select</td>
+<td>Roughly how much revenue does the business bring in a month?</td>
+<td>Yes</td>
+<td>Under $10K a month / $10K to $25K a month / $25K to $100K a month / $100K to $500K a month / Over $500K a month</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>invest_12m</code></td>
+<td>Radio</td>
+<td>Do you have $10,000 or more to invest in growing revenue in the next 12 months?</td>
+<td>Yes</td>
+<td>yes / no (the same values as the registration page)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>main_channel</code></td>
+<td>Select</td>
+<td>Where do most of your new customers come from today?</td>
+<td>Yes</td>
+<td>Referrals / Outbound (cold email, LinkedIn) / Paid ads / Content and organic / Webinars or events / Partnerships / Other</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>bottleneck</code></td>
+<td>Long Text</td>
+<td>What is the one thing stopping revenue growing faster right now?</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>signoff</code></td>
+<td>Radio</td>
+<td>Who signs off on an investment like this?</td>
+<td>Yes</td>
+<td>Me / Me and a partner or co-founder / Someone else (I'll bring them)</td>
+</tr>
+</tbody>
+</table>
+<p>Name and email are Cal.com's own fields; keep them. Revenue bands and the yes/no values match the registration page (item 13, <code>src/pages/registration.mjs</code>), so the CRM compares like with like. Poll 1 in item 21 (<code>engagement.json</code>) still uses different bands ($10K to $50K, $50K to $100K, $100K to $300K, Over $300K); the lead should align it to the page.</p>
+<h3>Routing form (optional, off by default)</h3>
+<p>A Cal.com routing form could send "no" answers to a different page before they see the calendar. Not built: it filters out people who may grow into a fit, and the description already tells the lead who the call is for. The closer handles "no" with the question in 18-speed-to-lead.md, section 3. Decision for Adi if he wants a hard gate.</p>
+<h2>6. Webhook to the CRM</h2>
+<p>Event type, Webhooks tab, New webhook.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Subscriber URL</td>
+<td><code>{integrations.crm_webhook_url}?k={SHARED_SECRET}</code> (the Apps Script web app URL ending in /exec, plus the secret shown by Tantra CRM, Set up)</td>
+</tr>
+<tr>
+<td>Enable webhook</td>
+<td>On</td>
+</tr>
+<tr>
+<td>Event triggers</td>
+<td>Booking Created, Booking Rescheduled, Booking Cancelled, Booking No-Show Updated, Meeting Ended</td>
+</tr>
+<tr>
+<td>Secret</td>
+<td>Leave empty. Apps Script cannot read request headers, so Cal.com's signature header cannot be checked; the <code>?k=</code> secret protects the URL instead</td>
+</tr>
+<tr>
+<td>Payload template</td>
+<td>Default</td>
+</tr>
+</tbody>
+</table>
+<p>Meeting Ended fires at the end time of every confirmed booking, whatever the location, and its payload is flat (no <code>payload</code> wrapper). The CRM uses it as a backstop: if no outcome is logged by then, the closer gets an outcome task. Booking No-Show Updated with <code>noShow: false</code> (an unmark) is logged and raises a closer task; it never changes the stage.</p>
+<p>Apps Script answers a POST with a redirect after it has run. The CRM row is written either way; if Cal.com shows the delivery as failed, check the Events tab before retrying.</p>
+<h3>Payload mapping (Cal.com to CRM_CONTRACT)</h3>
+<table>
+<thead>
+<tr>
+<th>Cal.com trigger</th>
+<th>Contract event</th>
+<th>Cal.com field</th>
+<th>Contract field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOOKING_CREATED</td>
+<td>booking.created</td>
+<td><code>payload.attendees[0].email</code></td>
+<td><code>email</code> (lowercased)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>payload.uid</code></td>
+<td><code>data.cal_uid</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>payload.startTime</code></td>
+<td><code>data.start</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>payload.organizer.email</code>, matched to the Closers table on the Lists tab</td>
+<td><code>data.closer</code> (Conor or Scott)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>payload.responses.&lt;identifier&gt;.value</code> for revenue_band, invest_12m, main_channel, bottleneck, signoff</td>
+<td><code>data.answers{}</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>payload.responses.name</code>, <code>payload.attendees[0].name</code></td>
+<td><code>data.first_name</code>, <code>data.last_name</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>payload.responses.whatsapp</code>, <code>payload.responses.company</code></td>
+<td><code>data.whatsapp</code>, <code>data.company</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>payload.attendees[0].timeZone</code></td>
+<td><code>data.timezone</code> (drives WhatsApp hours and the time shown to the lead)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>payload.metadata.videoCallUrl</code></td>
+<td><code>data.join_link</code></td>
+</tr>
+<tr>
+<td>BOOKING_RESCHEDULED</td>
+<td>booking.rescheduled</td>
+<td><code>payload.uid</code>, <code>payload.startTime</code></td>
+<td><code>data.cal_uid</code>, <code>data.start</code></td>
+</tr>
+<tr>
+<td>BOOKING_CANCELLED</td>
+<td>booking.cancelled</td>
+<td><code>payload.cancellationReason</code></td>
+<td><code>data.reason</code></td>
+</tr>
+<tr>
+<td>BOOKING_NO_SHOW_UPDATED</td>
+<td>call.no_show (one per attendee with <code>noShow: true</code>)</td>
+<td><code>payload.attendees[].email</code>, <code>payload.bookingUid</code></td>
+<td><code>email</code>, <code>data.cal_uid</code></td>
+</tr>
+<tr>
+<td>MEETING_ENDED (flat payload)</td>
+<td>none in the contract</td>
+<td><code>attendees[0].email</code> at the top level</td>
+<td>Outcome task for the closer if no outcome is logged yet</td>
+</tr>
+<tr>
+<td>BOOKING_NO_SHOW_UPDATED, <code>noShow: false</code></td>
+<td>none in the contract</td>
+<td><code>payload.attendees[].email</code></td>
+<td>Logged; closer task to check the call and log the outcome</td>
+</tr>
+</tbody>
+</table>
+<p>Bookings whose <code>payload.type</code> is <code>proposal-review</code> (the <code>calcom_call2_slug</code> setting) are Call 2: see section 8. Bookings of any other type than these two (<code>calcom_event_slug</code>, <code>calcom_call2_slug</code>) are logged and ignored. Duplicate deliveries are dropped for 6 hours.</p>
+<p><strong>Unverified:</strong> these field names come from Cal.com's webhook documentation and the recorded payloads used in the workshop project, not from a live delivery of this event type. The adapter reads several fallbacks (<code>userFieldsResponses</code>, <code>videoCallData.url</code>, <code>location</code>). The first test booking in section 7 proves them.</p>
+<h2>7. Adi Steps (Call 1)</h2>
+<ol>
+<li><strong>Create the team.</strong> Open https://app.cal.com/settings/teams/new. Team name: <code>Tantra</code>. Team URL: <code>tantra</code>. Click Continue, approve the Teams plan for 3 seats on the checkout page (Adi only: it is a purchase). After: the team page opens.</li>
+<li><strong>Invite Conor and Scott.</strong> Team page, Members, Add member (https://app.cal.com/settings/teams, pick Tantra, Members). Enter each email, role Member, Send invite. After: each gets an email from Cal.com.</li>
+<li><strong>Send me their details</strong> (or fill them in funnel-config.json <code>booking.closers</code>): Conor's and Scott's full names, work emails, Cal.com usernames and WhatsApp numbers. The CRM's Lists tab Closers table needs the same emails, because the round-robin host's email is how a booking finds its closer.</li>
+<li><strong>Conor and Scott each</strong> do section 2 (calendar, Google Meet, availability).</li>
+<li><strong>Create the event type</strong> at https://app.cal.com/event-types: New, team Tantra, then every field in sections 3 to 5. Click Save.</li>
+<li><strong>After item 23 is deployed:</strong> event type, Webhooks tab, New webhook, fields in section 6, Create. Paste the round-robin link into funnel-config.json <code>booking.round_robin_url</code> and the CRM Lists tab <code>booking_url</code> setting.</li>
+<li><strong>Test:</strong> book the link with a test email you own. Check, within a minute: a Pipeline row at 2 Call Booked with the right closer, the five answers on the Contacts row, an Events row with result <code>ok booked with Conor</code> (or Scott), and the closer alert email. Then cancel it from the confirmation email and check the deal moves to 1 New Lead with Seq. E rows.</li>
+</ol>
+<h2>8. Call 2: Proposal Review Event Type (One per Closer)</h2>
+<p>Adi approved Call 2 on 2026-11-05 (the task board). After the written proposal, the closer who ran Call 1 walks the prospect through it and asks for the decision. It is never round robin: each closer gets the same event type on their own profile, and the proposal email carries the deal closer's own link.</p>
+<p><strong>The links (after each closer creates it):</strong> <code>https://cal.com/&lt;conor-username&gt;/proposal-review</code> and <code>https://cal.com/&lt;scott-username&gt;/proposal-review</code>. They go into funnel-config.json <code>booking.call2.conor_url</code> and <code>booking.call2.scott_url</code>, and into the CRM Lists tab, Closers table, column <code>closer_call2_url</code>. Until a closer's link is set, every message that needs it (D1 to D4, RN, RC) waits as <code>blocked</code> and the proposal shows an amber FILL box, so nothing goes out without it.</p>
+<h3>Event Type</h3>
+<p>Each closer creates it at https://app.cal.com/event-types, New, on their <strong>own</strong> profile (not the Tantra team).</p>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create dialog</td>
+<td>Title</td>
+<td>Tantra Enterprise Proposal Review</td>
+</tr>
+<tr>
+<td>Create dialog</td>
+<td>URL</td>
+<td>proposal-review</td>
+</tr>
+<tr>
+<td>Create dialog</td>
+<td>Duration</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Event Setup</td>
+<td>Location</td>
+<td>Google Meet</td>
+</tr>
+<tr>
+<td>Event Setup</td>
+<td>Description</td>
+<td>The text below, word for word</td>
+</tr>
+<tr>
+<td>Event Setup</td>
+<td>Hidden</td>
+<td>On (Settings, "Hide from profile"): the link goes out only in the proposal and Seq. D</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>Before event (buffer)</td>
+<td>10 minutes (re-read the proposal)</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>After event (buffer)</td>
+<td>15 minutes (send the agreement and log the outcome)</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>Minimum notice</td>
+<td>4 hours (leaves room for the 2-hour prep task)</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>Time-slot intervals</td>
+<td>30 minutes</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>Limit future bookings</td>
+<td><code>booking.call2.book_within_days</code> once Adi sets it (FILL; suggested 3 business days). Until then, 14 days</td>
+</tr>
+<tr>
+<td>Advanced</td>
+<td>Requires confirmation</td>
+<td>Off</td>
+</tr>
+<tr>
+<td>Advanced</td>
+<td>Booking questions</td>
+<td>Section 8, questions</td>
+</tr>
+<tr>
+<td>Webhooks</td>
+<td>New webhook</td>
+<td>Section 8, webhook</td>
+</tr>
+<tr>
+<td>Workflows</td>
+<td>None</td>
+<td>Reminders run from the CRM (Seq. R)</td>
+</tr>
+</tbody>
+</table>
+<p>Description (paste exactly):</p>
+<pre><code>Your Tantra Enterprise Proposal Review: 30 minutes with the person who ran your evaluation call.
+
+On this call, we will:
+
+- Walk through your written proposal, section by section
+- Answer every question you and your team have
+- Decide together whether to go ahead
+
+To get the most from the call:
+
+- Read the proposal once and note your questions
+- Join from a laptop, with your camera on
+- Bring the person who signs off on growth investment
+
+If you need to reschedule or cancel, please do it at least 24 hours before the call using the link in your confirmation email.
+</code></pre>
+<h3>Questions</h3>
+<p>The five Call 1 answers are already on the contact, so this event asks only two. Name and email are Cal.com's own fields; keep them.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Identifier</th>
+<th>Input type</th>
+<th>Label (what the lead sees)</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>whatsapp</code></td>
+<td>Phone</td>
+<td>Your WhatsApp number (for your call reminders)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>attendees_signoff</code></td>
+<td>Short Text</td>
+<td>Who else will join? (name and role of anyone who signs off)</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3>Webhook (the Call 2 Marker)</h3>
+<p>Event type, Webhooks tab, New webhook, the same fields as section 6 (same Subscriber URL with <code>?k=</code>, same five triggers, secret empty, default payload).</p>
+<p>The marker is the event type slug. Every Cal.com payload carries <code>payload.type</code> (for MEETING_ENDED, <code>type</code> at the top level). When it equals <code>proposal-review</code> (Lists setting <code>calcom_call2_slug</code>), the CRM reads the booking as Call 2 and posts the contract event with <code>data.call: 2</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Cal.com trigger</th>
+<th>Contract event</th>
+<th>What the CRM does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOOKING_CREATED, type <code>proposal-review</code></td>
+<td>booking.created, <code>call: 2</code></td>
+<td>Sets <code>call2_date</code>, <code>call2_status</code> Booked, <code>call2_cal_uid</code>, <code>call2_join_link</code>. The deal stays in 5 Proposal Sent (a deal in Showed, Follow-Up or Nurture moves to 5), never back to Call Booked. Seq. D stops, Seq. R starts, closer alert</td>
+</tr>
+<tr>
+<td>BOOKING_RESCHEDULED, type <code>proposal-review</code></td>
+<td>booking.rescheduled, <code>call: 2</code></td>
+<td>New Call 2 time, <code>call2_status</code> Rescheduled, Seq. R restarts</td>
+</tr>
+<tr>
+<td>BOOKING_CANCELLED, type <code>proposal-review</code></td>
+<td>booking.cancelled, <code>call: 2</code></td>
+<td><code>call2_status</code> cleared, note on the row, Seq. RC. The deal stays in 5 Proposal Sent</td>
+</tr>
+<tr>
+<td>BOOKING_NO_SHOW_UPDATED</td>
+<td>call.no_show</td>
+<td>Matched to Call 2 by the booking uid (<code>call2_cal_uid</code>): <code>call2_status</code> No-Show, Seq. RN</td>
+</tr>
+<tr>
+<td>MEETING_ENDED, type <code>proposal-review</code></td>
+<td>none</td>
+<td>Outcome task if Call 2 is still Booked or Rescheduled</td>
+</tr>
+</tbody>
+</table>
+<p>The deal keeps its Call 1 closer even if the booking comes in on the other closer's link; the alert names both.</p>
+<h3>Adi Steps (Call 2)</h3>
+<ol>
+<li><strong>Conor and Scott each</strong> open https://app.cal.com/event-types, click New, pick their own name (not the team Tantra), type Title <code>Tantra Enterprise Proposal Review</code>, URL <code>proposal-review</code>, Duration <code>30</code>, click Continue, then fill every field in the table above and click Save. After: the event type shows in their list with a hidden tag.</li>
+<li><strong>Each closer</strong> opens that event type, Webhooks tab, New webhook, pastes the same Subscriber URL as Call 1 (<code>&lt;Web app URL&gt;?k=&lt;secret&gt;</code>), ticks Booking Created, Booking Rescheduled, Booking Cancelled, Booking No-Show Updated and Meeting Ended, clicks Create. After: Call 2 bookings reach the CRM.</li>
+<li><strong>Send me both links</strong> (<code>https://cal.com/&lt;username&gt;/proposal-review</code>). I put them in funnel-config.json <code>booking.call2.conor_url</code> and <code>scott_url</code> and rebuild; you paste each into the CRM Lists tab, Closers table, column <code>closer_call2_url</code>, on that closer's row.</li>
+<li><strong>Test:</strong> with a test deal at 5 Proposal Sent (Tantra CRM, Proposal sent on a test row), book the closer's Proposal Review link with the same test email. Check, within a minute: the deal is still at 5 Proposal Sent, <code>call2_status</code> is Booked and <code>call2_date</code> is the time you picked, Seq. D rows show <code>cancelled</code>, Seq. R rows show <code>pending</code>, and the Events row result starts <code>ok Call 2 booked</code>. Then cancel it from the confirmation email: <code>call2_status</code> clears and Seq. RC rows appear.</li>
+</ol></div></details>

@@ -1,0 +1,222 @@
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>Item 7: Facebook Group Announcement Posts</h1>
+<p>Adi's group list is not known yet, so this is a template set by group type. Once Adi sends his list, each group gets its own customised post from these templates.</p>
+<p><strong>Claim to verify:</strong> the first comment and the promo-thread version print <code>{{webinar.title}}</code>, and every candidate title carries "400+ founders" and "$100K to $300K a month". Neither has a source yet (PROOF_PACK.md section 2, the task board). The posts themselves use approved proof only: worked with 250+ brands across 21+ countries; Growth Idea (30 then 1,990 registrations, 98,000 of 99,859 reached by calendar invite; 1,990 registered, 321 live, 25 calls); FintechCircle as "a London fintech network" (10,000 to 30,000 outreach, 17 calls). Each client is named at most once per post.</p>
+<h2>What Is Here</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>posts.md</code></td>
+<td>6 posts (founder and entrepreneur, B2B sales and marketing, agency owners, coaching and consulting, SaaS, regional business), the link placement table, the first comment, the promo-thread version</td>
+</tr>
+<tr>
+<td><code>CUSTOMISE.md</code></td>
+<td>The 9-step checklist for turning a template into one group's post</td>
+</tr>
+<tr>
+<td><code>group-tracker.csv</code></td>
+<td>Header-only tracker: group name, url, type, rules, post variant, link placement, posted date, results</td>
+</tr>
+<tr>
+<td><code>EVAL.md</code></td>
+<td>The done checklist, checked</td>
+</tr>
+</tbody>
+</table>
+<h2>Merge Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Filled from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{{registration_link}}</code></td>
+<td><code>domains.funnel_domain</code> + <code>/</code> + <code>?utm_source=facebook&amp;utm_medium=group&amp;utm_campaign=enterprise-webinar&amp;utm_content=fb_&lt;group-slug&gt;</code></td>
+</tr>
+<tr>
+<td><code>{{webinar.title}}</code>, <code>{{webinar.day_of_week}}</code>, <code>{{webinar.start_time_local}}</code></td>
+<td><code>deliverables/_shared/funnel-config.json</code></td>
+</tr>
+<tr>
+<td><code>{{region}}</code></td>
+<td>per regional group, by hand (<code>CUSTOMISE.md</code> step 5)</td>
+</tr>
+</tbody>
+</table>
+<h2>Adi Steps</h2>
+<ol>
+<li><strong>Send the list of groups you are in.</strong> Open https://www.facebook.com/groups/joins/ (Facebook, Groups, "Groups you've joined", See all). Scroll to the bottom so every group loads. Paste each group's name and URL into the chat (or into <code>group-tracker.csv</code>, columns <code>group_name</code> and <code>group_url</code>). Then each group gets its customised post and tracker row.</li>
+<li><strong>Post them yourself.</strong> Agents never post to Facebook. For each group: open the group URL from the tracker, click "Write something...", paste the post, click Post; if the placement is "first comment", paste the first comment under your post straight after.</li>
+</ol>
+<p>Fill before posting: <code>domains.funnel_domain</code>, <code>webinar.title</code>, <code>webinar.day_of_week</code>, <code>webinar.start_time_local</code> in <code>funnel-config.json</code>.</p></div></details><details class="doc"><summary>CUSTOMISE.md</summary><div class="md"><h1>How To Customise a Post for One Group</h1>
+<ol>
+<li>Read the group's rules and pinned post. Copy the rule on links and promotion into the tracker's <code>rules</code> column.</li>
+<li>Pick the post by group type (<code>posts.md</code>) and the link placement from its table.</li>
+<li>Admin approval needed for promotion? Ask the admin first, in the way the rules say.</li>
+<li>Rewrite the first line in the group's own words: its niche, or a question members asked this week.</li>
+<li>Regional groups: fill <code>{{region}}</code>, and check <code>{{webinar.start_time_local}}</code> names its time zone so members can convert it.</li>
+<li>Tag the link <code>utm_content=fb_&lt;group-slug&gt;</code> so registrations show which group sent them.</li>
+<li>Never post identical text in two groups on the same day, and post in at most 3 groups a day.</li>
+<li>Reply to every comment the same day.</li>
+<li>Log the posted date, placement and post URL in <code>group-tracker.csv</code>; add registrations by <code>utm_content</code> a week later.</li>
+</ol></div></details><details class="doc"><summary>posts.md</summary><div class="md"><h1>Facebook Group Announcement Posts</h1>
+<p>One post per group type, posted by Adi from his own profile. Each gives a usable lesson first and mentions the session only in the last line. Paste the text inside each box as it is: Facebook shows plain text only.</p>
+<p><strong>Link placement.</strong> Every post ends "Link in the first comment." (the default, since many groups remove posts with links). Then:</p>
+<table>
+<thead>
+<tr>
+<th>The group's rule</th>
+<th>What to post</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Links allowed in posts</td>
+<td>Swap the last line's "Link in the first comment." for <code>Seat here: {{registration_link}}</code></td>
+</tr>
+<tr>
+<td>Links banned in posts</td>
+<td>The post as written, then the first comment below within a minute</td>
+</tr>
+<tr>
+<td>Promotion only in a weekly promo thread</td>
+<td>The value post without its last line, and the promo-thread version inside the thread</td>
+</tr>
+<tr>
+<td>No promotion at all</td>
+<td>The value post without its last line; send the link only to people who ask in the comments</td>
+</tr>
+</tbody>
+</table>
+<p><strong>First comment (all types):</strong></p>
+<pre><code class="language-text">Here's the session, {{webinar.title}}: {{registration_link}}
+</code></pre>
+<p><strong>Promo-thread version (all types):</strong></p>
+<pre><code class="language-text">Live session for founders, every {{webinar.day_of_week}} at {{webinar.start_time_local}}: {{webinar.title}}. I take an AI revenue funnel apart stage by stage, with real client numbers. Seat here: {{registration_link}}
+</code></pre>
+<h2>1. Founder and Entrepreneur Groups</h2>
+<p>Typical rules: no direct selling, value posts welcome, links often removed. Default: first comment.</p>
+<pre><code class="language-text">Quick question for the founders here: could you say today where next month's revenue will come from?
+
+If the honest answer is &quot;referrals, and me&quot;, you're running on the two least predictable channels there are.
+
+Here's the frame my team uses instead:
+
+1. Treat revenue as six steps, not one: who you reach, who signs up, who gets reminded, who shows up, who books a call, who buys.
+2. Measure each step on its own. A bad month nearly always has one step that broke.
+3. Fix one step at a time. A small lift near the top carries all the way down.
+4. Hand the repetitive work (invites, reminders, follow-ups) to AI. Keep the conversations for yourself.
+
+Step 2 is the one most founders skip, and it's the one that tells you what to fix.
+
+I walk through the whole system live every {{webinar.day_of_week}} at {{webinar.start_time_local}}. Link in the first comment.
+</code></pre>
+<h2>2. B2B Sales and Marketing Groups</h2>
+<p>Typical rules: tactics welcome, no vendor pitches, links in comments. Default: first comment.</p>
+<pre><code class="language-text">The most underrated B2B channel I've worked with isn't LinkedIn or cold email. It's the calendar invite.
+
+You send the event straight to the prospect's calendar. No email to open, no page to find. They see a title and a time, and they answer Yes, Maybe or No.
+
+One example. Growth Idea, a UK business-coaching group, got 30 registrations on its first webinar. On its best one it got 1,990, and 98,000 of the 99,859 people it reached that week came through calendar invites.
+
+What made it work:
+
+1. Separate domains and a separate Google Workspace for the invites. Never your main domain.
+2. A slow start: 20 invites a day per sender for the first 60 days, then up to 50.
+3. A title that reads like a meeting. No &quot;$&quot;, no &quot;%&quot;, no &quot;free&quot;.
+4. Date, time and time zone in the first line of the description.
+5. One line that makes declining easy. People trust an invite that lets them say no.
+
+I break down the full setup (lists, senders, copy, follow-up) live every {{webinar.day_of_week}}. Link in the first comment.
+</code></pre>
+<h2>3. Agency Owner Groups</h2>
+<p>Typical rules: no client poaching, no service ads, promo days in some. Default: first comment, or the promo thread where one exists.</p>
+<pre><code class="language-text">Agency owners: how much of last quarter's new business came from referrals?
+
+For many agencies it's most of it. That's fine until two clients leave in the same month.
+
+The fix that works is the boring one: build your own new-business funnel before you build one for a client. In this order:
+
+1. Warm the sending domains first. They need weeks before they can carry volume.
+2. Build the registration page and the reminders next.
+3. Then the session itself and the call booking that follows it.
+4. Switch the traffic on last.
+
+Never send traffic into a half-built funnel. It burns the list, and a burned list doesn't come back.
+
+A London fintech network we built this for grew its outreach from 10,000 to 30,000 people across three sessions and booked 17 sales calls along the way.
+
+I show the full build live every {{webinar.day_of_week}} at {{webinar.start_time_local}}. Link in the first comment.
+</code></pre>
+<h2>4. Coaching and Consulting Groups</h2>
+<p>Typical rules: no "DM me" offers, frameworks welcome, admin approval common. Default: first comment.</p>
+<pre><code class="language-text">Coaches and consultants: you're probably great once you're on a call. The hard part is getting enough of the right people onto one.
+
+Here's the maths I use to plan a webinar that fills a sales calendar. It runs backward from the result.
+
+A UK coaching company my team worked with had this on its best webinar: 1,990 registered, 321 came live, 25 sales calls booked. That's about 16% showing up, and about 8 calls for every 100 people live.
+
+So if you want 25 sales calls from one session:
+• you need about 310 people live (25 calls at 8 per 100)
+• which means about 1,950 registrations (310 at a 16% show-up)
+
+That second number tells you how much outreach you need before you write a word of copy. Most people plan the other way round and wonder why the calendar stays empty.
+
+Run your own numbers through it. If they don't add up, the fix is usually at the top (reach) or the middle (show-up), not the pitch.
+
+I go through the whole model live every {{webinar.day_of_week}}. Link in the first comment.
+</code></pre>
+<h2>5. SaaS Groups</h2>
+<p>Typical rules: no product launches outside a launch thread, technical value welcome. Default: first comment.</p>
+<pre><code class="language-text">SaaS founders: if your demo calendar is thin, check how many registrants turn up before you rewrite your ads.
+
+Show-up is the cheapest step in the funnel to fix. Those people already said yes, and you've already paid to reach them.
+
+What my team sets up on every webinar funnel:
+
+1. Reminders a week before, the day before, an hour before and 15 minutes before.
+2. Two channels, email and WhatsApp, so one missed inbox doesn't cost you the seat.
+3. Attendance tracked per person, so attendees get the offer and no-shows get the recording.
+4. A follow-up the same day, while the session is still fresh.
+
+Every point you add to show-up flows straight down into booked demos.
+
+I walk through the full reminder setup live every {{webinar.day_of_week}}. Link in the first comment.
+</code></pre>
+<h2>6. Regional Business Groups</h2>
+<p>Typical rules: local members, community tone, promotion often limited to one day a week. Default: the promo thread or day where one exists, else first comment. Fill <code>{{region}}</code> (for example "Bengaluru").</p>
+<pre><code class="language-text">To the business owners in {{region}}: a simple test for next month's revenue.
+
+Write down three numbers from last month:
+1. How many new people heard from you
+2. How many of them agreed to a conversation
+3. How many of those conversations turned into paying clients
+
+If you can't fill in all three, that's the first fix, ahead of any new tool or new hire. You can't improve a step you can't see.
+
+If you can, work out the two rates between them: 2 divided by 1, then 3 divided by 2. The lower one is the step to fix first.
+
+My team has worked with 250+ brands across 21+ countries, and every build starts with these three numbers.
+
+I run a live session on it every {{webinar.day_of_week}} at {{webinar.start_time_local}}. Link in the first comment if it's useful.
+</code></pre></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: Item 7, Facebook Group Announcement Posts</h1>
+<ul>
+<li>[x] 1. One announcement post for each of 6 group types: founder and entrepreneur, B2B sales and marketing, agency owners, coaching and consulting, SaaS, regional business.</li>
+<li>[x] 2. Every post gives value first (a usable lesson in the first 70% of the text) and mentions the session only at the end.</li>
+<li>[x] 3. Every post has two link placements ready: link in a first comment (default) and an in-post version, plus the first-comment text.</li>
+<li>[x] 4. Proof only from PROOF_PACK.md; a client named at most once per post; no invented numbers.</li>
+<li>[x] 5. A how-to-customise checklist of 10 lines or fewer.</li>
+<li>[x] 6. <code>group-tracker.csv</code> with columns group name, url, rules, post variant, posted date and link placement (plus the utm tag and result columns).</li>
+<li>[x] 7. The Adi step (send the list of groups he is in) with the full URL and exact clicks.</li>
+<li>[x] 8. Plain text that pastes into Facebook (no markdown inside the posts), no em or en dashes, no banned filler.</li>
+<li>[x] 9. Scan prints 0 failures.</li>
+</ul>
+<p>Result 2026-11-04 (after critic fixes): all points pass. Regional post uses <code>{{webinar.start_time_local}}</code>; "worked with 250+ brands". Session mentioned only in the last 7 to 12% of each post; scan 0 failures. Group-specific posts wait on Adi's group list.</p></div></details><details class="doc"><summary>Files for import or upload (1)</summary><ul class="files"><li><a href="cards/files/07-facebook-groups/group-tracker.csv" target="_blank" rel="noopener">group-tracker.csv</a></li></ul></details>

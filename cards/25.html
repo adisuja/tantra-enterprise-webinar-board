@@ -1,0 +1,137 @@
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>25: Sales Call Collateral</h1>
+<p>Four pieces for Conor and Scott to use on and after the Enterprise Evaluation Call. Approved proof only (PROOF_PACK.md sections 1, 3 and 6).</p>
+<h2>What Is Here</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>case-study-deck.pdf</code> (+ <code>.html</code>)</td>
+<td>11 slides, 16:9: the problem, how it works, Growth Idea (case study card, slides 4 and 5), FintechCircle (case study card, slides 6 and 7), what both share, the offer, the first 3 months, next step</td>
+<td>Screen-share on the call; send after</td>
+</tr>
+<tr>
+<td><code>enterprise-one-pager-a4.pdf</code>, <code>-letter.pdf</code> (+ <code>.html</code>)</td>
+<td>One page: pain, six stages, the two case study cards (compact), price and includes, booking</td>
+<td>Send before or after the call</td>
+</tr>
+<tr>
+<td><code>scope-and-pricing-a4.pdf</code>, <code>-letter.pdf</code> (+ <code>.html</code>)</td>
+<td>In and out of scope, the six stages, timeline, who does what, price and terms</td>
+<td>Send when the client asks "what exactly do we get"</td>
+</tr>
+<tr>
+<td><code>objections-faq-a4.pdf</code>, <code>-letter.pdf</code> (+ <code>.html</code>)</td>
+<td>13 objections with talk tracks, "never say" lines, the five call rules and the proof card. INTERNAL</td>
+<td>Closers only, never send to a client</td>
+</tr>
+<tr>
+<td><code>src/</code></td>
+<td>Source HTML with <code>{{funnel-config}}</code> tokens</td>
+<td>Edit here, then rebuild</td>
+</tr>
+<tr>
+<td><code>build.py</code></td>
+<td>Fills the tokens from <code>deliverables/_shared/funnel-config.json</code>, renders every PDF with headless Chromium, and fails a one-page sheet whose content overflows</td>
+<td><code>python3 deliverables/25-sales-collateral/build.py</code></td>
+</tr>
+<tr>
+<td><code>compare/</code></td>
+<td>Side by side: the reference case study card (left) and our deck slides and one-pager (right)</td>
+<td>Review only</td>
+</tr>
+<tr>
+<td><code>assets/</code></td>
+<td>Fonts, current Tantra mark and wordmark, shared CSS (including the case study card, <code>.cs</code>)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Case Study Card (Rule 0, Rebuilt 2026-11-05)</h2>
+<p>Each case study mirrors the funnel's case study card reference (<code>references/qs-funnel/qs-thank-you.png</code>, crops <code>.work/qs-crops/qs-thank-you-01.jpg</code> and <code>-02.jpg</code>), one case per slide pair:</p>
+<table>
+<thead>
+<tr>
+<th>Reference block</th>
+<th>Ours</th>
+<th>What changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gold header bar and frame with the company name</td>
+<td>Volt-deep (#4b2fd6) bar and frame, Clash Display</td>
+<td>Palette, font</td>
+</tr>
+<tr>
+<td>Left column: Company Profile, Company Size, Challenge</td>
+<td>Company Profile and Challenge from PROOF_PACK descriptors</td>
+<td>Company Size omitted: unknown for both clients</td>
+</tr>
+<tr>
+<td>Right column: Results, 3 gold pills</td>
+<td>Results, 3 lilac pills with ink text, measured facts only</td>
+<td>Palette, our data</td>
+</tr>
+<tr>
+<td>Grey KPI strip, 3 KPIs with from and to</td>
+<td>Slate strip, 3 KPIs: first to best webinar (Growth Idea), episode 1 to episode 3 (FintechCircle)</td>
+<td>Our data; the period is printed under the strip</td>
+</tr>
+<tr>
+<td>Case Study video</td>
+<td>Same slot on the second slide, marked FILL for item 28</td>
+<td>No video yet</td>
+</tr>
+<tr>
+<td>Pull quote</td>
+<td>Omitted</td>
+<td>No quote exists for either client</td>
+</tr>
+<tr>
+<td>LinkedIn button with the contact's name</td>
+<td>Same button with the contact's first name; link marked FILL for item 28</td>
+<td>No link yet</td>
+</tr>
+</tbody>
+</table>
+<p>The one-pager carries the same two cards at a smaller size, with the video and LinkedIn slots as FILL tags. Slides 2, 3 and 8 to 11 are unchanged. The first-vs-best table, the experiment-log bars and the episode bars from the old deck are gone: the card has no slot for them, and the KPI strip and pills carry the headline numbers.</p>
+<h2>Call 2 (Adi, 2026-11-05)</h2>
+<p>The one-pager's booking band, the scope sheet's price strip and the deck's last slide now say what follows the written proposal: a 30-minute Proposal Review with the same closer, where the decision is made (<code>booking.call2</code> in funnel-config.json). The FAQ is for both calls, and rule five says the decision is made on Call 2. The Call 2 script (<code>deliverables/18-19-booking/18-call-2-proposal-review-script.md</code>) points every objection to its card here. All PDFs rebuilt and checked: one page each for the one-pager and scope sheet, 2 pages for the FAQ, 11 slides.</p>
+<h2>What Adi Must Fill or Confirm</h2>
+<ol start="0">
+<li>
+<p>Item 28: the case study video and the LinkedIn profile link for Shweta and Susanne (deck slides 5 and 7, one-pager cards). Each shows an amber FILL until set.</p>
+</li>
+<li>
+<p><code>booking.round_robin_url</code> in funnel-config.json. Until set, the deck's last slide and the one-pager show <code>{{booking.round_robin_url}}</code> in an amber box. Rebuild after filling it.</p>
+</li>
+<li>Not included list (scope sheet and FAQ): paid ad spend, third-party tools and data, taking sales calls, hiring the client's team, no guarantee. No written source yet.</li>
+<li>FAQ lines marked "Adi to confirm": the plan and price after year 1, data export if a client leaves, hours a week and coaching call cadence, standard payment terms, whether a reference call is ever offered.</li>
+<li>The 3-month timeline (deck slide 12, scope sheet): drafted from the offer, same as the proposal template.</li>
+<li>Modelled pipeline figures (Growth Idea about $96K, FintechCircle about $34K) are left out. Add them only if Adi approves, with the words "pipeline modelled".</li>
+</ol>
+<h2>Proof Used (all MEASURED, from the client trackers via PROOF_PACK.md)</h2>
+<p>Growth Idea: 4 clients won, 47 MQLs, 80 sales calls, 1,384 live, 11 webinars; first vs best webinar (reached 12,898 to 99,859, registered 30 to 1,990, live 7 to 321, registration rate 0.23% to 2.0%). FintechCircle: 17 calls in episodes 1 to 3; 175 programme applications; outreach 10,000 reached to 38,138 invites; episode 1 to 3 (outreach 10,000 to 30,000, live 59 to 89, calls 1 to 7). The FAQ proof card still lists 124 approved (marked as a review decision, not a sale). Own-marketing lines: 250+ brands, 21+ countries, 47+ industries, 10+ years. No testimonials, no client logos, no photos.</p>
+<p>No "Claim to verify" items: the 400+ founders and $100K to $300K lines are not used here.</p></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: item 25, sales call collateral</h1>
+<p>Written before the build. Each point is checkable; marked after verification.</p>
+<ol>
+<li>[x] Case study deck: HTML slides, 10 to 14 slides, rendered to a 16:9 PDF. Growth Idea and FintechCircle each get the situation, what was built and the measured numbers; plus a "how it works" slide and the offer. PASS (2026-11-05 rebuild): 11 slides, 1280x720 PDF; each case is a card slide pair.</li>
+<li>[x] Every number in every file traces to PROOF_PACK.md sections 1, 3 or 6. No modelled pipeline, no testimonial, no other client named, no banned number. PASS: checked line by line against PROOF_PACK; modelled pipeline left out.</li>
+<li>[x] Each named client and contact appears at most once per slide or page section; first names only for contacts. PASS: one mention per slide or section; contacts first name only (FAQ proof card).</li>
+<li>[x] Enterprise one-pager fits on one A4 page and one Letter page, checked by eye in the PDF. PASS: 1 page each, build.py asserts it.</li>
+<li>[x] Scope and pricing sheet states what is in, what is out, the timeline, who does what and the price; every scope boundary with no source is marked for Adi to confirm in the README. PASS: in, out, timeline, who does what, price; unsourced boundaries listed in README for Adi.</li>
+<li>[x] Objection and FAQ sheet covers price, timing, "we tried agencies", "we have a team", "will it work in my industry", platform after year 1, guarantees and the rest, and no answer invents proof, a guarantee or a deadline. PASS: 13 objections; unknown policies marked Adi to confirm.</li>
+<li>[x] Price, includes, booking link and names are read from funnel-config.json at build time; unknown values show as a visible merge field. PASS: build.py fills from funnel-config; round_robin_url shows as amber merge field.</li>
+<li>[x] Brand: tokens.json palette, Clash Display, Satoshi and Inter, the current Tantra mark and wordmark only. No photos of people, no client logos. PASS: tokens.json colours, Clash Display, Satoshi, Inter, current mark and wordmark; no people, no client logos.</li>
+<li>[x] Every PDF was rendered with headless Chromium and looked at page by page. PASS (2026-11-05): all 7 PDFs rebuilt and viewed page by page; one-pager overflow now measured in build.py.</li>
+<li>[x] <code>scan.py</code> prints 0 failures on this folder. PASS: scan: 0 failures, 0 warnings.</li>
+<li>[x] Rule 0: each case study mirrors the reference case study card (header bar, profile and challenge / results with 3 pills, KPI strip with 3 from-to KPIs, video, LinkedIn button) in Tantra palette and fonts, one case per slide pair; Company Size and the quote omitted (unknown, none exists); video and LinkedIn marked FILL for item 28. PASS: slides 4 to 7; compares in <code>compare/</code>.</li>
+<li>[x] The one-pager's proof block uses the same card template and the sheet still fits one A4 and one Letter page with nothing clipped. PASS: build.py overflow check, both viewed.</li>
+<li>[x] Call 2 (2026-11-05): the one-pager, scope sheet, deck next step and FAQ mention the Proposal Review where relevant; every PDF still fits (one-pager and scope sheet one page each, FAQ 2 pages on A4 and Letter, deck 11 slides). PASS: build.py output; changed areas viewed.</li>
+</ol></div></details><details class="doc"><summary>Files for import or upload (16)</summary><ul class="files"><li><a href="cards/files/25-sales-collateral/assets/tantra-mark-ink.png" target="_blank" rel="noopener">assets/tantra-mark-ink.png</a></li><li><a href="cards/files/25-sales-collateral/assets/tantra-mark-white.png" target="_blank" rel="noopener">assets/tantra-mark-white.png</a></li><li><a href="cards/files/25-sales-collateral/assets/tantra-word-ink.png" target="_blank" rel="noopener">assets/tantra-word-ink.png</a></li><li><a href="cards/files/25-sales-collateral/assets/tantra-word-white.png" target="_blank" rel="noopener">assets/tantra-word-white.png</a></li><li><a href="cards/files/25-sales-collateral/build.py" target="_blank" rel="noopener">build.py</a></li><li><a href="cards/files/25-sales-collateral/case-study-deck.html" target="_blank" rel="noopener">case-study-deck.html</a></li><li><a href="cards/files/25-sales-collateral/case-study-deck.pdf" target="_blank" rel="noopener">case-study-deck.pdf</a></li><li><a href="cards/files/25-sales-collateral/enterprise-one-pager-a4.pdf" target="_blank" rel="noopener">enterprise-one-pager-a4.pdf</a></li><li><a href="cards/files/25-sales-collateral/enterprise-one-pager-letter.pdf" target="_blank" rel="noopener">enterprise-one-pager-letter.pdf</a></li><li><a href="cards/files/25-sales-collateral/enterprise-one-pager.html" target="_blank" rel="noopener">enterprise-one-pager.html</a></li><li><a href="cards/files/25-sales-collateral/objections-faq-a4.pdf" target="_blank" rel="noopener">objections-faq-a4.pdf</a></li><li><a href="cards/files/25-sales-collateral/objections-faq-letter.pdf" target="_blank" rel="noopener">objections-faq-letter.pdf</a></li><li><a href="cards/files/25-sales-collateral/objections-faq.html" target="_blank" rel="noopener">objections-faq.html</a></li><li><a href="cards/files/25-sales-collateral/scope-and-pricing-a4.pdf" target="_blank" rel="noopener">scope-and-pricing-a4.pdf</a></li><li><a href="cards/files/25-sales-collateral/scope-and-pricing-letter.pdf" target="_blank" rel="noopener">scope-and-pricing-letter.pdf</a></li><li><a href="cards/files/25-sales-collateral/scope-and-pricing.html" target="_blank" rel="noopener">scope-and-pricing.html</a></li></ul></details>

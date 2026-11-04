@@ -1,0 +1,1437 @@
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>Item 16: The Tantra Enterprise Webinar Deck</h1>
+<p>45 slides (65 states with tabs): 45 minutes of teaching and invitation, then 15 minutes of Q and A on the last slide. Rebuilt 2026-11-05 to mirror the reference recording slide by slide (Adi's rule 0); palette and type are Tantra's. Re-timed the same day: the offer in one slide (what it is, who it is for, the price, the next step) lands at minute 20 on slide 23, with the QR on slide 24, before the minute-25 early-leaver cutoff. Adi hosts alone (no co-host).</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>REFERENCE_MAP.md</code></td>
+<td>The reference sequence with frame numbers and timestamps, each slide's layout and visual element, the Tantra slide that mirrors it, and every deviation.</td>
+</tr>
+<tr>
+<td><code>compare/</code></td>
+<td>65 side-by-side images: reference frame left, our slide (or tab) right, at 1920 by 1080.</td>
+</tr>
+<tr>
+<td><code>deck/index.html</code> (+ <code>deck/assets/</code>)</td>
+<td>The deck. Generated; never edit by hand. Opens offline, nothing loads from another site.</td>
+</tr>
+<tr>
+<td><code>build/spec.mjs</code></td>
+<td>Every slide: reference frame (<code>ref</code>), layout, copy, UI visuals, speaker notes, planned minute. Reads the title, offer, price and booking link from <code>deliverables/_shared/funnel-config.json</code>.</td>
+</tr>
+<tr>
+<td><code>build/build.mjs</code>, <code>build/lib/</code> (ui.mjs, style.css, runtime.js, qr.ts, icons.mjs), <code>build/probe.mjs</code>, <code>build/shoot.mjs</code>, <code>build/compare.py</code></td>
+<td>New renderer: the reference's layouts and product-UI visuals built as HTML, tabbed slides with the footer counter, progress bar and Previous / Next tab buttons, a FILL card instead of a QR while the booking link is unknown. Guide: <code>build/SPEC_GUIDE.md</code> (content doctrine: <code>build/DOCTRINE.md</code>).</td>
+</tr>
+<tr>
+<td><code>RUN_OF_SHOW.md</code></td>
+<td>Minutes 0 to 60: slides, who speaks, polls, chat, offer cues, moderator actions, the Q and A plan.</td>
+</tr>
+<tr>
+<td><code>research/QS_TEARDOWN.md</code></td>
+<td>Minute-by-minute teardown of the competitor recording: what we take (structure) and never copy.</td>
+</tr>
+<tr>
+<td><code>EVAL.md</code></td>
+<td>Done criteria, checked.</td>
+</tr>
+</tbody>
+</table>
+<p>The staged <code>engine/</code> copy was removed after the adaptation: it was byte-identical to <code>~/tantra-redesign/workshop-plan/series-deck/</code> (still there) and its example specs carry banned numbers that fail the scan.</p>
+<h2>Open It Locally</h2>
+<p><code>open deliverables/16-deck/deck/index.html</code> (or double-click it). Right arrow or Space: next (steps through a slide's tabs first). N: speaker notes. G or O: all slides. F: full screen. Add <code>?notes=1</code> to open with notes.</p>
+<p>Rebuild after any change to the spec or config:</p>
+<pre><code>cd deliverables/16-deck/build
+node --no-warnings build.mjs      # 45 slides, polls, chat count, FILL values still open
+node --no-warnings probe.mjs      # must print &quot;all 45 slides clean&quot;
+node --no-warnings shoot.mjs - /tmp/deckshots   # screenshots of every slide and tab
+python3 compare.py /tmp/deckshots               # rebuilds ../compare/ (needs Pillow)
+</code></pre>
+<p>Then rerun <code>node deliverables/21-engagement/export_from_deck.mjs</code> so the engagement timings follow.</p>
+<h2>Review URL Path</h2>
+<p>Publish the <code>deck/</code> folder as <code>/deck/</code> on the review site: https://adisuja.github.io/tantra-enterprise-webinar-pages/deck/ (add <code>?v=&lt;date&gt;</code> to bust the cache). The file is <code>noindex</code>, but speaker notes are readable by anyone who presses N.</p>
+<h2>What Adi Must Fill (in funnel-config.json, then rebuild)</h2>
+<ul>
+<li><code>booking.round_robin_url</code>: until then, slides 24, 35, 44 and 45 show a FILL card where the QR goes. Filled, the build draws a real QR.</li>
+<li><code>webinar.first_date</code>, <code>webinar.start_time_local</code>, <code>webinar.timezone</code>: shown on the title slide.</li>
+<li><code>webinar.title</code>: the deck uses <code>webinar.working_title</code> until Adi picks.</li>
+<li><code>offer.webinar_bonus_stack</code>: slide 7 shows the proposed real-asset stack (run sheet, invite templates, CRM template, plus the replay) marked PROPOSED; once Adi approves and fills it, the marks change to "Yours at the end". Skip slide 7 live until then.</li>
+<li><code>offer.fast_action_deadline</code>: once real, it shows under the button on slide 35; nothing shows while it is FILL (notes only). Any guarantee: none exists; slide 38's third card is the first step, and the guarantee FILL is in the notes only.</li>
+<li>Headline case: decided by Adi 2026-11-05. The deck mirrors the reference (sentence case with a full stop).</li>
+</ul>
+<h2>Claim to Verify</h2>
+<ul>
+<li>"400+ founders" and "$100K to $300K" (the working title) have no source yet (see the task board).</li>
+<li>Slide 38 shows "12 months of the platform, included". The $1,188 value (12 months of Tantra Pro at $99 a month) is in the speaker notes only, until Adi confirms Enterprise's platform year is the Pro tier.</li>
+<li>Slide 21 notes: "many of you are here because of one" (a calendar invite): say it only if that week's traffic used calendar invites.</li>
+<li>Slide 20 tab 4 arithmetic: 98,000 invites at 5 minutes each is about 8,170 hours, about 4 years at 40 hours a week. The slide labels it "An example: 5 minutes each, 40 hours a week".</li>
+</ul></div></details><details class="doc"><summary>REFERENCE_MAP.md</summary><div class="md"><h1>Reference Map: the Webinar Deck Mirrors the Reference Recording</h1>
+<p>Adi, 2026-11-05: redo the deck following the reference recording's design structure and formatting, with Tantra's palette and fonts. The first build was rejected because it used our own workshop-deck design. This map is the contract: every Tantra slide names the reference frame it mirrors (<code>ref</code> in <code>build/spec.mjs</code>), and <code>compare/</code> holds the side-by-side proof.</p>
+<p>Reference files: frames every 12 seconds at 1280 wide in <code>.work/qs-frames-hd/</code> (frame <code>tNNNN</code> is (NNNN minus 1) times 12 seconds; the left webcam tile is the presenter, not the slide), contact sheets in <code>.work/qs-frames/</code>, transcript <code>research/qs-webinar-transcript.srt</code>. Slide changes were detected frame to frame (105 distinct states in the first 46 minutes; minute 46 onward is the final slide held through Q and A). Structure only: no wording, names, numbers or case studies from the reference recording appear in the deck (a 6-word overlap check against the srt returns 0).</p>
+<h2>Visual System (theirs, then ours)</h2>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Reference</th>
+<th>Ours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ground</td>
+<td>Near-black, faint top glow; UI slides add a faint square grid</td>
+<td>Ink #0b0d12, same glow; same faint grid in iris on UI slides</td>
+</tr>
+<tr>
+<td>Eyebrow</td>
+<td>Tiny mono caps, wide tracking, a dot before it (green; red on problem slides)</td>
+<td>JetBrains Mono caps, 0.32em tracking, iris dot (ember dot on problem slides)</td>
+</tr>
+<tr>
+<td>Headline</td>
+<td>Bold tight grotesk, sentence case with a full stop, left aligned, about 7% left margin, vertically centred</td>
+<td>Inter 800, minus 0.045em tracking, same case, margin and placement. Inter because usetantra.com uses Inter as its only face and it is the closest Tantra face to the reference's grotesk. Only Inter and JetBrains Mono are loaded</td>
+</tr>
+<tr>
+<td>Accent phrase</td>
+<td>One phrase in green; negative phrase in red</td>
+<td>One phrase in iris #a78bfa; negative phrase in ember (lifted to #f0703f for text on ink)</td>
+</tr>
+<tr>
+<td>Data colour</td>
+<td>Green numbers</td>
+<td>Signal #34d399 for positive data only; volt #6d4aff for buttons, chips and progress</td>
+</tr>
+<tr>
+<td>Cards</td>
+<td>Dark cards, thin borders, mono numbers</td>
+<td>Same, white 2.8% fill, 7.5% border, JetBrains Mono numbers</td>
+</tr>
+<tr>
+<td>Section dividers</td>
+<td>Huge faded numeral 01 / 02 / 03, eyebrow and step name over it</td>
+<td>Same, numeral in JetBrains Mono 700, #30333c</td>
+</tr>
+<tr>
+<td>Tabbed UI slides</td>
+<td>Top-left eyebrow, top-right accent label, tab chips or tab nav, UI stage, caption, footer counter "01 / 04", thin progress bar, Previous tab and Next tab buttons</td>
+<td>Same; Right arrow steps through tabs before the next slide (65 states over 45 slides)</td>
+</tr>
+<tr>
+<td>QR slides</td>
+<td>Centred eyebrow and headline, white QR card, side line, green button, small fine print</td>
+<td>Same; volt button; QR drawn from <code>booking.round_robin_url</code> (a marked FILL card until set)</td>
+</tr>
+<tr>
+<td>Footer chip</td>
+<td>"Fullscreen" chip bottom left</td>
+<td>Small current Tantra mark plus TANTRA in the same chip</td>
+</tr>
+<tr>
+<td>People</td>
+<td>Presenter photo; client photos on proof cards</td>
+<td>Adi's Kie.ai avatar on the host slide only; clients get a monogram and the company name, never a photo</td>
+</tr>
+</tbody>
+</table>
+<h2>The Reference Sequence, in Order, and Our Slide for Each Move</h2>
+<p>Times are the recording's. "Ours" is the slide number in the 45-slide deck.</p>
+<table>
+<thead>
+<tr>
+<th>Ref frame</th>
+<th>Time</th>
+<th>Reference move</th>
+<th>Layout and visual element</th>
+<th>Ours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>t0001</td>
+<td>0:00</td>
+<td>Holding slide, brand eyebrow</td>
+<td>Centred eyebrow, two-line centred headline</td>
+<td>1 Title (working title, accent on the revenue range)</td>
+</tr>
+<tr>
+<td>t0008</td>
+<td>1:24</td>
+<td>Interaction rules, chat now, Q and A at the end</td>
+<td>Left headline with accent phrase, callout card with left accent bar and a mono label</td>
+<td>2 Use the chat, one thing to type now</td>
+</tr>
+<tr>
+<td>t0009</td>
+<td>1:36</td>
+<td>Inflection point</td>
+<td>Left headline, paragraph</td>
+<td>folded into slide 3 notes</td>
+</tr>
+<tr>
+<td>t0012</td>
+<td>2:12</td>
+<td>The question</td>
+<td>Eyebrow "the question", huge two-line headline, accent on the last phrase</td>
+<td>3 The question</td>
+</tr>
+<tr>
+<td>t0016</td>
+<td>3:00</td>
+<td>The opportunity is obvious</td>
+<td>All-accent headline</td>
+<td>dropped (slide budget; the point is said on slide 3)</td>
+</tr>
+<tr>
+<td>t0018 to t0020</td>
+<td>3:24</td>
+<td>What this is not</td>
+<td>Headline, two struck-through lines with crosses, one accent line with a dash</td>
+<td>4 This isn't another AI tools tour</td>
+</tr>
+<tr>
+<td>t0021 to t0024</td>
+<td>4:00</td>
+<td>Who I am</td>
+<td>Portrait left, name with accent, mono stats</td>
+<td>5 Adi (avatar), 250+ / 10+ / 21+ / 47+</td>
+</tr>
+<tr>
+<td>t0025 to t0026</td>
+<td>4:48</td>
+<td>It is already working</td>
+<td>Count headline, client chips with outlined metric chips, two screenshots</td>
+<td>6 250+ brands, two clients with metric chips, two tracker tables built as UI (no screenshots)</td>
+</tr>
+<tr>
+<td>t0027 to t0030</td>
+<td>5:12</td>
+<td>Free gifts</td>
+<td>2x2 icon cards with a mono value line</td>
+<td>7 Four things (run sheet, invite templates, CRM template, replay), PROPOSED, Adi approves; no dollar values</td>
+</tr>
+<tr>
+<td>t0031 to t0032</td>
+<td>6:00</td>
+<td>Agenda</td>
+<td>Mono minutes, vertical dot timeline, numbered lines, small chat note</td>
+<td>8 What we'll cover in 45 minutes</td>
+</tr>
+<tr>
+<td>t0033</td>
+<td>6:24</td>
+<td>Who this is for</td>
+<td>Four icon cards</td>
+<td>9 Who this is for (plus a mono not-for line)</td>
+</tr>
+<tr>
+<td>t0034 to t0035</td>
+<td>6:36</td>
+<td>Qualifier</td>
+<td>Text left with red negative phrase and a green chip; chart card right</td>
+<td>10 Qualifier, ember phrase, chip; right card is Poll 1 (the zigzag chart moves to slide 12)</td>
+</tr>
+<tr>
+<td>t0036 to t0041</td>
+<td>7:00</td>
+<td>The real problem, three parts</td>
+<td>Three cards with red top border, red mono numbers</td>
+<td>11 Three leaks</td>
+</tr>
+<tr>
+<td>t0042 to t0044</td>
+<td>8:12</td>
+<td>Problem 1 result</td>
+<td>Headline with red phrase, dash list</td>
+<td>12 The pipeline swings, dash list plus the zigzag chart card (labelled illustration)</td>
+</tr>
+<tr>
+<td>t0045 to t0046</td>
+<td>8:48</td>
+<td>Problem 2</td>
+<td>One huge word, one line under it</td>
+<td>13 Cold calls.</td>
+</tr>
+<tr>
+<td>t0047 to t0048</td>
+<td>9:12</td>
+<td>Problem 3 and "nothing connects"</td>
+<td>Big word slide, then headline with red phrase and a dash list whose last line is red</td>
+<td>14 Every tactic starts from zero (the two merged)</td>
+</tr>
+<tr>
+<td>t0049</td>
+<td>9:36</td>
+<td>Cost quote</td>
+<td>Big accent quote mark, two-line statement, mono foot line</td>
+<td>15 Quote slide</td>
+</tr>
+<tr>
+<td>(none)</td>
+<td></td>
+<td>Our poll 2</td>
+<td>Built from the t0008 callout layout: text left, poll card right</td>
+<td>16 Poll 2</td>
+</tr>
+<tr>
+<td>t0050 to t0053</td>
+<td>9:48</td>
+<td>The complete system, three steps</td>
+<td>Staircase of three bordered rows, mono label on the right</td>
+<td>17 Fill the room / Get them there / Book the calls, "AI runs every step"</td>
+</tr>
+<tr>
+<td>t0054 to t0056</td>
+<td>10:36</td>
+<td>Step 01 divider</td>
+<td>Huge faded numeral</td>
+<td>18 01 Fill the room</td>
+</tr>
+<tr>
+<td>t0057 to t0058</td>
+<td>11:12</td>
+<td>Step 1 question</td>
+<td>Headline with accent, two icon chips</td>
+<td>19 Can every buyer who fits hear from you, three chips</td>
+</tr>
+<tr>
+<td>t0059 to t0062</td>
+<td>11:36</td>
+<td>Two weak options, small pond vs ocean</td>
+<td>Cards, illustration</td>
+<td>dropped (budget); the point is in slide 19 notes</td>
+</tr>
+<tr>
+<td>t0063, t0072 to t0075, t0111 to t0112</td>
+<td>12:24 to 22:12</td>
+<td>Sources merged into a dot grid; one prospect researched into a profile; the sending engine (list, engine card, dot grid)</td>
+<td>Tabbed UI slides with caption and footer controls</td>
+<td>20 Tabbed: the list (99,859 dot grid), research (sample buyer, findings, personal line), sending (98,000 invites)</td>
+</tr>
+<tr>
+<td>t0064 to t0069</td>
+<td>12:36</td>
+<td>Verdict and price-of-data cards</td>
+<td>Tabbed UI</td>
+<td>dropped (no honest equivalent: we have no data-cost figures)</td>
+</tr>
+<tr>
+<td>t0070</td>
+<td>13:48</td>
+<td>Bad cold email</td>
+<td>Headline left, email card right</td>
+<td>used for step 2 (slide 26)</td>
+</tr>
+<tr>
+<td>t0076 to t0077</td>
+<td>15:00</td>
+<td>By hand vs a system</td>
+<td>Red card with list and huge red number, green card with grid and huge green phrase, centred caption</td>
+<td>20 tab 4 (folded 2026-11-05 to free a slot for the early offer): 1 person, 5 minutes, 98,000 invites, about 4 years (labelled on screen as an example: 5 minutes each, 40 hours a week), vs one webinar</td>
+</tr>
+<tr>
+<td>t0078 to t0079</td>
+<td>15:24</td>
+<td>Three ingredients (if you built it yourself)</td>
+<td>Three icon cards</td>
+<td>folded into slide 40 tab 1</td>
+</tr>
+<tr>
+<td>t0080</td>
+<td>15:48</td>
+<td>The list is half the battle</td>
+<td>Two cards, question</td>
+<td>dropped (budget)</td>
+</tr>
+<tr>
+<td>t0081 to t0084</td>
+<td>16:00</td>
+<td>Client video testimonial</td>
+<td>Video card</td>
+<td>dropped: no client video exists; proof cards carry the clients</td>
+</tr>
+<tr>
+<td>t0085 to t0088</td>
+<td>16:48</td>
+<td>Mid-deck QR, 1 of 3 steps in</td>
+<td>Centred QR call to action</td>
+<td>23 and 24 (re-timed 2026-11-05, Adi: the offer before the minute-25 cutoff). The reference uses this QR after step 1 to pitch early: the room is told it can skip the line and book now, and what the call gives them, while the full offer waits for the end. We keep the move and its place (right after step 1 and its proof) and put the preview on screen: slide 23 at minute 20, the offer in one slide (what it is, who it is for, the price, the next step) in the reference's cost-card layout (t0201: eyebrow, headline, three icon cards with mono values) plus the t0008 callout for the next step; slide 24 at minute 22, the centred QR (cta1_soft opens at 20, closes at 25)</td>
+</tr>
+<tr>
+<td>t0089</td>
+<td>17:36</td>
+<td>Step 02 divider</td>
+<td>Huge faded numeral</td>
+<td>25 02 Get them there</td>
+</tr>
+<tr>
+<td>t0090</td>
+<td>17:48</td>
+<td>What most people do</td>
+<td>Headline left with red phrase, email card with a red tag</td>
+<td>26 One reminder email, then an empty room (UNREAD tag)</td>
+</tr>
+<tr>
+<td>t0091, t0097, t0100</td>
+<td>18:00</td>
+<td>Where attention is, why it works</td>
+<td>Centred question, statement</td>
+<td>folded into slide 21 captions</td>
+</tr>
+<tr>
+<td>t0094 to t0099, t0107 to t0110</td>
+<td>18:36 to 21:24</td>
+<td>Calendar mock: open slot, invite drops in, invite opened; opt-in yes or no</td>
+<td>Tabbed calendar UI</td>
+<td>21 Tabbed calendar: the open slot, the invite lands, one click (in step 1, because the calendar invite is how we fill the room)</td>
+</tr>
+<tr>
+<td>t0104</td>
+<td>20:36</td>
+<td>"The how"</td>
+<td>Big centred word</td>
+<td>dropped (budget)</td>
+</tr>
+<tr>
+<td>t0105 to t0106</td>
+<td>20:48</td>
+<td>The invite writes itself</td>
+<td>Profile into invite</td>
+<td>folded into slide 20 tab 2</td>
+</tr>
+<tr>
+<td>t0113 to t0114</td>
+<td>22:24</td>
+<td>Three ingredients (step 2)</td>
+<td>Three icon cards</td>
+<td>folded into slide 40 tab 1</td>
+</tr>
+<tr>
+<td>t0115 to t0117</td>
+<td>22:48</td>
+<td>Proof, step at work</td>
+<td>Round photo, name, metric chain with arrows, bar compare card with a big multiple</td>
+<td>22 Growth Idea monogram, 99,859 to 1,990 to 321, 2.0% vs 0.23%, 8.6x (PROOF_PACK derived)</td>
+</tr>
+<tr>
+<td>t0118 to t0119</td>
+<td>23:24</td>
+<td>Step 03 divider</td>
+<td>Huge faded numeral</td>
+<td>29 03 Book the calls</td>
+</tr>
+<tr>
+<td>t0120</td>
+<td>23:48</td>
+<td>Centred question</td>
+<td>Centred</td>
+<td>dropped (budget)</td>
+</tr>
+<tr>
+<td>t0121 to t0122</td>
+<td>24:00</td>
+<td>One call can't carry everything</td>
+<td>Headline with red phrase, stacked blocks on a cracked pillar</td>
+<td>30 One sales call can't do all the work</td>
+</tr>
+<tr>
+<td>t0123 to t0126</td>
+<td>24:24</td>
+<td>One to many</td>
+<td>Diagram</td>
+<td>folded into slide 30 and 31 notes</td>
+</tr>
+<tr>
+<td>t0127 to t0131</td>
+<td>25:12</td>
+<td>The structure</td>
+<td>Text left, numbered structure card right</td>
+<td>31 The order, you're inside one now</td>
+</tr>
+<tr>
+<td>t0132 to t0136</td>
+<td>26:12</td>
+<td>Shaped to your business</td>
+<td>Tabbed chart</td>
+<td>dropped (budget)</td>
+</tr>
+<tr>
+<td>t0137 to t0139</td>
+<td>27:12</td>
+<td>Fill the room: channels into a filling room (two tab chips; the second tab is the reference's live-run view)</td>
+<td>Channel cards, dense dot flow, room card with grid and rate</td>
+<td>27 Every channel (email, WhatsApp, AI voice, calendar) into 321 live, about 16%; one state, so no tab chips (the second tab has no honest equivalent)</td>
+</tr>
+<tr>
+<td>t0140</td>
+<td>27:48</td>
+<td>The part that isn't AI</td>
+<td>Two cards</td>
+<td>folded into slide 41</td>
+</tr>
+<tr>
+<td>t0147 to t0149</td>
+<td>29:12</td>
+<td>The tuning loop</td>
+<td>Tabbed: stepper, metric card with red number and meter, diagnosis, loop</td>
+<td>32 Tabbed: detect (0.23%), change one thing, re-run and log (experiment log, indicative)</td>
+</tr>
+<tr>
+<td>t0150 to t0152</td>
+<td>29:48</td>
+<td>Run it live a few times</td>
+<td>Three video cards</td>
+<td>dropped (no recordings to show)</td>
+</tr>
+<tr>
+<td>t0153 to t0154</td>
+<td>30:24</td>
+<td>Three ingredients (step 3)</td>
+<td>Three icon cards</td>
+<td>folded into slide 40 tab 1</td>
+</tr>
+<tr>
+<td>t0155 to t0158</td>
+<td>30:48</td>
+<td>Proof card with bar growth chart and metric row, quote strip</td>
+<td>Photo card, bars, metrics, strip</td>
+<td>28 FintechCircle monogram, invites per episode bars, 117 / 9 / 17, strip (no client quote exists)</td>
+</tr>
+<tr>
+<td>t0159</td>
+<td>31:36</td>
+<td>Pull it together</td>
+<td>Centred</td>
+<td>folded into slide 34</td>
+</tr>
+<tr>
+<td>t0160 to t0164</td>
+<td>31:48</td>
+<td>Recap funnel bar chart, five tabs</td>
+<td>Horizontal bars with mono values and rate chips, rows appear tab by tab</td>
+<td>34 Growth Idea, 11 webinars: 765,105 / 6,517 / 1,384 / 80 / 4; rate chips 0.85%, 21%, 5.8 per 100, 5%, each labelled derived (PROOF_PACK)</td>
+</tr>
+<tr>
+<td>t0165 to t0172</td>
+<td>32:48</td>
+<td>Second QR after the recap</td>
+<td>Centred QR call to action, small limit line</td>
+<td>35 QR (cta2_checkpoint); no limit line on screen while <code>offer.fast_action_deadline</code> is FILL (notes only)</td>
+</tr>
+<tr>
+<td>t0173 to t0175</td>
+<td>34:24</td>
+<td>The ceiling case</td>
+<td>Photo, three metric chips, strip</td>
+<td>33 Growth Idea best webinar: 321 / 18 / 25, strip (placed before the recap, as the third proof card)</td>
+</tr>
+<tr>
+<td>t0176 to t0185</td>
+<td>35:00</td>
+<td>What we do, built for you, five tabs</td>
+<td>Tab nav, one large bordered card with icon, step label, two ticked lines, mono arrow line, tag, footer line</td>
+<td>36 Five tabs: coaching, the build, the platform, course and community, one engine</td>
+</tr>
+<tr>
+<td>t0181, t0186 to t0191</td>
+<td>36:00</td>
+<td>The journey, three phases</td>
+<td>Stepper, phase pill, headline, three stat cards, mono footer</td>
+<td>37 Build (months 1 to 3), go live, run it (to month 12); the mono footer says phase 01 starts after the Proposal Review call</td>
+</tr>
+<tr>
+<td>t0192 to t0195</td>
+<td>38:12</td>
+<td>Revenue build chart over 12 months</td>
+<td>Line chart with projections</td>
+<td>dropped: a projection, which we cannot honestly show</td>
+</tr>
+<tr>
+<td>t0196 to t0201</td>
+<td>39:00</td>
+<td>What it costs</td>
+<td>Three cards with icon and mono value; third is a guarantee</td>
+<td>38 $9,999; 12 months of the platform, included; the 30-minute Evaluation Call, the written proposal within one business day, then the Proposal Review call with the same closer (in the guarantee's slot: no guarantee exists, FILL in the notes only; the $1,188 note is in the notes until the Pro-tier premise is confirmed)</td>
+</tr>
+<tr>
+<td>(none)</td>
+<td></td>
+<td>Our poll 3</td>
+<td>t0008 callout layout with a poll card</td>
+<td>39 Poll 3</td>
+</tr>
+<tr>
+<td>t0202 to t0209</td>
+<td>40:12</td>
+<td>Build it yourself, the team you'd need, or we run it</td>
+<td>Tabbed: red grid with big red card; roles grid with big red card; hero card with four green cards</td>
+<td>40 Three tabs: build it alone, then hire the team, or build it with us</td>
+</tr>
+<tr>
+<td>t0210 to t0214</td>
+<td>41:48</td>
+<td>Why not generic AI</td>
+<td>Tabbed: AI logos to a question mark; bars generic vs ours</td>
+<td>41 Two tabs, generic icons (no AI brands), bars</td>
+</tr>
+<tr>
+<td>t0215 to t0220</td>
+<td>42:48</td>
+<td>Cost of inaction</td>
+<td>Centred question, red phrase</td>
+<td>42 How many more quiet months can you afford?</td>
+</tr>
+<tr>
+<td>(none)</td>
+<td></td>
+<td>Our poll 4</td>
+<td>t0008 callout layout with a poll card</td>
+<td>43 Poll 4</td>
+</tr>
+<tr>
+<td>t0221 to t0226</td>
+<td>44:00</td>
+<td>Final QR, book a call</td>
+<td>Centred QR call to action</td>
+<td>44 Book your evaluation call (cta3_main)</td>
+</tr>
+<tr>
+<td>t0231 to end</td>
+<td>46:00 to 80:00</td>
+<td>Final slide held through Q and A</td>
+<td>Panel, kicker, three-line headline, paragraph, slanted button, white QR card</td>
+<td>45 Q and A</td>
+</tr>
+</tbody>
+</table>
+<h2>The 45 Slides, Minute by Minute</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>id</th>
+<th>Min</th>
+<th>Ref</th>
+<th>Layout</th>
+<th>Proof or data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>title</td>
+<td>0</td>
+<td>t0001</td>
+<td>center</td>
+<td>config title, date, time</td>
+</tr>
+<tr>
+<td>2</td>
+<td>welcome</td>
+<td>1</td>
+<td>t0008</td>
+<td>left, callout</td>
+<td>chat</td>
+</tr>
+<tr>
+<td>3</td>
+<td>question</td>
+<td>2</td>
+<td>t0012</td>
+<td>left</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>not-this</td>
+<td>3</td>
+<td>t0020</td>
+<td>left, strike list</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>host</td>
+<td>4</td>
+<td>t0024</td>
+<td>host</td>
+<td>250+, 10+, 21+, 47+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>working</td>
+<td>5</td>
+<td>t0026</td>
+<td>left, chips, trackers</td>
+<td>Growth Idea and FintechCircle measured</td>
+</tr>
+<tr>
+<td>7</td>
+<td>gifts</td>
+<td>6</td>
+<td>t0030</td>
+<td>left, 2x2 gifts</td>
+<td>proposed assets (FILL)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>agenda</td>
+<td>7</td>
+<td>t0032</td>
+<td>left, timeline</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>who</td>
+<td>8</td>
+<td>t0033</td>
+<td>left, icon cards</td>
+<td>chat</td>
+</tr>
+<tr>
+<td>10</td>
+<td>poll-1</td>
+<td>9</td>
+<td>t0035</td>
+<td>split, poll</td>
+<td>Poll 1</td>
+</tr>
+<tr>
+<td>11</td>
+<td>leaks</td>
+<td>10</td>
+<td>t0041</td>
+<td>left, numbered cards</td>
+<td>chat</td>
+</tr>
+<tr>
+<td>12</td>
+<td>leak-1</td>
+<td>11</td>
+<td>t0044</td>
+<td>split, dash list, zigzag</td>
+<td>illustration, labelled</td>
+</tr>
+<tr>
+<td>13</td>
+<td>leak-2</td>
+<td>12</td>
+<td>t0046</td>
+<td>left, big word</td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td>leak-3</td>
+<td>12</td>
+<td>t0048</td>
+<td>left, dash list</td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td>cost-quote</td>
+<td>13</td>
+<td>t0049</td>
+<td>quote</td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td>poll-2</td>
+<td>13</td>
+<td>t0008</td>
+<td>split, poll</td>
+<td>Poll 2</td>
+</tr>
+<tr>
+<td>17</td>
+<td>system</td>
+<td>14</td>
+<td>t0053</td>
+<td>left, stairs</td>
+<td>chat</td>
+</tr>
+<tr>
+<td>18</td>
+<td>div-1</td>
+<td>15</td>
+<td>t0056</td>
+<td>divider</td>
+<td></td>
+</tr>
+<tr>
+<td>19</td>
+<td>s1-question</td>
+<td>15</td>
+<td>t0058</td>
+<td>left, chips</td>
+<td></td>
+</tr>
+<tr>
+<td>20</td>
+<td>s1-engine</td>
+<td>16</td>
+<td>t0063, t0074, t0111, t0077</td>
+<td>ui, 4 tabs</td>
+<td>99,859 reached; 98,000 invites; tab 4 by hand vs system (the 5 minutes and 40 hours are labelled an example on screen)</td>
+</tr>
+<tr>
+<td>21</td>
+<td>s1-calendar</td>
+<td>18</td>
+<td>t0094, t0096, t0107</td>
+<td>ui, 3 tabs, calendar</td>
+<td>chat</td>
+</tr>
+<tr>
+<td>22</td>
+<td>s1-proof</td>
+<td>19</td>
+<td>t0117</td>
+<td>proof</td>
+<td>0.23% to 2.0%, 8.6x</td>
+</tr>
+<tr>
+<td>23</td>
+<td>pitch</td>
+<td>20</td>
+<td>t0201 (layout), t0086 (move)</td>
+<td>left, cost cards, callout</td>
+<td>offer.includes, offer.fit, $9,999, the Call 1, proposal, Call 2 path; cta1_soft opens</td>
+</tr>
+<tr>
+<td>24</td>
+<td>cta-1</td>
+<td>22</td>
+<td>t0086</td>
+<td>qr</td>
+<td>the Call 2 path under the button</td>
+</tr>
+<tr>
+<td>25</td>
+<td>div-2</td>
+<td>23</td>
+<td>t0089</td>
+<td>divider</td>
+<td></td>
+</tr>
+<tr>
+<td>26</td>
+<td>s2-old</td>
+<td>23</td>
+<td>t0090</td>
+<td>split, email card</td>
+<td></td>
+</tr>
+<tr>
+<td>27</td>
+<td>s2-room</td>
+<td>24</td>
+<td>t0138</td>
+<td>ui, channels to room</td>
+<td>321 live, about 16%; chat</td>
+</tr>
+<tr>
+<td>28</td>
+<td>s2-proof</td>
+<td>26</td>
+<td>t0158</td>
+<td>proof</td>
+<td>FintechCircle episodes</td>
+</tr>
+<tr>
+<td>29</td>
+<td>div-3</td>
+<td>27</td>
+<td>t0119</td>
+<td>divider</td>
+<td></td>
+</tr>
+<tr>
+<td>30</td>
+<td>s3-call</td>
+<td>27</td>
+<td>t0122</td>
+<td>left, pillar</td>
+<td></td>
+</tr>
+<tr>
+<td>31</td>
+<td>s3-order</td>
+<td>28</td>
+<td>t0131</td>
+<td>split, order card</td>
+<td>chat</td>
+</tr>
+<tr>
+<td>32</td>
+<td>s3-loop</td>
+<td>29</td>
+<td>t0147 to t0149</td>
+<td>ui, 3 tabs</td>
+<td>experiment log (indicative)</td>
+</tr>
+<tr>
+<td>33</td>
+<td>s3-proof</td>
+<td>30</td>
+<td>t0175</td>
+<td>proof</td>
+<td>321 / 18 / 25 / 2</td>
+</tr>
+<tr>
+<td>34</td>
+<td>recap</td>
+<td>31</td>
+<td>t0160 to t0164</td>
+<td>ui, 5 tabs, funnel</td>
+<td>11 webinars, counted; rates derived</td>
+</tr>
+<tr>
+<td>35</td>
+<td>cta-2</td>
+<td>32</td>
+<td>t0172</td>
+<td>qr</td>
+<td>cta2_checkpoint</td>
+</tr>
+<tr>
+<td>36</td>
+<td>built</td>
+<td>33</td>
+<td>t0177 to t0185</td>
+<td>ui, 5 tabs</td>
+<td>offer.includes</td>
+</tr>
+<tr>
+<td>37</td>
+<td>journey</td>
+<td>35</td>
+<td>t0186 to t0191</td>
+<td>ui, 3 tabs</td>
+<td>3 months, 1 year; "6 parts" are slide 40's six</td>
+</tr>
+<tr>
+<td>38</td>
+<td>cost</td>
+<td>36</td>
+<td>t0201</td>
+<td>left, cost cards</td>
+<td>$9,999; 12 months included; the 30-minute call and proposal</td>
+</tr>
+<tr>
+<td>39</td>
+<td>poll-3</td>
+<td>37</td>
+<td>t0008</td>
+<td>split, poll</td>
+<td>Poll 3</td>
+</tr>
+<tr>
+<td>40</td>
+<td>diy</td>
+<td>38</td>
+<td>t0204 to t0209</td>
+<td>ui, 3 tabs</td>
+<td>chat</td>
+</tr>
+<tr>
+<td>41</td>
+<td>why-not-ai</td>
+<td>40</td>
+<td>t0211, t0214</td>
+<td>ui, 2 tabs</td>
+<td>10+ years, 250+ brands</td>
+</tr>
+<tr>
+<td>42</td>
+<td>wait</td>
+<td>41</td>
+<td>t0220</td>
+<td>center</td>
+<td></td>
+</tr>
+<tr>
+<td>43</td>
+<td>poll-4</td>
+<td>42</td>
+<td>t0008</td>
+<td>split, poll</td>
+<td>Poll 4</td>
+</tr>
+<tr>
+<td>44</td>
+<td>cta-3</td>
+<td>43</td>
+<td>t0226</td>
+<td>qr</td>
+<td>cta3_main, chat BOOKED</td>
+</tr>
+<tr>
+<td>45</td>
+<td>qa</td>
+<td>45 to 60</td>
+<td>t0240</td>
+<td>final</td>
+<td>QR all of Q and A</td>
+</tr>
+</tbody>
+</table>
+<h2>Deviations, and Why</h2>
+<ul>
+<li>Order: the calendar invite (reference step 2) sits in our step 1, because for Tantra the invite is how the room fills; our step 2 is show-up (the reference's reminder slide from its step 3), our step 3 is conversion to booked calls. The third proof card (reference "ceiling") comes before the recap, so each step closes on proof.</li>
+<li>Polls: the reference has none. Our four polls keep the CRM data path (item 21) and use the reference's callout layout with a poll card. Poll 1 sits on the qualifier slide, replacing its chart card; the chart moved to slide 12.</li>
+<li>Dropped for the 45-slide budget: about 20 reference beats (listed above as dropped or folded). Every dropped beat is either folded into a neighbour's notes or tabs, or has no honest equivalent (data price cards, client video, live-run videos, the 12-month revenue projection).</li>
+<li>Honest replacements: monograms for client photos, tracker tables for chat screenshots, generic icons for AI brand logos, a strip line where the reference has a client quote. The guarantee card becomes the first step (the call and the proposal) and the monthly-limit line is left off; both FILLs live in the speaker notes only. The bonus values stay off; the bonus cards are marked proposed.</li>
+<li>Headline case: sentence case with a full stop, as in the reference. Adi decided 2026-11-05: formatting follows the reference, so the deck keeps sentence case (this overrides AGENT_RULES rule 2's Title Case for the deck).</li>
+<li>Early offer (Adi, 2026-11-05): the early-leaver cutoff stays at minute 25, so the offer moved ahead of it. Slide 23 (minute 20) shows what Tantra Enterprise is, who it is for, the price and the next step; slide 24 (minute 22) is the QR. To keep 45 slides and 45 minutes, the by-hand slide became tab 4 of slide 20, and the problem and step 1 run one minute shorter each (poll 2 at 13, the engine at 14, step 1 from 15). The full offer, journey, cost, comparison and close stay at minutes 33 to 45.</li>
+<li>No co-host: Adi hosts alone. The moderator is behind the scenes only and never speaks; the Q and A slide's speaker line and notes say so.</li>
+</ul></div></details><details class="doc"><summary>RUN_OF_SHOW.md</summary><div class="md"><h1>Run of Show: the 60-Minute Tantra Enterprise Webinar</h1>
+<p>45 minutes of teaching and invitation, then 15 minutes of Q and A. One deck: <code>deck/index.html</code> (45 slides, rebuilt 2026-11-05 to mirror the reference recording; see <code>REFERENCE_MAP.md</code>). Re-timed the same day so the offer lands at minute 20, before the minute-25 early-leaver cutoff. Polls, chat lines and offer cues word for word: <code>../21-engagement/ENGAGEMENT_PLAN.md</code>.</p>
+<p><strong>People.</strong> Adi hosts alone: the only person on camera and the only voice. There is no co-host. The moderator works behind the scenes, never on camera or mic (in WebinarJam Basic they take the second presenter seat with the camera off, because Basic has no Moderator role): launches polls and offers, posts chat lines, answers chat, sends Adi the question list in private chat. Adi confirms who moderates before each session.</p>
+<p><strong>Presenter keys.</strong> Right arrow or Space: next (on a tabbed slide it steps through the tabs first; the footer shows 01 / 03 and the progress bar). N: speaker notes (each opens with the planned minute). G or O: every slide. F: full screen. <code>?notes=1</code> on the URL opens with notes.</p>
+<p><strong>Clock rules.</strong> Minute 20 is fixed: if slide 22 (step 1 proof) is not up by minute 19, skip tabs 2 and 4 of slide 20 so the offer slide (23) lands by minute 20 and always before minute 25, the early-leaver cutoff. If the recap (slide 34) is not up by minute 32, skip tabs 2 to 4 of slide 34 and go straight to the QR on slide 35. Protect the first look (minutes 20 to 23), the full offer (minutes 33 to 45) and the full 15 minutes of Q and A.</p>
+<h2>Before the Start</h2>
+<table>
+<thead>
+<tr>
+<th>When</th>
+<th>Who</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T minus 30</td>
+<td>Adi, moderator</td>
+<td>Prep block (item 17 checklist). Deck open, notes on a second screen. Check slide 1 shows this week's date, time and time zone (<code>webinar.first_date</code>, <code>webinar.start_time_local</code>, <code>webinar.timezone</code>), not FILL. Confirm the booking link in <code>funnel-config.json</code> is filled and the QR on slides 24, 35, 44 and 45 scans to it. Skip slide 7 while the bonus is FILL. Never mention a guarantee or a monthly limit: neither shows on screen while they are FILL.</td>
+</tr>
+<tr>
+<td>T minus 15</td>
+<td>Moderator</td>
+<td>In the room, offers <code>cta1_soft</code>, <code>cta2_checkpoint</code>, <code>cta3_main</code> and polls 1 to 4 loaded, none launched.</td>
+</tr>
+<tr>
+<td>T minus 2</td>
+<td>Moderator</td>
+<td>Post the house rules line.</td>
+</tr>
+</tbody>
+</table>
+<h2>Minute by Minute</h2>
+<table>
+<thead>
+<tr>
+<th>Min</th>
+<th>Slides</th>
+<th>Speaks</th>
+<th>On screen and said</th>
+<th>Chat, poll, CTA</th>
+<th>Moderator does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 to 1</td>
+<td>1</td>
+<td>Adi</td>
+<td>Title. Welcome, "tell me where you're joining from". Read two names.</td>
+<td>Chat: city</td>
+<td>Post welcome line and house rules; greet arrivals by first name for 5 minutes</td>
+</tr>
+<tr>
+<td>1 to 2</td>
+<td>2</td>
+<td>Adi</td>
+<td>Use the chat; one thing to type now</td>
+<td>Chat: city and what you sell</td>
+<td>Post the line; read answers back to Adi privately if the chat is fast</td>
+</tr>
+<tr>
+<td>2 to 3</td>
+<td>3</td>
+<td>Adi</td>
+<td>The question</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3 to 4</td>
+<td>4</td>
+<td>Adi</td>
+<td>What this is not; the two agendas, said out loud</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4 to 5</td>
+<td>5</td>
+<td>Adi</td>
+<td>Host: 250+ brands, 10+ years, 21+ countries, 47+ industries</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5 to 6</td>
+<td>6</td>
+<td>Adi</td>
+<td>Two clients, number for number</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6 to 7</td>
+<td>7</td>
+<td>Adi</td>
+<td>Four things for staying (SKIP while the bonus is FILL)</td>
+<td></td>
+<td>If Adi approved the bonus, post it</td>
+</tr>
+<tr>
+<td>7 to 8</td>
+<td>8</td>
+<td>Adi</td>
+<td>The plan for 45 minutes</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8 to 9</td>
+<td>9</td>
+<td>Adi</td>
+<td>Who this is for, and the not-for line</td>
+<td>Chat: 1</td>
+<td></td>
+</tr>
+<tr>
+<td>9 to 10</td>
+<td>10</td>
+<td>Adi</td>
+<td>Qualifier and Poll 1, revenue band</td>
+<td><strong>Poll 1</strong></td>
+<td>Launch poll 1, post the poll line, close after 45 s</td>
+</tr>
+<tr>
+<td>10 to 11</td>
+<td>11</td>
+<td>Adi</td>
+<td>Three leaks</td>
+<td>Chat: 1, 2 or 3</td>
+<td>Post the line</td>
+</tr>
+<tr>
+<td>11 to 13</td>
+<td>12 to 14</td>
+<td>Adi</td>
+<td>Leak 1 (the swings), leak 2 (cold calls), leak 3 (nothing adds up)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td>15</td>
+<td>Adi</td>
+<td>What the guesswork costs you (30 seconds)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>13 to 14</td>
+<td>16</td>
+<td>Adi</td>
+<td>Poll 2, where you lose the most buyers</td>
+<td><strong>Poll 2</strong></td>
+<td>Launch poll 2, close after 45 s, tell Adi the top answer</td>
+</tr>
+<tr>
+<td>14 to 15</td>
+<td>17</td>
+<td>Adi</td>
+<td>The three-step engine</td>
+<td>Chat: weakest step</td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td>18</td>
+<td>Adi</td>
+<td>01 Fill the room</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15 to 16</td>
+<td>19</td>
+<td>Adi</td>
+<td>Can every buyer who fits hear from you?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>16 to 18</td>
+<td>20 (4 tabs)</td>
+<td>Adi</td>
+<td>The list, one buyer researched, sending (99,859 reached, 98,000 invites), then by hand (about 4 years) vs a system (one webinar)</td>
+<td></td>
+<td>Tell Adi before the start whether this week's traffic used calendar invites</td>
+</tr>
+<tr>
+<td>18 to 19</td>
+<td>21 (3 tabs)</td>
+<td>Adi</td>
+<td>The calendar invite: open slot, it lands, one click</td>
+<td>Chat: CAL</td>
+<td></td>
+</tr>
+<tr>
+<td>19 to 20</td>
+<td>22</td>
+<td>Adi</td>
+<td>Proof: Growth Idea, 30 sign-ups to 1,990. Bridge: "here's what it looks like when we build this with you."</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>20 to 22</td>
+<td>23</td>
+<td>Adi</td>
+<td><strong>The offer in one slide.</strong> What it is: Tantra Enterprise, built with you (3 months of 1:1 coaching and implementation, a done-with-you build, 1 year of Tantra, the course, community and group calls). Who it's for: $10,000 or more to invest in the next 12 months. The price, said plainly: $9,999. The next step: the 30-minute Evaluation Call, a written proposal within one business day, then a Proposal Review call with the same closer, where we decide together.</td>
+<td><strong>CTA 1</strong></td>
+<td>Launch offer <code>cta1_soft</code> as the slide appears; post and pin the booking link; re-post every 5 minutes from now</td>
+</tr>
+<tr>
+<td>22 to 23</td>
+<td>24</td>
+<td>Adi</td>
+<td>QR: step 1 of 3 done. Book now and keep watching. Pause while people scan.</td>
+<td>CTA 1 stays up</td>
+<td></td>
+</tr>
+<tr>
+<td>23</td>
+<td>25</td>
+<td>Adi</td>
+<td>02 Get them there</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>23 to 24</td>
+<td>26</td>
+<td>Adi</td>
+<td>One reminder email, then an empty room</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>24 to 26</td>
+<td>27</td>
+<td>Adi</td>
+<td>Every channel, timed: 321 live, about 16%</td>
+<td>Chat: 2</td>
+<td>Close offer <code>cta1_soft</code> at 25:00</td>
+</tr>
+<tr>
+<td>26 to 27</td>
+<td>28</td>
+<td>Adi</td>
+<td>Proof: FintechCircle, 108 registered, 117 live</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>27</td>
+<td>29</td>
+<td>Adi</td>
+<td>03 Book the calls</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>27 to 28</td>
+<td>30</td>
+<td>Adi</td>
+<td>One sales call can't do all the work</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>28 to 29</td>
+<td>31</td>
+<td>Adi</td>
+<td>The order, you're inside one now</td>
+<td>Chat: ROOM</td>
+<td></td>
+</tr>
+<tr>
+<td>29 to 30</td>
+<td>32 (3 tabs)</td>
+<td>Adi</td>
+<td>The weekly loop: detect, change one thing, log</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>30 to 31</td>
+<td>33</td>
+<td>Adi</td>
+<td>Proof: 321 live, 25 calls, one session</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>31 to 32</td>
+<td>34 (5 tabs)</td>
+<td>Adi</td>
+<td>Recap: 11 webinars, 765,105 to 4 clients</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>32 to 33</td>
+<td>35</td>
+<td>Adi</td>
+<td>QR: seen enough? Book your call</td>
+<td><strong>CTA 2</strong></td>
+<td>Launch offer <code>cta2_checkpoint</code>; re-post the link</td>
+</tr>
+<tr>
+<td>33 to 35</td>
+<td>36 (5 tabs)</td>
+<td>Adi</td>
+<td>Built with you, part by part: coaching, the build, the platform, course and community, one engine; the fit line</td>
+<td></td>
+<td>Close offer <code>cta2_checkpoint</code> at 35:00</td>
+</tr>
+<tr>
+<td>35 to 36</td>
+<td>37 (3 tabs)</td>
+<td>Adi</td>
+<td>The journey: build, go live, run it; phase 01 starts after the Proposal Review call</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>36 to 37</td>
+<td>38</td>
+<td>Adi</td>
+<td>What it costs: the price, the second and last time ($9,999); 12 months of the platform included; no payment to start: the 30-minute Evaluation Call, a written proposal within one business day, then the Proposal Review call where we decide together</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>37 to 38</td>
+<td>39</td>
+<td>Adi</td>
+<td>Poll 3, what would stop you</td>
+<td><strong>Poll 3</strong></td>
+<td>Launch poll 3, close after 45 s, tell Adi the order of answers</td>
+</tr>
+<tr>
+<td>38 to 40</td>
+<td>40 (3 tabs)</td>
+<td>Adi</td>
+<td>Build it alone, hire the team, or build it with us (poll 3 A and B)</td>
+<td>Chat: 1</td>
+<td></td>
+</tr>
+<tr>
+<td>40 to 41</td>
+<td>41 (2 tabs)</td>
+<td>Adi</td>
+<td>Why not just a chatbot</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>41 to 42</td>
+<td>42</td>
+<td>Adi</td>
+<td>The cost of waiting (poll 3 D)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>42 to 43</td>
+<td>43</td>
+<td>Adi</td>
+<td>Poll 4, your next step</td>
+<td><strong>Poll 4</strong></td>
+<td>Launch poll 4, close after 45 s, post the link the moment it closes</td>
+</tr>
+<tr>
+<td>43 to 45</td>
+<td>44</td>
+<td>Adi</td>
+<td>Main QR: book your evaluation call. Say the path once (call, written proposal within one business day, Proposal Review call), then stop talking while people scan.</td>
+<td><strong>CTA 3</strong>, chat: BOOKED</td>
+<td>Launch offer <code>cta3_main</code> (stays to the end); pin the link; read the first BOOKED name to Adi; hand Adi the question list</td>
+</tr>
+<tr>
+<td>45 to 60</td>
+<td>45</td>
+<td>Adi alone: reads each question out, then answers</td>
+<td>Q and A with the QR on screen the whole time</td>
+<td>Q and A, CTA 3 stays up</td>
+<td>Send Adi the questions in private chat, in order: poll 4 D-voters, industry fit (poll 3 C), the build, price. Re-post the link every 5 minutes</td>
+</tr>
+<tr>
+<td>58 to 60</td>
+<td>45</td>
+<td>Adi</td>
+<td>Final call to action, thank the room, the replay reaches your inbox</td>
+<td></td>
+<td>Last link post; stay for stragglers</td>
+</tr>
+</tbody>
+</table>
+<h2>The Q and A Plan (minutes 45 to 60)</h2>
+<ol>
+<li><strong>Order.</strong> Poll 4 D-voters first (they told you they have a question before buying), then "will this work for my industry", then how the build works, then price and terms, then everything else.</li>
+<li><strong>Every answer ends with the next step,</strong> one sentence: "That's exactly what the call is for: the link is pinned."</li>
+<li><strong>Industry fit.</strong> Answer honestly. Works best: B2B, a high-trust offer sold on a call, buyers at a desk. Harder: buyers away from a desk, low-price impulse products. If it's a poor fit, say so; that makes every other yes believable.</li>
+<li><strong>Price.</strong> $9,999, said on slide 23 (minute 20) and again on slide 38 (minute 36). Repeat it only if asked. No discount, no deadline, no guarantee unless Adi has approved one in <code>funnel-config.json</code>.</li>
+<li><strong>Proof questions.</strong> Only PROOF_PACK numbers: Growth Idea and FintechCircle measured figures, the four host lines, verbatim quotes. Anything else: "I'll send you the details after the call."</li>
+<li><strong>Hand-off.</strong> Questions the moderator can answer in chat (links, replay, time zone) never reach Adi. The moderator never speaks on the session.</li>
+<li><strong>After booking.</strong> If asked what happens next: the Evaluation Call, a written proposal within one business day, then a Proposal Review call with the same closer, where we decide together. A missed call is not rescheduled.</li>
+<li><strong>Close.</strong> At minute 58, final call to action whatever the queue, then keep answering for whoever stays.</li>
+</ol>
+<h2>Not in This Show (Adi Decides)</h2>
+<ul>
+<li>A stay-to-the-end bonus (slide 7): three real assets are proposed (run sheet, invite templates, CRM template); <code>offer.webinar_bonus_stack</code>. Skip slide 7 until approved.</li>
+<li>A real monthly limit (slide 35 shows it under the button once <code>offer.fast_action_deadline</code> is real; nothing on screen until then): say nothing about limits.</li>
+<li>A guarantee: none exists. Slide 38's third card is the first step (the call and the proposal); the guarantee FILL is in the notes only. Never mention it.</li>
+</ul></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: item 16, webinar deck (written before the build)</h1>
+<p>Done means every point below is checked and marked.</p>
+<ol>
+<li>[x] <code>research/QS_TEARDOWN.md</code> maps the reference recording minute by minute from the srt timestamps (opening, rapport, credibility, teaching segments, belief shifts, transition, offer stack, price, CTAs, urgency, Q and A), lists every engagement moment, says why it converts, and splits "take (structure)" from "never copy".</li>
+<li>[x] <code>deck/index.html</code> has exactly 45 slides, built from <code>build/spec.mjs</code> by <code>build/build.mjs</code>, with the title read from <code>funnel-config.json</code> (<code>webinar.working_title</code>, one value) and the price, offer, booking link and proof lines read from config, never retyped.</li>
+<li>[x] The deck follows the DOCTRINE: one belief, three false beliefs broken (vehicle, internal, external), the opening run, a chat prompt on most teaching slides, at most 4 polls, and the invitation block in order (bridge, gaps, alone vs guided, stack with only substantiable values, price, CTA to the Enterprise Evaluation Call on the Cal.com round robin, objection loop, Q and A with the CTA on screen).</li>
+<li>[x] Proof is PROOF_PACK only: Growth Idea and FintechCircle measured numbers, verbatim testimonials, approved host lines. No invented bonus, deadline, guarantee or scarcity: each is a clearly marked FILL slot.</li>
+<li>[x] Every slide has speaker notes with its planned minute; the presentation runs 45 minutes and Q and A 15.</li>
+<li>[x] <code>build/probe.mjs</code> reports all 45 slides clean at 1920 by 1080 (no clipping, overlap, spill, text under 17.5 px).</li>
+<li>[x] Every slide screenshotted and looked at; weak or crowded slides fixed.</li>
+<li>[x] <code>RUN_OF_SHOW.md</code> covers minutes 0 to 60: slide ranges, who speaks, chat and poll moments, CTA moments, moderator actions (pinning the booking link, answering chat) and the Q and A plan.</li>
+<li>[x] <code>python3 deliverables/_shared/scan.py deliverables/16-deck</code> prints 0 failures; the competitor is named only in <code>research/</code>.</li>
+<li>[x] <code>README.md</code> says how to open the deck locally, the review URL path, what Adi must fill, and the claims to verify.</li>
+</ol>
+<p>Result 2026-11-04: all 10 pass. <code>build.mjs</code>: 45 slides, 4 polls, 18 chat prompts, ends at minute 60. <code>probe.mjs</code>: all 45 slides clean. Every slide shot at 1920 by 1080 and looked at; crowded and empty slides rescaled (type sizes for a shared screen, vertical steps in narrow boxes, tiles, flows). Scan: 0 failures, 0 warnings. A filled booking link draws a real QR (checked with a sample URL); until then a marked FILL box shows.</p>
+<h2>Reference fidelity (added 2026-11-05, after Adi rejected the first build)</h2>
+<ol start="11">
+<li>[x] <code>REFERENCE_MAP.md</code> lists the reference slide sequence in order with frame numbers and timestamps, each slide's layout type and visual element, and the Tantra slide that mirrors it; every dropped or moved reference beat is named with the reason.</li>
+<li>[x] Every one of the 45 slides names its reference frame (<code>ref</code> in the spec; the build fails without it) and keeps the reference's order of moves: opening, interaction rules, the question, what this is not, who I am, already working, gifts, agenda, qualifier, the real problem in three parts, the three-step system with 01 / 02 / 03 numeral dividers and UI slides per step, mid-deck QR, proof cards, recap funnel, tabbed built-with-you, journey, what it costs, build it yourself vs us, why not generic AI, cost of inaction, final QR, Q and A.</li>
+<li>[x] The reference's formatting is reproduced: near-black ground, mono uppercase eyebrow with a dot, tight bold left headline with one accent phrase (ember for the negative), empty space, product UI built as HTML (dot grids, sending engine, calendar, metric chains, funnel bars), tabbed slides with the footer counter, progress bar and Previous / Next tab buttons. Only palette (ink, iris, volt, signal, ember) and fonts (Inter, JetBrains Mono, the only two loaded) are Tantra's; current logo only, small.</li>
+<li>[x] <code>compare/</code> holds a side-by-side image (reference frame left, ours right, 1920 by 1080) for every slide and tab state (64), each looked at; layout, hierarchy and visual element match or the deviation is in REFERENCE_MAP.</li>
+<li>[x] No reference wording, names or numbers: a 6-word overlap check of <code>build/spec.mjs</code> and <code>deck/index.html</code> against the srt returns 0 shared runs. No client photos (monograms), no AI brand logos, no invented prices, savings, salaries, guarantees, scarcity or bonuses (each is a marked FILL or a proposal for Adi).</li>
+</ol>
+<p>Result 2026-11-05: points 1 to 15 pass for the rebuilt deck. <code>build.mjs</code>: 45 slides, 64 states, 4 polls, 14 chat prompts, ends at minute 60. <code>probe.mjs</code>: all 45 slides (every tab) clean. 6-word overlap: 0. Scan on 16-deck and 21-engagement: 0 failures, 0 warnings. Item 21 re-timed to the new slides (engagement.json regenerated, ENGAGEMENT_PLAN and RUN_OF_SHOW updated, fixtures shifted); its test passes (52 checks). Point 1's teardown is unchanged; point 3's doctrine items now live inside the reference order (the objection loop is slides 40 to 42; testimonials are no longer on a slide, because the reference has none).</p>
+<p>Fidelity critic fixes 2026-11-05 (16): no FILL text on screen (slide 38's third card is the first step; slide 35's limit line is off; both FILLs in notes), invite block sized for two lines, the slide 21 example labelled, recap rates labelled derived, $1,188 moved to notes, 8.6x, agenda sums to 45, slide 27 single state with a denser dot flow, slide 20 dot density, tag inside the card, unused fonts removed, run-of-show date check, "6 parts" tied to slide 40, the map names no competitor, the build's dash check uses escapes. <code>probe.mjs</code> now also fails text that runs past a fixed-height box (measured against the box's natural height; it catches the old invite block). Probe: all 45 slides (every tab) clean.</p>
+<p>Re-time 2026-11-05 (Adi's decisions: offer before the minute-25 cutoff, Call 2, no co-host, sentence case kept): slide 23 "pitch" (minute 20, the reference's mid-deck QR move with the offer on screen in the t0201 cost-card layout: what it is, who it is for, $9,999, the Call 1 to proposal to Call 2 path), QR on slide 24 at 22; the by-hand slide folded into slide 20 as tab 4; problem and step 1 one minute shorter each. Every after-booking line (slides 23, 24, 35, 37, 38, 44, 45 and notes) names the Evaluation Call, the written proposal within one business day and the Proposal Review call with the same closer. No co-host anywhere. <code>build.mjs</code>: 45 slides, 65 states, 4 polls, 14 chat prompts, ends at minute 60. <code>probe.mjs</code>: all 45 slides (every tab) clean. Changed slides shot and looked at; 65 compare images refreshed. 6-word overlap with the srt: 0. Scan on 16, 21, 17, 27: 0 failures.</p></div></details><details class="doc"><summary>Files for import or upload (3)</summary><ul class="files"><li><a href="cards/files/16-deck/deck/assets/adi-avatar.jpg" target="_blank" rel="noopener">deck/assets/adi-avatar.jpg</a></li><li><a href="cards/files/16-deck/deck/assets/tantra-mark-white.png" target="_blank" rel="noopener">deck/assets/tantra-mark-white.png</a></li><li><a href="cards/files/16-deck/deck/index.html" target="_blank" rel="noopener">deck/index.html</a></li></ul></details>

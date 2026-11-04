@@ -1,0 +1,615 @@
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>Item 17: WebinarJam Event Setup and Integrations</h1>
+<h2>What Is Here</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EVENT_CONFIG.md</code></td>
+<td>The event, field by field in WebinarJam's wizard order: email decision, <code>timezone_id</code>, offers at 20:00, 32:00 and 43:00 (from item 21), polls, chat rules, replay</td>
+</tr>
+<tr>
+<td><code>RUN_CHECKLIST.md</code></td>
+<td>What to do each week, T minus 7 days to T plus 1 day, including the WebinarJam to CRM reconcile</td>
+</tr>
+<tr>
+<td><code>research/SOP4_NOTES.md</code></td>
+<td>The SOP #4 recording step by step, and what this funnel adopts, changes or drops</td>
+</tr>
+<tr>
+<td><code>integration/register.mjs</code></td>
+<td>The register Worker: registration page to WebinarJam <code>/register</code> (personal link), then <code>webinar.registered</code> with <code>join_url</code> to the CRM. Checks Origin, a Turnstile token, the source and field lengths. Command-line modes: <code>--bulk</code> (calendar Yes and Maybe RSVPs) and <code>--reconcile</code> (WebinarJam <code>/registrants</code> vs a CRM Webinar tab export)</td>
+</tr>
+<tr>
+<td><code>integration/import_attendance.mjs</code>, <code>columns.json</code></td>
+<td>WebinarJam registrants export to <code>webinar.attended</code> and <code>webinar.no_show</code> events. Headers, <code>entered_is</code> and <code>minutes_is</code> are set in <code>columns.json</code></td>
+</tr>
+<tr>
+<td><code>integration/build_worker.mjs</code>, <code>dist/worker.js</code></td>
+<td>The single file pasted into Cloudflare. Rebuild after <code>funnel-config.json</code> changes: <code>node deliverables/17-webinarjam/integration/build_worker.mjs</code></td>
+</tr>
+<tr>
+<td><code>tests/run.mjs</code>, <code>tests/fixtures/</code></td>
+<td>20 tests on fake example.com data, no network, including the built Worker: <code>node deliverables/17-webinarjam/tests/run.mjs</code></td>
+</tr>
+</tbody>
+</table>
+<p>Secrets live only in the Worker's environment: <code>WEBINARJAM_API_KEY</code>, <code>CRM_SHARED_SECRET</code>, <code>TURNSTILE_SECRET_KEY</code>. The command line is a dry run unless <code>--live</code>; the Worker dry-runs with <code>DRY_RUN=1</code>, and only then also accepts the review site's Origin.</p>
+<h2>Adi's Steps</h2>
+<ol>
+<li><strong>Check the plan.</strong> Sign in at https://app.webinarjam.com/ . Click the profile icon (top right), tab <strong>Billing</strong>. The plan must be <strong>Basic or higher</strong>: Starter stops sessions at 1 hour and the $1 trial has no API. If it is not, upgrade there. Next: step 2 becomes possible.</li>
+<li><strong>Apply for the API.</strong> Same profile window, tab <strong>API</strong>. App URL: our registration page, <code>https://</code> + <code>domains.funnel_domain</code> + <code>/</code>. Description, paste: <code>A serverless function on our own registration page registers each person who submits the form to one session of our weekly webinar, so they receive their unique join link.</code> Toggle <strong>subscribes users to your webinars</strong>: On. How contacts are collected, paste: <code>People fill in our registration form and agree to receive the webinar and its follow-up; people who accept our calendar invitation (Yes or Maybe) are registered for that session.</code> Click <strong>Apply</strong>. Approval takes up to two business days; meanwhile do steps 3 and 5.</li>
+<li><strong>Create the event.</strong> https://app.webinarjam.com/webinars , <strong>+ Add webinar</strong>, <strong>Full configuration</strong>, <strong>Schedule for later</strong>, then every step in <code>EVENT_CONFIG.md</code>. Also: profile icon, <strong>Settings</strong>, switch <strong>Session Recording</strong> on; and <strong>Integrations</strong>, <strong>DKIM settings</strong>, add the domain of <code>integrations.webinarjam_sender_email</code> and add the DNS records it shows. At <strong>Finish</strong>, click <strong>Save</strong>.</li>
+<li><strong>Send me the webinar ID.</strong> https://app.webinarjam.com/webinars , click <strong>Advanced</strong> above the new webinar, <strong>API custom integration</strong>. Copy the <strong>Webinar ID</strong> (a number, not secret) into this chat; it goes into <code>integrations.webinarjam_webinar_id</code> and I rebuild <code>dist/worker.js</code>. Leave the API key on that screen for step 5.</li>
+<li><strong>Turnstile, the Worker, its secrets and a rate limit.</strong> All at https://dash.cloudflare.com/ in the account that holds the funnel domain's zone.
+   - <strong>Turnstile</strong>, <strong>Add widget</strong>: name <code>Tantra webinar registration</code>, <strong>Hostname</strong> <code>domains.funnel_domain</code>, mode <strong>Managed</strong>, <strong>Create</strong>. Paste the <strong>Site Key</strong> into this chat (it is public; it goes into the page). Keep the <strong>Secret Key</strong> for the next bullet.
+   - <strong>Workers &amp; Pages</strong>, <strong>Create</strong>, <strong>Create Worker</strong>, name <code>tantra-webinar-register</code>, <strong>Deploy</strong>, <strong>Edit code</strong>, replace everything with <code>deliverables/17-webinarjam/dist/worker.js</code>, <strong>Deploy</strong>.
+   - The Worker's <strong>Settings</strong>, <strong>Variables and Secrets</strong>, <strong>Add</strong> three times, type <strong>Secret</strong> each time: <code>WEBINARJAM_API_KEY</code> = the API key from step 4's screen; <code>CRM_SHARED_SECRET</code> = <code>SHARED_SECRET</code> from the CRM's Apps Script, <strong>Project Settings</strong>, <strong>Script Properties</strong> (item 23); <code>TURNSTILE_SECRET_KEY</code> = the Turnstile Secret Key. <strong>Deploy</strong>.
+   - The Worker's <strong>Settings</strong>, <strong>Domains &amp; Routes</strong>, <strong>Add</strong>, <strong>Custom domain</strong>: <code>register.</code> + <code>domains.funnel_domain</code>. Paste that address into this chat: it is <code>integrations.register_worker_url</code>.
+   - The funnel domain's zone, <strong>Security</strong>, <strong>WAF</strong>, <strong>Rate limiting rules</strong>, <strong>Create rule</strong>: name <code>register worker</code>; if <strong>Hostname</strong> equals <code>register.</code> + the funnel domain <strong>and</strong> <strong>Request Method</strong> equals <code>POST</code>; counting by <strong>IP</strong>; more than <strong>5 requests per 10 seconds</strong>; action <strong>Block</strong> for <strong>10 seconds</strong> (the Free plan's fixed period; on a paid plan use 10 requests per minute, block 10 minutes). <strong>Deploy</strong>. Confirm in the Cloudflare dashboard which periods your plan offers; rate-limit rules do not apply to a <code>workers.dev</code> address, which is why the custom domain comes first.</li>
+<li><strong>Test one registration.</strong> Once the page posts to the Worker, open our registration page and register with your own email from a normal browser. Pass when all four happen: the thank-you page opens; an email "Your Join Link for ..." arrives from WebinarJam and the link opens the room; <strong>Registrants</strong> (https://app.webinarjam.com/ , <strong>Registrants</strong>, pick the webinar and session, <strong>Go</strong>) shows you; the CRM Webinar tab has your row for that date with the <code>join_url</code> in the Events tab. Then delete yourself from <strong>Registrants</strong> if you want a clean count.</li>
+</ol>
+<h2>For the Lead</h2>
+<ol>
+<li><strong>funnel-config.json:</strong> add <code>integrations.turnstile_site_key</code> (<code>FILL_TURNSTILE_SITE_KEY</code>). <code>register_worker_url</code>, <code>webinarjam_webinar_id</code>, <code>webinarjam_sender_email</code> and <code>moderator_name</code> are already there.</li>
+<li><strong>Item 13, the exact snippet.</strong> The page must post to the Worker, never to the CRM. In the registration form, just above the submit button:</li>
+</ol>
+<pre><code class="language-html">&lt;div class=&quot;cf-turnstile&quot; data-sitekey=&quot;{{integrations.turnstile_site_key}}&quot; data-action=&quot;register&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;https://challenges.cloudflare.com/turnstile/v0/api.js&quot; async defer&gt;&lt;/script&gt;
+</code></pre>
+<p>In <code>site.js</code>, replace the stub <code>setTimeout(...)</code> inside the submit handler with:</p>
+<pre><code class="language-js">var tokenEl = form.querySelector('[name=&quot;cf-turnstile-response&quot;]');
+var token = tokenEl ? tokenEl.value : '';
+if (!token) { btn.disabled = false; btn.textContent = 'Save my seat'; serverErr.hidden = false; return; }
+body.turnstile_token = token;
+body.data.timezone = body.data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+fetch(F.register_worker_url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+  .then(function (r) { return r.json(); })
+  .then(function (j) {
+    if (!j.ok) throw new Error(j.error || 'failed');
+    try { sessionStorage.setItem('tantra_first_name', body.data.first_name); } catch (e) {}
+    location.href = j.redirect || F.thank_you_path;
+  })
+  .catch(function () {
+    if (window.turnstile) window.turnstile.reset();
+    btn.disabled = false; btn.textContent = 'Save my seat'; serverErr.hidden = false;
+  });
+</code></pre>
+<p><code>F.register_worker_url</code> is <code>integrations.register_worker_url</code>. The Worker answers <code>{"ok":true,"redirect":"&lt;funnel domain&gt;/thank-you/"}</code>, or 400 (bad body), 403 (Origin or captcha), 502 (neither WebinarJam nor the CRM saved the person).
+3. <strong>Item 21:</strong> WebinarJam keeps poll results per session only and cannot report offer clicks per person, so <code>webinar.poll_answered</code> and <code>webinar.cta_clicked</code> need chat or a form. <strong>Item 18-19:</strong> keep the offer links' <code>utm_content</code> on <code>booking.created</code>. <strong>Item 22:</strong> the attendance import its TRACKS.md calls "item 27's script" is <code>integration/import_attendance.mjs</code>. <strong>Item 1:</strong> WebinarJam titles stop at 70 characters; the third-ranked title is 74.
+4. <strong>Item 23:</strong> its sheet menu has its own WebinarJam import, which reads a two-part time like <code>05:30</code> as minutes:seconds. This importer refuses two-part values until <code>minutes_is</code> is set. Once the first real export settles it, set both the same way.</p>
+<h2>Unconfirmed (check in the WebinarJam dashboard)</h2>
+<ul>
+<li>The export's exact column headers (matched by aliases in <code>columns.json</code>; after the first real export put the real headers first).</li>
+<li>Whether "Time in live room" ever comes as two parts (<code>05:30</code>): if so, set <code>minutes_is</code> in <code>columns.json</code> to <code>hms</code> or <code>ms</code>. Until then the import stops on such a value rather than guess.</li>
+<li>Whether "Time to enter live room" is a time of day or time after the start (<code>entered_is</code>).</li>
+<li>The <code>/registrants</code> reply shape for paging (the help article shows it only as an image); the reconcile reads <code>registrants</code>, <code>registrants.data</code> or <code>data</code>, and stops at <code>last_page</code>.</li>
+<li>That <code>timezone_id</code> is accepted for non-Texas Central and Mountain registrants (step 6 from a Central time zone browser shows it).</li>
+<li>Whether invisible captcha affects API registrations, whether the confirmation email carries WebinarJam's own unsubscribe link, whether the live room accent can take <code>brand.accent</code>, and whether "3rd party tracking systems" covers the live room.</li>
+</ul></div></details><details class="doc"><summary>EVENT_CONFIG.md</summary><div class="md"><h1>WebinarJam Event Configuration Sheet</h1>
+<p>One WebinarJam webinar runs every week of this funnel. Fill it once, field by field, in WebinarJam's own order. Values written as <code>key.path</code> come from <code>deliverables/_shared/funnel-config.json</code>: type the current value from there. "Confirm in the WebinarJam dashboard" marks anything no source could settle. Source tags are listed at the end: <strong>[SOP]</strong> frames from the SOP #4 recording, <strong>[CMP]</strong> the platform comparison, <strong>[H]</strong> a help-centre article.</p>
+<h2>Before You Start: Plan and API Access</h2>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Value</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plan</td>
+<td><strong>Basic</strong> or higher</td>
+<td>Starter caps every session at 1 hour, and ours is <code>webinar.duration_minutes</code> (60) plus overrun. Basic: 2 hours, 500 attendees, 2 on-camera hosts. [CMP]</td>
+</tr>
+<tr>
+<td>Room cap</td>
+<td>Basic is 500. Record the plan's cap in <code>webinar.room_cap</code></td>
+<td>[CMP]</td>
+</tr>
+<tr>
+<td>Moderator</td>
+<td>The "Moderator" role and the Control Panel are <strong>Enterprise only</strong>. On Basic, add the support person as the second <strong>presenter</strong> with the camera off: presenters can moderate chat, message attendees privately, block people and launch polls and offers [H 15369981]. Upgrade to Enterprise only if a third person is needed backstage</td>
+<td>The SOP team uses moderators [SOP 25:30]; we get the same job done on Basic</td>
+</tr>
+<tr>
+<td>API</td>
+<td>Paid plans only, approval "typically within two business days", only the primary login can apply or see the key. The $1 trial has no API [CMP, H 15370143]</td>
+<td>Apply on day one</td>
+</tr>
+<tr>
+<td>Weekly model</td>
+<td><strong>One webinar, one new dated session a week</strong> (schedule type "One single session")</td>
+<td>See Schedules. Keeps one webinar ID in config forever; each date gets its own schedule ID [H 15370150, H 15370047]</td>
+</tr>
+</tbody>
+</table>
+<p>Create it: <strong>Webinars</strong>, <strong>+ Add webinar</strong>, <strong>Full configuration</strong>, event type <strong>Schedule for later</strong> [H 15369977]. The wizard steps then run: Configuration, Schedules, Registration, Notifications, Integrations, Thank You, Live, Replay, Finish [SOP 22:30].</p>
+<h2>1. Configuration</h2>
+<p><strong>Basic settings</strong> [SOP 23:00: the field hints in that frame read "Max 70 characters" under name and title and "Max 150 characters" under description]</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webinar name (private, max 70 characters [SOP 23:00])</td>
+<td><code>Tantra Enterprise Weekly</code></td>
+</tr>
+<tr>
+<td>Webinar title (public, max 70 [SOP 23:00])</td>
+<td><code>webinar.title</code>. The recommended title in item 1 is 67 characters and fits; the third-ranked title is 74 and would need cutting</td>
+</tr>
+<tr>
+<td>Webinar description (public, max 150 [SOP 23:00])</td>
+<td><code>webinar.subtitle</code> (the working subtitle is 137 characters and fits)</td>
+</tr>
+<tr>
+<td>Webinar language</td>
+<td>English. It also sets 12 or 24-hour times in emails [H 15369982]</td>
+</tr>
+<tr>
+<td>Webinar thumbnail</td>
+<td>Leave empty. Our own registration page is the one people see</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Webinar presenters</strong> [SOP 25:30, H 15369981, H 15369991]</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Email</th>
+<th>Role</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>brand.host_full_name</code></td>
+<td>Proposed <code>integrations.webinarjam_sender_email</code></td>
+<td>Host presenter</td>
+<td>The host's name and email are the <strong>From</strong> on every WebinarJam email. Use a mailbox on a domain other than usetantra.com or growthclub.org, never a free Gmail (Adi's sending-mailbox rule), and authenticate it under <strong>Integrations, DKIM settings</strong> (about 24 hours) [H 15369992]. Without it, WebinarJam sends from webinarinfo@webinarjam.net, which the SOP frame shows happening when the domain's DMARC is "reject" [SOP 25:30]. Picture: Adi's AI avatar, the same file the pages use (<code>deliverables/13-15a-26-20-pages/site/assets/img/adi-avatar.jpg</code>). Bio: <code>brand.host_title</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Proposed <code>webinar.moderator_name</code></td>
+<td>Their work email</td>
+<td>Presenter, camera off (Moderator on Enterprise)</td>
+<td>Watches chat, answers private messages, launches polls and offers on cue</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Streaming service:</strong> WebinarJam Live [SOP 26:30].</p>
+<h2>2. Schedules</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webinar schedule type</td>
+<td><strong>One single session</strong>. Registrants are tied to one date each. "Recurring series" would sign people up for every future week and attendance could only be split by date range [H 15369982, H 15370152]</td>
+</tr>
+<tr>
+<td>Sessions</td>
+<td>Add 4 weeks ahead: date = each <code>webinar.day_of_week</code> from <code>webinar.first_date</code>, time <code>webinar.start_time_local</code>, time zone <code>webinar.timezone</code>. Then <strong>Add</strong> one more date every week (RUN_CHECKLIST, T minus 7)</td>
+</tr>
+<tr>
+<td>Allow time zone conversion</td>
+<td>On (default): emails show each registrant's own time [H 15369982]</td>
+</tr>
+<tr>
+<td>Rules</td>
+<td>Adding a session is safe at any time. <strong>Never delete a session with registrants</strong> (deletes them and their links) and <strong>never move a past session</strong> (resets every join link). Changing the time zone later means deleting sessions [H 15370047]</td>
+</tr>
+</tbody>
+</table>
+<p>The register Worker reads the session list from the API and puts each person in the first session that has not ended, so nobody types a schedule ID (the SOP did this by hand with curl [SOP 48:21]). Note the API schedule ID differs from the one shown in the Schedules tab [H 15370150].</p>
+<h2>3. Registration</h2>
+<p>People register on our page (item 13). The page posts to the register Worker at <code>integrations.register_worker_url</code> (<code>integration/register.mjs</code>), which calls WebinarJam's <code>/register</code> endpoint for each person; that returns their unique live room link [H 15370151], and the Worker then posts <code>webinar.registered</code> with that <code>join_url</code> to the CRM. WebinarJam's own page stays unused, but the modules below still apply to API registrants.</p>
+<p><strong>What the Worker sends to <code>/register</code>:</strong> <code>webinar_id</code>, <code>schedule</code> (the next session that has not ended), <code>first_name</code> (or "there" if blank), <code>email</code>, <code>last_name</code> if given, and <code>timezone_id</code> when needed. WebinarJam requires <code>timezone_id</code> for registrants in Texas (2 = Mountain, 3 = Central) [H 15370151]. We only know the browser's time zone, so US Central zones (America/Chicago and its Indiana and North Dakota variants, America/Menominee) send 3 and US Mountain zones (America/Denver, America/Boise, America/Phoenix) send 2; everyone else sends none. Confirm in the WebinarJam dashboard with one test registration from a Central time zone browser.</p>
+<p><strong>Abuse guard on the Worker:</strong> it answers only the funnel domain's Origin (403 otherwise), checks a Cloudflare Turnstile token server-side, accepts only <code>source: registration_page</code> from the web, and caps every field length. Add a Cloudflare rate-limit rule as well (README step 5).</p>
+<p>Modules as seen in the SOP [SOP 29:06]:</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Value</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registration page design</td>
+<td>Default template</td>
+<td>Not shown to anyone</td>
+</tr>
+<tr>
+<td>Registration form fields</td>
+<td><strong>First name, Email</strong> only. Last name optional. Phone <strong>off</strong></td>
+<td>A phone field makes <code>twilio_consent</code> mandatory on every API call [H 15370151]. Phone and WhatsApp live in our CRM, not WebinarJam</td>
+</tr>
+<tr>
+<td>Auto-subscription to future webinars</td>
+<td>Disabled</td>
+<td>Tantra handles next-week invitations; WebinarJam's version still needs a manual step per event [H 15370020]</td>
+</tr>
+<tr>
+<td>Free registration vs Paid registration</td>
+<td>Free to register</td>
+<td></td>
+</tr>
+<tr>
+<td>New registration notification</td>
+<td>Disabled</td>
+<td>The CRM logs every registrant</td>
+</tr>
+<tr>
+<td>Captcha</td>
+<td>Invisible captcha on (protects WebinarJam's page and room login) [H 15370016]. Confirm in the WebinarJam dashboard that it does not block API registrations, with the test in README step 6</td>
+<td></td>
+</tr>
+<tr>
+<td>Password protection</td>
+<td>Off</td>
+<td></td>
+</tr>
+<tr>
+<td>Single or double opt-in</td>
+<td><strong>Single</strong></td>
+<td>Double opt-in hides registrants until they click, and RSVPs registered in bulk would never get their link [H 15370025]</td>
+</tr>
+</tbody>
+</table>
+<p>Embed code (Webinars, <strong>Your links</strong>, Attendees, <strong>Embed in your website</strong>) is the fallback only if the API is not approved by launch week: the inline form posts to WebinarJam directly, so the page would then also need its own CRM post [H 15370016].</p>
+<h2>4. Notifications</h2>
+<p><strong>Decision: WebinarJam sends one email, the sign-up confirmation. Tantra sends everything else.</strong></p>
+<ul>
+<li>Items 15b (pre-webinar) and 22 (post-webinar) already run every reminder and follow-up by email and WhatsApp from Tantra, timed to our rules. Seven WebinarJam emails on top (the SOP's set [SOP 30:00 to 31:00]) would double every touch.</li>
+<li>The confirmation stays because it is the one message only WebinarJam can always get right: it carries the person's unique link even if the CRM or Tantra is down, and WebinarJam re-sends nothing on repeat registrations [H 15370012]. Our thank-you page already tells people "Your personal join link is on its way from WebinarJam" (item 13).</li>
+<li>The Worker puts each person's personal link on <code>webinar.registered</code> as <code>join_url</code> (CRM_CONTRACT), so Tantra's own reminders (15b uses <code>{{join_url}}</code>) carry the same link.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Your email gateway</td>
+<td>WebinarJam mail [SOP 29:00]</td>
+</tr>
+<tr>
+<td>Sign up confirmation message</td>
+<td><strong>On, Immediately.</strong> Copy below</td>
+</tr>
+<tr>
+<td>Pre-webinar reminders</td>
+<td>None (delete the defaults)</td>
+</tr>
+<tr>
+<td>Last minute notification</td>
+<td>None: no SMS (WhatsApp replaces SMS) and no voice call (Vodex runs calls in 15b)</td>
+</tr>
+<tr>
+<td>Post-webinar follow ups</td>
+<td>None (item 22 and Beehiiv)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sign-up confirmation copy.</strong> Shortcodes are WebinarJam's [H 15369990]; link "Open My Join Link" to <code>{LIVE_LINK}</code> with the editor's link button, no spaces around it. Type the <code>key.path</code> values from the config.</p>
+<blockquote>
+<p><strong>Subject:</strong> Your Join Link for {DATE}</p>
+<p>Hi {FIRST_NAME},</p>
+<p>Your seat is saved. This link opens the live room for you and only you, so keep this email:</p>
+<p><strong>Open My Join Link</strong></p>
+<p>{DATE} at {TIME}. <code>webinar.duration_minutes</code> minutes, live, with questions at the end. Join from a laptop so you can read the screen.</p>
+<p>Adi
+<code>brand.host_title</code></p>
+<p><code>brand.legal_footer_address</code></p>
+</blockquote>
+<p>Confirm in the WebinarJam dashboard that WebinarJam adds its own unsubscribe link to this email.</p>
+<h2>5. Integrations</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Value</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Email autoresponder integration</td>
+<td>None</td>
+<td>Registrations reach the CRM through the register Worker. UTM values cannot be sent to WebinarJam by API at all [H 15370049], so the CRM is where they live</td>
+</tr>
+<tr>
+<td>Custom Webhook</td>
+<td>None for now</td>
+<td>Its payload is WebinarJam's own shape, it has no signature, and "missed" and "left early" fire only after the session [CMP, H 15369997]. Attendance comes from the export instead (<code>integration/import_attendance.mjs</code>)</td>
+</tr>
+<tr>
+<td>3rd party tracking systems</td>
+<td>Leave empty</td>
+<td>Pixels sit on our own pages (item 27). Confirm in the WebinarJam dashboard whether this module also covers the live room before adding <code>integrations.meta_pixel_id</code> there</td>
+</tr>
+<tr>
+<td>Goal tracking</td>
+<td>Off</td>
+<td>Nobody buys inside WebinarJam; the next step is a call [H 15369999]</td>
+</tr>
+</tbody>
+</table>
+<h2>6. Thank You</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default vs Custom confirmation page</td>
+<td><strong>Your own custom page</strong>: <code>https://</code> + <code>domains.funnel_domain</code> + <code>domains.paths.thank_you</code> [H 15370001]</td>
+</tr>
+<tr>
+<td>Send register information and webinar information</td>
+<td><strong>Off</strong>: it would put names, emails and the join link in the URL. The link reaches people by the confirmation email, which must stay on when this is off [H 15370001]</td>
+</tr>
+<tr>
+<td>Survey your registrants</td>
+<td>Not available with a custom page [H 15370019]</td>
+</tr>
+</tbody>
+</table>
+<p>API registrants never see this step: the Worker answers our page with the same thank-you address and the page redirects.</p>
+<h2>7. Live</h2>
+<p>Modules as seen in the SOP, in its order [SOP 34:30 to 35:30]:</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agenda</td>
+<td>Disabled</td>
+</tr>
+<tr>
+<td>Autoplay</td>
+<td>Disabled</td>
+</tr>
+<tr>
+<td>Fullscreen button</td>
+<td>Enabled</td>
+</tr>
+<tr>
+<td>Countdown page design</td>
+<td>Default template</td>
+</tr>
+<tr>
+<td>Live room design</td>
+<td>Default template. Confirm in the WebinarJam dashboard whether the accent can be set to <code>brand.accent</code></td>
+</tr>
+<tr>
+<td>Polls and quizzes</td>
+<td>4 polls, <code>poll_1</code> to <code>poll_4</code>, matching the CRM's Webinar tab columns. Questions come from item 21. One poll runs at a time; results are kept per session under <strong>Log, Poll results</strong>, not per person [H 15370008, H 15370037]. So <code>webinar.poll_answered</code> per email cannot come from WebinarJam: item 21 must collect answers in chat or a form</td>
+</tr>
+<tr>
+<td>Product offers</td>
+<td>3 offers, below</td>
+</tr>
+<tr>
+<td>Video injections</td>
+<td>Optional: only if Adi pre-records the talk. The SOP team plays the recorded talk this way, then goes live for Q&amp;A [SOP 34:40]</td>
+</tr>
+<tr>
+<td>File handouts</td>
+<td>Disabled</td>
+</tr>
+<tr>
+<td>Slide presentations</td>
+<td>Disabled: Adi shares the item 16 deck by screen share</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Offers.</strong> WebinarJam has no timer for offers in a live event: the presenter or the second presenter clicks each one live, and only one shows at a time [H 15370007]. The cues come from the deck's run of show (item 21, <code>deliverables/21-engagement/ENGAGEMENT_PLAN.md</code>, "WebinarJam offer box timings"): <strong>20:00 to 25:00 (slide 23, the offer in one slide, then the QR on slide 24), 32:00 to 35:00 (slide 35), 43:00 to 60:00 (slide 44)</strong>. The second presenter launches and closes each by hand.</p>
+<table>
+<thead>
+<tr>
+<th>Offer</th>
+<th>Cue</th>
+<th>Name</th>
+<th>Headline</th>
+<th>Button text</th>
+<th>Button link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>20:00 to 25:00 (slides 23 and 24)</td>
+<td><code>cta1_soft</code></td>
+<td>Book Your <code>booking.event_title</code></td>
+<td>Book My Call</td>
+<td><code>booking.round_robin_url</code> + <code>?utm_source=webinarjam&amp;utm_medium=live_offer&amp;utm_content=cta1_soft</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>32:00 to 35:00 (slide 35)</td>
+<td><code>cta2_checkpoint</code></td>
+<td>Same</td>
+<td>Same</td>
+<td>Same, <code>utm_content=cta2_checkpoint</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>43:00 to 60:00 (slide 44)</td>
+<td><code>cta3_main</code></td>
+<td>Same</td>
+<td>Same</td>
+<td>Same, <code>utm_content=cta3_main</code></td>
+</tr>
+</tbody>
+</table>
+<p>Description on each: <code>booking.duration_minutes</code> minutes with my team. <code>offer.proposal_sla</code>. Advanced options: <strong>broadcast sales off, scarcity off, urgency off</strong>. The urgency option is a countdown timer [H 15370007]: no deadline exists, so none is shown. WebinarJam cannot report offer clicks per person [CMP], so the UTM on the booking link is how the CRM learns which cue worked (item 18-19 must keep UTMs on <code>booking.created</code>).</p>
+<p><strong>Chat and room settings</strong> (set in the live room or Control Panel <strong>Settings</strong> [H 15370032]):</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat visibility</td>
+<td>Public and private</td>
+</tr>
+<tr>
+<td>Show attendee count</td>
+<td>Off</td>
+</tr>
+<tr>
+<td>Attendees can request to speak</td>
+<td>Off</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Chat moderation rules for the second presenter:</strong>
+1. Greet arrivals by first name in the first 5 minutes; post the cue questions from item 21 when Adi asks them.
+2. Delete spam, links from attendees and other people's pitches; mute repeat offenders; eject only abuse [H 15370032].
+3. Answer setup questions (sound, screen) by private message.
+4. Reply privately to anyone who mentions budget, a team or a timeline, with the booking link from the current offer. Note their name for the post-webinar review.
+5. Collect questions for the Q&amp;A in a running list and hand them to Adi at minute <code>webinar.presentation_minutes</code>.
+6. Chat limit: attendees 3 messages in 5 seconds, presenters 5 [H 15370032].</p>
+<h2>8. Replay</h2>
+<p>Turn on <strong>Session Recording</strong> first: <strong>Profile, Settings</strong> [H 15370002].</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Value</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webinar replay recording</td>
+<td>Yes, allow access to the replay page</td>
+<td>Needed for the recording file and the replay link</td>
+</tr>
+<tr>
+<td>Webinar replay contents</td>
+<td><strong>Redirect to an external URL</strong>: <code>https://</code> + <code>domains.funnel_domain</code> + <code>domains.paths.recording</code></td>
+<td>Our recording page (item 26) has the case studies and booking, like the SOP's [SOP 33:32]</td>
+</tr>
+<tr>
+<td>Replay controls, replay chat</td>
+<td>Not used with a redirect</td>
+<td></td>
+</tr>
+<tr>
+<td>Replay page expiration</td>
+<td>None</td>
+<td>Our page decides</td>
+</tr>
+<tr>
+<td>Allow users to submit questions</td>
+<td>Off</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>After each session: <strong>Your links, Replay</strong>, pick the session, <strong>download</strong> the recording for item 26 (<code>media.recording_video_url</code>) [H 15370036].</p>
+<h2>9. Finish</h2>
+<p>Save. Then, from <strong>Webinars</strong>, <strong>Advanced</strong> above this webinar, <strong>API custom integration</strong>: copy the <strong>Webinar ID</strong> into <code>integrations.webinarjam_webinar_id</code> and the <strong>API key</strong> into the Worker's environment only (README steps 3 and 4). The key is account-wide and the same for every webinar [H 15370144].</p>
+<h2>Sources</h2>
+<ul>
+<li>[SOP] <code>~/Downloads/SOP #4 - Webinar Planning &amp; Preparation.mp4</code>, frames at the times shown; notes in <code>research/SOP4_NOTES.md</code>.</li>
+<li>[CMP] <code>context/from-workshop-project/17-webinarjam/WEBINAR_PLATFORM_COMPARISON_2026_10_26.md</code> (pricing and plan limits checked 2026-10-27).</li>
+<li>[H nnnnnnnn] <code>https://support.webinarjam.com/en/articles/nnnnnnnn</code>, fetched 2026-11-04: 15369977 configurations and event types, 15369981 presenter and moderator roles, 15369982 scheduling, 15369988 notifications, 15369990 shortcodes, 15369991 sender details, 15369992 DKIM, 15369997 automation rules, 15369999 sales tracking, 15370001 external confirmation page, 15370002 replays, 15370007 product offers, 15370008 polls, 15370012 registrants and export, 15370016 embed, 15370019 surveys, 15370020 auto-subscription, 15370025 double opt-in, 15370032 Control Panel, 15370036 replay download, 15370037 session logs, 15370047 edit a schedule, 15370049 UTM, 15370143 API application, 15370144 API connection, 15370150 <code>/webinar</code>, 15370151 <code>/register</code>, 15370152 <code>/registrants</code>.</li>
+</ul></div></details><details class="doc"><summary>RUN_CHECKLIST.md</summary><div class="md"><h1>Weekly Run Checklist: One Webinar, T Minus 7 Days to T Plus 1 Day</h1>
+<p>T is the start time (<code>webinar.start_time_local</code>, <code>webinar.timezone</code>). Owners: <strong>Adi</strong> (host), <strong>Support</strong> (the second presenter, <code>webinar.moderator_name</code> once set), <strong>Ops</strong> (whoever runs the scripts; commands run from <code>deliverables/17-webinarjam/</code>). WebinarJam: https://app.webinarjam.com/webinars</p>
+<p>Export files with registrant data stay outside the repo (for example <code>~/Downloads/</code>) and are deleted after the import.</p>
+<h2>T Minus 7 Days</h2>
+<ul>
+<li>[ ] <strong>Ops, WebinarJam:</strong> Edit the webinar, <strong>Schedules</strong>, add the date 4 weeks out, <strong>Add</strong>, <strong>Save</strong>. Four future sessions must always exist, or the registration function has nowhere to put people. Never delete or move a session with registrants.</li>
+<li>[ ] <strong>Ops, browser:</strong> One test registration on our live registration page with an inbox you own. Pass: the thank-you page loads, the WebinarJam confirmation email arrives with a working join link, the CRM Webinar tab shows the row for the right date.</li>
+<li>[ ] <strong>Adi, Google Calendar:</strong> Three internal blocks for the team, as in the SOP: <strong>Prep</strong> (T minus 30 min, 30 min), <strong>Live</strong> (T, <code>webinar.duration_minutes</code> min), <strong>Review</strong> (T plus 60 min, 60 min).</li>
+<li>[ ] <strong>Adi:</strong> The deck (item 16) and the three offer cues from item 21 (20:00, 32:00, 43:00) are final. Click each offer's button link: it opens <code>booking.round_robin_url</code>.</li>
+</ul>
+<h2>T Minus 3 Days</h2>
+<ul>
+<li>[ ] <strong>Ops, WebinarJam and CRM:</strong> Reconcile both sides for this session. In the CRM sheet, open the Webinar tab, <strong>File</strong>, <strong>Download</strong>, <strong>Comma-separated values</strong>, save it outside the repo. Run <code>node integration/register.mjs --reconcile --date &lt;YYYY-MM-DD&gt; --crm-csv ~/Downloads/&lt;file&gt;.csv</code>, read the plan line, then run it again with <code>--live</code>. It reads WebinarJam's <code>/registrants</code> for the session: people only the CRM has are registered in WebinarJam only (no second <code>webinar.registered</code>), and people only WebinarJam has are posted to the CRM once with their <code>join_url</code>. Delete the CSV.</li>
+<li>[ ] <strong>Ops:</strong> Worker logs (Cloudflare dashboard, the Worker, <strong>Logs</strong>) show no <code>[register]</code> warnings since last week. Any <code>webinarjam:</code> warning means someone is in the CRM without a link: the reconcile above fixes it.</li>
+</ul>
+<h2>T Minus 1 Day (T Minus 24 Hours)</h2>
+<ul>
+<li>[ ] <strong>Senders' lead (items 3 and 12):</strong> Export every Yes and Maybe RSVP from the calendar invite accounts as CSV with <code>first_name</code>, <code>last_name</code>, <code>email</code>. Two files: manual invites and automated invites, kept apart so the CRM can compare them (SOP step 21).</li>
+<li>[ ] <strong>Ops:</strong> Dry run, then send:
+  <code>node integration/register.mjs --bulk rsvps-manual.csv --source calendar_manual</code> then the same with <code>--live</code>; repeat for <code>rsvps-auto.csv</code> with <code>--source calendar_auto</code>. The summary line must show 0 warnings.</li>
+<li>[ ] <strong>Ops, WebinarJam:</strong> Registrants count for the session went up by about the number of rows.</li>
+</ul>
+<h2>T Day</h2>
+<ul>
+<li>[ ] <strong>T minus 3 h, Adi and Support:</strong> Webinars, <strong>Your links</strong>, <strong>Presenters</strong>: each opens their own presenter link on a laptop, checks camera, microphone and screen share. Enable third-party cookies if the room will not load.</li>
+<li>[ ] <strong>T minus 75 min, Ops:</strong> Second RSVP batch (new Yes and Maybe since T minus 24 h), same two commands with <code>--live</code>. Then the same reconcile command once more, so late page registrants who missed WebinarJam get their link before the start.</li>
+<li>[ ] <strong>T minus 30 min, all, Prep block:</strong> Registration count vs target, who handles which questions, the three offer cues.</li>
+<li>[ ] <strong>T minus 15 min, Adi:</strong> In the room before the start; Support logged in and watching chat.</li>
+<li>[ ] <strong>T, Adi:</strong> Start the broadcast. Support follows the chat rules in EVENT_CONFIG section 7.</li>
+<li>[ ] <strong>Minutes 20:00, 32:00, 43:00, Support:</strong> Launch offer <code>cta1_soft</code> as slide 23 (the offer in one slide) appears (close at 25:00), then <code>cta2_checkpoint</code> (close at 35:00), then <code>cta3_main</code> (keep open to the end). Launch each poll when Adi asks it.</li>
+<li>[ ] <strong>Minute <code>webinar.presentation_minutes</code>, Support:</strong> Hand Adi the question list.</li>
+<li>[ ] <strong>T plus 60 min, Adi:</strong> End the broadcast.</li>
+<li>[ ] <strong>T plus 60 min, all, Review block:</strong> Attendance vs registrations, how many stayed past minute <code>webinar.retarget_cutoff_minute</code>, calls booked, poll results (<strong>Log</strong>, <strong>Poll results</strong>), one change for next week.</li>
+<li>[ ] <strong>T plus 120 min, Ops:</strong> <strong>Registrants</strong>, this webinar and session, <strong>Go</strong>, <strong>Export</strong>, <strong>Export all registrants</strong> (not "attendees only", which drops the no-shows). Then:
+  <code>node integration/import_attendance.mjs --csv ~/Downloads/&lt;export&gt;.csv --date &lt;YYYY-MM-DD&gt; --start &lt;HH:MM&gt; --tz &lt;Area/City&gt; --out /tmp/events.json</code>
+  Check the printed "columns used" and counts, then run it again with <code>--live</code>. Item 22 starts each person's track when this arrives. Delete the export file.</li>
+</ul>
+<h2>T Plus 1 Day</h2>
+<ul>
+<li>[ ] <strong>Ops, WebinarJam:</strong> <strong>Your links</strong>, <strong>Replay</strong>, pick the session, download the recording for item 26.</li>
+<li>[ ] <strong>Ops, CRM:</strong> The Webinar tab for this date has a segment on every row (<code>stayed_to_offer</code>, <code>early_leaver</code> or <code>no_show</code>) and <code>retarget_until</code> on early leavers and no-shows.</li>
+<li>[ ] <strong>Adi:</strong> The change agreed in the Review block is assigned for next week.</li>
+</ul></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: Item 17, WebinarJam Event Setup and Integrations</h1>
+<p>Done means every point below is checked and marked.</p>
+<ol>
+<li>[x] <code>research/SOP4_NOTES.md</code> walks the SOP step by step (what, who, when, which tool), backed by the transcript and by frames looked at in <code>.work/sop4-frames/</code>, and ends with what this funnel adopts, changes or drops.</li>
+<li>[x] <code>EVENT_CONFIG.md</code> follows WebinarJam's own wizard order (Configuration, Schedules, Registration, Notifications, Integrations, Thank You, Live, Replay, Finish) and gives a value for every module seen in the SOP frames or the help centre.</li>
+<li>[x] Every value that exists in <code>funnel-config.json</code> is shown as its key, never retyped. Every WebinarJam fact cites the SOP frames, the platform comparison or a help-centre article; anything unconfirmed says "confirm in the WebinarJam dashboard".</li>
+<li>[x] The sheet makes and explains the email decision (which WebinarJam emails stay on, which are off, and why), the weekly schedule model, the plan minimum and the moderator limit.</li>
+<li>[x] Offer moments follow the deck run of show from item 21 (20:00, 32:00, 43:00; the first opens with the offer slide, before the minute-25 cutoff). No invented scarcity, countdown or deadline.</li>
+<li>[x] <code>integration/register.mjs</code> registers through the <code>/register</code> endpoint (so each person gets a unique link), posts <code>webinar.registered</code> to the CRM in the exact CRM_CONTRACT shape, reads the API key only from an environment variable, and has a dry-run mode that prints the requests and makes no network call. A bulk mode registers calendar Yes and Maybe RSVPs from a CSV.</li>
+<li>[x] <code>integration/import_attendance.mjs</code> turns a WebinarJam registrants export into <code>webinar.attended</code> (minutes_in_room, joined_at, left_at) and <code>webinar.no_show</code> events, with column names configurable in <code>integration/columns.json</code>, dry-run by default.</li>
+<li>[x] The tests run on fake example.com files and pass: schedule pick, request shapes, attended, early leaver, no-show, duplicate and bad rows.</li>
+<li>[x] <code>RUN_CHECKLIST.md</code> covers T minus 7 days to T plus 1 day, each step with an owner and a tool.</li>
+<li>[x] <code>README.md</code> lists Adi's steps with full URLs, exact pages, fields and buttons, and the proposals the lead must decide (contract and config keys).</li>
+<li>
+<p>[x] <code>python3 deliverables/_shared/scan.py deliverables/17-webinarjam</code> prints 0 failures. No key, login, email address of a real person or frame image is in the folder.</p>
+</li>
+<li>
+<p>[x] Critic round 1 (11 fixes): contract fields <code>timezone</code>, <code>call_opt_in</code>, <code>newsletter_opt_in</code> and <code>join_url</code> always sent; Worker accepts only the funnel domain's Origin live (403 otherwise), verifies Turnstile server-side, whitelists <code>source</code>, caps field lengths, returns 400 for a non-object body and 500 on an unexpected error; <code>timezone_id</code> sent for US Central and Mountain zones; <code>webinar_date</code> falls back to the config cadence; a <code>--reconcile</code> pass via <code>/registrants</code>; calendar UTMs only for <code>calendar_</code> sources; two-part durations refused until <code>minutes_is</code> is set; rate-limit rule documented.</p>
+</li>
+</ol>
+<h2>Result (2026-11-04, after critic round 1)</h2>
+<p>All 12 points pass. <code>node deliverables/17-webinarjam/tests/run.mjs</code> prints "20 tests passed", including four run against the built <code>dist/worker.js</code> (timezone reaches the CRM post, non-object body 400, Origin rejection 403, web source whitelist) and the <code>minutes_is</code> refusal. The reconcile and bulk command lines ran in dry run on the fixtures. The scan prints 0 failures. Not testable without Adi: live WebinarJam and Turnstile calls, and the real export headers.</p></div></details><details class="doc"><summary>Files for import or upload (5)</summary><ul class="files"><li><a href="cards/files/17-webinarjam/integration/build_worker.mjs" target="_blank" rel="noopener">integration/build_worker.mjs</a></li><li><a href="cards/files/17-webinarjam/integration/columns.json" target="_blank" rel="noopener">integration/columns.json</a></li><li><a href="cards/files/17-webinarjam/integration/import_attendance.mjs" target="_blank" rel="noopener">integration/import_attendance.mjs</a></li><li><a href="cards/files/17-webinarjam/integration/lib.mjs" target="_blank" rel="noopener">integration/lib.mjs</a></li><li><a href="cards/files/17-webinarjam/integration/register.mjs" target="_blank" rel="noopener">integration/register.mjs</a></li></ul></details>

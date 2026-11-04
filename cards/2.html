@@ -1,0 +1,932 @@
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>Item 2: Outreach Lists (1M Cold Calendar List)</h1>
+<p>The 1,000,000-row Enterprise cold calendar list is cut from the master CSV alone, with no gap. It sits in 10 weekly slices of 100,000 (8 Feb to 16 Apr 2027). Before them come 10 ramp weeks for the warm-up, then there is a warm list, a reserve and an EU/UK hold.</p>
+<h2>What Is Here</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ICP_AND_SEGMENTS.md</code></td>
+<td>The Enterprise buyer, tiers A, B and C, every exclusion and hold, and what the master CSV cannot tell us</td>
+</tr>
+<tr>
+<td><code>slice_enterprise_lists.py</code></td>
+<td>Cuts the lists. Reads the master CSV path as an argument; writes prospect files only outside the repo</td>
+</tr>
+<tr>
+<td><code>verify_slices.py</code></td>
+<td>Checks every written file independently (header, duplicates, filters, caps, 60-day re-invite gap, hashes). Last run: PASS</td>
+</tr>
+<tr>
+<td><code>SLICE_STATS.md</code>, <code>slice-stats.json</code></td>
+<td>Count-only stats per slice, written by the script</td>
+</tr>
+<tr>
+<td><code>SLICING_PLAN.md</code></td>
+<td>Which slice goes to which sender pool and week, dated from 2026-11-04, plus the weeks 1 to 3 team step</td>
+</tr>
+<tr>
+<td><code>VENDOR_PLAN.md</code></td>
+<td>What to buy, from whom, at what price, and the brief to send</td>
+</tr>
+<tr>
+<td><code>EVAL.md</code></td>
+<td>The done checklist, ticked</td>
+</tr>
+</tbody>
+</table>
+<p>The lists themselves (names and emails) are in <code>~/tantra-enterprise-lists/</code> on Adi's Mac, folder mode 700, files mode 600, never in this repo: <code>main/S01_P1.csv</code> to <code>S10_P4.csv</code>, <code>ramp/R01_*</code> to <code>R10_*</code>, <code>hold/</code>, <code>reserve/cold_reserve_after_S10.csv</code>, <code>MANIFEST.json</code> (rows and SHA-256 per file).</p>
+<h2>The Numbers</h2>
+<ul>
+<li>Master: 2,752,479 rows. Cold usable after every filter: <strong>2,037,463</strong>.</li>
+<li>Main list: <strong>1,000,000</strong> (S01 to S10). Gap to 1M: <strong>0</strong>.</li>
+<li>Ramp weeks: 343,200 invites (18,927 warm, 324,273 cold). Reserve after S10: 591,418 rows inside the domain cap.</li>
+<li>Re-invite gap: every row was invited by other senders between 2026-07-22 and 2026-10-19. No row goes into a week less than 60 days after its last invite; this only delays rows in R01 to R03.</li>
+<li>Held until Adi checks EU, EEA, UK and Swiss outreach rules: 393,755. The hold is partial: country endings only, because <code>location</code> is empty.</li>
+</ul>
+<h2>Rerun</h2>
+<pre><code class="language-bash">cd /tmp &amp;&amp; ~/calendar-consolidation/.venv/bin/python -I ~/tantra-enterprise-webinar/deliverables/02-outreach-lists/slice_enterprise_lists.py ~/Downloads/Added_to_Calendar_Consolidated_2026-11-04.csv --day0 2026-11-09
+</code></pre>
+<pre><code class="language-bash">cd /tmp &amp;&amp; ~/calendar-consolidation/.venv/bin/python -I ~/tantra-enterprise-webinar/deliverables/02-outreach-lists/verify_slices.py ~/Downloads/Added_to_Calendar_Consolidated_2026-11-04.csv
+</code></pre>
+<p>About 25 seconds each, and the same output every run. Change <code>--day0</code> to the real payment Monday and every week date and the re-invite gap follow. The venv is the one built for the consolidation (<code>references/added-to-calendar-consolidated-2026-11-04.md</code>, Rebuild).</p>
+<h2>Import Into Tantra</h2>
+<p>The CSV header is the list format in <code>context/from-workshop-project/02-lists/lists.md</code> section 4: <code>first_name,last_name,title,company,website,email,linkedin_url,country</code>. Tantra's importer (<code>~/tantra-redesign/revops-os/os/kits/tantra/leads.mjs &lt;file.csv&gt; "&lt;campaign&gt;"</code>) maps these to its contact fields and detects a calendar campaign by itself. Rows with no known first name carry <code>there</code>, because the importer drops a row with a blank first name; calendar invites have no merge fields, so it is never shown. One draft campaign per file: <code>SLICING_PLAN.md</code>.</p>
+<h2>What Adi Fills or Decides</h2>
+<ul>
+<li><strong>EU, EEA, UK and Swiss domains (393,755 rows):</strong> held, not sent, until the outreach rules for those countries are checked (<code>lists.md</code>, Outreach Rules by Country). To release a country, remove its ending from <code>GDPR_HOLD</code> in the script and rerun.</li>
+<li><strong>Day 0</strong> (the Monday the four Workspaces are paid, item 3).</li>
+<li><strong>Weeks 1 to 3 internal activity:</strong> one team member per Workspace (<code>SLICING_PLAN.md</code>).</li>
+<li><strong>Vendor purchase:</strong> $630 at the quoted prices, Adi's step (<code>VENDOR_PLAN.md</code>).</li>
+<li><strong>Warm invite copy:</strong> the warm list gets the warm variant of the item 12 invite.</li>
+</ul>
+<h2>Sources</h2>
+<p>Master record: <code>references/added-to-calendar-consolidated-2026-11-04.md</code>. Segment ranking: the competitor segment sheet in <code>the competitor segment sheet in references/qs-sheet-segments.md</code> (structure only, no numbers copied). Buyer: <code>context/from-tantra-content/02-target-audience.md</code>. Import schema: <code>lists.md</code>, <code>~/tantra-redesign/workshop-plan/ops/t056_cold_calendar.mjs</code>, <code>~/YOGI/SESSION_HANDOFF_2026_06_14_CALENDAR_CAMPAIGN_SETUP.md</code>.</p>
+<p>No claim to verify: this folder prints no 400+ or revenue claims.</p></div></details><details class="doc"><summary>ICP_AND_SEGMENTS.md</summary><div class="md"><h1>Enterprise ICP and Segments for the Cold Calendar List</h1>
+<h2>Who We Invite</h2>
+<p>The buyer of Tantra Enterprise ($9,999) wants the funnel built with them, with coaching, and has $10,000 or more to invest in the next 12 months (<code>offer.fit</code> in <code>deliverables/_shared/funnel-config.json</code>).</p>
+<p>In practice that is the founder, owner or revenue lead of a B2B company where a person on a call closes the deal (<code>context/from-tantra-content/02-target-audience.md</code>, sections 1, 2 and 6):</p>
+<ul>
+<li>B2B software and SaaS companies.</li>
+<li>Consultancies, advisory firms and agencies (marketing, web, software).</li>
+<li>Financial services: fintech, banking, wealth, insurance, accounting, venture capital.</li>
+<li>Staffing and executive search.</li>
+<li>Course and coaching businesses with a team behind them.</li>
+</ul>
+<p>Not the buyer: consumer businesses, schools and universities, government, and anyone without $10,000 to put behind a build (they go to Pro or the Course).</p>
+<h2>What the Master CSV Can and Cannot Tell Us</h2>
+<p>Be clear about this before reading any tier: <strong>the master CSV has almost no job title or industry data.</strong> Of 2,752,479 rows, 6 have a job title, 3 a location and 6 a LinkedIn URL. We cannot filter by title, company size or country of the person.</p>
+<p>What we can use:</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Column</th>
+<th>Coverage</th>
+<th>How it is used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Segment from the previous campaigns</td>
+<td><code>bucket</code></td>
+<td>938,542 rows (34%), 66 values such as <code>B2B SaaS</code>, <code>FinTech</code>, <code>Consulting</code>, <code>Education</code></td>
+<td>Main tier signal</td>
+</tr>
+<tr>
+<td>Company domain and its ending</td>
+<td><code>domain</code></td>
+<td>every row</td>
+<td>Tech and agency endings (<code>.io</code>, <code>.ai</code>, <code>.co</code>, <code>.agency</code>, <code>.vc</code> ...) lift a row with no segment to tier A; <code>.org</code> drops it to C; <code>.edu</code>, <code>.gov</code>, <code>.mil</code>, <code>.ac.xx</code> are excluded; EU, EEA, UK and Swiss country endings are held for review</td>
+</tr>
+<tr>
+<td>Mailbox type</td>
+<td><code>email_type</code></td>
+<td>every row</td>
+<td>Junk and role dropped; personal mailboxes off the cold list</td>
+</tr>
+<tr>
+<td>Is it a real person's name</td>
+<td><code>name_confidence</code></td>
+<td>every row</td>
+<td>Orders rows inside a tier: high, then medium, then none</td>
+</tr>
+<tr>
+<td>Past response</td>
+<td><code>declined_series</code>, <code>accepted_yes_maybe_series</code>, <code>registered_no_show_series</code></td>
+<td>154,792 / 14,956 / 20,147</td>
+<td>Declined: dropped. Yes/Maybe or registered no-show: warm list</td>
+</tr>
+<tr>
+<td>When they were last invited</td>
+<td><code>series_invited</code></td>
+<td>every row</td>
+<td>Oldest invite first (E150 before E162)</td>
+</tr>
+</tbody>
+</table>
+<p>Domain endings say nothing reliable about the person's country: a <code>.com</code> can be anywhere. Company names in the CSV are guessed from domains and are rough; calendar invites carry no merge fields, so they are never printed.</p>
+<h2>How the Segments Were Chosen</h2>
+<p>Two sources, read together:</p>
+<ol>
+<li><strong>The reference segment sheet</strong> (the competitor's bookings by segment, path in README). It ranks consulting and advisory firms, marketing and SEO agencies, venture capital, financial services and wealth management highest on bookings per invite, and puts B2B software in the middle. It ranks healthcare, non-profits, legal services and an untargeted "general" bucket lowest, each soaking up large volume for few bookings. We take the ranking only, not its numbers.</li>
+<li><strong>Our own past response by bucket</strong> (master CSV, count only). The buckets that answered Yes or Maybe most often include Banking, FinTech, Wealth, Web and Software, B2B, Insurance, Management and Consulting. Field Services, Logistics, IT Services, Engineering, Retail, Education and Government answered least. Tech and agency domain endings (<code>.io</code>, <code>.ai</code>, <code>.co</code>, <code>.tech</code>, <code>.agency</code>, <code>.vc</code>, <code>.studio</code>) answered Yes or Maybe at 1.3 to 2 times the rate of <code>.com</code>.</li>
+</ol>
+<p>Both point the same way, and both match the buyer above.</p>
+<h2>The Tiers</h2>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Rule</th>
+<th>Cold usable rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A: core Enterprise fit</strong></td>
+<td><code>bucket</code> matches B2B, SaaS, software, fintech, banking, financial, wealth, venture, insurance, accounting, consulting, management, strategy, staffing, executive search, CRM, cybersecurity, media or digital publishing. Or no bucket and a tech or agency domain ending (<code>.io</code>, <code>.ai</code>, <code>.co</code>, <code>.tech</code>, <code>.agency</code>, <code>.vc</code>, <code>.app</code>, <code>.studio</code>, <code>.dev</code>, <code>.software</code>, <code>.solutions</code>, <code>.consulting</code>, <code>.digital</code>, <code>.marketing</code>, <code>.media</code>, <code>.partners</code>, <code>.capital</code>, <code>.ventures</code>, <code>.cloud</code>, <code>.systems</code>, <code>.bank</code>, <code>.finance</code>, <code>.fund</code>, <code>.biz</code>, <code>.saas</code>)</td>
+<td>478,607</td>
+</tr>
+<tr>
+<td><strong>B: B2B, segment unknown</strong></td>
+<td><code>bucket</code> is General, IT Services, Life Sciences, Production, Engineering, Real State, Logistics, Distribution, Energy and Env, Environmental or Risk Management. Or no bucket and a domain ending that is neither tech nor <code>.org</code></td>
+<td>1,395,291</td>
+</tr>
+<tr>
+<td><strong>C: weak fit</strong></td>
+<td><code>bucket</code> is Education, Vocational, Government, Non-Profit, Advocacy, Agriculture, Field Services, Retail, Hospitality or Career coaching. Or no bucket and a <code>.org</code> domain</td>
+<td>163,565</td>
+</tr>
+</tbody>
+</table>
+<p>Inside each tier, rows are ordered: name confidence high, then medium, then none; then the oldest past invite first; then a fixed hash so reruns give the same order.</p>
+<h2>Exclusions and Holds (Applied Before Any Tier)</h2>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Why</th>
+<th>Rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drop <code>email_type</code> junk and role</td>
+<td>Not a person; role inboxes report invites as spam</td>
+<td>2,978</td>
+</tr>
+<tr>
+<td>Drop any row with <code>declined_series</code></td>
+<td>They said no to an invite like this; inviting again burns sender reputation</td>
+<td>154,792</td>
+</tr>
+<tr>
+<td>Exclude <code>.edu</code>, <code>.gov</code>, <code>.mil</code>, <code>.int</code> and <code>.ac.xx</code>, <code>.gov.xx</code>, <code>.k12.xx</code>, <code>.nhs.uk</code> style domains</td>
+<td>Schools, universities and public bodies do not buy a $10,000 build</td>
+<td>115,161</td>
+</tr>
+<tr>
+<td>Hold EU, EEA, UK and Swiss country domains</td>
+<td><code>lists.md</code> rule: never send into a country before its outreach rules are checked. <strong>This hold is partial</strong>: it catches country endings only (<code>.uk</code>, <code>.de</code>, <code>.fr</code> ...). The <code>location</code> column is empty, so a European company on <code>.com</code>, <code>.io</code> or <code>.net</code> is not held</td>
+<td>391,906 cold, 1,849 warm</td>
+</tr>
+<tr>
+<td>Personal mailboxes off the cold list</td>
+<td>The Enterprise buyer uses a work address; kept on the warm list</td>
+<td>29,403</td>
+</tr>
+<tr>
+<td>Past Yes/Maybe or registered no-show to the warm list</td>
+<td>They already know a webinar like this and get the warm invite</td>
+<td>18,927 (after the hold)</td>
+</tr>
+</tbody>
+</table>
+<h2>Per-Domain Caps</h2>
+<p>At most 3 invites to one recipient domain in a week and 30 over the whole plan (ramp plus main). Large companies in the list hold up to 15,092 addresses on one domain; sending hundreds of cold invites into one company gets our senders blocked by that company's security filter. Every recipient domain is also tied to one sender pool, so one company only ever hears from one Workspace.</p>
+<h2>What This Gives</h2>
+<ul>
+<li><strong>Cold usable: 2,037,463 rows.</strong> The 1,000,000-row main list is fully covered from the master: no gap.</li>
+<li>The main list is 439,939 tier A rows (all of tier A that fits under the domain caps; 4,249 more go into the ramp weeks), then 560,061 tier B rows, almost all with high-confidence names. Tier C is never in the main list.</li>
+<li>Warm list: 18,927 rows. Ramp weeks: 343,200 invites. Reserve after S10: 713,190 rows (591,418 inside the domain cap).</li>
+<li>Re-invite gap: every row was last invited by other senders between 2026-07-22 and 2026-10-19; no row is scheduled less than 60 days after its last invite (<code>SLICE_STATS.md</code>).</li>
+<li>Held for the EU and UK review: 393,755 rows (country endings only, so the hold is partial). If Adi clears some countries, rerun the script with those country endings removed from <code>GDPR_HOLD</code>.</li>
+</ul>
+<h2>The Honest Limits</h2>
+<ul>
+<li>Every row in the master was already invited once, in series E150 to E162, by senders that are not ours. Expect lower response than a fresh list.</li>
+<li>Tier B is "B2B, segment unknown". Without titles we cannot tell a founder from an analyst.</li>
+<li>For true Enterprise targeting by title and company size, buy a title-filtered list: <code>VENDOR_PLAN.md</code>.</li>
+</ul></div></details><details class="doc"><summary>SLICE_STATS.md</summary><div class="md"><h1>Slice stats (count only, written by slice_enterprise_lists.py)</h1>
+<p>No email, name or recipient domain appears here. The files themselves are in <code>~/tantra-enterprise-lists/</code>.</p>
+<h2>From master to usable</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read from the master CSV</td>
+<td>2,752,479</td>
+</tr>
+<tr>
+<td>Dropped: junk mailbox</td>
+<td>47</td>
+</tr>
+<tr>
+<td>Dropped: role mailbox (info@, sales@ ...)</td>
+<td>2,931</td>
+</tr>
+<tr>
+<td>Dropped: declined a past invite (any <code>declined_series</code>)</td>
+<td>154,792</td>
+</tr>
+<tr>
+<td>Excluded: education, government or military domain</td>
+<td>115,161</td>
+</tr>
+<tr>
+<td>Warm (past Yes/Maybe or registered no-show, never declined)</td>
+<td>20,776</td>
+</tr>
+<tr>
+<td>of which held for the EU/UK review</td>
+<td>1,849</td>
+</tr>
+<tr>
+<td>of which on the warm list</td>
+<td>18,927</td>
+</tr>
+<tr>
+<td>Cold held for the EU/UK review (country domains)</td>
+<td>391,906</td>
+</tr>
+<tr>
+<td>Cold dropped: personal mailbox</td>
+<td>29,403</td>
+</tr>
+<tr>
+<td><strong>Cold usable</strong></td>
+<td><strong>2,037,463</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Cold usable by tier: A 478,607, B 1,395,291, C 163,565.</p>
+<p>Main list: <strong>1,000,000</strong> rows in 10 weekly slices. Gap to 1,000,000: <strong>0</strong>.</p>
+<h2>Main slices (S01 to S10, 25,000 rows per sender pool)</h2>
+<table>
+<thead>
+<tr>
+<th>Slice</th>
+<th>Starts</th>
+<th>Rows</th>
+<th>Tier A</th>
+<th>Tier B</th>
+<th>Tier C</th>
+<th>Name high</th>
+<th>Name medium</th>
+<th>Name none</th>
+<th>Has segment</th>
+<th>Recipient domains</th>
+<th>Max rows one domain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S01</td>
+<td>2027-02-08</td>
+<td>100,000</td>
+<td>100,000</td>
+<td>0</td>
+<td>0</td>
+<td>100,000</td>
+<td>0</td>
+<td>0</td>
+<td>62,492</td>
+<td>76,143</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S02</td>
+<td>2027-02-15</td>
+<td>100,000</td>
+<td>100,000</td>
+<td>0</td>
+<td>0</td>
+<td>100,000</td>
+<td>0</td>
+<td>0</td>
+<td>91,606</td>
+<td>62,258</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S03</td>
+<td>2027-02-22</td>
+<td>100,000</td>
+<td>100,000</td>
+<td>0</td>
+<td>0</td>
+<td>30,217</td>
+<td>4,887</td>
+<td>64,896</td>
+<td>87,325</td>
+<td>62,227</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S04</td>
+<td>2027-03-01</td>
+<td>100,000</td>
+<td>63,946</td>
+<td>36,054</td>
+<td>0</td>
+<td>49,093</td>
+<td>745</td>
+<td>50,162</td>
+<td>62,292</td>
+<td>64,940</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S05</td>
+<td>2027-03-08</td>
+<td>100,000</td>
+<td>26,382</td>
+<td>73,618</td>
+<td>0</td>
+<td>81,644</td>
+<td>497</td>
+<td>17,859</td>
+<td>25,488</td>
+<td>73,407</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S06</td>
+<td>2027-03-15</td>
+<td>100,000</td>
+<td>16,702</td>
+<td>83,298</td>
+<td>0</td>
+<td>88,682</td>
+<td>460</td>
+<td>10,858</td>
+<td>16,091</td>
+<td>81,257</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S07</td>
+<td>2027-03-22</td>
+<td>100,000</td>
+<td>11,808</td>
+<td>88,192</td>
+<td>0</td>
+<td>91,926</td>
+<td>393</td>
+<td>7,681</td>
+<td>11,363</td>
+<td>85,985</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S08</td>
+<td>2027-03-29</td>
+<td>100,000</td>
+<td>8,916</td>
+<td>91,084</td>
+<td>0</td>
+<td>93,823</td>
+<td>324</td>
+<td>5,853</td>
+<td>13,291</td>
+<td>80,341</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S09</td>
+<td>2027-04-05</td>
+<td>100,000</td>
+<td>6,842</td>
+<td>93,158</td>
+<td>0</td>
+<td>95,235</td>
+<td>241</td>
+<td>4,524</td>
+<td>33,871</td>
+<td>75,053</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>2027-04-12</td>
+<td>100,000</td>
+<td>5,343</td>
+<td>94,657</td>
+<td>0</td>
+<td>96,294</td>
+<td>215</td>
+<td>3,491</td>
+<td>43,042</td>
+<td>78,290</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h2>Ramp weeks (R01 to R10, before full volume)</h2>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Starts</th>
+<th>Warm rows</th>
+<th>Cold rows</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R01</td>
+<td>2026-11-30</td>
+<td>16,737</td>
+<td>5,263</td>
+<td>22,000</td>
+</tr>
+<tr>
+<td>R02</td>
+<td>2026-12-07</td>
+<td>810</td>
+<td>21,190</td>
+<td>22,000</td>
+</tr>
+<tr>
+<td>R03</td>
+<td>2026-12-14</td>
+<td>824</td>
+<td>21,176</td>
+<td>22,000</td>
+</tr>
+<tr>
+<td>R04</td>
+<td>2026-12-21</td>
+<td>556</td>
+<td>17,044</td>
+<td>17,600</td>
+</tr>
+<tr>
+<td>R05</td>
+<td>2026-12-28</td>
+<td>0</td>
+<td>17,600</td>
+<td>17,600</td>
+</tr>
+<tr>
+<td>R06</td>
+<td>2027-01-04</td>
+<td>0</td>
+<td>22,000</td>
+<td>22,000</td>
+</tr>
+<tr>
+<td>R07</td>
+<td>2027-01-11</td>
+<td>0</td>
+<td>55,000</td>
+<td>55,000</td>
+</tr>
+<tr>
+<td>R08</td>
+<td>2027-01-18</td>
+<td>0</td>
+<td>55,000</td>
+<td>55,000</td>
+</tr>
+<tr>
+<td>R09</td>
+<td>2027-01-25</td>
+<td>0</td>
+<td>55,000</td>
+<td>55,000</td>
+</tr>
+<tr>
+<td>R10</td>
+<td>2027-02-01</td>
+<td>0</td>
+<td>55,000</td>
+<td>55,000</td>
+</tr>
+</tbody>
+</table>
+<h2>Re-invite gap</h2>
+<p>Every row was last invited by other senders between 2026-07-22 and 2026-10-19 (22,986 rows have no date). No row goes into a week that starts less than 60 days after its last invite. Rows by month of last invite: 2026-07 211,645, 2026-08 637,386, 2026-09 712,732, 2026-10 471,641.</p>
+<p>Cold usable rows still too recent at the start of each week: R01 427,587, R02 254,513, R03 98,510, R04 0, R05 0, R06 0, R07 0, R08 0, R09 0, R10 0, S01 0.</p>
+<h2>Warm list</h2>
+<p>18,927 rows: 17,092 registered and did not attend, 1,835 answered Yes or Maybe only. Personal mailboxes kept: 615. Unscheduled after the ramp: 0.</p>
+<h2>Held for the EU, EEA, UK and Swiss review</h2>
+<p>391,906 cold and 1,849 warm rows on country domains. By country domain: .uk 118,886, .nl 41,390, .de 41,171, .fr 29,718, .it 20,467, .ch 17,936, .se 15,667, .pl 14,490, .be 14,083, .eu 12,238, .es 10,933, .dk 7,856, .ie 7,515, .fi 7,342, .pt 6,581, .no 6,543, .at 4,877, .ro 2,813, .gr 2,062, .cz 2,032, .hu 1,714, .lu 1,227, .ee 1,118, .sk 913, .lt 913, .si 830, .is 665, .cy 539, .hr 396, .bg 363, .mt 229, .li 135, .lv 113.</p>
+<h2>Reserve for after S10</h2>
+<p>713,190 cold rows not yet scheduled; 591,418 of them fit inside the 30-per-domain cap. Tiers: A 34,419, B 515,206, C 163,565. Name confidence: none 562,749, high 142,113, medium 8,328.</p></div></details><details class="doc"><summary>SLICING_PLAN.md</summary><div class="md"><h1>The 10-Week, 100,000-a-Week Slicing Plan</h1>
+<p>Full volume cannot start on day one. Every sender Workspace sends no cold invites for three weeks, then 10 a sender a day, 25 from day 63 and 50 from day 91 (item 3, <code>deliverables/03-outreach-infra/CAPACITY_PLAN.md</code>). So the plan has two parts: 10 ramp weeks, then 10 main weeks at 100,000.</p>
+<h2>Assumptions Behind the Dates</h2>
+<ul>
+<li><strong>Day 0 = Monday 9 November 2026</strong>: the day all four Workspaces have their $100 paid. Every date below moves by the same number of days if Day 0 moves (rerun the script with <code>--day0</code>).</li>
+<li>440 senders in 4 pools of 110 (P1 to P4, one Google Workspace each: W1 is the strategywebinars Workspace, W2 to W4 are new). Capacity at full volume is 110,000 a week; each main slice is 100,000.</li>
+<li>5 send days a week, Monday to Friday. No sends on 25 December 2026 or 1 January 2027.</li>
+<li>Each week's invites are for the webinar of the following week (<code>{{webinar.day_of_week}}</code>, <code>{{webinar.start_time_local}}</code>; the event date is set in each Tantra campaign).</li>
+</ul>
+<h2>The Re-Invite Gap</h2>
+<p>Every row in the master was already invited by other senders between <strong>2026-07-22 and 2026-10-19</strong>. The script puts no row into a week that starts less than <strong>60 days</strong> after its <code>last_invited_date</code>, and ranks the oldest invites first. Rows still too recent when a week starts: R01 (30 Nov) 427,587; R02 254,513; R03 98,510; none from R04 (21 Dec) on. The main slices are not affected. Counts in <code>SLICE_STATS.md</code>, Re-invite gap.</p>
+<h2>Which Pool Sends Whom</h2>
+<p>Every recipient domain is tied to one pool by a fixed hash, so one company only hears from one Workspace. If a Workspace is suspended, only its pool's files wait; the other three keep sending.</p>
+<table>
+<thead>
+<tr>
+<th>Pool</th>
+<th>Workspace (item 3)</th>
+<th>Sending domains</th>
+<th>Senders</th>
+<th>Files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>W1, strategywebinars</td>
+<td>20 (<code>DOMAIN_SHORTLIST.md</code>, W1)</td>
+<td>110</td>
+<td><code>*_P1*.csv</code></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>W2, new</td>
+<td>20</td>
+<td>110</td>
+<td><code>*_P2*.csv</code></td>
+</tr>
+<tr>
+<td>P3</td>
+<td>W3, new</td>
+<td>20</td>
+<td>110</td>
+<td><code>*_P3*.csv</code></td>
+</tr>
+<tr>
+<td>P4</td>
+<td>W4, new</td>
+<td>20</td>
+<td>110</td>
+<td><code>*_P4*.csv</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Weeks 1 to 3: Internal Activity Only (team step)</h2>
+<p>No cold invites before day 21. In each of the first three weeks, every sender account does a little normal work so Google sees a real user:</p>
+<ul>
+<li>Weeks 1 and 2: each sender accepts two or three internal calendar events a day sent by a teammate in the same Workspace, and joins one short Google Meet.</li>
+<li>Week 3: each sender invites three to five known external contacts a day (partners, clients, team members' own work addresses) who accept.</li>
+</ul>
+<p>Who does it: Adi names one team member per Workspace. Nothing is sent to the list.</p>
+<h2>Ramp Weeks (Before Full Volume)</h2>
+<p>Files in <code>~/tantra-enterprise-lists/ramp/</code>. The warm list goes first: these people said Yes or Maybe, or registered, for a past webinar like this, so they are the safest audience while senders are young, and they get the warm invite variant (item 12). Each file is one Tantra campaign: <code>ENT &lt;week&gt; &lt;pool&gt;</code> for cold, <code>ENT &lt;week&gt; &lt;pool&gt; WARM</code> for warm.</p>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Mon to Fri</th>
+<th>Workspace day</th>
+<th>A sender a day</th>
+<th>Capacity</th>
+<th>Warm rows</th>
+<th>Cold rows</th>
+<th>Files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R01</td>
+<td>30 Nov to 4 Dec 2026</td>
+<td>21 to 25</td>
+<td>10</td>
+<td>22,000</td>
+<td>16,737</td>
+<td>5,263</td>
+<td><code>R01_P1_warm</code> to <code>R01_P4_warm</code>, <code>R01_P1_cold</code> to <code>R01_P4_cold</code></td>
+</tr>
+<tr>
+<td>R02</td>
+<td>7 to 11 Dec 2026</td>
+<td>28 to 32</td>
+<td>10</td>
+<td>22,000</td>
+<td>810</td>
+<td>21,190</td>
+<td><code>R02_P*_warm</code>, <code>R02_P*_cold</code></td>
+</tr>
+<tr>
+<td>R03</td>
+<td>14 to 18 Dec 2026</td>
+<td>35 to 39</td>
+<td>10</td>
+<td>22,000</td>
+<td>824</td>
+<td>21,176</td>
+<td><code>R03_P*_warm</code>, <code>R03_P*_cold</code></td>
+</tr>
+<tr>
+<td>R04</td>
+<td>21 to 24 Dec 2026</td>
+<td>42 to 45</td>
+<td>10</td>
+<td>17,600 (4 days)</td>
+<td>556</td>
+<td>17,044</td>
+<td><code>R04_P*_warm</code>, <code>R04_P*_cold</code></td>
+</tr>
+<tr>
+<td>R05</td>
+<td>28 to 31 Dec 2026</td>
+<td>49 to 52</td>
+<td>10</td>
+<td>17,600 (4 days)</td>
+<td>0</td>
+<td>17,600</td>
+<td><code>R05_P*_cold</code></td>
+</tr>
+<tr>
+<td>R06</td>
+<td>4 to 8 Jan 2027</td>
+<td>56 to 60</td>
+<td>10</td>
+<td>22,000</td>
+<td>0</td>
+<td>22,000</td>
+<td><code>R06_P*_cold</code></td>
+</tr>
+<tr>
+<td>R07</td>
+<td>11 to 15 Jan 2027</td>
+<td>63 to 67</td>
+<td>25</td>
+<td>55,000</td>
+<td>0</td>
+<td>55,000</td>
+<td><code>R07_P*_cold</code></td>
+</tr>
+<tr>
+<td>R08</td>
+<td>18 to 22 Jan 2027</td>
+<td>70 to 74</td>
+<td>25</td>
+<td>55,000</td>
+<td>0</td>
+<td>55,000</td>
+<td><code>R08_P*_cold</code></td>
+</tr>
+<tr>
+<td>R09</td>
+<td>25 to 29 Jan 2027</td>
+<td>77 to 81</td>
+<td>25</td>
+<td>55,000</td>
+<td>0</td>
+<td>55,000</td>
+<td><code>R09_P*_cold</code></td>
+</tr>
+<tr>
+<td>R10</td>
+<td>1 to 5 Feb 2027</td>
+<td>84 to 88</td>
+<td>25</td>
+<td>55,000</td>
+<td>0</td>
+<td>55,000</td>
+<td><code>R10_P*_cold</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ramp total: 343,200 invites (18,927 warm, 324,273 cold). The warm list spreads over four weeks because many of its rows were invited too recently for R01.</p>
+<h2>Main Weeks: 100,000 a Week</h2>
+<p>Files in <code>~/tantra-enterprise-lists/main/</code>, 25,000 rows per pool per week. From day 91 every sender is at 50 a day: 440 x 50 x 5 = 110,000 capacity.</p>
+<table>
+<thead>
+<tr>
+<th>Slice</th>
+<th>Mon to Fri</th>
+<th>Workspace day</th>
+<th>Files (25,000 each)</th>
+<th>Mix</th>
+<th>Tantra campaigns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S01</td>
+<td>8 to 12 Feb 2027</td>
+<td>91 to 95</td>
+<td><code>S01_P1</code> to <code>S01_P4</code></td>
+<td>Tier A, high-confidence names</td>
+<td><code>ENT S01 P1</code> to <code>ENT S01 P4</code></td>
+</tr>
+<tr>
+<td>S02</td>
+<td>15 to 19 Feb 2027</td>
+<td>98 to 102</td>
+<td><code>S02_P1</code> to <code>S02_P4</code></td>
+<td>Tier A, high-confidence names</td>
+<td><code>ENT S02 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S03</td>
+<td>22 to 26 Feb 2027</td>
+<td>105 to 109</td>
+<td><code>S03_P1</code> to <code>S03_P4</code></td>
+<td>Tier A, mostly no name in the address</td>
+<td><code>ENT S03 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S04</td>
+<td>1 to 5 Mar 2027</td>
+<td>112 to 116</td>
+<td><code>S04_P1</code> to <code>S04_P4</code></td>
+<td>64% tier A, 36% tier B</td>
+<td><code>ENT S04 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S05</td>
+<td>8 to 12 Mar 2027</td>
+<td>119 to 123</td>
+<td><code>S05_P1</code> to <code>S05_P4</code></td>
+<td>26% A, 74% B</td>
+<td><code>ENT S05 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S06</td>
+<td>15 to 19 Mar 2027</td>
+<td>126 to 130</td>
+<td><code>S06_P1</code> to <code>S06_P4</code></td>
+<td>17% A, 83% B</td>
+<td><code>ENT S06 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S07</td>
+<td>22 to 26 Mar 2027</td>
+<td>133 to 137</td>
+<td><code>S07_P1</code> to <code>S07_P4</code></td>
+<td>12% A, 88% B</td>
+<td><code>ENT S07 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S08</td>
+<td>29 Mar to 2 Apr 2027</td>
+<td>140 to 144</td>
+<td><code>S08_P1</code> to <code>S08_P4</code></td>
+<td>9% A, 91% B</td>
+<td><code>ENT S08 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S09</td>
+<td>5 to 9 Apr 2027</td>
+<td>147 to 151</td>
+<td><code>S09_P1</code> to <code>S09_P4</code></td>
+<td>7% A, 93% B</td>
+<td><code>ENT S09 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S10</td>
+<td>12 to 16 Apr 2027</td>
+<td>154 to 158</td>
+<td><code>S10_P1</code> to <code>S10_P4</code></td>
+<td>5% A, 95% B</td>
+<td><code>ENT S10 P1</code> to <code>P4</code></td>
+</tr>
+</tbody>
+</table>
+<p>Main total: 1,000,000 invites, ending Friday 16 April 2027. After that the reserve (<code>reserve/cold_reserve_after_S10.csv</code>, 591,418 rows inside the domain cap) or a vendor list takes over (<code>VENDOR_PLAN.md</code>).</p>
+<h2>Each Week, in Tantra (Adi or the team, never an agent)</h2>
+<ol>
+<li>One calendar campaign per file, built as a draft (<code>POST /campaigns/draft</code>, type <code>smart_calendar</code>), senders = that pool's 110 addresses from <code>deliverables/03-outreach-infra/sender-roster.csv</code>.</li>
+<li>Import the file with <code>node kits/tantra/leads.mjs &lt;file.csv&gt; "&lt;campaign name&gt;"</code> (from <code>~/tantra-redesign/revops-os/os</code>; it detects a calendar campaign by itself), or the CSV upload in Tantra. The header is already in Tantra's list format.</li>
+<li>Check every sender's daily limit matches the week in the roster before launch.</li>
+<li>Launch only with Adi's approval. Pausing cannot recall invites already sent.</li>
+</ol>
+<h2>When to Stop or Slow a Pool</h2>
+<p>Pause the pool and hold its files for a week if, in any send day: senders show Disconnected in Tantra, Google shows a sending-limit warning on any sender, or the pool's declines run well above the earlier weeks. Resume at the previous week's daily cap.</p></div></details><details class="doc"><summary>VENDOR_PLAN.md</summary><div class="md"><h1>Vendor Sourcing Plan</h1>
+<h2>Do We Need to Buy Rows for the 1M?</h2>
+<p>No. The master CSV gives 2,037,463 usable cold rows, so the 1,000,000-row main list and the 343,200 ramp invites come from it with no gap (<code>SLICE_STATS.md</code>).</p>
+<p>We should still buy one list, for three reasons:</p>
+<ol>
+<li><strong>No titles.</strong> The master cannot tell a founder from an analyst. A vendor list filtered by title and company size is the only way to aim at the $10,000+ buyer.</li>
+<li><strong>Runway after S10.</strong> The reserve left after 16 April 2027 is 591,418 rows inside the domain cap, and 79% of the full reserve has no name in the address. The weeks after S10 need fresher rows.</li>
+<li><strong>Fatigue.</strong> Every master row was invited once already by other senders, between 2026-07-22 and 2026-10-19.</li>
+</ol>
+<h2>Vendors</h2>
+<p>From Adi's Canva deck https://www.canva.com/design/DAGx0gZKc9Y/ (ruling 2026-10-06: "The first two vendors ... are the most preferred ones"). Names and phone numbers stay in <code>~/.config/tantra/data-vendors.json</code>, never in this repo.</p>
+<table>
+<thead>
+<tr>
+<th>Vendor (deck order)</th>
+<th>Sources</th>
+<th>Quoted price</th>
+<th>Per 10,000 rows</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vendor 1</td>
+<td>ZoomInfo, Apollo.io, LinkedIn Sales Navigator</td>
+<td>$500 for 500,000 rows (negotiable)</td>
+<td>$10</td>
+<td>Main buy</td>
+</tr>
+<tr>
+<td>Vendor 2</td>
+<td>Apollo.io</td>
+<td>$130 for 100,000 rows (negotiable)</td>
+<td>$13</td>
+<td>Second source and comparison</td>
+</tr>
+<tr>
+<td>Vendor 3</td>
+<td>Apollo.io</td>
+<td>$280 for 100,000 rows</td>
+<td>$28</td>
+<td>Not used: over the $20 per 10,000 cap</td>
+</tr>
+</tbody>
+</table>
+<p>No NeverBounce or ZeroBounce: the vendors deliver verified lists (ruling 2026-10-07), and the free checks in <code>context/from-workshop-project/02-lists/lists.md</code> section 3 run on every file.</p>
+<h2>The Order</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Vendor 1</th>
+<th>Vendor 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rows</td>
+<td>500,000</td>
+<td>100,000</td>
+</tr>
+<tr>
+<td>Cost at the quote</td>
+<td>$500</td>
+<td>$130</td>
+</tr>
+<tr>
+<td>Covers</td>
+<td>Five weeks after S10 at 100,000 a week</td>
+<td>A test week against Vendor 1</td>
+</tr>
+</tbody>
+</table>
+<p>Total $630, under $20 per 10,000 rows on both. Buying is Adi's step.</p>
+<h2>The Brief Adi Sends Each Vendor (paste as is)</h2>
+<pre><code>Hi, I'd like a verified B2B contact list. Please quote before pulling.
+
+Rows: 500,000 (Vendor 2: 100,000)
+Titles: Founder, Co-Founder, CEO, Owner, President, Managing Director, Managing Partner, CRO, CMO, VP Sales, VP Marketing, Head of Sales, Head of Marketing, Head of Growth, Head of Revenue Operations, Director of Sales, Director of Marketing (and the variants people write on LinkedIn)
+Company size: 11 to 500 employees
+Industries: B2B software and SaaS, IT and software services, marketing and advertising agencies, management consulting, business consulting, financial services, fintech, banking, wealth management, insurance, accounting, venture capital, staffing and recruiting, executive search
+Country: United States
+Exclude: education, government, non-profit, healthcare providers, retail, hospitality
+Every row needs: a verified work email and a LinkedIn profile URL. No personal email addresses, no role addresses (info@, sales@).
+Columns: First Name, Last Name, Title, Company, Website, Email, LinkedIn URL, Country
+Format: one CSV, UTF-8.
+</code></pre>
+<p>Countries beyond the United States go in only after the same outreach-rules check as the EU and UK hold (<code>ICP_AND_SEGMENTS.md</code>).</p>
+<h2>When the File Arrives</h2>
+<ol>
+<li>Save it outside the repo, in <code>~/tantra-enterprise-lists/vendor/</code>.</li>
+<li>Run the free checks in <code>lists.md</code> section 3, then drop every email already in the master CSV with <code>declined_series</code> filled, and every email already scheduled in <code>~/tantra-enterprise-lists/</code>.</li>
+<li>Show Adi the first 25 rows before any import (<code>lists.md</code> section 3).</li>
+<li>Slice it with the same pool hash and domain caps as the master, into the weeks after S10.</li>
+</ol></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: item 2, outreach lists (1M cold calendar list)</h1>
+<p>Done means every box below is ticked, with the check that proves it.</p>
+<ul>
+<li>[x] 1. <code>ICP_AND_SEGMENTS.md</code> defines the Enterprise buyer ($10,000+ to invest in the next 12 months), tiers A, B and C, every exclusion and hold, and says plainly that the master CSV has almost no job title or industry data, so segments come from <code>bucket</code>, domain, email_type, name_confidence and past response.</li>
+<li>[x] 2. <code>slice_enterprise_lists.py</code> takes the master CSV path as an argument, reads it in chunks, drops junk and role rows, drops every row with <code>declined_series</code>, moves past Yes/Maybe and registered no-shows to a separate warm list, caps rows per recipient domain, and refuses to write inside a git repo.</li>
+<li>[x] 3. The script ran on the 2,752,479-row master and wrote 10 weekly slices (S01 to S10, up to 100,000 rows each, split into 4 sender pools) to <code>~/tantra-enterprise-lists/</code>, plus the warm, ramp (R01 to R10), hold and reserve files.</li>
+<li>[x] 4. Every output CSV has exactly the header <code>first_name,last_name,title,company,website,email,linkedin_url,country</code> (the list schema in <code>context/from-workshop-project/02-lists/lists.md</code> section 4, read by Tantra's <code>leads.mjs</code> importer), every row has an email and a first name, no email appears twice across all files, and no cell holds an em or en dash. Proof: <code>verify_slices.py</code> prints PASS.</li>
+<li>[x] 5. <code>SLICE_STATS.md</code> and <code>slice-stats.json</code> hold counts only. No email, person name or recipient domain is in the repo (grep for <code>@</code> finds only placeholders and docs).</li>
+<li>[x] 6. The usable row count is stated against the 1M target, with the gap (if any) and the list that fills it.</li>
+<li>[x] 7. <code>VENDOR_PLAN.md</code>: vendors from the Canva deck, the first two preferred, under $20 per 10,000 rows, no NeverBounce or ZeroBounce, buying marked as Adi's step, vendor names and phone numbers kept out of the repo.</li>
+<li>[x] 8. <code>SLICING_PLAN.md</code>: every week dated from 2026-11-04, which slice and which sender pool sends it, the ramp weeks before full volume, and the Tantra campaign name for each.</li>
+<li>[x] 9. <code>python3 deliverables/_shared/scan.py deliverables/02-outreach-lists</code> prints 0 failures.</li>
+<li>[x] 10. Re-invite gap: the docs state every row was invited by other senders between 2026-07-22 and 2026-10-19; no row is scheduled less than 60 days after its <code>last_invited_date</code> (checked by <code>verify_slices.py</code>), counts in <code>SLICE_STATS.md</code>.</li>
+<li>[x] 11. The EU/UK hold is described as partial (country endings only; <code>location</code> is empty).</li>
+<li>[x] 12. <code>README.md</code> says what is here, how to rerun and import, what Adi must fill, and any claim to verify.</li>
+</ul>
+<p>Result 2026-11-04 (after critic fixes 1, 7, 8, 9, 13): 12 of 12 pass. verify_slices.py PASS (99 files, 2,450,145 unique emails, max 3 rows per recipient domain a week, 30 over the plan, 60-day gap held); scan 0 failures.</p></div></details><details class="doc"><summary>Files for import or upload (3)</summary><ul class="files"><li><a href="cards/files/02-outreach-lists/slice-stats.json" target="_blank" rel="noopener">slice-stats.json</a></li><li><a href="cards/files/02-outreach-lists/slice_enterprise_lists.py" target="_blank" rel="noopener">slice_enterprise_lists.py</a></li><li><a href="cards/files/02-outreach-lists/verify_slices.py" target="_blank" rel="noopener">verify_slices.py</a></li></ul></details>
