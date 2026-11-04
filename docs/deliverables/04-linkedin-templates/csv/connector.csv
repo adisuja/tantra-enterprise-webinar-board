@@ -1,0 +1,115 @@
+"profile","campaign_type","step","delay_days","action","subject","message","char_count"
+"adi","connector","1","0","visit_profile","","","0"
+"adi","connector","2","1","connection_request","","Hi {{firstName}}, does pipeline at {{company}} come from a system you can read every week, or from referrals and luck? I've spent 10+ years building the first kind for 250+ brands. Glad to connect.","223"
+"adi","connector","3","1","send_message","","Thanks for connecting, {{firstName}}.
+
+One pattern I see in almost every founder-led company: the problem isn't traffic. It's that nobody can see where a cold prospect drops out between first touch and a booked call.
+
+Fix that view and the next hire, channel or budget decision gets obvious.
+
+How does {{company}} track it today?","355"
+"adi","connector","4","3","send_message","","{{firstName}}, I teach this live every week.
+
+In 60 minutes I walk through the whole revenue engine: the funnel, the RevOps system behind it, the AI that does the busywork and the traffic channels that fill it.
+
+Bring your numbers. You'll leave knowing which stage to fix first.
+
+Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=adi","413"
+"adi","connector","5","4","send_message","","This isn't theory, {{firstName}}.
+
+For Growth Idea, a UK business-coaching group, one webinar reached 99,859 people. 1,990 registered, 321 came live and 25 booked sales calls.
+
+Their first webinar got 30 registrations. Every stage was measured, so every week got better.
+
+I show the exact build here: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=adi","418"
+"adi","connector","6","6","send_message","","Last note from me, {{firstName}}.
+
+If a predictable pipeline is on this year's list for {{company}}, the session runs every week: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=adi
+
+If not, no hard feelings. Good luck with the quarter.","326"
+"aquila","connector","1","0","visit_profile","","","0"
+"aquila","connector","2","1","connection_request","","Hi {{firstName}}, I build automations at Tantra: the reminders, follow-ups and handoffs nobody should do by hand. Always keen to connect with people who think about this too.","176"
+"aquila","connector","3","1","send_message","","Thanks for accepting, {{firstName}}.
+
+Quick one from the automation side: how many steps between a sign-up and a booked call at {{company}} still need someone to remember them?
+
+Every manual step is a place a lead waits.","246"
+"aquila","connector","4","3","send_message","","Taking those steps out is part of a live session Adi, our founder, runs every week, {{firstName}}. It includes the automation layer I build: what to automate, in what order, and what to keep human.
+
+60 minutes. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=aquila","342"
+"aquila","connector","5","4","send_message","","Here's a real one, {{firstName}}.
+
+For FintechCircle's second episode, 20,046 calendar invites went out, 117 people came live and 9 sales calls were booked.
+
+Behind numbers like that is a chain of invites, reminders and follow-ups that has to fire on time, every week. The session shows the flow: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=aquila","417"
+"aquila","connector","6","6","send_message","","Wrapping up, {{firstName}}. If taking the manual steps out of the funnel at {{company}} is on the list, the session runs every week: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=aquila","277"
+"nelbin","connector","1","0","visit_profile","","","0"
+"nelbin","connector","2","1","connection_request","","Hi {{firstName}}, I run operations at Tantra. Most growth problems I see are process problems: no owner, no checklist, no weekly number. That's my patch. Glad to connect.","172"
+"nelbin","connector","3","1","send_message","","Glad we're connected, {{firstName}}.
+
+A question from the ops side: if your best salesperson left {{company}} tomorrow, would the pipeline keep running?
+
+When the answer is no, the pipeline lives in someone's head. The fix is a written process with an owner and a number for every step.","312"
+"nelbin","connector","4","3","send_message","","{{firstName}}, that written process is what Adi, our founder, teaches in a live session every week: who owns each stage, what gets measured weekly and what the AI handles.
+
+It's the same process I run here. 60 minutes. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=nelbin","350"
+"nelbin","connector","5","4","send_message","","A process example, {{firstName}}.
+
+Over 11 webinars for Growth Idea, a UK coaching group, we built a weekly analytics sheet and a 12-item experiment log. The totals: 6,517 registered, 1,384 came live, 80 sales calls booked.
+
+No heroics, just the same checklist every week. The session walks through it: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=nelbin","423"
+"nelbin","connector","6","6","send_message","","I'll stop here, {{firstName}}. If a pipeline that runs without heroics is on the list for {{company}}, the session runs every week: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=nelbin","276"
+"bharath","connector","1","0","visit_profile","","","0"
+"bharath","connector","2","1","connection_request","","Hi {{firstName}}, I'm CTO at Tantra. Most revenue stacks I see are five tools held together by hope. I build the version where AI agents run the busywork. Glad to connect.","173"
+"bharath","connector","3","1","send_message","","Good to be connected, {{firstName}}.
+
+A question I ask every technical founder: how many tools touch a lead between first click and booked call at {{company}}?
+
+The honest answer is usually ""more than we'd like"", with nobody owning the joins. That's where leads go missing, not in the ads.","315"
+"bharath","connector","4","3","send_message","","{{firstName}}, this is exactly what Adi, our founder, teaches live every week, and the stack I build is a big part of it.
+
+It covers how the funnel, the CRM, calendar and email outreach and the AI agents connect, so every lead is tracked from first touch to booked call.
+
+60 minutes, including 15 minutes of Q&A: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=bharath","434"
+"bharath","connector","5","4","send_message","","A number from the build, {{firstName}}.
+
+In one webinar for Growth Idea, 98,000 of the 99,859 people reached came through calendar invites. 1,990 registered.
+
+How it's wired is in the session: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=bharath","314"
+"bharath","connector","6","6","send_message","","Last one from me, {{firstName}}. If cleaning up the revenue stack at {{company}} is on the roadmap, the session runs every week: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=bharath
+
+Happy to answer a stack question here too, no session needed.","337"
+"bhaskar","connector","1","0","visit_profile","","","0"
+"bhaskar","connector","2","1","connection_request","","Hi {{firstName}}, I run marketing at Tantra. Most teams I meet can report on content reach but not on the pipeline it creates. That gap is what I work on. Glad to connect.","173"
+"bhaskar","connector","3","1","send_message","","Appreciate the connect, {{firstName}}.
+
+A question I ask every marketing lead: which channel booked last month's sales calls at {{company}}, and could you prove it to your CEO?
+
+If the honest answer is ""roughly"", the content isn't the problem. The missing link between content, the funnel and the calendar is.","335"
+"bhaskar","connector","4","3","send_message","","That link is the whole topic of a live session Adi, our founder, runs every week, {{firstName}}: how content, outreach and webinars feed one pipeline you can measure stage by stage.
+
+If content is your job, it's the most useful session I can point you to. 60 minutes. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=bhaskar","400"
+"bhaskar","connector","5","4","send_message","","One example, {{firstName}}.
+
+For FintechCircle, a London fintech network, outreach grew from 10,000 to 20,046 to 30,000 calendar invites across three episodes. Those three episodes booked 17 sales calls.
+
+Each week's numbers told us what to change next. The session shows how: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=bhaskar","398"
+"bhaskar","connector","6","6","send_message","","Last note, {{firstName}}. If pipeline you can attribute is a goal for {{company}} this year, the session runs every week: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=bhaskar
+
+If not, all good.","286"
+"ben","connector","1","0","visit_profile","","","0"
+"ben","connector","2","1","connection_request","","Hi {{firstName}}, I build the pages, forms and tracking behind Tantra's funnels, and test what makes people sign up. Glad to connect with people who build too.","161"
+"ben","connector","3","1","send_message","","Nice to connect, {{firstName}}.
+
+A question from the build side: when someone lands on your sign-up page at {{company}}, do you know what share register, and why the rest leave?
+
+Most teams track the click, not the drop-off. The page is usually the cheapest fix in the whole funnel.","308"
+"ben","connector","4","3","send_message","","{{firstName}}, the drop-off is one of the things Adi, our founder, takes apart in a weekly live session. It includes the build side I work on: pages, forms, tracking and the tests that decide what stays.
+
+60 minutes. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=ben","345"
+"ben","connector","5","4","send_message","","One build example, {{firstName}}.
+
+For Growth Idea, a UK coaching group, the registration rate went from 0.23% on the first webinar to 2.0% on the best one, with a long and a short landing page tested against each other.
+
+The session shows what changed: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=ben","371"
+"ben","connector","6","6","send_message","","Final message from me, {{firstName}}. If your sign-up page at {{company}} could work harder, the session runs every week: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=connector&utm_campaign=enterprise-webinar&utm_content=ben","263"

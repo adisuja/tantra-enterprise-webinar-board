@@ -1,0 +1,55 @@
+{
+  "_about": "The six senders. Adi fills every FILL_ value once, then runs build.py again. linkedin_plan is one of free, premium_career, premium_business, sales_navigator. account_tier is new, established or mature (see OVERVIEW.md, Daily Limits). Tiers marked assumed stay at the safe value until Adi confirms.",
+  "profiles": [
+    {
+      "key": "adi", "name": "Adi", "role": "Owner and host",
+      "voice": "Founder to founder: revenue, predictability, the whole engine. Speaks as the host.",
+      "audience": "Founders, CEOs, MDs and owners of B2B companies (catch-all when no other title matches)",
+      "linkedin_url": "https://www.linkedin.com/in/adisuja",
+      "linkedin_url_source": "found in the Tantra webinar deck and repo context; Adi confirms",
+      "title": "Founder, Tantra (brand.host_title in funnel-config.json; Adi confirms it matches the LinkedIn headline)",
+      "linkedin_plan": "FILL_ADI_LINKEDIN_PLAN",
+      "account_tier": "mature (assumed)"
+    },
+    {
+      "key": "aquila", "name": "Aquila", "role": "Automation",
+      "voice": "The automation layer: reminders, follow-ups and handoffs that should not need a person.",
+      "audience": "RevOps, marketing ops, sales ops, automation and no-code leads",
+      "linkedin_url": "FILL_AQUILA_LINKEDIN_URL", "linkedin_url_source": "not found in any context",
+      "title": "FILL_AQUILA_LINKEDIN_TITLE",
+      "linkedin_plan": "FILL_AQUILA_LINKEDIN_PLAN", "account_tier": "new (assumed)"
+    },
+    {
+      "key": "nelbin", "name": "Nelbin", "role": "Operations",
+      "voice": "Process: an owner, a checklist and a weekly number for every stage.",
+      "audience": "COOs, heads of operations, chiefs of staff, general managers",
+      "linkedin_url": "FILL_NELBIN_LINKEDIN_URL", "linkedin_url_source": "not found in any context",
+      "title": "FILL_NELBIN_LINKEDIN_TITLE",
+      "linkedin_plan": "FILL_NELBIN_LINKEDIN_PLAN", "account_tier": "new (assumed)"
+    },
+    {
+      "key": "bharath", "name": "Bharath", "role": "CTO",
+      "voice": "The stack and the agents: what connects to what, and where leads get lost between tools.",
+      "audience": "CTOs, VPs and heads of engineering, technical co-founders",
+      "linkedin_url": "FILL_BHARATH_LINKEDIN_URL", "linkedin_url_source": "not found in any context",
+      "title": "FILL_BHARATH_LINKEDIN_TITLE",
+      "linkedin_plan": "FILL_BHARATH_LINKEDIN_PLAN", "account_tier": "new (assumed)"
+    },
+    {
+      "key": "bhaskar", "name": "Bhaskar", "role": "CMO",
+      "voice": "Pipeline and content: which posts, invites and webinars actually book calls.",
+      "audience": "CMOs, VPs and heads of marketing, growth and demand generation",
+      "linkedin_url": "FILL_BHASKAR_LINKEDIN_URL", "linkedin_url_source": "not found in any context",
+      "title": "FILL_BHASKAR_LINKEDIN_TITLE",
+      "linkedin_plan": "FILL_BHASKAR_LINKEDIN_PLAN", "account_tier": "new (assumed)"
+    },
+    {
+      "key": "ben", "name": "Ben", "role": "Development",
+      "voice": "The build: pages, forms, tracking and the tests that decide what stays.",
+      "audience": "Heads of digital, web and product; agency owners who build sites and funnels",
+      "linkedin_url": "FILL_BEN_LINKEDIN_URL", "linkedin_url_source": "not found in any context",
+      "title": "FILL_BEN_LINKEDIN_TITLE",
+      "linkedin_plan": "FILL_BEN_LINKEDIN_PLAN", "account_tier": "new (assumed)"
+    }
+  ]
+}

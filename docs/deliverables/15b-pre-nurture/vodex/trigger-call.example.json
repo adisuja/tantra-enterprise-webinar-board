@@ -1,0 +1,13 @@
+{
+  "_about": "Shape of the Vodex trigger-call body (POST /api/v1/trigger-call). Invented example person only. Calls go out only after Adi approves the go-live calls; consentForCalls is true only because every person on the list ticked call_opt_in.",
+  "callList": [
+    {
+      "firstName": "Sam",
+      "lastName": "Example",
+      "phone": "+15550100001",
+      "eventTitle": "Tantra"
+    }
+  ],
+  "projectId": "FILL_VODEX_PROJECT_ID",
+  "consentForCalls": true
+}

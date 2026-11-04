@@ -1,0 +1,109 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>The AI First Line: `{{ai_first_line}}`</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>The AI First Line: `{{ai_first_line}}`</span></div><h1>The AI First Line: <code>{{ai_first_line}}</code></h1>
+<p>Step 1 of every template opens with one generated sentence, written per prospect before import and stored in the lead's custom field <code>ai_first_line</code>. Follow-ups carry no AI line.</p>
+<h2>Inputs (from the master list, <code>references/added-to-calendar-consolidated-2026-11-04.md</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>first_name</code></td>
+<td>Greeting only ("Hi {{first_name}},"). Already <code>there</code> when <code>name_confidence</code> is none, so the greeting reads "Hi there," with no extra logic</td>
+</tr>
+<tr>
+<td><code>company</code></td>
+<td>Printed only if the same name appears in the homepage text (guessed names such as "Thekbbcompany" never print)</td>
+</tr>
+<tr>
+<td><code>domain</code></td>
+<td>Source of the homepage text</td>
+</tr>
+<tr>
+<td><code>name_confidence</code>, <code>email_type</code></td>
+<td>Pick the tier (below)</td>
+</tr>
+<tr>
+<td><code>homepage_text</code></td>
+<td>Optional. First 1,500 characters of <code>curl https://r.jina.ai/https://{{domain}}</code>, fetched by the enrichment step</td>
+</tr>
+</tbody>
+</table>
+<h2>Tiers (take the first that applies)</h2>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>When</th>
+<th>What the line does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>email_type</code> business, homepage text readable</td>
+<td>Names what the company sells or who it serves, in the prospect's own homepage words</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Business email, no usable homepage text, company found on the page or <code>company_source</code> is LinkedIn</td>
+<td>Fixed line: <code>I'm writing to you as the person at {{company}} who most likely owns next month's pipeline.</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>name_confidence</code> none with no homepage text, personal or role email, or anything else</td>
+<td>Fixed line: <code>I'm writing to founders who sell B2B and want next month's revenue to be less of a guess.</code></td>
+</tr>
+</tbody>
+</table>
+<p>Tier 3 is the fallback for <code>name_confidence</code> none: the greeting already says "Hi there," and the line names no person and no company.</p>
+<h2>The Prompt (tier 1)</h2>
+<pre><code class="language-text">You write the first sentence of a short cold email from Adi, founder of Tantra, to a founder.
+The greeting (&quot;Hi &lt;name&gt;,&quot;) is already written. The email body after your sentence invites them
+to a live session on revenue systems. Your sentence only shows you looked at their business.
+
+INPUT
+company: {{company}}
+domain: {{domain}}
+homepage_text: {{homepage_text}}
+
+WRITE one sentence, 10 to 22 words, that:
+- names one specific thing from homepage_text: what they sell, who they serve, or how they describe themselves
+- states it plainly, as an observation, in the second person (&quot;you&quot;, &quot;your team&quot;)
+- reads like a person wrote it: contractions allowed, no exclamation marks, no emoji, no dashes
+
+NEVER:
+- invent anything: no numbers, clients, awards, funding, news or places unless they appear word for word in homepage_text
+- flatter (&quot;love what you're doing&quot;, &quot;impressive&quot;, &quot;great work&quot;)
+- open with &quot;I came across&quot;, &quot;I noticed&quot;, &quot;I hope&quot;, &quot;Hope this finds you&quot;
+- mention AI, revenue, sales, webinars, sessions, Tantra or the person's name
+- print the company name unless it appears in homepage_text exactly as given
+- ask a question
+
+If homepage_text is empty, unreadable, a parked or login page, or not about a business, output exactly: FALLBACK
+
+OUTPUT the sentence only on line 1. Line 2: TIER: 1 (or FALLBACK on line 1 with no line 2).
+</code></pre>
+<p>On <code>FALLBACK</code>, apply tier 2 or tier 3 above.</p>
+<h2>Checks on Tier 1 Lines Before Import (reject the line and use tier 3 if any fails)</h2>
+<ol>
+<li>10 to 22 words, one sentence, ends with a full stop.</li>
+<li>No digit that is not in <code>homepage_text</code>.</li>
+<li>No "!", "?", em dash, en dash or emoji.</li>
+<li>None of: AI, revenue, webinar, session, Tantra, leverage, unlock, seamless, game-changer, supercharge, delve, robust, elevate.</li>
+<li>Read 20 random lines by eye before the first import of each weekly batch.</li>
+</ol>
+<h2>Examples (fictional companies, for tone only)</h2>
+<ul>
+<li>Tier 1: <code>You help mid-sized logistics firms move freight across Europe without the paperwork piling up on your team.</code></li>
+<li>Tier 2: <code>I'm writing to you as the person at Northfield Advisory who most likely owns next month's pipeline.</code></li>
+<li>Tier 3: <code>I'm writing to founders who sell B2B and want next month's revenue to be less of a guess.</code></li>
+</ul><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

@@ -1,0 +1,46 @@
+{
+  "_about": "Header names in the WebinarJam registrants export (Registrants, Export, Export all registrants). Matching is case-insensitive: an exact match wins, otherwise the first header that contains an alias. The real export headers are not documented: after the first real export, put its exact headers first in each list. 'entered_is' says how to read the entry column: 'offset' (time from session start, like 00:03:20), 'clock' (time of day, like 11:03 AM or 2026-11-12 11:03:20) or 'auto' (a date or AM/PM means clock, anything else means offset). 'minutes_is' says how to read two-part times like 05:30: 'hms' (hours:minutes), 'ms' (minutes:seconds) or 'minutes' (plain numbers only). It is empty on purpose: the import refuses two-part values until someone has looked at a real export and set it. Three-part values (00:52:10) are always hours:minutes:seconds.",
+  "email": [
+    "email",
+    "email address",
+    "e-mail"
+  ],
+  "attended": [
+    "attended live",
+    "attended_live",
+    "attended",
+    "live attendance",
+    "showed up"
+  ],
+  "minutes": [
+    "time in live room",
+    "time_live",
+    "time live",
+    "time in room",
+    "minutes in room",
+    "time attended",
+    "duration"
+  ],
+  "entered": [
+    "time to enter live room",
+    "entered_live",
+    "entered live",
+    "time entered",
+    "entered",
+    "join time",
+    "joined"
+  ],
+  "left": [
+    "left live room",
+    "time left",
+    "left at",
+    "exit time"
+  ],
+  "live_date": [
+    "attended live date",
+    "date_live",
+    "date live"
+  ],
+  "entered_is": "auto",
+  "minutes_is": ""
+}

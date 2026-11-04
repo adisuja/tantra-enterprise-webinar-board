@@ -1,0 +1,124 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>22 Post-Webinar Tracks: 14 Days, Three Segments</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>22 Post-Webinar Tracks: 14 Days, Three Segments</span></div><h1>22 Post-Webinar Tracks: 14 Days, Three Segments</h1>
+<p>Attendance from WebinarJam (posted as <code>webinar.attended</code> or <code>webinar.no_show</code> by item 17's import_attendance, the only producer) puts each registrant into one segment (CRM_CONTRACT.md). Each segment gets its own track. Every message carries the recording page (<code>{{recording_url}}</code>, or <code>{{recording_offer_url}}</code> that starts at the offer), and every message except Track A's three teaching emails carries the Enterprise Evaluation Call link (<code>{{booking_url}}</code>). Track A already sat through the offer, so it gets no hard sell: WhatsApp only on days 0, 3, 7 and 14, and the day 1, 5 and 10 emails teach. Full copy: <a href="COPY.html">COPY.md</a>. Import files: <a href="email.csv">email.csv</a>, <a href="whatsapp.csv">whatsapp.csv</a>.</p>
+<h2>The Tracks (T = webinar start)</h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>A: Stayed to offer (25+ min)</th>
+<th>B: Early leaver (under 25 min)</th>
+<th>C: No-show (replay first)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>22A-0 (T+2h) Thanks, book the call</td>
+<td>22B-0 (T+2h) You left before the part that matters, recording first</td>
+<td>22C-0 (T+3h) The recording is up</td>
+</tr>
+<tr>
+<td>1</td>
+<td>22A-1 Teach: the leak closest to the money (email only, no booking link)</td>
+<td>22B-1 What came after you left (offer, fit)</td>
+<td>22C-1 Watch with one question in mind</td>
+</tr>
+<tr>
+<td>2</td>
+<td>22A-2 FintechCircle proof (email only)</td>
+<td>22B-2 Growth Idea best webinar, recording first</td>
+<td>22C-2 Growth Idea best webinar, recording first</td>
+</tr>
+<tr>
+<td>3</td>
+<td>22A-3 What happens on the call</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td>22B-3 What happens on the call</td>
+<td>22C-3 How we build it with you (offer)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>22A-4 Teach: build it in this order (email only, no booking link)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>22A-5 Growth Idea, 30 to 1,990</td>
+<td>22B-4 FintechCircle proof</td>
+<td>22C-4 FintechCircle proof</td>
+</tr>
+<tr>
+<td>10</td>
+<td>22A-6 Teach: the weekly 20-minute review (email only, no booking link)</td>
+<td>22B-5 Who it fits</td>
+<td>22C-5 Who it fits</td>
+</tr>
+<tr>
+<td>14</td>
+<td>22A-7 Last note about the call</td>
+<td>22B-6 Two weeks on</td>
+<td>22C-6 Two weeks on, recording first</td>
+</tr>
+<tr>
+<td>After</td>
+<td>Newsletter from day 15 (newsletter_opt_in only)</td>
+<td>Item 27 weeks 3 to 6, newsletter from day 42</td>
+<td>Item 27 weeks 3 to 6, newsletter from day 42</td>
+</tr>
+</tbody>
+</table>
+<p>Tracks B and C: each step is one email and one WhatsApp message, sent together. Track A: WhatsApp on 22A-0, 22A-3, 22A-5 and 22A-7 only. Day-level steps go at the webinar's clock time, moved into 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone) with the same rule as 15b (scheduler.py rule 6).</p>
+<h2>Timing Rules</h2>
+<ul>
+<li>Day 0 starts when attendance arrives, not at the session's end. WebinarJam data is imported from T+120 min (item 17 import_attendance). If nothing has arrived by T+180 min, everyone not marked attended goes to track C.</li>
+<li>WhatsApp only to <code>whatsapp_opt_in</code> true, and only 08:00 to 20:00 in the registrant's timezone (CRM_CONTRACT). This includes the day 0 messages 22A-0, 22B-0 and 22C-0: when attendance lands outside the window, the email goes and the WhatsApp is skipped. These are follow-ups about Tantra, so submit them as Marketing templates (15b reminders are Utility).</li>
+<li>Every email has the unsubscribe link and postal address; every WhatsApp ends "Reply STOP to opt out."</li>
+</ul>
+<h2>Exits (checked before every send)</h2>
+<table>
+<thead>
+<tr>
+<th>Event (CRM_CONTRACT.md)</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>booking.created</td>
+<td>Track stops. Booking sequences (item 18) take over</td>
+</tr>
+<tr>
+<td>contact.replied</td>
+<td>Track stops. A person answers</td>
+</tr>
+<tr>
+<td>contact.opted_out</td>
+<td>Track stops; Do Not Contact everywhere</td>
+</tr>
+<tr>
+<td>deal.won, deal.lost</td>
+<td>Track stops</td>
+</tr>
+<tr>
+<td>webinar.registered for a later date</td>
+<td>Track stops; 15b starts for the new date</td>
+</tr>
+</tbody>
+</table>
+<h2>Hand-Offs</h2>
+<ul>
+<li><strong>Track A, day 15:</strong> into the Beehiiv newsletter if <code>newsletter_opt_in</code> (beehiiv/BEEHIIV_SETUP.md).</li>
+<li><strong>Tracks B and C, day 15:</strong> into item 27 (weeks 3 to 6 of retargeting; ads run from day 0, see deliverables/27-retargeting/RETARGETING_PLAN.md). Newsletter on day 42, when retargeting ends, if <code>newsletter_opt_in</code>, so the two never stack.</li>
+</ul><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

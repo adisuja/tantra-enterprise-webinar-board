@@ -1,0 +1,27 @@
+variant,campaign_name,list_split,event_title,description,date,time,minutes,timezone,location,utm_content
+A,Enterprise webinar {{event_date}}: calendar (A),half 0 of every sender's slice,AI revenue generation teardown ({{webinar.duration_minutes}} min),"{{event_date_words}}, {{webinar.start_time_local}}. {{webinar.duration_minutes}} minutes, live online.
+
+For founders who want revenue that doesn't depend on referrals or on them selling every deal. You'll leave with the AI revenue system my team builds, stage by stage: who gets invited, who shows up, who books a sales call.
+
+If it's not relevant, just decline. No follow-up from me.
+
+Get your join link here: {{registration_link}}
+
+The session: {{webinar.title}}
+Your host: {{brand.host_name}} ({{brand.host_full_name}}), {{brand.host_title}}. 250+ brands, 21+ countries, 10+ years.
+
+Yes or Maybe keeps the time on your calendar. Your personal join link arrives when you register at the link above.",{{event_date}},{{webinar.start_time_local}},{{webinar.duration_minutes}},{{webinar.timezone}},{{registration_link}},cal_a
+B,Enterprise webinar {{event_date}}: calendar (B),half 1 of every sender's slice,Founder Pipeline Teardown: Where AI Fits,"Hi {{first_name}},
+
+{{event_date_words}}, {{webinar.start_time_local}}. {{webinar.duration_minutes}} minutes, live online.
+
+If your pipeline still runs on referrals and your own calendar, this hour is for you. I'll take a founder's funnel apart stage by stage and show where AI takes over the repetitive work.
+
+If it's not relevant, just decline. No follow-up from me.
+
+Get your join link here: {{registration_link}}
+
+The session: {{webinar.title}}
+Your host: {{brand.host_name}} ({{brand.host_full_name}}), {{brand.host_title}}. 250+ brands, 21+ countries, 10+ years.
+
+Yes or Maybe keeps the time on your calendar. Your personal join link arrives when you register at the link above.",{{event_date}},{{webinar.start_time_local}},{{webinar.duration_minutes}},{{webinar.timezone}},{{registration_link}},cal_b

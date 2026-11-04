@@ -1,0 +1,91 @@
+"profile","campaign_type","step","delay_days","action","subject","message","char_count"
+"adi","content_engagement","1","0","visit_profile","","","0"
+"adi","content_engagement","2","0","connection_request","","Hi {{firstName}}, you engaged with my post on {{custom.post_topic}}. I go much deeper on it in a live session I host every week. Glad to connect.","166"
+"adi","content_engagement","3","1","send_message","","Thanks for connecting, {{firstName}}.
+
+My post on {{custom.post_topic}} was one slice. Live, I walk through the whole revenue engine behind it: the funnel, the RevOps system that runs it and the AI that does the busywork.
+
+It runs every week, 60 minutes. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=adi","403"
+"adi","content_engagement","4","4","send_message","","{{firstName}}, one example I break down in the session.
+
+For FintechCircle, a London fintech network, outreach grew from 10,000 to 20,046 to 30,000 calendar invites across three episodes. Those three episodes booked 17 sales calls.
+
+I show how it was built, stage by stage: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=adi","392"
+"adi","content_engagement_1st","1","0","send_message","","Hi {{firstName}}, thanks for engaging with my post on {{custom.post_topic}}.
+
+I unpack the full system behind it live every week: funnel, RevOps, AI and the channels that feed it. 60 minutes.
+
+Want a seat? {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=adi","343"
+"adi","content_engagement_1st","2","4","send_message","","{{firstName}}, quick follow-up. If {{custom.post_topic}} is on your plate this quarter, the session shows the full build behind it: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=adi","269"
+"aquila","content_engagement","1","0","visit_profile","","","0"
+"aquila","content_engagement","2","0","connection_request","","{{firstName}}, noticed you on my post about {{custom.post_topic}}. The automations behind it are shown live in a weekly session. Let's connect.","164"
+"aquila","content_engagement","3","1","send_message","","Thanks for accepting, {{firstName}}.
+
+That post on {{custom.post_topic}} was a single automation. The weekly session shows the whole chain: invites, reminders, follow-ups and handoffs that run without someone remembering.
+
+Adi, our founder, hosts it. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=aquila","402"
+"aquila","content_engagement","4","4","send_message","","{{firstName}}, here's what that looks like at scale: for a UK coaching group we built calendar-invite outreach at 12,000 to 120,000 invites per webinar, plus the reminders and follow-up around it.
+
+The session shows the flow: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=aquila","347"
+"aquila","content_engagement_1st","1","0","send_message","","Hi {{firstName}}, noticed you on my post about {{custom.post_topic}}.
+
+Adi, our founder, runs a live session every week on the revenue engine, including the automations I build: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=aquila","318"
+"aquila","content_engagement_1st","2","4","send_message","","{{firstName}}, a last pointer: the session shows which parts of {{custom.post_topic}} to automate first. {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=aquila","245"
+"nelbin","content_engagement","1","0","visit_profile","","","0"
+"nelbin","content_engagement","2","0","connection_request","","Hi {{firstName}}, good to see you on my post about {{custom.post_topic}}. The process behind it is covered step by step in a weekly session. Glad to connect.","178"
+"nelbin","content_engagement","3","1","send_message","","Glad we're connected, {{firstName}}.
+
+My post on {{custom.post_topic}} covered one step. The weekly session covers the whole process: who owns each stage, what gets measured weekly and what the AI handles.
+
+Adi, our founder, hosts it. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=nelbin","386"
+"nelbin","content_engagement","4","4","send_message","","{{firstName}}, a process example from the session.
+
+In one logged experiment for a UK coaching group, a 100,000-invite calendar push aimed for 250 attendees and got 441. Logging it is what made it repeatable.
+
+The full checklist is here: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=nelbin","359"
+"nelbin","content_engagement_1st","1","0","send_message","","{{firstName}}, good to see you on my {{custom.post_topic}} post.
+
+Adi, our founder, runs a live session every week on building revenue as a repeatable process: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=nelbin","300"
+"nelbin","content_engagement_1st","2","4","send_message","","{{firstName}}, following up once. The session turns {{custom.post_topic}} into a weekly checklist you can run: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=nelbin","251"
+"bharath","content_engagement","1","0","visit_profile","","","0"
+"bharath","content_engagement","2","0","connection_request","","{{firstName}}, saw you on my post about {{custom.post_topic}}. The stack behind it gets a full walkthrough in a weekly live session. Happy to connect.","171"
+"bharath","content_engagement","3","1","send_message","","Good to be connected, {{firstName}}.
+
+The post on {{custom.post_topic}} showed one piece of the stack. The weekly session shows how it all connects: funnel, CRM, outreach and AI agents, with every stage measured.
+
+Adi, our founder, hosts it, and the stack I build is part of what he shows. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=bharath","442"
+"bharath","content_engagement","4","4","send_message","","{{firstName}}, a number for scale: across 11 webinars for a UK coaching group, outreach reached 765,105 people and 80 sales calls were booked.
+
+The wiring behind that is in the session: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=bharath","308"
+"bharath","content_engagement_1st","1","0","send_message","","{{firstName}}, saw you on my post about {{custom.post_topic}}.
+
+If you want the full stack behind it, Adi, our founder, walks through it live every week: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=bharath","295"
+"bharath","content_engagement_1st","2","4","send_message","","{{firstName}}, if you'd rather see the wiring behind {{custom.post_topic}} than read about it, this week's session is the place: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=bharath","270"
+"bhaskar","content_engagement","1","0","visit_profile","","","0"
+"bhaskar","content_engagement","2","0","connection_request","","Thanks for weighing in on my {{custom.post_topic}} post, {{firstName}}. Turning content into pipeline gets a full session every week. Would be glad to connect.","180"
+"bhaskar","content_engagement","3","1","send_message","","Appreciate the connect, {{firstName}}.
+
+That post on {{custom.post_topic}} was one piece of the system. The weekly session shows the whole path from content to booked call, with a number on every stage.
+
+Adi, our founder, hosts it. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=bhaskar","384"
+"bhaskar","content_engagement","4","4","send_message","","{{firstName}}, a single episode for a London fintech network went out as 38,138 calendar invites and drew 187 Yes and 221 Maybe RSVPs.
+
+The setup behind it is in the session: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=bhaskar","297"
+"bhaskar","content_engagement_1st","1","0","send_message","","Thanks for weighing in on my {{custom.post_topic}} post, {{firstName}}.
+
+Adi, our founder, runs a live session every week on the full path from content to booked call: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=bhaskar","309"
+"bhaskar","content_engagement_1st","2","4","send_message","","One more thought, {{firstName}}: if {{custom.post_topic}} matters to your pipeline this quarter, the session ties it to booked calls. {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=bhaskar","275"
+"ben","content_engagement","1","0","visit_profile","","","0"
+"ben","content_engagement","2","0","connection_request","","Hi {{firstName}}, appreciate you engaging with my {{custom.post_topic}} post. The build behind it is shown in a weekly live session. Glad to connect.","170"
+"ben","content_engagement","3","1","send_message","","Nice to connect, {{firstName}}.
+
+My {{custom.post_topic}} post was one part of the build. The weekly session covers the rest: pages, forms, tracking and the tests that decide what stays.
+
+Adi, our founder, hosts it. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=ben","364"
+"ben","content_engagement","4","4","send_message","","{{firstName}}, one test from the session: a long landing page was expected to bring 70 registrations and brought 96.
+
+We only knew because both pages were tracked. The setup is here: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=ben","301"
+"ben","content_engagement_1st","1","0","send_message","","{{firstName}}, appreciate you engaging with my post on {{custom.post_topic}}.
+
+Adi, our founder, runs a live session every week on the full revenue engine, including the build side I work on: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=ben","329"
+"ben","content_engagement_1st","2","4","send_message","","{{firstName}}, last one from me: the session shows how to test {{custom.post_topic}} with real numbers. {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=engagement&utm_campaign=enterprise-webinar&utm_content=ben","241"

@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Rules for every build agent on this project (read fully before writing anything)</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>Rules for every build agent on this project (read fully before writing anything)</span></div><h1>Rules for every build agent on this project (read fully before writing anything)</h1>
+<p>Project: /Users/adithyamurali/tantra-enterprise-webinar, the weekly webinar funnel that sells Tantra Enterprise ($9,999). Owner: Adi. He reviews everything; you build drafts, configs, importable files and code. Separate from ~/tantra-redesign: never write there (reading is fine).</p>
+<h2>Read first</h2>
+<ul>
+<li><code>deliverables/_shared/funnel-config.json</code>: every fact and every unknown (FILL_ values). Never hardcode a date, time, link, name or price that lives there. In copy, show unknowns as a merge field like <code>{{webinar.start_time_local}}</code> (sequences) or read the JSON (pages, code).</li>
+<li><code>deliverables/_shared/PROOF_PACK.md</code>: the ONLY proof you may use. No row, no claim.</li>
+<li><code>deliverables/_shared/CRM_CONTRACT.md</code>: the only data shape for any integration.</li>
+<li>Your item's brief in <code>tasks/tasks.json</code> and the context paths listed on it.</li>
+</ul>
+<h2>Hard rules (Adi's; breaking one fails the item)</h2>
+<ol start="0">
+<li>REFERENCE FIRST (Adi, 2026-11-05, the rule he had to repeat): mirror the reference Adi gave for your item (see REFERENCE_MAP.md): its structure, section order, layout, formatting and visual elements, as closely as possible. Only palette and fonts change to Tantra's tokens, and copy and proof are ours. Never design from usetantra.com's own pages. Write a mirror map (reference block, our block, what changes) before building, and verify with side-by-side screenshots of reference and build. Where the reference uses something we cannot honestly have (fake timers, client logos, invented stats, chat screenshots), keep the slot with the nearest honest equivalent or a marked FILL; never drop the structure silently. Rule 10 still applies: never copy competitor wording, names or numbers.</li>
+<li>No em dashes or en dashes anywhere (copy, code comments, file names, CSV cells). Use a full stop, comma, colon, parentheses or "to".</li>
+<li>No AI slop. Every line earns its place. Copy reads like Brian Dean on backlinko.com: "I" (Adi) and "you", open on a specific pain the reader recognises, short paragraphs, sharp specific headlines in Title Case, enterprise tone. Banned filler: leverage, unlock, seamless, game-changer, supercharge, "in today's fast-paced world", "end to end", "engineered system", delve, robust, elevate.</li>
+<li>Never invent a statistic, testimonial, client result, logo, bonus, guarantee, deadline or funnel element. If Adi's brief asks for a claim with no source ("400+ founders", "$100K to $300K a month"), write it as asked and put "Claim to verify" in your folder README.</li>
+<li>Never send, post, publish to a live account, sign in, create an account, enter a password or buy anything. Never change WebinarJam, Cal.com, Beehiiv, Vodex, Tantra campaigns, Google Workspace, LinkedIn, Facebook, X or Instagram.</li>
+<li>Never print, copy or commit keys, passwords, prospect lists or personal data. Keys live in ~/.config/tantra/keys/ only. Prospect CSVs stay outside the repo.</li>
+<li>Social sites are read only through Agent Reach (<code>li-harvest</code>, <code>curl https://r.jina.ai/&lt;url&gt;</code>); never fetch them directly.</li>
+<li>Never push, PR or merge on any Usetantra/* repo. Never write Slack or team messages.</li>
+<li>Tools for this funnel: WebinarJam (not Zoom), Cal.com (never Calendly), Beehiiv (post-webinar newsletter), Vodex (AI calls), Tantra (LinkedIn, cold email, calendar invites, WhatsApp and email nurture sending). WhatsApp replaces SMS everywhere.</li>
+<li>Images of people: Kie.ai AI avatars only (never Higgsfield, never real photos). Only Adi has an avatar library (~/tantra-content/content/brand/people/adi/avatars/). Current Tantra logo only (context/from-workshop-project/brand/assets/). Palette and type: context/from-workshop-project/brand/tokens.json (accent volt #6d4aff, ink #0b0d12, paper #f7f8fb; fonts Clash Display, Satoshi, Inter; font files in ~/tantra-content/content/brand/fonts/).</li>
+<li>Competitor (QS / Quantum Scaling) material in references/ is for structure only. Never copy its names, numbers, case studies or wording, and never name it in a deliverable.</li>
+<li>Write only inside your own deliverables folder(s). Never edit tasks/tasks.json, BUILD_STATE.md, BLOCKERS.md, board/ or another item's folder; the lead session owns those. Do not git commit; the lead commits.</li>
+</ol>
+<h2>How to work</h2>
+<ol>
+<li>Write <code>EVAL.md</code> in your folder first: 5 to 12 checkable points that define done.</li>
+<li>Reuse what exists before inventing (context/from-workshop-project/<item>/, file-map.md paths, real-outreach library in context/from-tantra-content/sources/library/).</li>
+<li>Build. Put a short <code>README.md</code> in your folder: what is here, how to use or import it, what Adi must fill, and any "Claim to verify".</li>
+<li>Verify: <code>python3 deliverables/_shared/scan.py deliverables/&lt;your-folder&gt;</code> must print 0 failures. Check every EVAL point and mark it.</li>
+<li>Return to the lead, in under 300 words: files built (paths), EVAL result, status you recommend ("Done" or "Waiting on Adi"), and a list of Adi-only steps, each as: item number, full URL, exact page, field and button, what to paste or click, and what happens after.</li>
+</ol><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

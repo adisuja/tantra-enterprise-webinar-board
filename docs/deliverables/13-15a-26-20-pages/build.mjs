@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+// Builds the static review site from funnel-config.json.
+// usage: node build.mjs [--config <path to funnel-config.json>] [--out <dir>] [--version <asset cache key>]
+// Default config: ../_shared/funnel-config.json. Default output: ./site
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { makeCtx, icsFile } from './src/lib.mjs';
+import * as registration from './src/pages/registration.mjs';
+import * as thankYou from './src/pages/thank-you.mjs';
+import * as watch from './src/pages/watch.mjs';
+import * as recording from './src/pages/recording.mjs';
+import * as dd from './src/pages/due-diligence.mjs';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const arg = (k, d) => (process.argv.includes(k) ? path.resolve(process.argv[process.argv.indexOf(k) + 1]) : d);
+const cfgPath = arg('--config', path.join(here, '..', '_shared', 'funnel-config.json'));
+const out = arg('--out', path.join(here, 'site'));
+const cfg = JSON.parse(fs.readFileSync(cfgPath, 'utf8'));
+// --version pins the ?v= asset cache key, so a rebuild can be diffed byte for byte against the last one.
+const version = process.argv.includes('--version') ? process.argv[process.argv.indexOf('--version') + 1] : Date.now().toString(36);
+
+fs.rmSync(out, { recursive: true, force: true });
+fs.mkdirSync(out, { recursive: true });
+fs.cpSync(path.join(here, 'src', 'assets'), path.join(out, 'assets'), { recursive: true });
+
+const pages = [registration, thankYou, watch, recording, ...dd.pages];
+let ics = null;
+for (const page of pages) {
+  const ctx = makeCtx(cfg, page.route);
+  ctx.version = version;
+  // The only values the browser needs. No keys, no personal data.
+  ctx.client = {
+    webinar_date: ctx.known('webinar.first_date') ? ctx.get('webinar.first_date') : null,
+    // Live, the form posts to the register Worker (item 17), never to the CRM directly.
+    register_worker_url: ctx.known('integrations.register_worker_url') ? ctx.get('integrations.register_worker_url') : null,
+    // LIVE mode only when both the Worker URL and the Turnstile site key are filled; otherwise the review stub.
+    live: ctx.known('integrations.register_worker_url') && ctx.known('integrations.turnstile_site_key'),
+    thank_you_path: `${ctx.rel}thank-you/`,
+    cal_namespace: ctx.known('booking.embed_namespace') ? ctx.get('booking.embed_namespace') : null,
+  };
+  ics = ics || icsFile(ctx);
+  const dir = path.join(out, page.route);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'index.html'), page.render(ctx));
+  console.log('built', page.route);
+}
+if (ics) fs.writeFileSync(path.join(out, 'assets', 'webinar.ics'), ics);
+fs.writeFileSync(path.join(out, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
+fs.writeFileSync(path.join(out, '.nojekyll'), '');
+fs.writeFileSync(path.join(out, '404.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page not found | Tantra</title><link rel="stylesheet" href="/tantra-enterprise-webinar-pages/assets/site.css"></head><body><main class="light"><div class="wrap center"><h1 class="caps">Page Not Found</h1><p>This page does not exist. <a href="/tantra-enterprise-webinar-pages/">Go to the registration page</a>.</p></div></main></body></html>\n`);
+console.log(`site written to ${out}${ics ? ' (with webinar.ics)' : ' (no .ics: date, time or time zone still FILL)'}`);

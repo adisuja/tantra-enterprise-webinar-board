@@ -1,0 +1,77 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>15b Pre-Webinar Nurture (WhatsApp, Email, Vodex)</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>15b Pre-Webinar Nurture (WhatsApp, Email, Vodex)</span></div><h1>15b Pre-Webinar Nurture (WhatsApp, Email, Vodex)</h1>
+<p>Every message a registrant gets from the moment they register until 10 minutes into the live session. The webinar is weekly, so everything is timed from webinar start, with rules for late registrants.</p>
+<h2>What Is Here</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SEQUENCE_MAP.html">SEQUENCE_MAP.md</a></td>
+<td>The timeline, who gets what, late-registrant and sending-hour rules, exits</td>
+</tr>
+<tr>
+<td><a href="COPY.html">COPY.md</a></td>
+<td>Every email and WhatsApp message in full, for reading</td>
+</tr>
+<tr>
+<td><a href="email.csv">email.csv</a>, <a href="whatsapp.csv">whatsapp.csv</a>, <a href="vodex.csv">vodex.csv</a></td>
+<td>Import files, one per channel: step_id, trigger, offset_minutes, channel, template_name, subject, body, variables</td>
+</tr>
+<tr>
+<td><a href="emails/index.html">emails/index.html</a></td>
+<td>The 13 HTML emails with a gallery (no confirmation email: WebinarJam sends it) (brand palette, current Tantra mark)</td>
+</tr>
+<tr>
+<td><a href="vodex/VODEX_CALL_SCRIPT.html">vodex/VODEX_CALL_SCRIPT.md</a></td>
+<td>Call script: opening, purpose, confirm, can't make it, calendar, voicemail; triggers and outcomes</td>
+</tr>
+<tr>
+<td><a href="vodex/agent-settings.json">vodex/agent-settings.json</a></td>
+<td>The two Vodex agent settings (greetingMessage, context, rules)</td>
+</tr>
+<tr>
+<td><a href="vodex/trigger-call.example.json">vodex/trigger-call.example.json</a></td>
+<td>Shape of the call request (invented person)</td>
+</tr>
+<tr>
+<td><a href="build.py">build.py</a></td>
+<td>The one source of copy. Edit it, run <code>python3 build.py</code>, and every CSV, email and COPY.md is rebuilt and checked</td>
+</tr>
+<tr>
+<td><a href="scheduler.py">scheduler.py</a></td>
+<td>The timing rules in code. <code>python3 scheduler.py --selftest</code> runs 10 registration cases plus the WhatsApp window checks</td>
+</tr>
+<tr>
+<td><a href="nurture_lib.py">nurture_lib.py</a></td>
+<td>Shared builder for 15b, 22 and 27: config tokens, WhatsApp template checks, HTML emails</td>
+</tr>
+</tbody>
+</table>
+<h2>How to Use It</h2>
+<ul>
+<li><strong>Facts from funnel-config.json</strong> (host name, call length, session length, offer) are written in at build time. Change the config, rerun <code>build.py</code>.</li>
+<li><strong>Merge fields</strong> stay as <code>{{name}}</code> in the CSVs and emails: first_name, webinar_title, webinar_date_local, webinar_time_local, webinar_when_local, join_url, calendar_url, watch_url, video_*_url, booking_url, unsubscribe_url, company_address. Where each comes from: <code>VARIABLES</code> in nurture_lib.py. <code>{{join_url}}</code> is each registrant's personal WebinarJam link, merged from the contact (the register Worker, item 17, posts it on webinar.registered); the generic room link in config is only the fallback.</li>
+<li><strong>WhatsApp:</strong> bodies use positional variables (<code>{{1}}</code>, <code>{{2}}</code>) and the <code>variables</code> column says what each number is, so they can be submitted as WhatsApp Business templates (language English; category in the trigger column). Tantra sends from the number connected in Tantra; whether Tantra needs pre-approved templates is unverified, so the wording follows template rules either way.</li>
+<li><strong>Tantra:</strong> one campaign per timed message (email step plus WhatsApp step at wait 0), keyed by <code>template_name</code>; the runner adds each registrant at the time scheduler.py gives.</li>
+</ul>
+<h2>What Adi Must Fill (funnel-config.json)</h2>
+<p>webinar.title, day_of_week, start_time_local, timezone, first_date; webinar.join_url (the generic room link, a fallback only); domains.funnel_domain; media.indoctrination_videos (4); booking.round_robin_url; brand.legal_footer_address; integrations.vodex_agent_id and vodex_caller_number; the sending mailbox (not on growthclub.org, usetantra.com or free Gmail).</p>
+<h2>Notes for the Lead</h2>
+<ul>
+<li><strong>WhatsApp window:</strong> every WhatsApp step, live-day reminders included, goes only 08:00 to 20:00 in the registrant's timezone; outside it only the email goes. For a 21:30 IST session, Indian registrants get no WhatsApp from the 1-hour reminder on. Waiving this for live-day steps is Adi's decision (BLOCKERS.md).</li>
+<li><strong>WhatsApp categories:</strong> Utility for reminders; Marketing for 15B-D3 and 15B-X1 (the trigger column of whatsapp.csv says which). 15B-R0 and 15B-X2 are kept to 3 and 2 variables.</li>
+<li><strong>15B-L0 and 15B-L10</strong> use WebinarJam's live attendance to skip people already in the room (item 17). Without it, L10 goes to everyone and its copy says "Already in? Ignore this."</li>
+<li><strong>15B-C1</strong> targets "opened no 15b email": needs open tracking in Tantra; if Tantra has no opens, use "clicked no link and no reply".</li>
+<li><strong>15B-V4</strong> mentions the Bonuses video but names no bonus: offer.webinar_bonus_stack is not approved yet.</li>
+</ul>
+<p>No "Claim to verify" in this folder: no unsourced claim is printed. Proof used: Growth Idea best webinar (PROOF_PACK section 3).</p><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

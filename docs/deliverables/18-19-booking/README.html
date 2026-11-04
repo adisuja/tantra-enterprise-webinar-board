@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Items 18 and 19: Appointment Setting and the Cal.com Round-Robin Link</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>Items 18 and 19: Appointment Setting and the Cal.com Round-Robin Link</span></div><h1>Items 18 and 19: Appointment Setting and the Cal.com Round-Robin Link</h1>
+<p>Every booking is confirmed by Conor or Scott inside 5 minutes, and one Cal.com link spreads bookings evenly between them. After the written proposal, the same closer runs Call 2, the Proposal Review, where the decision is made (Adi, 2026-11-05).</p>
+<h2>What Is Here</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+<th>Who uses it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="18-speed-to-lead.html">18-speed-to-lead.md</a></td>
+<td>What fires on a booking, minutes 0 to 5, the call-confirmation script, the pre-call research checklist, call-day outcome logging, the 9-stage pipeline for this offer, Call 2 step by step (section 7), the decisions for Adi</td>
+<td>Conor, Scott, the setter</td>
+</tr>
+<tr>
+<td><a href="18-sequences-A-to-F.html">18-sequences-A-to-F.md</a></td>
+<td>Every message in sequences A to F, the Call 2 sequences (D: book the review, R: Call 2 reminders, RN: Call 2 no-show, RC: Call 2 cancelled, RS: after Call 2), Nurture, Won and rep tasks, with timings, channels and stop rules. Generated from <code>sequences.json</code></td>
+<td>Review; the CRM runner sends this exact text</td>
+</tr>
+<tr>
+<td><a href="sequences.json">sequences.json</a></td>
+<td>The single source of that copy. Edit here, then run <code>python3 deliverables/23-crm/build.py</code></td>
+<td>Whoever edits copy</td>
+</tr>
+<tr>
+<td><a href="18-discovery-call-script.html">18-discovery-call-script.md</a></td>
+<td>Call 1: the 30-minute call, in the order the booking description promises, with objections and how to log each outcome</td>
+<td>Conor, Scott</td>
+</tr>
+<tr>
+<td><a href="18-call-2-proposal-review-script.html">18-call-2-proposal-review-script.md</a></td>
+<td>Call 2: prep, walking through the proposal, objections from the item 25 FAQ, asking for the decision, sending the agreement and payment link, logging</td>
+<td>Conor, Scott</td>
+</tr>
+<tr>
+<td><a href="19-calcom-round-robin.html">19-calcom-round-robin.md</a></td>
+<td>Team, event type, limits, round-robin rules, the corrected description word for word, the five qualifying questions, the webhook and its field mapping, Adi's steps; section 8: the Call 2 Proposal Review event type per closer and its webhook marker</td>
+<td>Adi, then Conor and Scott</td>
+</tr>
+<tr>
+<td><a href="RECONCILE.html">RECONCILE.md</a></td>
+<td>Done: every Call 2 point the sales journey raised, and where it is built</td>
+<td>Review</td>
+</tr>
+</tbody>
+</table>
+<p>The CRM side (doPost, runner, sheet) is item 23: <code>deliverables/23-crm/</code>.</p>
+<h2>Sales Journey Page</h2>
+<p><a href="sales-journey/index.html">sales-journey/index.html</a>: "Sales Journey: first touch to signed client", one self-contained page mirroring the reference Adi gave (<code>references/user-images/qs-sales-journey-first-touch-to-signed.webp</code>): the journey line with drop-offs, time to close, stage by stage, KPI sheet, questions to ask (ticks save in the browser) and a funnel calculator. Call 2 is a normal stage (08) with its KPIs, Call 2 show rate and close rate (targets FILL). Edit <code>sales-journey/src.html</code>, then <code>python3 deliverables/18-19-booking/sales-journey/build.py</code> (fills funnel-config values, embeds fonts). Mirror map and checks: <code>sales-journey/EVAL.md</code>; screenshots beside the reference: <code>sales-journey/compare/</code>.</p>
+<h2>What Adi Must Fill</h2>
+<ul>
+<li>Conor's and Scott's full names, work emails, Cal.com usernames and WhatsApp numbers (funnel-config.json <code>booking.closers</code>, and the Lists tab of the CRM sheet).</li>
+<li>The round-robin URL once the event type exists (<code>booking.round_robin_url</code>, Lists <code>booking_url</code>).</li>
+<li>The onboarding booking link sent on Closed Won (Lists <code>onboarding_link</code>).</li>
+<li>Decisions in 18-speed-to-lead.md, section 9: no-show rebooking (Seq. C switch, default OFF, also used for a missed Call 2), who the setter is, proposal timing, send mode, the Not ready end date, the Call 2 booking window (<code>booking.call2.book_within_days</code>).</li>
+<li>Conor's and Scott's Proposal Review links once each has created the event type (19, section 8): funnel-config.json <code>booking.call2.conor_url</code> and <code>scott_url</code>, and the CRM Lists tab column <code>closer_call2_url</code>. Until then the proposal email and every Call 2 message wait as <code>blocked</code>.</li>
+</ul>
+<h2>Call 1 Description: One Approved Change</h2>
+<p>The Call 1 description in 19-calcom-round-robin.md, section 4, is the T-072 text word for word except one addition <strong>approved by Adi on 2026-11-05</strong> for Call 2, at the end of the first sentence of its last paragraph: "If it's a fit, you'll receive a written Enterprise proposal within one business day, and we'll book a short call to walk you through it." Paste the new text into the live event type when you create it.</p>
+<h2>Proof Used</h2>
+<p>Only PROOF_PACK.md measured numbers: Growth Idea (11 webinars, 6,517 registered, 1,384 live, 80 sales calls, 4 clients won, May 2025 to Feb 2026) in Seq. D3 and both call scripts; FintechCircle (outreach grew from 10,000 reached to 20,046 and then 30,000 calendar invites across three episodes, 17 calls, March to April 2026) in Seq. E3 and the call script. No pipeline figures, testimonials, guarantees, bonuses or deadlines. No claim to verify: nothing here prints "400+ founders" or "$100K to $300K".</p><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

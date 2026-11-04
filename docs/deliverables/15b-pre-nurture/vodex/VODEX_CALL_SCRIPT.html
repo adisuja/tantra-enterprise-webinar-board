@@ -1,0 +1,170 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Vodex AI Call Script: Pre-Webinar Reminder Calls</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../../index.html">Task board</a><a href="../../../index.html">All documents</a><span>Vodex AI Call Script: Pre-Webinar Reminder Calls</span></div><h1>Vodex AI Call Script: Pre-Webinar Reminder Calls</h1>
+<p>Two calls, one agent. The agent says it is automated in its first sentence, keeps every call under 60 seconds, never sells, never quotes a price and never asks for payment or personal details. <code>{{...}}</code> are filled per registrant from the call list; the agent setting is in <a href="agent-settings.json">agent-settings.json</a>.</p>
+<h2>Who Gets Called (Triggers)</h2>
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>When</th>
+<th>Who</th>
+<th>Never</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A: Day before</strong> (15B-C1)</td>
+<td>Webinar start minus 22 hours, moved into 08:00 to 20:00 in the registrant's timezone (scheduler.py rule 7)</td>
+<td><code>call_opt_in</code> true, valid phone, has opened none of the 15b emails and has not replied on WhatsApp, track still <code>pre</code> (no CANT)</td>
+<td>Outside 08:00 to 20:00 local. More than one attempt. Anyone tagged Do Not Contact</td>
+</tr>
+<tr>
+<td><strong>B: High intent, 15 minutes before</strong> (15B-C2)</td>
+<td>Webinar start minus 15 minutes</td>
+<td><code>call_opt_in</code> true, valid phone, answered $10,000 or more to the registration question on investment in the next 12 months (<code>invest_12m</code>), track still <code>pre</code> (no CANT, no <code>cant_attend</code> outcome)</td>
+<td>Outside 08:00 to 20:00 local (skipped, not moved). More than one attempt</td>
+</tr>
+</tbody>
+</table>
+<p>A registrant gets at most these two calls per webinar. Phones go to Vodex as <code>+</code> and digits. A missing first name is sent as <code>there</code>.</p>
+<h2>Script A: Day Before</h2>
+<p><strong>1. Opening (automated, says who and why)</strong></p>
+<blockquote>
+<p>Hi, is this {{first_name}}? This is Tantra's automated assistant, calling for Adi about the live session you registered for. You can say stop at any time.</p>
+</blockquote>
+<p>If the person says it's a wrong number or they never registered: go to <strong>Wrong person</strong>.</p>
+<p><strong>2. Purpose</strong></p>
+<blockquote>
+<p>It starts tomorrow at {{webinar_time_local}}. I'm just checking you can still make it. Can you?</p>
+</blockquote>
+<p><strong>3. Confirm attendance</strong>
+- <strong>Yes:</strong></p>
+<blockquote>
+<p>Great. Your join link is in your email and on WhatsApp. Would you like me to send you a calendar link so it's blocked out?
+  - Yes: outcome <code>add_to_calendar</code> (sends 15B-X2 on WhatsApp and email).
+    &gt; Done, it's on its way. See you tomorrow.
+  - No: outcome <code>confirmed</code>.
+    &gt; No problem. See you tomorrow.
+- <strong>Not sure:</strong>
+That's fine. The link is in your email and on WhatsApp. If tomorrow stops working, reply CANT on WhatsApp and Adi will send you the recording instead. And if you'd rather not get these calls, say stop at any time, or reply STOP to any of Adi's emails.</p>
+</blockquote>
+<p>Outcome <code>unsure</code>.</p>
+<p><strong>4. Handle "can't make it"</strong></p>
+<blockquote>
+<p>No problem at all, thanks for telling me. Adi will send you the recording after the session. If you'd rather talk to his team sooner, I can send you a link to book a 30-minute call. Would that help?
+- Yes: outcome <code>cant_make_it_wants_call</code> (sends 15B-X1, which carries the booking link).
+- No: outcome <code>cant_make_it</code> (sends 15B-X1 too; the recording follows from item 22).
+Thanks, {{first_name}}. Have a good day.</p>
+</blockquote>
+<p><strong>5. Add to calendar (asked any time)</strong></p>
+<blockquote>
+<p>Sure. I'll send a calendar link to your WhatsApp and email right now. One tap adds it.</p>
+</blockquote>
+<p>Outcome <code>add_to_calendar</code>.</p>
+<p><strong>6. Questions the agent can't answer</strong> (the content, the price, the offer, anything else)</p>
+<blockquote>
+<p>Good question. Adi covers that live, and you can ask him in the Q&amp;A. If it can't wait, reply on WhatsApp and the team will get back to you.</p>
+</blockquote>
+<p><strong>7. Stop calling / not interested</strong></p>
+<blockquote>
+<p>Understood. I'll make sure you don't get any more calls. Sorry to bother you.</p>
+</blockquote>
+<p>Outcome <code>opted_out</code> (posts <code>contact.opted_out</code> with channel <code>call</code>).</p>
+<p><strong>8. Wrong person</strong></p>
+<blockquote>
+<p>Sorry about that. I'll remove this number now. Have a good day.</p>
+</blockquote>
+<p>Outcome <code>wrong_number</code> (remove the phone, post <code>contact.opted_out</code> with channel <code>call</code>).</p>
+<p><strong>Voicemail A</strong></p>
+<blockquote>
+<p>Hi {{first_name}}, this is Tantra's automated assistant calling for Adi. Just a reminder that {{webinar_title}} starts tomorrow at {{webinar_time_local}}. Your join link is in your email and on WhatsApp. To stop these calls, reply STOP to any of Adi's emails or WhatsApp messages. Thanks.</p>
+</blockquote>
+<p>Outcome <code>voicemail</code>.</p>
+<h2>Script B: 15 Minutes Before (High Intent)</h2>
+<p><strong>1. Opening</strong></p>
+<blockquote>
+<p>Hi {{first_name}}, this is Tantra's automated assistant calling for Adi. The live session starts in 15 minutes and the room is already open. You can say stop at any time.</p>
+</blockquote>
+<p><strong>2. Purpose and confirm</strong></p>
+<blockquote>
+<p>Can you make it?
+- <strong>Yes:</strong>
+Great. I'll send the join link to your WhatsApp right now so it's one tap away.</p>
+</blockquote>
+<p>Outcome <code>joining</code> (resends 15B-M15 on WhatsApp).
+- <strong>Running late:</strong></p>
+<blockquote>
+<p>No problem. Come in when you can. The link is on WhatsApp now.</p>
+</blockquote>
+<p>Outcome <code>joining_late</code> (resends 15B-M15).
+- <strong>Can't make it:</strong></p>
+<blockquote>
+<p>No problem. Adi will send you the recording. Would a 30-minute call with his team be useful instead? I can send the link.</p>
+</blockquote>
+<p>Outcome <code>cant_make_it_wants_call</code> or <code>cant_make_it</code> (sends 15B-X1).</p>
+<p>Stop calling, wrong person and questions: same lines as Script A, steps 6 to 8.</p>
+<p><strong>Voicemail B</strong></p>
+<blockquote>
+<p>Hi {{first_name}}, this is Tantra's automated assistant calling for Adi. The live session starts in 15 minutes and the room is open. Your join link is in your email and on WhatsApp. To stop these calls, reply STOP to any of Adi's emails or WhatsApp messages.</p>
+</blockquote>
+<h2>Outcomes and What Each One Does</h2>
+<p>The agent's working outcome (left) maps to the contract's <code>sequence.sent</code> <code>outcome</code> values (answered, voicemail, no_answer, confirmed, cant_attend).</p>
+<table>
+<thead>
+<tr>
+<th>Agent outcome</th>
+<th>Contract <code>outcome</code></th>
+<th>Action</th>
+<th>CRM event (CRM_CONTRACT.md)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>confirmed, joining, joining_late</td>
+<td>confirmed</td>
+<td>joining and joining_late resend 15B-M15</td>
+<td><code>sequence.sent</code> (<code>sequence</code> 15b, <code>step</code> 15B-C1 or 15B-C2, <code>channel</code> call, <code>outcome</code>)</td>
+</tr>
+<tr>
+<td>add_to_calendar</td>
+<td>confirmed</td>
+<td>send 15B-X2</td>
+<td>same</td>
+</tr>
+<tr>
+<td>unsure</td>
+<td>answered</td>
+<td>none</td>
+<td>same</td>
+</tr>
+<tr>
+<td>voicemail</td>
+<td>voicemail</td>
+<td>none</td>
+<td>same</td>
+</tr>
+<tr>
+<td>no_answer</td>
+<td>no_answer</td>
+<td>none</td>
+<td>same</td>
+</tr>
+<tr>
+<td>cant_make_it, cant_make_it_wants_call</td>
+<td>cant_attend</td>
+<td>track set to replay: stop 15B-D1 to 15B-L10 and calls, send 15B-X1</td>
+<td>same</td>
+</tr>
+<tr>
+<td>opted_out, wrong_number</td>
+<td>answered</td>
+<td>Do Not Contact</td>
+<td><code>sequence.sent</code>, then <code>contact.opted_out</code> with <code>channel</code> call</td>
+</tr>
+</tbody>
+</table><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

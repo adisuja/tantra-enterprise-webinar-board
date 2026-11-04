@@ -1,0 +1,127 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>25: Sales Call Collateral</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>25: Sales Call Collateral</span></div><h1>25: Sales Call Collateral</h1>
+<p>Four pieces for Conor and Scott to use on and after the Enterprise Evaluation Call. Approved proof only (PROOF_PACK.md sections 1, 3 and 6).</p>
+<h2>What Is Here</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>case-study-deck.pdf</code> (+ <code>.html</code>)</td>
+<td>11 slides, 16:9: the problem, how it works, Growth Idea (case study card, slides 4 and 5), FintechCircle (case study card, slides 6 and 7), what both share, the offer, the first 3 months, next step</td>
+<td>Screen-share on the call; send after</td>
+</tr>
+<tr>
+<td><code>enterprise-one-pager-a4.pdf</code>, <code>-letter.pdf</code> (+ <code>.html</code>)</td>
+<td>One page: pain, six stages, the two case study cards (compact), price and includes, booking</td>
+<td>Send before or after the call</td>
+</tr>
+<tr>
+<td><code>scope-and-pricing-a4.pdf</code>, <code>-letter.pdf</code> (+ <code>.html</code>)</td>
+<td>In and out of scope, the six stages, timeline, who does what, price and terms</td>
+<td>Send when the client asks "what exactly do we get"</td>
+</tr>
+<tr>
+<td><code>objections-faq-a4.pdf</code>, <code>-letter.pdf</code> (+ <code>.html</code>)</td>
+<td>13 objections with talk tracks, "never say" lines, the five call rules and the proof card. INTERNAL</td>
+<td>Closers only, never send to a client</td>
+</tr>
+<tr>
+<td><code>src/</code></td>
+<td>Source HTML with <code>{{funnel-config}}</code> tokens</td>
+<td>Edit here, then rebuild</td>
+</tr>
+<tr>
+<td><code>build.py</code></td>
+<td>Fills the tokens from <code>deliverables/_shared/funnel-config.json</code>, renders every PDF with headless Chromium, and fails a one-page sheet whose content overflows</td>
+<td><code>python3 deliverables/25-sales-collateral/build.py</code></td>
+</tr>
+<tr>
+<td><code>compare/</code></td>
+<td>Side by side: the reference case study card (left) and our deck slides and one-pager (right)</td>
+<td>Review only</td>
+</tr>
+<tr>
+<td><code>assets/</code></td>
+<td>Fonts, current Tantra mark and wordmark, shared CSS (including the case study card, <code>.cs</code>)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Case Study Card (Rule 0, Rebuilt 2026-11-05)</h2>
+<p>Each case study mirrors the funnel's case study card reference (<code>references/qs-funnel/qs-thank-you.png</code>, crops <code>.work/qs-crops/qs-thank-you-01.jpg</code> and <code>-02.jpg</code>), one case per slide pair:</p>
+<table>
+<thead>
+<tr>
+<th>Reference block</th>
+<th>Ours</th>
+<th>What changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gold header bar and frame with the company name</td>
+<td>Volt-deep (#4b2fd6) bar and frame, Clash Display</td>
+<td>Palette, font</td>
+</tr>
+<tr>
+<td>Left column: Company Profile, Company Size, Challenge</td>
+<td>Company Profile and Challenge from PROOF_PACK descriptors</td>
+<td>Company Size omitted: unknown for both clients</td>
+</tr>
+<tr>
+<td>Right column: Results, 3 gold pills</td>
+<td>Results, 3 lilac pills with ink text, measured facts only</td>
+<td>Palette, our data</td>
+</tr>
+<tr>
+<td>Grey KPI strip, 3 KPIs with from and to</td>
+<td>Slate strip, 3 KPIs: first to best webinar (Growth Idea), episode 1 to episode 3 (FintechCircle)</td>
+<td>Our data; the period is printed under the strip</td>
+</tr>
+<tr>
+<td>Case Study video</td>
+<td>Same slot on the second slide, marked FILL for item 28</td>
+<td>No video yet</td>
+</tr>
+<tr>
+<td>Pull quote</td>
+<td>Omitted</td>
+<td>No quote exists for either client</td>
+</tr>
+<tr>
+<td>LinkedIn button with the contact's name</td>
+<td>Same button with the contact's first name; link marked FILL for item 28</td>
+<td>No link yet</td>
+</tr>
+</tbody>
+</table>
+<p>The one-pager carries the same two cards at a smaller size, with the video and LinkedIn slots as FILL tags. Slides 2, 3 and 8 to 11 are unchanged. The first-vs-best table, the experiment-log bars and the episode bars from the old deck are gone: the card has no slot for them, and the KPI strip and pills carry the headline numbers.</p>
+<h2>Call 2 (Adi, 2026-11-05)</h2>
+<p>The one-pager's booking band, the scope sheet's price strip and the deck's last slide now say what follows the written proposal: a 30-minute Proposal Review with the same closer, where the decision is made (<code>booking.call2</code> in funnel-config.json). The FAQ is for both calls, and rule five says the decision is made on Call 2. The Call 2 script (<code>deliverables/18-19-booking/18-call-2-proposal-review-script.md</code>) points every objection to its card here. All PDFs rebuilt and checked: one page each for the one-pager and scope sheet, 2 pages for the FAQ, 11 slides.</p>
+<h2>What Adi Must Fill or Confirm</h2>
+<ol start="0">
+<li>
+<p>Item 28: the case study video and the LinkedIn profile link for Shweta and Susanne (deck slides 5 and 7, one-pager cards). Each shows an amber FILL until set.</p>
+</li>
+<li>
+<p><code>booking.round_robin_url</code> in funnel-config.json. Until set, the deck's last slide and the one-pager show <code>{{booking.round_robin_url}}</code> in an amber box. Rebuild after filling it.</p>
+</li>
+<li>Not included list (scope sheet and FAQ): paid ad spend, third-party tools and data, taking sales calls, hiring the client's team, no guarantee. No written source yet.</li>
+<li>FAQ lines marked "Adi to confirm": the plan and price after year 1, data export if a client leaves, hours a week and coaching call cadence, standard payment terms, whether a reference call is ever offered.</li>
+<li>The 3-month timeline (deck slide 12, scope sheet): drafted from the offer, same as the proposal template.</li>
+<li>Modelled pipeline figures (Growth Idea about $96K, FintechCircle about $34K) are left out. Add them only if Adi approves, with the words "pipeline modelled".</li>
+</ol>
+<h2>Proof Used (all MEASURED, from the client trackers via PROOF_PACK.md)</h2>
+<p>Growth Idea: 4 clients won, 47 MQLs, 80 sales calls, 1,384 live, 11 webinars; first vs best webinar (reached 12,898 to 99,859, registered 30 to 1,990, live 7 to 321, registration rate 0.23% to 2.0%). FintechCircle: 17 calls in episodes 1 to 3; 175 programme applications; outreach 10,000 reached to 38,138 invites; episode 1 to 3 (outreach 10,000 to 30,000, live 59 to 89, calls 1 to 7). The FAQ proof card still lists 124 approved (marked as a review decision, not a sale). Own-marketing lines: 250+ brands, 21+ countries, 47+ industries, 10+ years. No testimonials, no client logos, no photos.</p>
+<p>No "Claim to verify" items: the 400+ founders and $100K to $300K lines are not used here.</p><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

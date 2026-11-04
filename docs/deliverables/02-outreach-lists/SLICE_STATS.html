@@ -1,0 +1,319 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Slice stats (count only, written by slice_enterprise_lists.py)</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>Slice stats (count only, written by slice_enterprise_lists.py)</span></div><h1>Slice stats (count only, written by slice_enterprise_lists.py)</h1>
+<p>No email, name or recipient domain appears here. The files themselves are in <code>~/tantra-enterprise-lists/</code>.</p>
+<h2>From master to usable</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read from the master CSV</td>
+<td>2,752,479</td>
+</tr>
+<tr>
+<td>Dropped: junk mailbox</td>
+<td>47</td>
+</tr>
+<tr>
+<td>Dropped: role mailbox (info@, sales@ ...)</td>
+<td>2,931</td>
+</tr>
+<tr>
+<td>Dropped: declined a past invite (any <code>declined_series</code>)</td>
+<td>154,792</td>
+</tr>
+<tr>
+<td>Excluded: education, government or military domain</td>
+<td>115,161</td>
+</tr>
+<tr>
+<td>Warm (past Yes/Maybe or registered no-show, never declined)</td>
+<td>20,776</td>
+</tr>
+<tr>
+<td>of which held for the EU/UK review</td>
+<td>1,849</td>
+</tr>
+<tr>
+<td>of which on the warm list</td>
+<td>18,927</td>
+</tr>
+<tr>
+<td>Cold held for the EU/UK review (country domains)</td>
+<td>391,906</td>
+</tr>
+<tr>
+<td>Cold dropped: personal mailbox</td>
+<td>29,403</td>
+</tr>
+<tr>
+<td><strong>Cold usable</strong></td>
+<td><strong>2,037,463</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Cold usable by tier: A 478,607, B 1,395,291, C 163,565.</p>
+<p>Main list: <strong>1,000,000</strong> rows in 10 weekly slices. Gap to 1,000,000: <strong>0</strong>.</p>
+<h2>Main slices (S01 to S10, 25,000 rows per sender pool)</h2>
+<table>
+<thead>
+<tr>
+<th>Slice</th>
+<th>Starts</th>
+<th>Rows</th>
+<th>Tier A</th>
+<th>Tier B</th>
+<th>Tier C</th>
+<th>Name high</th>
+<th>Name medium</th>
+<th>Name none</th>
+<th>Has segment</th>
+<th>Recipient domains</th>
+<th>Max rows one domain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S01</td>
+<td>2027-02-08</td>
+<td>100,000</td>
+<td>100,000</td>
+<td>0</td>
+<td>0</td>
+<td>100,000</td>
+<td>0</td>
+<td>0</td>
+<td>62,492</td>
+<td>76,143</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S02</td>
+<td>2027-02-15</td>
+<td>100,000</td>
+<td>100,000</td>
+<td>0</td>
+<td>0</td>
+<td>100,000</td>
+<td>0</td>
+<td>0</td>
+<td>91,606</td>
+<td>62,258</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S03</td>
+<td>2027-02-22</td>
+<td>100,000</td>
+<td>100,000</td>
+<td>0</td>
+<td>0</td>
+<td>30,217</td>
+<td>4,887</td>
+<td>64,896</td>
+<td>87,325</td>
+<td>62,227</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S04</td>
+<td>2027-03-01</td>
+<td>100,000</td>
+<td>63,946</td>
+<td>36,054</td>
+<td>0</td>
+<td>49,093</td>
+<td>745</td>
+<td>50,162</td>
+<td>62,292</td>
+<td>64,940</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S05</td>
+<td>2027-03-08</td>
+<td>100,000</td>
+<td>26,382</td>
+<td>73,618</td>
+<td>0</td>
+<td>81,644</td>
+<td>497</td>
+<td>17,859</td>
+<td>25,488</td>
+<td>73,407</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S06</td>
+<td>2027-03-15</td>
+<td>100,000</td>
+<td>16,702</td>
+<td>83,298</td>
+<td>0</td>
+<td>88,682</td>
+<td>460</td>
+<td>10,858</td>
+<td>16,091</td>
+<td>81,257</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S07</td>
+<td>2027-03-22</td>
+<td>100,000</td>
+<td>11,808</td>
+<td>88,192</td>
+<td>0</td>
+<td>91,926</td>
+<td>393</td>
+<td>7,681</td>
+<td>11,363</td>
+<td>85,985</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S08</td>
+<td>2027-03-29</td>
+<td>100,000</td>
+<td>8,916</td>
+<td>91,084</td>
+<td>0</td>
+<td>93,823</td>
+<td>324</td>
+<td>5,853</td>
+<td>13,291</td>
+<td>80,341</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S09</td>
+<td>2027-04-05</td>
+<td>100,000</td>
+<td>6,842</td>
+<td>93,158</td>
+<td>0</td>
+<td>95,235</td>
+<td>241</td>
+<td>4,524</td>
+<td>33,871</td>
+<td>75,053</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>2027-04-12</td>
+<td>100,000</td>
+<td>5,343</td>
+<td>94,657</td>
+<td>0</td>
+<td>96,294</td>
+<td>215</td>
+<td>3,491</td>
+<td>43,042</td>
+<td>78,290</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h2>Ramp weeks (R01 to R10, before full volume)</h2>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Starts</th>
+<th>Warm rows</th>
+<th>Cold rows</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R01</td>
+<td>2026-11-30</td>
+<td>16,737</td>
+<td>5,263</td>
+<td>22,000</td>
+</tr>
+<tr>
+<td>R02</td>
+<td>2026-12-07</td>
+<td>810</td>
+<td>21,190</td>
+<td>22,000</td>
+</tr>
+<tr>
+<td>R03</td>
+<td>2026-12-14</td>
+<td>824</td>
+<td>21,176</td>
+<td>22,000</td>
+</tr>
+<tr>
+<td>R04</td>
+<td>2026-12-21</td>
+<td>556</td>
+<td>17,044</td>
+<td>17,600</td>
+</tr>
+<tr>
+<td>R05</td>
+<td>2026-12-28</td>
+<td>0</td>
+<td>17,600</td>
+<td>17,600</td>
+</tr>
+<tr>
+<td>R06</td>
+<td>2027-01-04</td>
+<td>0</td>
+<td>22,000</td>
+<td>22,000</td>
+</tr>
+<tr>
+<td>R07</td>
+<td>2027-01-11</td>
+<td>0</td>
+<td>55,000</td>
+<td>55,000</td>
+</tr>
+<tr>
+<td>R08</td>
+<td>2027-01-18</td>
+<td>0</td>
+<td>55,000</td>
+<td>55,000</td>
+</tr>
+<tr>
+<td>R09</td>
+<td>2027-01-25</td>
+<td>0</td>
+<td>55,000</td>
+<td>55,000</td>
+</tr>
+<tr>
+<td>R10</td>
+<td>2027-02-01</td>
+<td>0</td>
+<td>55,000</td>
+<td>55,000</td>
+</tr>
+</tbody>
+</table>
+<h2>Re-invite gap</h2>
+<p>Every row was last invited by other senders between 2026-07-22 and 2026-10-19 (22,986 rows have no date). No row goes into a week that starts less than 60 days after its last invite. Rows by month of last invite: 2026-07 211,645, 2026-08 637,386, 2026-09 712,732, 2026-10 471,641.</p>
+<p>Cold usable rows still too recent at the start of each week: R01 427,587, R02 254,513, R03 98,510, R04 0, R05 0, R06 0, R07 0, R08 0, R09 0, R10 0, S01 0.</p>
+<h2>Warm list</h2>
+<p>18,927 rows: 17,092 registered and did not attend, 1,835 answered Yes or Maybe only. Personal mailboxes kept: 615. Unscheduled after the ramp: 0.</p>
+<h2>Held for the EU, EEA, UK and Swiss review</h2>
+<p>391,906 cold and 1,849 warm rows on country domains. By country domain: .uk 118,886, .nl 41,390, .de 41,171, .fr 29,718, .it 20,467, .ch 17,936, .se 15,667, .pl 14,490, .be 14,083, .eu 12,238, .es 10,933, .dk 7,856, .ie 7,515, .fi 7,342, .pt 6,581, .no 6,543, .at 4,877, .ro 2,813, .gr 2,062, .cz 2,032, .hu 1,714, .lu 1,227, .ee 1,118, .sk 913, .lt 913, .si 830, .is 665, .cy 539, .hr 396, .bg 363, .mt 229, .li 135, .lv 113.</p>
+<h2>Reserve for after S10</h2>
+<p>713,190 cold rows not yet scheduled; 591,418 of them fit inside the 30-per-domain cap. Tiers: A 34,419, B 515,206, C 163,565. Name confidence: none 562,749, high 142,113, medium 8,328.</p><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

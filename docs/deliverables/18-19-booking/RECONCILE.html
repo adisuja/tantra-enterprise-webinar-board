@@ -1,0 +1,110 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Reconcile: Call 2 in Items 18, 19 and 23 (Done)</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>Reconcile: Call 2 in Items 18, 19 and 23 (Done)</span></div><h1>Reconcile: Call 2 in Items 18, 19 and 23 (Done)</h1>
+<p><strong>Status: done, 2026-11-05.</strong> Adi decided (BLOCKERS A12): yes, add Call 2 after the proposal, as in his sales journey reference (Call 1, custom proposal and due diligence, Call 2, contract and payment). Call 2 is "Tantra Enterprise Proposal Review", 30 minutes, booked from the proposal email, always with the closer who ran Call 1, and it is where the decision is made. Every point this file raised is now built; the table says where.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>What the page implied</th>
+<th>What was built</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18.1</td>
+<td>Book Call 2 at the end of Call 1</td>
+<td>Adi chose booking from the proposal email instead. Call 1 now ends by promising the proposal with a link to book the review</td>
+<td><a href="18-discovery-call-script.html">18-discovery-call-script.md</a>, Decide</td>
+</tr>
+<tr>
+<td>18.2</td>
+<td>Seq. D carries the Call 2 link</td>
+<td>D1 email and WhatsApp, D2, D3 and D4 all carry the closer's own Proposal Review link (<code>{{call2_link}}</code>); a missing link blocks the message</td>
+<td><a href="sequences.json">sequences.json</a>, Seq. D</td>
+</tr>
+<tr>
+<td>18.3</td>
+<td>Seq. D timing keys off Call 2</td>
+<td>Seq. D stops when Call 2 is booked. Seq. R runs the Call 2 confirmation and the 24-hour, 3-hour and 15-minute reminders (Seq. B timing) plus a prep and an outcome task. Seq. RS runs after Call 2; Follow-Up starts 7 days after it with no decision</td>
+<td>Seq. R and RS</td>
+</tr>
+<tr>
+<td>18.4</td>
+<td>A Call 2 no-show rule</td>
+<td>Seq. RN, behind the same <code>seq_c_rebook</code> switch as Seq. C (OFF: "I'm on the call now" only, Nurture on day 7). Listed as decision 7 for Adi. Seq. RC covers a cancelled Call 2</td>
+<td>Seq. RN and RC; <a href="18-speed-to-lead.html">18-speed-to-lead.md</a>, section 9</td>
+</tr>
+<tr>
+<td>18.5</td>
+<td>The pipeline table gains Call 2 inside stage 5</td>
+<td>Stage 5 row rewritten; new section 7 "Call 2: The Proposal Review"; new call script</td>
+<td><a href="18-speed-to-lead.html">18-speed-to-lead.md</a>, sections 6 and 7; <a href="18-call-2-proposal-review-script.html">18-call-2-proposal-review-script.md</a></td>
+</tr>
+<tr>
+<td>19.1</td>
+<td>A second event type, fixed host = the deal's closer</td>
+<td>"Tantra Enterprise Proposal Review", slug <code>proposal-review</code>, 30 minutes, one per closer on their own profile, hidden</td>
+<td><a href="19-calcom-round-robin.html">19-calcom-round-robin.md</a>, section 8</td>
+</tr>
+<tr>
+<td>19.2</td>
+<td>The webhook must tell Call 1 from Call 2</td>
+<td>The event type slug is the marker (Lists setting <code>calcom_call2_slug</code>); the CRM posts <code>data.call: 2</code>. A Call 2 booking never moves a deal back to Call Booked</td>
+<td>Section 8, Webhook; <code>fromCalcom_</code> in Code.gs</td>
+</tr>
+<tr>
+<td>19.3</td>
+<td>Booking questions</td>
+<td>WhatsApp number, and an optional "Who else will join?"</td>
+<td>Section 8, Questions</td>
+</tr>
+<tr>
+<td>19.4</td>
+<td>Limits: the proposal-to-Call-2 window</td>
+<td>Limit future bookings = <code>booking.call2.book_within_days</code> (FILL, decision 6)</td>
+<td>Section 8, Event Type</td>
+</tr>
+<tr>
+<td>23.1</td>
+<td>Pipeline fields</td>
+<td><code>call2_date</code>, <code>call2_status</code> (Booked, Showed, No-Show, Rescheduled) per CRM_CONTRACT, plus <code>call2_cal_uid</code> and <code>call2_join_link</code> the runner needs for reminders and no-show matching. Stages unchanged: Call 2 is a sub-status of 5 Proposal Sent</td>
+<td><code>deliverables/23-crm/build.py</code>, Code.gs</td>
+</tr>
+<tr>
+<td>23.2</td>
+<td>Events</td>
+<td>No new event names: <code>booking.*</code> and <code>call.*</code> with <code>data.call: 2</code>. Menu items Call 2 Showed and Call 2 No-Show</td>
+<td>Code.gs, harness section 15e</td>
+</tr>
+<tr>
+<td>23.3</td>
+<td>Summary formulas</td>
+<td>Call 2 booked, showed, no-show, show rate, close rate of Call 2 shows</td>
+<td>CRM Summary tab</td>
+</tr>
+<tr>
+<td>23.4</td>
+<td>Invites sent is not in the CRM</td>
+<td>Not part of Call 2; still open</td>
+<td>Sales journey page, KPI sheet</td>
+</tr>
+<tr>
+<td>23.5</td>
+<td>Signed vs paid</td>
+<td>Unchanged: the CRM hands over on payment (<code>deal.won</code>). The page keeps the handoff question</td>
+<td>Sales journey page, Questions</td>
+</tr>
+<tr>
+<td>23.6</td>
+<td>After Closed Won the CRM stops</td>
+<td>Unchanged; client journey starts at payment</td>
+<td><code>deliverables/24-proposal/client-journey/</code></td>
+</tr>
+</tbody>
+</table><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

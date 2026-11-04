@@ -1,0 +1,89 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Adi&#x27;s Steps: Item 3, Cold Calendar Senders</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>Adi&#x27;s Steps: Item 3, Cold Calendar Senders</span></div><h1>Adi's Steps: Item 3, Cold Calendar Senders</h1>
+<p>Everything an agent could do is done: the plan, 90 checked names, every DNS record, the roster. These steps need your sign-in or your card. Do them in order. When a step is done, tell the build agent "step N done" (and the dates asked for) and it carries on.</p>
+<p>Files you need open: <code>DNS_RECORDS.md</code> (records to paste), <code>sender-roster.csv</code> (users), <code>DOMAIN_SHORTLIST.md</code> (names and which Workspace each goes to). Decide first: 80 domains (the default, <code>CAPACITY_PLAN.md</code>) or your floor of 20. The steps are the same; only the count changes.</p>
+<h2>Step 1. The strategywebinars Workspace (W1): domain, plan, $100</h2>
+<ol>
+<li>Open https://admin.google.com and sign in with the login in <code>~/.config/tantra/keys/strategywebinars-workspace.env</code>. It signs in on a Google temporary domain (<code>...appstempdomain.goog</code>).</li>
+<li>Open https://admin.google.com/ac/billing/subscriptions. If the subscription says <strong>Trial</strong>, click it, then <strong>End trial</strong> (or <strong>Set up billing</strong>). Pick <strong>Business Starter</strong>, <strong>Flexible Plan</strong>.</li>
+<li>Open https://admin.google.com/ac/domains/manage. If strategywebinars.com is not listed: click <strong>Add a domain</strong>, type <code>strategywebinars.com</code> in <strong>Domain name</strong>, choose <strong>Secondary domain</strong>, click <strong>Add domain and start verification</strong>. Copy the TXT value Google shows.</li>
+<li>strategywebinars.com's DNS is at Cloudflare (registered there 2026-09-27). Open https://dash.cloudflare.com, click <strong>strategywebinars.com</strong>, <strong>DNS</strong>, <strong>Records</strong>, <strong>Add record</strong>: <strong>Type</strong> TXT, <strong>Name</strong> <code>@</code>, <strong>Content</strong> the value from 1.3, <strong>Save</strong>. Back in Google, click <strong>Verify my domain</strong>.</li>
+<li>On https://admin.google.com/ac/domains/manage, next to strategywebinars.com click <strong>Make primary</strong>. Google may ask to set up Gmail MX first: add MX <code>@</code> <code>SMTP.GOOGLE.COM</code> priority 1 at Cloudflare the same way.</li>
+<li>Rename the admin off the temporary domain: https://admin.google.com/ac/users, click the admin user, <strong>User information</strong>, <strong>Primary email</strong>, choose <code>@strategywebinars.com</code>, <strong>Save</strong>. Update the login file yourself.</li>
+<li>Pay $100: https://admin.google.com/ac/billing/accounts, click the payment account, <strong>Make a payment</strong>, <strong>Amount</strong> 100 (USD), <strong>Make a payment</strong>. The 60-day clock starts today.</li>
+<li>Open https://usetantra.com, <strong>Accounts</strong>, and search each of: strategywebinars, visionarywebinars, seminarvision, nextgenwebinars, signonline. Count how many show <strong>Connected</strong>.</li>
+</ol>
+<p>Tell the agent: the W1 payment date and the Connected count.</p>
+<h2>Step 2. Register the domains at iFreeDomains</h2>
+<ol>
+<li>Open https://ifreedomains.com/register.php. Fill <strong>First Name</strong>, <strong>Last Name</strong>, <strong>Email Address</strong>, <strong>Phone Number</strong>, <strong>Address</strong>, <strong>City</strong>, <strong>State</strong>, <strong>Postcode</strong>, <strong>Country</strong> with your real details (the registry requires them), set a <strong>Password</strong>, click <strong>Register</strong>.</li>
+<li>Open https://ifreedomains.com/cart.php?a=add&amp;domain=register. Type the first name from <code>DOMAIN_SHORTLIST.md</code> (northgatesessions.com), click <strong>Check</strong>, <strong>Add to Cart</strong> on the $0.00 result, <strong>Checkout</strong>, <strong>Complete Order</strong>.</li>
+<li><strong>Click the ICANN registrant verification email.</strong> The registry emails the registrant address once per registrant contact (one email covers every domain on that contact; a second iFreeDomains account means a second email). Check spam. It must be clicked within 15 days of registration, or the registry suspends every domain on that contact.</li>
+<li>Open https://lookup.icann.org, type northgatesessions.com, click <strong>Lookup</strong>. It must show a registrar and today's date. If not, stop and tell the agent (the fallback is buying at Cloudflare).</li>
+<li>Repeat 2.2 for the other names. ".com" is marked <strong>Limited</strong> at iFreeDomains: if the cart asks for payment or refuses another free .com, open another account at https://ifreedomains.com/register.php with another email (and click its ICANN email, 2.3). If a name is taken or priced as "Special", skip it and tell the agent which.</li>
+<li>For each domain: https://ifreedomains.com/clientarea.php?action=domains, <strong>Manage Domain</strong>, <strong>Management Tools</strong>, <strong>Nameservers</strong>, choose <strong>Use default nameservers</strong>, <strong>Change Nameservers</strong>.</li>
+<li>Same page, once the funnel exists: <strong>Management Tools</strong>, <strong>URL Forwarding</strong>, paste the registration page (<code>domains.funnel_domain</code> in <code>deliverables/_shared/funnel-config.json</code>, still FILL), choose <strong>Redirect (301)</strong>, <strong>Set URL</strong>.</li>
+<li>Same domain, <strong>Manage iFreeDomains DNS</strong>: add the MX, SPF and DMARC lines from its block in <code>DNS_RECORDS.md</code> (Name <code>@</code> means leave <strong>Name</strong> blank; MX <strong>Priority</strong> 1). The two FILL lines come in steps 3, 4 and 6.</li>
+</ol>
+<h2>Step 3. Create Workspaces W2, W3 and W4</h2>
+<p>Three times: W2 on ridgewayinsights.com, W3 on larkspurinsights.com, W4 on juniperhillinsights.com.</p>
+<ol>
+<li>Open https://workspace.google.com/business/signup/welcome. <strong>Business name</strong>: your company's legal name (as on W1's billing). <strong>Number of employees</strong>: 2 to 9. <strong>Region</strong>: your country. <strong>Next</strong>.</li>
+<li>Your contact details and current email, <strong>Next</strong>.</li>
+<li><strong>Does your business have a domain?</strong>: <strong>Yes, I have one I can use</strong>, type the primary domain, <strong>Next</strong>, then <strong>Next</strong> on <strong>Use this domain to set up the account</strong>.</li>
+<li><strong>How you'll sign in</strong>: username <strong>admin</strong>, a new password (keep it in your password manager, never in this repo or a chat), <strong>Agree and continue</strong>.</li>
+<li>Pick <strong>Business Starter</strong>, add your card, finish checkout.</li>
+<li>Google shows a TXT verification value: add it at iFreeDomains (<strong>Manage iFreeDomains DNS</strong>, TXT, Name blank, Value as shown), then click <strong>Verify</strong> in Google.</li>
+<li>End the trial: https://admin.google.com/ac/billing/subscriptions, click the subscription, <strong>End trial</strong> (or <strong>Set up billing</strong>), pick <strong>Business Starter</strong>, <strong>Flexible Plan</strong>. A trial keeps Google's lowest limits however much you prepay.</li>
+<li>Pay $100: https://admin.google.com/ac/billing/accounts, the payment account, <strong>Make a payment</strong>, <strong>Amount</strong> 100, <strong>Make a payment</strong>.</li>
+</ol>
+<p>Tell the agent the payment date of each Workspace. It writes it into <code>warmup_start_day0</code> and re-dates the plan.</p>
+<h2>Step 4. Add the other domains to each Workspace</h2>
+<p>Signed in to the right Workspace (the Workspace column of <code>DOMAIN_SHORTLIST.md</code>; reserves wait):</p>
+<ol>
+<li>https://admin.google.com/ac/domains/manage, <strong>Add a domain</strong>, type the domain in <strong>Domain name</strong>, choose <strong>Secondary domain</strong>, <strong>Add domain and start verification</strong>.</li>
+<li>Paste the TXT value Google shows into that domain's DNS at iFreeDomains (first line of its block in <code>DNS_RECORDS.md</code>), then <strong>Verify my domain</strong>. If it does not show <strong>Verified</strong>, wait 30 minutes and click again.</li>
+<li>If Google shows <strong>Activate Gmail</strong>, click it: the MX record is already in place.</li>
+</ol>
+<h2>Step 5. DMARC alias per domain</h2>
+<p>https://admin.google.com/ac/users, click the admin user (in W1, do step 1.6 first so the admin is on strategywebinars.com, not the temporary domain), <strong>User information</strong>, <strong>Alternate email addresses (email alias)</strong>, <strong>Add an alternate email</strong>, type <strong>dmarc</strong>, pick the domain, <strong>Save</strong>. One alias per sending domain.</p>
+<h2>Step 6. DKIM for every sending domain</h2>
+<ol>
+<li>https://admin.google.com/ac/apps/gmail/authenticateemail.</li>
+<li>Pick the domain in <strong>Selected domain</strong>, <strong>Generate new record</strong>, keep <strong>DKIM key bit length</strong> 2048 and <strong>Prefix selector</strong> google, <strong>Generate</strong>.</li>
+<li>Copy the <strong>TXT record value</strong> into that domain's DNS at iFreeDomains: TXT, Name <code>google._domainkey</code>, Value as copied.</li>
+<li>After 30 minutes, same page, <strong>Start authentication</strong>. If it errors, wait and click again.</li>
+</ol>
+<h2>Step 7. Create the senders</h2>
+<p>110 per Workspace, already named in <code>sender-roster.csv</code> (every sender is you, in six address forms; swap in team members only if you add their last names).</p>
+<ol>
+<li>https://admin.google.com/ac/users, <strong>Bulk update users</strong>, <strong>Download blank CSV template</strong>.</li>
+<li>One row per sender of that Workspace: <strong>First Name</strong>, <strong>Last Name</strong> (from <code>display_name</code>), <strong>Email Address</strong> (<code>email</code>), <strong>Password</strong> (new, yours), <strong>Org Unit Path</strong> <code>/</code>.</li>
+<li><strong>Attach CSV file</strong>, pick the file, <strong>Upload</strong>. Google emails you when the users exist.</li>
+<li>Put the creation date in the <code>created</code> column.</li>
+</ol>
+<h2>Step 8. Connect the senders to Tantra</h2>
+<p>One service account per sender (<code>google-workspace.md</code>, Owner clicks C4 to C6), two Google Cloud projects per Workspace (<code>service_account_project</code> in the roster).</p>
+<ol>
+<li>Fastest: the onboarding centre's <strong>Build my service accounts</strong> button, signed in once as each Workspace's super admin.</li>
+<li>By hand: https://console.cloud.google.com, create the project named in the roster, enable <strong>Gmail API</strong> and <strong>Google Calendar API</strong>, then <strong>IAM and Admin</strong>, <strong>Service Accounts</strong>, <strong>Create service account</strong>, open it, <strong>Keys</strong>, <strong>Add key</strong>, <strong>Create new key</strong>, <strong>JSON</strong>. Upload each file at https://usetantra.com, <strong>Connectors</strong>, <strong>Google Service Accounts</strong>, <strong>Upload Service Accounts</strong>, <strong>Upload</strong>. Never put a key file in this repo or a chat.</li>
+<li>Authorize each: https://admin.google.com/ac/owl/domainwidedelegation, <strong>Add new</strong>, paste the numeric <strong>Client ID</strong>, paste this in <strong>OAuth scopes</strong>, <strong>Authorize</strong>:</li>
+</ol>
+<pre><code>https://www.googleapis.com/auth/calendar,https://www.googleapis.com/auth/calendar.events,https://www.googleapis.com/auth/gmail.send,https://www.googleapis.com/auth/userinfo.email,https://www.googleapis.com/auth/userinfo.profile,https://www.googleapis.com/auth/gmail.modify
+</code></pre>
+<ol start="4">
+<li>https://usetantra.com, <strong>Accounts</strong>, <strong>Verify and Add Accounts</strong>, paste the Workspace's 110 sender addresses (one per line), <strong>Verify &amp; Add</strong>. Each must show <strong>Connected</strong>; "unauthorized_client" means the email was pasted instead of the numeric Client ID.</li>
+<li>Mark <code>tantra_service_account_connected</code> yes in the roster.</li>
+</ol>
+<h2>Step 9. Weeks 1 to 3: internal activity, then daily limits every Monday</h2>
+<ol>
+<li>Weeks 1 to 3: the team step in <code>deliverables/02-outreach-lists/SLICING_PLAN.md</code> (internal events, then invites to known contacts). No list sends.</li>
+<li>Every Monday from week 4: in https://usetantra.com, <strong>Accounts</strong>, open each sender and set its daily invite limit to the roster's number for that week (<code>daily_cap_wk01</code> to <code>daily_cap_wk14_on</code>): 0 in weeks 1 to 3, 10 in weeks 4 to 9, 25 in weeks 10 to 13, 50 from week 14. With your written OK, the build agent can set them through the Tantra API instead (<code>PATCH /accounts/&lt;email&gt;</code> with <code>maxPerDay</code>).</li>
+</ol>
+<h2>What Happens Next</h2>
+<p>With every sender Connected and the payment dates in hand, the agent re-dates <code>SLICING_PLAN.md</code> (<code>--day0</code>) and the first warm-list week (R01) can be built as Tantra drafts. You approve each launch.</p><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

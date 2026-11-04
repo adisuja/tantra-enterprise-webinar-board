@@ -1,0 +1,59 @@
+"profile","campaign_type","step","delay_days","action","subject","message","char_count"
+"adi","messenger","1","0","send_message","","{{firstName}}, quick question: how much of {{company}}'s pipeline last quarter came from referrals you couldn't have planned for?
+
+For most founders I talk to, it's most of it. I now host a live session every week on building the other kind: a funnel, a RevOps system and AI on the busywork, measured stage by stage. It's the playbook from 250+ brands I've worked with.
+
+Want a seat? {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=adi","525"
+"adi","messenger","2","4","send_message","","{{firstName}}, one number from the session that tends to land: a UK coaching group went from 30 registrations on their first webinar to 1,990 on their best.
+
+Same team. The difference was measuring every stage and fixing the weakest one each week.
+
+Seat's here if useful: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=adi","389"
+"adi","messenger","3","5","send_message","","Last nudge, {{firstName}}. It runs every week, so any week works: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=adi
+
+And if a quick chat about {{company}} would help more than a session, just reply here.","295"
+"aquila","messenger","1","0","send_message","","{{firstName}}, how many reminders and follow-ups at {{company}} still go out only when someone remembers?
+
+Each one is a place a lead waits. Adi, our founder, hosts a live session every week on the revenue engine, including the automation layer I build: reminders, follow-ups and handoffs that run on time.
+
+Seat's here: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=aquila","465"
+"aquila","messenger","2","4","send_message","","{{firstName}}, the practical bit: a map of which funnel steps to automate first and which to keep human.
+
+{{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=aquila","226"
+"aquila","messenger","3","5","send_message","","Final one from me, {{firstName}}. If the timing's off, any later week works: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=aquila","197"
+"nelbin","messenger","1","0","send_message","","{{firstName}}, an ops question: is there one written process at {{company}} for what happens between a sign-up and a booked call?
+
+When there isn't, leads stall in the handoffs. Adi, our founder, hosts a live session every week on running revenue as a repeatable process, with AI on the routine steps.
+
+Seat's here: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=nelbin","460"
+"nelbin","messenger","2","4","send_message","","{{firstName}}, the ops takeaway: a weekly scorecard for every stage of the funnel, so you fix the weakest step instead of guessing.
+
+{{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=nelbin","253"
+"nelbin","messenger","3","5","send_message","","{{firstName}}, one final reminder and then I'll leave it. New session every week: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=nelbin","202"
+"bharath","messenger","1","0","send_message","","{{firstName}}, a stack question: when a lead goes cold at {{company}}, can your tools tell you where it stalled?
+
+Adi, our founder, hosts a live session every week on building a revenue engine where AI agents do the busywork and every stage is tracked. It covers the part I build: what connects to what, and where leads get lost.
+
+Seat's here: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=bharath","489"
+"bharath","messenger","2","4","send_message","","{{firstName}}, the engineering takeaway: one view of every lead from first touch to booked call, with each stage measured. No more guessing which tool dropped it.
+
+Seat's here if useful: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=bharath","308"
+"bharath","messenger","3","5","send_message","","{{firstName}}, last note on this. If a stack question is easier than a session, ask it here. Otherwise the link stands: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=bharath","241"
+"bhaskar","messenger","1","0","send_message","","{{firstName}}, honest question: of the content {{company}} put out last quarter, which pieces booked a sales call?
+
+Most marketing teams can show reach, not pipeline. Adi, our founder, hosts a live session every week on closing that gap: content, outreach and webinars feeding one pipeline you can measure.
+
+Seat's here: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=bhaskar","466"
+"bhaskar","messenger","2","4","send_message","","{{firstName}}, the practical takeaway for marketers: which stage of the funnel to fix first, with the numbers to back it in front of the CEO.
+
+{{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=bhaskar","264"
+"bhaskar","messenger","3","5","send_message","","Closing the loop, {{firstName}}. The session repeats weekly, so next week works as well as this one: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=bhaskar","222"
+"ben","messenger","1","0","send_message","","{{firstName}}, a build question: do you know what share of visitors to {{company}}'s sign-up page actually register?
+
+Most teams track the click, not the drop-off. Adi, our founder, hosts a live session every week on the full revenue engine, including the build side I work on: pages, forms, tracking and the tests that decide what stays.
+
+Seat's here: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=ben","494"
+"ben","messenger","2","4","send_message","","{{firstName}}, the builder's takeaway: how to tell, with numbers, which version of a page to keep.
+
+{{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=ben","217"
+"ben","messenger","3","5","send_message","","{{firstName}}, that's my last message on this. The session is weekly, so pick any week that suits: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=messenger&utm_campaign=enterprise-webinar&utm_content=ben","216"

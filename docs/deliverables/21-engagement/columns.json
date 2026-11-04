@@ -1,0 +1,22 @@
+{
+ "_about": "Header aliases for the exports map_engagement.py reads. ASSUMPTION: WebinarJam's chat log and Cal.com's bookings export headers are not documented; after the first real export, put the exact headers first in each list. Matching ignores case: an exact header wins, otherwise the first header containing an alias. time_is: 'offset' (00:12:30 after the start), 'clock' (11:12:30 AM or 2026-11-12 11:12:30) or 'auto'. ignore_names: presenters whose lines are never answers.",
+ "chat": {
+  "email": ["email", "e-mail", "email address", "attendee email"],
+  "name": ["name", "attendee", "attendee name", "from", "user"],
+  "message": ["message", "chat message", "text", "comment"],
+  "time": ["time", "timestamp", "sent at", "date", "time sent"],
+  "time_is": "auto",
+  "ignore_names": ["Adi", "Adithya Murali", "Moderator", "Tantra Team"]
+ },
+ "registrants": {
+  "email": ["email", "email address", "e-mail"],
+  "first_name": ["first name", "firstname", "first_name"],
+  "last_name": ["last name", "lastname", "last_name"],
+  "name": ["full name"]
+ },
+ "bookings": {
+  "email": ["attendee email", "email", "booker email", "responses.email"],
+  "utm_content": ["utm_content", "utm content", "tracking.utm_content", "metadata.utm_content"],
+  "created": ["created at", "createdat", "booked at", "created"]
+ }
+}

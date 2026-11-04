@@ -1,0 +1,49 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Weekly Run Checklist: One Webinar, T Minus 7 Days to T Plus 1 Day</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>Weekly Run Checklist: One Webinar, T Minus 7 Days to T Plus 1 Day</span></div><h1>Weekly Run Checklist: One Webinar, T Minus 7 Days to T Plus 1 Day</h1>
+<p>T is the start time (<code>webinar.start_time_local</code>, <code>webinar.timezone</code>). Owners: <strong>Adi</strong> (host), <strong>Support</strong> (the second presenter, <code>webinar.moderator_name</code> once set), <strong>Ops</strong> (whoever runs the scripts; commands run from <code>deliverables/17-webinarjam/</code>). WebinarJam: https://app.webinarjam.com/webinars</p>
+<p>Export files with registrant data stay outside the repo (for example <code>~/Downloads/</code>) and are deleted after the import.</p>
+<h2>T Minus 7 Days</h2>
+<ul>
+<li>[ ] <strong>Ops, WebinarJam:</strong> Edit the webinar, <strong>Schedules</strong>, add the date 4 weeks out, <strong>Add</strong>, <strong>Save</strong>. Four future sessions must always exist, or the registration function has nowhere to put people. Never delete or move a session with registrants.</li>
+<li>[ ] <strong>Ops, browser:</strong> One test registration on our live registration page with an inbox you own. Pass: the thank-you page loads, the WebinarJam confirmation email arrives with a working join link, the CRM Webinar tab shows the row for the right date.</li>
+<li>[ ] <strong>Adi, Google Calendar:</strong> Three internal blocks for the team, as in the SOP: <strong>Prep</strong> (T minus 30 min, 30 min), <strong>Live</strong> (T, <code>webinar.duration_minutes</code> min), <strong>Review</strong> (T plus 60 min, 60 min).</li>
+<li>[ ] <strong>Adi:</strong> The deck (item 16) and the three offer cues from item 21 (20:00, 32:00, 43:00) are final. Click each offer's button link: it opens <code>booking.round_robin_url</code>.</li>
+</ul>
+<h2>T Minus 3 Days</h2>
+<ul>
+<li>[ ] <strong>Ops, WebinarJam and CRM:</strong> Reconcile both sides for this session. In the CRM sheet, open the Webinar tab, <strong>File</strong>, <strong>Download</strong>, <strong>Comma-separated values</strong>, save it outside the repo. Run <code>node integration/register.mjs --reconcile --date &lt;YYYY-MM-DD&gt; --crm-csv ~/Downloads/&lt;file&gt;.csv</code>, read the plan line, then run it again with <code>--live</code>. It reads WebinarJam's <code>/registrants</code> for the session: people only the CRM has are registered in WebinarJam only (no second <code>webinar.registered</code>), and people only WebinarJam has are posted to the CRM once with their <code>join_url</code>. Delete the CSV.</li>
+<li>[ ] <strong>Ops:</strong> Worker logs (Cloudflare dashboard, the Worker, <strong>Logs</strong>) show no <code>[register]</code> warnings since last week. Any <code>webinarjam:</code> warning means someone is in the CRM without a link: the reconcile above fixes it.</li>
+</ul>
+<h2>T Minus 1 Day (T Minus 24 Hours)</h2>
+<ul>
+<li>[ ] <strong>Senders' lead (items 3 and 12):</strong> Export every Yes and Maybe RSVP from the calendar invite accounts as CSV with <code>first_name</code>, <code>last_name</code>, <code>email</code>. Two files: manual invites and automated invites, kept apart so the CRM can compare them (SOP step 21).</li>
+<li>[ ] <strong>Ops:</strong> Dry run, then send:
+  <code>node integration/register.mjs --bulk rsvps-manual.csv --source calendar_manual</code> then the same with <code>--live</code>; repeat for <code>rsvps-auto.csv</code> with <code>--source calendar_auto</code>. The summary line must show 0 warnings.</li>
+<li>[ ] <strong>Ops, WebinarJam:</strong> Registrants count for the session went up by about the number of rows.</li>
+</ul>
+<h2>T Day</h2>
+<ul>
+<li>[ ] <strong>T minus 3 h, Adi and Support:</strong> Webinars, <strong>Your links</strong>, <strong>Presenters</strong>: each opens their own presenter link on a laptop, checks camera, microphone and screen share. Enable third-party cookies if the room will not load.</li>
+<li>[ ] <strong>T minus 75 min, Ops:</strong> Second RSVP batch (new Yes and Maybe since T minus 24 h), same two commands with <code>--live</code>. Then the same reconcile command once more, so late page registrants who missed WebinarJam get their link before the start.</li>
+<li>[ ] <strong>T minus 30 min, all, Prep block:</strong> Registration count vs target, who handles which questions, the three offer cues.</li>
+<li>[ ] <strong>T minus 15 min, Adi:</strong> In the room before the start; Support logged in and watching chat.</li>
+<li>[ ] <strong>T, Adi:</strong> Start the broadcast. Support follows the chat rules in EVENT_CONFIG section 7.</li>
+<li>[ ] <strong>Minutes 20:00, 32:00, 43:00, Support:</strong> Launch offer <code>cta1_soft</code> as slide 23 (the offer in one slide) appears (close at 25:00), then <code>cta2_checkpoint</code> (close at 35:00), then <code>cta3_main</code> (keep open to the end). Launch each poll when Adi asks it.</li>
+<li>[ ] <strong>Minute <code>webinar.presentation_minutes</code>, Support:</strong> Hand Adi the question list.</li>
+<li>[ ] <strong>T plus 60 min, Adi:</strong> End the broadcast.</li>
+<li>[ ] <strong>T plus 60 min, all, Review block:</strong> Attendance vs registrations, how many stayed past minute <code>webinar.retarget_cutoff_minute</code>, calls booked, poll results (<strong>Log</strong>, <strong>Poll results</strong>), one change for next week.</li>
+<li>[ ] <strong>T plus 120 min, Ops:</strong> <strong>Registrants</strong>, this webinar and session, <strong>Go</strong>, <strong>Export</strong>, <strong>Export all registrants</strong> (not "attendees only", which drops the no-shows). Then:
+  <code>node integration/import_attendance.mjs --csv ~/Downloads/&lt;export&gt;.csv --date &lt;YYYY-MM-DD&gt; --start &lt;HH:MM&gt; --tz &lt;Area/City&gt; --out /tmp/events.json</code>
+  Check the printed "columns used" and counts, then run it again with <code>--live</code>. Item 22 starts each person's track when this arrives. Delete the export file.</li>
+</ul>
+<h2>T Plus 1 Day</h2>
+<ul>
+<li>[ ] <strong>Ops, WebinarJam:</strong> <strong>Your links</strong>, <strong>Replay</strong>, pick the session, download the recording for item 26.</li>
+<li>[ ] <strong>Ops, CRM:</strong> The Webinar tab for this date has a segment on every row (<code>stayed_to_offer</code>, <code>early_leaver</code> or <code>no_show</code>) and <code>retarget_until</code> on early leavers and no-shows.</li>
+<li>[ ] <strong>Adi:</strong> The change agreed in the Review block is assigned for next week.</li>
+</ul><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

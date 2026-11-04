@@ -1,0 +1,69 @@
+step_id,trigger,offset_minutes,channel,template_name,subject,body,variables
+15B-R0,"registration | whatsapp_opt_in = true; sent within 1 minute of webinar.registered. No 15b email: WebinarJam already sends the confirmation email with the personal join link (item 17), so nobody gets two; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",0,whatsapp,tew_confirm_wa,,"Hi {{1}}, it's Adi from Tantra. Your seat for my live session is saved for {{2}}.
+
+Your personal join link: {{3}}
+
+Reply CAL and I'll send a link to add it to your calendar. Reply STOP to opt out.",{{1}}=first_name; {{2}}=webinar_when_local; {{3}}=join_url
+15B-R1,"registration | every registrant (email); whatsapp_opt_in = true (WhatsApp); only if registered after webinar_start minus 10080 min (missed 15B-W1) and this send lands at least 26 hours before the start; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",60,whatsapp,tew_catchup_videos_wa,,"Hi {{1}}, it's Adi. Before {{2}}, watch the four short videos on this page: funnels, the RevOps OS, traffic channels and the bonuses.
+
+{{3}}
+
+Start with number one today. Reply STOP to opt out.",{{1}}=first_name; {{2}}=webinar_date_local; {{3}}=watch_url
+15B-W1,"webinar_start | every registrant (email); whatsapp_opt_in = true (WhatsApp); WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",-10080,whatsapp,tew_week_video1_wa,,"Hi {{1}}, it's Adi. We go live in one week, on {{2}}.
+
+Before then, watch video 1. It takes apart the funnel you just came through, step by step: {{3}}
+
+Reply STOP to opt out.",{{1}}=first_name; {{2}}=webinar_date_local; {{3}}=video_funnels_url
+15B-V2,"webinar_start | every registrant (email); whatsapp_opt_in = true (WhatsApp); WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",-7200,whatsapp,tew_video2_wa,,"Hi {{1}}, video 2 is up. It covers what happens after someone says yes: the reminders, follow-ups and CRM steps where most pipelines leak.
+
+{{2}}
+
+Reply STOP to opt out.",{{1}}=first_name; {{2}}=video_revops_os_url
+15B-D3,"webinar_start | every registrant (email); whatsapp_opt_in = true (WhatsApp); WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",-4320,whatsapp,tew_3days_video3_wa,,"Hi {{1}}, three days to go: {{2}} at {{3}}.
+
+Video 3 is up. It shows the traffic channels behind one client webinar that reached 99,859 people and got 1,990 registrations: {{4}}
+
+Reply STOP to opt out.",{{1}}=first_name; {{2}}=webinar_date_local; {{3}}=webinar_time_local; {{4}}=video_traffic_channels_url
+15B-V4,"webinar_start | every registrant (email); whatsapp_opt_in = true (WhatsApp); WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",-2880,whatsapp,tew_video4_wa,,"Hi {{1}}, two days to go. Video 4 of 4 is up and covers the bonuses. All four videos are on the same page: {{2}}
+
+Reply STOP to opt out.",{{1}}=first_name; {{2}}=video_bonuses_url
+15B-D1,"webinar_start | every registrant (email); whatsapp_opt_in = true (WhatsApp); skipped if tagged cant_make_it; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",-1440,whatsapp,tew_1day_wa,,"Hi {{1}}, it's Adi. We go live tomorrow, {{2}} at {{3}}.
+
+Bring your rough lead numbers and one question for the Q&A.
+
+Your join link: {{4}}
+
+Reply CANT if you can't make it. Reply STOP to opt out.",{{1}}=first_name; {{2}}=webinar_date_local; {{3}}=webinar_time_local; {{4}}=join_url
+15B-H3,"webinar_start | every registrant (email); whatsapp_opt_in = true (WhatsApp); skipped if tagged cant_make_it; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",-180,whatsapp,tew_3hours_wa,,"Hi {{1}}, we go live today at {{2}}, three hours from now. Block the full 60 minutes if you can.
+
+Your join link: {{3}}
+
+Reply STOP to opt out.",{{1}}=first_name; {{2}}=webinar_time_local; {{3}}=join_url
+15B-H1,"webinar_start | every registrant (email); whatsapp_opt_in = true (WhatsApp); skipped if tagged cant_make_it; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",-60,whatsapp,tew_1hour_wa,,"Hi {{1}}, we start in one hour, at {{2}}. A laptop works best because I share my screen.
+
+Your join link: {{3}}
+
+Reply STOP to opt out.",{{1}}=first_name; {{2}}=webinar_time_local; {{3}}=join_url
+15B-M15,"webinar_start | every registrant (email); whatsapp_opt_in = true (WhatsApp); skipped if tagged cant_make_it; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",-15,whatsapp,tew_15min_wa,,"Hi {{1}}, the room is open and we start in 15 minutes.
+
+Join here: {{2}}
+
+Reply STOP to opt out.",{{1}}=first_name; {{2}}=join_url
+15B-L0,"webinar_start | every registrant (email); whatsapp_opt_in = true (WhatsApp); skipped if tagged cant_make_it; not yet in the room (WebinarJam live attendance) if that signal is available; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",0,whatsapp,tew_live_wa,,"Hi {{1}}, we're live now. Come in and you'll catch the start.
+
+Join here: {{2}}
+
+Reply STOP to opt out.",{{1}}=first_name; {{2}}=join_url
+15B-L10,"webinar_start | every registrant (email); whatsapp_opt_in = true (WhatsApp); skipped if tagged cant_make_it; only registrants not in the room at +10 min (WebinarJam live attendance); without that signal, every registrant, and the copy covers people already in; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",10,whatsapp,tew_late_wa,,"Hi {{1}}, we started 10 minutes ago. You haven't missed the main part yet.
+
+Join now: {{2}}
+
+Already in? Ignore this. Reply STOP to opt out.",{{1}}=first_name; {{2}}=join_url
+15B-X1,"event:quick_reply_cant_or_call_cant_attend | contact.quick_reply keyword CANT, an email reply to 15B-D1 saying they can't come, or a Vodex call with outcome cant_attend; sets track to replay (CRM_CONTRACT), which stops 15B-D1 to 15B-L10 and both calls; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",0,whatsapp,tew_cant_make_it_wa,,"Thanks for letting me know, {{1}}. I'll send you the recording after the session.
+
+If you'd rather talk now, book a 30-minute evaluation call with my team: {{2}}
+
+Reply STOP to opt out.",{{1}}=first_name; {{2}}=booking_url
+15B-X2,"event:reply_cal_or_call_add_to_calendar | contact.quick_reply keyword CAL, or a Vodex call where the person asked for the calendar link; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",0,whatsapp,tew_calendar_link_wa,,"Here's your calendar link, {{1}}. One tap adds the live session to your calendar: {{2}}
+
+Reply STOP to opt out.",{{1}}=first_name; {{2}}=calendar_url

@@ -1,0 +1,358 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Ben: LinkedIn Outreach Templates</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../../index.html">Task board</a><a href="../../../index.html">All documents</a><span>Ben: LinkedIn Outreach Templates</span></div><h1>Ben: LinkedIn Outreach Templates</h1>
+<p>Role: <strong>Development</strong>. Voice: The build: pages, forms, tracking and the tests that decide what stays.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LinkedIn URL</td>
+<td>FILL_BEN_LINKEDIN_URL</td>
+</tr>
+<tr>
+<td>Title on LinkedIn</td>
+<td>FILL_BEN_LINKEDIN_TITLE</td>
+</tr>
+<tr>
+<td>LinkedIn plan</td>
+<td>FILL_BEN_LINKEDIN_PLAN</td>
+</tr>
+<tr>
+<td>Account tier for limits</td>
+<td>new (assumed)</td>
+</tr>
+<tr>
+<td>Audience (only this profile contacts them)</td>
+<td>Heads of digital, web and product; agency owners who build sites and funnels</td>
+</tr>
+<tr>
+<td>UTM code</td>
+<td><code>utm_content=ben</code> on every link</td>
+</tr>
+</tbody>
+</table>
+<h2>Daily Limits For This Profile</h2>
+<p>Per LinkedIn account, across all four campaigns together, Monday to Friday. Set them in Tantra on the account: Connectors, Channels, LinkedIn, the account row, <strong>Set daily and weekly sending limits</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Limit</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connection requests</td>
+<td>Start at 20 a day (connector 15, content engagement and InMail follow-ups 5). Raise by 5 a day only after two clean weeks, up to 25. Never above 180 a week</td>
+</tr>
+<tr>
+<td>Messages</td>
+<td>25 a day, all campaigns</td>
+</tr>
+<tr>
+<td>Profile visits</td>
+<td>30 a day</td>
+</tr>
+<tr>
+<td>InMail</td>
+<td>0, or up to 5 Open Profile InMails a day</td>
+</tr>
+</tbody>
+</table>
+<p>A clean week means no LinkedIn warning and a steady acceptance rate. On any warning, drop back to the last clean week's numbers.</p>
+<h2>Set 1: Content Engagement (Likers and Commenters of Each Post)</h2>
+<p><strong>Who:</strong> People who liked or commented on one of this profile's own posts. One campaign per post, started within 24 hours of the post. Split the engager export by degree: 2nd and 3rd degree run the connect track, 1st degree the message track.</p>
+<p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{custom.post_topic}}</code> (a 2 to 6 word phrase for the post, the same value on every row of that post's export). If the test message shows <code>{{custom.post_topic}}</code> blank, type the phrase into the step text instead: each post has its own campaign.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben</code>. {{domains.funnel_domain}} is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Daily limit:</strong> 5 connection requests a day from the 20 a day budget; messages come out of the 25 a day message budget.</p>
+<p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Step</th>
+<th>Wait (days after previous step)</th>
+<th>Action</th>
+<th>Chars (worst case)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2nd/3rd degree</td>
+<td>1</td>
+<td>0 (same day the engager list is imported)</td>
+<td>Visit profile</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>2nd/3rd degree</td>
+<td>2</td>
+<td>0</td>
+<td>Connection request with note</td>
+<td>170</td>
+</tr>
+<tr>
+<td>2nd/3rd degree</td>
+<td>3</td>
+<td>1 (1 day after they accept)</td>
+<td>Message</td>
+<td>364</td>
+</tr>
+<tr>
+<td>2nd/3rd degree</td>
+<td>4</td>
+<td>4</td>
+<td>Message</td>
+<td>301</td>
+</tr>
+<tr>
+<td>1st degree</td>
+<td>1</td>
+<td>0</td>
+<td>Message</td>
+<td>329</td>
+</tr>
+<tr>
+<td>1st degree</td>
+<td>2</td>
+<td>4</td>
+<td>Message</td>
+<td>241</td>
+</tr>
+</tbody>
+</table>
+<h3>2nd/3rd degree, Step 2: Connection request with note</h3>
+<pre><code class="language-text">Hi {{firstName}}, appreciate you engaging with my {{custom.post_topic}} post. The build behind it is shown in a weekly live session. Glad to connect.
+</code></pre>
+<h3>2nd/3rd degree, Step 3: Message</h3>
+<pre><code class="language-text">Nice to connect, {{firstName}}.
+
+My {{custom.post_topic}} post was one part of the build. The weekly session covers the rest: pages, forms, tracking and the tests that decide what stays.
+
+Adi, our founder, hosts it. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+</code></pre>
+<h3>2nd/3rd degree, Step 4: Message</h3>
+<pre><code class="language-text">{{firstName}}, one test from the session: a long landing page was expected to bring 70 registrations and brought 96.
+
+We only knew because both pages were tracked. The setup is here: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+</code></pre>
+<h3>1st degree, Step 1: Message</h3>
+<pre><code class="language-text">{{firstName}}, appreciate you engaging with my post on {{custom.post_topic}}.
+
+Adi, our founder, runs a live session every week on the full revenue engine, including the build side I work on: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+</code></pre>
+<h3>1st degree, Step 2: Message</h3>
+<pre><code class="language-text">{{firstName}}, last one from me: the session shows how to test {{custom.post_topic}} with real numbers. {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+</code></pre>
+<h2>Set 2: InMail (Sent by Hand in Sales Navigator, Follow-Ups in Tantra)</h2>
+<p><strong>Who:</strong> Prospects in this profile's audience who are not connected and are worth a credit: Open Profiles first (no credit used), then the best fits on credits. Needs Sales Navigator or Premium. Step 1 is sent by hand in Sales Navigator, so Tantra cannot see replies: 5 days later, import <strong>only the people who did not reply</strong> into the follow-up campaign.</p>
+<p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>. Step 1 goes out by hand in Sales Navigator, which does not fill Tantra tags: type the first name and company in place of the tags before sending. The follow-up steps run in Tantra, which fills them. The sign-off is the sender's name, already in the text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben</code>. {{domains.funnel_domain}} is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Daily limit:</strong> InMail 0, or up to 5 Open Profile InMails a day. Credits: Sales Navigator 50 a month, Premium Business 15, Premium Career 5, free none. The follow-up connection requests count toward the 20 a day budget.</p>
+<p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Step</th>
+<th>Wait (days after previous step)</th>
+<th>Action</th>
+<th>Chars (worst case)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manual</td>
+<td>1</td>
+<td>0</td>
+<td>InMail, sent by hand in Sales Navigator</td>
+<td>661</td>
+</tr>
+<tr>
+<td>Tantra follow-up</td>
+<td>1</td>
+<td>0 (import 5 days after the InMail, non-repliers only)</td>
+<td>Connection request with note</td>
+<td>137</td>
+</tr>
+<tr>
+<td>Tantra follow-up</td>
+<td>2</td>
+<td>1 (1 day after they accept)</td>
+<td>Message</td>
+<td>206</td>
+</tr>
+</tbody>
+</table>
+<h3>Manual, Step 1: InMail, sent by hand in Sales Navigator</h3>
+<p>Subject: <code>Your sign-up page at {{company}}</code></p>
+<pre><code class="language-text">Hi {{firstName}}, a question from the build side.
+
+I build the pages, forms and tracking behind Tantra's funnels. What share of people who land on your sign-up page at {{company}} register, and do you know why the rest leave?
+
+Most teams track the click, not the drop-off. The page is usually the cheapest fix in the funnel.
+
+Adi, our founder, hosts a live session every week on the full revenue engine, including the build side I work on: pages, tracking and the tests that decide what stays.
+
+60 minutes. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+
+Ben
+</code></pre>
+<h3>Tantra follow-up, Step 1: Connection request with note</h3>
+<pre><code class="language-text">{{firstName}}, I reached out by InMail about the pages and tracking behind a funnel. Connecting either way, as we build similar things.
+</code></pre>
+<h3>Tantra follow-up, Step 2: Message</h3>
+<pre><code class="language-text">Nice to connect, {{firstName}}. The link to the session I wrote about: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+
+It runs every week.
+</code></pre>
+<h2>Set 3: Connector (Connection Request, Then Follow-Ups)</h2>
+<p><strong>Who:</strong> Cold prospects in this profile's audience (2nd and 3rd degree). Only people who accept get the messages.</p>
+<p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben</code>. {{domains.funnel_domain}} is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Daily limit:</strong> 15 connection requests a day (the rest of the 20 a day budget goes to content engagement), 30 profile visits a day.</p>
+<p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Step</th>
+<th>Wait (days after previous step)</th>
+<th>Action</th>
+<th>Chars (worst case)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>main</td>
+<td>1</td>
+<td>0</td>
+<td>Visit profile</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>main</td>
+<td>2</td>
+<td>1</td>
+<td>Connection request with note</td>
+<td>161</td>
+</tr>
+<tr>
+<td>main</td>
+<td>3</td>
+<td>1 (1 day after they accept; no link yet)</td>
+<td>Message</td>
+<td>308</td>
+</tr>
+<tr>
+<td>main</td>
+<td>4</td>
+<td>3</td>
+<td>Message</td>
+<td>345</td>
+</tr>
+<tr>
+<td>main</td>
+<td>5</td>
+<td>4</td>
+<td>Message</td>
+<td>371</td>
+</tr>
+<tr>
+<td>main</td>
+<td>6</td>
+<td>6</td>
+<td>Message</td>
+<td>263</td>
+</tr>
+</tbody>
+</table>
+<h3>Step 2: Connection request with note</h3>
+<pre><code class="language-text">Hi {{firstName}}, I build the pages, forms and tracking behind Tantra's funnels, and test what makes people sign up. Glad to connect with people who build too.
+</code></pre>
+<h3>Step 3: Message</h3>
+<pre><code class="language-text">Nice to connect, {{firstName}}.
+
+A question from the build side: when someone lands on your sign-up page at {{company}}, do you know what share register, and why the rest leave?
+
+Most teams track the click, not the drop-off. The page is usually the cheapest fix in the whole funnel.
+</code></pre>
+<h3>Step 4: Message</h3>
+<pre><code class="language-text">{{firstName}}, the drop-off is one of the things Adi, our founder, takes apart in a weekly live session. It includes the build side I work on: pages, forms, tracking and the tests that decide what stays.
+
+60 minutes. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+</code></pre>
+<h3>Step 5: Message</h3>
+<pre><code class="language-text">One build example, {{firstName}}.
+
+For Growth Idea, a UK coaching group, the registration rate went from 0.23% on the first webinar to 2.0% on the best one, with a long and a short landing page tested against each other.
+
+The session shows what changed: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+</code></pre>
+<h3>Step 6: Message</h3>
+<pre><code class="language-text">Final message from me, {{firstName}}. If your sign-up page at {{company}} could work harder, the session runs every week: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+</code></pre>
+<h2>Set 4: Messenger (1st-Degree Connections)</h2>
+<p><strong>Who:</strong> This profile's own 1st-degree connections who match the audience and are owned by no other profile.</p>
+<p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben</code>. {{domains.funnel_domain}} is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Daily limit:</strong> 10 first messages a day; all messages on this account, every campaign together, stay under 25 a day.</p>
+<p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Step</th>
+<th>Wait (days after previous step)</th>
+<th>Action</th>
+<th>Chars (worst case)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>main</td>
+<td>1</td>
+<td>0</td>
+<td>Message</td>
+<td>494</td>
+</tr>
+<tr>
+<td>main</td>
+<td>2</td>
+<td>4</td>
+<td>Message</td>
+<td>217</td>
+</tr>
+<tr>
+<td>main</td>
+<td>3</td>
+<td>5</td>
+<td>Message</td>
+<td>216</td>
+</tr>
+</tbody>
+</table>
+<h3>Step 1: Message</h3>
+<pre><code class="language-text">{{firstName}}, a build question: do you know what share of visitors to {{company}}'s sign-up page actually register?
+
+Most teams track the click, not the drop-off. Adi, our founder, hosts a live session every week on the full revenue engine, including the build side I work on: pages, forms, tracking and the tests that decide what stays.
+
+Seat's here: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+</code></pre>
+<h3>Step 2: Message</h3>
+<pre><code class="language-text">{{firstName}}, the builder's takeaway: how to tell, with numbers, which version of a page to keep.
+
+{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+</code></pre>
+<h3>Step 3: Message</h3>
+<pre><code class="language-text">{{firstName}}, that's my last message on this. The session is weekly, so pick any week that suits: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+</code></pre><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Tantra Enterprise Webinar: project instructions</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../index.html">Task board</a><a href="index.html">All documents</a><span>Tantra Enterprise Webinar: project instructions</span></div><h1>Tantra Enterprise Webinar: project instructions</h1>
+<p>This project builds the weekly webinar funnel that sells <strong>Tantra Enterprise</strong>. It is separate from the 3-Day AI RevOps Workshop project (~/tantra-redesign) and from the content project (~/tantra-content). (This file is the CLAUDE.md text, saved under this name because the rules guard blocks writing CLAUDE.md.)</p>
+<h2>Every session starts here</h2>
+<ol>
+<li>Read <code>context/00-INDEX.md</code> (key facts, benchmarks, rules, open questions, file map), then only the context files the task needs.</li>
+<li>Open <code>tasks/tasks.json</code>, find the item Adi names (1 to 27, with 15a and 15b), and read its brief, references and context list.</li>
+<li>Read <code>BRIEF.md</code> for Adi's own words when wording matters.</li>
+</ol>
+<h2>Working a task</h2>
+<ol>
+<li>No task starts until Adi shares its context and asks for it. Do not plan, analyse or prepare tasks ahead of that.</li>
+<li>Work only the task Adi names. Put outputs in <code>deliverables/&lt;item&gt;-&lt;slug&gt;/</code>, set its status in <code>tasks/tasks.json</code>, then rebuild and publish the board: <code>python3 board/build.py &amp;&amp; bash board/publish.sh</code>.</li>
+<li>Pages ship with verified, cache-busted review links for every state.</li>
+<li>A step only Adi can do (sign-in, password, key, payment, creating an account): do everything before it, then give him one short block with the full URL, the field and what to paste or click.</li>
+</ol>
+<h2>Rules (Adi's; never break them)</h2>
+<ul>
+<li><strong>Reference first (Adi, 2026-11-05, central).</strong> Every element mirrors the reference Adi gave for it: its structure, section order, layout, formatting and visual elements, as closely as possible. Only the colours and fonts change to Tantra's (usetantra.com tokens), and the words and proof are ours. Never fall back to usetantra.com's own page design. Before building, write a section-by-section mirror map from the reference; verify with side-by-side screenshots. Reference map per item: <code>REFERENCE_MAP.md</code>.</li>
+<li>No em dashes or en dashes in anything Adi or a reader sees.</li>
+<li>No AI slop. Copy reads like Brian Dean (I/you, a specific pain first), in an enterprise tone.</li>
+<li>Never invent a statistic, testimonial, client result or funnel element. Approved proof only (see 00-INDEX).</li>
+<li>Never change a live account (LinkedIn, Facebook, X, CRM, Workspace) unless Adi asks for that change in this conversation. Never post or send.</li>
+<li>Never write a Slack or team message unless Adi asks.</li>
+<li>Keys and passwords live in <code>~/.config/tantra/keys/</code> only. Never print or commit them. Never commit prospect, attendee or client personal data.</li>
+<li>Social sites (LinkedIn, X, Facebook, Instagram, Reddit, YouTube) are read through Agent Reach only, never fetched directly.</li>
+<li>Never push, PR or merge on any Usetantra/* repo.</li>
+</ul>
+<h2>Places</h2>
+<ul>
+<li>Repo: https://adisuja.github.io/tantra-enterprise-webinar-board/docs/index.html (private)</li>
+<li>Task board: https://adisuja.github.io/tantra-enterprise-webinar-board/ (public, noindex, no credentials; built from tasks/tasks.json)</li>
+</ul><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

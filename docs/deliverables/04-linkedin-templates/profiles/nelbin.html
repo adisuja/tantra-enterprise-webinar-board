@@ -1,0 +1,358 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Nelbin: LinkedIn Outreach Templates</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../../index.html">Task board</a><a href="../../../index.html">All documents</a><span>Nelbin: LinkedIn Outreach Templates</span></div><h1>Nelbin: LinkedIn Outreach Templates</h1>
+<p>Role: <strong>Operations</strong>. Voice: Process: an owner, a checklist and a weekly number for every stage.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LinkedIn URL</td>
+<td>FILL_NELBIN_LINKEDIN_URL</td>
+</tr>
+<tr>
+<td>Title on LinkedIn</td>
+<td>FILL_NELBIN_LINKEDIN_TITLE</td>
+</tr>
+<tr>
+<td>LinkedIn plan</td>
+<td>FILL_NELBIN_LINKEDIN_PLAN</td>
+</tr>
+<tr>
+<td>Account tier for limits</td>
+<td>new (assumed)</td>
+</tr>
+<tr>
+<td>Audience (only this profile contacts them)</td>
+<td>COOs, heads of operations, chiefs of staff, general managers</td>
+</tr>
+<tr>
+<td>UTM code</td>
+<td><code>utm_content=nelbin</code> on every link</td>
+</tr>
+</tbody>
+</table>
+<h2>Daily Limits For This Profile</h2>
+<p>Per LinkedIn account, across all four campaigns together, Monday to Friday. Set them in Tantra on the account: Connectors, Channels, LinkedIn, the account row, <strong>Set daily and weekly sending limits</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Limit</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connection requests</td>
+<td>Start at 20 a day (connector 15, content engagement and InMail follow-ups 5). Raise by 5 a day only after two clean weeks, up to 25. Never above 180 a week</td>
+</tr>
+<tr>
+<td>Messages</td>
+<td>25 a day, all campaigns</td>
+</tr>
+<tr>
+<td>Profile visits</td>
+<td>30 a day</td>
+</tr>
+<tr>
+<td>InMail</td>
+<td>0, or up to 5 Open Profile InMails a day</td>
+</tr>
+</tbody>
+</table>
+<p>A clean week means no LinkedIn warning and a steady acceptance rate. On any warning, drop back to the last clean week's numbers.</p>
+<h2>Set 1: Content Engagement (Likers and Commenters of Each Post)</h2>
+<p><strong>Who:</strong> People who liked or commented on one of this profile's own posts. One campaign per post, started within 24 hours of the post. Split the engager export by degree: 2nd and 3rd degree run the connect track, 1st degree the message track.</p>
+<p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{custom.post_topic}}</code> (a 2 to 6 word phrase for the post, the same value on every row of that post's export). If the test message shows <code>{{custom.post_topic}}</code> blank, type the phrase into the step text instead: each post has its own campaign.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin</code>. {{domains.funnel_domain}} is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Daily limit:</strong> 5 connection requests a day from the 20 a day budget; messages come out of the 25 a day message budget.</p>
+<p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Step</th>
+<th>Wait (days after previous step)</th>
+<th>Action</th>
+<th>Chars (worst case)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2nd/3rd degree</td>
+<td>1</td>
+<td>0 (same day the engager list is imported)</td>
+<td>Visit profile</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>2nd/3rd degree</td>
+<td>2</td>
+<td>0</td>
+<td>Connection request with note</td>
+<td>178</td>
+</tr>
+<tr>
+<td>2nd/3rd degree</td>
+<td>3</td>
+<td>1 (1 day after they accept)</td>
+<td>Message</td>
+<td>386</td>
+</tr>
+<tr>
+<td>2nd/3rd degree</td>
+<td>4</td>
+<td>4</td>
+<td>Message</td>
+<td>359</td>
+</tr>
+<tr>
+<td>1st degree</td>
+<td>1</td>
+<td>0</td>
+<td>Message</td>
+<td>300</td>
+</tr>
+<tr>
+<td>1st degree</td>
+<td>2</td>
+<td>4</td>
+<td>Message</td>
+<td>251</td>
+</tr>
+</tbody>
+</table>
+<h3>2nd/3rd degree, Step 2: Connection request with note</h3>
+<pre><code class="language-text">Hi {{firstName}}, good to see you on my post about {{custom.post_topic}}. The process behind it is covered step by step in a weekly session. Glad to connect.
+</code></pre>
+<h3>2nd/3rd degree, Step 3: Message</h3>
+<pre><code class="language-text">Glad we're connected, {{firstName}}.
+
+My post on {{custom.post_topic}} covered one step. The weekly session covers the whole process: who owns each stage, what gets measured weekly and what the AI handles.
+
+Adi, our founder, hosts it. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+</code></pre>
+<h3>2nd/3rd degree, Step 4: Message</h3>
+<pre><code class="language-text">{{firstName}}, a process example from the session.
+
+In one logged experiment for a UK coaching group, a 100,000-invite calendar push aimed for 250 attendees and got 441. Logging it is what made it repeatable.
+
+The full checklist is here: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+</code></pre>
+<h3>1st degree, Step 1: Message</h3>
+<pre><code class="language-text">{{firstName}}, good to see you on my {{custom.post_topic}} post.
+
+Adi, our founder, runs a live session every week on building revenue as a repeatable process: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+</code></pre>
+<h3>1st degree, Step 2: Message</h3>
+<pre><code class="language-text">{{firstName}}, following up once. The session turns {{custom.post_topic}} into a weekly checklist you can run: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+</code></pre>
+<h2>Set 2: InMail (Sent by Hand in Sales Navigator, Follow-Ups in Tantra)</h2>
+<p><strong>Who:</strong> Prospects in this profile's audience who are not connected and are worth a credit: Open Profiles first (no credit used), then the best fits on credits. Needs Sales Navigator or Premium. Step 1 is sent by hand in Sales Navigator, so Tantra cannot see replies: 5 days later, import <strong>only the people who did not reply</strong> into the follow-up campaign.</p>
+<p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>. Step 1 goes out by hand in Sales Navigator, which does not fill Tantra tags: type the first name and company in place of the tags before sending. The follow-up steps run in Tantra, which fills them. The sign-off is the sender's name, already in the text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin</code>. {{domains.funnel_domain}} is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Daily limit:</strong> InMail 0, or up to 5 Open Profile InMails a day. Credits: Sales Navigator 50 a month, Premium Business 15, Premium Career 5, free none. The follow-up connection requests count toward the 20 a day budget.</p>
+<p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Step</th>
+<th>Wait (days after previous step)</th>
+<th>Action</th>
+<th>Chars (worst case)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manual</td>
+<td>1</td>
+<td>0</td>
+<td>InMail, sent by hand in Sales Navigator</td>
+<td>661</td>
+</tr>
+<tr>
+<td>Tantra follow-up</td>
+<td>1</td>
+<td>0 (import 5 days after the InMail, non-repliers only)</td>
+<td>Connection request with note</td>
+<td>151</td>
+</tr>
+<tr>
+<td>Tantra follow-up</td>
+<td>2</td>
+<td>1 (1 day after they accept)</td>
+<td>Message</td>
+<td>218</td>
+</tr>
+</tbody>
+</table>
+<h3>Manual, Step 1: InMail, sent by hand in Sales Navigator</h3>
+<p>Subject: <code>Who owns the pipeline at {{company}}?</code></p>
+<pre><code class="language-text">Hi {{firstName}}, a blunt question from an ops person.
+
+I run operations at Tantra. Who owns each stage of the pipeline at {{company}}, from first touch to signed client?
+
+In most companies the answer is &quot;sort of everyone&quot;, which means nobody. Leads stall in the handoffs.
+
+Adi, our founder, hosts a live session every week on running the revenue engine as a process: an owner, a weekly number and a checklist for every stage, with AI on the routine work. It's how I run operations here.
+
+60 minutes. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+
+Nelbin
+</code></pre>
+<h3>Tantra follow-up, Step 1: Connection request with note</h3>
+<pre><code class="language-text">{{firstName}}, I wrote to you about running the pipeline as a process. Whether or not it's a fit, ops people should know each other. Glad to connect.
+</code></pre>
+<h3>Tantra follow-up, Step 2: Message</h3>
+<pre><code class="language-text">Glad we're connected, {{firstName}}. The process session I mentioned is here, and it repeats weekly: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+</code></pre>
+<h2>Set 3: Connector (Connection Request, Then Follow-Ups)</h2>
+<p><strong>Who:</strong> Cold prospects in this profile's audience (2nd and 3rd degree). Only people who accept get the messages.</p>
+<p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin</code>. {{domains.funnel_domain}} is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Daily limit:</strong> 15 connection requests a day (the rest of the 20 a day budget goes to content engagement), 30 profile visits a day.</p>
+<p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Step</th>
+<th>Wait (days after previous step)</th>
+<th>Action</th>
+<th>Chars (worst case)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>main</td>
+<td>1</td>
+<td>0</td>
+<td>Visit profile</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>main</td>
+<td>2</td>
+<td>1</td>
+<td>Connection request with note</td>
+<td>172</td>
+</tr>
+<tr>
+<td>main</td>
+<td>3</td>
+<td>1 (1 day after they accept; no link yet)</td>
+<td>Message</td>
+<td>312</td>
+</tr>
+<tr>
+<td>main</td>
+<td>4</td>
+<td>3</td>
+<td>Message</td>
+<td>350</td>
+</tr>
+<tr>
+<td>main</td>
+<td>5</td>
+<td>4</td>
+<td>Message</td>
+<td>423</td>
+</tr>
+<tr>
+<td>main</td>
+<td>6</td>
+<td>6</td>
+<td>Message</td>
+<td>276</td>
+</tr>
+</tbody>
+</table>
+<h3>Step 2: Connection request with note</h3>
+<pre><code class="language-text">Hi {{firstName}}, I run operations at Tantra. Most growth problems I see are process problems: no owner, no checklist, no weekly number. That's my patch. Glad to connect.
+</code></pre>
+<h3>Step 3: Message</h3>
+<pre><code class="language-text">Glad we're connected, {{firstName}}.
+
+A question from the ops side: if your best salesperson left {{company}} tomorrow, would the pipeline keep running?
+
+When the answer is no, the pipeline lives in someone's head. The fix is a written process with an owner and a number for every step.
+</code></pre>
+<h3>Step 4: Message</h3>
+<pre><code class="language-text">{{firstName}}, that written process is what Adi, our founder, teaches in a live session every week: who owns each stage, what gets measured weekly and what the AI handles.
+
+It's the same process I run here. 60 minutes. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+</code></pre>
+<h3>Step 5: Message</h3>
+<pre><code class="language-text">A process example, {{firstName}}.
+
+Over 11 webinars for Growth Idea, a UK coaching group, we built a weekly analytics sheet and a 12-item experiment log. The totals: 6,517 registered, 1,384 came live, 80 sales calls booked.
+
+No heroics, just the same checklist every week. The session walks through it: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+</code></pre>
+<h3>Step 6: Message</h3>
+<pre><code class="language-text">I'll stop here, {{firstName}}. If a pipeline that runs without heroics is on the list for {{company}}, the session runs every week: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+</code></pre>
+<h2>Set 4: Messenger (1st-Degree Connections)</h2>
+<p><strong>Who:</strong> This profile's own 1st-degree connections who match the audience and are owned by no other profile.</p>
+<p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin</code>. {{domains.funnel_domain}} is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Daily limit:</strong> 10 first messages a day; all messages on this account, every campaign together, stay under 25 a day.</p>
+<p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Step</th>
+<th>Wait (days after previous step)</th>
+<th>Action</th>
+<th>Chars (worst case)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>main</td>
+<td>1</td>
+<td>0</td>
+<td>Message</td>
+<td>460</td>
+</tr>
+<tr>
+<td>main</td>
+<td>2</td>
+<td>4</td>
+<td>Message</td>
+<td>253</td>
+</tr>
+<tr>
+<td>main</td>
+<td>3</td>
+<td>5</td>
+<td>Message</td>
+<td>202</td>
+</tr>
+</tbody>
+</table>
+<h3>Step 1: Message</h3>
+<pre><code class="language-text">{{firstName}}, an ops question: is there one written process at {{company}} for what happens between a sign-up and a booked call?
+
+When there isn't, leads stall in the handoffs. Adi, our founder, hosts a live session every week on running revenue as a repeatable process, with AI on the routine steps.
+
+Seat's here: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+</code></pre>
+<h3>Step 2: Message</h3>
+<pre><code class="language-text">{{firstName}}, the ops takeaway: a weekly scorecard for every stage of the funnel, so you fix the weakest step instead of guessing.
+
+{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+</code></pre>
+<h3>Step 3: Message</h3>
+<pre><code class="language-text">{{firstName}}, one final reminder and then I'll leave it. New session every week: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+</code></pre><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

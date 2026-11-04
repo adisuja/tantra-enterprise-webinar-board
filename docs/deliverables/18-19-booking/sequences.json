@@ -1,0 +1,327 @@
+{
+  "_about": "Single source for sequences A to F, the Call 2 sequences (R, RN, RC, RS), the Nurture and Won follow-ups, and the rep tasks. deliverables/23-crm/build.py turns this file into 18-sequences-A-to-F.md (for review) and into the Sequences section of the CRM Apps Script (for sending). Edit here, then run build.py. Source: references/sales-pipeline/Sales_Pipeline_and_Automation_Playbook.txt, with WhatsApp in place of SMS.",
+  "rules": {
+    "whatsapp_hours": "WhatsApp only between 08:00 and 20:00 in the lead's timezone (Cal.com attendee timezone, else the default_timezone setting). A step due outside the window waits for the next 08:00; a pre-call reminder that would land after the call starts is skipped.",
+    "stop": "Every sequence with stops_on_reply stops the moment the lead replies, books, or the deal changes stage. A and B are booking logistics: they stop on cancel, stage change past the call, or opt-out, not on a YES reply.",
+    "opt_out": "STOP in any channel tags the contact Do Not Contact and cancels every pending step.",
+    "optional_lines": "A line that starts with ? is dropped when one of its merge fields is empty; otherwise the ? is removed."
+  },
+  "merge_fields": {
+    "first_name": "Contacts.first_name (Cal.com attendee name, first word)",
+    "closer": "The assigned closer's first name (Conor or Scott), from the Cal.com organizer email matched against the Closers table on the Lists tab",
+    "company": "Contacts.company",
+    "call_day": "Call date in the lead's timezone, for example Thursday 12 November",
+    "call_time": "Call time in the lead's timezone, for example 3:00 PM",
+    "lead_timezone": "The lead's timezone name from Cal.com",
+    "join_link": "Meeting link from the Cal.com booking (Google Meet)",
+    "reschedule_link": "https://app.cal.com/reschedule/<booking uid>",
+    "booking_link": "booking.round_robin_url in funnel-config.json (Lists tab setting booking_url)",
+    "proposal_url": "Pipeline.proposal_url",
+    "goal": "The lead's answer to the bottleneck question",
+    "call_notes": "Pipeline.notes, written by the closer after the call",
+    "due_diligence_url": "funnel_domain + /due-diligence/ (Lists tab setting due_diligence_url)",
+    "onboarding_link": "Onboarding call booking link (Lists tab setting onboarding_link)",
+    "call2_link": "The deal closer's own Proposal Review booking link (booking.call2.<closer>_url in funnel-config.json; Lists tab Closers table, closer_call2_url). Missing: the message is blocked, never sent without it",
+    "call2_day": "Call 2 date in the lead's timezone, from the proposal-review booking (Pipeline.call2_date)",
+    "call2_time": "Call 2 time in the lead's timezone",
+    "call2_join_link": "Meeting link from the Call 2 booking (Pipeline.call2_join_link)",
+    "call2_reschedule_link": "https://app.cal.com/reschedule/<Call 2 booking uid> (Pipeline.call2_cal_uid)"
+  },
+  "sequences": [
+    {
+      "id": "SET",
+      "name": "Setter task: confirm inside 5 minutes",
+      "trigger": "booking.created",
+      "valid_stages": ["2 Call Booked"],
+      "stops_on_reply": false,
+      "steps": [
+        {"id": "SET1", "from": "event", "minutes": 5, "channel": "task", "assignee": "setter", "lead_hours": true,
+         "text": "Confirm {{first_name}} ({{company}}) for {{call_day}} at {{call_time}}: call, or send a WhatsApp voice note if no answer, between 08:00 and 20:00 their time (this task waits until then). Script: speed-to-lead section 3. When they say yes, mark Confirmed."},
+        {"id": "SET2", "from": "call_start", "minutes": -120, "channel": "task", "assignee": "closer",
+         "text": "Pre-call research for {{first_name}} ({{company}}): checklist in 18-speed-to-lead.md, section 4. Write three lines in Pipeline notes before the call."}
+      ]
+    },
+    {
+      "id": "A",
+      "name": "Booking confirmation",
+      "trigger": "booking.created",
+      "valid_stages": ["2 Call Booked", "3 Confirmed"],
+      "stops_on_reply": false,
+      "steps": [
+        {"id": "A1", "from": "event", "minutes": 0, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, it's {{closer}} from Tantra. You're booked for your Enterprise Evaluation Call on {{call_day}} at {{call_time}}. Reply YES to confirm. Need to move it? {{reschedule_link}}\nReply STOP to opt out."},
+        {"id": "A1", "from": "event", "minutes": 0, "channel": "email",
+         "subject": "Your Enterprise Evaluation Call on {{call_day}}",
+         "text": "Hi {{first_name}},\n\nI'm {{closer}}, and I'll run your Tantra Enterprise Evaluation Call on {{call_day}} at {{call_time}} ({{lead_timezone}}).\n\nJoin here: {{join_link}}\n\nIn 30 minutes we will:\n1. Map your offer, your buyers and your numbers today\n2. Find the stage where your funnel loses the most revenue\n3. Decide together whether Tantra Enterprise is the right fit\n\n?You named this as your biggest bottleneck: \"{{goal}}\". I'll come prepared on it.\n\nPlease reply YES so I know the time still works. If it doesn't, move it here at least 24 hours before: {{reschedule_link}}\n\n{{closer}}\nTantra"}
+      ]
+    },
+    {
+      "id": "B",
+      "name": "Pre-call reminders",
+      "trigger": "booking.created",
+      "valid_stages": ["2 Call Booked", "3 Confirmed"],
+      "stops_on_reply": false,
+      "steps": [
+        {"id": "B1", "from": "call_start", "minutes": -1440, "channel": "whatsapp", "expires_at_call": true,
+         "text": "Hi {{first_name}}, a reminder: we speak tomorrow at {{call_time}}. Reply YES to confirm, or move it here: {{reschedule_link}}",
+         "text_if_confirmed": "Hi {{first_name}}, see you tomorrow at {{call_time}}. Have your offer, pricing and rough monthly numbers ready. Link: {{join_link}}"},
+        {"id": "B1", "from": "call_start", "minutes": -1440, "channel": "email", "expires_at_call": true,
+         "subject": "Tomorrow at {{call_time}}: Your Enterprise Evaluation Call",
+         "text": "Hi {{first_name}},\n\nA reminder that we speak tomorrow, {{call_day}} at {{call_time}}.\n\nReply YES to confirm. If the time no longer works, move it here: {{reschedule_link}}\n\nTo get the most from the 30 minutes:\n- Join from a laptop, with your camera on\n- Have your offer, pricing and rough monthly numbers ready\n- Bring the person who signs off on growth investment\n\nJoin here: {{join_link}}\n\n{{closer}}\nTantra",
+         "text_if_confirmed": "Hi {{first_name}},\n\nSee you tomorrow, {{call_day}} at {{call_time}}.\n\nTo get the most from the 30 minutes:\n- Join from a laptop, with your camera on\n- Have your offer, pricing and rough monthly numbers ready\n- Bring the person who signs off on growth investment\n\nJoin here: {{join_link}}\n\n{{closer}}\nTantra"},
+        {"id": "B2", "from": "call_start", "minutes": -180, "channel": "whatsapp", "expires_at_call": true,
+         "text": "Hi {{first_name}}, we speak at {{call_time}} today. Find a quiet spot, join from a laptop with your camera on, and bring whoever signs off on growth investment. Link: {{join_link}}"},
+        {"id": "B3", "from": "call_start", "minutes": -15, "channel": "whatsapp", "expires_at_call": true,
+         "text": "Hi {{first_name}}, we start in 15 minutes. Link: {{join_link}}"},
+        {"id": "B4", "from": "call_start", "minutes": 45, "channel": "task", "assignee": "closer",
+         "text": "Log the outcome of {{first_name}}'s call now: Showed, No-Show, Not ready or Proposal sent (Tantra CRM menu). Deals left in Call Booked or Confirmed break every follow-up."}
+      ]
+    },
+    {
+      "id": "C",
+      "name": "No-show",
+      "trigger": "call.no_show",
+      "valid_stages": ["4b No-Show"],
+      "stops_on_reply": true,
+      "switch_note": "Steps marked switch run only when the Lists tab setting seq_c_rebook is ON. Default OFF, because the published call description says a call missed without notice is not rescheduled. Decision for Adi.",
+      "steps": [
+        {"id": "C1", "from": "event", "minutes": 0, "channel": "whatsapp", "expires_minutes": 30,
+         "text": "Hi {{first_name}}, I'm on the call now. Everything okay? Link: {{join_link}}"},
+        {"id": "C2", "from": "event", "minutes": 60, "channel": "whatsapp", "switch": "seq_c_rebook",
+         "text": "Hi {{first_name}}, we missed you today. No stress, things come up. If you still want to find where your funnel loses revenue, grab a new time: {{booking_link}}\nReply STOP to opt out."},
+        {"id": "C3", "from": "event", "minutes": 1440, "channel": "whatsapp", "switch": "seq_c_rebook",
+         "text": "Hi {{first_name}}, the 30 minutes to map your funnel against your numbers still stands. Here's my calendar if you'd like to rebook: {{booking_link}}"},
+        {"id": "C3", "from": "event", "minutes": 1440, "channel": "email", "switch": "seq_c_rebook",
+         "subject": "Still Want to Map Your Funnel, {{first_name}}?",
+         "text": "Hi {{first_name}},\n\nWe had your Enterprise Evaluation Call booked yesterday and I didn't see you join. No problem: things come up.\n\n?You told us your biggest bottleneck is \"{{goal}}\". That doesn't fix itself, and the call is still the fastest way to see whether Tantra Enterprise fits your numbers.\n\nIf you'd like to rebook, my calendar is here: {{booking_link}}\n\n{{closer}}\nTantra"},
+        {"id": "C4", "from": "event", "minutes": 4320, "channel": "whatsapp", "switch": "seq_c_rebook",
+         "text": "Hi {{first_name}}, last note from me for now. If the timing's not right, I'll leave the link here: {{booking_link}}"},
+        {"id": "C5", "from": "event", "minutes": 10080, "channel": "system", "action": "stage:9 Nurture",
+         "text": "No reply 7 days after the no-show: move to Nurture."}
+      ]
+    },
+    {
+      "id": "D",
+      "name": "Proposal sent: book the Proposal Review (Call 2)",
+      "trigger": "proposal.sent",
+      "valid_stages": ["5 Proposal Sent"],
+      "stops_on_reply": true,
+      "steps": [
+        {"id": "D1", "from": "event", "minutes": 0, "channel": "email",
+         "subject": "Your Tantra Enterprise Proposal",
+         "text": "Hi {{first_name}},\n\nGreat speaking with you. As promised, here is your written proposal for Tantra Enterprise: {{proposal_url}}\n\nIt sets out the scope, the timeline and who on your team is involved, as we agreed on the call. The investment is $9,999 and covers:\n- 3 months of 1:1 coaching and implementation with your team\n- A done-with-you build of your funnel\n- 1 year of access to the Tantra platform\n- The full course, the community and group coaching calls\n\nThe next step is a 30-minute Proposal Review with me. We go through it section by section, I answer every question, and we decide together on the call. Bring whoever signs off.\n\nBook your Proposal Review here: {{call2_link}}\n\n{{closer}}\nTantra"},
+        {"id": "D1", "from": "event", "minutes": 0, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, great speaking with you. Your Tantra Enterprise proposal is in your inbox: {{proposal_url}}. Book your 30-minute Proposal Review with me here: {{call2_link}}\nReply STOP to opt out."},
+        {"id": "D2", "from": "event", "minutes": 1440, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, did you get a chance to look over the proposal? Pick a time and we'll go through it together: {{call2_link}}"},
+        {"id": "D3", "from": "event", "minutes": 4320, "channel": "email",
+         "subject": "How a UK Coaching Group Booked 80 Sales Calls From Webinars",
+         "text": "Hi {{first_name}},\n\nWhile you weigh the proposal, here's what the same build did for a client in a similar position.\n\nGrowth Idea is a UK business-coaching group for owner-led businesses. We built their webinar funnel with them: calendar-invite outreach, registration pages tested against each other, reminders, the live session, follow-up and a weekly analytics sheet.\n\nOver 11 webinars, May 2025 to Feb 2026:\n- 6,517 people registered\n- 1,384 came live\n- 80 sales calls booked\n- 4 clients won\n\nThe full breakdown is here: {{due_diligence_url}}\n\nWe can go through how that maps to your proposal on your Proposal Review. Book it here: {{call2_link}}\n\n{{closer}}\nTantra"},
+        {"id": "D4", "from": "event", "minutes": 10080, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, should I keep your proposal open, or is now not the right time? Either answer is fine. If you want to go through it, book here: {{call2_link}}"},
+        {"id": "D5", "from": "event", "minutes": 11520, "channel": "system", "action": "stage:6 Follow-Up",
+         "text": "No Proposal Review booked and no decision by day 8 after the proposal (a day after D4): move to Follow-Up."}
+      ]
+    },
+    {
+      "id": "R",
+      "name": "Call 2 booked: confirmation and reminders (Seq. B timing)",
+      "trigger": "booking.created (call 2: the proposal-review event type)",
+      "valid_stages": ["5 Proposal Sent"],
+      "stops_on_reply": false,
+      "call": 2,
+      "steps": [
+        {"id": "R1", "from": "event", "minutes": 0, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, it's {{closer}} from Tantra. Your Proposal Review is booked for {{call2_day}} at {{call2_time}}. Need to move it? {{call2_reschedule_link}}"},
+        {"id": "R1", "from": "event", "minutes": 0, "channel": "email",
+         "subject": "Your Proposal Review on {{call2_day}}",
+         "text": "Hi {{first_name}},\n\nYour Proposal Review is booked for {{call2_day}} at {{call2_time}} ({{lead_timezone}}).\n\nJoin here: {{call2_join_link}}\n\nIn 30 minutes we will:\n1. Go through your proposal, section by section\n2. Answer every question you and your team have\n3. Decide together whether to go ahead\n\nHave the proposal open, and bring the person who signs off: {{proposal_url}}\n\nIf the time no longer works, move it here at least 24 hours before: {{call2_reschedule_link}}\n\n{{closer}}\nTantra"},
+        {"id": "R2", "from": "call_start", "minutes": -1440, "channel": "whatsapp", "expires_at_call": true,
+         "text": "Hi {{first_name}}, a reminder: we go through your proposal tomorrow at {{call2_time}}. Bring whoever signs off. Need to move it? {{call2_reschedule_link}}"},
+        {"id": "R2", "from": "call_start", "minutes": -1440, "channel": "email", "expires_at_call": true,
+         "subject": "Tomorrow at {{call2_time}}: Your Proposal Review",
+         "text": "Hi {{first_name}},\n\nA reminder that we go through your proposal tomorrow, {{call2_day}} at {{call2_time}}.\n\nTo make the 30 minutes count:\n- Read the proposal once and note your questions: {{proposal_url}}\n- Join from a laptop, with your camera on\n- Bring the person who signs off on growth investment\n\nJoin here: {{call2_join_link}}\n\nIf the time no longer works, move it here: {{call2_reschedule_link}}\n\n{{closer}}\nTantra"},
+        {"id": "R3", "from": "call_start", "minutes": -180, "channel": "whatsapp", "expires_at_call": true,
+         "text": "Hi {{first_name}}, we go through your proposal at {{call2_time}} today. Join from a laptop with your camera on, and bring whoever signs off. Link: {{call2_join_link}}"},
+        {"id": "RP", "from": "call_start", "minutes": -120, "channel": "task", "assignee": "closer",
+         "text": "Prep for {{first_name}}'s Proposal Review ({{company}}): re-read the proposal and your Call 1 notes, list the questions they are likely to ask, and have the agreement and payment link ready to send on the call. Script: 18-call-2-proposal-review-script.md."},
+        {"id": "R4", "from": "call_start", "minutes": -15, "channel": "whatsapp", "expires_at_call": true,
+         "text": "Hi {{first_name}}, we start in 15 minutes. Link: {{call2_join_link}}"},
+        {"id": "R5", "from": "call_start", "minutes": 45, "channel": "task", "assignee": "closer",
+         "text": "Log the outcome of {{first_name}}'s Proposal Review now (Tantra CRM menu): Call 2 Showed or Call 2 No-Show. Then Closed Won when the payment lands, or Closed Lost with a reason."}
+      ]
+    },
+    {
+      "id": "RN",
+      "name": "Call 2 no-show",
+      "trigger": "call.no_show (call 2)",
+      "valid_stages": ["5 Proposal Sent"],
+      "stops_on_reply": true,
+      "call": 2,
+      "switch_note": "Same switch as Seq. C: steps marked switch run only when the Lists tab setting seq_c_rebook is ON (default OFF). With it OFF the lead gets the 'I'm on the call now' message only, is flagged no_rebook, and moves to Nurture on day 7, exactly as a missed Call 1.",
+      "steps": [
+        {"id": "RN1", "from": "event", "minutes": 0, "channel": "whatsapp", "expires_minutes": 30,
+         "text": "Hi {{first_name}}, I'm on the call now to go through your proposal. Everything okay? Link: {{call2_join_link}}"},
+        {"id": "RN2", "from": "event", "minutes": 60, "channel": "whatsapp", "switch": "seq_c_rebook",
+         "text": "Hi {{first_name}}, we missed you today. No stress, things come up. If you still want to go through the proposal together, pick a new time: {{call2_link}}\nReply STOP to opt out."},
+        {"id": "RN3", "from": "event", "minutes": 1440, "channel": "email", "switch": "seq_c_rebook",
+         "subject": "Still Want to Go Through Your Proposal, {{first_name}}?",
+         "text": "Hi {{first_name}},\n\nWe had your Proposal Review booked yesterday and I didn't see you join. No problem: things come up.\n\nYour proposal is still here: {{proposal_url}}\n\nIf you'd like to go through it together and decide, pick a new time: {{call2_link}}\n\n{{closer}}\nTantra"},
+        {"id": "RN4", "from": "event", "minutes": 4320, "channel": "whatsapp", "switch": "seq_c_rebook",
+         "text": "Hi {{first_name}}, last note from me for now. If the timing's not right, I'll leave the link here: {{call2_link}}"},
+        {"id": "RN5", "from": "event", "minutes": 10080, "channel": "system", "action": "stage:9 Nurture",
+         "text": "No reply or new booking 7 days after the missed Proposal Review: move to Nurture (as Seq. C)."}
+      ]
+    },
+    {
+      "id": "RC",
+      "name": "Call 2 cancelled",
+      "trigger": "booking.cancelled (call 2)",
+      "valid_stages": ["5 Proposal Sent"],
+      "stops_on_reply": true,
+      "call": 2,
+      "steps": [
+        {"id": "RC1", "from": "event", "minutes": 0, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, it's {{closer}} from Tantra. Your Proposal Review isn't booked right now. Pick a new time that suits you: {{call2_link}}\nReply STOP to opt out."},
+        {"id": "RC1", "from": "event", "minutes": 0, "channel": "email",
+         "subject": "Pick a New Time for Your Proposal Review",
+         "text": "Hi {{first_name}},\n\nYour Proposal Review isn't booked right now.\n\nIn 30 minutes we go through your proposal, answer every question, and decide together whether to go ahead. Your proposal is here: {{proposal_url}}\n\nPick a new time here: {{call2_link}}\n\n{{closer}}\nTantra"},
+        {"id": "RC2", "from": "event", "minutes": 2880, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, the review takes 30 minutes and we decide together on the call. Times are here: {{call2_link}}"},
+        {"id": "RC3", "from": "event", "minutes": 10080, "channel": "system", "action": "stage:6 Follow-Up",
+         "text": "No new Proposal Review booked 7 days after the cancellation: move to Follow-Up."}
+      ]
+    },
+    {
+      "id": "RS",
+      "name": "Call 2 showed: decision",
+      "trigger": "call.showed (call 2)",
+      "valid_stages": ["5 Proposal Sent"],
+      "stops_on_reply": true,
+      "call": 2,
+      "steps": [
+        {"id": "RS1", "from": "event", "minutes": 0, "channel": "task", "assignee": "closer",
+         "text": "{{first_name}} ({{company}}) said yes on the Proposal Review? Send the agreement and payment link now (Call 2 script, Decide), then mark Closed Won when the payment lands. Not yet? Write what stands in the way in Pipeline notes. A no: Closed Lost with a reason."},
+        {"id": "RS2", "from": "event", "minutes": 2880, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, thanks for going through the proposal with me. Is anything still open before you sign? Reply here and I'll answer it."},
+        {"id": "RS3", "from": "event", "minutes": 10080, "channel": "system", "action": "stage:6 Follow-Up",
+         "text": "No decision 7 days after the Proposal Review: move to Follow-Up."}
+      ]
+    },
+    {
+      "id": "FU",
+      "name": "Follow-Up stage: rep touches",
+      "trigger": "stage:6 Follow-Up",
+      "valid_stages": ["6 Follow-Up"],
+      "stops_on_reply": true,
+      "steps": [
+        {"id": "FU1", "from": "event", "minutes": 0, "channel": "task", "assignee": "closer",
+         "text": "Call {{first_name}} about the proposal, or send a WhatsApp voice note. Ask: what would need to be true for this to be an easy yes? Then answer only that. No Proposal Review yet? Offer it: {{call2_link}}"},
+        {"id": "FU2", "from": "event", "minutes": 4320, "channel": "task", "assignee": "closer",
+         "text": "Second touch for {{first_name}}: voice note or call. Log the answer in Pipeline notes."},
+        {"id": "FU3", "from": "event", "minutes": 10080, "channel": "task", "assignee": "closer",
+         "text": "Third touch for {{first_name}}: call. If they decided, log Won or Lost."},
+        {"id": "FU4", "from": "event", "minutes": 14400, "channel": "task", "assignee": "closer",
+         "text": "Last touch for {{first_name}}: voice note. No answer in 4 days moves them to Nurture."},
+        {"id": "FU5", "from": "event", "minutes": 20160, "channel": "system", "action": "stage:9 Nurture",
+         "text": "No response 14 days into Follow-Up: move to Nurture."}
+      ]
+    },
+    {
+      "id": "E",
+      "name": "New lead, no booking",
+      "trigger": "booking.cancelled",
+      "valid_stages": ["1 New Lead"],
+      "stops_on_reply": true,
+      "steps": [
+        {"id": "E1", "from": "event", "minutes": 0, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, it's {{closer}} from Tantra. Your Enterprise Evaluation Call isn't booked right now. Pick a time that suits you: {{booking_link}}\nReply STOP to opt out."},
+        {"id": "E1", "from": "event", "minutes": 0, "channel": "email",
+         "subject": "Pick a New Time for Your Enterprise Evaluation Call",
+         "text": "Hi {{first_name}},\n\nYour Tantra Enterprise Evaluation Call isn't booked right now.\n\nIn 30 minutes we map your offer and your numbers, find the stage where your funnel loses the most revenue, and decide together whether Tantra Enterprise fits. If it does, you get a written proposal within one business day.\n\nPick a time that suits you: {{booking_link}}\n\n{{closer}}\nTantra"},
+        {"id": "E2", "from": "event", "minutes": 60, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, the 30-minute call shows where your funnel loses the most revenue, on your own numbers. Times are here: {{booking_link}}"},
+        {"id": "E3", "from": "event", "minutes": 1440, "channel": "email",
+         "subject": "17 Sales Calls From 3 Webinars: What We Built",
+         "text": "Hi {{first_name}},\n\nOne example of what the call leads to.\n\nFintechCircle is a London fintech network. We built their webinar outreach with them and grew outreach from 10,000 reached to 20,046 and then 30,000 calendar invites across three episodes (March to April 2026). Those three episodes booked 17 sales calls.\n\nOn your call we do the same mapping for your offer: where your traffic comes from, where it drops, and what we'd build first.\n\nPick a time here: {{booking_link}}\n\n{{closer}}\nTantra"},
+        {"id": "E4", "from": "event", "minutes": 2880, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, last nudge from me. If you want the call, here's the link: {{booking_link}}"}
+      ]
+    },
+    {
+      "id": "F",
+      "name": "Post-call, not ready",
+      "trigger": "call.not_ready",
+      "valid_stages": ["4a Showed"],
+      "stops_on_reply": true,
+      "steps": [
+        {"id": "F1", "from": "event", "minutes": 1440, "channel": "email",
+         "subject": "Recap of Our Call, {{first_name}}",
+         "text": "Hi {{first_name}},\n\nThanks for your time yesterday. Here's what I took away:\n\n{{call_notes}}\n\nWhen the timing is right, the next step is simple: a short call to confirm scope, then your written proposal within one business day.\n\n{{closer}}\nTantra"},
+        {"id": "F2", "from": "event", "minutes": 10080, "channel": "email",
+         "subject": "How We'd Build Your Funnel, Stage by Stage",
+         "text": "Hi {{first_name}},\n\n?On our call you named \"{{goal}}\" as the thing holding revenue back.\n\nThis page shows how we build a funnel with a client team, stage by stage: {{due_diligence_url}}\n\nNo reply needed. It's there when you want it.\n\n{{closer}}\nTantra"},
+        {"id": "F3", "from": "event", "minutes": 43200, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, it's {{closer}} from Tantra. Checking in: is now a better time to look at the funnel again? If so, pick a time: {{booking_link}}\nReply STOP to opt out."},
+        {"id": "F3", "from": "event", "minutes": 43200, "channel": "email",
+         "subject": "Is Now a Better Time, {{first_name}}?",
+         "text": "Hi {{first_name}},\n\nIt's been a month since our call. Is now a better time to look at the funnel again?\n\nIf it is, pick a time here and I'll pick up where we left off: {{booking_link}}\n\nIf not, no reply needed.\n\n{{closer}}\nTantra"},
+        {"id": "F4", "from": "event", "minutes": 63360, "channel": "system", "action": "stage:9 Nurture",
+         "text": "No reply 14 days after the 30-day check-in: move to Nurture (added so deals never sit in Showed; confirm with Adi)."}
+      ]
+    },
+    {
+      "id": "N",
+      "name": "Nurture",
+      "trigger": "stage:9 Nurture",
+      "valid_stages": ["9 Nurture"],
+      "stops_on_reply": true,
+      "steps": [
+        {"id": "N1", "from": "event", "minutes": 0, "channel": "task", "assignee": "setter",
+         "text": "Add {{first_name}} to the post-webinar newsletter list (item 22). That newsletter is the monthly value email."},
+        {"id": "N2", "from": "event", "minutes": 108000, "channel": "whatsapp", "repeat_minutes": 108000, "skip_if": "no_rebook",
+         "text": "Hi {{first_name}}, it's {{closer}} from Tantra. Is growing revenue still on your list this quarter? If it is, here's my calendar: {{booking_link}}\nReply STOP to opt out."}
+      ]
+    },
+    {
+      "id": "W",
+      "name": "Closed Won: handover",
+      "trigger": "deal.won",
+      "valid_stages": ["7 Closed Won"],
+      "stops_on_reply": false,
+      "steps": [
+        {"id": "W1", "from": "event", "minutes": 0, "channel": "email",
+         "subject": "Welcome to Tantra Enterprise, {{first_name}}",
+         "text": "Hi {{first_name}},\n\nPayment received. Thank you, and welcome to Tantra Enterprise.\n\nYour next step: book your onboarding call here: {{onboarding_link}}\n\nBefore that call, gather three things: your current offer and pricing, last month's numbers (traffic, calls, sales), and the name of the person on your team who will own the funnel.\n\nAnything unclear, reply to this email.\n\n{{closer}}\nTantra"},
+        {"id": "W1", "from": "event", "minutes": 0, "channel": "whatsapp",
+         "text": "Hi {{first_name}}, payment received. Welcome to Tantra Enterprise. Book your onboarding call here: {{onboarding_link}}"},
+        {"id": "W2", "from": "event", "minutes": 0, "channel": "task", "assignee": "closer",
+         "text": "Hand {{first_name}} ({{company}}) over to onboarding: share call notes, proposal and the bottleneck they named."},
+        {"id": "W3", "from": "event", "minutes": 20160, "channel": "task", "assignee": "closer",
+         "text": "Ask {{first_name}} for a written testimonial, quoted word for word, with permission to publish it."}
+      ]
+    },
+    {
+      "id": "HOT",
+      "name": "Hot lead: clicked the offer, no booking",
+      "trigger": "webinar.cta_clicked",
+      "valid_stages": ["1 New Lead"],
+      "stops_on_reply": true,
+      "steps": [
+        {"id": "HOT1", "from": "event", "minutes": 5, "channel": "task", "assignee": "setter", "lead_hours": true,
+         "text": "Hot lead: {{first_name}} ({{company}}) clicked the Enterprise offer in the webinar and has not booked. Call or WhatsApp inside 5 minutes during working hours and send the booking link."}
+      ]
+    },
+    {
+      "id": "PRO",
+      "name": "Showed: proposal task",
+      "trigger": "call.showed",
+      "valid_stages": ["4a Showed"],
+      "stops_on_reply": false,
+      "steps": [
+        {"id": "PRO1", "from": "event", "minutes": 1200, "channel": "task", "assignee": "closer",
+         "text": "If {{first_name}} is a fit, send the written proposal now (promise: within one business day of the call; it carries your Proposal Review link), then mark Proposal sent. If not ready, mark Not ready."}
+      ]
+    }
+  ]
+}

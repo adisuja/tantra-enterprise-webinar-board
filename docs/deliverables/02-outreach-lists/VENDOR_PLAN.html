@@ -1,0 +1,101 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Vendor Sourcing Plan</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>Vendor Sourcing Plan</span></div><h1>Vendor Sourcing Plan</h1>
+<h2>Do We Need to Buy Rows for the 1M?</h2>
+<p>No. The master CSV gives 2,037,463 usable cold rows, so the 1,000,000-row main list and the 343,200 ramp invites come from it with no gap (<code>SLICE_STATS.md</code>).</p>
+<p>We should still buy one list, for three reasons:</p>
+<ol>
+<li><strong>No titles.</strong> The master cannot tell a founder from an analyst. A vendor list filtered by title and company size is the only way to aim at the $10,000+ buyer.</li>
+<li><strong>Runway after S10.</strong> The reserve left after 16 April 2027 is 591,418 rows inside the domain cap, and 79% of the full reserve has no name in the address. The weeks after S10 need fresher rows.</li>
+<li><strong>Fatigue.</strong> Every master row was invited once already by other senders, between 2026-07-22 and 2026-10-19.</li>
+</ol>
+<h2>Vendors</h2>
+<p>From Adi's Canva deck https://www.canva.com/design/DAGx0gZKc9Y/ (ruling 2026-10-06: "The first two vendors ... are the most preferred ones"). Names and phone numbers stay in <code>~/.config/tantra/data-vendors.json</code>, never in this repo.</p>
+<table>
+<thead>
+<tr>
+<th>Vendor (deck order)</th>
+<th>Sources</th>
+<th>Quoted price</th>
+<th>Per 10,000 rows</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vendor 1</td>
+<td>ZoomInfo, Apollo.io, LinkedIn Sales Navigator</td>
+<td>$500 for 500,000 rows (negotiable)</td>
+<td>$10</td>
+<td>Main buy</td>
+</tr>
+<tr>
+<td>Vendor 2</td>
+<td>Apollo.io</td>
+<td>$130 for 100,000 rows (negotiable)</td>
+<td>$13</td>
+<td>Second source and comparison</td>
+</tr>
+<tr>
+<td>Vendor 3</td>
+<td>Apollo.io</td>
+<td>$280 for 100,000 rows</td>
+<td>$28</td>
+<td>Not used: over the $20 per 10,000 cap</td>
+</tr>
+</tbody>
+</table>
+<p>No NeverBounce or ZeroBounce: the vendors deliver verified lists (ruling 2026-10-07), and the free checks in <code>context/from-workshop-project/02-lists/lists.md</code> section 3 run on every file.</p>
+<h2>The Order</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Vendor 1</th>
+<th>Vendor 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rows</td>
+<td>500,000</td>
+<td>100,000</td>
+</tr>
+<tr>
+<td>Cost at the quote</td>
+<td>$500</td>
+<td>$130</td>
+</tr>
+<tr>
+<td>Covers</td>
+<td>Five weeks after S10 at 100,000 a week</td>
+<td>A test week against Vendor 1</td>
+</tr>
+</tbody>
+</table>
+<p>Total $630, under $20 per 10,000 rows on both. Buying is Adi's step.</p>
+<h2>The Brief Adi Sends Each Vendor (paste as is)</h2>
+<pre><code>Hi, I'd like a verified B2B contact list. Please quote before pulling.
+
+Rows: 500,000 (Vendor 2: 100,000)
+Titles: Founder, Co-Founder, CEO, Owner, President, Managing Director, Managing Partner, CRO, CMO, VP Sales, VP Marketing, Head of Sales, Head of Marketing, Head of Growth, Head of Revenue Operations, Director of Sales, Director of Marketing (and the variants people write on LinkedIn)
+Company size: 11 to 500 employees
+Industries: B2B software and SaaS, IT and software services, marketing and advertising agencies, management consulting, business consulting, financial services, fintech, banking, wealth management, insurance, accounting, venture capital, staffing and recruiting, executive search
+Country: United States
+Exclude: education, government, non-profit, healthcare providers, retail, hospitality
+Every row needs: a verified work email and a LinkedIn profile URL. No personal email addresses, no role addresses (info@, sales@).
+Columns: First Name, Last Name, Title, Company, Website, Email, LinkedIn URL, Country
+Format: one CSV, UTF-8.
+</code></pre>
+<p>Countries beyond the United States go in only after the same outreach-rules check as the EU and UK hold (<code>ICP_AND_SEGMENTS.md</code>).</p>
+<h2>When the File Arrives</h2>
+<ol>
+<li>Save it outside the repo, in <code>~/tantra-enterprise-lists/vendor/</code>.</li>
+<li>Run the free checks in <code>lists.md</code> section 3, then drop every email already in the master CSV with <code>declined_series</code> filled, and every email already scheduled in <code>~/tantra-enterprise-lists/</code>.</li>
+<li>Show Adi the first 25 rows before any import (<code>lists.md</code> section 3).</li>
+<li>Slice it with the same pool hash and domain caps as the master, into the weeks after S10.</li>
+</ol><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

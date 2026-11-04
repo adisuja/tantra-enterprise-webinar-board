@@ -1,0 +1,84 @@
+{
+  "_about": "Which WebinarJam export column feeds each field. ASSUMPTION: names are taken from WebinarJam's registrant export as we expect it (Registrants or Attendees export of one session), not from a real export yet. On the first real export, open its header row and put the exact names first in each list. Matching ignores case and extra spaces. A field with no matching column is treated as missing.",
+  "email": [
+    "Email",
+    "E-mail",
+    "Email Address"
+  ],
+  "first_name": [
+    "First Name",
+    "First name",
+    "Firstname",
+    "Name"
+  ],
+  "last_name": [
+    "Last Name",
+    "Last name",
+    "Lastname"
+  ],
+  "phone": [
+    "Phone",
+    "Phone Number",
+    "Mobile",
+    "Mobile Number"
+  ],
+  "phone_country_code": [
+    "Phone Country Code",
+    "Country Code",
+    "Dial Code"
+  ],
+  "country": [
+    "Country",
+    "Country Code ISO"
+  ],
+  "webinar_date": [
+    "Event Date",
+    "Webinar Date",
+    "Session Date",
+    "Schedule",
+    "Date"
+  ],
+  "attended": [
+    "Attended Live",
+    "Attended",
+    "Live Attendance",
+    "Attended live"
+  ],
+  "minutes_in_room": [
+    "Time in Live Room",
+    "Time Live",
+    "Time in Session",
+    "Time in Event",
+    "Minutes Live",
+    "Duration"
+  ],
+  "joined_at": [
+    "Entered Live At",
+    "Joined At",
+    "Join Time",
+    "Entered At",
+    "Entered Live"
+  ],
+  "left_at": [
+    "Left Live At",
+    "Left At",
+    "Leave Time",
+    "Exited At",
+    "Left Live"
+  ],
+  "minutes_unit": "minutes",
+  "date_formats": [
+    "%Y-%m-%d",
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M",
+    "%m/%d/%Y",
+    "%m/%d/%Y %H:%M",
+    "%m/%d/%Y %I:%M %p",
+    "%d %b %Y",
+    "%b %d, %Y",
+    "%B %d, %Y",
+    "%b %d, %Y %I:%M %p"
+  ],
+  "colon_format": "h:mm",
+  "_colon_format": "How a two-part time like 1:05 is read: h:mm (65 minutes, the default) or m:ss (1 minute 5 seconds). Three parts are always h:mm:ss. Check one known value in the first real export."
+}

@@ -1,0 +1,21 @@
+"profile","campaign_type","step","delay_days","action","subject","message","char_count"
+"adi","inmail_followup","1","0","connection_request","","Hi {{firstName}}, I sent you an InMail last week about the session I host on building a pipeline you can measure. Connecting either way, as our work overlaps.","160"
+"adi","inmail_followup","2","1","send_message","","Thanks for connecting, {{firstName}}. Here's the session link I mentioned: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=inmail&utm_campaign=enterprise-webinar&utm_content=adi
+
+It runs every week, so pick whichever week suits you.","244"
+"aquila","inmail_followup","1","0","connection_request","","Hi {{firstName}}, after my note on automating the funnel, a connection made more sense than another InMail. Always keen to know people who automate.","150"
+"aquila","inmail_followup","2","1","send_message","","Thanks for accepting, {{firstName}}. Here's the automation session from my InMail: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=inmail&utm_campaign=enterprise-webinar&utm_content=aquila
+
+Any week works.","217"
+"nelbin","inmail_followup","1","0","connection_request","","{{firstName}}, I wrote to you about running the pipeline as a process. Whether or not it's a fit, ops people should know each other. Glad to connect.","151"
+"nelbin","inmail_followup","2","1","send_message","","Glad we're connected, {{firstName}}. The process session I mentioned is here, and it repeats weekly: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=inmail&utm_campaign=enterprise-webinar&utm_content=nelbin","218"
+"bharath","inmail_followup","1","0","connection_request","","{{firstName}}, following my InMail on the revenue stack and AI agents: connecting either way. Always glad to know people who build.","133"
+"bharath","inmail_followup","2","1","send_message","","Good to be connected, {{firstName}}. The stack session I wrote about is here: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=inmail&utm_campaign=enterprise-webinar&utm_content=bharath
+
+A new one runs each week.","223"
+"bhaskar","inmail_followup","1","0","connection_request","","Hi {{firstName}}, my InMail on content that books sales calls may have landed in a busy week. Connecting either way, as we work on the same problem.","150"
+"bhaskar","inmail_followup","2","1","send_message","","Appreciate the connect, {{firstName}}. For when you have a free slot, here's the content-to-pipeline session: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=inmail&utm_campaign=enterprise-webinar&utm_content=bhaskar","228"
+"ben","inmail_followup","1","0","connection_request","","{{firstName}}, I reached out by InMail about the pages and tracking behind a funnel. Connecting either way, as we build similar things.","137"
+"ben","inmail_followup","2","1","send_message","","Nice to connect, {{firstName}}. The link to the session I wrote about: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=inmail&utm_campaign=enterprise-webinar&utm_content=ben
+
+It runs every week.","206"

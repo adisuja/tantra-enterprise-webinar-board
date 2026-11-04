@@ -1,0 +1,292 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>The 10-Week, 100,000-a-Week Slicing Plan</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>The 10-Week, 100,000-a-Week Slicing Plan</span></div><h1>The 10-Week, 100,000-a-Week Slicing Plan</h1>
+<p>Full volume cannot start on day one. Every sender Workspace sends no cold invites for three weeks, then 10 a sender a day, 25 from day 63 and 50 from day 91 (item 3, <code>deliverables/03-outreach-infra/CAPACITY_PLAN.md</code>). So the plan has two parts: 10 ramp weeks, then 10 main weeks at 100,000.</p>
+<h2>Assumptions Behind the Dates</h2>
+<ul>
+<li><strong>Day 0 = Monday 9 November 2026</strong>: the day all four Workspaces have their $100 paid. Every date below moves by the same number of days if Day 0 moves (rerun the script with <code>--day0</code>).</li>
+<li>440 senders in 4 pools of 110 (P1 to P4, one Google Workspace each: W1 is the strategywebinars Workspace, W2 to W4 are new). Capacity at full volume is 110,000 a week; each main slice is 100,000.</li>
+<li>5 send days a week, Monday to Friday. No sends on 25 December 2026 or 1 January 2027.</li>
+<li>Each week's invites are for the webinar of the following week (<code>{{webinar.day_of_week}}</code>, <code>{{webinar.start_time_local}}</code>; the event date is set in each Tantra campaign).</li>
+</ul>
+<h2>The Re-Invite Gap</h2>
+<p>Every row in the master was already invited by other senders between <strong>2026-07-22 and 2026-10-19</strong>. The script puts no row into a week that starts less than <strong>60 days</strong> after its <code>last_invited_date</code>, and ranks the oldest invites first. Rows still too recent when a week starts: R01 (30 Nov) 427,587; R02 254,513; R03 98,510; none from R04 (21 Dec) on. The main slices are not affected. Counts in <code>SLICE_STATS.md</code>, Re-invite gap.</p>
+<h2>Which Pool Sends Whom</h2>
+<p>Every recipient domain is tied to one pool by a fixed hash, so one company only hears from one Workspace. If a Workspace is suspended, only its pool's files wait; the other three keep sending.</p>
+<table>
+<thead>
+<tr>
+<th>Pool</th>
+<th>Workspace (item 3)</th>
+<th>Sending domains</th>
+<th>Senders</th>
+<th>Files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>W1, strategywebinars</td>
+<td>20 (<code>DOMAIN_SHORTLIST.md</code>, W1)</td>
+<td>110</td>
+<td><code>*_P1*.csv</code></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>W2, new</td>
+<td>20</td>
+<td>110</td>
+<td><code>*_P2*.csv</code></td>
+</tr>
+<tr>
+<td>P3</td>
+<td>W3, new</td>
+<td>20</td>
+<td>110</td>
+<td><code>*_P3*.csv</code></td>
+</tr>
+<tr>
+<td>P4</td>
+<td>W4, new</td>
+<td>20</td>
+<td>110</td>
+<td><code>*_P4*.csv</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Weeks 1 to 3: Internal Activity Only (team step)</h2>
+<p>No cold invites before day 21. In each of the first three weeks, every sender account does a little normal work so Google sees a real user:</p>
+<ul>
+<li>Weeks 1 and 2: each sender accepts two or three internal calendar events a day sent by a teammate in the same Workspace, and joins one short Google Meet.</li>
+<li>Week 3: each sender invites three to five known external contacts a day (partners, clients, team members' own work addresses) who accept.</li>
+</ul>
+<p>Who does it: Adi names one team member per Workspace. Nothing is sent to the list.</p>
+<h2>Ramp Weeks (Before Full Volume)</h2>
+<p>Files in <code>~/tantra-enterprise-lists/ramp/</code>. The warm list goes first: these people said Yes or Maybe, or registered, for a past webinar like this, so they are the safest audience while senders are young, and they get the warm invite variant (item 12). Each file is one Tantra campaign: <code>ENT &lt;week&gt; &lt;pool&gt;</code> for cold, <code>ENT &lt;week&gt; &lt;pool&gt; WARM</code> for warm.</p>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Mon to Fri</th>
+<th>Workspace day</th>
+<th>A sender a day</th>
+<th>Capacity</th>
+<th>Warm rows</th>
+<th>Cold rows</th>
+<th>Files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R01</td>
+<td>30 Nov to 4 Dec 2026</td>
+<td>21 to 25</td>
+<td>10</td>
+<td>22,000</td>
+<td>16,737</td>
+<td>5,263</td>
+<td><code>R01_P1_warm</code> to <code>R01_P4_warm</code>, <code>R01_P1_cold</code> to <code>R01_P4_cold</code></td>
+</tr>
+<tr>
+<td>R02</td>
+<td>7 to 11 Dec 2026</td>
+<td>28 to 32</td>
+<td>10</td>
+<td>22,000</td>
+<td>810</td>
+<td>21,190</td>
+<td><code>R02_P*_warm</code>, <code>R02_P*_cold</code></td>
+</tr>
+<tr>
+<td>R03</td>
+<td>14 to 18 Dec 2026</td>
+<td>35 to 39</td>
+<td>10</td>
+<td>22,000</td>
+<td>824</td>
+<td>21,176</td>
+<td><code>R03_P*_warm</code>, <code>R03_P*_cold</code></td>
+</tr>
+<tr>
+<td>R04</td>
+<td>21 to 24 Dec 2026</td>
+<td>42 to 45</td>
+<td>10</td>
+<td>17,600 (4 days)</td>
+<td>556</td>
+<td>17,044</td>
+<td><code>R04_P*_warm</code>, <code>R04_P*_cold</code></td>
+</tr>
+<tr>
+<td>R05</td>
+<td>28 to 31 Dec 2026</td>
+<td>49 to 52</td>
+<td>10</td>
+<td>17,600 (4 days)</td>
+<td>0</td>
+<td>17,600</td>
+<td><code>R05_P*_cold</code></td>
+</tr>
+<tr>
+<td>R06</td>
+<td>4 to 8 Jan 2027</td>
+<td>56 to 60</td>
+<td>10</td>
+<td>22,000</td>
+<td>0</td>
+<td>22,000</td>
+<td><code>R06_P*_cold</code></td>
+</tr>
+<tr>
+<td>R07</td>
+<td>11 to 15 Jan 2027</td>
+<td>63 to 67</td>
+<td>25</td>
+<td>55,000</td>
+<td>0</td>
+<td>55,000</td>
+<td><code>R07_P*_cold</code></td>
+</tr>
+<tr>
+<td>R08</td>
+<td>18 to 22 Jan 2027</td>
+<td>70 to 74</td>
+<td>25</td>
+<td>55,000</td>
+<td>0</td>
+<td>55,000</td>
+<td><code>R08_P*_cold</code></td>
+</tr>
+<tr>
+<td>R09</td>
+<td>25 to 29 Jan 2027</td>
+<td>77 to 81</td>
+<td>25</td>
+<td>55,000</td>
+<td>0</td>
+<td>55,000</td>
+<td><code>R09_P*_cold</code></td>
+</tr>
+<tr>
+<td>R10</td>
+<td>1 to 5 Feb 2027</td>
+<td>84 to 88</td>
+<td>25</td>
+<td>55,000</td>
+<td>0</td>
+<td>55,000</td>
+<td><code>R10_P*_cold</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ramp total: 343,200 invites (18,927 warm, 324,273 cold). The warm list spreads over four weeks because many of its rows were invited too recently for R01.</p>
+<h2>Main Weeks: 100,000 a Week</h2>
+<p>Files in <code>~/tantra-enterprise-lists/main/</code>, 25,000 rows per pool per week. From day 91 every sender is at 50 a day: 440 x 50 x 5 = 110,000 capacity.</p>
+<table>
+<thead>
+<tr>
+<th>Slice</th>
+<th>Mon to Fri</th>
+<th>Workspace day</th>
+<th>Files (25,000 each)</th>
+<th>Mix</th>
+<th>Tantra campaigns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S01</td>
+<td>8 to 12 Feb 2027</td>
+<td>91 to 95</td>
+<td><code>S01_P1</code> to <code>S01_P4</code></td>
+<td>Tier A, high-confidence names</td>
+<td><code>ENT S01 P1</code> to <code>ENT S01 P4</code></td>
+</tr>
+<tr>
+<td>S02</td>
+<td>15 to 19 Feb 2027</td>
+<td>98 to 102</td>
+<td><code>S02_P1</code> to <code>S02_P4</code></td>
+<td>Tier A, high-confidence names</td>
+<td><code>ENT S02 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S03</td>
+<td>22 to 26 Feb 2027</td>
+<td>105 to 109</td>
+<td><code>S03_P1</code> to <code>S03_P4</code></td>
+<td>Tier A, mostly no name in the address</td>
+<td><code>ENT S03 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S04</td>
+<td>1 to 5 Mar 2027</td>
+<td>112 to 116</td>
+<td><code>S04_P1</code> to <code>S04_P4</code></td>
+<td>64% tier A, 36% tier B</td>
+<td><code>ENT S04 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S05</td>
+<td>8 to 12 Mar 2027</td>
+<td>119 to 123</td>
+<td><code>S05_P1</code> to <code>S05_P4</code></td>
+<td>26% A, 74% B</td>
+<td><code>ENT S05 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S06</td>
+<td>15 to 19 Mar 2027</td>
+<td>126 to 130</td>
+<td><code>S06_P1</code> to <code>S06_P4</code></td>
+<td>17% A, 83% B</td>
+<td><code>ENT S06 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S07</td>
+<td>22 to 26 Mar 2027</td>
+<td>133 to 137</td>
+<td><code>S07_P1</code> to <code>S07_P4</code></td>
+<td>12% A, 88% B</td>
+<td><code>ENT S07 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S08</td>
+<td>29 Mar to 2 Apr 2027</td>
+<td>140 to 144</td>
+<td><code>S08_P1</code> to <code>S08_P4</code></td>
+<td>9% A, 91% B</td>
+<td><code>ENT S08 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S09</td>
+<td>5 to 9 Apr 2027</td>
+<td>147 to 151</td>
+<td><code>S09_P1</code> to <code>S09_P4</code></td>
+<td>7% A, 93% B</td>
+<td><code>ENT S09 P1</code> to <code>P4</code></td>
+</tr>
+<tr>
+<td>S10</td>
+<td>12 to 16 Apr 2027</td>
+<td>154 to 158</td>
+<td><code>S10_P1</code> to <code>S10_P4</code></td>
+<td>5% A, 95% B</td>
+<td><code>ENT S10 P1</code> to <code>P4</code></td>
+</tr>
+</tbody>
+</table>
+<p>Main total: 1,000,000 invites, ending Friday 16 April 2027. After that the reserve (<code>reserve/cold_reserve_after_S10.csv</code>, 591,418 rows inside the domain cap) or a vendor list takes over (<code>VENDOR_PLAN.md</code>).</p>
+<h2>Each Week, in Tantra (Adi or the team, never an agent)</h2>
+<ol>
+<li>One calendar campaign per file, built as a draft (<code>POST /campaigns/draft</code>, type <code>smart_calendar</code>), senders = that pool's 110 addresses from <code>deliverables/03-outreach-infra/sender-roster.csv</code>.</li>
+<li>Import the file with <code>node kits/tantra/leads.mjs &lt;file.csv&gt; "&lt;campaign name&gt;"</code> (from <code>~/tantra-redesign/revops-os/os</code>; it detects a calendar campaign by itself), or the CSV upload in Tantra. The header is already in Tantra's list format.</li>
+<li>Check every sender's daily limit matches the week in the roster before launch.</li>
+<li>Launch only with Adi's approval. Pausing cannot recall invites already sent.</li>
+</ol>
+<h2>When to Stop or Slow a Pool</h2>
+<p>Pause the pool and hold its files for a week if, in any send day: senders show Disconnected in Tantra, Google shows a sending-limit warning on any sender, or the pool's declines run well above the earlier weeks. Resume at the previous week's daily cap.</p><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

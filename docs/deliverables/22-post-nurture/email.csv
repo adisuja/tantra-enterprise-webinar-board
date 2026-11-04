@@ -1,0 +1,322 @@
+step_id,trigger,offset_minutes,channel,template_name,subject,body,variables
+22A-0,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; sent when attendance arrives (from T+120 min)",120,email,pw_a0_email,"Thanks for staying to the end, {{first_name}}","Hi {{first_name}},
+
+Thanks for staying for the whole session. You saw the part most webinars skip: how the system actually gets built with your team.
+
+If you want it built with you, the next step is a 30-minute Tantra Enterprise Evaluation Call with my team. We look at your funnel, your numbers and your goals. If it's a fit, you get a written proposal within one business day of the call.
+
+Book it while the session is still fresh in your head.
+
+Book My Evaluation Call: {{booking_url}}
+
+Or rewatch the recording: {{recording_url}}
+
+Adi",first_name; booking_url; recording_url
+22A-1,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; teaching email, no booking link (they already sat through the offer); no WhatsApp",1440,email,pw_a1_email,Start with the leak closest to the money,"Hi {{first_name}},
+
+Yesterday you saw the whole system. That's a lot to take in, so here's the one exercise I'd do first.
+
+Write your funnel down as five steps: reach, registration, show-up, call, sale. Next to each, write the number from last month. Rough is fine.
+
+Now start from the end and work backwards. The first step where the number drops hard is your leak. Fix that one before you touch anything above it, because a leak near the money costs more than a leak near the top.
+
+If you want to see how I map it, it's in the first half of the recording.
+
+Rewatch the Funnel Section: {{recording_url}}
+
+Adi",first_name; recording_url
+22A-2,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; email only (Track A WhatsApp goes on days 0, 3, 7 and 14)",2880,email,pw_a2_email,"From 10,000 people reached to 30,000 invites","Hi {{first_name}},
+
+The first episode of a webinar series is the hardest. Small list, no data, no idea what works.
+
+FintechCircle, a London fintech network, started at 10,000 people reached and 1 call booked. By the third episode, outreach had grown to 30,000 calendar invites, and the first three episodes booked 17 calls between them.
+
+Nothing magic happened between episode one and episode three. The system did the work: more reach every time, the same follow-up every time, and the numbers in one place so each episode improved on the last.
+
+That's what we build with you. Book a call and we'll show you what it looks like for your funnel.
+
+Book My Evaluation Call: {{booking_url}}
+
+Or rewatch the session: {{recording_url}}
+
+Adi",first_name; booking_url; recording_url
+22A-3,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",4320,email,pw_a3_email,What happens on the evaluation call,"Hi {{first_name}},
+
+Some people don't book because they don't know what they're walking into. Fair enough. Here's exactly what happens.
+
+1. When you book, you answer a few short questions, so the call starts on your numbers, not on small talk.
+
+2. On the call we go through your funnel, your numbers and what you want from the next 12 months. Then we tell you straight whether Tantra Enterprise fits.
+
+3. After the call, if it fits, you get a written proposal within one business day of the call. If it doesn't, we say so.
+
+One rule: a missed call isn't rescheduled. So pick a time you'll actually keep.
+
+Book My Evaluation Call: {{booking_url}}
+
+Or rewatch the session first: {{recording_url}}
+
+Adi",first_name; booking_url; recording_url
+22A-4,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; teaching email, no booking link (they already sat through the offer); no WhatsApp",7200,email,pw_a4_email,"If you build it yourself, build it in this order","Hi {{first_name}},
+
+Plenty of teams build this themselves. The ones who stall usually start everything at once. Here's the order I'd follow.
+
+1. The numbers sheet. One weekly row: reach, registrations, live, calls. You can't fix what you don't see.
+2. The reminder ladder. Timed from the start of the session, not from registration, with WhatsApp for anyone who opted in.
+3. The follow-up tracks. Stayed, left early and never showed each get their own messages.
+4. More reach. Only now. More people into a leaky funnel just makes a bigger leak.
+
+Finish one before you start the next. Each piece is in the recording if you want to see it built.
+
+Rewatch the Build: {{recording_url}}
+
+Adi",first_name; recording_url
+22A-5,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",10080,email,pw_a5_email,"30 registrations to 1,990","Hi {{first_name}},
+
+Growth Idea's first webinar with us, in May 2025, got 30 registrations and 7 people live.
+
+Their best one, in August 2025, got 1,990 registrations, 321 people live and 25 sales calls.
+
+Same company. What changed was the engine around the webinar: calendar-invite outreach at scale, two landing pages tested against each other, reminders, follow-up, and a weekly analytics sheet that told us what to fix next.
+
+If your first webinars look like their first one, that's normal. The question is whether you have the system to get from one to the other.
+
+Book a call and we'll show you where that gap is in your funnel.
+
+Book My Evaluation Call: {{booking_url}}
+
+Or rewatch the session: {{recording_url}}
+
+Adi",first_name; booking_url; recording_url
+22A-6,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; teaching email, no booking link (they already sat through the offer); no WhatsApp",14400,email,pw_a6_email,The 20-minute review I'd run every week,"Hi {{first_name}},
+
+Most funnels don't break in one go. They drift. A reminder stops sending, a page gets slower, a follow-up goes out a day late, and nobody notices for a month.
+
+So block 20 minutes a week, same day, same time:
+
+1. Look at three numbers: registration to live, live to calls, calls to sales.
+2. Find the one that moved the wrong way since last week.
+3. Change one thing to fix it, and write down what you changed.
+
+That's it. One change a week adds up faster than a big rebuild twice a year. I walk through how I read these numbers in the recording.
+
+Rewatch the Numbers Section: {{recording_url}}
+
+Adi",first_name; recording_url
+22A-7,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; last step, then the newsletter (newsletter_opt_in only)",20160,email,pw_a7_email,My last note about the call,"Hi {{first_name}},
+
+This is the last email I'll send you about the evaluation call.
+
+If the timing isn't right, no problem. If you ticked the newsletter box, you'll keep getting one breakdown of the system a week, and nothing else from me about this.
+
+If the timing is right, here's the link one last time.
+
+Book My Evaluation Call: {{booking_url}}
+
+And the recording stays here: {{recording_url}}
+
+Adi",first_name; booking_url; recording_url
+22B-0,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; sent when attendance arrives (from T+120 min)",120,email,pw_b0_email,You left before the part that matters most,"Hi {{first_name}},
+
+Thanks for coming today. You had to drop off early, which happens. But the part you missed is the one that answers ""so how do I build this?""
+
+The recording is up. Jump to where you left and watch from there.
+
+Watch the Recording: {{recording_url}}
+
+Or, if you already know you want it built with you, book an evaluation call: {{booking_url}}
+
+Adi",first_name; recording_url; booking_url
+22B-1,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",1440,email,pw_b1_email,What you missed after you left,"Hi {{first_name}},
+
+In case you don't get to the recording, here's the short version of what came after you left.
+
+1. The system. Funnels, the RevOps OS and the traffic channels, built to run every week, not once.
+2. How we build it with you: Tantra Enterprise. It's 3 months of 1:1 coaching and implementation with your team, a done-with-you build of your funnel, 1 year of access to the Tantra platform, and the full course, the community and group coaching calls, for $9,999.
+3. Who it's for. Teams that want it built with them and have $10,000 or more to invest in the next 12 months.
+
+The next step is a 30-minute evaluation call. If it fits, you get a written proposal within one business day of the call.
+
+Book My Evaluation Call: {{booking_url}}
+
+Or watch that part of the recording: {{recording_offer_url}}
+
+Adi",first_name; booking_url; recording_offer_url
+22B-2,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",2880,email,pw_b2_email,"One webinar: 1,990 registrations, 25 sales calls","Hi {{first_name}},
+
+Here's what the full system looked like for one client. Growth Idea is a UK business-coaching group. Their best webinar with us reached 99,859 people, 98,000 of them through calendar invites.
+
+That one session got 1,990 registrations, 321 people live and 25 sales calls.
+
+That's what the second half of my session was about. Not one tactic, but the engine that turns reach into calls, week after week.
+
+The recording walks through it from the point you left.
+
+Watch the Recording: {{recording_url}}
+
+Or skip ahead and book an evaluation call: {{booking_url}}
+
+Adi",first_name; recording_url; booking_url
+22B-3,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",5760,email,pw_b3_email,What happens on the evaluation call,"Hi {{first_name}},
+
+You left the session before I explained the call, so here it is.
+
+1. When you book, you answer a few short questions, so the call starts on your numbers, not on small talk.
+
+2. On the call we go through your funnel, your numbers and what you want from the next 12 months. Then we tell you straight whether Tantra Enterprise fits.
+
+3. After the call, if it fits, you get a written proposal within one business day of the call. If it doesn't, we say so.
+
+One rule: a missed call isn't rescheduled. So pick a time you'll actually keep.
+
+Book My Evaluation Call: {{booking_url}}
+
+Or watch the full session first: {{recording_url}}
+
+Adi",first_name; booking_url; recording_url
+22B-4,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",10080,email,pw_b4_email,"From 10,000 people reached to 30,000 invites","Hi {{first_name}},
+
+The first episode of a webinar series is the hardest. Small list, no data, no idea what works.
+
+FintechCircle, a London fintech network, started at 10,000 people reached and 1 call booked. By the third episode, outreach had grown to 30,000 calendar invites, and the first three episodes booked 17 calls between them.
+
+Nothing magic happened between episode one and episode three. The system did the work: more reach every time, the same follow-up every time, and the numbers in one place so each episode improved on the last.
+
+That's the engine the second half of the session covers. Book a call to see it for your funnel.
+
+Book My Evaluation Call: {{booking_url}}
+
+Or watch the second half of the recording: {{recording_offer_url}}
+
+Adi",first_name; booking_url; recording_offer_url
+22B-5,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",14400,email,pw_b5_email,Is this a fit? A straight answer,"Hi {{first_name}},
+
+You left the session early, so you may not know whether any of this is for you. Here's the straight version.
+
+Tantra Enterprise fits if both of these are true:
+
+1. You want the system built with you, not just explained to you.
+2. You have $10,000 or more to invest in the next 12 months.
+
+It doesn't fit if you'd rather build it all yourself, or if that budget isn't there yet. Both are fine. Keep the recording and use it.
+
+If it does fit, the call is 30 minutes, and you get a written proposal within one business day of the call if we both want to go ahead.
+
+Book My Evaluation Call: {{booking_url}}
+
+Or keep the recording: {{recording_url}}
+
+Adi",first_name; booking_url; recording_url
+22B-6,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; then item 27 weeks 3 to 6",20160,email,pw_b6_email,Two weeks on: what's changed?,"Hi {{first_name}},
+
+Two weeks ago you joined my session. One honest question: what has changed in your pipeline since?
+
+If the answer is ""nothing yet,"" you're not behind. You're normal. Knowing the system and having it run every week are two different things.
+
+Closing that gap is what the evaluation call is for.
+
+Book My Evaluation Call: {{booking_url}}
+
+Or finish the recording: {{recording_url}}
+
+Adi",first_name; booking_url; recording_url
+22C-0,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; sent when attendance arrives, no later than T+180 min (fallback: everyone not marked attended)",180,email,pw_c0_email,Missed it? The recording is up,"Hi {{first_name}},
+
+We missed you today. No problem: the full recording is up.
+
+It covers the funnel, the RevOps OS, the traffic channels, how we build it with your team, and the Q&A.
+
+Watch the Recording: {{recording_url}}
+
+Or skip ahead and book an evaluation call: {{booking_url}}
+
+Adi",first_name; recording_url; booking_url
+22C-1,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",1440,email,pw_c1_email,Watch it with one question in mind,"Hi {{first_name}},
+
+Recordings are easy to skip. So here's a way to make it worth the time.
+
+Before you press play, write down one thing: the step in your funnel where leads go quiet. Maybe they register and don't show. Maybe they book and don't buy. Maybe nobody follows up.
+
+Then watch with that step in mind. You'll know within the first half whether the system fixes it.
+
+Watch the Recording: {{recording_url}}
+
+Or talk it through with us on an evaluation call: {{booking_url}}
+
+Adi",first_name; recording_url; booking_url
+22C-2,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",2880,email,pw_c2_email,"One webinar: 1,990 registrations, 25 sales calls","Hi {{first_name}},
+
+Here's what the full system looked like for one client. Growth Idea is a UK business-coaching group. Their best webinar with us reached 99,859 people, 98,000 of them through calendar invites.
+
+That one session got 1,990 registrations, 321 people live and 25 sales calls.
+
+That's what the session covers. Not one tactic, but the engine that turns reach into calls, week after week.
+
+It's all in the recording.
+
+Watch the Recording: {{recording_url}}
+
+Or skip ahead and book an evaluation call: {{booking_url}}
+
+Adi",first_name; recording_url; booking_url
+22C-3,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",5760,email,pw_c3_email,How we build it with you,"Hi {{first_name}},
+
+You missed the live session, so you also missed the part where I explain how we work with companies directly. Here it is in three lines.
+
+1. What it is: Tantra Enterprise. It's 3 months of 1:1 coaching and implementation with your team, a done-with-you build of your funnel, 1 year of access to the Tantra platform, and the full course, the community and group coaching calls, for $9,999.
+2. Who it's for. Teams that want it built with them and have $10,000 or more to invest in the next 12 months.
+3. How it starts. A 30-minute evaluation call. If it fits, you get a written proposal within one business day of the call.
+
+One rule: a missed call isn't rescheduled. So pick a time you'll actually keep.
+
+Book My Evaluation Call: {{booking_url}}
+
+Or watch that part of the recording: {{recording_offer_url}}
+
+Adi",first_name; booking_url; recording_offer_url
+22C-4,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",10080,email,pw_c4_email,"From 10,000 people reached to 30,000 invites","Hi {{first_name}},
+
+The first episode of a webinar series is the hardest. Small list, no data, no idea what works.
+
+FintechCircle, a London fintech network, started at 10,000 people reached and 1 call booked. By the third episode, outreach had grown to 30,000 calendar invites, and the first three episodes booked 17 calls between them.
+
+Nothing magic happened between episode one and episode three. The system did the work: more reach every time, the same follow-up every time, and the numbers in one place so each episode improved on the last.
+
+The recording shows the system. The call shows what it looks like for your funnel.
+
+Book My Evaluation Call: {{booking_url}}
+
+Or watch the recording: {{recording_url}}
+
+Adi",first_name; booking_url; recording_url
+22C-5,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",14400,email,pw_c5_email,Is this a fit? A straight answer,"Hi {{first_name}},
+
+You haven't seen the session yet, so here's the straight version of who it's for.
+
+Tantra Enterprise fits if both of these are true:
+
+1. You want the system built with you, not just explained to you.
+2. You have $10,000 or more to invest in the next 12 months.
+
+It doesn't fit if you'd rather build it all yourself, or if that budget isn't there yet. Both are fine. Keep the recording and use it.
+
+If it does fit, the call is 30 minutes, and you get a written proposal within one business day of the call if we both want to go ahead.
+
+Book My Evaluation Call: {{booking_url}}
+
+Or start with the recording: {{recording_url}}
+
+Adi",first_name; booking_url; recording_url
+22C-6,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; then item 27 weeks 3 to 6",20160,email,pw_c6_email,Two weeks on: still worth an hour?,"Hi {{first_name}},
+
+Two weeks ago you signed up for my session and couldn't make it. Life happens.
+
+One honest question: if a lead goes quiet in your funnel this week, does anything catch it? If not, the recording is the hour that shows you how.
+
+And if you'd rather skip the hour and talk it through, book the call.
+
+Watch the Recording: {{recording_url}}
+
+Or book an evaluation call: {{booking_url}}
+
+Adi",first_name; recording_url; booking_url

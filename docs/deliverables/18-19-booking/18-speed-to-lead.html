@@ -1,0 +1,328 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Speed to Lead: Every Booking Confirmed Inside 5 Minutes</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>Speed to Lead: Every Booking Confirmed Inside 5 Minutes</span></div><h1>Speed to Lead: Every Booking Confirmed Inside 5 Minutes</h1>
+<p>A booked call is a promise the lead made while they were excited. Every hour you wait, that excitement cools and the no-show risk climbs. This is the process Conor and Scott run so every Enterprise Evaluation Call is confirmed by a human inside 5 minutes.</p>
+<p>Offer on the call: Tantra Enterprise, $9,999. Call 1: 30 minutes on Google Meet, booked through the Cal.com round-robin link (item 19). Promise: a written proposal within one business day, carrying the closer's own Proposal Review link. Call 2: the 30-minute Proposal Review with the same closer, where the decision is made (section 7; approved by Adi 2026-11-05). WhatsApp replaces SMS everywhere.</p>
+<h2>1. What Fires on booking.created (Seconds 0 to 60, No Human)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>What happens</th>
+<th>Done by</th>
+<th>Defined in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Confirmation email and calendar invite with the Google Meet link go to the lead and the host</td>
+<td>Cal.com (built in)</td>
+<td><a href="19-calcom-round-robin.html">19-calcom-round-robin.md</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Cal.com posts BOOKING_CREATED to the CRM web app</td>
+<td>Cal.com webhook</td>
+<td>19, section 6</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Contact upserted with the five booking answers and WhatsApp number; Pipeline row moves to <strong>2 Call Booked</strong> with the round-robin host as closer; one Events row</td>
+<td>CRM Apps Script</td>
+<td><code>deliverables/23-crm/apps-script/Code.gs</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Seq. A1</strong> WhatsApp and email, written as the closer. In queue mode they land in the Sequences tab as <code>due</code> and the closer gets the exact text by email; in tantra mode they send. WhatsApp waits for 08:00 if the lead's clock is outside 08:00 to 20:00</td>
+<td>CRM runner (every 5 minutes)</td>
+<td><a href="18-sequences-A-to-F.html">18-sequences-A-to-F.md</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Closer alert</strong> email to Conor or Scott: name, company, WhatsApp, call time in both timezones, the five answers, webinar behaviour (date, segment, minutes in room, poll answers, offer click), source and UTM, and a link to the Pipeline row</td>
+<td>CRM Apps Script</td>
+<td><code>alertCloser_</code> in Code.gs</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Setter task</strong> due at minute 5; <strong>prep task</strong> 2 hours before the call; Seq. B reminders at 24 hours, 3 hours and 15 minutes; <strong>outcome task</strong> 45 minutes after the start</td>
+<td>CRM runner</td>
+<td>sequences SET and B</td>
+</tr>
+</tbody>
+</table>
+<p>Webinar behaviour reaches the alert because the registration form, WebinarJam import, polls and offer clicks all post to the same CRM (items 13, 17, 21). A lead who never registered shows "No webinar record".</p>
+<h2>2. Minutes 0 to 5: Who Does What</h2>
+<p>The setter is whoever the Lists tab names in <code>setter_name</code>. Empty (the default) means the assigned closer is also the setter. Decision for Adi, section 9.</p>
+<table>
+<thead>
+<tr>
+<th>Minute</th>
+<th>Who</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>System</td>
+<td>Everything in section 1</td>
+</tr>
+<tr>
+<td>0 to 1</td>
+<td>Closer (Conor or Scott)</td>
+<td>Read the alert on your phone. Open the Pipeline row link</td>
+</tr>
+<tr>
+<td>1 to 2</td>
+<td>Closer</td>
+<td>Queue mode: send the A1 WhatsApp from Tantra exactly as the email shows it, then select the row on the Sequences tab and click Tantra CRM, Mark selected Sequences row sent or done</td>
+</tr>
+<tr>
+<td>2 to 5</td>
+<td>Setter</td>
+<td>Call the lead with the script in section 3. No answer: leave the 30-second WhatsApp voice note. Between 20:00 and 08:00 lead time the setter task itself waits until 08:00 their time</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Setter</td>
+<td>Lead said yes: on the Pipeline row click Tantra CRM, Confirmed. No answer: leave the deal at Call Booked; the 24-hour reminder asks again, and a WhatsApp reply of YES confirms automatically</td>
+</tr>
+</tbody>
+</table>
+<p>Rules:
+- <strong>Night bookings.</strong> A booking between 20:00 and 08:00 in the lead's timezone gets the call or voice note at 08:00 their time, not at night. The runner holds the WhatsApp the same way.
+- <strong>Cover.</strong> If the assigned closer is on a call, the other closer does minutes 1 to 5 and writes "covered by" in Pipeline notes. The Summary tab's "Rep tasks open" shows anything left.
+- <strong>Never</strong> cancel or move a booking for the lead on this call. Send them the reschedule link from their confirmation email.</p>
+<h2>3. Call-Confirmation Script</h2>
+<h3>Phone (about 60 seconds)</h3>
+<blockquote>
+<p>Hi {first name}, it's {Conor or Scott} from Tantra. You just booked your Enterprise Evaluation Call for {day} at {time}. Have I caught you at an OK moment?</p>
+<p>Great. I'm the one you'll speak with, so two quick things to make the 30 minutes worth it.</p>
+<p>One: join from a laptop with your camera on, and have your offer, your pricing and your rough monthly numbers to hand.</p>
+<p>Two: you said {sign-off answer}. If someone else signs off on growth investment, bring them. We decide on the call whether this is a fit, and that's much easier with them there.</p>
+<p>Last thing: the time is held only for you and I prepare before we speak. If anything changes, move it at least 24 hours ahead with the link in your confirmation email.</p>
+<p>Does {time} on {day} still work?</p>
+</blockquote>
+<p>Yes: "Perfect. I'll send a WhatsApp reminder before we start. Speak then." Mark Confirmed.</p>
+<p>The time doesn't work: "No problem. Use the reschedule link in your confirmation email and pick a slot that does." Do not book for them.</p>
+<p>They answered "no" to the $10,000 question: "You mentioned the $10,000 isn't there yet. Is that timing, or budget?" Timing: keep the call. Budget: "This call is about Tantra Enterprise, which is $9,999. Do you still want the slot?" Either answer is fine; note it in Pipeline notes.</p>
+<h3>WhatsApp voice note (about 30 seconds, when the call goes unanswered)</h3>
+<blockquote>
+<p>Hi {first name}, {Conor or Scott} from Tantra. You're booked for your Enterprise Evaluation Call on {day} at {time}, and I'm the one you'll speak with. Have your offer, pricing and rough monthly numbers ready, and bring whoever signs off on growth investment. Just reply YES to this message so I know the time still works.</p>
+</blockquote>
+<h2>4. Pre-Call Research Checklist (10 Minutes, Due 2 Hours Before)</h2>
+<p>The prep task lands 2 hours before the call. Tick every line, then write three lines in Pipeline notes.</p>
+<ul>
+<li>[ ] Read the five booking answers: revenue band, $10,000+ in 12 months, main channel, biggest bottleneck, who signs off.</li>
+<li>[ ] Webinar tab: did they attend, how many minutes, did they stay past minute 25, what did they answer in the polls, did they click the offer?</li>
+<li>[ ] Their website: what they sell, at what price, to whom, and how a buyer gets in today (book a call, checkout, demo, application).</li>
+<li>[ ] Their funnel: is there a webinar, a video sales letter, a lead magnet or a booking page? Note the step that looks weakest.</li>
+<li>[ ] Their traffic: check the main channel they named against what you can see (founder's LinkedIn activity, ads, content).</li>
+<li>[ ] Rough math: monthly revenue band divided by price point gives the customers a month they win now.</li>
+<li>[ ] Sign-off: who signs, and is that person coming? If not, plan to ask for a second call with them.</li>
+<li>[ ] Pick the one client example you may need, from PROOF_PACK only (Growth Idea or FintechCircle measured numbers).</li>
+<li>[ ] Pipeline notes, three lines: (1) the stage you think loses the most revenue, (2) the mechanism that likely fits (live event, video sales funnel or multi-day workshop), (3) the first question you will ask.</li>
+</ul>
+<h2>5. Call Day: Show, No-Show and the Outcome</h2>
+<table>
+<thead>
+<tr>
+<th>When</th>
+<th>Who</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2 minutes before</td>
+<td>Closer</td>
+<td>In the Google Meet</td>
+</tr>
+<tr>
+<td>Start + 5 minutes, lead not in</td>
+<td>Closer</td>
+<td>Mark the no-show: Cal.com, Bookings, Past, the booking, mark the attendee as no-show (posts BOOKING_NO_SHOW_UPDATED), or Tantra CRM, No-Show on the Pipeline row. The C1 WhatsApp ("I'm on the call now") goes straight away</td>
+</tr>
+<tr>
+<td>Lead joins</td>
+<td>Closer</td>
+<td>Run <a href="18-discovery-call-script.html">18-discovery-call-script.md</a></td>
+</tr>
+<tr>
+<td>Within 1 hour of the end</td>
+<td>Closer</td>
+<td>Log the outcome on the Pipeline row (notes first, then the menu): Showed, Not ready (starts Seq. F) or Proposal sent (starts Seq. D). The outcome task at start + 45 minutes reminds you</td>
+</tr>
+<tr>
+<td>Within one business day</td>
+<td>Closer</td>
+<td>Proposal sent (item 24 template), with your own Proposal Review link in its next steps. Aim for the same day; the promise to the lead is one business day. Then mark Proposal sent: Seq. D sends the proposal email and WhatsApp with the same link</td>
+</tr>
+</tbody>
+</table>
+<h2>6. The Pipeline for This Offer, Stage by Stage</h2>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Entry trigger</th>
+<th>Rep action</th>
+<th>Automation (CRM)</th>
+<th>Moves on when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 New Lead</td>
+<td>Offer click in the webinar with no booking, or a cancelled booking</td>
+<td>Hot lead: call or WhatsApp inside 5 minutes in working hours with the booking link</td>
+<td>HOT task; Seq. E after a cancellation</td>
+<td>A booking</td>
+</tr>
+<tr>
+<td>2 Call Booked</td>
+<td>Cal.com booking</td>
+<td>Confirm inside 5 minutes (sections 2 and 3)</td>
+<td>Seq. A, Seq. B, setter, prep and outcome tasks, closer alert</td>
+<td>Lead says YES (call or WhatsApp)</td>
+</tr>
+<tr>
+<td>3 Confirmed</td>
+<td>YES reply or rep marks Confirmed</td>
+<td>Pre-call research (section 4)</td>
+<td>Seq. B continues with the confirmed wording</td>
+<td>Call time passes: Showed or No-Show</td>
+</tr>
+<tr>
+<td>4a Showed</td>
+<td>Rep marks Showed or Not ready</td>
+<td>Notes, budget, objections; proposal or not ready</td>
+<td>Proposal task; Seq. F if not ready</td>
+<td>Proposal Sent, Closed Won or Closed Lost</td>
+</tr>
+<tr>
+<td>4b No-Show</td>
+<td>Rep or Cal.com marks no-show</td>
+<td>Optional call within 1 hour</td>
+<td>Seq. C (rebook steps only when <code>seq_c_rebook</code> is ON)</td>
+<td>Rebooked: back to Call Booked. Day 7: Nurture</td>
+</tr>
+<tr>
+<td>5 Proposal Sent</td>
+<td>Rep marks Proposal sent</td>
+<td>Proposal within one business day with your Proposal Review link; run Call 2 (section 7); send the agreement and payment link on a yes</td>
+<td>Seq. D until Call 2 is booked; then Seq. R (Call 2 reminders), RN (Call 2 no-show), RC (Call 2 cancelled) or RS (after Call 2). Call 2 is a sub-status (<code>call2_status</code>), never a new stage</td>
+<td>Paid: Closed Won. No Call 2 and no decision by day 8, a cancelled Call 2 not rebooked in 7 days, or no decision 7 days after Call 2: Follow-Up. Missed Call 2: Nurture on day 7</td>
+</tr>
+<tr>
+<td>6 Follow-Up</td>
+<td>Day 7 after the proposal</td>
+<td>Call or voice note, 2 touches a week for 2 weeks</td>
+<td>Four rep tasks</td>
+<td>Decision, or day 14: Nurture</td>
+</tr>
+<tr>
+<td>7 Closed Won</td>
+<td>Payment received</td>
+<td>Hand over to onboarding</td>
+<td>Welcome WhatsApp and email, handover task, testimonial task at +14 days</td>
+<td>End of sales pipeline</td>
+</tr>
+<tr>
+<td>8 Closed Lost</td>
+<td>Rep marks Lost with a reason (Price, Timing, Competitor, Not a fit)</td>
+<td>Record the reason</td>
+<td>Timing goes to Nurture instead</td>
+<td>Archive</td>
+</tr>
+<tr>
+<td>9 Nurture</td>
+<td>From No-Show, Follow-Up, Not ready (day 44) or Lost on timing</td>
+<td>None unless they re-engage</td>
+<td>Newsletter task; re-engage WhatsApp every 75 days (never for a no-rebook no-show)</td>
+<td>Reply or booking: back to Call Booked</td>
+</tr>
+</tbody>
+</table>
+<h2>7. Call 2: The Proposal Review</h2>
+<p>Call 2 is a 30-minute call on Google Meet, booked by the prospect from the proposal email, always with the closer who ran Call 1. Each closer has their own Cal.com event type, Tantra Enterprise Proposal Review, slug <code>proposal-review</code> (item 19, section 8). The deal stays in <strong>5 Proposal Sent</strong> the whole time; <code>call2_date</code> and <code>call2_status</code> on the Pipeline row show where Call 2 is.</p>
+<table>
+<thead>
+<tr>
+<th>When</th>
+<th>Who</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Proposal day</td>
+<td>Closer</td>
+<td>Send the proposal (its next steps hold your Proposal Review link), then Tantra CRM, Proposal sent. D1 email and WhatsApp go with the same link</td>
+</tr>
+<tr>
+<td>Days 1, 3 and 7</td>
+<td>System</td>
+<td>Seq. D asks them to book the review (WhatsApp day 1, the Growth Idea email day 3, a last WhatsApp day 7). No booking and no decision by day 8: Follow-Up</td>
+</tr>
+<tr>
+<td>They book</td>
+<td>System</td>
+<td><code>call2_status</code> Booked, <code>call2_date</code> set, Seq. D stops, Seq. R starts: confirmation now, reminders 24 hours, 3 hours and 15 minutes before (Seq. B timing). You get a "CRM Call 2 booked" email. No confirmation call: they booked after reading the proposal</td>
+</tr>
+<tr>
+<td>2 hours before</td>
+<td>Closer</td>
+<td>Prep task: re-read the proposal and Call 1 notes, have the agreement and payment link ready</td>
+</tr>
+<tr>
+<td>The call</td>
+<td>Closer</td>
+<td>Run <a href="18-call-2-proposal-review-script.html">18-call-2-proposal-review-script.md</a>. On a yes, send the agreement and payment link while still on the call</td>
+</tr>
+<tr>
+<td>Within 1 hour of the end</td>
+<td>Closer</td>
+<td>Tantra CRM, <strong>Call 2 Showed</strong> (Seq. RS: a check-in WhatsApp on day 2, Follow-Up on day 7 with no decision) or <strong>Call 2 No-Show</strong>. Then Closed Won when the payment lands, or Closed Lost with a reason</td>
+</tr>
+<tr>
+<td>They miss it</td>
+<td>Closer or Cal.com</td>
+<td>Mark the no-show. The "I'm on the call now" WhatsApp goes. Rebooking messages follow only while <code>seq_c_rebook</code> is ON, the same switch as a missed Call 1; with it OFF the deal moves to Nurture on day 7</td>
+</tr>
+<tr>
+<td>They cancel</td>
+<td>System</td>
+<td><code>call2_status</code> cleared, a note on the row, Seq. RC: a rebook WhatsApp and email now, a WhatsApp on day 2, Follow-Up on day 7</td>
+</tr>
+<tr>
+<td>They reschedule</td>
+<td>System</td>
+<td><code>call2_status</code> Rescheduled, Seq. R restarts for the new time</td>
+</tr>
+</tbody>
+</table>
+<p>If a Call 2 is booked on the other closer's link, the deal keeps its Call 1 closer and the alert says so. Run the call yourself or hand it over in Pipeline notes.</p>
+<h2>8. After Closed Won</h2>
+<p>The sales pipeline ends at payment. The handover follows the payment-to-onboarding order in the client-journey reference: payment and "marked won" trigger onboarding, then a welcome message with the onboarding booking link, then the pre-onboarding checklist, then the onboarding call.</p>
+<ul>
+<li>W1 (instant): welcome WhatsApp and email with <code>onboarding_link</code> (Lists tab; FILL until Adi sets it).</li>
+<li>W2 (instant): closer task to hand over notes, proposal and the bottleneck the client named.</li>
+<li>W3 (+14 days): closer task to ask for a written testimonial, quoted word for word, with permission to publish.</li>
+</ul>
+<h2>9. Decisions for Adi</h2>
+<ol>
+<li><strong>No-show rebooking (conflict).</strong> The playbook's Sequence C rebooks no-shows. Your corrected call description says: "If the call is missed without notice, we won't be able to reschedule it or arrange another conversation in the future." Built: Sequence C in full behind the Lists tab setting <code>seq_c_rebook</code>, default <strong>OFF</strong> so the live promise holds (C1 "I'm on the call now" still goes; C2 to C4 rebook messages are skipped; the contact never gets a re-engage WhatsApp). Turn it ON to run the playbook. Pick one so the page and the process say the same thing.</li>
+<li><strong>Who is the setter?</strong> Default: the assigned closer confirms their own bookings. Name a separate setter in <code>setter_name</code> and <code>setter_email</code> if you want one.</li>
+<li><strong>Proposal timing.</strong> The playbook says send it within 1 hour of the call; your description promises one business day. Built to the description, with the task telling closers to aim for the same day.</li>
+<li><strong>How messages send.</strong> Default <code>queue</code>: the closer sends each due WhatsApp and email from Tantra (the CRM emails them the exact text). <code>tantra</code> mode sends through the Tantra API as single-step campaigns; it is untested on the live account because Tantra has no "add one person to a running campaign" call. Keep queue until one test send passes.</li>
+<li><strong>Not ready end date.</strong> The playbook has no exit for Seq. F. Built: a deal still in Showed 14 days after the 30-day check-in moves to Nurture. Confirm or change.</li>
+<li><strong>Call 2 booking window.</strong> How many days after the proposal can Call 2 be booked (<code>booking.call2.book_within_days</code>, FILL; suggested 3 business days)? It sets Limit future bookings on the two Proposal Review event types. The copy names no number of days, so nothing changes in the messages.</li>
+<li><strong>Missed Call 2.</strong> Built to follow the same <code>seq_c_rebook</code> switch as a missed Call 1 (OFF: no rebooking, Nurture on day 7). Say if a missed Call 2, which comes after a written proposal, should always get the rebook messages instead.</li>
+</ol><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

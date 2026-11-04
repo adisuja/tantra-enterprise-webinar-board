@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>EVAL: Item 12, Cold Calendar Invite Templates</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>EVAL: Item 12, Cold Calendar Invite Templates</span></div><h1>EVAL: Item 12, Cold Calendar Invite Templates</h1>
+<ul>
+<li>[x] 1. Two variants, each with an event title (as it shows in a Google Calendar invite) and an event description.</li>
+<li>[x] 2. Titles follow the calendar rules: named like a meeting, no "$", no "%", no "free", readable in the first 24 characters of a calendar grid.</li>
+<li>[x] 3. Descriptions: first line (after variant B's optional greeting) is the date, time and time zone in words; then who it is for and what they leave with; then an easy decline line; then the registration link merge field <code>{{registration_link}}</code> tagged per variant.</li>
+<li>[x] 4. Merge fields limited to what the master list holds (first_name, company) plus funnel-config fields; the Tantra merge limitation is stated with a no-merge fallback.</li>
+<li>[x] 5. A/B plan with split, sample size (with the arithmetic and its baseline from the E150 to E162 exports), metrics (Yes/Maybe rate and registration rate) and a decision rule a person can apply without judgement.</li>
+<li>[x] 6. <code>calendar-import.csv</code> holds both variants in the Tantra calendar campaign shape (title, description, date, time, minutes, timezone, location).</li>
+<li>[x] 7. No invented proof; host lines only from PROOF_PACK.md section 1.</li>
+<li>[x] 8. README with import steps, what Adi must fill, "Claim to verify".</li>
+<li>[x] 9. Scan prints 0 failures.</li>
+</ul>
+<p>Result 2026-11-04 (after critic fixes): all points pass. Variant A is now titled "AI revenue generation teardown (60 min)". <code>ab_decide.py</code> now stops at WAIT. <code>--date</code> with no value exits with a one-line message. The <code>--tantra</code> output turns line breaks into <code>&lt;br&gt;</code> and was tested on a filled config. Scan 0 failures. Open point: per-guest merge stays unsettled until one test invite proves it.</p><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

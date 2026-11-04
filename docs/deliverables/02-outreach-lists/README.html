@@ -1,0 +1,75 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Item 2: Outreach Lists (1M Cold Calendar List)</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>Item 2: Outreach Lists (1M Cold Calendar List)</span></div><h1>Item 2: Outreach Lists (1M Cold Calendar List)</h1>
+<p>The 1,000,000-row Enterprise cold calendar list is cut from the master CSV alone, with no gap. It sits in 10 weekly slices of 100,000 (8 Feb to 16 Apr 2027). Before them come 10 ramp weeks for the warm-up, then there is a warm list, a reserve and an EU/UK hold.</p>
+<h2>What Is Here</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ICP_AND_SEGMENTS.md</code></td>
+<td>The Enterprise buyer, tiers A, B and C, every exclusion and hold, and what the master CSV cannot tell us</td>
+</tr>
+<tr>
+<td><code>slice_enterprise_lists.py</code></td>
+<td>Cuts the lists. Reads the master CSV path as an argument; writes prospect files only outside the repo</td>
+</tr>
+<tr>
+<td><code>verify_slices.py</code></td>
+<td>Checks every written file independently (header, duplicates, filters, caps, 60-day re-invite gap, hashes). Last run: PASS</td>
+</tr>
+<tr>
+<td><code>SLICE_STATS.md</code>, <code>slice-stats.json</code></td>
+<td>Count-only stats per slice, written by the script</td>
+</tr>
+<tr>
+<td><code>SLICING_PLAN.md</code></td>
+<td>Which slice goes to which sender pool and week, dated from 2026-11-04, plus the weeks 1 to 3 team step</td>
+</tr>
+<tr>
+<td><code>VENDOR_PLAN.md</code></td>
+<td>What to buy, from whom, at what price, and the brief to send</td>
+</tr>
+<tr>
+<td><code>EVAL.md</code></td>
+<td>The done checklist, ticked</td>
+</tr>
+</tbody>
+</table>
+<p>The lists themselves (names and emails) are in <code>~/tantra-enterprise-lists/</code> on Adi's Mac, folder mode 700, files mode 600, never in this repo: <code>main/S01_P1.csv</code> to <code>S10_P4.csv</code>, <code>ramp/R01_*</code> to <code>R10_*</code>, <code>hold/</code>, <code>reserve/cold_reserve_after_S10.csv</code>, <code>MANIFEST.json</code> (rows and SHA-256 per file).</p>
+<h2>The Numbers</h2>
+<ul>
+<li>Master: 2,752,479 rows. Cold usable after every filter: <strong>2,037,463</strong>.</li>
+<li>Main list: <strong>1,000,000</strong> (S01 to S10). Gap to 1M: <strong>0</strong>.</li>
+<li>Ramp weeks: 343,200 invites (18,927 warm, 324,273 cold). Reserve after S10: 591,418 rows inside the domain cap.</li>
+<li>Re-invite gap: every row was invited by other senders between 2026-07-22 and 2026-10-19. No row goes into a week less than 60 days after its last invite; this only delays rows in R01 to R03.</li>
+<li>Held until Adi checks EU, EEA, UK and Swiss outreach rules: 393,755. The hold is partial: country endings only, because <code>location</code> is empty.</li>
+</ul>
+<h2>Rerun</h2>
+<pre><code class="language-bash">cd /tmp &amp;&amp; ~/calendar-consolidation/.venv/bin/python -I ~/tantra-enterprise-webinar/deliverables/02-outreach-lists/slice_enterprise_lists.py ~/Downloads/Added_to_Calendar_Consolidated_2026-11-04.csv --day0 2026-11-09
+</code></pre>
+<pre><code class="language-bash">cd /tmp &amp;&amp; ~/calendar-consolidation/.venv/bin/python -I ~/tantra-enterprise-webinar/deliverables/02-outreach-lists/verify_slices.py ~/Downloads/Added_to_Calendar_Consolidated_2026-11-04.csv
+</code></pre>
+<p>About 25 seconds each, and the same output every run. Change <code>--day0</code> to the real payment Monday and every week date and the re-invite gap follow. The venv is the one built for the consolidation (<code>references/added-to-calendar-consolidated-2026-11-04.md</code>, Rebuild).</p>
+<h2>Import Into Tantra</h2>
+<p>The CSV header is the list format in <code>context/from-workshop-project/02-lists/lists.md</code> section 4: <code>first_name,last_name,title,company,website,email,linkedin_url,country</code>. Tantra's importer (<code>~/tantra-redesign/revops-os/os/kits/tantra/leads.mjs &lt;file.csv&gt; "&lt;campaign&gt;"</code>) maps these to its contact fields and detects a calendar campaign by itself. Rows with no known first name carry <code>there</code>, because the importer drops a row with a blank first name; calendar invites have no merge fields, so it is never shown. One draft campaign per file: <code>SLICING_PLAN.md</code>.</p>
+<h2>What Adi Fills or Decides</h2>
+<ul>
+<li><strong>EU, EEA, UK and Swiss domains (393,755 rows):</strong> held, not sent, until the outreach rules for those countries are checked (<code>lists.md</code>, Outreach Rules by Country). To release a country, remove its ending from <code>GDPR_HOLD</code> in the script and rerun.</li>
+<li><strong>Day 0</strong> (the Monday the four Workspaces are paid, item 3).</li>
+<li><strong>Weeks 1 to 3 internal activity:</strong> one team member per Workspace (<code>SLICING_PLAN.md</code>).</li>
+<li><strong>Vendor purchase:</strong> $630 at the quoted prices, Adi's step (<code>VENDOR_PLAN.md</code>).</li>
+<li><strong>Warm invite copy:</strong> the warm list gets the warm variant of the item 12 invite.</li>
+</ul>
+<h2>Sources</h2>
+<p>Master record: <code>references/added-to-calendar-consolidated-2026-11-04.md</code>. Segment ranking: the competitor segment sheet in <code>the competitor segment sheet in references/qs-sheet-segments.md</code> (structure only, no numbers copied). Buyer: <code>context/from-tantra-content/02-target-audience.md</code>. Import schema: <code>lists.md</code>, <code>~/tantra-redesign/workshop-plan/ops/t056_cold_calendar.mjs</code>, <code>~/YOGI/SESSION_HANDOFF_2026_06_14_CALENDAR_CAMPAIGN_SETUP.md</code>.</p>
+<p>No claim to verify: this folder prints no 400+ or revenue claims.</p><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

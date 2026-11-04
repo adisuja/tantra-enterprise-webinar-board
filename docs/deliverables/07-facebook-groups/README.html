@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Item 7: Facebook Group Announcement Posts</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>Item 7: Facebook Group Announcement Posts</span></div><h1>Item 7: Facebook Group Announcement Posts</h1>
+<p>Adi's group list is not known yet, so this is a template set by group type. Once Adi sends his list, each group gets its own customised post from these templates.</p>
+<p><strong>Claim to verify:</strong> the first comment and the promo-thread version print <code>{{webinar.title}}</code>, and every candidate title carries "400+ founders" and "$100K to $300K a month". Neither has a source yet (PROOF_PACK.md section 2, BLOCKERS.md). The posts themselves use approved proof only: worked with 250+ brands across 21+ countries; Growth Idea (30 then 1,990 registrations, 98,000 of 99,859 reached by calendar invite; 1,990 registered, 321 live, 25 calls); FintechCircle as "a London fintech network" (10,000 to 30,000 outreach, 17 calls). Each client is named at most once per post.</p>
+<h2>What Is Here</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>posts.md</code></td>
+<td>6 posts (founder and entrepreneur, B2B sales and marketing, agency owners, coaching and consulting, SaaS, regional business), the link placement table, the first comment, the promo-thread version</td>
+</tr>
+<tr>
+<td><code>CUSTOMISE.md</code></td>
+<td>The 9-step checklist for turning a template into one group's post</td>
+</tr>
+<tr>
+<td><code>group-tracker.csv</code></td>
+<td>Header-only tracker: group name, url, type, rules, post variant, link placement, posted date, results</td>
+</tr>
+<tr>
+<td><code>EVAL.md</code></td>
+<td>The done checklist, checked</td>
+</tr>
+</tbody>
+</table>
+<h2>Merge Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Filled from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{{registration_link}}</code></td>
+<td><code>domains.funnel_domain</code> + <code>/</code> + <code>?utm_source=facebook&amp;utm_medium=group&amp;utm_campaign=enterprise-webinar&amp;utm_content=fb_&lt;group-slug&gt;</code></td>
+</tr>
+<tr>
+<td><code>{{webinar.title}}</code>, <code>{{webinar.day_of_week}}</code>, <code>{{webinar.start_time_local}}</code></td>
+<td><code>deliverables/_shared/funnel-config.json</code></td>
+</tr>
+<tr>
+<td><code>{{region}}</code></td>
+<td>per regional group, by hand (<code>CUSTOMISE.md</code> step 5)</td>
+</tr>
+</tbody>
+</table>
+<h2>Adi Steps</h2>
+<ol>
+<li><strong>Send the list of groups you are in.</strong> Open https://www.facebook.com/groups/joins/ (Facebook, Groups, "Groups you've joined", See all). Scroll to the bottom so every group loads. Paste each group's name and URL into the chat (or into <code>group-tracker.csv</code>, columns <code>group_name</code> and <code>group_url</code>). Then each group gets its customised post and tracker row.</li>
+<li><strong>Post them yourself.</strong> Agents never post to Facebook. For each group: open the group URL from the tracker, click "Write something...", paste the post, click Post; if the placement is "first comment", paste the first comment under your post straight after.</li>
+</ol>
+<p>Fill before posting: <code>domains.funnel_domain</code>, <code>webinar.title</code>, <code>webinar.day_of_week</code>, <code>webinar.start_time_local</code> in <code>funnel-config.json</code>.</p><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

@@ -1,0 +1,356 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Capacity Plan: Up to 100,000 Calendar Invites a Week</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>Capacity Plan: Up to 100,000 Calendar Invites a Week</span></div><h1>Capacity Plan: Up to 100,000 Calendar Invites a Week</h1>
+<h2>The Short Answer</h2>
+<p>440 sender accounts on 80 new domains in 4 Google Workspaces send 100,000 invites a week, with 10% spare. They cannot do it on day one. A new Workspace sends no cold invites for its first three weeks, then a few a day until day 90. If the four Workspaces are paid and set up by <strong>Monday 9 November 2026</strong>, the first 100,000 week is <strong>8 to 12 February 2027</strong>. The 10 full weeks run to 16 April 2027.</p>
+<h2>The Rules, and Where They Conflict</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Says</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>context/from-workshop-project/03-calendar-infra/calendar-invites.md</code>, Limits</td>
+<td>20 invites a sender a day while the Workspace is young, 50 after day 60, never above 200</td>
+</tr>
+<tr>
+<td><code>context/past-session-decisions.md</code> (2026-10-02)</td>
+<td>$100 prepay and a 60-day warm-up before volume</td>
+</tr>
+<tr>
+<td>Tantra's own blog, <code>~/tantra-redesign/app/content/blog/cold-google-calendar-outreach-2026-limits-warmup.mdx</code> (lines 190 to 195, 262 to 267)</td>
+<td>5 to 10 a day under 60 days, first cold invite around day 21, 10 to 25 a day for days 60 to 90, 25 to 50 only after day 90</td>
+</tr>
+</tbody>
+</table>
+<p>The two Tantra sources disagree: the playbook allows 50 a day at day 60; the blog holds a sender to 25 until day 90. <strong>This plan takes the conservative one, the blog</strong>, because a suspended Workspace costs more than four weeks:</p>
+<table>
+<thead>
+<tr>
+<th>Workspace days</th>
+<th>Invites a sender a day</th>
+<th>Inside the blog's range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 to 20</td>
+<td>0: setup and internal activity only</td>
+<td>yes (no cold before day 21)</td>
+</tr>
+<tr>
+<td>21 to 62</td>
+<td>10</td>
+<td>yes (5 to 10)</td>
+</tr>
+<tr>
+<td>63 to 90</td>
+<td>25</td>
+<td>yes (top of 10 to 25)</td>
+</tr>
+<tr>
+<td>91 on</td>
+<td>50</td>
+<td>yes (top of 25 to 50)</td>
+</tr>
+</tbody>
+</table>
+<p>Day 0 is the day a Workspace's $100 prepay goes through. Other rules followed: separate domains and Workspaces for calendar invites, never the main domain (<code>outreach-infrastructure.md</code>); one service account per sender (<code>google-workspace.md</code>); SPF, DKIM and DMARC before the first invite.</p>
+<h2>The Maths</h2>
+<pre><code>Invites a sender a week from day 91      = 50 a day x 5 send days            = 250
+Senders for 100,000 a week               = 100,000 / 250                      = 400
+Senders planned (10% spare)              = 440                                -&gt; capacity 110,000 a week
+Domains                                  = 80 active (20 per Workspace) + 10 parked reserves
+Senders per domain                       = 6 on 40 domains, 5 on 40 domains   = 440
+Invites per domain a week (sending 100k) = 100,000 / 80                       = 1,250 (1,375 at full capacity)
+Workspaces                               = 4 (W1 strategywebinars + 3 new), 110 senders and 20 domains each
+</code></pre>
+<p>Why spare capacity: a sender that shows Disconnected or gets a Google warning sits out its week; with 440, losing 40 senders still sends 100,000.</p>
+<p>Why 4 Workspaces: Google suspends a Workspace, not a user. With 4, one suspension stops a quarter of the volume. Each Workspace uses two Google Cloud projects (55 and 55 service accounts), under the default of 100 service accounts per project.</p>
+<h3>Per-Domain Load Against the E150 to E162 Exports</h3>
+<p>In <code>references/cold-calendar-exports-E150-E162-stats.md</code>, "Invites per domain" is invites sent divided by sender domains for one weekly event (E150 Pt.1: 106,532 / 74 = 1,440), spread over 5 send days. So the senders behind the master list ran <strong>about 1,440 invites per domain a week (about 288 a send day)</strong>, over about 150 sender domains per weekly event across their two pools.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Domains</th>
+<th>Senders per domain</th>
+<th>Invites per domain a week</th>
+<th>Against the exports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>This plan (default)</strong></td>
+<td>80</td>
+<td>5 to 6</td>
+<td>about 1,250</td>
+<td>0.9x</td>
+</tr>
+<tr>
+<td>Adi's floor (his brief said 10 or 20)</td>
+<td>20</td>
+<td>22</td>
+<td>5,000</td>
+<td>3.5x</td>
+</tr>
+<tr>
+<td>20 plus the 10 reserves</td>
+<td>30</td>
+<td>14 to 15</td>
+<td>about 3,333</td>
+<td>2.3x</td>
+</tr>
+</tbody>
+</table>
+<p>The domains are free and the seat count (440) is the same in every row, so 80 domains cost nothing more than 20; they cost Adi more setup clicks (DNS, verification, DKIM per domain). <strong>The decision is Adi's</strong>: 80 keeps each domain at the load that already worked; 20 is what he asked for and runs each domain at 3.5 times that load.</p>
+<h2>The Ramp, Dated From 2026-11-04</h2>
+<p>Assumes all four Workspaces reach Day 0 on Monday 9 November 2026; every date moves with it.</p>
+<table>
+<thead>
+<tr>
+<th>Plan week</th>
+<th>Mon to Fri</th>
+<th>Workspace day</th>
+<th>A sender a day</th>
+<th>Send days</th>
+<th>Capacity (440 senders)</th>
+<th>List (item 2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>9 to 13 Nov 2026</td>
+<td>0 to 4</td>
+<td>0: DNS, DKIM, users, service accounts, Tantra</td>
+<td>0</td>
+<td>0</td>
+<td>none</td>
+</tr>
+<tr>
+<td>2</td>
+<td>16 to 20 Nov 2026</td>
+<td>7 to 11</td>
+<td>0: internal activity</td>
+<td>0</td>
+<td>0</td>
+<td>none</td>
+</tr>
+<tr>
+<td>3</td>
+<td>23 to 27 Nov 2026</td>
+<td>14 to 18</td>
+<td>0: internal activity</td>
+<td>0</td>
+<td>0</td>
+<td>none</td>
+</tr>
+<tr>
+<td>4</td>
+<td>30 Nov to 4 Dec 2026</td>
+<td>21 to 25</td>
+<td>10</td>
+<td>5</td>
+<td>22,000</td>
+<td>R01: warm list first</td>
+</tr>
+<tr>
+<td>5</td>
+<td>7 to 11 Dec 2026</td>
+<td>28 to 32</td>
+<td>10</td>
+<td>5</td>
+<td>22,000</td>
+<td>R02</td>
+</tr>
+<tr>
+<td>6</td>
+<td>14 to 18 Dec 2026</td>
+<td>35 to 39</td>
+<td>10</td>
+<td>5</td>
+<td>22,000</td>
+<td>R03</td>
+</tr>
+<tr>
+<td>7</td>
+<td>21 to 24 Dec 2026</td>
+<td>42 to 45</td>
+<td>10</td>
+<td>4</td>
+<td>17,600</td>
+<td>R04</td>
+</tr>
+<tr>
+<td>8</td>
+<td>28 to 31 Dec 2026</td>
+<td>49 to 52</td>
+<td>10</td>
+<td>4</td>
+<td>17,600</td>
+<td>R05</td>
+</tr>
+<tr>
+<td>9</td>
+<td>4 to 8 Jan 2027</td>
+<td>56 to 60</td>
+<td>10</td>
+<td>5</td>
+<td>22,000</td>
+<td>R06</td>
+</tr>
+<tr>
+<td>10 to 13</td>
+<td>11 Jan to 5 Feb 2027</td>
+<td>63 to 88</td>
+<td>25</td>
+<td>5</td>
+<td>55,000 a week</td>
+<td>R07 to R10</td>
+</tr>
+<tr>
+<td>14 to 23</td>
+<td>8 Feb to 16 Apr 2027</td>
+<td>91 to 158</td>
+<td>50</td>
+<td>5</td>
+<td>110,000 (100,000 sent)</td>
+<td>S01 to S10</td>
+</tr>
+</tbody>
+</table>
+<p>Before full volume: 343,200 invites. Through 16 April 2027: 1,343,200. Raise a pool to the next step only while its senders stay Connected and declines stay level; otherwise hold it a week.</p>
+<h3>The Faster Alternative: 800 Senders</h3>
+<p>800 senders at 25 a day send 100,000 a week from day 63: first full week <strong>11 to 15 January 2027</strong>, four weeks sooner. It needs 803 seats instead of 443 (about $6,745 a month on the Flexible plan against about $3,721), 160 domains at 5 senders each to keep the per-domain load, and 800 service accounts. From day 91 half the seats can be removed on the Flexible plan.</p>
+<p><strong>What could start sooner either way:</strong> the five older Tantra calendar senders (strategywebinars, visionarywebinars, seminarvision, nextgenwebinars, signonline) may add capacity in weeks 4 to 13 if they show Connected in Tantra (Adi step 1).</p>
+<h2>Workspaces and Accounts</h2>
+<table>
+<thead>
+<tr>
+<th>Workspace</th>
+<th>Status</th>
+<th>Primary domain</th>
+<th>Sending domains</th>
+<th>Senders</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td>Exists: the strategywebinars Workspace Adi named. Login in <code>~/.config/tantra/keys/strategywebinars-workspace.env</code> (Adi only; never opened by an agent). It signs in on a Google temporary domain (appstempdomain.goog), so strategywebinars.com is probably not added yet. strategywebinars.com is registered at Cloudflare (2026-09-27), nameservers on Cloudflare</td>
+<td>strategywebinars.com (to be added and made primary, Adi step 1)</td>
+<td>20, <code>DOMAIN_SHORTLIST.md</code></td>
+<td>110</td>
+</tr>
+<tr>
+<td>W2</td>
+<td>New, Business Starter</td>
+<td>ridgewayinsights.com</td>
+<td>20</td>
+<td>110</td>
+</tr>
+<tr>
+<td>W3</td>
+<td>New, Business Starter</td>
+<td>larkspurinsights.com</td>
+<td>20</td>
+<td>110</td>
+</tr>
+<tr>
+<td>W4</td>
+<td>New, Business Starter</td>
+<td>juniperhillinsights.com</td>
+<td>20</td>
+<td>110</td>
+</tr>
+</tbody>
+</table>
+<p>Every sender, domain, display name and daily cap by week: <code>sender-roster.csv</code>. Every sender is Adi (six address forms such as adi@, adithya@, adi.murali@), so no persona is invented; Adi may swap in team members if he gives their last names.</p>
+<h2>Cost (check the pricing page before paying)</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Count</th>
+<th>Price</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Workspace Business Starter seats</td>
+<td>443 new (440 senders + 3 admins)</td>
+<td>about $8.40 a user a month on the Flexible plan, about $7 on the Annual plan: check https://workspace.google.com/pricing</td>
+<td>about $3,721 a month on Flexible</td>
+</tr>
+<tr>
+<td>Prepay, once per Workspace</td>
+<td>4</td>
+<td>$100 each, counted toward the bills</td>
+<td>$400 once</td>
+</tr>
+<tr>
+<td>Domains at iFreeDomains</td>
+<td>90</td>
+<td>$0.00 for the first year on .com (marked "Limited")</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>Service accounts</td>
+<td>440</td>
+<td>free</td>
+<td>$0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pick the Flexible plan.</strong> The plan runs about 23 weeks (9 Nov 2026 to 16 Apr 2027). Flexible for that time is about $19,700 for 443 seats; Annual commits to 12 months, about $37,200, and seats cannot be removed before the year ends.</p>
+<h2>Risks and What to Do</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Sign</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One Workspace suspended</td>
+<td>Senders show Disconnected in Tantra</td>
+<td>That pool's files wait a week; the other three keep sending. Never move its list onto another pool mid-week</td>
+</tr>
+<tr>
+<td>A domain runs hot</td>
+<td>Its senders get Google warnings or more declines than the rest</td>
+<td>Pause that domain's senders for a week; activate a reserve in the same Workspace</td>
+</tr>
+<tr>
+<td>Free domains reclaimed or flagged</td>
+<td>A domain stops resolving, or https://lookup.icann.org shows no registrar</td>
+<td>Check the first domain at https://lookup.icann.org before registering the rest. If it fails, buy the names at Cloudflare at cost</td>
+</tr>
+<tr>
+<td>Registrant email not clicked</td>
+<td>ICANN suspends a domain 15 days after registration</td>
+<td>Adi step 2.3: click the verification email for each registrant contact</td>
+</tr>
+<tr>
+<td>440 delegation entries</td>
+<td>One "Authorize" click per service account in Google Admin (Google has no API for it)</td>
+<td>Use the onboarding centre's service account job, or ask Tantra whether one service account per Workspace can serve its calendar senders, as it already does for cold email inboxes. That cuts 440 entries to 4</td>
+</tr>
+<tr>
+<td>Holiday weeks</td>
+<td>26 Nov (US Thanksgiving), 25 Dec, 1 Jan</td>
+<td>25 Dec and 1 Jan are off; Thanksgiving falls before the first cold send</td>
+</tr>
+</tbody>
+</table><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

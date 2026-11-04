@@ -1,0 +1,74 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Item 4: LinkedIn Outreach Templates</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>Item 4: LinkedIn Outreach Templates</span></div><h1>Item 4: LinkedIn Outreach Templates</h1>
+<p>24 sets: 6 senders (Adi, Aquila, Nelbin, Bharath, Bhaskar, Ben) x 4 campaign types (content engagement, InMail, connector, messenger). All of them invite people to the same weekly webinar, hosted by Adi. Every sender has their own wording for every message.</p>
+<h2>What Is Here</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="OVERVIEW.html">OVERVIEW.md</a></td>
+<td>Start here: the 6 x 4 matrix, daily limits and ramp, audience splits, weekly schedule, proof trace, Tantra fit and Adi's steps</td>
+</tr>
+<tr>
+<td><a href="profiles/">profiles/</a></td>
+<td>One file per sender with all 4 sets: steps, waits, personalisation fields, daily limits, registration link and copy for every step</td>
+</tr>
+<tr>
+<td><a href="csv/">csv/</a></td>
+<td>Tantra steps: <code>content_engagement.csv</code>, <code>connector.csv</code>, <code>messenger.csv</code>, <code>inmail_followup.csv</code>. Manual: <code>inmail_manual_step1.csv</code> (sent by hand in Sales Navigator). Columns: <code>profile, campaign_type, step, delay_days, action, subject, message, char_count</code></td>
+</tr>
+<tr>
+<td><a href="note-check.html">note-check.md</a></td>
+<td>Every connection note counted with merge fields at worst-case length: 18 of 18 under 300 characters (17 under 200)</td>
+</tr>
+<tr>
+<td><a href="dedupe.py">dedupe.py</a></td>
+<td>Gives every prospect one <code>owner_profile</code>, keyed on LinkedIn URL, so nobody hears from two senders</td>
+</tr>
+<tr>
+<td><a href="profiles.json">profiles.json</a></td>
+<td>The six senders: URL, title, LinkedIn plan, account tier. Adi fills the FILL_ values</td>
+</tr>
+<tr>
+<td><a href="build.py">build.py</a></td>
+<td>Builds everything above from one source. Fails on a note at 300+ characters, an action Tantra rejects, a message or opening shared by two senders, an unknown tag, a banned phrase or a dash</td>
+</tr>
+<tr>
+<td><a href="EVAL.html">EVAL.md</a></td>
+<td>What "done" means for this item, with results</td>
+</tr>
+</tbody>
+</table>
+<h2>How To Use It</h2>
+<ol>
+<li>Adi fills <a href="profiles.json">profiles.json</a> and <code>domains.funnel_domain</code> in <code>deliverables/_shared/funnel-config.json</code>.</li>
+<li>Run <code>python3 deliverables/04-linkedin-templates/build.py</code>. It must print <code>checks: 0 failures</code> and no <code>NOT READY</code> line. Until then every link reads <code>{{domains.funnel_domain}}/...</code>, which Tantra would send as blank text, so load nothing before this.</li>
+<li>Run <a href="dedupe.py">dedupe.py</a> on the prospect lists (kept outside the repo) and split the output by <code>owner_profile</code> and <code>campaign</code>.</li>
+<li>In Tantra, build one draft campaign per sender per type (content engagement: one per post). Each CSV row is one step: <code>delay_days</code> is the wait after the previous step, <code>action</code> is the Tantra step action, <code>message</code> is the text. Pick that sender's LinkedIn account and set the account's start limits from their profile file.</li>
+<li><strong>Send one test message before any launch.</strong> Add an internal contact (a team member) to the campaign, let one message go out, and check that <code>{{firstName}}</code>, <code>{{company}}</code> (and <code>{{custom.post_topic}}</code> on content engagement) filled and the link works. A blank tag means stop and fix the contact data first. Then remove the test contact and start.</li>
+<li>InMail: the sender sends step 1 from <code>inmail_manual_step1.csv</code> by hand in Sales Navigator, typing the first name and company in place of the tags. 5 days later, import <strong>only the people who did not reply</strong> into that sender's <code>inmail_followup</code> campaign.</li>
+</ol>
+<h2>What Adi Must Fill</h2>
+<ul>
+<li>LinkedIn URL, title, plan and account tier for Aquila, Nelbin, Bharath, Bhaskar and Ben. For Adi: confirm https://www.linkedin.com/in/adisuja and the plan.</li>
+<li><code>domains.funnel_domain</code>.</li>
+<li>Whether to add Tantra LinkedIn slots and LinkedIn Premium or Sales Navigator seats (purchase decisions; nothing was bought).</li>
+</ul>
+<h2>Open Points</h2>
+<ul>
+<li><strong>Merge tags.</strong> <code>{{firstName}}</code> and <code>{{company}}</code> follow Tantra's help page (https://usetantra.com/help/templates-and-ai/merge-tags-and-spintax). The older campaign kit used <code>{{custom.company}}</code>; the help page wins, and the test message in step 5 proves it. <code>{{custom.post_topic}}</code> is not on the help page; if it renders blank, type the phrase into that post's campaign.</li>
+<li><strong>Engager export.</strong> Tantra has no step that pulls a post's likers and commenters. How each post's engagers get exported is not settled.</li>
+<li><strong>Wait timing.</strong> Whether a wait after a connection request counts from the request or from the acceptance is unverified. Check the first draft's timeline.</li>
+<li><strong>Weekly cap.</strong> 180 a week (launch-kit.md, line 38) and 200 a week (linkedin.md, line 26) conflict. These files use 180.</li>
+<li><strong>Claims.</strong> No claim to verify is printed here: the copy never uses the webinar title, 400+ or the $100K to $300K range. Every number traces to PROOF_PACK.md (table in OVERVIEW.md).</li>
+</ul><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>

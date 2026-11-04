@@ -1,0 +1,193 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>CRM contract: the one data shape every integration uses</title><style>body{margin:0;background:#f7f8fb;color:#0b0d12;font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 22px 80px}.top{font:600 12px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;display:flex;gap:14px;flex-wrap:wrap}
+.top a{color:#4b2fd6;text-decoration:none}h1,h2,h3{line-height:1.2;letter-spacing:-.015em}h1{font-size:32px;margin:18px 0 8px}h2{font-size:23px;margin:32px 0 8px}h3{font-size:18px;margin:24px 0 6px}
+a{color:#4b2fd6;word-break:break-word}code{font:13.5px ui-monospace,Menlo,monospace;background:#eef0f6;padding:1px 5px;border-radius:4px}pre{background:#0b0d12;color:#e7e9f2;padding:14px;border-radius:10px;overflow:auto}pre code{background:none;color:inherit}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14.5px;margin:14px 0}th,td{border:1px solid #e2e8f0;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f1efff}
+blockquote{margin:12px 0;padding:6px 14px;border-left:3px solid #6d4aff;background:#fff}ul,ol{padding-left:22px}li{margin:3px 0}.note{color:#5b6472;font-size:13px;margin-top:40px;border-top:1px solid #e2e8f0;padding-top:12px}
+.idx li{margin:6px 0}</style></head><body><div class="wrap"><div class="top"><a href="../../../index.html">Task board</a><a href="../../index.html">All documents</a><span>CRM contract: the one data shape every integration uses</span></div><h1>CRM contract: the one data shape every integration uses</h1>
+<p>Every page form, WebinarJam export, poll, Cal.com webhook, nurture tool and retargeting script reads or writes the CRM through this contract. Item 23 builds the sheet and the Apps Script web app that implements it. Other items only POST events to it or read its tabs. Change this file first, then the code.</p>
+<h2>Sheet: "Tantra Enterprise CRM" (Google Sheets, in Adi's Drive)</h2>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>One row per</th>
+<th>Written by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contacts</td>
+<td>email (lowercased, the key)</td>
+<td>every event (upsert)</td>
+</tr>
+<tr>
+<td>Webinar</td>
+<td>email x webinar date</td>
+<td>registration, attendance import, polls, CTA clicks</td>
+</tr>
+<tr>
+<td>Pipeline</td>
+<td>deal (one open deal per email)</td>
+<td>booking, call outcome, proposal, won, lost</td>
+</tr>
+<tr>
+<td>Events</td>
+<td>event (append only, never edited)</td>
+<td>every POST</td>
+</tr>
+<tr>
+<td>Sequences</td>
+<td>email x sequence step</td>
+<td>nurture tools, follow-up runner</td>
+</tr>
+<tr>
+<td>Lists</td>
+<td>config: dropdown values, closer emails and WhatsApp numbers, booking_url, onboarding_link</td>
+<td>item 23</td>
+</tr>
+<tr>
+<td>Summary</td>
+<td>formulas only: counts per stage and per webinar segment</td>
+<td>item 23 (never written by events)</td>
+</tr>
+</tbody>
+</table>
+<h2>Pipeline stages (playbook, in order)</h2>
+<p>1 New Lead, 2 Call Booked, 3 Confirmed, 4a Showed, 4b No-Show, 5 Proposal Sent, 6 Follow-Up, 7 Closed Won, 8 Closed Lost, 9 Nurture.</p>
+<p>Playbook fields: Source (Ad, organic, referral, old list, inbound DM, webinar), Setter, Closer, Call date, Show status (Showed, No-Show, Rescheduled), Deal value, Lost reason (price, timing, competitor, not a fit), Next follow-up date.</p>
+<p>This funnel sends WhatsApp where the playbook says SMS (the Enterprise booking text was corrected to "no SMS" on 2026-09-30). Same sending-hour rule: 8am to 8pm in the lead's timezone, for every WhatsApp step including live-day reminders (outside the window the email goes and the WhatsApp is skipped; waiving this for live-day steps is Adi's decision, logged in BLOCKERS.md). STOP or "stop" in any channel tags the contact Do Not Contact and ends every sequence.</p>
+<h2>Call 2 (Adi, 2026-11-05)</h2>
+<p>Pipeline order: Call Booked (Call 1) &gt; Confirmed &gt; Showed &gt; Proposal Sent (proposal within one business day, Call 2 link inside) &gt; Call 2 Booked &gt; Call 2 Showed &gt; Closed Won or Lost. A booking.created with call 2 never moves a deal back to Call Booked: it sets call2_date and the deal stays in Proposal Sent with sub-status Call 2 Booked. Fields: call2_date, call2_status (Booked, Showed, No-Show, Rescheduled), call2_cal_uid, call2_join_link.</p>
+<h2>Webinar segments (computed on the Webinar tab)</h2>
+<ul>
+<li><code>track</code> column: written only as <code>replay</code> (a CANT quick reply moves the contact to the replay track). The post-webinar tracks key off the segment, not this column.</li>
+<li><code>registered</code>: has a webinar.registered event for that date.</li>
+<li>Attendance rule (one rule for items 17, 23 and 27): if WebinarJam marks the person as attended, they attended, and minutes_in_room is floored at 1 (a blank or 0 time becomes 1). Only registrants WebinarJam marks as not attended are no_show.</li>
+<li><code>attended</code>: attended per the rule above.</li>
+<li><code>early_leaver</code>: attended and left before minute 25 (<code>webinar.retarget_cutoff_minute</code> in funnel-config.json).</li>
+<li><code>stayed_to_offer</code>: attended and minutes_in_room &gt;= 25.</li>
+<li><code>no_show</code>: registered, minutes_in_room = 0.</li>
+<li><code>retarget_until</code>: webinar date + 42 days for early_leaver and no_show (6 weeks), then the contact drops out of retargeting unless it books or replies.</li>
+</ul>
+<h2>Registration flow</h2>
+<p>Registration page form, then the register Worker (item 17) which registers the person in WebinarJam (personal join_url), then posts webinar.registered to the CRM endpoint. The page never posts to the CRM directly (that would skip WebinarJam and double the event).</p>
+<h2>The endpoint</h2>
+<p><code>POST {integrations.crm_webhook_url}</code> with <code>Content-Type: application/json</code> (Apps Script web app, <code>doPost</code>). Body:</p>
+<pre><code class="language-json">{
+  &quot;event&quot;: &quot;webinar.registered&quot;,
+  &quot;email&quot;: &quot;person@company.com&quot;,
+  &quot;ts&quot;: &quot;2026-11-12T15:04:05Z&quot;,
+  &quot;source&quot;: &quot;registration_page&quot;,
+  &quot;webinar_date&quot;: &quot;2026-11-12&quot;,
+  &quot;data&quot;: { &quot;first_name&quot;: &quot;Sam&quot;, &quot;company&quot;: &quot;Acme&quot;, &quot;phone&quot;: &quot;+44...&quot;, &quot;utm_source&quot;: &quot;calendar&quot;, &quot;utm_campaign&quot;: &quot;E1-v1&quot; }
+}
+</code></pre>
+<p>A shared secret travels as <code>?k=</code> on the URL (stored in Script Properties, never in this repo). The script answers <code>{"ok":true}</code> or <code>{"ok":false,"error":"..."}</code>.</p>
+<h2>Event names (the full list; no others)</h2>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Data fields</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>webinar.registered</td>
+<td>first_name, last_name, company, phone, whatsapp_opt_in, call_opt_in, newsletter_opt_in, timezone (IANA, from the registration page's browser), join_url (the personal WebinarJam link, added by the register Worker), revenue_band, invest_12m, utm_*</td>
+<td>Upsert contact, add Webinar row, start pre-webinar nurture (15b)</td>
+</tr>
+<tr>
+<td>webinar.attended</td>
+<td>minutes_in_room (integer, floored at 1), joined_at, left_at. One producer only: item 17's import_attendance</td>
+<td>Set attended, early_leaver or stayed_to_offer</td>
+</tr>
+<tr>
+<td>webinar.no_show</td>
+<td>(none)</td>
+<td>Set no_show</td>
+</tr>
+<tr>
+<td>webinar.poll_answered</td>
+<td>poll_id, answer</td>
+<td>Store on Webinar row (columns per poll)</td>
+</tr>
+<tr>
+<td>webinar.cta_clicked</td>
+<td>cta_id</td>
+<td>Store; hot-lead flag</td>
+</tr>
+<tr>
+<td>booking.created</td>
+<td>cal_uid, start, closer, answers{}, call (1 or 2: Call 2 = the Proposal Review event type)</td>
+<td>Pipeline: Call Booked, assign closer, start Seq. A and B</td>
+</tr>
+<tr>
+<td>booking.rescheduled</td>
+<td>cal_uid, start</td>
+<td>Update call date</td>
+</tr>
+<tr>
+<td>booking.cancelled</td>
+<td>cal_uid, reason</td>
+<td>Pipeline note; start Seq. E</td>
+</tr>
+<tr>
+<td>call.confirmed</td>
+<td>(none)</td>
+<td>Pipeline: Confirmed</td>
+</tr>
+<tr>
+<td>call.showed</td>
+<td>notes, budget, objections</td>
+<td>Pipeline: Showed</td>
+</tr>
+<tr>
+<td>call.no_show</td>
+<td>(none)</td>
+<td>Pipeline: No-Show, start Seq. C</td>
+</tr>
+<tr>
+<td>call.not_ready</td>
+<td>notes</td>
+<td>Start Seq. F</td>
+</tr>
+<tr>
+<td>proposal.sent</td>
+<td>deal_value, proposal_url</td>
+<td>Pipeline: Proposal Sent, start Seq. D</td>
+</tr>
+<tr>
+<td>deal.won</td>
+<td>deal_value, paid_at</td>
+<td>Pipeline: Closed Won, onboarding trigger, testimonial task at +14 days</td>
+</tr>
+<tr>
+<td>deal.lost</td>
+<td>lost_reason</td>
+<td>Pipeline: Closed Lost; timing goes to Nurture</td>
+</tr>
+<tr>
+<td>sequence.sent</td>
+<td>sequence, step, channel, outcome (optional: for Vodex calls, answered, voicemail, no_answer, confirmed, cant_attend)</td>
+<td>Sequences tab</td>
+</tr>
+<tr>
+<td>contact.quick_reply</td>
+<td>channel, keyword (YES, CAL, CANT)</td>
+<td>Logged on Sequences; does NOT stop live-day reminders. CANT moves the contact to the replay track</td>
+</tr>
+<tr>
+<td>contact.replied</td>
+<td>channel, text</td>
+<td>Stop every chasing sequence (E, C, D, F, nurture, retargeting); booking logistics (confirmation, pre-call reminders) continue. Text starting with STOP is treated as contact.opted_out</td>
+</tr>
+<tr>
+<td>contact.opted_out</td>
+<td>channel</td>
+<td>Do Not Contact, stop every sequence</td>
+</tr>
+</tbody>
+</table><p class="note">Rendered from the private project repo for review. Not indexed.</p></div></body></html>
