@@ -1,4 +1,15 @@
-<details class="doc" open><summary>README.md</summary><div class="md"><h1>Item 7: Facebook Group Announcement Posts</h1>
+<details class="doc" open><summary>CUSTOMISE.md</summary><div class="md"><h1>How To Customise a Post for One Group</h1>
+<ol>
+<li>Read the group's rules and pinned post. Copy the rule on links and promotion into the tracker's <code>rules</code> column.</li>
+<li>Pick the post by group type (<code>posts.md</code>) and the link placement from its table.</li>
+<li>Admin approval needed for promotion? Ask the admin first, in the way the rules say.</li>
+<li>Rewrite the first line in the group's own words: its niche, or a question members asked this week.</li>
+<li>Regional groups: fill <code>{{region}}</code>, and check <code>{{webinar.start_time_local}}</code> names its time zone so members can convert it.</li>
+<li>Tag the link <code>utm_content=fb_&lt;group-slug&gt;</code> so registrations show which group sent them.</li>
+<li>Never post identical text in two groups on the same day, and post in at most 3 groups a day.</li>
+<li>Reply to every comment the same day.</li>
+<li>Log the posted date, placement and post URL in <code>group-tracker.csv</code>; add registrations by <code>utm_content</code> a week later.</li>
+</ol></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 7: Facebook Group Announcement Posts</h1>
 <p>Adi's group list is not known yet, so this is a template set by group type. Once Adi sends his list, each group gets its own customised post from these templates.</p>
 <p><strong>Claim to verify:</strong> the first comment and the promo-thread version print <code>{{webinar.title}}</code>, and every candidate title carries "400+ founders" and "$100K to $300K a month". Neither has a source yet (PROOF_PACK.md section 2, the task board). The posts themselves use approved proof only: worked with 250+ brands across 21+ countries; Growth Idea (30 then 1,990 registrations, 98,000 of 99,859 reached by calendar invite; 1,990 registered, 321 live, 25 calls); FintechCircle as "a London fintech network" (10,000 to 30,000 outreach, 17 calls). Each client is named at most once per post.</p>
 <h2>What Is Here</h2>
@@ -56,18 +67,7 @@
 <li><strong>Send the list of groups you are in.</strong> Open https://www.facebook.com/groups/joins/ (Facebook, Groups, "Groups you've joined", See all). Scroll to the bottom so every group loads. Paste each group's name and URL into the chat (or into <code>group-tracker.csv</code>, columns <code>group_name</code> and <code>group_url</code>). Then each group gets its customised post and tracker row.</li>
 <li><strong>Post them yourself.</strong> Agents never post to Facebook. For each group: open the group URL from the tracker, click "Write something...", paste the post, click Post; if the placement is "first comment", paste the first comment under your post straight after.</li>
 </ol>
-<p>Fill before posting: <code>domains.funnel_domain</code>, <code>webinar.title</code>, <code>webinar.day_of_week</code>, <code>webinar.start_time_local</code> in <code>funnel-config.json</code>.</p></div></details><details class="doc"><summary>CUSTOMISE.md</summary><div class="md"><h1>How To Customise a Post for One Group</h1>
-<ol>
-<li>Read the group's rules and pinned post. Copy the rule on links and promotion into the tracker's <code>rules</code> column.</li>
-<li>Pick the post by group type (<code>posts.md</code>) and the link placement from its table.</li>
-<li>Admin approval needed for promotion? Ask the admin first, in the way the rules say.</li>
-<li>Rewrite the first line in the group's own words: its niche, or a question members asked this week.</li>
-<li>Regional groups: fill <code>{{region}}</code>, and check <code>{{webinar.start_time_local}}</code> names its time zone so members can convert it.</li>
-<li>Tag the link <code>utm_content=fb_&lt;group-slug&gt;</code> so registrations show which group sent them.</li>
-<li>Never post identical text in two groups on the same day, and post in at most 3 groups a day.</li>
-<li>Reply to every comment the same day.</li>
-<li>Log the posted date, placement and post URL in <code>group-tracker.csv</code>; add registrations by <code>utm_content</code> a week later.</li>
-</ol></div></details><details class="doc"><summary>posts.md</summary><div class="md"><h1>Facebook Group Announcement Posts</h1>
+<p>Fill before posting: <code>domains.funnel_domain</code>, <code>webinar.title</code>, <code>webinar.day_of_week</code>, <code>webinar.start_time_local</code> in <code>funnel-config.json</code>.</p></div></details><details class="doc"><summary>posts.md</summary><div class="md"><h1>Facebook Group Announcement Posts</h1>
 <p>One post per group type, posted by Adi from his own profile. Each gives a usable lesson first and mentions the session only in the last line. Paste the text inside each box as it is: Facebook shows plain text only.</p>
 <p><strong>Link placement.</strong> Every post ends "Link in the first comment." (the default, since many groups remove posts with links). Then:</p>
 <table>

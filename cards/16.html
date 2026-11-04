@@ -1,76 +1,4 @@
-<details class="doc" open><summary>README.md</summary><div class="md"><h1>Item 16: The Tantra Enterprise Webinar Deck</h1>
-<p>45 slides (65 states with tabs): 45 minutes of teaching and invitation, then 15 minutes of Q and A on the last slide. Rebuilt 2026-11-05 to mirror the reference recording slide by slide (Adi's rule 0); palette and type are Tantra's. Re-timed the same day: the offer in one slide (what it is, who it is for, the price, the next step) lands at minute 20 on slide 23, with the QR on slide 24, before the minute-25 early-leaver cutoff. Adi hosts alone (no co-host).</p>
-<table>
-<thead>
-<tr>
-<th>Path</th>
-<th>What it is</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>REFERENCE_MAP.md</code></td>
-<td>The reference sequence with frame numbers and timestamps, each slide's layout and visual element, the Tantra slide that mirrors it, and every deviation.</td>
-</tr>
-<tr>
-<td><code>compare/</code></td>
-<td>65 side-by-side images: reference frame left, our slide (or tab) right, at 1920 by 1080.</td>
-</tr>
-<tr>
-<td><code>deck/index.html</code> (+ <code>deck/assets/</code>)</td>
-<td>The deck. Generated; never edit by hand. Opens offline, nothing loads from another site.</td>
-</tr>
-<tr>
-<td><code>build/spec.mjs</code></td>
-<td>Every slide: reference frame (<code>ref</code>), layout, copy, UI visuals, speaker notes, planned minute. Reads the title, offer, price and booking link from <code>deliverables/_shared/funnel-config.json</code>.</td>
-</tr>
-<tr>
-<td><code>build/build.mjs</code>, <code>build/lib/</code> (ui.mjs, style.css, runtime.js, qr.ts, icons.mjs), <code>build/probe.mjs</code>, <code>build/shoot.mjs</code>, <code>build/compare.py</code></td>
-<td>New renderer: the reference's layouts and product-UI visuals built as HTML, tabbed slides with the footer counter, progress bar and Previous / Next tab buttons, a FILL card instead of a QR while the booking link is unknown. Guide: <code>build/SPEC_GUIDE.md</code> (content doctrine: <code>build/DOCTRINE.md</code>).</td>
-</tr>
-<tr>
-<td><code>RUN_OF_SHOW.md</code></td>
-<td>Minutes 0 to 60: slides, who speaks, polls, chat, offer cues, moderator actions, the Q and A plan.</td>
-</tr>
-<tr>
-<td><code>research/QS_TEARDOWN.md</code></td>
-<td>Minute-by-minute teardown of the competitor recording: what we take (structure) and never copy.</td>
-</tr>
-<tr>
-<td><code>EVAL.md</code></td>
-<td>Done criteria, checked.</td>
-</tr>
-</tbody>
-</table>
-<p>The staged <code>engine/</code> copy was removed after the adaptation: it was byte-identical to <code>~/tantra-redesign/workshop-plan/series-deck/</code> (still there) and its example specs carry banned numbers that fail the scan.</p>
-<h2>Open It Locally</h2>
-<p><code>open deliverables/16-deck/deck/index.html</code> (or double-click it). Right arrow or Space: next (steps through a slide's tabs first). N: speaker notes. G or O: all slides. F: full screen. Add <code>?notes=1</code> to open with notes.</p>
-<p>Rebuild after any change to the spec or config:</p>
-<pre><code>cd deliverables/16-deck/build
-node --no-warnings build.mjs      # 45 slides, polls, chat count, FILL values still open
-node --no-warnings probe.mjs      # must print &quot;all 45 slides clean&quot;
-node --no-warnings shoot.mjs - /tmp/deckshots   # screenshots of every slide and tab
-python3 compare.py /tmp/deckshots               # rebuilds ../compare/ (needs Pillow)
-</code></pre>
-<p>Then rerun <code>node deliverables/21-engagement/export_from_deck.mjs</code> so the engagement timings follow.</p>
-<h2>Review URL Path</h2>
-<p>Publish the <code>deck/</code> folder as <code>/deck/</code> on the review site: https://adisuja.github.io/tantra-enterprise-webinar-pages/deck/ (add <code>?v=&lt;date&gt;</code> to bust the cache). The file is <code>noindex</code>, but speaker notes are readable by anyone who presses N.</p>
-<h2>What Adi Must Fill (in funnel-config.json, then rebuild)</h2>
-<ul>
-<li><code>booking.round_robin_url</code>: until then, slides 24, 35, 44 and 45 show a FILL card where the QR goes. Filled, the build draws a real QR.</li>
-<li><code>webinar.first_date</code>, <code>webinar.start_time_local</code>, <code>webinar.timezone</code>: shown on the title slide.</li>
-<li><code>webinar.title</code>: the deck uses <code>webinar.working_title</code> until Adi picks.</li>
-<li><code>offer.webinar_bonus_stack</code>: slide 7 shows the proposed real-asset stack (run sheet, invite templates, CRM template, plus the replay) marked PROPOSED; once Adi approves and fills it, the marks change to "Yours at the end". Skip slide 7 live until then.</li>
-<li><code>offer.fast_action_deadline</code>: once real, it shows under the button on slide 35; nothing shows while it is FILL (notes only). Any guarantee: none exists; slide 38's third card is the first step, and the guarantee FILL is in the notes only.</li>
-<li>Headline case: decided by Adi 2026-11-05. The deck mirrors the reference (sentence case with a full stop).</li>
-</ul>
-<h2>Claim to Verify</h2>
-<ul>
-<li>"400+ founders" and "$100K to $300K" (the working title) have no source yet (see the task board).</li>
-<li>Slide 38 shows "12 months of the platform, included". The $1,188 value (12 months of Tantra Pro at $99 a month) is in the speaker notes only, until Adi confirms Enterprise's platform year is the Pro tier.</li>
-<li>Slide 21 notes: "many of you are here because of one" (a calendar invite): say it only if that week's traffic used calendar invites.</li>
-<li>Slide 20 tab 4 arithmetic: 98,000 invites at 5 minutes each is about 8,170 hours, about 4 years at 40 hours a week. The slide labels it "An example: 5 minutes each, 40 hours a week".</li>
-</ul></div></details><details class="doc"><summary>REFERENCE_MAP.md</summary><div class="md"><h1>Reference Map: the Webinar Deck Mirrors the Reference Recording</h1>
+<details class="doc" open><summary>REFERENCE_MAP.md</summary><div class="md"><h1>Reference Map: the Webinar Deck Mirrors the Reference Recording</h1>
 <p>Adi, 2026-11-05: redo the deck following the reference recording's design structure and formatting, with Tantra's palette and fonts. The first build was rejected because it used our own workshop-deck design. This map is the contract: every Tantra slide names the reference frame it mirrors (<code>ref</code> in <code>build/spec.mjs</code>), and <code>compare/</code> holds the side-by-side proof.</p>
 <p>Reference files: frames every 12 seconds at 1280 wide in <code>.work/qs-frames-hd/</code> (frame <code>tNNNN</code> is (NNNN minus 1) times 12 seconds; the left webcam tile is the presenter, not the slide), contact sheets in <code>.work/qs-frames/</code>, transcript <code>research/qs-webinar-transcript.srt</code>. Slide changes were detected frame to frame (105 distinct states in the first 46 minutes; minute 46 onward is the final slide held through Q and A). Structure only: no wording, names, numbers or case studies from the reference recording appear in the deck (a 6-word overlap check against the srt returns 0).</p>
 <h2>Visual System (theirs, then ours)</h2>
@@ -994,6 +922,78 @@ python3 compare.py /tmp/deckshots               # rebuilds ../compare/ (needs Pi
 <li>Headline case: sentence case with a full stop, as in the reference. Adi decided 2026-11-05: formatting follows the reference, so the deck keeps sentence case (this overrides AGENT_RULES rule 2's Title Case for the deck).</li>
 <li>Early offer (Adi, 2026-11-05): the early-leaver cutoff stays at minute 25, so the offer moved ahead of it. Slide 23 (minute 20) shows what Tantra Enterprise is, who it is for, the price and the next step; slide 24 (minute 22) is the QR. To keep 45 slides and 45 minutes, the by-hand slide became tab 4 of slide 20, and the problem and step 1 run one minute shorter each (poll 2 at 13, the engine at 14, step 1 from 15). The full offer, journey, cost, comparison and close stay at minutes 33 to 45.</li>
 <li>No co-host: Adi hosts alone. The moderator is behind the scenes only and never speaks; the Q and A slide's speaker line and notes say so.</li>
+</ul></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 16: The Tantra Enterprise Webinar Deck</h1>
+<p>45 slides (65 states with tabs): 45 minutes of teaching and invitation, then 15 minutes of Q and A on the last slide. Rebuilt 2026-11-05 to mirror the reference recording slide by slide (Adi's rule 0); palette and type are Tantra's. Re-timed the same day: the offer in one slide (what it is, who it is for, the price, the next step) lands at minute 20 on slide 23, with the QR on slide 24, before the minute-25 early-leaver cutoff. Adi hosts alone (no co-host).</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>REFERENCE_MAP.md</code></td>
+<td>The reference sequence with frame numbers and timestamps, each slide's layout and visual element, the Tantra slide that mirrors it, and every deviation.</td>
+</tr>
+<tr>
+<td><code>compare/</code></td>
+<td>65 side-by-side images: reference frame left, our slide (or tab) right, at 1920 by 1080.</td>
+</tr>
+<tr>
+<td><code>deck/index.html</code> (+ <code>deck/assets/</code>)</td>
+<td>The deck. Generated; never edit by hand. Opens offline, nothing loads from another site.</td>
+</tr>
+<tr>
+<td><code>build/spec.mjs</code></td>
+<td>Every slide: reference frame (<code>ref</code>), layout, copy, UI visuals, speaker notes, planned minute. Reads the title, offer, price and booking link from <code>deliverables/_shared/funnel-config.json</code>.</td>
+</tr>
+<tr>
+<td><code>build/build.mjs</code>, <code>build/lib/</code> (ui.mjs, style.css, runtime.js, qr.ts, icons.mjs), <code>build/probe.mjs</code>, <code>build/shoot.mjs</code>, <code>build/compare.py</code></td>
+<td>New renderer: the reference's layouts and product-UI visuals built as HTML, tabbed slides with the footer counter, progress bar and Previous / Next tab buttons, a FILL card instead of a QR while the booking link is unknown. Guide: <code>build/SPEC_GUIDE.md</code> (content doctrine: <code>build/DOCTRINE.md</code>).</td>
+</tr>
+<tr>
+<td><code>RUN_OF_SHOW.md</code></td>
+<td>Minutes 0 to 60: slides, who speaks, polls, chat, offer cues, moderator actions, the Q and A plan.</td>
+</tr>
+<tr>
+<td><code>research/QS_TEARDOWN.md</code></td>
+<td>Minute-by-minute teardown of the competitor recording: what we take (structure) and never copy.</td>
+</tr>
+<tr>
+<td><code>EVAL.md</code></td>
+<td>Done criteria, checked.</td>
+</tr>
+</tbody>
+</table>
+<p>The staged <code>engine/</code> copy was removed after the adaptation: it was byte-identical to <code>~/tantra-redesign/workshop-plan/series-deck/</code> (still there) and its example specs carry banned numbers that fail the scan.</p>
+<h2>Open It Locally</h2>
+<p><code>open deliverables/16-deck/deck/index.html</code> (or double-click it). Right arrow or Space: next (steps through a slide's tabs first). N: speaker notes. G or O: all slides. F: full screen. Add <code>?notes=1</code> to open with notes.</p>
+<p>Rebuild after any change to the spec or config:</p>
+<pre><code>cd deliverables/16-deck/build
+node --no-warnings build.mjs      # 45 slides, polls, chat count, FILL values still open
+node --no-warnings probe.mjs      # must print &quot;all 45 slides clean&quot;
+node --no-warnings shoot.mjs - /tmp/deckshots   # screenshots of every slide and tab
+python3 compare.py /tmp/deckshots               # rebuilds ../compare/ (needs Pillow)
+</code></pre>
+<p>Then rerun <code>node deliverables/21-engagement/export_from_deck.mjs</code> so the engagement timings follow.</p>
+<h2>Review URL Path</h2>
+<p>Publish the <code>deck/</code> folder as <code>/deck/</code> on the review site: https://adisuja.github.io/tantra-enterprise-webinar-pages/deck/ (add <code>?v=&lt;date&gt;</code> to bust the cache). The file is <code>noindex</code>, but speaker notes are readable by anyone who presses N.</p>
+<h2>What Adi Must Fill (in funnel-config.json, then rebuild)</h2>
+<ul>
+<li><code>booking.round_robin_url</code>: until then, slides 24, 35, 44 and 45 show a FILL card where the QR goes. Filled, the build draws a real QR.</li>
+<li><code>webinar.first_date</code>, <code>webinar.start_time_local</code>, <code>webinar.timezone</code>: shown on the title slide.</li>
+<li><code>webinar.title</code>: the deck uses <code>webinar.working_title</code> until Adi picks.</li>
+<li><code>offer.webinar_bonus_stack</code>: slide 7 shows the proposed real-asset stack (run sheet, invite templates, CRM template, plus the replay) marked PROPOSED; once Adi approves and fills it, the marks change to "Yours at the end". Skip slide 7 live until then.</li>
+<li><code>offer.fast_action_deadline</code>: once real, it shows under the button on slide 35; nothing shows while it is FILL (notes only). Any guarantee: none exists; slide 38's third card is the first step, and the guarantee FILL is in the notes only.</li>
+<li>Headline case: decided by Adi 2026-11-05. The deck mirrors the reference (sentence case with a full stop).</li>
+</ul>
+<h2>Claim to Verify</h2>
+<ul>
+<li>"400+ founders" and "$100K to $300K" (the working title) have no source yet (see the task board).</li>
+<li>Slide 38 shows "12 months of the platform, included". The $1,188 value (12 months of Tantra Pro at $99 a month) is in the speaker notes only, until Adi confirms Enterprise's platform year is the Pro tier.</li>
+<li>Slide 21 notes: "many of you are here because of one" (a calendar invite): say it only if that week's traffic used calendar invites.</li>
+<li>Slide 20 tab 4 arithmetic: 98,000 invites at 5 minutes each is about 8,170 hours, about 4 years at 40 hours a week. The slide labels it "An example: 5 minutes each, 40 hours a week".</li>
 </ul></div></details><details class="doc"><summary>RUN_OF_SHOW.md</summary><div class="md"><h1>Run of Show: the 60-Minute Tantra Enterprise Webinar</h1>
 <p>45 minutes of teaching and invitation, then 15 minutes of Q and A. One deck: <code>deck/index.html</code> (45 slides, rebuilt 2026-11-05 to mirror the reference recording; see <code>REFERENCE_MAP.md</code>). Re-timed the same day so the offer lands at minute 20, before the minute-25 early-leaver cutoff. Polls, chat lines and offer cues word for word: <code>../21-engagement/ENGAGEMENT_PLAN.md</code>.</p>
 <p><strong>People.</strong> Adi hosts alone: the only person on camera and the only voice. There is no co-host. The moderator works behind the scenes, never on camera or mic (in WebinarJam Basic they take the second presenter seat with the camera off, because Basic has no Moderator role): launches polls and offers, posts chat lines, answers chat, sends Adi the question list in private chat. Adi confirms who moderates before each session.</p>

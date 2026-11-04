@@ -1,48 +1,4 @@
-<details class="doc" open><summary>README.md</summary><div class="md"><h1>Item 21: Webinar Engagement (Polls, Chat Prompts, Offer Cues, CRM Integration)</h1>
-<table>
-<thead>
-<tr>
-<th>Path</th>
-<th>What it is</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ENGAGEMENT_PLAN.md</code></td>
-<td>The 4 polls, 14 chat prompts with the moderator's exact lines, the <strong>WebinarJam offer box timings</strong> (cues at 20:00, 32:00 and 43:00; the first opens with the one-slide offer at minute 20 and closes at the minute-25 early-leaver cutoff), and the data path into the CRM sheet.</td>
-</tr>
-<tr>
-<td><code>engagement.json</code></td>
-<td>Polls, prompts and cues with slide numbers and minutes, generated from the deck spec by <code>export_from_deck.mjs</code>. Never edit by hand.</td>
-</tr>
-<tr>
-<td><code>map_engagement.py</code>, <code>columns.json</code></td>
-<td>WebinarJam chat log plus Cal.com bookings to <code>webinar.poll_answered</code> and <code>webinar.cta_clicked</code> (CRM_CONTRACT). Dry run by default; <code>--send</code> posts.</td>
-</tr>
-<tr>
-<td><code>tests/</code></td>
-<td>Fake example.com exports and a 53-check test.</td>
-</tr>
-</tbody>
-</table>
-<p>Attendance (<code>webinar.attended</code>, <code>webinar.no_show</code>) is item 17's <code>integration/import_attendance.mjs</code>; this folder does not duplicate it.</p>
-<h2>Run</h2>
-<pre><code>node deliverables/21-engagement/export_from_deck.mjs            # after any deck change
-python3 -I deliverables/21-engagement/tests/test_map_engagement.py
-python3 -I deliverables/21-engagement/map_engagement.py --chat ~/Downloads/&lt;chat&gt;.csv \
-  --registrants ~/Downloads/&lt;registrants&gt;.csv --bookings ~/Downloads/&lt;bookings&gt;.csv \
-  --date &lt;YYYY-MM-DD&gt; --start &lt;HH:MM&gt; --tz &lt;Area/City&gt; --out ~/tantra-private/21-engagement/&lt;YYYY-MM-DD&gt;
-</code></pre>
-<p>Add <code>--send</code> once the counts look right. The script refuses to write real people's data inside the repo.</p>
-<h2>What Adi Must Fill or Confirm</h2>
-<ul>
-<li><code>integrations.crm_webhook_url</code> in funnel-config.json, and the CRM secret in <code>$CRM_SHARED_SECRET</code> or <code>~/.config/tantra/keys/crm-shared-secret</code> (item 23 creates it).</li>
-<li><code>booking.round_robin_url</code>: the offer buttons and the chat link.</li>
-<li>Who the moderator is each week (behind the scenes, never on camera; Adi hosts alone, no co-host).</li>
-<li>First live session: confirm the chat log download and its headers, and that Cal.com keeps <code>utm_content</code> on bookings (ENGAGEMENT_PLAN, "Verify before the first live session").</li>
-</ul>
-<h2>Claim to Verify</h2>
-<p>None in this folder. Poll 1's options are the revenue bands shared with the registration page and the Cal.com form.</p></div></details><details class="doc"><summary>ENGAGEMENT_PLAN.md</summary><div class="md"><h1>Engagement Plan: Polls, Chat Prompts, Offer Cues and the Path Into the CRM</h1>
+<details class="doc" open><summary>ENGAGEMENT_PLAN.md</summary><div class="md"><h1>Engagement Plan: Polls, Chat Prompts, Offer Cues and the Path Into the CRM</h1>
 <p>People who type stay, and people who stay book. This is every interaction in the 60-minute session, timed to the deck (item 16, <code>deliverables/16-deck/deck/index.html</code>), and how each answer and click reaches the CRM sheet (CRM_CONTRACT.md).</p>
 <p>Timing source: <code>engagement.json</code>, generated from the deck spec by <code>node export_from_deck.mjs</code>. Change the deck, rerun it, and the test (<code>tests/test_map_engagement.py</code>) fails until this page matches.</p>
 <p>Who does what live:
@@ -302,7 +258,51 @@ python3 -I deliverables/21-engagement/map_engagement.py --chat ~/Downloads/&lt;c
 <li>The chat log download exists on our plan and has a time column and either an email or a name column. Put the real headers first in <code>columns.json</code>; set <code>time_is</code> to <code>offset</code> or <code>clock</code>.</li>
 <li>Cal.com keeps <code>utm_content</code> from the booking link on the booking and in its export (item 19).</li>
 <li>One test registration on example.com through the whole path: register, type a poll letter in chat, click an offer, book, run the two importers in dry run, and see the rows on the Webinar tab.</li>
-</ul></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: item 21, webinar engagement (written before the build)</h1>
+</ul></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 21: Webinar Engagement (Polls, Chat Prompts, Offer Cues, CRM Integration)</h1>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENGAGEMENT_PLAN.md</code></td>
+<td>The 4 polls, 14 chat prompts with the moderator's exact lines, the <strong>WebinarJam offer box timings</strong> (cues at 20:00, 32:00 and 43:00; the first opens with the one-slide offer at minute 20 and closes at the minute-25 early-leaver cutoff), and the data path into the CRM sheet.</td>
+</tr>
+<tr>
+<td><code>engagement.json</code></td>
+<td>Polls, prompts and cues with slide numbers and minutes, generated from the deck spec by <code>export_from_deck.mjs</code>. Never edit by hand.</td>
+</tr>
+<tr>
+<td><code>map_engagement.py</code>, <code>columns.json</code></td>
+<td>WebinarJam chat log plus Cal.com bookings to <code>webinar.poll_answered</code> and <code>webinar.cta_clicked</code> (CRM_CONTRACT). Dry run by default; <code>--send</code> posts.</td>
+</tr>
+<tr>
+<td><code>tests/</code></td>
+<td>Fake example.com exports and a 53-check test.</td>
+</tr>
+</tbody>
+</table>
+<p>Attendance (<code>webinar.attended</code>, <code>webinar.no_show</code>) is item 17's <code>integration/import_attendance.mjs</code>; this folder does not duplicate it.</p>
+<h2>Run</h2>
+<pre><code>node deliverables/21-engagement/export_from_deck.mjs            # after any deck change
+python3 -I deliverables/21-engagement/tests/test_map_engagement.py
+python3 -I deliverables/21-engagement/map_engagement.py --chat ~/Downloads/&lt;chat&gt;.csv \
+  --registrants ~/Downloads/&lt;registrants&gt;.csv --bookings ~/Downloads/&lt;bookings&gt;.csv \
+  --date &lt;YYYY-MM-DD&gt; --start &lt;HH:MM&gt; --tz &lt;Area/City&gt; --out ~/tantra-private/21-engagement/&lt;YYYY-MM-DD&gt;
+</code></pre>
+<p>Add <code>--send</code> once the counts look right. The script refuses to write real people's data inside the repo.</p>
+<h2>What Adi Must Fill or Confirm</h2>
+<ul>
+<li><code>integrations.crm_webhook_url</code> in funnel-config.json, and the CRM secret in <code>$CRM_SHARED_SECRET</code> or <code>~/.config/tantra/keys/crm-shared-secret</code> (item 23 creates it).</li>
+<li><code>booking.round_robin_url</code>: the offer buttons and the chat link.</li>
+<li>Who the moderator is each week (behind the scenes, never on camera; Adi hosts alone, no co-host).</li>
+<li>First live session: confirm the chat log download and its headers, and that Cal.com keeps <code>utm_content</code> on bookings (ENGAGEMENT_PLAN, "Verify before the first live session").</li>
+</ul>
+<h2>Claim to Verify</h2>
+<p>None in this folder. Poll 1's options are the revenue bands shared with the registration page and the Cal.com form.</p></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: item 21, webinar engagement (written before the build)</h1>
 <ol>
 <li>[x] <code>ENGAGEMENT_PLAN.md</code> lists at most 4 polls, each with its slide, minute, exact question and options, and the poll_id the CRM stores.</li>
 <li>[x] Chat prompts are timed to deck slides (slide number and minute), with the exact line the moderator posts.</li>

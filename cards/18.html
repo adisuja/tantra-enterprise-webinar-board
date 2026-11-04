@@ -1,67 +1,4 @@
-<details class="doc" open><summary>README.md</summary><div class="md"><h1>Items 18 and 19: Appointment Setting and the Cal.com Round-Robin Link</h1>
-<p>Every booking is confirmed by Conor or Scott inside 5 minutes, and one Cal.com link spreads bookings evenly between them. After the written proposal, the same closer runs Call 2, the Proposal Review, where the decision is made (Adi, 2026-11-05).</p>
-<h2>What Is Here</h2>
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>What it is</th>
-<th>Who uses it</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>18-speed-to-lead.md</td>
-<td>What fires on a booking, minutes 0 to 5, the call-confirmation script, the pre-call research checklist, call-day outcome logging, the 9-stage pipeline for this offer, Call 2 step by step (section 7), the decisions for Adi</td>
-<td>Conor, Scott, the setter</td>
-</tr>
-<tr>
-<td>18-sequences-A-to-F.md</td>
-<td>Every message in sequences A to F, the Call 2 sequences (D: book the review, R: Call 2 reminders, RN: Call 2 no-show, RC: Call 2 cancelled, RS: after Call 2), Nurture, Won and rep tasks, with timings, channels and stop rules. Generated from <code>sequences.json</code></td>
-<td>Review; the CRM runner sends this exact text</td>
-</tr>
-<tr>
-<td>sequences.json</td>
-<td>The single source of that copy. Edit here, then run <code>python3 deliverables/23-crm/build.py</code></td>
-<td>Whoever edits copy</td>
-</tr>
-<tr>
-<td>18-discovery-call-script.md</td>
-<td>Call 1: the 30-minute call, in the order the booking description promises, with objections and how to log each outcome</td>
-<td>Conor, Scott</td>
-</tr>
-<tr>
-<td>18-call-2-proposal-review-script.md</td>
-<td>Call 2: prep, walking through the proposal, objections from the item 25 FAQ, asking for the decision, sending the agreement and payment link, logging</td>
-<td>Conor, Scott</td>
-</tr>
-<tr>
-<td>19-calcom-round-robin.md</td>
-<td>Team, event type, limits, round-robin rules, the corrected description word for word, the five qualifying questions, the webhook and its field mapping, Adi's steps; section 8: the Call 2 Proposal Review event type per closer and its webhook marker</td>
-<td>Adi, then Conor and Scott</td>
-</tr>
-<tr>
-<td>RECONCILE.md</td>
-<td>Done: every Call 2 point the sales journey raised, and where it is built</td>
-<td>Review</td>
-</tr>
-</tbody>
-</table>
-<p>The CRM side (doPost, runner, sheet) is item 23: <code>deliverables/23-crm/</code>.</p>
-<h2>Sales Journey Page</h2>
-<p>sales-journey/index.html: "Sales Journey: first touch to signed client", one self-contained page mirroring the reference Adi gave (<code>references/user-images/qs-sales-journey-first-touch-to-signed.webp</code>): the journey line with drop-offs, time to close, stage by stage, KPI sheet, questions to ask (ticks save in the browser) and a funnel calculator. Call 2 is a normal stage (08) with its KPIs, Call 2 show rate and close rate (targets FILL). Edit <code>sales-journey/src.html</code>, then <code>python3 deliverables/18-19-booking/sales-journey/build.py</code> (fills funnel-config values, embeds fonts). Mirror map and checks: <code>sales-journey/EVAL.md</code>; screenshots beside the reference: <code>sales-journey/compare/</code>.</p>
-<h2>What Adi Must Fill</h2>
-<ul>
-<li>Conor's and Scott's full names, work emails, Cal.com usernames and WhatsApp numbers (funnel-config.json <code>booking.closers</code>, and the Lists tab of the CRM sheet).</li>
-<li>The round-robin URL once the event type exists (<code>booking.round_robin_url</code>, Lists <code>booking_url</code>).</li>
-<li>The onboarding booking link sent on Closed Won (Lists <code>onboarding_link</code>).</li>
-<li>Decisions in 18-speed-to-lead.md, section 9: no-show rebooking (Seq. C switch, default OFF, also used for a missed Call 2), who the setter is, proposal timing, send mode, the Not ready end date, the Call 2 booking window (<code>booking.call2.book_within_days</code>).</li>
-<li>Conor's and Scott's Proposal Review links once each has created the event type (19, section 8): funnel-config.json <code>booking.call2.conor_url</code> and <code>scott_url</code>, and the CRM Lists tab column <code>closer_call2_url</code>. Until then the proposal email and every Call 2 message wait as <code>blocked</code>.</li>
-</ul>
-<h2>Call 1 Description: One Approved Change</h2>
-<p>The Call 1 description in 19-calcom-round-robin.md, section 4, is the T-072 text word for word except one addition <strong>approved by Adi on 2026-11-05</strong> for Call 2, at the end of the first sentence of its last paragraph: "If it's a fit, you'll receive a written Enterprise proposal within one business day, and we'll book a short call to walk you through it." Paste the new text into the live event type when you create it.</p>
-<h2>Proof Used</h2>
-<p>Only PROOF_PACK.md measured numbers: Growth Idea (11 webinars, 6,517 registered, 1,384 live, 80 sales calls, 4 clients won, May 2025 to Feb 2026) in Seq. D3 and both call scripts; FintechCircle (outreach grew from 10,000 reached to 20,046 and then 30,000 calendar invites across three episodes, 17 calls, March to April 2026) in Seq. E3 and the call script. No pipeline figures, testimonials, guarantees, bonuses or deadlines. No claim to verify: nothing here prints "400+ founders" or "$100K to $300K".</p></div></details><details class="doc"><summary>18-call-2-proposal-review-script.md</summary><div class="md"><h1>Call 2 Script: Tantra Enterprise Proposal Review (30 Minutes)</h1>
+<details class="doc" open><summary>18-call-2-proposal-review-script.md</summary><div class="md"><h1>Call 2 Script: Tantra Enterprise Proposal Review (30 Minutes)</h1>
 <p>For Conor and Scott. The prospect has read your written proposal and booked this call from the proposal email, on your own Proposal Review link. You ran their Call 1, so you run this one. This is the call where the decision is made: by minute 30 you have a yes, a no, or the one thing still in the way, written down.</p>
 <p>Approved by Adi on 2026-11-05 (the task board). Proof comes from PROOF_PACK.md only. Objection answers come from the FAQ: objections-faq.html (PDF: <code>deliverables/25-sales-collateral/objections-faq-a4.pdf</code>).</p>
 <table>
@@ -284,7 +221,70 @@
 <p>Never invent a deadline, discount, bonus or guarantee to get the yes. None exist.</p>
 <h2>After the Call</h2>
 <p>Within one hour: notes, then the menu action on the Pipeline row: <strong>Call 2 Showed</strong> or <strong>Call 2 No-Show</strong> (the outcome task at start + 45 minutes reminds you). Then <strong>Closed Won</strong> when the payment lands, or <strong>Closed Lost</strong> with a reason. A Call 2 left at Booked keeps reminding you and blocks the follow-up from starting.</p>
-<p>If they did not join: Cal.com, Bookings, Past, the booking, mark the attendee as no-show (or Tantra CRM, Call 2 No-Show). The "I'm on the call now" WhatsApp goes straight away. While <code>seq_c_rebook</code> is OFF, no rebooking messages go, the same rule as a missed Call 1, and the deal moves to Nurture on day 7.</p></div></details><details class="doc"><summary>18-discovery-call-script.md</summary><div class="md"><h1>Discovery Call Script: Tantra Enterprise Evaluation Call (30 Minutes)</h1>
+<p>If they did not join: Cal.com, Bookings, Past, the booking, mark the attendee as no-show (or Tantra CRM, Call 2 No-Show). The "I'm on the call now" WhatsApp goes straight away. While <code>seq_c_rebook</code> is OFF, no rebooking messages go, the same rule as a missed Call 1, and the deal moves to Nurture on day 7.</p></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Items 18 and 19: Appointment Setting and the Cal.com Round-Robin Link</h1>
+<p>Every booking is confirmed by Conor or Scott inside 5 minutes, and one Cal.com link spreads bookings evenly between them. After the written proposal, the same closer runs Call 2, the Proposal Review, where the decision is made (Adi, 2026-11-05).</p>
+<h2>What Is Here</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+<th>Who uses it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18-speed-to-lead.md</td>
+<td>What fires on a booking, minutes 0 to 5, the call-confirmation script, the pre-call research checklist, call-day outcome logging, the 9-stage pipeline for this offer, Call 2 step by step (section 7), the decisions for Adi</td>
+<td>Conor, Scott, the setter</td>
+</tr>
+<tr>
+<td>18-sequences-A-to-F.md</td>
+<td>Every message in sequences A to F, the Call 2 sequences (D: book the review, R: Call 2 reminders, RN: Call 2 no-show, RC: Call 2 cancelled, RS: after Call 2), Nurture, Won and rep tasks, with timings, channels and stop rules. Generated from <code>sequences.json</code></td>
+<td>Review; the CRM runner sends this exact text</td>
+</tr>
+<tr>
+<td>sequences.json</td>
+<td>The single source of that copy. Edit here, then run <code>python3 deliverables/23-crm/build.py</code></td>
+<td>Whoever edits copy</td>
+</tr>
+<tr>
+<td>18-discovery-call-script.md</td>
+<td>Call 1: the 30-minute call, in the order the booking description promises, with objections and how to log each outcome</td>
+<td>Conor, Scott</td>
+</tr>
+<tr>
+<td>18-call-2-proposal-review-script.md</td>
+<td>Call 2: prep, walking through the proposal, objections from the item 25 FAQ, asking for the decision, sending the agreement and payment link, logging</td>
+<td>Conor, Scott</td>
+</tr>
+<tr>
+<td>19-calcom-round-robin.md</td>
+<td>Team, event type, limits, round-robin rules, the corrected description word for word, the five qualifying questions, the webhook and its field mapping, Adi's steps; section 8: the Call 2 Proposal Review event type per closer and its webhook marker</td>
+<td>Adi, then Conor and Scott</td>
+</tr>
+<tr>
+<td>RECONCILE.md</td>
+<td>Done: every Call 2 point the sales journey raised, and where it is built</td>
+<td>Review</td>
+</tr>
+</tbody>
+</table>
+<p>The CRM side (doPost, runner, sheet) is item 23: <code>deliverables/23-crm/</code>.</p>
+<h2>Sales Journey Page</h2>
+<p>sales-journey/index.html: "Sales Journey: first touch to signed client", one self-contained page mirroring the reference Adi gave (<code>references/user-images/qs-sales-journey-first-touch-to-signed.webp</code>): the journey line with drop-offs, time to close, stage by stage, KPI sheet, questions to ask (ticks save in the browser) and a funnel calculator. Call 2 is a normal stage (08) with its KPIs, Call 2 show rate and close rate (targets FILL). Edit <code>sales-journey/src.html</code>, then <code>python3 deliverables/18-19-booking/sales-journey/build.py</code> (fills funnel-config values, embeds fonts). Mirror map and checks: <code>sales-journey/EVAL.md</code>; screenshots beside the reference: <code>sales-journey/compare/</code>.</p>
+<h2>What Adi Must Fill</h2>
+<ul>
+<li>Conor's and Scott's full names, work emails, Cal.com usernames and WhatsApp numbers (funnel-config.json <code>booking.closers</code>, and the Lists tab of the CRM sheet).</li>
+<li>The round-robin URL once the event type exists (<code>booking.round_robin_url</code>, Lists <code>booking_url</code>).</li>
+<li>The onboarding booking link sent on Closed Won (Lists <code>onboarding_link</code>).</li>
+<li>Decisions in 18-speed-to-lead.md, section 9: no-show rebooking (Seq. C switch, default OFF, also used for a missed Call 2), who the setter is, proposal timing, send mode, the Not ready end date, the Call 2 booking window (<code>booking.call2.book_within_days</code>).</li>
+<li>Conor's and Scott's Proposal Review links once each has created the event type (19, section 8): funnel-config.json <code>booking.call2.conor_url</code> and <code>scott_url</code>, and the CRM Lists tab column <code>closer_call2_url</code>. Until then the proposal email and every Call 2 message wait as <code>blocked</code>.</li>
+</ul>
+<h2>Call 1 Description: One Approved Change</h2>
+<p>The Call 1 description in 19-calcom-round-robin.md, section 4, is the T-072 text word for word except one addition <strong>approved by Adi on 2026-11-05</strong> for Call 2, at the end of the first sentence of its last paragraph: "If it's a fit, you'll receive a written Enterprise proposal within one business day, and we'll book a short call to walk you through it." Paste the new text into the live event type when you create it.</p>
+<h2>Proof Used</h2>
+<p>Only PROOF_PACK.md measured numbers: Growth Idea (11 webinars, 6,517 registered, 1,384 live, 80 sales calls, 4 clients won, May 2025 to Feb 2026) in Seq. D3 and both call scripts; FintechCircle (outreach grew from 10,000 reached to 20,046 and then 30,000 calendar invites across three episodes, 17 calls, March to April 2026) in Seq. E3 and the call script. No pipeline figures, testimonials, guarantees, bonuses or deadlines. No claim to verify: nothing here prints "400+ founders" or "$100K to $300K".</p></div></details><details class="doc"><summary>18-discovery-call-script.md</summary><div class="md"><h1>Discovery Call Script: Tantra Enterprise Evaluation Call (30 Minutes)</h1>
 <p>For Conor and Scott. The call follows the five promises in the booking description, in order, so the lead gets exactly what they were told they would get. Proof on this call comes from PROOF_PACK.md only.</p>
 <p>This is Call 1. If it fits, the written proposal follows within one business day with your own Proposal Review link inside, and Call 2 (18-call-2-proposal-review-script.md) is where the decision is made. You run both.</p>
 <table>

@@ -1,4 +1,33 @@
-<details class="doc" open><summary>README.md</summary><div class="md"><h1>Item 23: CRM Sheet and Pipeline Integrations</h1>
+<details class="doc" open><summary>SHEET_ID.md</summary><div class="md"><h1>CRM Sheet Id</h1>
+<p>The Google Sheet "Tantra Enterprise CRM" was created on 2026-11-04 in Adi's own Drive (the growthclub.org account the ops token belongs to), from <code>Tantra_Enterprise_CRM_template.xlsx</code>, by <code>create_gsheet.py</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sheet id</td>
+<td><code>1d_AhlTv5Tr0O2vPL2E448SUbQZP7q04tpSGTC7pSv1Q</code></td>
+</tr>
+<tr>
+<td>Open it</td>
+<td>https://docs.google.com/spreadsheets/d/1d_AhlTv5Tr0O2vPL2E448SUbQZP7q04tpSGTC7pSv1Q/edit</td>
+</tr>
+<tr>
+<td>Sharing</td>
+<td>Owner only. The Workspace default had added "anyone at growthclub.org with the link can view"; that permission was removed.</td>
+</tr>
+<tr>
+<td>funnel-config.json</td>
+<td><code>integrations.crm_sheet_id</code> takes this id (the lead session writes it; this folder does not edit _shared).</td>
+</tr>
+</tbody>
+</table>
+<p>Checked through the Sheets API after creation (<code>python3 deliverables/23-crm/create_gsheet.py --verify-only 1d_AhlTv5Tr0O2vPL2E448SUbQZP7q04tpSGTC7pSv1Q</code>): 7 tabs in order, all headers, the stage dropdown, 7 Pipeline and 4 Sequences formatting rules, Summary formulas computing with no errors.</p>
+<p>The id is not a secret. The OAuth token used to create it was never printed or written anywhere.</p></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 23: CRM Sheet and Pipeline Integrations</h1>
 <p>One Google Sheet is the CRM. One Apps Script web app writes to it. Every form, booking, webinar export and reply posts an event; the script moves the deal and schedules the next message. Nobody drags a deal by hand.</p>
 <p><strong>The sheet (owner only):</strong> https://docs.google.com/spreadsheets/d/1d_AhlTv5Tr0O2vPL2E448SUbQZP7q04tpSGTC7pSv1Q/edit (id in SHEET_ID.md).</p>
 <h2>What Is Here</h2>
@@ -132,36 +161,7 @@ node deliverables/23-crm/tests/harness.mjs
 <li>Tantra API dispatch mode and the Tantra reply webhook payload (<code>guest.email</code>, reply text field).</li>
 <li>Apps Script answers a POST with a redirect after running; the row is written either way.</li>
 </ul>
-<p>No claim to verify in this folder: it prints no "400+ founders" or "$100K to $300K" line.</p></div></details><details class="doc"><summary>SHEET_ID.md</summary><div class="md"><h1>CRM Sheet Id</h1>
-<p>The Google Sheet "Tantra Enterprise CRM" was created on 2026-11-04 in Adi's own Drive (the growthclub.org account the ops token belongs to), from <code>Tantra_Enterprise_CRM_template.xlsx</code>, by <code>create_gsheet.py</code>.</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Sheet id</td>
-<td><code>1d_AhlTv5Tr0O2vPL2E448SUbQZP7q04tpSGTC7pSv1Q</code></td>
-</tr>
-<tr>
-<td>Open it</td>
-<td>https://docs.google.com/spreadsheets/d/1d_AhlTv5Tr0O2vPL2E448SUbQZP7q04tpSGTC7pSv1Q/edit</td>
-</tr>
-<tr>
-<td>Sharing</td>
-<td>Owner only. The Workspace default had added "anyone at growthclub.org with the link can view"; that permission was removed.</td>
-</tr>
-<tr>
-<td>funnel-config.json</td>
-<td><code>integrations.crm_sheet_id</code> takes this id (the lead session writes it; this folder does not edit _shared).</td>
-</tr>
-</tbody>
-</table>
-<p>Checked through the Sheets API after creation (<code>python3 deliverables/23-crm/create_gsheet.py --verify-only 1d_AhlTv5Tr0O2vPL2E448SUbQZP7q04tpSGTC7pSv1Q</code>): 7 tabs in order, all headers, the stage dropdown, 7 Pipeline and 4 Sequences formatting rules, Summary formulas computing with no errors.</p>
-<p>The id is not a secret. The OAuth token used to create it was never printed or written anywhere.</p></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: item 23 (CRM sheet and pipeline integrations)</h1>
+<p>No claim to verify in this folder: it prints no "400+ founders" or "$100K to $300K" line.</p></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: item 23 (CRM sheet and pipeline integrations)</h1>
 <ol>
 <li>[x] <code>Tantra_Enterprise_CRM_template.xlsx</code> has the six CRM_CONTRACT tabs (Contacts, Webinar, Pipeline, Events, Sequences, Lists) plus a Summary tab, built by <code>build.py</code> with openpyxl. <strong>Evidence:</strong> build.py writes 7 tabs; openpyxl load confirmed.</li>
 <li>[x] Pipeline has the 9 playbook stages as a dropdown, plus dropdowns for source, closer, show status and lost reason; conditional formatting marks won, lost, no-show and overdue follow-ups. <strong>Evidence:</strong> 8 Pipeline dropdowns, 7 Pipeline colour rules (confirmed on the live sheet via API).</li>
