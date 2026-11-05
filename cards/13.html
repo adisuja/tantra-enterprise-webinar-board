@@ -130,14 +130,14 @@
 <tr>
 <td>10</td>
 <td>"DON'T TAKE OUR WORD FOR IT" (highlighter) plus 6 chat-screenshot testimonials in a masonry collage</td>
-<td>Same heading shape, 6 of our 9 verbatim testimonials in a masonry collage of cards styled like messages (avatar initials, name, published title, the quote), each card a different height as in QS</td>
+<td>Same heading shape, 6 of our 9 verbatim testimonials as a collage of cards: company logo, the quote, the person's real published photo, name and designation (Adi 2026-11-05); one consistent card grid instead of uneven heights</td>
 <td>Verbatim quotes only, no fake chat UI chrome (no fake timestamps or app bars)</td>
 </tr>
 <tr>
 <td>11</td>
 <td>Black rounded banner "COMPANIES WE'VE HELPED" plus logo strip</td>
-<td>Same black banner. Under it a strip of company names set as text in a quiet wordmark style, only names already published with our testimonials plus the two cleared clients</td>
-<td>No logos (owner rule); flag the strip for Adi</td>
+<td>Same black banner. Under it a strip of the real logos in one mono tone, only companies already published with our testimonials plus the two cleared clients</td>
+<td>Logos allowed for these companies (rule 9 exception, 2026-11-05); flag the strip for Adi</td>
 </tr>
 <tr>
 <td>12</td>
@@ -220,7 +220,7 @@
 <tr>
 <td>8</td>
 <td>Matrix: industry rows (Consulting and Professional Services, Software, Coaching and Training, Agencies) by stage columns (EARLY, GROWTH, SCALE, LARGE with current and goal ranges), round headshots with names linking to case studies</td>
-<td>Same matrix and column heads. Filled cells: Growth Idea (Coaching and Training) and FintechCircle (Coaching and Training, education) as round monogram badges (no client photos or logos) with the company name. Empty cells show a soft "Next case study" ghost circle. Data-driven from one JSON so item 28 fills it later. Stage ranges in our words only if they are generic bands; never QS's numbers</td>
+<td>Same matrix and column heads. Filled cells: Growth Idea (Coaching and Training) and FintechCircle (Coaching and Training, education) as round badges with the client contact's published photo (Adi 2026-11-05) and the company name. Empty cells show a soft "Next case study" ghost circle. Data-driven from one JSON so item 28 fills it later. Stage ranges in our words only if they are generic bands; never QS's numbers</td>
 </tr>
 <tr>
 <td>9</td>
@@ -314,7 +314,7 @@
 <tr>
 <td>13</td>
 <td>Black band: "10X GROWTH SYSTEM", gold italic "WHAT YOU GET", "OUR CLIENTS"</td>
-<td>Black band: "THE TANTRA ENTERPRISE SYSTEM", iris italic "WHAT YOU GET" (the 6 stages and 4 includes), "OUR CLIENTS" (text name strip as on 13 #11)</td>
+<td>Black band: "THE TANTRA ENTERPRISE SYSTEM", iris italic "WHAT YOU GET" (the 6 stages and 4 includes), "OUR CLIENTS" (logo strip as on 13 #11)</td>
 </tr>
 <tr>
 <td>14</td>
@@ -748,7 +748,9 @@
 - Matrix: a white table card from 768; a stack of industry cards with one row per stage on phones.
 - Tap targets: every button, link button, field, checkbox row, matrix row link and nav item is at least 44px tall on phones.
 - Small text floor: no label is set below 12px.
-- Testimonial collage: three explicit columns written at build time, each quote placed in the shortest column so the columns end level; dark cards on a diagonal. Two columns at 640 to 1023, one on phones.
+- Testimonial cards (redesigned 2026-11-05 after Adi's feedback): one white card per person, all the same structure. One anatomy at every width: company logo (optically sized, so wide wordmarks and square marks carry the same weight), the person (real published photo, name, designation), then the verbatim quote. Phones: stacked, the person as a row with a 64px photo. From 640px: a profile column on the left (152 x 190 portrait, name and designation under it), a hairline, then logo and quote. One column, two from 1024px; cards in a row share a height and an odd last card sits centred. Sources for every photo, designation and logo: SOURCES.md.
+- Case card header (2026-11-05): the client's logo on a white plate, the company name with its industry and stage, and the client contact (published photo, first name, designation). The matrix shows the contact's photo instead of a monogram.
+- Logo strip ("Companies We've Worked With", "Our Clients"): eleven real logos of companies we worked with, one mono tone (dark grey on light, white on dark). Coinfirm and iKrshna stand for Sachin Dutta's and Anand Kadakol's work, as on /masterclass.
 - Matrix on phones: an industry with no case yet collapses to its name and "No case study yet".
 - Thank-you join control: a secondary outline button, "Find the email", which scrolls to the email card; it becomes the primary "Enter the live session" button once <code>webinar.join_url</code> is set.
 - Team monograms: two letters (Bk Bhaskar, Bh Bharath, Ne, Aq, Be, Am, Co, Sc), so no two look alike.</p>
@@ -770,8 +772,8 @@
 - Headline figure: our working title's "$100K to $300K" sits in the highlighter. Claim to verify (below).
 - Stat bar: 4 counters from the approved lines (250+, 10+, 21+, 47+) instead of client and revenue totals we cannot claim.
 - Results band: two dashboards rebuilt in HTML from the trackers' measured numbers, each labelled "Rebuilt from the client's webinar tracker", instead of screenshots. Growth Idea shows the 11-webinar totals and first vs best webinar; a bar per webinar for all 11 is not possible because PROOF_PACK holds only the totals, the first and the best. FintechCircle shows outreach per episode with calls booked.
-- Testimonial collage: 6 verbatim quotes as message-style cards (initials, name, published title, quote). No chat screenshots, no app bars or timestamps.
-- Companies banner: company names as text, no logos (owner rule). The names are the nine already published with our testimonials plus Growth Idea and FintechCircle. Adi to confirm the strip.
+- Testimonial collage: 6 verbatim quotes as cards with the person's real published photo, designation and company logo (rule 9 exception, Adi 2026-11-05). No chat screenshots, no app bars or timestamps.
+- Companies banner: the real logos of the nine companies already published with our testimonials plus Growth Idea and FintechCircle (rule 9 exception). Adi to confirm the strip.
 - Hosted by: Adi alone, one card centred (the reference's single-card variant). Adi, 2026-11-05: no co-host. The claim line under it reads "My team and I have built revenue engines for...".
 - Bonus block: the 3 cards are real assets we already built (item 16 run sheet, item 12 invite templates and A/B plan, item 23 CRM sheet). <strong>Proposed bonus stack, Adi to approve (the task board).</strong> The product photo is an HTML stack of three Tantra covers.
 - Timers under CTAs: the real countdown, never the reference's evergreen "15 minutes".
@@ -781,7 +783,7 @@
 - The inbox picture is an HTML illustration of a search for the sender, not a Gmail screenshot.
 - Added row under the inbox buttons (Adi's brief): WhatsApp community, the 4 videos, Google Calendar and .ics.
 - Matrix: stage bands are our own registration revenue bands, with no "goal" lines. Two filled cells (Growth Idea in Scale, FintechCircle in Growth, both Coaching and Training), the rest "Next case study" ghosts. On phones the matrix stacks into one card per industry with each stage as a row, so nothing scrolls sideways.
-- Case cards: 2, not 10. Company Size omitted (unknown); Challenge is the measured starting point; no quote and no LinkedIn button (none exist yet); case video is a FILL slot for item 28.
+- Case cards: 2, not 10. Company Size omitted (unknown); Challenge is the measured starting point; no quote and no LinkedIn button (none exist yet); the header carries the client logo and the contact's published photo and designation; case video is a FILL slot for item 28.
 - "Client Ratings": no rating badges or review widget exist, so the black band holds the 3 remaining verbatim quotes as cards.</p>
 <p>Indoctrination (15a): no reference page exists, so it uses the thank-you hero and the due diligence Step 2 row four times, as the map says. The bonus row is marked PROPOSED.</p>
 <p>Recording (26): the line "Reschedule or cancel at least 24 hours before, using the link in your confirmation email. A missed call is not rescheduled." comes from Adi's corrected Cal.com event description (<code>context/from-workshop-project/offer-enterprise/T-072-calcom-event-draft.md</code>). The replay window is not in the config, so the "Replay available for" timer shows <code>FILL_REPLAY_CLOSES_AT</code>. Chapters sit in a collapsible under the hero. The "What Happens Next" cards follow Call 2 (Adi, 2026-11-05): Evaluation Call, written proposal within one business day plus the due diligence page, Proposal Review call with the same closer, agreement.</p>
@@ -794,7 +796,7 @@
 - Recent Wins: 3 phone frames marked <code>FILL_CLIENT_MESSAGE</code>; item 28 fills them with real messages and written permission.
 - Team: 3 groups from our roster (no research group). Monograms until photos arrive; Adi's Kie.ai avatar. A LinkedIn button only for Adi (the one confirmed URL).
 - Bios: Adi's from approved lines; Bhaskar and Bharath <code>FILL_BIO</code>.
-- Black band: "What You Get" holds the 6 build stages and the 4 includes (the reference band is empty in the capture); "Our Clients" is the text name strip.
+- Black band: "What You Get" holds the 6 build stages and the 4 includes (the reference band is empty in the capture); "Our Clients" is the logo strip.
 - Industry pages: hero, the one-row matrix, the case cards that fit (Coaching and Training: both) or a "Your Case Study Could Be Here" card, the quotes from that industry, other industries.</p>
 <h2>What Adi must fill</h2>
 <p>In funnel-config.json: webinar.title, webinar.subtitle, webinar.first_date, webinar.start_time_local, webinar.timezone, media.vsl_video_url, media.indoctrination_videos (4), webinar.replay_url (from the WebinarJam API), community.whatsapp_community_url, booking.round_robin_url, brand.support_email, brand.legal_footer_address, integrations.webinarjam_sender_email, integrations.register_worker_url and integrations.turnstile_site_key (live form). Decisions: the bonus stack, the company name strip, team photos, bios and LinkedIn links, the replay window, policy links. Record: the VSL, the four videos, the 10-minute Program Deep-Dive (DEEP_DIVE_SCRIPT.md).</p>

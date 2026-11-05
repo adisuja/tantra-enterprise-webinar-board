@@ -4,7 +4,10 @@
 
 usage:
   python3 scheduler.py --selftest
-  python3 scheduler.py --registered 2026-11-10T09:00:00Z --start 2026-11-12T16:00:00Z [--tz Asia/Kolkata]
+  python3 scheduler.py --registered 2026-11-02T09:00:00Z [--start 2026-11-12T10:00:00Z] [--tz Europe/Berlin]
+
+--start defaults to the first session in funnel-config.json (Thursday 12 November 2026, 10:00
+Europe/London = 10:00 UTC; ../12-calendar-invites/schedule.py).
 
 The registrant's timezone is webinar.registered data.timezone (IANA, from the browser). When it
 is missing, the webinar timezone from funnel-config.json is used (UTC while that is unfilled).
@@ -110,8 +113,16 @@ def plan(registered, start, tz_name=None):
 def ids(p):
     return [s for s, _, _ in p]
 
+def real_start():
+    """First session from funnel-config.json, as an aware datetime."""
+    sys.path.insert(0, os.path.join(HERE, "..", "12-calendar-invites"))
+    from schedule import session
+    return session()["start"]
+
 def selftest():
-    S = parse("2026-11-12T16:00:00Z")  # a Thursday, 16:00 UTC
+    # Rule cases on a fixed start, a Thursday 16:00 UTC (21:30 IST), chosen because it puts the
+    # live-day steps outside the Indian WhatsApp window. The real-schedule checks follow below.
+    S = parse("2026-11-12T16:00:00Z")
     def at(**kw):
         return S - timedelta(**kw)
     ALL = ["15B-R0", "15B-W1", "15B-V2", "15B-D3", "15B-V4", "15B-D1", "15B-C1", "15B-H3", "15B-H1", "15B-M15", "15B-C2", "15B-L0", "15B-L10"]
@@ -155,6 +166,17 @@ def selftest():
     for sid, t, ch in plan(at(days=10), S, "Asia/Kolkata"):
         if "whatsapp" in ch or ch == ("call",):
             checks.append(("%s inside 08:00 to 20:00 IST" % sid, 8 <= t.astimezone(ZoneInfo("Asia/Kolkata")).hour < 20))
+    # the decided schedule: Thursday 12 November 2026, 10:00 Europe/London
+    R = real_start()
+    checks.append(("real schedule: first session is 2026-11-12 10:00 UTC (10:00 GMT, 11:00 CET)",
+                   R.astimezone(ZoneInfo("UTC")).isoformat() == "2026-11-12T10:00:00+00:00"))
+    uk = {sid: ch for sid, _, ch in plan(R - timedelta(days=10), R, "Europe/London")}
+    checks.append(("real schedule, London: H3 at 07:00 UK is email only (before the 08:00 WhatsApp window)", uk["15B-H3"] == ("email",)))
+    for sid in ("15B-H1", "15B-M15", "15B-L0", "15B-L10"):
+        checks.append(("real schedule, London: %s keeps WhatsApp" % sid, uk[sid] == ("email", "whatsapp")))
+    eu = {sid: ch for sid, _, ch in plan(R - timedelta(days=10), R, "Europe/Berlin")}
+    checks.append(("real schedule, Berlin: every live-day step keeps WhatsApp (H3 at 08:00 CET)",
+                   all(eu[s] == ("email", "whatsapp") for s in ("15B-H3", "15B-H1", "15B-M15", "15B-L0", "15B-L10"))))
     for name, ok in checks:
         fails += not ok
         print("%s %s" % ("PASS" if ok else "FAIL", name))
@@ -171,5 +193,8 @@ if __name__ == "__main__":
     if a.selftest:
         sys.exit(1 if selftest() else 0)
     tz = a.tz or webinar_tz()
-    for sid, t, ch in plan(parse(a.registered), parse(a.start), tz):
+    if not a.registered:
+        ap.error("--registered is required (or use --selftest)")
+    start = parse(a.start) if a.start else real_start()
+    for sid, t, ch in plan(parse(a.registered), start, tz):
         print(sid, t.astimezone(ZoneInfo(tz)).isoformat(), "+".join(ch))

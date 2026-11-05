@@ -1,0 +1,67 @@
+"profile","campaign_type","step","delay_days","action","subject","message","char_count","plan_rule"
+"adi","inmail_step1","1","0","inmail","{{firstName}}, a question about pipeline at {{company}}","Hi {{firstName}},
+
+Quick question: could you predict next quarter's booked sales calls at {{company}} today?
+
+Most founders I speak with can't. Leads come from referrals, a good month on ads, a lucky post. Nothing they can measure and repeat.
+
+I host a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 250+ brands.
+
+60 minutes, including 15 minutes of Q&A. Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=inmail&utm_campaign=enterprise-webinar&utm_content=adi
+
+Adi","688","Sales Navigator only: off on free accounts"
+"aquila","inmail_step1","1","0","inmail","{{firstName}}, a question about pipeline at {{company}}","Hi {{firstName}},
+
+Quick question: could you predict next quarter's booked sales calls at {{company}} today?
+
+Most founders I speak with can't. Leads come from referrals, a good month on ads, a lucky post. Nothing they can measure and repeat.
+
+Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 250+ brands.
+
+60 minutes, including 15 minutes of Q&A. Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=inmail&utm_campaign=enterprise-webinar&utm_content=aquila
+
+Aquila","711","Sales Navigator only: off on free accounts"
+"nelbin","inmail_step1","1","0","inmail","{{firstName}}, a question about pipeline at {{company}}","Hi {{firstName}},
+
+Quick question: could you predict next quarter's booked sales calls at {{company}} today?
+
+Most founders I speak with can't. Leads come from referrals, a good month on ads, a lucky post. Nothing they can measure and repeat.
+
+Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 250+ brands.
+
+60 minutes, including 15 minutes of Q&A. Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=inmail&utm_campaign=enterprise-webinar&utm_content=nelbin
+
+Nelbin","711","Sales Navigator only: off on free accounts"
+"bharath","inmail_step1","1","0","inmail","{{firstName}}, a question about pipeline at {{company}}","Hi {{firstName}},
+
+Quick question: could you predict next quarter's booked sales calls at {{company}} today?
+
+Most founders I speak with can't. Leads come from referrals, a good month on ads, a lucky post. Nothing they can measure and repeat.
+
+Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 250+ brands.
+
+60 minutes, including 15 minutes of Q&A. Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=inmail&utm_campaign=enterprise-webinar&utm_content=bharath
+
+Bharath","713","Sales Navigator only: off on free accounts"
+"bhaskar","inmail_step1","1","0","inmail","{{firstName}}, a question about pipeline at {{company}}","Hi {{firstName}},
+
+Quick question: could you predict next quarter's booked sales calls at {{company}} today?
+
+Most founders I speak with can't. Leads come from referrals, a good month on ads, a lucky post. Nothing they can measure and repeat.
+
+Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 250+ brands.
+
+60 minutes, including 15 minutes of Q&A. Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=inmail&utm_campaign=enterprise-webinar&utm_content=bhaskar
+
+Bhaskar","713","Sales Navigator only: off on free accounts"
+"ben","inmail_step1","1","0","inmail","{{firstName}}, a question about pipeline at {{company}}","Hi {{firstName}},
+
+Quick question: could you predict next quarter's booked sales calls at {{company}} today?
+
+Most founders I speak with can't. Leads come from referrals, a good month on ads, a lucky post. Nothing they can measure and repeat.
+
+Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 250+ brands.
+
+60 minutes, including 15 minutes of Q&A. Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=inmail&utm_campaign=enterprise-webinar&utm_content=ben
+
+Ben","705","Sales Navigator only: off on free accounts"

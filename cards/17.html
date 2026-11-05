@@ -54,11 +54,11 @@
 </tr>
 <tr>
 <td>Webinar title (public, max 70 [SOP 23:00])</td>
-<td><code>webinar.title</code>. The recommended title in item 1 is 67 characters and fits; the third-ranked title is 74 and would need cutting</td>
+<td><code>webinar.title</code>: "How 400+ Brands Use AI Funnels to Generate $100K to $300K Monthly" (Adi's pick 2026-11-05), 65 characters, fits. Claim to verify: 400+ brands (approved proof says 250+) and the revenue range</td>
 </tr>
 <tr>
 <td>Webinar description (public, max 150 [SOP 23:00])</td>
-<td><code>webinar.subtitle</code> (the working subtitle is 137 characters and fits)</td>
+<td><code>webinar.subtitle</code> (125 characters, fits)</td>
 </tr>
 <tr>
 <td>Webinar language</td>
@@ -114,7 +114,7 @@
 </tr>
 <tr>
 <td>Sessions</td>
-<td>Add 4 weeks ahead: date = each <code>webinar.day_of_week</code> from <code>webinar.first_date</code>, time <code>webinar.start_time_local</code>, time zone <code>webinar.timezone</code>. Then <strong>Add</strong> one more date every week (RUN_CHECKLIST, T minus 7)</td>
+<td>Time zone <strong>London</strong> (<code>webinar.timezone</code> Europe/London: GMT in winter, BST in summer, so the session stays 10:00 UK time). Add 4 weeks ahead, each Thursday <strong>10:00</strong>, 60 minutes: <strong>12 Nov 2026, 19 Nov 2026, 26 Nov 2026, 3 Dec 2026</strong> (<code>webinar.first_date</code>, <code>day_of_week</code>, <code>start_time_local</code>). Then <strong>Add</strong> one more Thursday every week (RUN_CHECKLIST, T minus 7). 10:00 UK time is 11:00 CET for EU registrants</td>
 </tr>
 <tr>
 <td>Allow time zone conversion</td>
@@ -341,7 +341,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Offers.</strong> WebinarJam has no timer for offers in a live event: the presenter or the second presenter clicks each one live, and only one shows at a time [H 15370007]. The cues come from the deck's run of show (item 21, <code>deliverables/21-engagement/ENGAGEMENT_PLAN.md</code>, "WebinarJam offer box timings"): <strong>20:00 to 25:00 (slide 23, the offer in one slide, then the QR on slide 24), 32:00 to 35:00 (slide 35), 43:00 to 60:00 (slide 44)</strong>. The second presenter launches and closes each by hand.</p>
+<p><strong>Offers.</strong> WebinarJam has no timer for offers in a live event: the presenter or the second presenter clicks each one live, and only one shows at a time [H 15370007]. The cues come from the deck's run of show (item 21, <code>deliverables/21-engagement/ENGAGEMENT_PLAN.md</code>, "WebinarJam offer box timings"): <strong>20:00 to 25:00 (slide 35, the offer in one slide, then the QR on slide 36), 35:00 to 38:00 (slide 64), 44:00 to 60:00 (slide 73)</strong>. The second presenter launches and closes each by hand.</p>
 <table>
 <thead>
 <tr>
@@ -356,7 +356,7 @@
 <tbody>
 <tr>
 <td>1</td>
-<td>20:00 to 25:00 (slides 23 and 24)</td>
+<td>20:00 to 25:00 (slides 35 and 36)</td>
 <td><code>cta1_soft</code></td>
 <td>Book Your <code>booking.event_title</code></td>
 <td>Book My Call</td>
@@ -364,7 +364,7 @@
 </tr>
 <tr>
 <td>2</td>
-<td>32:00 to 35:00 (slide 35)</td>
+<td>35:00 to 38:00 (slide 64)</td>
 <td><code>cta2_checkpoint</code></td>
 <td>Same</td>
 <td>Same</td>
@@ -372,7 +372,7 @@
 </tr>
 <tr>
 <td>3</td>
-<td>43:00 to 60:00 (slide 44)</td>
+<td>44:00 to 60:00 (slide 73)</td>
 <td><code>cta3_main</code></td>
 <td>Same</td>
 <td>Same</td>
@@ -469,7 +469,7 @@
 <tbody>
 <tr>
 <td><code>EVENT_CONFIG.md</code></td>
-<td>The event, field by field in WebinarJam's wizard order: email decision, <code>timezone_id</code>, offers at 20:00, 32:00 and 43:00 (from item 21), polls, chat rules, replay</td>
+<td>The event, field by field in WebinarJam's wizard order: email decision, <code>timezone_id</code>, offers at 20:00, 35:00 and 44:00 (from item 21), polls, chat rules, replay</td>
 </tr>
 <tr>
 <td><code>RUN_CHECKLIST.md</code></td>
@@ -493,7 +493,7 @@
 </tr>
 <tr>
 <td><code>tests/run.mjs</code>, <code>tests/fixtures/</code></td>
-<td>20 tests on fake example.com data, no network, including the built Worker: <code>node deliverables/17-webinarjam/tests/run.mjs</code></td>
+<td>23 tests on fake example.com data, no network, including the built Worker: <code>node deliverables/17-webinarjam/tests/run.mjs</code></td>
 </tr>
 </tbody>
 </table>
@@ -550,14 +550,14 @@ fetch(F.register_worker_url, { method: 'POST', headers: { 'Content-Type': 'appli
 <li>That <code>timezone_id</code> is accepted for non-Texas Central and Mountain registrants (step 6 from a Central time zone browser shows it).</li>
 <li>Whether invisible captcha affects API registrations, whether the confirmation email carries WebinarJam's own unsubscribe link, whether the live room accent can take <code>brand.accent</code>, and whether "3rd party tracking systems" covers the live room.</li>
 </ul></div></details><details class="doc"><summary>RUN_CHECKLIST.md</summary><div class="md"><h1>Weekly Run Checklist: One Webinar, T Minus 7 Days to T Plus 1 Day</h1>
-<p>T is the start time (<code>webinar.start_time_local</code>, <code>webinar.timezone</code>). Owners: <strong>Adi</strong> (host), <strong>Support</strong> (the second presenter, <code>webinar.moderator_name</code> once set), <strong>Ops</strong> (whoever runs the scripts; commands run from <code>deliverables/17-webinarjam/</code>). WebinarJam: https://app.webinarjam.com/webinars</p>
+<p>T is the start time: Thursday 10:00 UK time (11:00 CET), first session 12 November 2026 (<code>webinar.start_time_local</code>, <code>webinar.timezone</code>, <code>webinar.first_date</code>). Owners: <strong>Adi</strong> (host), <strong>Support</strong> (the second presenter, <code>webinar.moderator_name</code> once set), <strong>Ops</strong> (whoever runs the scripts; commands run from <code>deliverables/17-webinarjam/</code>). WebinarJam: https://app.webinarjam.com/webinars</p>
 <p>Export files with registrant data stay outside the repo (for example <code>~/Downloads/</code>) and are deleted after the import.</p>
 <h2>T Minus 7 Days</h2>
 <ul>
 <li>[ ] <strong>Ops, WebinarJam:</strong> Edit the webinar, <strong>Schedules</strong>, add the date 4 weeks out, <strong>Add</strong>, <strong>Save</strong>. Four future sessions must always exist, or the registration function has nowhere to put people. Never delete or move a session with registrants.</li>
 <li>[ ] <strong>Ops, browser:</strong> One test registration on our live registration page with an inbox you own. Pass: the thank-you page loads, the WebinarJam confirmation email arrives with a working join link, the CRM Webinar tab shows the row for the right date.</li>
 <li>[ ] <strong>Adi, Google Calendar:</strong> Three internal blocks for the team, as in the SOP: <strong>Prep</strong> (T minus 30 min, 30 min), <strong>Live</strong> (T, <code>webinar.duration_minutes</code> min), <strong>Review</strong> (T plus 60 min, 60 min).</li>
-<li>[ ] <strong>Adi:</strong> The deck (item 16) and the three offer cues from item 21 (20:00, 32:00, 43:00) are final. Click each offer's button link: it opens <code>booking.round_robin_url</code>.</li>
+<li>[ ] <strong>Adi:</strong> The deck (item 16) and the three offer cues from item 21 (20:00, 35:00, 44:00) are final. Click each offer's button link: it opens <code>booking.round_robin_url</code>.</li>
 </ul>
 <h2>T Minus 3 Days</h2>
 <ul>
@@ -578,7 +578,7 @@ fetch(F.register_worker_url, { method: 'POST', headers: { 'Content-Type': 'appli
 <li>[ ] <strong>T minus 30 min, all, Prep block:</strong> Registration count vs target, who handles which questions, the three offer cues.</li>
 <li>[ ] <strong>T minus 15 min, Adi:</strong> In the room before the start; Support logged in and watching chat.</li>
 <li>[ ] <strong>T, Adi:</strong> Start the broadcast. Support follows the chat rules in EVENT_CONFIG section 7.</li>
-<li>[ ] <strong>Minutes 20:00, 32:00, 43:00, Support:</strong> Launch offer <code>cta1_soft</code> as slide 23 (the offer in one slide) appears (close at 25:00), then <code>cta2_checkpoint</code> (close at 35:00), then <code>cta3_main</code> (keep open to the end). Launch each poll when Adi asks it.</li>
+<li>[ ] <strong>Minutes 20:00, 35:00, 44:00, Support:</strong> Launch offer <code>cta1_soft</code> as slide 35 (the offer in one slide) appears (close at 25:00), then <code>cta2_checkpoint</code> (close at 38:00), then <code>cta3_main</code> (keep open to the end). Launch each poll when Adi asks it.</li>
 <li>[ ] <strong>Minute <code>webinar.presentation_minutes</code>, Support:</strong> Hand Adi the question list.</li>
 <li>[ ] <strong>T plus 60 min, Adi:</strong> End the broadcast.</li>
 <li>[ ] <strong>T plus 60 min, all, Review block:</strong> Attendance vs registrations, how many stayed past minute <code>webinar.retarget_cutoff_minute</code>, calls booked, poll results (<strong>Log</strong>, <strong>Poll results</strong>), one change for next week.</li>
@@ -598,7 +598,7 @@ fetch(F.register_worker_url, { method: 'POST', headers: { 'Content-Type': 'appli
 <li>[x] <code>EVENT_CONFIG.md</code> follows WebinarJam's own wizard order (Configuration, Schedules, Registration, Notifications, Integrations, Thank You, Live, Replay, Finish) and gives a value for every module seen in the SOP frames or the help centre.</li>
 <li>[x] Every value that exists in <code>funnel-config.json</code> is shown as its key, never retyped. Every WebinarJam fact cites the SOP frames, the platform comparison or a help-centre article; anything unconfirmed says "confirm in the WebinarJam dashboard".</li>
 <li>[x] The sheet makes and explains the email decision (which WebinarJam emails stay on, which are off, and why), the weekly schedule model, the plan minimum and the moderator limit.</li>
-<li>[x] Offer moments follow the deck run of show from item 21 (20:00, 32:00, 43:00; the first opens with the offer slide, before the minute-25 cutoff). No invented scarcity, countdown or deadline.</li>
+<li>[x] Offer moments follow the deck run of show from item 21 (20:00, 35:00, 44:00; the first opens with the offer slide, before the minute-25 cutoff). No invented scarcity, countdown or deadline.</li>
 <li>[x] <code>integration/register.mjs</code> registers through the <code>/register</code> endpoint (so each person gets a unique link), posts <code>webinar.registered</code> to the CRM in the exact CRM_CONTRACT shape, reads the API key only from an environment variable, and has a dry-run mode that prints the requests and makes no network call. A bulk mode registers calendar Yes and Maybe RSVPs from a CSV.</li>
 <li>[x] <code>integration/import_attendance.mjs</code> turns a WebinarJam registrants export into <code>webinar.attended</code> (minutes_in_room, joined_at, left_at) and <code>webinar.no_show</code> events, with column names configurable in <code>integration/columns.json</code>, dry-run by default.</li>
 <li>[x] The tests run on fake example.com files and pass: schedule pick, request shapes, attended, early leaver, no-show, duplicate and bad rows.</li>
@@ -612,4 +612,4 @@ fetch(F.register_worker_url, { method: 'POST', headers: { 'Content-Type': 'appli
 </li>
 </ol>
 <h2>Result (2026-11-04, after critic round 1)</h2>
-<p>All 12 points pass. <code>node deliverables/17-webinarjam/tests/run.mjs</code> prints "20 tests passed", including four run against the built <code>dist/worker.js</code> (timezone reaches the CRM post, non-object body 400, Origin rejection 403, web source whitelist) and the <code>minutes_is</code> refusal. The reconcile and bulk command lines ran in dry run on the fixtures. The scan prints 0 failures. Not testable without Adi: live WebinarJam and Turnstile calls, and the real export headers.</p></div></details><details class="doc"><summary>Files for import or upload (5)</summary><ul class="files"><li><a href="cards/files/17-webinarjam/integration/build_worker.mjs" target="_blank" rel="noopener">integration/build_worker.mjs</a></li><li><a href="cards/files/17-webinarjam/integration/columns.json" target="_blank" rel="noopener">integration/columns.json</a></li><li><a href="cards/files/17-webinarjam/integration/import_attendance.mjs" target="_blank" rel="noopener">integration/import_attendance.mjs</a></li><li><a href="cards/files/17-webinarjam/integration/lib.mjs" target="_blank" rel="noopener">integration/lib.mjs</a></li><li><a href="cards/files/17-webinarjam/integration/register.mjs" target="_blank" rel="noopener">integration/register.mjs</a></li></ul></details>
+<p>All 12 points pass. <code>node deliverables/17-webinarjam/tests/run.mjs</code> prints "23 tests passed" (2026-11-05, on the decided schedule: Thursday 10:00 Europe/London from 12 November 2026, read from the real funnel-config and checked in the built Worker), including four run against the built <code>dist/worker.js</code> (timezone reaches the CRM post, non-object body 400, Origin rejection 403, web source whitelist) and the <code>minutes_is</code> refusal. The reconcile and bulk command lines ran in dry run on the fixtures. The scan prints 0 failures. Not testable without Adi: live WebinarJam and Turnstile calls, and the real export headers.</p></div></details><details class="doc"><summary>Files for import or upload (5)</summary><ul class="files"><li><a href="cards/files/17-webinarjam/integration/build_worker.mjs" target="_blank" rel="noopener">integration/build_worker.mjs</a></li><li><a href="cards/files/17-webinarjam/integration/columns.json" target="_blank" rel="noopener">integration/columns.json</a></li><li><a href="cards/files/17-webinarjam/integration/import_attendance.mjs" target="_blank" rel="noopener">integration/import_attendance.mjs</a></li><li><a href="cards/files/17-webinarjam/integration/lib.mjs" target="_blank" rel="noopener">integration/lib.mjs</a></li><li><a href="cards/files/17-webinarjam/integration/register.mjs" target="_blank" rel="noopener">integration/register.mjs</a></li></ul></details>

@@ -13,14 +13,14 @@ const L = "ABCDEFG";
 const findPoll = (v) => (!v ? null : v.type === "poll" ? v : findPoll(v.a) || findPoll(v.b));
 // Offer cues: WebinarJam has no offer timer in a live event; the moderator (behind the scenes, never on camera) launches and closes each one.
 // Hide minutes: cue 1 opens with the one-slide offer at minute 20 and closes at minute 25 (webinar.retarget_cutoff_minute),
-// cue 2 closes two minutes into the full offer, cue 3 stays to the end.
-const HIDE = { cta1_soft: cfg.webinar.retarget_cutoff_minute, cta2_checkpoint: 35, cta3_main: cfg.webinar.duration_minutes };
+// cue 2 closes two minutes into the full offer (which starts at minute 36), cue 3 stays to the end.
+const HIDE = { cta1_soft: cfg.webinar.retarget_cutoff_minute, cta2_checkpoint: 38, cta3_main: cfg.webinar.duration_minutes };
 const WINDOW = 3; // minutes after a poll opens in which a chat letter counts as that poll's answer
 
 const polls = [], chats = [], ctas = [];
 slides.forEach((s, i) => {
   const slide = i + 1;
-  const p = findPoll(s.visual);
+  const p = s.poll ?? findPoll(s.visual); // a WebinarJam poll on a reference slide (s.poll), or a poll card
   if (p) polls.push({ poll_id: s.pollId, crm_column: `poll_${s.pollId}`, slide, slide_id: s.id, opens_at_minute: s.min[0], window_minutes: WINDOW,
     question: p.q, options: p.options.map((o, k) => ({ letter: L[k], text: typeof o === "string" ? o : o.text })) });
   if (s.chat) chats.push({ slide, slide_id: s.id, minute: s.min[0], prompt: s.chat });

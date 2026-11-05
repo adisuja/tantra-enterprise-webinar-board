@@ -5,9 +5,9 @@
   {
    "poll_id": "1",
    "crm_column": "poll_1",
-   "slide": 10,
-   "slide_id": "poll-1",
-   "opens_at_minute": 9,
+   "slide": 14,
+   "slide_id": "qualifier",
+   "opens_at_minute": 7,
    "window_minutes": 3,
    "question": "What is your monthly revenue today?",
    "options": [
@@ -36,9 +36,9 @@
   {
    "poll_id": "2",
    "crm_column": "poll_2",
-   "slide": 16,
-   "slide_id": "poll-2",
-   "opens_at_minute": 13,
+   "slide": 23,
+   "slide_id": "system",
+   "opens_at_minute": 11,
    "window_minutes": 3,
    "question": "Where do you lose the most buyers today?",
    "options": [
@@ -63,9 +63,9 @@
   {
    "poll_id": "3",
    "crm_column": "poll_3",
-   "slide": 39,
-   "slide_id": "poll-3",
-   "opens_at_minute": 37,
+   "slide": 69,
+   "slide_id": "cost",
+   "opens_at_minute": 39,
    "window_minutes": 3,
    "question": "What would stop you having this engine running?",
    "options": [
@@ -90,9 +90,9 @@
   {
    "poll_id": "4",
    "crm_column": "poll_4",
-   "slide": 43,
-   "slide_id": "poll-4",
-   "opens_at_minute": 42,
+   "slide": 72,
+   "slide_id": "wait",
+   "opens_at_minute": 43,
    "window_minutes": 3,
    "question": "What's your next step?",
    "options": [
@@ -123,79 +123,85 @@
    "prompt": "Type your city and what you sell"
   },
   {
-   "slide": 9,
+   "slide": 13,
    "slide_id": "who",
-   "minute": 8,
+   "minute": 6,
    "prompt": "Type 1 if one of these is you"
   },
   {
-   "slide": 10,
-   "slide_id": "poll-1",
-   "minute": 9,
+   "slide": 14,
+   "slide_id": "qualifier",
+   "minute": 7,
    "prompt": "Vote, or type A to E"
   },
   {
-   "slide": 11,
+   "slide": 15,
    "slide_id": "leaks",
-   "minute": 10,
+   "minute": 8,
    "prompt": "Your biggest leak: 1, 2 or 3?"
   },
   {
-   "slide": 16,
-   "slide_id": "poll-2",
-   "minute": 13,
+   "slide": 23,
+   "slide_id": "system",
+   "minute": 11,
    "prompt": "Vote, or type A to D"
   },
   {
-   "slide": 17,
-   "slide_id": "system",
-   "minute": 14,
-   "prompt": "Type the number of your weakest step: 1, 2 or 3"
+   "slide": 25,
+   "slide_id": "s1-question",
+   "minute": 13,
+   "prompt": "Type YES or NO"
   },
   {
-   "slide": 21,
-   "slide_id": "s1-calendar",
-   "minute": 18,
+   "slide": 40,
+   "slide_id": "s2-calendar",
+   "minute": 23,
    "prompt": "Type CAL if a calendar invite brought you here"
   },
   {
-   "slide": 27,
-   "slide_id": "s2-room",
-   "minute": 24,
-   "prompt": "Type 2 if no-shows are your biggest leak"
-  },
-  {
-   "slide": 31,
+   "slide": 52,
    "slide_id": "s3-order",
    "minute": 28,
    "prompt": "Type ROOM if you'd rather teach one room than pitch 50 calls"
   },
   {
-   "slide": 39,
-   "slide_id": "poll-3",
-   "minute": 37,
+   "slide": 56,
+   "slide_id": "s3-room",
+   "minute": 30,
+   "prompt": "Type 2 if no-shows are your biggest leak"
+  },
+  {
+   "slide": 57,
+   "slide_id": "s3-craft",
+   "minute": 31,
+   "prompt": "Type HUMAN if you'd want a person checking every line"
+  },
+  {
+   "slide": 69,
+   "slide_id": "cost",
+   "minute": 39,
    "prompt": "Vote, or type A to D"
   },
   {
-   "slide": 40,
+   "slide": 70,
    "slide_id": "diy",
-   "minute": 38,
+   "minute": 41,
    "prompt": "Type 1 if you've tried building it alone"
   },
   {
-   "slide": 43,
-   "slide_id": "poll-4",
-   "minute": 42,
+   "slide": 72,
+   "slide_id": "wait",
+   "minute": 43,
    "prompt": "Vote, or type A to D"
   },
   {
-   "slide": 44,
+   "slide": 73,
    "slide_id": "cta-3",
-   "minute": 43,
+   "minute": 44,
    "prompt": "Type BOOKED when it's in your calendar"
   },
   {
-   "slide": 45,
+   "slide": 74,
    "slide_id": "qa",
    "minute": 45,
    "prompt": "Type your question now"
@@ -204,7 +210,7 @@
  "ctas": [
   {
    "cta_id": "cta1_soft",
-   "slide": 23,
+   "slide": 35,
    "slide_id": "pitch",
    "show_at_minute": 20,
    "hide_at_minute": 25,
@@ -213,18 +219,18 @@
   },
   {
    "cta_id": "cta2_checkpoint",
-   "slide": 35,
+   "slide": 64,
    "slide_id": "cta-2",
-   "show_at_minute": 32,
-   "hide_at_minute": 35,
+   "show_at_minute": 35,
+   "hide_at_minute": 38,
    "button_text": "Book My Call",
    "link": "FILL_CALCOM_ROUND_ROBIN_URL?utm_source=webinarjam&utm_medium=live_offer&utm_content=cta2_checkpoint"
   },
   {
    "cta_id": "cta3_main",
-   "slide": 44,
+   "slide": 73,
    "slide_id": "cta-3",
-   "show_at_minute": 43,
+   "show_at_minute": 44,
    "hide_at_minute": 60,
    "button_text": "Book My Call",
    "link": "FILL_CALCOM_ROUND_ROBIN_URL?utm_source=webinarjam&utm_medium=live_offer&utm_content=cta3_main"

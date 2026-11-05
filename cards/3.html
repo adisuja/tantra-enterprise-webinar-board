@@ -1,68 +1,75 @@
-<details class="doc" open><summary>ADI_STEPS.md</summary><div class="md"><h1>Adi's Steps: Item 3, Cold Calendar Senders</h1>
-<p>Everything an agent could do is done: the plan, 90 checked names, every DNS record, the roster. These steps need your sign-in or your card. Do them in order. When a step is done, tell the build agent "step N done" (and the dates asked for) and it carries on.</p>
-<p>Files you need open: <code>DNS_RECORDS.md</code> (records to paste), <code>sender-roster.csv</code> (users), <code>DOMAIN_SHORTLIST.md</code> (names and which Workspace each goes to). Decide first: 80 domains (the default, <code>CAPACITY_PLAN.md</code>) or your floor of 20. The steps are the same; only the count changes.</p>
-<h2>Step 1. The strategywebinars Workspace (W1): domain, plan, $100</h2>
+<details class="doc" open><summary>ADI_STEPS.md</summary><div class="md"><h1>Team Manual Setup Steps: Item 3, Cold Calendar Senders</h1>
+<p>This setup is a manual job for the team. Everything an agent could do is done: the plan, 16 checked names, every DNS record, the 72-sender roster. These steps need a sign-in, so a team member does them, in order. <strong>Payments are Adi's</strong> (marked <strong>Adi pays</strong>): the team member stops there, Adi pays, and the team member carries on.</p>
+<p>Target: every Workspace paid by <strong>Monday 9 November 2026</strong> (Day 0). Then the first cold invites go out 3 December and the first full 100,000 week is the 18 February 2027 webinar (<code>CAPACITY_PLAN.md</code>).</p>
+<p>Files you need open: <code>DOMAIN_SHORTLIST.md</code> (names and which Workspace each goes to), <code>DNS_RECORDS.md</code> (records to paste), <code>sender-roster.csv</code> (the 72 users).</p>
+<h2>Step 0. Today: Can the Older Senders Carry 12 November?</h2>
 <ol>
-<li>Open https://admin.google.com and sign in with the login in <code>~/.config/tantra/keys/strategywebinars-workspace.env</code>. It signs in on a Google temporary domain (<code>...appstempdomain.goog</code>).</li>
-<li>Open https://admin.google.com/ac/billing/subscriptions. If the subscription says <strong>Trial</strong>, click it, then <strong>End trial</strong> (or <strong>Set up billing</strong>). Pick <strong>Business Starter</strong>, <strong>Flexible Plan</strong>.</li>
-<li>Open https://admin.google.com/ac/domains/manage. If strategywebinars.com is not listed: click <strong>Add a domain</strong>, type <code>strategywebinars.com</code> in <strong>Domain name</strong>, choose <strong>Secondary domain</strong>, click <strong>Add domain and start verification</strong>. Copy the TXT value Google shows.</li>
-<li>strategywebinars.com's DNS is at Cloudflare (registered there 2026-09-27). Open https://dash.cloudflare.com, click <strong>strategywebinars.com</strong>, <strong>DNS</strong>, <strong>Records</strong>, <strong>Add record</strong>: <strong>Type</strong> TXT, <strong>Name</strong> <code>@</code>, <strong>Content</strong> the value from 1.3, <strong>Save</strong>. Back in Google, click <strong>Verify my domain</strong>.</li>
-<li>On https://admin.google.com/ac/domains/manage, next to strategywebinars.com click <strong>Make primary</strong>. Google may ask to set up Gmail MX first: add MX <code>@</code> <code>SMTP.GOOGLE.COM</code> priority 1 at Cloudflare the same way.</li>
-<li>Rename the admin off the temporary domain: https://admin.google.com/ac/users, click the admin user, <strong>User information</strong>, <strong>Primary email</strong>, choose <code>@strategywebinars.com</code>, <strong>Save</strong>. Update the login file yourself.</li>
-<li>Pay $100: https://admin.google.com/ac/billing/accounts, click the payment account, <strong>Make a payment</strong>, <strong>Amount</strong> 100 (USD), <strong>Make a payment</strong>. The 60-day clock starts today.</li>
-<li>Open https://usetantra.com, <strong>Accounts</strong>, and search each of: strategywebinars, visionarywebinars, seminarvision, nextgenwebinars, signonline. Count how many show <strong>Connected</strong>.</li>
+<li>Open https://usetantra.com, <strong>Accounts</strong>, and search each of: strategywebinars, visionarywebinars, seminarvision, nextgenwebinars, signonline.</li>
+<li>For each, note whether it shows <strong>Connected</strong> and the date its Workspace was created.</li>
+<li>Tell the build agent the count that is Connected and past day 60. If it is under five, the agent reruns the item 2 slicer so S01 matches (1,750 is the five-sender figure).</li>
 </ol>
-<p>Tell the agent: the W1 payment date and the Connected count.</p>
-<h2>Step 2. Register the domains at iFreeDomains</h2>
+<h2>Step 1. The strategywebinars Workspace (W1): Domain, Plan, $100</h2>
+<p>Adi gives the team member the W1 admin login from <code>~/.config/tantra/keys/strategywebinars-workspace.env</code> (Adi only; an agent never opens it).</p>
 <ol>
-<li>Open https://ifreedomains.com/register.php. Fill <strong>First Name</strong>, <strong>Last Name</strong>, <strong>Email Address</strong>, <strong>Phone Number</strong>, <strong>Address</strong>, <strong>City</strong>, <strong>State</strong>, <strong>Postcode</strong>, <strong>Country</strong> with your real details (the registry requires them), set a <strong>Password</strong>, click <strong>Register</strong>.</li>
-<li>Open https://ifreedomains.com/cart.php?a=add&amp;domain=register. Type the first name from <code>DOMAIN_SHORTLIST.md</code> (northgatesessions.com), click <strong>Check</strong>, <strong>Add to Cart</strong> on the $0.00 result, <strong>Checkout</strong>, <strong>Complete Order</strong>.</li>
-<li><strong>Click the ICANN registrant verification email.</strong> The registry emails the registrant address once per registrant contact (one email covers every domain on that contact; a second iFreeDomains account means a second email). Check spam. It must be clicked within 15 days of registration, or the registry suspends every domain on that contact.</li>
-<li>Open https://lookup.icann.org, type northgatesessions.com, click <strong>Lookup</strong>. It must show a registrar and today's date. If not, stop and tell the agent (the fallback is buying at Cloudflare).</li>
-<li>Repeat 2.2 for the other names. ".com" is marked <strong>Limited</strong> at iFreeDomains: if the cart asks for payment or refuses another free .com, open another account at https://ifreedomains.com/register.php with another email (and click its ICANN email, 2.3). If a name is taken or priced as "Special", skip it and tell the agent which.</li>
+<li>Open https://admin.google.com and sign in with that login. It signs in on a Google temporary domain (<code>...appstempdomain.goog</code>).</li>
+<li>Open https://admin.google.com/ac/billing/subscriptions. If the subscription says <strong>Trial</strong>, click it, then <strong>End trial</strong> (or <strong>Set up billing</strong>). Pick <strong>Business Starter</strong>, <strong>Flexible Plan</strong>. <strong>Adi pays</strong> if Google asks for a card.</li>
+<li>Open https://admin.google.com/ac/domains/manage. If strategywebinars.com is not listed: click <strong>Add a domain</strong>, type <code>strategywebinars.com</code> in <strong>Domain name</strong>, choose <strong>Secondary domain</strong>, click <strong>Add domain and start verification</strong>. Copy the TXT value Google shows.</li>
+<li>strategywebinars.com's DNS is at Cloudflare. Open https://dash.cloudflare.com, click <strong>strategywebinars.com</strong>, <strong>DNS</strong>, <strong>Records</strong>, <strong>Add record</strong>: <strong>Type</strong> TXT, <strong>Name</strong> <code>@</code>, <strong>Content</strong> the value from 1.3, <strong>Save</strong>. Back in Google, click <strong>Verify my domain</strong>.</li>
+<li>On https://admin.google.com/ac/domains/manage, next to strategywebinars.com click <strong>Make primary</strong>. If Google asks to set up Gmail MX first: add MX <code>@</code> <code>SMTP.GOOGLE.COM</code> priority 1 at Cloudflare the same way.</li>
+<li>Rename the admin off the temporary domain: https://admin.google.com/ac/users, click the admin user, <strong>User information</strong>, <strong>Primary email</strong>, choose <code>@strategywebinars.com</code>, <strong>Save</strong>. Adi updates the login file himself.</li>
+<li><strong>Adi pays $100:</strong> https://admin.google.com/ac/billing/accounts, click the payment account, <strong>Make a payment</strong>, <strong>Amount</strong> 100 (USD), <strong>Make a payment</strong>. The 60-day clock starts that day.</li>
+</ol>
+<p>Tell the build agent: the W1 payment date.</p>
+<h2>Step 2. Register the 16 Domains at iFreeDomains</h2>
+<ol>
+<li>Open https://ifreedomains.com/register.php. Fill <strong>First Name</strong>, <strong>Last Name</strong>, <strong>Email Address</strong>, <strong>Phone Number</strong>, <strong>Address</strong>, <strong>City</strong>, <strong>State</strong>, <strong>Postcode</strong>, <strong>Country</strong> with the company's real details (Adi supplies them; the registry requires them), set a <strong>Password</strong>, click <strong>Register</strong>.</li>
+<li>Open https://ifreedomains.com/cart.php?a=add&amp;domain=register. Type the first name in <code>DOMAIN_SHORTLIST.md</code> (northgatesessions.com), click <strong>Check</strong>, <strong>Add to Cart</strong> on the $0.00 result, <strong>Checkout</strong>, <strong>Complete Order</strong>. If the cart asks for any payment, stop: that is an <strong>Adi pays</strong> decision.</li>
+<li><strong>Click the ICANN registrant verification email.</strong> The registry emails the registrant address once per registrant contact. Check spam. It must be clicked within 15 days, or the registry suspends every domain on that contact.</li>
+<li>Open https://lookup.icann.org, type northgatesessions.com, click <strong>Lookup</strong>. It must show a registrar and today's date. If not, stop and tell the build agent (the fallback is Adi buying the names at Cloudflare).</li>
+<li>Repeat 2.2 for the other 11 sending domains and the 4 spares. If a name is taken or priced as "Special", skip it, take the next spare and tell the build agent which.</li>
 <li>For each domain: https://ifreedomains.com/clientarea.php?action=domains, <strong>Manage Domain</strong>, <strong>Management Tools</strong>, <strong>Nameservers</strong>, choose <strong>Use default nameservers</strong>, <strong>Change Nameservers</strong>.</li>
-<li>Same page, once the funnel exists: <strong>Management Tools</strong>, <strong>URL Forwarding</strong>, paste the registration page (<code>domains.funnel_domain</code> in <code>deliverables/_shared/funnel-config.json</code>, still FILL), choose <strong>Redirect (301)</strong>, <strong>Set URL</strong>.</li>
-<li>Same domain, <strong>Manage iFreeDomains DNS</strong>: add the MX, SPF and DMARC lines from its block in <code>DNS_RECORDS.md</code> (Name <code>@</code> means leave <strong>Name</strong> blank; MX <strong>Priority</strong> 1). The two FILL lines come in steps 3, 4 and 6.</li>
+<li>Same domain, <strong>Manage iFreeDomains DNS</strong>: add the MX, SPF and DMARC lines from its block in <code>DNS_RECORDS.md</code> (Name <code>@</code> means leave <strong>Name</strong> blank; MX <strong>Priority</strong> 1). The two FILL lines come in steps 3, 4 and 6. Spares get their records only when they are brought in.</li>
+<li>Once the funnel exists, same page: <strong>Management Tools</strong>, <strong>URL Forwarding</strong>, paste the registration page (<code>domains.funnel_domain</code> in <code>deliverables/_shared/funnel-config.json</code>, still FILL), choose <strong>Redirect (301)</strong>, <strong>Set URL</strong>.</li>
 </ol>
 <h2>Step 3. Create Workspaces W2, W3 and W4</h2>
 <p>Three times: W2 on ridgewayinsights.com, W3 on larkspurinsights.com, W4 on juniperhillinsights.com.</p>
 <ol>
-<li>Open https://workspace.google.com/business/signup/welcome. <strong>Business name</strong>: your company's legal name (as on W1's billing). <strong>Number of employees</strong>: 2 to 9. <strong>Region</strong>: your country. <strong>Next</strong>.</li>
-<li>Your contact details and current email, <strong>Next</strong>.</li>
+<li>Open https://workspace.google.com/business/signup/welcome. <strong>Business name</strong>: the company's legal name (as on W1's billing). <strong>Number of employees</strong>: 2 to 9. <strong>Region</strong>: the company's country. <strong>Next</strong>.</li>
+<li>Contact details and current email, <strong>Next</strong>.</li>
 <li><strong>Does your business have a domain?</strong>: <strong>Yes, I have one I can use</strong>, type the primary domain, <strong>Next</strong>, then <strong>Next</strong> on <strong>Use this domain to set up the account</strong>.</li>
-<li><strong>How you'll sign in</strong>: username <strong>admin</strong>, a new password (keep it in your password manager, never in this repo or a chat), <strong>Agree and continue</strong>.</li>
-<li>Pick <strong>Business Starter</strong>, add your card, finish checkout.</li>
+<li><strong>How you'll sign in</strong>: username <strong>admin</strong>, a new password (in the team password manager, never in this repo or a chat), <strong>Agree and continue</strong>.</li>
+<li>Pick <strong>Business Starter</strong>. <strong>Adi pays:</strong> Adi adds the card and finishes checkout.</li>
 <li>Google shows a TXT verification value: add it at iFreeDomains (<strong>Manage iFreeDomains DNS</strong>, TXT, Name blank, Value as shown), then click <strong>Verify</strong> in Google.</li>
-<li>End the trial: https://admin.google.com/ac/billing/subscriptions, click the subscription, <strong>End trial</strong> (or <strong>Set up billing</strong>), pick <strong>Business Starter</strong>, <strong>Flexible Plan</strong>. A trial keeps Google's lowest limits however much you prepay.</li>
-<li>Pay $100: https://admin.google.com/ac/billing/accounts, the payment account, <strong>Make a payment</strong>, <strong>Amount</strong> 100, <strong>Make a payment</strong>.</li>
+<li>End the trial: https://admin.google.com/ac/billing/subscriptions, click the subscription, <strong>End trial</strong> (or <strong>Set up billing</strong>), pick <strong>Business Starter</strong>, <strong>Flexible Plan</strong>. A trial keeps Google's lowest limits however much is prepaid.</li>
+<li><strong>Adi pays $100:</strong> https://admin.google.com/ac/billing/accounts, the payment account, <strong>Make a payment</strong>, <strong>Amount</strong> 100, <strong>Make a payment</strong>.</li>
 </ol>
-<p>Tell the agent the payment date of each Workspace. It writes it into <code>warmup_start_day0</code> and re-dates the plan.</p>
-<h2>Step 4. Add the other domains to each Workspace</h2>
-<p>Signed in to the right Workspace (the Workspace column of <code>DOMAIN_SHORTLIST.md</code>; reserves wait):</p>
+<p>Tell the build agent the payment date of each Workspace. It writes it into <code>warmup_start_day0</code> and re-dates the plan if it is not 9 November.</p>
+<h2>Step 4. Add the Other Two Domains to Each Workspace</h2>
+<p>Signed in to the right Workspace (the Workspace column of <code>DOMAIN_SHORTLIST.md</code>; W1 gets all three of its sending domains here):</p>
 <ol>
 <li>https://admin.google.com/ac/domains/manage, <strong>Add a domain</strong>, type the domain in <strong>Domain name</strong>, choose <strong>Secondary domain</strong>, <strong>Add domain and start verification</strong>.</li>
 <li>Paste the TXT value Google shows into that domain's DNS at iFreeDomains (first line of its block in <code>DNS_RECORDS.md</code>), then <strong>Verify my domain</strong>. If it does not show <strong>Verified</strong>, wait 30 minutes and click again.</li>
 <li>If Google shows <strong>Activate Gmail</strong>, click it: the MX record is already in place.</li>
 </ol>
-<h2>Step 5. DMARC alias per domain</h2>
-<p>https://admin.google.com/ac/users, click the admin user (in W1, do step 1.6 first so the admin is on strategywebinars.com, not the temporary domain), <strong>User information</strong>, <strong>Alternate email addresses (email alias)</strong>, <strong>Add an alternate email</strong>, type <strong>dmarc</strong>, pick the domain, <strong>Save</strong>. One alias per sending domain.</p>
-<h2>Step 6. DKIM for every sending domain</h2>
+<h2>Step 5. DMARC Alias per Domain</h2>
+<p>https://admin.google.com/ac/users, click the admin user (in W1, after step 1.6), <strong>User information</strong>, <strong>Alternate email addresses (email alias)</strong>, <strong>Add an alternate email</strong>, type <strong>dmarc</strong>, pick the domain, <strong>Save</strong>. One alias for each of the Workspace's 3 sending domains.</p>
+<h2>Step 6. DKIM for Every Sending Domain</h2>
 <ol>
 <li>https://admin.google.com/ac/apps/gmail/authenticateemail.</li>
 <li>Pick the domain in <strong>Selected domain</strong>, <strong>Generate new record</strong>, keep <strong>DKIM key bit length</strong> 2048 and <strong>Prefix selector</strong> google, <strong>Generate</strong>.</li>
 <li>Copy the <strong>TXT record value</strong> into that domain's DNS at iFreeDomains: TXT, Name <code>google._domainkey</code>, Value as copied.</li>
 <li>After 30 minutes, same page, <strong>Start authentication</strong>. If it errors, wait and click again.</li>
 </ol>
-<h2>Step 7. Create the senders</h2>
-<p>110 per Workspace, already named in <code>sender-roster.csv</code> (every sender is you, in six address forms; swap in team members only if you add their last names).</p>
+<h2>Step 7. Create the 72 Senders</h2>
+<p>18 per Workspace, already named in <code>sender-roster.csv</code> (columns <code>domain</code>, <code>mailbox_name</code>, <code>display_name</code>, <code>email</code>).</p>
 <ol>
 <li>https://admin.google.com/ac/users, <strong>Bulk update users</strong>, <strong>Download blank CSV template</strong>.</li>
-<li>One row per sender of that Workspace: <strong>First Name</strong>, <strong>Last Name</strong> (from <code>display_name</code>), <strong>Email Address</strong> (<code>email</code>), <strong>Password</strong> (new, yours), <strong>Org Unit Path</strong> <code>/</code>.</li>
-<li><strong>Attach CSV file</strong>, pick the file, <strong>Upload</strong>. Google emails you when the users exist.</li>
+<li>One row per sender of that Workspace: <strong>First Name</strong>, <strong>Last Name</strong> (from <code>display_name</code>), <strong>Email Address</strong> (<code>email</code>), <strong>Password</strong> (new, in the team password manager), <strong>Org Unit Path</strong> <code>/</code>.</li>
+<li><strong>Attach CSV file</strong>, pick the file, <strong>Upload</strong>. Google emails the admin when the users exist. Each new seat bills to Adi's card on the Flexible plan.</li>
 <li>Put the creation date in the <code>created</code> column.</li>
 </ol>
-<h2>Step 8. Connect the senders to Tantra</h2>
-<p>One service account per sender (<code>google-workspace.md</code>, Owner clicks C4 to C6), two Google Cloud projects per Workspace (<code>service_account_project</code> in the roster).</p>
+<h2>Step 8. Connect the Senders to Tantra</h2>
+<p>One service account per sender (<code>google-workspace.md</code>), one Google Cloud project per Workspace (<code>service_account_project</code> in the roster).</p>
 <ol>
 <li>Fastest: the onboarding centre's <strong>Build my service accounts</strong> button, signed in once as each Workspace's super admin.</li>
 <li>By hand: https://console.cloud.google.com, create the project named in the roster, enable <strong>Gmail API</strong> and <strong>Google Calendar API</strong>, then <strong>IAM and Admin</strong>, <strong>Service Accounts</strong>, <strong>Create service account</strong>, open it, <strong>Keys</strong>, <strong>Add key</strong>, <strong>Create new key</strong>, <strong>JSON</strong>. Upload each file at https://usetantra.com, <strong>Connectors</strong>, <strong>Google Service Accounts</strong>, <strong>Upload Service Accounts</strong>, <strong>Upload</strong>. Never put a key file in this repo or a chat.</li>
@@ -71,17 +78,17 @@
 <pre><code>https://www.googleapis.com/auth/calendar,https://www.googleapis.com/auth/calendar.events,https://www.googleapis.com/auth/gmail.send,https://www.googleapis.com/auth/userinfo.email,https://www.googleapis.com/auth/userinfo.profile,https://www.googleapis.com/auth/gmail.modify
 </code></pre>
 <ol start="4">
-<li>https://usetantra.com, <strong>Accounts</strong>, <strong>Verify and Add Accounts</strong>, paste the Workspace's 110 sender addresses (one per line), <strong>Verify &amp; Add</strong>. Each must show <strong>Connected</strong>; "unauthorized_client" means the email was pasted instead of the numeric Client ID.</li>
+<li>https://usetantra.com, <strong>Accounts</strong>, <strong>Verify and Add Accounts</strong>, paste the Workspace's 18 sender addresses (one per line), <strong>Verify &amp; Add</strong>. Each must show <strong>Connected</strong>; "unauthorized_client" means the email was pasted instead of the numeric Client ID.</li>
 <li>Mark <code>tantra_service_account_connected</code> yes in the roster.</li>
 </ol>
-<h2>Step 9. Weeks 1 to 3: internal activity, then daily limits every Monday</h2>
+<h2>Step 9. Warm-Up Weeks, Then the Daily Limit Every Thursday</h2>
 <ol>
-<li>Weeks 1 to 3: the team step in <code>deliverables/02-outreach-lists/SLICING_PLAN.md</code> (internal events, then invites to known contacts). No list sends.</li>
-<li>Every Monday from week 4: in https://usetantra.com, <strong>Accounts</strong>, open each sender and set its daily invite limit to the roster's number for that week (<code>daily_cap_wk01</code> to <code>daily_cap_wk14_on</code>): 0 in weeks 1 to 3, 10 in weeks 4 to 9, 25 in weeks 10 to 13, 50 from week 14. With your written OK, the build agent can set them through the Tantra API instead (<code>PATCH /accounts/&lt;email&gt;</code> with <code>maxPerDay</code>).</li>
+<li>12 November to 2 December: no cold invites. Weeks of 12 and 19 November: each sender accepts two or three internal calendar events a day from a teammate in the same Workspace and joins one short Google Meet. Week of 26 November: each sender invites 3 to 5 known contacts a day (partners, clients, the team's own work addresses) who accept.</li>
+<li>Every Thursday from 3 December: in https://usetantra.com, <strong>Accounts</strong>, open each sender and set its daily invite limit to the roster's number for that week's webinar (<code>daily_cap_2026-12-10</code> and on): 10, then 20, 50, 75, 100, 150, and 200 from 11 February. Set each campaign to send all 7 days. Raise a step only while every sender in that Workspace shows Connected; otherwise keep last week's number. With Adi's written OK, the build agent can set the limits through the Tantra API instead (<code>PATCH /accounts/&lt;email&gt;</code> with <code>maxPerDay</code>).</li>
 </ol>
 <h2>What Happens Next</h2>
-<p>With every sender Connected and the payment dates in hand, the agent re-dates <code>SLICING_PLAN.md</code> (<code>--day0</code>) and the first warm-list week (R01) can be built as Tantra drafts. You approve each launch.</p></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 3: Outreach Infrastructure for Up to 100,000 Calendar Invites a Week</h1>
-<p>440 senders (10% spare), 80 new domains, 4 Google Workspaces: the strategywebinars one plus 3 new. Full volume starts the week of 8 February 2027 if the Workspaces are paid by 9 November 2026. The warm-up follows the conservative Tantra blog ladder, so day one is impossible. The faster option (800 senders, 11 January 2027) and Adi's 20-domain floor are both in <code>CAPACITY_PLAN.md</code>; the domain count is Adi's call.</p>
+<p>With every sender Connected and the payment dates in hand, the build agent re-dates <code>deliverables/02-outreach-lists/SLICING_PLAN.md</code> and the first new-sender slice (S05, 10 December) can be built as Tantra drafts. Adi approves each launch.</p></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 3: Outreach Infrastructure for 100,000 Calendar Invites a Week</h1>
+<p>Adi, 2026-11-05: 100,000 invites a week at 200 a sending account a day, 7 days a week. 100,000 / 7 / 200 = 71.4, so <strong>72 sending accounts on 12 domains at 6 mailboxes each</strong>, in 4 Google Workspaces (the strategywebinars one plus 3 new): 100,800 a week at full volume. Setup is a manual step the team completes; payments are Adi's. If every Workspace is paid by 9 November 2026, the first full 100,000 week is the 18 February 2027 webinar. The 12 November webinar runs before any warm-up: up to 1,750 invites from the older Tantra senders, or none.</p>
 <h2>What Is Here</h2>
 <table>
 <thead>
@@ -93,19 +100,19 @@
 <tbody>
 <tr>
 <td><code>CAPACITY_PLAN.md</code></td>
-<td>The rule conflict and the choice made, the maths, the dated ramp, alternatives, Workspaces, costs (Flexible plan), risks</td>
+<td>The maths, where 200 a day sits against our rules, the dated warm-up ramp, what is realistic for 12 November, Workspaces, costs, risks</td>
 </tr>
 <tr>
 <td><code>DOMAIN_SHORTLIST.md</code></td>
-<td>80 active and 10 reserve .com names, 60 plain and 30 themed, each checked unregistered on 2026-11-04</td>
+<td>12 sending domains and 4 spares, each rechecked unregistered on 2026-11-05</td>
 </tr>
 <tr>
 <td><code>DNS_RECORDS.md</code></td>
-<td>Copy-paste DNS block for each of the 90 domains</td>
+<td>Copy-paste DNS block for each of the 16 domains</td>
 </tr>
 <tr>
 <td><code>sender-roster.csv</code></td>
-<td>443 rows: 440 senders and 3 new admins, with the daily cap for every week. A local <code>sender-roster.xlsx</code> (same data plus a capacity sheet) sits next to it; <code>.xlsx</code> is gitignored</td>
+<td>72 rows: domain, mailbox name, display name, email, Workspace, pool and the daily cap for every webinar week. A local <code>sender-roster.xlsx</code> (same data plus a capacity sheet) sits next to it; <code>.xlsx</code> is gitignored</td>
 </tr>
 <tr>
 <td><code>build_infra_files.py</code></td>
@@ -113,7 +120,7 @@
 </tr>
 <tr>
 <td><code>ADI_STEPS.md</code></td>
-<td>Every step only Adi can do, with URLs, fields and buttons, including the ICANN email and W1's domain move</td>
+<td>The team manual setup steps, field by field with full URLs; Adi's payment steps marked <strong>Adi pays</strong></td>
 </tr>
 <tr>
 <td><code>EVAL.md</code></td>
@@ -124,22 +131,33 @@
 <h2>Rebuild After a Name Change</h2>
 <pre><code class="language-bash">cd /tmp &amp;&amp; ~/calendar-consolidation/.venv/bin/python -I ~/tantra-enterprise-webinar/deliverables/03-outreach-infra/build_infra_files.py
 </code></pre>
-<h2>What Adi Fills or Decides</h2>
+<h2>What Adi or the Team Fills</h2>
 <ul>
-<li><strong>80 domains (default) or his floor of 20.</strong></li>
-<li><strong>Senders:</strong> none left blank. Every sender is Adi in six address forms (adi@, adithya@, adi.murali@, adithya.murali@, a.murali@, adi.m@), so no persona is invented. To use team members instead, Adi supplies their last names.</li>
-<li>In the roster: <code>created</code>, <code>warmup_start_day0</code> (the $100 payment date), <code>tantra_service_account_connected</code>.</li>
+<li><strong>Adi pays:</strong> the card at each Workspace checkout, the $100 prepay per Workspace (4), and the seats (about $630 a month on Flexible: check https://workspace.google.com/pricing).</li>
+<li><strong>The team:</strong> domains, Workspaces, DNS, DKIM, users, Tantra connection (<code>ADI_STEPS.md</code>), and in the roster <code>created</code>, <code>warmup_start_day0</code> (the $100 payment date) and <code>tantra_service_account_connected</code>.</li>
 <li>The two Google values per domain (verification TXT, DKIM), pasted at iFreeDomains, never in this repo.</li>
 <li>The funnel domain for the 301 forward (<code>domains.funnel_domain</code> in <code>funnel-config.json</code>, still FILL).</li>
 </ul>
 <h2>Open Question for Adi</h2>
-<p>The calendar rule is one service account per sender: 440 "Authorize" clicks in Google Admin. Tantra already serves all cold email inboxes from one service account. If it can do the same for calendar senders, this drops to 4. Worth asking before step 8.</p>
+<p>The calendar rule is one service account per sender: 72 "Authorize" clicks in Google Admin. Tantra already serves all cold email inboxes from one service account. If it can do the same for calendar senders, this drops to 4. Worth asking before step 8.</p>
 <h2>Never Done Here</h2>
-<p>No sign-in, no account created, no domain bought, no Workspace or Tantra setting changed. The Workspace login file <code>~/.config/tantra/keys/strategywebinars-workspace.env</code> exists (mode 600) and was never opened. strategywebinars.com's registrar and nameservers (Cloudflare, 2026-09-27) come from public RDAP.</p>
-<p>No claim to verify: this folder prints no 400+ or revenue claims.</p></div></details><details class="doc"><summary>CAPACITY_PLAN.md</summary><div class="md"><h1>Capacity Plan: Up to 100,000 Calendar Invites a Week</h1>
+<p>No sign-in, no account created, no domain bought, no Workspace or Tantra setting changed. The Workspace login file <code>~/.config/tantra/keys/strategywebinars-workspace.env</code> was never opened. Domain availability comes from public RDAP only.</p>
+<p>No claim to verify: this folder prints no 400+ or revenue claims.</p></div></details><details class="doc"><summary>CAPACITY_PLAN.md</summary><div class="md"><h1>Capacity Plan: 100,000 Calendar Invites a Week</h1>
 <h2>The Short Answer</h2>
-<p>440 sender accounts on 80 new domains in 4 Google Workspaces send 100,000 invites a week, with 10% spare. They cannot do it on day one. A new Workspace sends no cold invites for its first three weeks, then a few a day until day 90. If the four Workspaces are paid and set up by <strong>Monday 9 November 2026</strong>, the first 100,000 week is <strong>8 to 12 February 2027</strong>. The 10 full weeks run to 16 April 2027.</p>
-<h2>The Rules, and Where They Conflict</h2>
+<p>72 sender accounts on 12 domains (6 mailboxes each), in 4 Google Workspaces, send 100,800 invites a week at 200 a sender a day, 7 days a week. They cannot do it on day one. If the team starts setup now and every Workspace has its $100 paid by <strong>Monday 9 November 2026</strong>, the first full 100,000 week is the one for the <strong>Thursday 18 February 2027</strong> webinar (sent 11 to 17 February). Setup is a manual job for the team (<code>ADI_STEPS.md</code>); payments are Adi's.</p>
+<h2>The Maths</h2>
+<pre><code>Invites needed a week                  = 100,000
+Send days a week                       = 7
+Invites a day                          = 100,000 / 7               = 14,286
+Invites a sender a day (full volume)   = 200
+Senders needed                         = 14,286 / 200              = 71.4  -&gt; 72
+Domains                                = 72 / 6 mailboxes a domain = 12
+Capacity a week                        = 72 x 200 x 7              = 100,800
+Invites a domain a week                = 6 x 200 x 7               = 8,400
+Workspaces                             = 4 (W1 strategywebinars + 3 new), 3 domains and 18 senders each
+</code></pre>
+<p>Why 4 Workspaces: Google suspends a Workspace, not a user. With 4, one suspension stops a quarter of the volume (25,200 a week); the other three keep sending. Each Workspace uses one Google Cloud project for its 18 service accounts, under the default of 100 per project.</p>
+<h2>Where 200 a Day Sits Against Our Own Rules</h2>
 <table>
 <thead>
 <tr>
@@ -150,219 +168,179 @@
 <tbody>
 <tr>
 <td><code>context/from-workshop-project/03-calendar-infra/calendar-invites.md</code>, Limits</td>
-<td>20 invites a sender a day while the Workspace is young, 50 after day 60, never above 200</td>
+<td>20 a sender a day while the Workspace is young, 50 after day 60, <strong>never above 200</strong></td>
 </tr>
 <tr>
 <td><code>context/past-session-decisions.md</code> (2026-10-02)</td>
 <td>$100 prepay and a 60-day warm-up before volume</td>
 </tr>
 <tr>
-<td>Tantra's own blog, <code>~/tantra-redesign/app/content/blog/cold-google-calendar-outreach-2026-limits-warmup.mdx</code> (lines 190 to 195, 262 to 267)</td>
-<td>5 to 10 a day under 60 days, first cold invite around day 21, 10 to 25 a day for days 60 to 90, 25 to 50 only after day 90</td>
+<td>Tantra's blog, <code>~/tantra-redesign/app/content/blog/cold-google-calendar-outreach-2026-limits-warmup.mdx</code></td>
+<td>First cold invite around day 21; 25 to 50 a day after day 90; 100 to 150 an "absolute ceiling" with elevated risk above it</td>
 </tr>
 </tbody>
 </table>
-<p>The two Tantra sources disagree: the playbook allows 50 a day at day 60; the blog holds a sender to 25 until day 90. <strong>This plan takes the conservative one, the blog</strong>, because a suspended Workspace costs more than four weeks:</p>
+<p>200 a day is Adi's number and the playbook's hard ceiling; it is above the blog's ceiling. So the ramp below holds the playbook (20 until day 60, 50 from day 60) and climbs to 200 in steps, one step a week, only while senders stay healthy. The load per domain is also high: the senders behind the master list ran about 1,440 invites a domain a week (<code>references/cold-calendar-exports-E150-E162-stats.md</code>); this plan runs 8,400, 5.8 times that. That is why there are 4 spare domains and a stop rule.</p>
+<h2>The Warm-Up Ramp, Dated</h2>
+<p>Day 0 = Monday 9 November 2026, the day the $100 prepay goes through. Each week is the send window for the next Thursday's webinar (Thursday to Wednesday). Every date moves with Day 0.</p>
 <table>
 <thead>
 <tr>
+<th>Webinar</th>
+<th>Send window</th>
 <th>Workspace days</th>
-<th>Invites a sender a day</th>
-<th>Inside the blog's range</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0 to 20</td>
-<td>0: setup and internal activity only</td>
-<td>yes (no cold before day 21)</td>
-</tr>
-<tr>
-<td>21 to 62</td>
-<td>10</td>
-<td>yes (5 to 10)</td>
-</tr>
-<tr>
-<td>63 to 90</td>
-<td>25</td>
-<td>yes (top of 10 to 25)</td>
-</tr>
-<tr>
-<td>91 on</td>
-<td>50</td>
-<td>yes (top of 25 to 50)</td>
-</tr>
-</tbody>
-</table>
-<p>Day 0 is the day a Workspace's $100 prepay goes through. Other rules followed: separate domains and Workspaces for calendar invites, never the main domain (<code>outreach-infrastructure.md</code>); one service account per sender (<code>google-workspace.md</code>); SPF, DKIM and DMARC before the first invite.</p>
-<h2>The Maths</h2>
-<pre><code>Invites a sender a week from day 91      = 50 a day x 5 send days            = 250
-Senders for 100,000 a week               = 100,000 / 250                      = 400
-Senders planned (10% spare)              = 440                                -&gt; capacity 110,000 a week
-Domains                                  = 80 active (20 per Workspace) + 10 parked reserves
-Senders per domain                       = 6 on 40 domains, 5 on 40 domains   = 440
-Invites per domain a week (sending 100k) = 100,000 / 80                       = 1,250 (1,375 at full capacity)
-Workspaces                               = 4 (W1 strategywebinars + 3 new), 110 senders and 20 domains each
-</code></pre>
-<p>Why spare capacity: a sender that shows Disconnected or gets a Google warning sits out its week; with 440, losing 40 senders still sends 100,000.</p>
-<p>Why 4 Workspaces: Google suspends a Workspace, not a user. With 4, one suspension stops a quarter of the volume. Each Workspace uses two Google Cloud projects (55 and 55 service accounts), under the default of 100 service accounts per project.</p>
-<h3>Per-Domain Load Against the E150 to E162 Exports</h3>
-<p>In <code>references/cold-calendar-exports-E150-E162-stats.md</code>, "Invites per domain" is invites sent divided by sender domains for one weekly event (E150 Pt.1: 106,532 / 74 = 1,440), spread over 5 send days. So the senders behind the master list ran <strong>about 1,440 invites per domain a week (about 288 a send day)</strong>, over about 150 sender domains per weekly event across their two pools.</p>
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Domains</th>
-<th>Senders per domain</th>
-<th>Invites per domain a week</th>
-<th>Against the exports</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>This plan (default)</strong></td>
-<td>80</td>
-<td>5 to 6</td>
-<td>about 1,250</td>
-<td>0.9x</td>
-</tr>
-<tr>
-<td>Adi's floor (his brief said 10 or 20)</td>
-<td>20</td>
-<td>22</td>
-<td>5,000</td>
-<td>3.5x</td>
-</tr>
-<tr>
-<td>20 plus the 10 reserves</td>
-<td>30</td>
-<td>14 to 15</td>
-<td>about 3,333</td>
-<td>2.3x</td>
-</tr>
-</tbody>
-</table>
-<p>The domains are free and the seat count (440) is the same in every row, so 80 domains cost nothing more than 20; they cost Adi more setup clicks (DNS, verification, DKIM per domain). <strong>The decision is Adi's</strong>: 80 keeps each domain at the load that already worked; 20 is what he asked for and runs each domain at 3.5 times that load.</p>
-<h2>The Ramp, Dated From 2026-11-04</h2>
-<p>Assumes all four Workspaces reach Day 0 on Monday 9 November 2026; every date moves with it.</p>
-<table>
-<thead>
-<tr>
-<th>Plan week</th>
-<th>Mon to Fri</th>
-<th>Workspace day</th>
 <th>A sender a day</th>
 <th>Send days</th>
-<th>Capacity (440 senders)</th>
-<th>List (item 2)</th>
+<th>Capacity (72 senders)</th>
+<th>What happens</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
-<td>9 to 13 Nov 2026</td>
-<td>0 to 4</td>
-<td>0: DNS, DKIM, users, service accounts, Tantra</td>
+<td>Thu 12 Nov 2026</td>
+<td>5 to 11 Nov</td>
+<td>setup, up to day 2</td>
 <td>0</td>
 <td>0</td>
-<td>none</td>
+<td>0</td>
+<td>Domains, Workspaces, $100, DNS</td>
 </tr>
 <tr>
-<td>2</td>
-<td>16 to 20 Nov 2026</td>
-<td>7 to 11</td>
-<td>0: internal activity</td>
+<td>Thu 19 Nov</td>
+<td>12 to 18 Nov</td>
+<td>3 to 9</td>
 <td>0</td>
 <td>0</td>
-<td>none</td>
+<td>0</td>
+<td>Users, DKIM, service accounts, Tantra; internal events</td>
 </tr>
 <tr>
-<td>3</td>
-<td>23 to 27 Nov 2026</td>
-<td>14 to 18</td>
-<td>0: internal activity</td>
+<td>Thu 26 Nov</td>
+<td>19 to 25 Nov</td>
+<td>10 to 16</td>
 <td>0</td>
 <td>0</td>
-<td>none</td>
+<td>0</td>
+<td>Internal events and Meet calls</td>
 </tr>
 <tr>
-<td>4</td>
-<td>30 Nov to 4 Dec 2026</td>
-<td>21 to 25</td>
+<td>Thu 3 Dec</td>
+<td>26 Nov to 2 Dec</td>
+<td>17 to 23</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3 to 5 invites a day to known contacts who accept</td>
+</tr>
+<tr>
+<td>Thu 10 Dec</td>
+<td>3 to 9 Dec</td>
+<td>24 to 30</td>
 <td>10</td>
-<td>5</td>
-<td>22,000</td>
-<td>R01: warm list first</td>
-</tr>
-<tr>
-<td>5</td>
-<td>7 to 11 Dec 2026</td>
-<td>28 to 32</td>
-<td>10</td>
-<td>5</td>
-<td>22,000</td>
-<td>R02</td>
-</tr>
-<tr>
-<td>6</td>
-<td>14 to 18 Dec 2026</td>
-<td>35 to 39</td>
-<td>10</td>
-<td>5</td>
-<td>22,000</td>
-<td>R03</td>
-</tr>
-<tr>
 <td>7</td>
-<td>21 to 24 Dec 2026</td>
-<td>42 to 45</td>
-<td>10</td>
-<td>4</td>
-<td>17,600</td>
-<td>R04</td>
+<td>5,040</td>
+<td>First cold invites</td>
 </tr>
 <tr>
-<td>8</td>
-<td>28 to 31 Dec 2026</td>
-<td>49 to 52</td>
-<td>10</td>
-<td>4</td>
-<td>17,600</td>
-<td>R05</td>
+<td>Thu 17 Dec</td>
+<td>10 to 16 Dec</td>
+<td>31 to 37</td>
+<td>20</td>
+<td>7</td>
+<td>10,080</td>
+<td></td>
 </tr>
 <tr>
-<td>9</td>
-<td>4 to 8 Jan 2027</td>
-<td>56 to 60</td>
-<td>10</td>
-<td>5</td>
-<td>22,000</td>
-<td>R06</td>
+<td>Thu 24 Dec</td>
+<td>17 to 23 Dec</td>
+<td>38 to 44</td>
+<td>20</td>
+<td>7</td>
+<td>10,080</td>
+<td></td>
 </tr>
 <tr>
-<td>10 to 13</td>
-<td>11 Jan to 5 Feb 2027</td>
-<td>63 to 88</td>
-<td>25</td>
-<td>5</td>
-<td>55,000 a week</td>
-<td>R07 to R10</td>
+<td>Thu 31 Dec</td>
+<td>24 to 30 Dec</td>
+<td>45 to 51</td>
+<td>20</td>
+<td>6 (no 25 Dec)</td>
+<td>8,640</td>
+<td></td>
 </tr>
 <tr>
-<td>14 to 23</td>
-<td>8 Feb to 16 Apr 2027</td>
-<td>91 to 158</td>
+<td>Thu 7 Jan 2027</td>
+<td>31 Dec to 6 Jan</td>
+<td>52 to 58</td>
+<td>20</td>
+<td>6 (no 1 Jan)</td>
+<td>8,640</td>
+<td></td>
+</tr>
+<tr>
+<td>Thu 14 Jan</td>
+<td>7 to 13 Jan</td>
+<td>59 to 65</td>
+<td>20</td>
+<td>7</td>
+<td>10,080</td>
+<td>Day 60 passes</td>
+</tr>
+<tr>
+<td>Thu 21 Jan</td>
+<td>14 to 20 Jan</td>
+<td>66 to 72</td>
 <td>50</td>
-<td>5</td>
-<td>110,000 (100,000 sent)</td>
-<td>S01 to S10</td>
+<td>7</td>
+<td>25,200</td>
+<td>Playbook's after-day-60 level</td>
+</tr>
+<tr>
+<td>Thu 28 Jan</td>
+<td>21 to 27 Jan</td>
+<td>73 to 79</td>
+<td>75</td>
+<td>7</td>
+<td>37,800</td>
+<td></td>
+</tr>
+<tr>
+<td>Thu 4 Feb</td>
+<td>28 Jan to 3 Feb</td>
+<td>80 to 86</td>
+<td>100</td>
+<td>7</td>
+<td>50,400</td>
+<td></td>
+</tr>
+<tr>
+<td>Thu 11 Feb</td>
+<td>4 to 10 Feb</td>
+<td>87 to 93</td>
+<td>150</td>
+<td>7</td>
+<td>75,600</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Thu 18 Feb</strong></td>
+<td><strong>11 to 17 Feb</strong></td>
+<td><strong>94 to 100</strong></td>
+<td><strong>200</strong></td>
+<td><strong>7</strong></td>
+<td><strong>100,800</strong></td>
+<td><strong>First full 100,000 week</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Before full volume: 343,200 invites. Through 16 April 2027: 1,343,200. Raise a pool to the next step only while its senders stay Connected and declines stay level; otherwise hold it a week.</p>
-<h3>The Faster Alternative: 800 Senders</h3>
-<p>800 senders at 25 a day send 100,000 a week from day 63: first full week <strong>11 to 15 January 2027</strong>, four weeks sooner. It needs 803 seats instead of 443 (about $6,745 a month on the Flexible plan against about $3,721), 160 domains at 5 senders each to keep the per-domain load, and 800 service accounts. From day 91 half the seats can be removed on the Flexible plan.</p>
-<p><strong>What could start sooner either way:</strong> the five older Tantra calendar senders (strategywebinars, visionarywebinars, seminarvision, nextgenwebinars, signonline) may add capacity in weeks 4 to 13 if they show Connected in Tantra (Adi step 1).</p>
+<p>Before full volume: 241,560 invites from the new senders. Raise a Workspace to the next step only while all its senders show Connected and declines stay level; otherwise hold it at the same step for a week, and every later date moves a week.</p>
+<h2>The 12 November Webinar Runs Before Any Warm-Up</h2>
+<p>The new senders cannot send a single cold invite for 12 November: their Workspaces will be 0 to 2 days old, and our rules allow no cold invite before day 21. What is realistic:</p>
+<ul>
+<li><strong>From the five older Tantra calendar senders</strong> (strategywebinars, visionarywebinars, seminarvision, nextgenwebinars, signonline): up to <strong>1,750 invites</strong> (5 x 50 a day x 7 days, 5 to 11 November), only if they show Connected in Tantra and are past day 60. That is slice S01 in item 2: the EU and UK warm list first (people who said Yes, Maybe or registered before), then UK, Ireland and Malta. The same 1,750 a week can bridge 19 November to 3 December.</li>
+<li><strong>If they are not Connected or not past day 60: 0 cold calendar invites.</strong> The 12 November room then fills from the other channels (LinkedIn, cold email, WhatsApp and email nurture).</li>
+</ul>
+<p>The new senders' first webinar is 10 December (5,040 invites), and 100,000 a week lands with 18 February 2027.</p>
 <h2>Workspaces and Accounts</h2>
 <table>
 <thead>
@@ -377,35 +355,35 @@ Workspaces                               = 4 (W1 strategywebinars + 3 new), 110 
 <tbody>
 <tr>
 <td>W1</td>
-<td>Exists: the strategywebinars Workspace Adi named. Login in <code>~/.config/tantra/keys/strategywebinars-workspace.env</code> (Adi only; never opened by an agent). It signs in on a Google temporary domain (appstempdomain.goog), so strategywebinars.com is probably not added yet. strategywebinars.com is registered at Cloudflare (2026-09-27), nameservers on Cloudflare</td>
-<td>strategywebinars.com (to be added and made primary, Adi step 1)</td>
-<td>20, <code>DOMAIN_SHORTLIST.md</code></td>
-<td>110</td>
+<td>Exists: the strategywebinars Workspace. Login in <code>~/.config/tantra/keys/strategywebinars-workspace.env</code> (Adi only; never opened by an agent). It signs in on a Google temporary domain, so strategywebinars.com is probably not added yet. strategywebinars.com is registered at Cloudflare (2026-09-27)</td>
+<td>strategywebinars.com (to be added and made primary, step 1)</td>
+<td>northgatesessions.com, harborlineinsights.com, brightfieldinsights.com</td>
+<td>18</td>
 </tr>
 <tr>
 <td>W2</td>
 <td>New, Business Starter</td>
 <td>ridgewayinsights.com</td>
-<td>20</td>
-<td>110</td>
+<td>ridgewayinsights.com, cedarlineinsights.com, stonebridgesessions.com</td>
+<td>18</td>
 </tr>
 <tr>
 <td>W3</td>
 <td>New, Business Starter</td>
 <td>larkspurinsights.com</td>
-<td>20</td>
-<td>110</td>
+<td>larkspurinsights.com, meridianwayinsights.com, beaconfieldinsights.com</td>
+<td>18</td>
 </tr>
 <tr>
 <td>W4</td>
 <td>New, Business Starter</td>
 <td>juniperhillinsights.com</td>
-<td>20</td>
-<td>110</td>
+<td>juniperhillinsights.com, alderpointinsights.com, cobaltridgeinsights.com</td>
+<td>18</td>
 </tr>
 </tbody>
 </table>
-<p>Every sender, domain, display name and daily cap by week: <code>sender-roster.csv</code>. Every sender is Adi (six address forms such as adi@, adithya@, adi.murali@), so no persona is invented; Adi may swap in team members if he gives their last names.</p>
+<p>Spares: granitepeakinsights.com, riverstonesessions.com, slatehouseinsights.com, keystonesessions.com (<code>DOMAIN_SHORTLIST.md</code>). Every sender, domain, display name and daily cap by week: <code>sender-roster.csv</code>. Every sender is Adi (six address forms such as adi@, adithya@, adi.murali@), so no persona is invented.</p>
 <h2>Cost (check the pricing page before paying)</h2>
 <table>
 <thead>
@@ -419,9 +397,9 @@ Workspaces                               = 4 (W1 strategywebinars + 3 new), 110 
 <tbody>
 <tr>
 <td>Google Workspace Business Starter seats</td>
-<td>443 new (440 senders + 3 admins)</td>
+<td>75 new (72 senders + 3 admins for W2 to W4)</td>
 <td>about $8.40 a user a month on the Flexible plan, about $7 on the Annual plan: check https://workspace.google.com/pricing</td>
-<td>about $3,721 a month on Flexible</td>
+<td>about $630 a month on Flexible</td>
 </tr>
 <tr>
 <td>Prepay, once per Workspace</td>
@@ -431,19 +409,19 @@ Workspaces                               = 4 (W1 strategywebinars + 3 new), 110 
 </tr>
 <tr>
 <td>Domains at iFreeDomains</td>
-<td>90</td>
+<td>16 (12 + 4 spares)</td>
 <td>$0.00 for the first year on .com (marked "Limited")</td>
 <td>$0</td>
 </tr>
 <tr>
 <td>Service accounts</td>
-<td>440</td>
+<td>72</td>
 <td>free</td>
 <td>$0</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Pick the Flexible plan.</strong> The plan runs about 23 weeks (9 Nov 2026 to 16 Apr 2027). Flexible for that time is about $19,700 for 443 seats; Annual commits to 12 months, about $37,200, and seats cannot be removed before the year ends.</p>
+<p><strong>Pick the Flexible plan.</strong> Seats can be removed any month, and the EU and UK list in the master runs out in late February 2027 (item 2) until a vendor list arrives. Annual commits 75 seats for 12 months.</p>
 <h2>Risks and What to Do</h2>
 <table>
 <thead>
@@ -455,43 +433,48 @@ Workspaces                               = 4 (W1 strategywebinars + 3 new), 110 
 </thead>
 <tbody>
 <tr>
-<td>One Workspace suspended</td>
-<td>Senders show Disconnected in Tantra</td>
-<td>That pool's files wait a week; the other three keep sending. Never move its list onto another pool mid-week</td>
+<td>200 a day is above the blog's ceiling</td>
+<td>Google sending-limit warnings, senders Disconnected</td>
+<td>Hold that Workspace at its current step for a week; never jump two steps</td>
 </tr>
 <tr>
-<td>A domain runs hot</td>
-<td>Its senders get Google warnings or more declines than the rest</td>
-<td>Pause that domain's senders for a week; activate a reserve in the same Workspace</td>
+<td>A domain runs hot (8,400 a week)</td>
+<td>Its senders get warnings or more declines than the rest</td>
+<td>Pause that domain's 6 senders for a week; move them to a spare in the same Workspace</td>
+</tr>
+<tr>
+<td>One Workspace suspended</td>
+<td>Its 18 senders show Disconnected in Tantra</td>
+<td>That pool's files wait a week; the other three keep sending. Never move its list onto another pool mid-week</td>
 </tr>
 <tr>
 <td>Free domains reclaimed or flagged</td>
 <td>A domain stops resolving, or https://lookup.icann.org shows no registrar</td>
-<td>Check the first domain at https://lookup.icann.org before registering the rest. If it fails, buy the names at Cloudflare at cost</td>
+<td>Check the first domain at https://lookup.icann.org before registering the rest. If it fails, Adi buys the names at Cloudflare at cost</td>
 </tr>
 <tr>
 <td>Registrant email not clicked</td>
 <td>ICANN suspends a domain 15 days after registration</td>
-<td>Adi step 2.3: click the verification email for each registrant contact</td>
+<td>Step 2.3: click the verification email for each registrant contact</td>
 </tr>
 <tr>
-<td>440 delegation entries</td>
-<td>One "Authorize" click per service account in Google Admin (Google has no API for it)</td>
-<td>Use the onboarding centre's service account job, or ask Tantra whether one service account per Workspace can serve its calendar senders, as it already does for cold email inboxes. That cuts 440 entries to 4</td>
+<td>72 delegation entries</td>
+<td>One "Authorize" click per service account in Google Admin</td>
+<td>Ask Tantra whether one service account per Workspace can serve its calendar senders, as it does for cold email inboxes. That cuts 72 entries to 4</td>
 </tr>
 <tr>
 <td>Holiday weeks</td>
-<td>26 Nov (US Thanksgiving), 25 Dec, 1 Jan</td>
-<td>25 Dec and 1 Jan are off; Thanksgiving falls before the first cold send</td>
+<td>25 Dec, 1 Jan</td>
+<td>No sends on those two days; Adi decides whether the 24 and 31 December webinars run</td>
 </tr>
 </tbody>
 </table></div></details><details class="doc"><summary>DNS_RECORDS.md</summary><div class="md"><h1>DNS Records per Domain (copy-paste blocks)</h1>
-<p>Written by <code>build_infra_files.py</code>. In the iFreeDomains panel: My Domains, Manage Domain, Manage iFreeDomains DNS.
-A Name of <code>@</code> means leave the Name field blank (the root of the domain).</p>
-<p>Two values come from Google Admin and replace the <code>FILL_</code> text: the verification TXT (when you add the domain)
-and the DKIM key (<code>ADI_STEPS.md</code> step 6). Exactly one SPF record per domain: never add a second.
-DMARC reports go to <code>dmarc@&lt;the same domain&gt;</code>, an alias on the Workspace admin (<code>ADI_STEPS.md</code> step 5), so no
-outside domain has to consent.</p>
+<p>Written by <code>build_infra_files.py</code>: 12 sending domains and 4 spares. In the iFreeDomains panel: My Domains,
+Manage Domain, Manage iFreeDomains DNS. A Name of <code>@</code> means leave the Name field blank (the root of the domain).</p>
+<p>Two values come from Google Admin and replace the <code>FILL_</code> text: the verification TXT (when the domain is added,
+<code>ADI_STEPS.md</code> steps 3 and 4) and the DKIM key (step 6). Exactly one SPF record per domain: never add a second.
+DMARC reports go to <code>dmarc@&lt;the same domain&gt;</code>, an alias on the Workspace admin (step 5), so no outside domain
+has to consent.</p>
 <h2>1. northgatesessions.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
@@ -500,15 +483,7 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@northgatesessions.com; fo=1
 </code></pre>
-<h2>2. northgatebriefings.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@northgatebriefings.com; fo=1
-</code></pre>
-<h2>3. harborlineinsights.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
+<h2>2. harborlineinsights.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
@@ -516,15 +491,7 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@harborlineinsights.com; fo=1
 </code></pre>
-<h2>4. harborlinesessions.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@harborlinesessions.com; fo=1
-</code></pre>
-<h2>5. brightfieldinsights.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
+<h2>3. brightfieldinsights.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
@@ -532,127 +499,7 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@brightfieldinsights.com; fo=1
 </code></pre>
-<h2>6. brightfieldsessions.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@brightfieldsessions.com; fo=1
-</code></pre>
-<h2>7. clearwatersessions.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@clearwatersessions.com; fo=1
-</code></pre>
-<h2>8. clearwaterbriefings.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@clearwaterbriefings.com; fo=1
-</code></pre>
-<h2>9. keystonesessions.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@keystonesessions.com; fo=1
-</code></pre>
-<h2>10. keystonebriefings.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@keystonebriefings.com; fo=1
-</code></pre>
-<h2>11. lindenparkinsights.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@lindenparkinsights.com; fo=1
-</code></pre>
-<h2>12. fairhaveninsights.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@fairhaveninsights.com; fo=1
-</code></pre>
-<h2>13. westbrooksessions.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@westbrooksessions.com; fo=1
-</code></pre>
-<h2>14. eastmereinsights.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@eastmereinsights.com; fo=1
-</code></pre>
-<h2>15. oakhurstinsights.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@oakhurstinsights.com; fo=1
-</code></pre>
-<h2>16. strategyhourlive.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@strategyhourlive.com; fo=1
-</code></pre>
-<h2>17. webinarbriefings.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@webinarbriefings.com; fo=1
-</code></pre>
-<h2>18. founderbriefinghq.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@founderbriefinghq.com; fo=1
-</code></pre>
-<h2>19. revenuestrategylive.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@revenuestrategylive.com; fo=1
-</code></pre>
-<h2>20. b2bstrategyhour.com  (Workspace W1 strategywebinars (existing), pool P1)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@b2bstrategyhour.com; fo=1
-</code></pre>
-<h2>21. ridgewayinsights.com  (Workspace W2 new, pool P2)</h2>
+<h2>4. ridgewayinsights.com  (Workspace W2 new, pool P2)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
@@ -660,15 +507,7 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@ridgewayinsights.com; fo=1
 </code></pre>
-<h2>22. ridgewaysessions.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@ridgewaysessions.com; fo=1
-</code></pre>
-<h2>23. cedarlineinsights.com  (Workspace W2 new, pool P2)</h2>
+<h2>5. cedarlineinsights.com  (Workspace W2 new, pool P2)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
@@ -676,15 +515,7 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@cedarlineinsights.com; fo=1
 </code></pre>
-<h2>24. cedarlinesessions.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@cedarlinesessions.com; fo=1
-</code></pre>
-<h2>25. stonebridgesessions.com  (Workspace W2 new, pool P2)</h2>
+<h2>6. stonebridgesessions.com  (Workspace W2 new, pool P2)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
@@ -692,127 +523,7 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@stonebridgesessions.com; fo=1
 </code></pre>
-<h2>26. stonebridgebriefings.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@stonebridgebriefings.com; fo=1
-</code></pre>
-<h2>27. granitepeakinsights.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@granitepeakinsights.com; fo=1
-</code></pre>
-<h2>28. granitepeaksessions.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@granitepeaksessions.com; fo=1
-</code></pre>
-<h2>29. birchwoodsessions.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@birchwoodsessions.com; fo=1
-</code></pre>
-<h2>30. birchwoodbriefings.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@birchwoodbriefings.com; fo=1
-</code></pre>
-<h2>31. silverleafinsights.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@silverleafinsights.com; fo=1
-</code></pre>
-<h2>32. bluecrestsessions.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@bluecrestsessions.com; fo=1
-</code></pre>
-<h2>33. hollowbrookinsights.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@hollowbrookinsights.com; fo=1
-</code></pre>
-<h2>34. quarrystoneinsights.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@quarrystoneinsights.com; fo=1
-</code></pre>
-<h2>35. thornburyinsights.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@thornburyinsights.com; fo=1
-</code></pre>
-<h2>36. strategybriefinghq.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@strategybriefinghq.com; fo=1
-</code></pre>
-<h2>37. briefingroomlive.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@briefingroomlive.com; fo=1
-</code></pre>
-<h2>38. foundersstrategyhour.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@foundersstrategyhour.com; fo=1
-</code></pre>
-<h2>39. pipelinestrategylive.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@pipelinestrategylive.com; fo=1
-</code></pre>
-<h2>40. weeklystrategylive.com  (Workspace W2 new, pool P2)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@weeklystrategylive.com; fo=1
-</code></pre>
-<h2>41. larkspurinsights.com  (Workspace W3 new, pool P3)</h2>
+<h2>7. larkspurinsights.com  (Workspace W3 new, pool P3)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
@@ -820,15 +531,7 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@larkspurinsights.com; fo=1
 </code></pre>
-<h2>42. larkspursessions.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@larkspursessions.com; fo=1
-</code></pre>
-<h2>43. meridianwayinsights.com  (Workspace W3 new, pool P3)</h2>
+<h2>8. meridianwayinsights.com  (Workspace W3 new, pool P3)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
@@ -836,15 +539,7 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@meridianwayinsights.com; fo=1
 </code></pre>
-<h2>44. meridianwaysessions.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@meridianwaysessions.com; fo=1
-</code></pre>
-<h2>45. beaconfieldinsights.com  (Workspace W3 new, pool P3)</h2>
+<h2>9. beaconfieldinsights.com  (Workspace W3 new, pool P3)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
@@ -852,127 +547,7 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@beaconfieldinsights.com; fo=1
 </code></pre>
-<h2>46. beaconfieldsessions.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@beaconfieldsessions.com; fo=1
-</code></pre>
-<h2>47. riverstonesessions.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@riverstonesessions.com; fo=1
-</code></pre>
-<h2>48. riverstonebriefings.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@riverstonebriefings.com; fo=1
-</code></pre>
-<h2>49. lumenvaleinsights.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@lumenvaleinsights.com; fo=1
-</code></pre>
-<h2>50. lumenvalesessions.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@lumenvalesessions.com; fo=1
-</code></pre>
-<h2>51. wrenfieldinsights.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@wrenfieldinsights.com; fo=1
-</code></pre>
-<h2>52. foxgloveinsights.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@foxgloveinsights.com; fo=1
-</code></pre>
-<h2>53. copperbeechinsights.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@copperbeechinsights.com; fo=1
-</code></pre>
-<h2>54. kingsmereinsights.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@kingsmereinsights.com; fo=1
-</code></pre>
-<h2>55. mapleridgeinsights.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@mapleridgeinsights.com; fo=1
-</code></pre>
-<h2>56. livestrategysessions.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@livestrategysessions.com; fo=1
-</code></pre>
-<h2>57. operatorroundtable.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@operatorroundtable.com; fo=1
-</code></pre>
-<h2>58. strategyforumlive.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@strategyforumlive.com; fo=1
-</code></pre>
-<h2>59. airevenuebriefing.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@airevenuebriefing.com; fo=1
-</code></pre>
-<h2>60. executivestrategyhour.com  (Workspace W3 new, pool P3)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@executivestrategyhour.com; fo=1
-</code></pre>
-<h2>61. juniperhillinsights.com  (Workspace W4 new, pool P4)</h2>
+<h2>10. juniperhillinsights.com  (Workspace W4 new, pool P4)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
@@ -980,15 +555,7 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@juniperhillinsights.com; fo=1
 </code></pre>
-<h2>62. juniperhillsessions.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@juniperhillsessions.com; fo=1
-</code></pre>
-<h2>63. alderpointinsights.com  (Workspace W4 new, pool P4)</h2>
+<h2>11. alderpointinsights.com  (Workspace W4 new, pool P4)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
@@ -996,15 +563,7 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@alderpointinsights.com; fo=1
 </code></pre>
-<h2>64. alderpointsessions.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@alderpointsessions.com; fo=1
-</code></pre>
-<h2>65. cobaltridgeinsights.com  (Workspace W4 new, pool P4)</h2>
+<h2>12. cobaltridgeinsights.com  (Workspace W4 new, pool P4)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
@@ -1012,15 +571,23 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@cobaltridgeinsights.com; fo=1
 </code></pre>
-<h2>66. cobaltridgesessions.com  (Workspace W4 new, pool P4)</h2>
+<h2>13. granitepeakinsights.com  (spare: add these records only when the spare is brought in)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
 TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@cobaltridgesessions.com; fo=1
+TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@granitepeakinsights.com; fo=1
 </code></pre>
-<h2>67. slatehouseinsights.com  (Workspace W4 new, pool P4)</h2>
+<h2>14. riverstonesessions.com  (spare: add these records only when the spare is brought in)</h2>
+<pre><code>Type  Name               Priority  Value
+TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
+MX    @                  1         SMTP.GOOGLE.COM
+TXT   @                            v=spf1 include:_spf.google.com ~all
+TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
+TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@riverstonesessions.com; fo=1
+</code></pre>
+<h2>15. slatehouseinsights.com  (spare: add these records only when the spare is brought in)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
@@ -1028,189 +595,13 @@ TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
 TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@slatehouseinsights.com; fo=1
 </code></pre>
-<h2>68. slatehousesessions.com  (Workspace W4 new, pool P4)</h2>
+<h2>16. keystonesessions.com  (spare: add these records only when the spare is brought in)</h2>
 <pre><code>Type  Name               Priority  Value
 TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
 MX    @                  1         SMTP.GOOGLE.COM
 TXT   @                            v=spf1 include:_spf.google.com ~all
 TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@slatehousesessions.com; fo=1
-</code></pre>
-<h2>69. amberlaneinsights.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@amberlaneinsights.com; fo=1
-</code></pre>
-<h2>70. amberlanesessions.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@amberlanesessions.com; fo=1
-</code></pre>
-<h2>71. highmoorinsights.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@highmoorinsights.com; fo=1
-</code></pre>
-<h2>72. greystonesessions.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@greystonesessions.com; fo=1
-</code></pre>
-<h2>73. ashcombeinsights.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@ashcombeinsights.com; fo=1
-</code></pre>
-<h2>74. pinecrestsessions.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@pinecrestsessions.com; fo=1
-</code></pre>
-<h2>75. willowmereinsights.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@willowmereinsights.com; fo=1
-</code></pre>
-<h2>76. strategyroundtablehq.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@strategyroundtablehq.com; fo=1
-</code></pre>
-<h2>77. strategysessionshq.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@strategysessionshq.com; fo=1
-</code></pre>
-<h2>78. livewebinarseries.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@livewebinarseries.com; fo=1
-</code></pre>
-<h2>79. strategyplaybooklive.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@strategyplaybooklive.com; fo=1
-</code></pre>
-<h2>80. revenueroundtablehq.com  (Workspace W4 new, pool P4)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@revenueroundtablehq.com; fo=1
-</code></pre>
-<h2>81. strategyinsightlive.com  (reserve)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@strategyinsightlive.com; fo=1
-</code></pre>
-<h2>82. webinarroomhq.com  (reserve)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@webinarroomhq.com; fo=1
-</code></pre>
-<h2>83. liveroundtablehq.com  (reserve)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@liveroundtablehq.com; fo=1
-</code></pre>
-<h2>84. foundersforumlive.com  (reserve)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@foundersforumlive.com; fo=1
-</code></pre>
-<h2>85. airevenuesessions.com  (reserve)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@airevenuesessions.com; fo=1
-</code></pre>
-<h2>86. revenuebriefinghq.com  (reserve)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@revenuebriefinghq.com; fo=1
-</code></pre>
-<h2>87. strategyseminarhq.com  (reserve)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@strategyseminarhq.com; fo=1
-</code></pre>
-<h2>88. b2bwebinarseries.com  (reserve)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@b2bwebinarseries.com; fo=1
-</code></pre>
-<h2>89. executivebriefinglive.com  (reserve)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@executivebriefinglive.com; fo=1
-</code></pre>
-<h2>90. aiwebinarseries.com  (reserve)</h2>
-<pre><code>Type  Name               Priority  Value
-TXT   @                            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts google-site-verification=)
-MX    @                  1         SMTP.GOOGLE.COM
-TXT   @                            v=spf1 include:_spf.google.com ~all
-TXT   google._domainkey            FILL_WHOLE_VALUE_GOOGLE_SHOWS (starts v=DKIM1; k=rsa; p=)
-TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@aiwebinarseries.com; fo=1
+TXT   _dmarc                       v=DMARC1; p=none; rua=mailto:dmarc@keystonesessions.com; fo=1
 </code></pre>
 <h2>Check What the World Sees (public DNS, no key)</h2>
 <p>Replace the domain and run:</p>
@@ -1219,590 +610,117 @@ curl -s -H 'accept: application/dns-json' 'https://cloudflare-dns.com/dns-query?
 curl -s -H 'accept: application/dns-json' 'https://cloudflare-dns.com/dns-query?name=google._domainkey.northgatesessions.com&amp;type=TXT'; echo
 </code></pre>
 <p>Pass: one <code>v=spf1</code> record, MX <code>smtp.google.com</code>, a <code>v=DMARC1</code> record, a DKIM key, nothing listed twice.
-After two clean weeks, change DMARC <code>p=none</code> to <code>p=quarantine</code>.</p></div></details><details class="doc"><summary>DOMAIN_SHORTLIST.md</summary><div class="md"><h1>Domain Shortlist: 80 Active and 10 Reserves</h1>
-<p>Rules: <code>.com</code>, no hyphens, never growthclub.org or usetantra.com, nothing that reads as Tantra or GrowthClub, and
-none of the existing Tantra calendar names (strategywebinars, visionarywebinars, seminarvision, nextgenwebinars, signonline).</p>
-<p><strong>Why most names are plain.</strong> The senders behind the master list used webinar-themed domains, and 156,018 of
-those recipients declined. A plain, company-like name (<code>northgatesessions.com</code>) does not repeat that pattern.
-Each Workspace gets 15 plain names (pairs share a name, as one firm with two domains would) and 5 themed ones,
-so the two styles can be compared on decline rates in the first weeks.</p>
-<p>Every name returned "not found" from the Verisign .com registry (RDAP) on 2026-11-04. A name can still be taken
-before Adi registers it, or be priced as "Special" at iFreeDomains: skip it and take a reserve. The plain names
-were checked for registration only: before buying, search each one to make sure no live company trades under it.</p>
+After two clean weeks, change DMARC <code>p=none</code> to <code>p=quarantine</code>.</p></div></details><details class="doc"><summary>DOMAIN_SHORTLIST.md</summary><div class="md"><h1>Domain Shortlist: 12 Sending Domains and 4 Spares</h1>
+<p>Rules: <code>.com</code>, no hyphens, never growthclub.org, usetantra.com or a free Gmail address, nothing that reads as
+Tantra or GrowthClub, and none of the existing Tantra calendar names (strategywebinars, visionarywebinars,
+seminarvision, nextgenwebinars, signonline).</p>
+<p>12 domains x 6 mailboxes = 72 senders (<code>CAPACITY_PLAN.md</code>). 3 domains per Workspace, 18 senders each.</p>
+<p><strong>Why plain names.</strong> The senders behind the master list used webinar-themed domains, and 156,018 of those
+recipients declined. A plain, company-like name (<code>northgatesessions.com</code>) does not repeat that pattern.</p>
+<p>All 16 names came from the 90 checked on 2026-11-04 and returned "not found" again from the Verisign .com
+registry (RDAP) on 2026-11-05. A name can still be taken before it is registered, or priced as "Special" at
+iFreeDomains: skip it and take the next spare. Checked for registration only: before registering, search each
+name to make sure no live company trades under it.</p>
 <table>
 <thead>
 <tr>
 <th>#</th>
 <th>Domain</th>
-<th>Style</th>
 <th>Workspace</th>
-<th>Senders</th>
+<th>Pool</th>
+<th>Mailboxes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
 <td>northgatesessions.com</td>
-<td>plain</td>
 <td>W1 strategywebinars (existing)</td>
+<td>P1</td>
 <td>6</td>
 </tr>
 <tr>
 <td>2</td>
-<td>northgatebriefings.com</td>
-<td>plain</td>
+<td>harborlineinsights.com</td>
 <td>W1 strategywebinars (existing)</td>
+<td>P1</td>
 <td>6</td>
 </tr>
 <tr>
 <td>3</td>
-<td>harborlineinsights.com</td>
-<td>plain</td>
+<td>brightfieldinsights.com</td>
 <td>W1 strategywebinars (existing)</td>
+<td>P1</td>
 <td>6</td>
 </tr>
 <tr>
 <td>4</td>
-<td>harborlinesessions.com</td>
-<td>plain</td>
-<td>W1 strategywebinars (existing)</td>
+<td>ridgewayinsights.com</td>
+<td>W2 new (primary)</td>
+<td>P2</td>
 <td>6</td>
 </tr>
 <tr>
 <td>5</td>
-<td>brightfieldinsights.com</td>
-<td>plain</td>
-<td>W1 strategywebinars (existing)</td>
+<td>cedarlineinsights.com</td>
+<td>W2 new</td>
+<td>P2</td>
 <td>6</td>
 </tr>
 <tr>
 <td>6</td>
-<td>brightfieldsessions.com</td>
-<td>plain</td>
-<td>W1 strategywebinars (existing)</td>
+<td>stonebridgesessions.com</td>
+<td>W2 new</td>
+<td>P2</td>
 <td>6</td>
 </tr>
 <tr>
 <td>7</td>
-<td>clearwatersessions.com</td>
-<td>plain</td>
-<td>W1 strategywebinars (existing)</td>
+<td>larkspurinsights.com</td>
+<td>W3 new (primary)</td>
+<td>P3</td>
 <td>6</td>
 </tr>
 <tr>
 <td>8</td>
-<td>clearwaterbriefings.com</td>
-<td>plain</td>
-<td>W1 strategywebinars (existing)</td>
+<td>meridianwayinsights.com</td>
+<td>W3 new</td>
+<td>P3</td>
 <td>6</td>
 </tr>
 <tr>
 <td>9</td>
-<td>keystonesessions.com</td>
-<td>plain</td>
-<td>W1 strategywebinars (existing)</td>
+<td>beaconfieldinsights.com</td>
+<td>W3 new</td>
+<td>P3</td>
 <td>6</td>
 </tr>
 <tr>
 <td>10</td>
-<td>keystonebriefings.com</td>
-<td>plain</td>
-<td>W1 strategywebinars (existing)</td>
+<td>juniperhillinsights.com</td>
+<td>W4 new (primary)</td>
+<td>P4</td>
 <td>6</td>
 </tr>
 <tr>
 <td>11</td>
-<td>lindenparkinsights.com</td>
-<td>plain</td>
-<td>W1 strategywebinars (existing)</td>
-<td>5</td>
+<td>alderpointinsights.com</td>
+<td>W4 new</td>
+<td>P4</td>
+<td>6</td>
 </tr>
 <tr>
 <td>12</td>
-<td>fairhaveninsights.com</td>
-<td>plain</td>
-<td>W1 strategywebinars (existing)</td>
-<td>5</td>
-</tr>
-<tr>
-<td>13</td>
-<td>westbrooksessions.com</td>
-<td>plain</td>
-<td>W1 strategywebinars (existing)</td>
-<td>5</td>
-</tr>
-<tr>
-<td>14</td>
-<td>eastmereinsights.com</td>
-<td>plain</td>
-<td>W1 strategywebinars (existing)</td>
-<td>5</td>
-</tr>
-<tr>
-<td>15</td>
-<td>oakhurstinsights.com</td>
-<td>plain</td>
-<td>W1 strategywebinars (existing)</td>
-<td>5</td>
-</tr>
-<tr>
-<td>16</td>
-<td>strategyhourlive.com</td>
-<td>themed</td>
-<td>W1 strategywebinars (existing)</td>
-<td>5</td>
-</tr>
-<tr>
-<td>17</td>
-<td>webinarbriefings.com</td>
-<td>themed</td>
-<td>W1 strategywebinars (existing)</td>
-<td>5</td>
-</tr>
-<tr>
-<td>18</td>
-<td>founderbriefinghq.com</td>
-<td>themed</td>
-<td>W1 strategywebinars (existing)</td>
-<td>5</td>
-</tr>
-<tr>
-<td>19</td>
-<td>revenuestrategylive.com</td>
-<td>themed</td>
-<td>W1 strategywebinars (existing)</td>
-<td>5</td>
-</tr>
-<tr>
-<td>20</td>
-<td>b2bstrategyhour.com</td>
-<td>themed</td>
-<td>W1 strategywebinars (existing)</td>
-<td>5</td>
-</tr>
-<tr>
-<td>21</td>
-<td>ridgewayinsights.com</td>
-<td>plain</td>
-<td>W2 new (primary)</td>
-<td>6</td>
-</tr>
-<tr>
-<td>22</td>
-<td>ridgewaysessions.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>23</td>
-<td>cedarlineinsights.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>24</td>
-<td>cedarlinesessions.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>25</td>
-<td>stonebridgesessions.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>26</td>
-<td>stonebridgebriefings.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>27</td>
-<td>granitepeakinsights.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>28</td>
-<td>granitepeaksessions.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>29</td>
-<td>birchwoodsessions.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>30</td>
-<td>birchwoodbriefings.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>31</td>
-<td>silverleafinsights.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>32</td>
-<td>bluecrestsessions.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>33</td>
-<td>hollowbrookinsights.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>34</td>
-<td>quarrystoneinsights.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>35</td>
-<td>thornburyinsights.com</td>
-<td>plain</td>
-<td>W2 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>36</td>
-<td>strategybriefinghq.com</td>
-<td>themed</td>
-<td>W2 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>37</td>
-<td>briefingroomlive.com</td>
-<td>themed</td>
-<td>W2 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>38</td>
-<td>foundersstrategyhour.com</td>
-<td>themed</td>
-<td>W2 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>39</td>
-<td>pipelinestrategylive.com</td>
-<td>themed</td>
-<td>W2 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>40</td>
-<td>weeklystrategylive.com</td>
-<td>themed</td>
-<td>W2 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>41</td>
-<td>larkspurinsights.com</td>
-<td>plain</td>
-<td>W3 new (primary)</td>
-<td>6</td>
-</tr>
-<tr>
-<td>42</td>
-<td>larkspursessions.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>43</td>
-<td>meridianwayinsights.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>44</td>
-<td>meridianwaysessions.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>45</td>
-<td>beaconfieldinsights.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>46</td>
-<td>beaconfieldsessions.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>47</td>
-<td>riverstonesessions.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>48</td>
-<td>riverstonebriefings.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>49</td>
-<td>lumenvaleinsights.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>50</td>
-<td>lumenvalesessions.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>51</td>
-<td>wrenfieldinsights.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>52</td>
-<td>foxgloveinsights.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>53</td>
-<td>copperbeechinsights.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>54</td>
-<td>kingsmereinsights.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>55</td>
-<td>mapleridgeinsights.com</td>
-<td>plain</td>
-<td>W3 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>56</td>
-<td>livestrategysessions.com</td>
-<td>themed</td>
-<td>W3 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>57</td>
-<td>operatorroundtable.com</td>
-<td>themed</td>
-<td>W3 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>58</td>
-<td>strategyforumlive.com</td>
-<td>themed</td>
-<td>W3 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>59</td>
-<td>airevenuebriefing.com</td>
-<td>themed</td>
-<td>W3 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>60</td>
-<td>executivestrategyhour.com</td>
-<td>themed</td>
-<td>W3 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>61</td>
-<td>juniperhillinsights.com</td>
-<td>plain</td>
-<td>W4 new (primary)</td>
-<td>6</td>
-</tr>
-<tr>
-<td>62</td>
-<td>juniperhillsessions.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>63</td>
-<td>alderpointinsights.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>64</td>
-<td>alderpointsessions.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>65</td>
 <td>cobaltridgeinsights.com</td>
-<td>plain</td>
 <td>W4 new</td>
+<td>P4</td>
 <td>6</td>
-</tr>
-<tr>
-<td>66</td>
-<td>cobaltridgesessions.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>67</td>
-<td>slatehouseinsights.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>68</td>
-<td>slatehousesessions.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>69</td>
-<td>amberlaneinsights.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>70</td>
-<td>amberlanesessions.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>6</td>
-</tr>
-<tr>
-<td>71</td>
-<td>highmoorinsights.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>72</td>
-<td>greystonesessions.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>73</td>
-<td>ashcombeinsights.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>74</td>
-<td>pinecrestsessions.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>75</td>
-<td>willowmereinsights.com</td>
-<td>plain</td>
-<td>W4 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>76</td>
-<td>strategyroundtablehq.com</td>
-<td>themed</td>
-<td>W4 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>77</td>
-<td>strategysessionshq.com</td>
-<td>themed</td>
-<td>W4 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>78</td>
-<td>livewebinarseries.com</td>
-<td>themed</td>
-<td>W4 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>79</td>
-<td>strategyplaybooklive.com</td>
-<td>themed</td>
-<td>W4 new</td>
-<td>5</td>
-</tr>
-<tr>
-<td>80</td>
-<td>revenueroundtablehq.com</td>
-<td>themed</td>
-<td>W4 new</td>
-<td>5</td>
 </tr>
 </tbody>
 </table>
-<h2>Reserves (register now, leave parked so they age)</h2>
+<h2>Spares (register now, leave parked so they age)</h2>
+<p>A spare replaces a domain that is taken at registration, or one that runs hot later (Google warnings, high
+declines): move that domain's 6 mailboxes to the spare in the same Workspace.</p>
 <table>
 <thead>
 <tr>
@@ -1812,64 +730,39 @@ were checked for registration only: before buying, search each one to make sure 
 </thead>
 <tbody>
 <tr>
-<td>81</td>
-<td>strategyinsightlive.com</td>
+<td>13</td>
+<td>granitepeakinsights.com</td>
 </tr>
 <tr>
-<td>82</td>
-<td>webinarroomhq.com</td>
+<td>14</td>
+<td>riverstonesessions.com</td>
 </tr>
 <tr>
-<td>83</td>
-<td>liveroundtablehq.com</td>
+<td>15</td>
+<td>slatehouseinsights.com</td>
 </tr>
 <tr>
-<td>84</td>
-<td>foundersforumlive.com</td>
-</tr>
-<tr>
-<td>85</td>
-<td>airevenuesessions.com</td>
-</tr>
-<tr>
-<td>86</td>
-<td>revenuebriefinghq.com</td>
-</tr>
-<tr>
-<td>87</td>
-<td>strategyseminarhq.com</td>
-</tr>
-<tr>
-<td>88</td>
-<td>b2bwebinarseries.com</td>
-</tr>
-<tr>
-<td>89</td>
-<td>executivebriefinglive.com</td>
-</tr>
-<tr>
-<td>90</td>
-<td>aiwebinarseries.com</td>
+<td>16</td>
+<td>keystonesessions.com</td>
 </tr>
 </tbody>
 </table>
-<p>W1's primary domain is strategywebinars.com (registered 2026-09-27 at Cloudflare, nameservers on Cloudflare).</p>
-<p>Checked and already taken (do not use): aistrategysessions.com, pipelinebriefing.com, thestrategyhour.com, strategydeskhq.com, plus 60 plain combinations rejected in the same check.</p>
+<p>W1's primary domain is strategywebinars.com (registered 2026-09-27 at Cloudflare, nameservers on Cloudflare);
+it is not a sending domain.</p>
 <p>Recheck any name (public, no account): <code>curl -s -o /dev/null -w "%{http_code}\n" https://rdap.verisign.com/com/v1/domain/northgatesessions.com</code>
 prints 404 when the name is free.</p>
-<p>If a name changes, edit <code>WORKSPACE_DOMAINS</code> in <code>build_infra_files.py</code> and rerun it: this file, <code>DNS_RECORDS.md</code> and the roster follow.</p></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: item 3, outreach infrastructure for 100,000 calendar invites a week</h1>
+<p>If a name changes, edit <code>WORKSPACE_DOMAINS</code> in <code>build_infra_files.py</code> and rerun it: this file, <code>DNS_RECORDS.md</code> and the roster follow.</p></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: Item 3, Outreach Infrastructure for 100,000 Calendar Invites a Week</h1>
 <p>Done means every box below is ticked, with the check that proves it.</p>
 <ul>
-<li>[x] 1. <code>CAPACITY_PLAN.md</code> shows the maths to 100,000 invites a week: senders x daily cap x send days, domains, users per domain, Workspaces, and the per-domain load compared with the E150 to E162 exports.</li>
-<li>[x] 2. The warm-up ramp is dated from 2026-11-04, names the conflict between the playbook (50 a day at day 60) and Tantra's blog (25 until day 90), takes the conservative one, says when 100,000 a week starts (8 Feb 2027) and that it cannot be day one, and shows 800 senders as the faster option.</li>
-<li>[x] 3. The 60-day warm-up and the $100 prepay rule are applied to every Workspace that sends cold invites.</li>
-<li>[x] 4. The strategywebinars Workspace is in the plan as Workspace W1. Its login file <code>~/.config/tantra/keys/strategywebinars-workspace.env</code> is referenced by path only: never opened, printed or used.</li>
-<li>[x] 5. <code>DOMAIN_SHORTLIST.md</code> lists 90 <code>.com</code> names (80 active at 5 to 6 senders each as the default, 20 shown as Adi's floor; 60 plain company-like and 30 webinar or strategy themed, no hyphens, never growthclub.org, usetantra.com or anything that reads as Tantra or GrowthClub), each checked as unregistered in the public .com registry on 2026-11-04.</li>
-<li>[x] 5b. 440 senders give 10% spare over 100,000; the target is stated as "up to 100,000".</li>
-<li>[x] 6. <code>DNS_RECORDS.md</code> has a copy-paste block for every domain: Google verification TXT placeholder, MX for Google Workspace, SPF, DKIM placeholder, DMARC.</li>
-<li>[x] 7. <code>sender-roster.csv</code> (and a local <code>sender-roster.xlsx</code>) has one row per sender with domain, user, display name, created, warm-up start, daily cap by week and Tantra service account connected; no sender address is left FILL.</li>
-<li>[x] 8. <code>ADI_STEPS.md</code> gives every Adi-only step with the full URL, page, field, button, what to paste and what happens next: domains at ifreedomains.com, the ICANN registrant email, W1's strategywebinars.com added and made primary (DNS at Cloudflare), ending trials in every Workspace before the prepay, users, DKIM, delegation, Tantra.</li>
-<li>[x] 9. Costs are shown, marked "check the pricing page before paying", and the Flexible plan is recommended for the 23-week plan.</li>
-<li>[x] 10. <code>python3 deliverables/_shared/scan.py deliverables/03-outreach-infra</code> prints 0 failures, and <code>README.md</code> says what is here and what Adi must fill.</li>
+<li>[x] 1. <code>CAPACITY_PLAN.md</code> shows Adi's maths: 100,000 / 7 / 200 = 71.4, so 72 senders; 12 domains x 6 mailboxes; 72 x 200 x 7 = 100,800 a week; 4 Workspaces of 3 domains and 18 senders.</li>
+<li>[x] 2. The warm-up ramp runs from day 1 to 200 a day, dated from Day 0 = Monday 9 November 2026, one row per webinar week, and names the first full 100,000 week: the 18 February 2027 webinar (sent 11 to 17 February).</li>
+<li>[x] 3. It says plainly that the 12 November webinar runs before warm-up and what is realistic for it: 0 from the new senders, up to 1,750 from the five older senders only if they are Connected and past day 60.</li>
+<li>[x] 4. It states where 200 a day sits against the playbook (its ceiling) and the blog (above its 100 to 150 ceiling), and the 8,400 invites a domain a week against the exports' 1,440, with the stop rule and spares.</li>
+<li>[x] 5. The 80/20 domain and 440/800 sender options are gone from every file in this folder (grep finds none).</li>
+<li>[x] 6. <code>DOMAIN_SHORTLIST.md</code>: 12 sending domains and 4 spares, all from the checked list, <code>.com</code>, no hyphens, never growthclub.org, usetantra.com or free Gmail, each rechecked "not found" at Verisign RDAP on 2026-11-05.</li>
+<li>[x] 7. <code>DNS_RECORDS.md</code> has a block for each of the 16 domains: verification TXT placeholder, MX, SPF, DKIM placeholder, DMARC.</li>
+<li>[x] 8. <code>sender-roster.csv</code> and <code>.xlsx</code> have exactly 72 sender rows (domain, mailbox name, display name first), 6 per domain, regenerated by <code>build_infra_files.py</code>.</li>
+<li>[x] 9. <code>ADI_STEPS.md</code> is the team manual setup steps, field by field with full URLs; every payment is marked <strong>Adi pays</strong>; nothing was signed in to or bought.</li>
+<li>[x] 10. <code>python3 deliverables/_shared/scan.py deliverables/03-outreach-infra</code> prints 0 failures, and <code>README.md</code> says what is here and what Adi and the team fill.</li>
 </ul>
-<p>Result 2026-11-04 (after critic fixes 1 to 6, 10 to 12): 11 of 11 pass. 90 names checked by RDAP; roster 443 rows, 0 FILL addresses; scan 0 failures. Nothing registered, bought or signed in to: those are Adi steps 1 to 9.</p></div></details><details class="doc"><summary>Files for import or upload (3)</summary><ul class="files"><li><a href="cards/files/03-outreach-infra/build_infra_files.py" target="_blank" rel="noopener">build_infra_files.py</a></li><li><a href="cards/files/03-outreach-infra/sender-roster.csv" target="_blank" rel="noopener">sender-roster.csv</a></li><li><a href="cards/files/03-outreach-infra/sender-roster.xlsx" target="_blank" rel="noopener">sender-roster.xlsx</a></li></ul></details>
+<p>Result 2026-11-05: 10 of 10 pass. Roster 72 rows, 12 domains x 6; 16 names RDAP 404 on 2026-11-05 (control google.com 200); scan 0 failures.</p></div></details><details class="doc"><summary>Files for import or upload (3)</summary><ul class="files"><li><a href="cards/files/03-outreach-infra/build_infra_files.py" target="_blank" rel="noopener">build_infra_files.py</a></li><li><a href="cards/files/03-outreach-infra/sender-roster.csv" target="_blank" rel="noopener">sender-roster.csv</a></li><li><a href="cards/files/03-outreach-infra/sender-roster.xlsx" target="_blank" rel="noopener">sender-roster.xlsx</a></li></ul></details>

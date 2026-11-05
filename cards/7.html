@@ -4,7 +4,7 @@
 <li>Pick the post by group type (<code>posts.md</code>) and the link placement from its table.</li>
 <li>Admin approval needed for promotion? Ask the admin first, in the way the rules say.</li>
 <li>Rewrite the first line in the group's own words: its niche, or a question members asked this week.</li>
-<li>Regional groups: fill <code>{{region}}</code>, and check <code>{{webinar.start_time_local}}</code> names its time zone so members can convert it.</li>
+<li>Regional groups: fill <code>{{region}}</code>, and give the time in the members' own zone next to UK time (for example "10:00 UK time, 11:00 in Berlin"; outside Europe convert it first: 15:30 in India).</li>
 <li>Tag the link <code>utm_content=fb_&lt;group-slug&gt;</code> so registrations show which group sent them.</li>
 <li>Never post identical text in two groups on the same day, and post in at most 3 groups a day.</li>
 <li>Reply to every comment the same day.</li>
@@ -53,21 +53,19 @@
 <td><code>domains.funnel_domain</code> + <code>/</code> + <code>?utm_source=facebook&amp;utm_medium=group&amp;utm_campaign=enterprise-webinar&amp;utm_content=fb_&lt;group-slug&gt;</code></td>
 </tr>
 <tr>
-<td><code>{{webinar.title}}</code>, <code>{{webinar.day_of_week}}</code>, <code>{{webinar.start_time_local}}</code></td>
-<td><code>deliverables/_shared/funnel-config.json</code></td>
-</tr>
-<tr>
-<td><code>{{region}}</code></td>
-<td>per regional group, by hand (<code>CUSTOMISE.md</code> step 5)</td>
+<td><code>{{webinar.title}}</code></td>
+<td><code>deliverables/_shared/funnel-config.json</code> (not picked yet)</td>
 </tr>
 </tbody>
 </table>
+<p>The day and time are written in: every Thursday at 10:00 UK time (11:00 CET), first session Thursday 12 November 2026 (<code>funnel-config.json</code>, Adi 2026-11-05).
+| <code>{{region}}</code> | per regional group, by hand (<code>CUSTOMISE.md</code> step 5) |</p>
 <h2>Adi Steps</h2>
 <ol>
 <li><strong>Send the list of groups you are in.</strong> Open https://www.facebook.com/groups/joins/ (Facebook, Groups, "Groups you've joined", See all). Scroll to the bottom so every group loads. Paste each group's name and URL into the chat (or into <code>group-tracker.csv</code>, columns <code>group_name</code> and <code>group_url</code>). Then each group gets its customised post and tracker row.</li>
 <li><strong>Post them yourself.</strong> Agents never post to Facebook. For each group: open the group URL from the tracker, click "Write something...", paste the post, click Post; if the placement is "first comment", paste the first comment under your post straight after.</li>
 </ol>
-<p>Fill before posting: <code>domains.funnel_domain</code>, <code>webinar.title</code>, <code>webinar.day_of_week</code>, <code>webinar.start_time_local</code> in <code>funnel-config.json</code>.</p></div></details><details class="doc"><summary>posts.md</summary><div class="md"><h1>Facebook Group Announcement Posts</h1>
+<p>Fill before posting: <code>domains.funnel_domain</code> and <code>webinar.title</code> in <code>funnel-config.json</code>.</p></div></details><details class="doc"><summary>posts.md</summary><div class="md"><h1>Facebook Group Announcement Posts</h1>
 <p>One post per group type, posted by Adi from his own profile. Each gives a usable lesson first and mentions the session only in the last line. Paste the text inside each box as it is: Facebook shows plain text only.</p>
 <p><strong>Link placement.</strong> Every post ends "Link in the first comment." (the default, since many groups remove posts with links). Then:</p>
 <table>
@@ -100,7 +98,7 @@
 <pre><code class="language-text">Here's the session, {{webinar.title}}: {{registration_link}}
 </code></pre>
 <p><strong>Promo-thread version (all types):</strong></p>
-<pre><code class="language-text">Live session for founders, every {{webinar.day_of_week}} at {{webinar.start_time_local}}: {{webinar.title}}. I take an AI revenue funnel apart stage by stage, with real client numbers. Seat here: {{registration_link}}
+<pre><code class="language-text">Live session for founders, every Thursday at 10:00 UK time (11:00 CET): {{webinar.title}}. I take an AI revenue funnel apart stage by stage, with real client numbers. Seat here: {{registration_link}}
 </code></pre>
 <h2>1. Founder and Entrepreneur Groups</h2>
 <p>Typical rules: no direct selling, value posts welcome, links often removed. Default: first comment.</p>
@@ -117,7 +115,7 @@ Here's the frame my team uses instead:
 
 Step 2 is the one most founders skip, and it's the one that tells you what to fix.
 
-I walk through the whole system live every {{webinar.day_of_week}} at {{webinar.start_time_local}}. Link in the first comment.
+I walk through the whole system live every Thursday at 10:00 UK time (11:00 CET). Link in the first comment.
 </code></pre>
 <h2>2. B2B Sales and Marketing Groups</h2>
 <p>Typical rules: tactics welcome, no vendor pitches, links in comments. Default: first comment.</p>
@@ -135,7 +133,7 @@ What made it work:
 4. Date, time and time zone in the first line of the description.
 5. One line that makes declining easy. People trust an invite that lets them say no.
 
-I break down the full setup (lists, senders, copy, follow-up) live every {{webinar.day_of_week}}. Link in the first comment.
+I break down the full setup (lists, senders, copy, follow-up) live every Thursday. Link in the first comment.
 </code></pre>
 <h2>3. Agency Owner Groups</h2>
 <p>Typical rules: no client poaching, no service ads, promo days in some. Default: first comment, or the promo thread where one exists.</p>
@@ -154,7 +152,7 @@ Never send traffic into a half-built funnel. It burns the list, and a burned lis
 
 A London fintech network we built this for grew its outreach from 10,000 to 30,000 people across three sessions and booked 17 sales calls along the way.
 
-I show the full build live every {{webinar.day_of_week}} at {{webinar.start_time_local}}. Link in the first comment.
+I show the full build live every Thursday at 10:00 UK time (11:00 CET). Link in the first comment.
 </code></pre>
 <h2>4. Coaching and Consulting Groups</h2>
 <p>Typical rules: no "DM me" offers, frameworks welcome, admin approval common. Default: first comment.</p>
@@ -172,7 +170,7 @@ That second number tells you how much outreach you need before you write a word 
 
 Run your own numbers through it. If they don't add up, the fix is usually at the top (reach) or the middle (show-up), not the pitch.
 
-I go through the whole model live every {{webinar.day_of_week}}. Link in the first comment.
+I go through the whole model live every Thursday. Link in the first comment.
 </code></pre>
 <h2>5. SaaS Groups</h2>
 <p>Typical rules: no product launches outside a launch thread, technical value welcome. Default: first comment.</p>
@@ -189,7 +187,7 @@ What my team sets up on every webinar funnel:
 
 Every point you add to show-up flows straight down into booked demos.
 
-I walk through the full reminder setup live every {{webinar.day_of_week}}. Link in the first comment.
+I walk through the full reminder setup live every Thursday. Link in the first comment.
 </code></pre>
 <h2>6. Regional Business Groups</h2>
 <p>Typical rules: local members, community tone, promotion often limited to one day a week. Default: the promo thread or day where one exists, else first comment. Fill <code>{{region}}</code> (for example "Bengaluru").</p>
@@ -206,7 +204,7 @@ If you can, work out the two rates between them: 2 divided by 1, then 3 divided 
 
 My team has worked with 250+ brands across 21+ countries, and every build starts with these three numbers.
 
-I run a live session on it every {{webinar.day_of_week}} at {{webinar.start_time_local}}. Link in the first comment if it's useful.
+I run a live session on it every Thursday at 10:00 UK time (11:00 CET). Link in the first comment if it's useful.
 </code></pre></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: Item 7, Facebook Group Announcement Posts</h1>
 <ul>
 <li>[x] 1. One announcement post for each of 6 group types: founder and entrepreneur, B2B sales and marketing, agency owners, coaching and consulting, SaaS, regional business.</li>
@@ -219,4 +217,5 @@ I run a live session on it every {{webinar.day_of_week}} at {{webinar.start_time
 <li>[x] 8. Plain text that pastes into Facebook (no markdown inside the posts), no em or en dashes, no banned filler.</li>
 <li>[x] 9. Scan prints 0 failures.</li>
 </ul>
-<p>Result 2026-11-04 (after critic fixes): all points pass. Regional post uses <code>{{webinar.start_time_local}}</code>; "worked with 250+ brands". Session mentioned only in the last 7 to 12% of each post; scan 0 failures. Group-specific posts wait on Adi's group list.</p></div></details><details class="doc"><summary>Files for import or upload (1)</summary><ul class="files"><li><a href="cards/files/07-facebook-groups/group-tracker.csv" target="_blank" rel="noopener">group-tracker.csv</a></li></ul></details>
+<p>Result 2026-11-04 (after critic fixes): all points pass. Regional post uses <code>{{webinar.start_time_local}}</code>; "worked with 250+ brands". Session mentioned only in the last 7 to 12% of each post; scan 0 failures. Group-specific posts wait on Adi's group list.</p>
+<p>2026-11-05: the decided schedule is written into the posts (every Thursday at 10:00 UK time, 11:00 CET; first session 12 November 2026). Only <code>{{webinar.title}}</code> and <code>{{registration_link}}</code> stay as merge fields. Scan 0 failures.</p></div></details><details class="doc"><summary>Files for import or upload (1)</summary><ul class="files"><li><a href="cards/files/07-facebook-groups/group-tracker.csv" target="_blank" rel="noopener">group-tracker.csv</a></li></ul></details>

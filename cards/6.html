@@ -1,5 +1,5 @@
-<details class="doc" open><summary>ADMIN_STEPS.md</summary><div class="md"><h1>Rebrand the GrowthClub Page to Tantra: Click by Click (Adi, as super admin)</h1>
-<p>Only a super admin can change the name and the URL. Copy for every field is in COPY.md; images are in <code>assets/</code>. Do the steps in this order.</p>
+<details class="doc" open><summary>ADMIN_STEPS.md</summary><div class="md"><h1>Rebrand the GrowthClub Page to Tantra: Click by Click</h1>
+<p><strong>MANUAL TEAM STEP, only after Adi approves the approval page (index.html).</strong> Done by a super admin of the page (only a super admin can change the name and the URL). Copy for every field is in COPY.md (generated from <code>copy.json</code>); images are in <code>assets/</code>. Do the steps in this order.</p>
 <h2>Before You Start: LinkedIn's Name-Change Rules</h2>
 <p>From LinkedIn Help "If you want to change your LinkedIn Page or Showcase Page name" (https://www.linkedin.com/help/linkedin/answer/a566295), read 2026-11-04:
 - GrowthClub.org to Tantra is a "significant name change" (it is not a typo fix, a merger or an acquisition).
@@ -21,18 +21,18 @@
 </ol>
 <h2>Step 2: Name, URL and Tagline (Page info)</h2>
 <ol>
-<li>Left menu: click <strong>Edit page</strong>. The <strong>Page info</strong> tab opens.</li>
+<li>Left menu: click <strong>Edit page</strong>. The <strong>Page info</strong> tab opens (newer layout: the <strong>Header</strong> section).</li>
 <li><strong>Name</strong>: replace "GrowthClub.org" with <code>Tantra</code>.</li>
 <li><strong>LinkedIn public URL</strong>: leave it as <code>growthcluborg</code> for now if you will ask Support for <code>usetantra</code> (Step 6). Otherwise type <code>tantrahq</code>. If the box says it is taken, try <code>tantra-hq</code>, then <code>tantraai</code>.</li>
-<li><strong>Tagline</strong>: paste the tagline from COPY.md (102 characters).</li>
+<li><strong>Tagline</strong>: paste the tagline from COPY.md (111 characters).</li>
 <li><strong>Logo</strong>: click the logo box, upload <code>assets/tantra-logo-400-light.png</code>, keep the crop as it is, Apply.</li>
 <li>Click <strong>Save</strong> (top right).</li>
 <li>What happens next: the new name shows at once. If LinkedIn blocks the name (a "contact us" message, or the Name box is locked), go to Step 7.</li>
 </ol>
 <h2>Step 3: About, Website, Industry, Size, Specialties (Details)</h2>
 <ol>
-<li>Still in Edit page, click the <strong>Details</strong> tab.</li>
-<li><strong>Overview</strong> (the About text): delete the old text, paste the About text from COPY.md (1,454 characters).</li>
+<li>Still in Edit page, click the <strong>Details</strong> tab (newer layout: the <strong>About</strong> section).</li>
+<li><strong>Overview</strong> (newer layout: <strong>Description</strong>): delete the old text, paste the About text from COPY.md (1,593 characters). Until the registration page is live, leave out the two lines named under it in COPY.md.</li>
 <li><strong>Website</strong>: <code>https://usetantra.com</code></li>
 <li><strong>Industry</strong>: delete "Marketing Services", type <code>Technology, Information and Internet</code>, pick it from the list.</li>
 <li><strong>Company size</strong>: keep <code>11-50 employees</code> (guidance in COPY.md).</li>
@@ -43,14 +43,14 @@
 <h2>Step 4: Cover Image</h2>
 <ol>
 <li>Back on the admin view (https://www.linkedin.com/company/13588687/admin/dashboard/), click the pencil on the cover image.</li>
-<li>Upload <code>assets/tantra-cover-1512x256.png</code> (LinkedIn's minimum and recommended size). Do not zoom or move it. Click <strong>Save</strong> (or Apply).</li>
-<li>What happens next: check the page on your phone; the headline sits in the centre so it survives the mobile crop.</li>
+<li>Upload <code>assets/tantra-cover-4200x700.png</code> (hi-res, 0.4 MB, under LinkedIn's 3 MB limit). If LinkedIn refuses it, upload <code>assets/tantra-cover-1512x256.png</code> (the size LinkedIn Help a563309 states). Do not zoom or move it. Click <strong>Save</strong> (or Apply).</li>
+<li>What happens next: check the page on your phone; the text sits in the centre, clear of the logo, so it survives the mobile crop.</li>
 </ol>
 <h2>Step 5: Custom Button (Buttons)</h2>
 <ol>
 <li>Edit page, <strong>Buttons</strong> tab, switch <strong>Custom button</strong> on.</li>
 <li>Before the registration page is live: choose <strong>Visit website</strong>, URL <code>https://usetantra.com/?utm_source=linkedin&amp;utm_medium=company_page</code>.</li>
-<li>Once <code>domains.funnel_domain</code> is set: choose <strong>Register</strong>, URL <code>&lt;funnel domain&gt;/?utm_source=linkedin&amp;utm_medium=company_page&amp;utm_campaign=enterprise-webinar</code>, and swap the last About line to the "Register" version in COPY.md.</li>
+<li>Once <code>domains.funnel_domain</code> is set: choose <strong>Register</strong>, URL <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=company_page&amp;utm_campaign=enterprise-webinar&amp;utm_content=button</code>, and swap the About's last line back to the registration link version in COPY.md.</li>
 <li>Click <strong>Save</strong>.</li>
 </ol>
 <h2>Step 6: The Existing "Tantra" Page and the <code>usetantra</code> URL (decide first)</h2>
@@ -64,7 +64,20 @@
 <li>LinkedIn reviews and replies by email with next steps. Carry on with Steps 3 to 5 meanwhile; they do not depend on the name.</li>
 </ol>
 <h2>Step 8: Announce</h2>
-<p>Post the rename announcement from COPY.md from the page, with the link in the first comment. Ask the team to update the employer on their own profiles.</p></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 6: Rebrand the GrowthClub LinkedIn Page to Tantra</h1>
+<p>Post the rename announcement from COPY.md from the page, with the link in the first comment. Ask the team to update the employer on their own profiles.</p>
+<h2>Step 9: Pinned Post</h2>
+<ol>
+<li>On https://www.linkedin.com/company/13588687/admin/dashboard/ click <strong>Create</strong>, then <strong>Start a post</strong>.</li>
+<li>Paste the pinned post text from COPY.md; add the image <code>assets/tantra-pinned-post-1200x627.png</code>. Click <strong>Post</strong>.</li>
+<li>On the published post, click the <strong>...</strong> menu, then <strong>Pin to top</strong> (older layout: <strong>Feature on top of page</strong>). It stays first on the page until you change it.</li>
+</ol>
+<h2>Step 10: One LinkedIn Event per Thursday (recommended)</h2>
+<ol>
+<li>Same admin view, <strong>Create</strong>, then <strong>Event</strong>.</li>
+<li>Cover image <code>assets/tantra-event-cover-1776x444.png</code>; Event type <strong>Online</strong>, format <strong>External event link</strong>; Event name, description and external link from COPY.md; date the coming Thursday, 10:00, timezone (UTC+00:00) London; 60 minutes. Click <strong>Create</strong>.</li>
+<li>Share the event from the page and ask the six senders to share it. Repeat each week (LinkedIn events are one date each).</li>
+</ol></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 6: Rebrand the GrowthClub LinkedIn Page to Tantra</h1>
+<p>The page becomes Tantra and every element points to the weekly webinar and usetantra.com. Changing LinkedIn is a manual team step after Adi approves.</p>
 <table>
 <thead>
 <tr>
@@ -74,240 +87,215 @@
 </thead>
 <tbody>
 <tr>
+<td>index.html</td>
+<td>The approval page: cover, logo, name, tagline, button, About, details, specialties, pinned post, event, rename post, as they appear, with character counts</td>
+</tr>
+<tr>
+<td><code>copy.json</code></td>
+<td>Every word. Edit here, then rebuild</td>
+</tr>
+<tr>
 <td>COPY.md</td>
-<td>Every field to paste: name, tagline, About, specialties, industry, size, website, button, URL options, the rename announcement</td>
+<td>Every field ready to paste (generated from copy.json)</td>
 </tr>
 <tr>
 <td>ADMIN_STEPS.md</td>
-<td>Click-by-click steps for the page admin, LinkedIn's name-change rules, what followers see</td>
+<td>Click-by-click steps for a super admin, LinkedIn's name-change rules, what followers see</td>
 </tr>
 <tr>
-<td><code>assets/tantra-logo-400-light.png</code></td>
-<td>Logo, 400 x 400, ink mark on white (use this)</td>
-</tr>
-<tr>
-<td><code>assets/tantra-logo-400-dark.png</code></td>
-<td>Logo, 400 x 400, white mark on ink (alternative)</td>
+<td><code>assets/tantra-cover-4200x700.png</code></td>
+<td>Cover, hi-res (upload this)</td>
 </tr>
 <tr>
 <td><code>assets/tantra-cover-1512x256.png</code></td>
-<td>Cover, 1512 x 256 (LinkedIn's minimum and recommended size); headline only, readable at phone width</td>
+<td>Cover at LinkedIn Help's stated size (a563309), the fallback</td>
 </tr>
 <tr>
-<td><code>src/</code></td>
-<td><code>logo.html</code>, <code>banner.html</code>, <code>render.py</code> (headless Chromium via Playwright): <code>cd src &amp;&amp; python3 render.py</code> rebuilds all three PNGs</td>
+<td><code>assets/tantra-cover-1128x191.png</code></td>
+<td>Cover at the older common size</td>
+</tr>
+<tr>
+<td><code>assets/tantra-logo-400-light.png</code>, <code>-dark.png</code></td>
+<td>Logo, 400 x 400 (upload light)</td>
+</tr>
+<tr>
+<td><code>assets/tantra-pinned-post-1200x627.png</code></td>
+<td>Image for the pinned webinar post</td>
+</tr>
+<tr>
+<td><code>assets/tantra-event-cover-1776x444.png</code></td>
+<td>Cover for the weekly LinkedIn Event</td>
+</tr>
+<tr>
+<td><code>src/build.py</code></td>
+<td><code>python3 src/build.py</code> renders the covers, post and event images (Inter, Tantra tokens, current logo) and rewrites index.html and COPY.md. <code>src/render.py</code> renders the logos</td>
+</tr>
+<tr>
+<td><code>shots/</code></td>
+<td>Approval page screenshots at 1440 and 390 px</td>
 </tr>
 </tbody>
 </table>
-<p>Sources: brand tokens and the current logo from <code>context/from-workshop-project/brand/</code>; fonts (Clash Display, Satoshi) read from <code>~/tantra-content/content/brand/fonts/</code>. The cover has no people. LinkedIn Help, read through Jina Reader on 2026-11-04: image specs a563309 (logo 400 x 400 recommended, cover 1512 x 256 as both minimum and recommended, PNG or JPEG under 3 MB, keep key details away from the edges), name changes a566295, page URL a564298 and a570177.</p>
 <h2>What Adi Must Do or Decide</h2>
 <ul>
-<li>Make the change (an Adi step: agents never change LinkedIn). Steps in ADMIN_STEPS.md.</li>
-<li>Decide what happens to the existing "Tantra" page at /company/usetantra (ADMIN_STEPS step 6).</li>
+<li>Approve or mark changes on index.html.</li>
+<li>Decide what happens to the existing "Tantra" page at https://www.linkedin.com/company/usetantra (ADMIN_STEPS step 6).</li>
 <li>Confirm Headquarters (Lewes, Delaware) and Year founded (2018) stay.</li>
-<li>Confirm the About line "your team approves every send, launch and spend before it happens" describes how Enterprise builds run (it is how the RevOps OS works).</li>
-<li>The proof lines in the About text (250+ brands, 47+ industries, 21+ countries, 10+ years) are own-marketing lines from PROOF_PACK section 1; no client is named.</li>
+<li>Whether to run the weekly LinkedIn Event (recommended; a Showcase Page is not, it splits followers).</li>
 </ul>
-<h2>Limits of the Checks</h2>
+<h2>Notes</h2>
 <ul>
-<li>The tagline (120) and About (2,000) character limits are widely reported but not stated on a LinkedIn Help page; the copy is well under both.</li>
+<li>Proof: PROOF_PACK section 1 lines; the pinned post uses one Growth Idea measured row (99,859 reached, 98,000 by calendar invite) without naming the client.</li>
+<li>The tagline (120) and About (2,000) limits are widely reported, not stated on a LinkedIn Help page; the copy is under both.</li>
+<li>LinkedIn page images must be under 3 MB (Help a563309); the largest file here is 0.4 MB.</li>
 <li>A slug that returns 404 has no public page today; LinkedIn's editor is the final word on availability.</li>
-<li>LinkedIn does not publish how many associated employees makes a name change need its review; 25 members are associated today.</li>
 </ul></div></details><details class="doc"><summary>COPY.md</summary><div class="md"><h1>Tantra Company Page: Every Field, Ready to Paste</h1>
-<p>The GrowthClub.org page (https://www.linkedin.com/company/growthcluborg, page id 13588687) becomes Tantra. Read 2026-11-04 through Agent Reach (Jina Reader); nothing on LinkedIn was changed.</p>
-<h2>Before and After</h2>
+<p>Generated by <code>src/build.py</code> from <code>copy.json</code>; the approval page is index.html. Registration link placeholder: <code>{{domains.funnel_domain}}</code>.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>Now (GrowthClub.org)</th>
 <th>Paste this</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Page name</td>
-<td>GrowthClub.org</td>
 <td>Tantra</td>
 </tr>
 <tr>
-<td>Public URL</td>
-<td>linkedin.com/company/growthcluborg</td>
-<td>See "Public URL" below (recommended: <code>usetantra</code> through LinkedIn Support, else <code>tantrahq</code>)</td>
-</tr>
-<tr>
-<td>Tagline</td>
-<td>Next-Gen AI Automation for Modern Brands | Automating Success Stories, One Business at a Time</td>
-<td>AI RevOps for B2B teams: we build your funnel, outreach and pipeline with you, then your team runs it.</td>
+<td>Tagline (111 of 120)</td>
+<td>AI revenue systems for B2B teams: the funnel, the outreach and the pipeline. See it live at our weekly webinar.</td>
 </tr>
 <tr>
 <td>Logo</td>
-<td>GrowthClub logo</td>
 <td><code>assets/tantra-logo-400-light.png</code></td>
 </tr>
 <tr>
 <td>Cover</td>
-<td>GrowthClub cover</td>
-<td><code>assets/tantra-cover-1512x256.png</code> (LinkedIn Help a563309: 1512 x 256 is both the minimum and the recommended size)</td>
-</tr>
-<tr>
-<td>About (Overview)</td>
-<td>GrowthClub "Growth Builds" text</td>
-<td>The text below</td>
+<td><code>assets/tantra-cover-4200x700.png</code> (fallback <code>assets/tantra-cover-1512x256.png</code>; <code>assets/tantra-cover-1128x191.png</code> also provided)</td>
 </tr>
 <tr>
 <td>Website</td>
-<td>growthclub.org</td>
 <td>https://usetantra.com</td>
 </tr>
 <tr>
 <td>Industry</td>
-<td>Marketing Services</td>
 <td>Technology, Information and Internet</td>
 </tr>
 <tr>
 <td>Company size</td>
-<td>11-50 employees</td>
-<td>Keep 11-50 employees (see guidance)</td>
+<td>11-50 employees (keep unless the real team is 10 or fewer)</td>
 </tr>
 <tr>
-<td>Headquarters</td>
-<td>Lewes, Delaware</td>
-<td>Keep (Adi decides)</td>
+<td>Custom button (live)</td>
+<td>Register: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=company_page&amp;utm_campaign=enterprise-webinar&amp;utm_content=button</code></td>
 </tr>
 <tr>
-<td>Founded</td>
-<td>2018</td>
-<td>Keep 2018 (Adi decides; the separate Tantra page says 2024)</td>
-</tr>
-<tr>
-<td>Specialties</td>
-<td>17 GrowthClub specialties (growth hacking, PR, PPC, video content and more)</td>
-<td>The list below (replace all)</td>
-</tr>
-<tr>
-<td>Custom button</td>
-<td>none seen</td>
-<td>"Register" to the registration page once it is live; until then "Visit website" to https://usetantra.com</td>
+<td>Custom button (before live)</td>
+<td>Visit website: <code>https://usetantra.com/?utm_source=linkedin&amp;utm_medium=company_page</code></td>
 </tr>
 </tbody>
 </table>
-<h2>Tagline (102 of 120 characters)</h2>
-<p>AI RevOps for B2B teams: we build your funnel, outreach and pipeline with you, then your team runs it.</p>
-<h2>About (1,454 of 2,000 characters)</h2>
-<p>Most B2B teams do not have a lead problem. They have a leak problem. Marketing counts leads, sales counts deals, and nobody owns what happens in between.</p>
-<p>Tantra builds the in between. We build AI revenue systems with B2B companies: the funnel, the outreach, the nurture and the pipeline, wired into one system with one owner and one set of numbers.</p>
+<h2>About (1,593 of 2,000 characters)</h2>
+<p>Most B2B companies don't have a lead problem. They have a leak problem. Marketing counts leads, sales counts deals, and nobody owns what happens in between.</p>
+<p>Tantra builds the in between: AI revenue systems that take a stranger from first invite to signed client, with one CRM and one weekly number for every stage.</p>
+<p>See it working first. Every Thursday at 10:00 UK time, our founder Adi runs a live 60-minute webinar that takes the whole funnel apart:</p>
+<p>→ How to fill a session from a cold list with calendar invites, cold email and LinkedIn
+→ The email and WhatsApp reminders that get registrants into the room
+→ How 45 minutes becomes booked sales calls
+→ The weekly rhythm: one pipeline, one analytics sheet, one experiment log
+→ Which parts AI runs, and which still need you</p>
+<p>Register with the button at the top of this page.</p>
 <p>What we build with your team:
-- Traffic: cold email, cold calendar invites, LinkedIn and content, every link tagged by source.
-- Capture: registration and booking pages that feed one CRM.
-- Nurture: reminders and follow-ups by email and WhatsApp, timed to each buyer.
-- Conversion: a weekly live session that ends in booked calls.
-- Close: a sales pipeline where every booking, call and payment moves the deal on its own.
-- Growth: a year of follow-up, so the people who did not buy this month stay warm.</p>
-<p>How we work: AI agents do the building inside written rules, and your team approves every send, launch and spend before it happens.</p>
+→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts
+→ Capture: registration and booking pages that feed one CRM
+→ Nurture: email and WhatsApp reminders and follow-ups
+→ Conversion: a weekly live webinar that ends in booked sales calls
+→ Pipeline: every booking, call and proposal tracked to the deal</p>
 <p>Our team has built funnels and outreach for 250+ brands in 47+ industries across 21+ countries, over 10+ years.</p>
 <p>Two ways to work with us:
-- The Tantra platform: run outreach and nurture from your own mailboxes and accounts.
-- Tantra Enterprise: we build your funnel with you, coach your team for 3 months, and you get a year on the platform to run it.</p>
-<p>Want to see the system working? Join our weekly live session: use the Register button at the top of this page.</p>
-<p>If the custom button is "Visit website" (before the registration page is live), replace the last line with:
-Want to see the system working? Our weekly live session walks through it: start at usetantra.com.</p>
-<h2>Specialties (14 of LinkedIn's 20)</h2>
+→ The Tantra platform: run outreach and nurture from your own accounts. Start at usetantra.com
+→ Tantra Enterprise: we build your funnel with you, coach your team for 3 months, and you get a year on the platform</p>
+<p>Start with the webinar: {{domains.funnel_domain}}</p>
+<p>Until the registration page is live, leave out two lines: "Register with the button at the top of this page." and the last line. Add them once the Register button is on.</p>
+<h2>Specialties (14 of 20)</h2>
 <p>AI RevOps, Revenue Operations, Webinar Funnels, B2B Lead Generation, Cold Email Outreach, Calendar Invite Outreach, LinkedIn Outreach, WhatsApp Nurture, Marketing Automation, Sales Pipeline Automation, CRM Integration, Funnel Analytics, AI Agents, Done-With-You Funnel Builds</p>
-<h2>Industry</h2>
-<p>Technology, Information and Internet (matches the existing Tantra page at linkedin.com/company/usetantra). If Adi wants the page found next to sales software instead: Software Development.</p>
-<h2>Company Size</h2>
-<p>LinkedIn offers bands (2-10, 11-50, 51-200 and so on). Pick the band that matches the people who work on Tantra today, contractors included. The current page shows 11-50 and 25 associated members, so keep 11-50 unless the real team is 10 or fewer.</p>
-<h2>Website and Button</h2>
+<h2>Pinned Post (746 characters; image <code>assets/tantra-pinned-post-1200x627.png</code>)</h2>
+<p>You sent 2,000 invites last month. How many became sales calls?</p>
+<p>If you can't answer that with one number, the leak is somewhere between your outreach and your calendar.</p>
+<p>Every Thursday at 10:00 UK time, our founder Adi takes a working B2B funnel apart, live, in 60 minutes:</p>
+<p>→ How one client's webinar reached 99,859 people, 98,000 of them by calendar invite
+→ The reminders we send between sign-up and the live session
+→ How 45 minutes turns into booked sales calls
+→ Which parts AI runs, and which still need you</p>
+<p>Bring your own numbers. You'll leave knowing which stage of your funnel to fix first.</p>
+<p>Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=company_page&amp;utm_campaign=enterprise-webinar&amp;utm_content=pinned-post</p>
+<h2>Event (one per Thursday; cover <code>assets/tantra-event-cover-1776x444.png</code>)</h2>
 <ul>
-<li>Website: https://usetantra.com</li>
-<li>Custom button: "Register", URL = the registration page <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=company_page&amp;utm_campaign=enterprise-webinar</code> once funnel_domain is filled in funnel-config.json. Until then: "Visit website", URL https://usetantra.com/?utm_source=linkedin&amp;utm_medium=company_page</li>
+<li>Name (69 of 75): Live: From Cold List to Booked Sales Calls (Weekly AI Funnel Webinar)</li>
+<li>Format: Online, External event link</li>
+<li>External event link: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=event&amp;utm_campaign=enterprise-webinar</code></li>
+<li>Description:</li>
 </ul>
-<h2>Public URL (vanity slug)</h2>
-<p>Checked 2026-11-04 with <code>curl https://r.jina.ai/https://www.linkedin.com/company/&lt;slug&gt;</code> (Agent Reach). A 404 means no public page uses the slug today. It does not prove LinkedIn will accept it (a slug can be reserved or held by a deactivated page), so the editor's own check is the final word.</p>
+<p>A live 60-minute webinar with Adi, founder of Tantra. He takes a working B2B funnel apart stage by stage: the calendar invites, cold email and LinkedIn that fill the session, the email and WhatsApp reminders that get people there, how 45 minutes turns into booked sales calls, and which parts AI now runs.</p>
+<p>Bring your own numbers. You'll leave knowing which stage of your funnel to fix first.</p>
+<p>Register on the event link to get your personal join link.</p>
+<h2>Rename Announcement</h2>
+<p>GrowthClub is now Tantra.</p>
+<p>Same team, same page, one name. For years we built funnels and outreach for clients by hand. Today we build AI revenue systems with B2B teams: the funnel, the outreach, the nurture and the pipeline, as one system.</p>
+<p>If you work with us, please update your employer on your profile.</p>
+<p>Every week we run a live session that walks through the whole system. The link is in the comments.</p>
+<p>First comment: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=social&amp;utm_campaign=enterprise-webinar&amp;utm_content=rename-post</code></p>
+<h2>Public URL (vanity slug), checked 2026-11-04 through Agent Reach</h2>
 <table>
 <thead>
 <tr>
 <th>Slug</th>
-<th>What the check showed</th>
+<th>Result</th>
 <th>Use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>usetantra</td>
-<td>TAKEN: an existing page named "Tantra" (Technology, Information and Internet; founded 2024; 2 employees shown; same tagline as GrowthClub)</td>
-<td>Best match for usetantra.com. If that page is Adi's, LinkedIn Support can move this URL to the renamed page (LinkedIn Help a564298)</td>
+<td>Taken by an existing "Tantra" page</td>
+<td>Best match; LinkedIn Support can move it if that page is Adi's (Help a564298)</td>
 </tr>
 <tr>
 <td>tantra</td>
-<td>TAKEN: an unrelated "Tantra" page (website tantrauniverse.com)</td>
+<td>Taken by an unrelated page</td>
 <td>No</td>
 </tr>
 <tr>
 <td>tantrahq</td>
-<td>404, no public page</td>
+<td>No public page</td>
 <td>First choice if usetantra cannot be moved</td>
 </tr>
 <tr>
-<td>tantra-hq</td>
-<td>404, no public page</td>
-<td>Backup</td>
-</tr>
-<tr>
-<td>tantraai</td>
-<td>404, no public page</td>
-<td>Backup</td>
-</tr>
-<tr>
-<td>tantra-ai</td>
-<td>404, no public page</td>
-<td>Backup</td>
-</tr>
-<tr>
-<td>tantra-revops</td>
-<td>404, no public page</td>
-<td>Backup</td>
-</tr>
-<tr>
-<td>usetantra-com</td>
-<td>404, no public page</td>
-<td>Backup</td>
+<td>tantra-hq, tantraai, tantra-ai, tantra-revops, usetantra-com</td>
+<td>No public page</td>
+<td>Backups</td>
 </tr>
 </tbody>
-</table>
-<h2>Rename Announcement (post from the page after the change)</h2>
-<p>GrowthClub is now Tantra.</p>
-<p>Same team, same page, one name. For years we built funnels and outreach for clients by hand. Today we build AI revenue systems with B2B teams: the funnel, the outreach, the nurture and the pipeline, as one system.</p>
-<p>If you work with us, please update your employer on your profile.</p>
-<p>Every week we run a live session that walks through the whole system. The link is in the comments.</p>
-<p>(First comment: the registration link with <code>utm_source=linkedin&amp;utm_medium=social&amp;utm_campaign=enterprise-webinar&amp;utm_content=rename-post</code>.)</p></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: item 6 (rebrand the GrowthClub LinkedIn company page to Tantra)</h1>
+</table></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: item 6 (rebrand the GrowthClub LinkedIn company page to Tantra)</h1>
 <p>Done means every line below is checked and marked.</p>
 <ol>
-<li>[x] Logo file at 400 x 400 PNG from the current Tantra mark (circuit tree over a glowing head), checked by eye.</li>
-<li>[x] Cover banner at exactly 1512 x 256 PNG (LinkedIn's minimum and recommended size), rendered from HTML with the brand tokens and the current logo, no people, checked by eye at full size and at phone width.</li>
-<li>[x] Page name, tagline (120 characters or fewer, counted), about text (2,000 characters or fewer, counted), specialties, industry, company size guidance, website, custom button: all in one copy file.</li>
-<li>[x] About text uses only PROOF_PACK section 1 lines; enterprise voice; no banned words.</li>
-<li>[x] The current GC page was read only through Agent Reach (Jina Reader), and its current values are recorded for the before and after.</li>
-<li>[x] Vanity URL slug options checked only through Agent Reach, with what each check could and could not tell.</li>
-<li>[x] Click-by-click admin steps for every field, including LinkedIn's name-change rules and what followers see, each step with its full URL.</li>
-<li>[x] Nothing changed on LinkedIn by the agent; the change is listed as an Adi step.</li>
-<li>[x] <code>python3 deliverables/_shared/scan.py deliverables/06-company-page</code> prints 0 failures; no em or en dashes.</li>
+<li>[x] Logo 400 x 400 PNG from the current Tantra mark, checked by eye.</li>
+<li>[x] Cover at 1128 x 191, 4200 x 700 and 1512 x 256 PNG, Inter and Tantra tokens, no people, text centred and clear of the logo, promoting the webinar; under 3 MB; checked at 100% and at phone width.</li>
+<li>[x] Tagline (120 or fewer) and About (2,000 or fewer) counted by script; About focused on the webinar and usetantra.com.</li>
+<li>[x] Specialties, industry, size, website, custom button (Register, Visit website before live) with full URLs.</li>
+<li>[x] Pinned post text and image promoting the webinar; Event suggestion with name (75 or fewer), description and cover.</li>
+<li>[x] Approved proof only; enterprise and Brian Dean voice; no banned words; no em or en dashes.</li>
+<li>[x] One approval page (index.html) showing every element as it appears, with character counts; screenshotted at 1440 and 390.</li>
+<li>[x] Admin steps kept and marked as a manual team step after Adi approves; nothing changed on LinkedIn by an agent.</li>
+<li>[x] <code>python3 deliverables/_shared/scan.py deliverables/06-company-page</code> prints 0 failures.</li>
+<li>[x] Critic (fable) reviewed images and copy; its findings fixed.</li>
 </ol>
-<h2>Result (2026-11-04): 9 of 9 pass</h2>
+<h2>Result (2026-11-05): 10 of 10 pass</h2>
 <ul>
-<li>1 to 2: three PNGs from src/render.py (Playwright, headless Chromium): logos 400 x 400 (light and dark) and the cover at 1512 x 256 (LinkedIn Help a563309). After the critic: the subline was dropped and the headline set at 72 px on two lines; re-rendered and checked at full size and at 390 px phone width, where it reads.</li>
-<li>3 to 4: COPY.md; tagline 102 characters, About 1,454 characters (counted by script); proof only from PROOF_PACK section 1.</li>
-<li>5 to 6: GC page and 8 slugs read through Jina Reader only; /company/usetantra and /company/tantra are taken, six slugs return 404 (recorded with what a 404 cannot prove).</li>
-<li>7: ADMIN_STEPS.md, rules from LinkedIn Help a566295, a564298, a570177.</li>
-<li>8: nothing changed on LinkedIn.</li>
-<li>9: scan.py: 0 failures, 0 warnings.</li>
-</ul>
-<h2>Critic fixes applied (2026-11-04)</h2>
-<ul>
-<li>Rename post names Tantra once; employer line reworded.</li>
-<li>Smaller cover file deleted; 1512 x 256 is LinkedIn's minimum.</li>
-<li>Cover subline dropped; headline enlarged; re-rendered and looked at.</li>
-<li>Unsourced follower-notification line cut.</li>
-<li>scan.py rerun: 0 failures.</li>
-</ul></div></details><details class="doc"><summary>Files for import or upload (3)</summary><ul class="files"><li><a href="cards/files/06-company-page/assets/tantra-cover-1512x256.png" target="_blank" rel="noopener">assets/tantra-cover-1512x256.png</a></li><li><a href="cards/files/06-company-page/assets/tantra-logo-400-dark.png" target="_blank" rel="noopener">assets/tantra-logo-400-dark.png</a></li><li><a href="cards/files/06-company-page/assets/tantra-logo-400-light.png" target="_blank" rel="noopener">assets/tantra-logo-400-light.png</a></li></ul></details>
+<li>Images: covers 1128 x 191, 1512 x 256, 4200 x 700 (0.4 MB, under 3 MB); pinned post 1200 x 627; event cover 1776 x 444; logos 400 x 400 unchanged. Checked at 100% and phone width; the cover text is centred and clear of the logo.</li>
+<li>Counts (script): tagline 111 of 120; About 1,593 of 2,000; pinned post 746; event name 69 of 75; event description 452.</li>
+<li>Approval page screenshots at 1440 and 390: no broken images, no sideways scroll. scan.py: 0 failures.</li>
+<li>Critic (fable): pass with fixes. Fixed: the before-live About now drops the Register line and the link line instead of an unverified usetantra.com line; admin labels give both LinkedIn layouts (Page info or Header, Details or About, Overview or Description, Pin to top or Feature on top of page). The old Clash banner template is retired so render.py no longer overwrites the new cover.</li>
+</ul></div></details><details class="doc"><summary>Files for import or upload (11)</summary><ul class="files"><li><a href="cards/files/06-company-page/assets/tantra-cover-1128x191.png" target="_blank" rel="noopener">assets/tantra-cover-1128x191.png</a></li><li><a href="cards/files/06-company-page/assets/tantra-cover-1512x256.png" target="_blank" rel="noopener">assets/tantra-cover-1512x256.png</a></li><li><a href="cards/files/06-company-page/assets/tantra-cover-4200x700.png" target="_blank" rel="noopener">assets/tantra-cover-4200x700.png</a></li><li><a href="cards/files/06-company-page/assets/tantra-event-cover-1776x444.png" target="_blank" rel="noopener">assets/tantra-event-cover-1776x444.png</a></li><li><a href="cards/files/06-company-page/assets/tantra-logo-400-dark.png" target="_blank" rel="noopener">assets/tantra-logo-400-dark.png</a></li><li><a href="cards/files/06-company-page/assets/tantra-logo-400-light.png" target="_blank" rel="noopener">assets/tantra-logo-400-light.png</a></li><li><a href="cards/files/06-company-page/assets/tantra-pinned-post-1200x627.png" target="_blank" rel="noopener">assets/tantra-pinned-post-1200x627.png</a></li><li><a href="cards/files/06-company-page/copy.json" target="_blank" rel="noopener">copy.json</a></li><li><a href="cards/files/06-company-page/index.html" target="_blank" rel="noopener">index.html</a></li><li><a href="cards/files/06-company-page/shots/approval-1440.png" target="_blank" rel="noopener">shots/approval-1440.png</a></li><li><a href="cards/files/06-company-page/shots/approval-390.png" target="_blank" rel="noopener">shots/approval-390.png</a></li></ul></details>

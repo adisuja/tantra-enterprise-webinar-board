@@ -1,1 +1,105 @@
-<p class="muted">Nothing built yet for this task.</p>
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>Item 29: LinkedIn Profile Branding for the Six Senders</h1>
+<p>Every profile (Adi, Bhaskar, Nelbin, Aquila, Bharath, Ben) gets a cover, a Featured card, a headline, an About and a Tantra experience entry, all pointing to the weekly webinar registration page.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index.html</td>
+<td>The approval page: every image and text block as it appears on LinkedIn (desktop and phone mock), character counts, and each person's manual steps</td>
+</tr>
+<tr>
+<td><code>copy.json</code></td>
+<td>Every word. Edit here, then rebuild</td>
+</tr>
+<tr>
+<td><code>assets/&lt;key&gt;-cover-1584x396.png</code></td>
+<td>Six covers (LinkedIn Help a549049: 1584 x 396 recommended)</td>
+</tr>
+<tr>
+<td><code>assets/&lt;key&gt;-featured-1200x627.png</code></td>
+<td>Six Featured thumbnails (1.91:1)</td>
+</tr>
+<tr>
+<td><code>src/build.py</code></td>
+<td><code>python3 src/build.py</code> renders all 12 PNGs (headless Chromium via Playwright), fails on overflow or a limit, and rewrites index.html</td>
+</tr>
+<tr>
+<td><code>src/fonts</code>, <code>src/brand</code></td>
+<td>Inter (OFL), the current Tantra mark and wordmark, Adi's Kie.ai headshot avatar</td>
+</tr>
+<tr>
+<td><code>shots/</code></td>
+<td>Approval page screenshots at 1440 and 390 px</td>
+</tr>
+</tbody>
+</table>
+<h2>Reference Mirrored</h2>
+<p>Our own past profile-branding elements (Growth Idea, FintechCircle and CRMIT, in ~/tantra-redesign/workshop-plan/library/clients/) and Adi's current profile (read through Agent Reach, Jina Reader, 2026-11-05):</p>
+<table>
+<thead>
+<tr>
+<th>Reference block</th>
+<th>Ours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Banner with the hook and "REGISTER FOR OUR WEBINAR BELOW"</td>
+<td>Cover: role hook, webinar day and time, "Register for the live webinar below"</td>
+</tr>
+<tr>
+<td>Headline "Role, Company | what I do | sharing the webinar topic"</td>
+<td>Same shape, ending "register in Featured below"</td>
+</tr>
+<tr>
+<td>Featured image + headline, subheadline, CTA ("Reserve your spot now")</td>
+<td>Featured image + title + description ending "Save your seat"</td>
+</tr>
+<tr>
+<td>Adi's About opens on a pain question</td>
+<td>Every About opens on a specific pain, ends with the invite and link</td>
+</tr>
+</tbody>
+</table>
+<p>The other five profiles are behind LinkedIn's sign-in wall, so their current text could not be read. Adi's public profile still lists growthclub.org and an old booking link as websites; step 6 replaces them with the registration link.</p>
+<h2>What Adi Must Do or Decide</h2>
+<ul>
+<li>Approve or mark changes on index.html.</li>
+<li>Confirm the proposed experience titles: Chief Marketing Officer (Bhaskar), Head of Operations (Nelbin), Automation Lead (Aquila), Chief Technology Officer (Bharath), Development Lead (Ben).</li>
+<li>After approval it is a manual team step: each person follows their steps on index.html, after the item 6 rename is live and <code>domains.funnel_domain</code> is filled.</li>
+</ul>
+<h2>Notes</h2>
+<ul>
+<li>Proof used: 250+ brands, 10+ years, 21+ countries, 47+ industries; Growth Idea measured rows (not named; "a UK business-coaching group") and one experiment-log row (indicative). Neither unverified title claim (the founders count and the monthly revenue range) is printed, so the webinar title choice does not affect these assets.</li>
+<li>Day, time and length come from funnel-config.json at build time; rebuild if they change.</li>
+<li>LinkedIn does not publish limits for the Featured description; descriptions are kept under 200 characters.</li>
+<li>Profile edit URLs (<code>/edit/intro/</code>, <code>/details/featured/</code>, <code>/details/experience/</code>) open the editor when signed in as that person; if LinkedIn lands on the profile instead, use the click path in the same step.</li>
+</ul></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: item 29 (LinkedIn profile branding for the six senders)</h1>
+<p>Done means every line below is checked and marked.</p>
+<ol>
+<li>[x] Six cover images at exactly 1584 x 396 PNG, one per person, same design system (Inter, Tantra tokens, current logo), text kept out of the profile-photo zone (bottom left), promoting the weekly webinar and pointing to the registration link below. No faces.</li>
+<li>[x] Six Featured images at exactly 1200 x 627 PNG, readable at LinkedIn's small Featured card size; the only face is Adi's Kie.ai avatar (host).</li>
+<li>[x] Per person: Featured title (under 60 characters) and Featured description, counted by script.</li>
+<li>[x] Per person: headline (220 characters or fewer), counted by script.</li>
+<li>[x] Per person: About (2,600 characters or fewer), Brian Dean voice (I and you, a specific pain first, short lines), ending with the webinar invite and <code>{{domains.funnel_domain}}</code>.</li>
+<li>[x] Per person: Tantra experience entry: proposed title, description under 2,000 characters with the company copy.</li>
+<li>[x] Proof only from PROOF_PACK.md; neither unverified title claim (founders count, monthly revenue range) printed; no banned words; no em or en dashes.</li>
+<li>[x] Structure mirrors the reference (our own past profile-branding elements and Adi's current profile, read through Agent Reach only): banner caption with "register below", headline in the "Role, Company | what I do | the webinar" shape, Featured image + caption + CTA, About opening on a pain question.</li>
+<li>[x] One approval page (index.html) shows every image and text block as it will appear, with character counts; screenshotted and the images checked at 100%.</li>
+<li>[x] Manual team steps per profile with full URLs, marked as a manual team step after Adi approves; nothing changed on LinkedIn by an agent.</li>
+<li>[x] <code>python3 deliverables/_shared/scan.py deliverables/29-linkedin-profile-branding</code> prints 0 failures.</li>
+<li>[x] Critic (fable) reviewed images and copy; its findings fixed.</li>
+</ol>
+<h2>Result (2026-11-05): 12 of 12 pass</h2>
+<ul>
+<li>Images: 12 PNGs at exact sizes from src/build.py, which fails on any text overflow; checked at 100% and at phone and Featured-card size. Text starts at x 540, clear of the photo on desktop and phone.</li>
+<li>Counts (script): headlines 149 to 193 of 220; Abouts 864 to 1,321 of 2,600; Featured titles 35 to 50 (under 60); Featured descriptions 162 to 186; Experience 1,007 to 1,072 of 2,000.</li>
+<li>Approval page screenshots: shots/approval-1440.png and approval-390.png, no broken images, no sideways scroll.</li>
+<li>scan.py: 0 failures, 0 warnings.</li>
+<li>Critic (fable): pass with fixes. Fixed: "weekly" dropped from the client webinar series; Bhaskar's causal line replaced with two facts; Aquila and Ben lines no longer imply personal credit; cover and Featured small text enlarged, sublines one line; thumbnail upload marked "if offered" with the fallback; the right Tantra page named in the experience step; old links removed before adding the webinar link; the doubled Thursday closing merged into one line.</li>
+</ul></div></details><details class="doc"><summary>Files for import or upload (16)</summary><ul class="files"><li><a href="cards/files/29-linkedin-profile-branding/assets/adi-cover-1584x396.png" target="_blank" rel="noopener">assets/adi-cover-1584x396.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/assets/adi-featured-1200x627.png" target="_blank" rel="noopener">assets/adi-featured-1200x627.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/assets/aquila-cover-1584x396.png" target="_blank" rel="noopener">assets/aquila-cover-1584x396.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/assets/aquila-featured-1200x627.png" target="_blank" rel="noopener">assets/aquila-featured-1200x627.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/assets/ben-cover-1584x396.png" target="_blank" rel="noopener">assets/ben-cover-1584x396.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/assets/ben-featured-1200x627.png" target="_blank" rel="noopener">assets/ben-featured-1200x627.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/assets/bharath-cover-1584x396.png" target="_blank" rel="noopener">assets/bharath-cover-1584x396.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/assets/bharath-featured-1200x627.png" target="_blank" rel="noopener">assets/bharath-featured-1200x627.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/assets/bhaskar-cover-1584x396.png" target="_blank" rel="noopener">assets/bhaskar-cover-1584x396.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/assets/bhaskar-featured-1200x627.png" target="_blank" rel="noopener">assets/bhaskar-featured-1200x627.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/assets/nelbin-cover-1584x396.png" target="_blank" rel="noopener">assets/nelbin-cover-1584x396.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/assets/nelbin-featured-1200x627.png" target="_blank" rel="noopener">assets/nelbin-featured-1200x627.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/copy.json" target="_blank" rel="noopener">copy.json</a></li><li><a href="cards/files/29-linkedin-profile-branding/index.html" target="_blank" rel="noopener">index.html</a></li><li><a href="cards/files/29-linkedin-profile-branding/shots/approval-1440.png" target="_blank" rel="noopener">shots/approval-1440.png</a></li><li><a href="cards/files/29-linkedin-profile-branding/shots/approval-390.png" target="_blank" rel="noopener">shots/approval-390.png</a></li></ul></details>

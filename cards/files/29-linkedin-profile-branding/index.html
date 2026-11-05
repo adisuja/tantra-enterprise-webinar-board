@@ -1,0 +1,530 @@
+<!doctype html><html lang="en"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LinkedIn Profile Branding: Approval</title><style>
+@font-face{font-family:Inter;src:url(src/fonts/inter-var.woff2) format('woff2');font-weight:100 900}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#f3f2ef;color:#0b0d12;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:30px;letter-spacing:-.02em;margin:0 0 6px}
+.lead{color:#5b6472;margin:0 0 18px;max-width:820px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;position:sticky;top:0;background:#f3f2ef;padding:10px 0;z-index:5}
+nav a{background:#fff;border:1px solid #e2e8f0;border-radius:999px;padding:6px 14px;color:#0b0d12;text-decoration:none;font-weight:600;font-size:14px}
+nav a:hover{border-color:#6d4aff;color:#6d4aff}
+.approve{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px 20px;margin-bottom:28px}
+.approve h2{font-size:18px;margin:0 0 8px}
+.approve li{margin:2px 0}
+.person{margin:0 0 56px;scroll-margin-top:60px}
+.ph{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+.ph h2{font-size:24px;margin:0;letter-spacing:-.01em}.ph small{font-weight:500;color:#5b6472;font-size:16px}
+.ph a{color:#5b6472;font-size:13px}
+.cols{display:grid;grid-template-columns:804px 1fr;gap:24px;align-items:start}
+@media (max-width:1150px){.cols{grid-template-columns:minmax(0,1fr)}.li{max-width:804px}}
+.card{background:#fff;border-radius:10px;box-shadow:0 0 0 1px rgba(0,0,0,.08);padding:20px 24px;margin-bottom:10px;position:relative}
+.card h3{font-size:20px;margin:0 0 12px;font-weight:600}
+.card.top{padding:0 0 18px;overflow:hidden}
+.cover{display:block;width:100%;aspect-ratio:4/1}
+.cv{position:relative}.avatar{position:absolute;left:3%;top:44.3%;width:18.9%;aspect-ratio:1;container-type:inline-size;border-radius:50%;background:#c9c3ec;border:4px solid #fff;display:flex;align-items:center;justify-content:center;font-size:clamp(20px,5.5vw,44px);font-weight:700;color:#1a1033}
+.intro{padding:6.5% 24px 0}
+.nm{font-size:24px;font-weight:600}
+.hl{font-size:16px;margin-top:2px}
+.meta{font-size:14px;color:#5b6472;margin-top:6px}
+.lbl{font-size:12.5px;color:#5b6472;margin-top:12px;padding:0 24px 0 0}
+.card.top .lbl{padding-left:24px}
+.lbl code{font-size:11.5px;word-break:break-all}
+.cnt{display:inline-block;font-weight:700;border-radius:6px;padding:1px 7px;font-size:12px}
+.cnt.ok{background:#e7f8f0;color:#047857}.cnt.bad{background:#fdecea;color:#c2410c}
+.txt{white-space:pre-wrap;font-size:14px;overflow-wrap:anywhere}
+.feat{width:300px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden}
+.feat img{display:block;width:100%;aspect-ratio:1.91/1}
+.ft{padding:10px 12px 12px}.ft .tag{font-size:12px;color:#5b6472}.ft b{display:block;font-size:14px;line-height:1.35}.ft p{margin:4px 0 0;font-size:13px;color:#5b6472}
+.exp{display:flex;gap:12px}.exp img{width:48px;height:48px;flex:none}.exp b{font-size:16px}.exp .co{font-size:14px;margin-bottom:8px}
+.side h4{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#5b6472;margin:0 0 8px}
+.phone{position:relative;width:375px;max-width:100%;background:#fff;border-radius:10px;overflow:hidden;padding-bottom:64px;margin-bottom:18px;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.phone img{display:block;width:100%;aspect-ratio:4/1}
+.pav{position:absolute;left:16px;top:44px;width:104px;height:104px;border-radius:50%;background:#c9c3ec;border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:30px;color:#1a1033}
+.side p{font-size:14px}.side a{color:#4b2fd6;overflow-wrap:anywhere}
+.steps{background:#fff;border:1px dashed #6d4aff;border-radius:10px;padding:14px 16px}
+.steps h4{color:#4b2fd6}.steps .who{font-size:13px;color:#5b6472;margin:0 0 6px}
+.steps ol{padding-left:18px;margin:0;font-size:13px}.steps li{margin-bottom:6px}.steps code{font-size:11.5px;word-break:break-all}
+</style></head><body><div class="wrap">
+<h1>LinkedIn Profile Branding for the Six Senders</h1>
+<p class="lead">Every image and every text block exactly as it goes on each profile. Approve, or mark what to change. The registration link stays <code>{{domains.funnel_domain}}</code> until the pages are live.</p>
+<nav><a href="#adi">Adi</a><a href="#bhaskar">Bhaskar</a><a href="#nelbin">Nelbin</a><a href="#aquila">Aquila</a><a href="#bharath">Bharath</a><a href="#ben">Ben</a></nav>
+<div class="approve"><h2>What You Approve</h2><ul>
+<li>6 covers (1584 x 396) and 6 Featured images (1200 x 627); the only face is your Kie.ai avatar on the Featured images, as host.</li>
+<li>Per person: headline, About, Featured title and description, Experience title and description.</li>
+<li>Experience titles for Bhaskar, Nelbin, Aquila, Bharath and Ben are proposed from their roles.</li>
+</ul>
+<div style="overflow-x:auto"><table style="font-size:13px;border-collapse:collapse;margin-top:8px" cellpadding="4"><tr style="text-align:left;color:#5b6472"><th>Characters</th><th>Headline (220)</th><th>About (2,600)</th><th>Featured title (60)</th><th>Featured description</th><th>Experience (2,000)</th></tr><tr><td>Adi</td><td>168</td><td>1,321</td><td>50</td><td>175</td><td>1,007</td></tr><tr><td>Bhaskar</td><td>149</td><td>1,133</td><td>41</td><td>170</td><td>1,072</td></tr><tr><td>Nelbin</td><td>163</td><td>969</td><td>45</td><td>162</td><td>1,056</td></tr><tr><td>Aquila</td><td>160</td><td>1,076</td><td>35</td><td>185</td><td>1,046</td></tr><tr><td>Bharath</td><td>193</td><td>929</td><td>39</td><td>162</td><td>1,049</td></tr><tr><td>Ben</td><td>171</td><td>864</td><td>47</td><td>186</td><td>1,052</td></tr></table></div>
+</div>
+
+<section class="person" id="adi">
+  <header class="ph"><h2>Adi <small>Owner and host</small></h2>
+  <a href="https://www.linkedin.com/in/adisuja/" target="_blank" rel="noopener">https://www.linkedin.com/in/adisuja/</a></header>
+  <div class="cols">
+  <div class="li">
+    <div class="card top">
+      <div class="cv"><img class="cover" src="assets/adi-cover-1584x396.png" alt="Adi cover">
+      <div class="avatar">AM</div></div>
+      <div class="intro"><div class="nm">Adithya Murali</div>
+        <div class="hl">Founder, Tantra | I build AI revenue systems with B2B founders | Every Thursday I show you, live, how a cold list becomes booked sales calls. Register in Featured below</div>
+        <div class="meta">Tantra</div></div>
+      <div class="lbl">Headline <span class="cnt ok">168 / 220</span></div>
+    </div>
+    <div class="card"><h3>Featured</h3>
+      <div class="feat"><img src="assets/adi-featured-1200x627.png" alt="Adi featured"><div class="ft">
+        <div class="tag">Link</div><b>Live Webinar: From Cold List to Booked Sales Calls</b><p>A live 60-minute webinar with me, every Thursday at 10:00 UK time. The invites, reminders and follow-ups that fill a sales calendar, and the parts AI now runs. Save your seat.</p></div></div>
+      <div class="lbl">Title <span class="cnt ok">50 / 60 (under)</span> &nbsp; Description <span class="cnt ok">175 / 300</span></div>
+      <div class="lbl">Link: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=profile&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi-featured</code></div>
+    </div>
+    <div class="card"><h3>About</h3><div class="txt">Referrals got you here. They won&#x27;t get you to next year&#x27;s number.
+
+You know the pattern. A great month, then a quiet one. A pipeline that depends on who introduced you to whom. A marketing budget that produces leads nobody in sales wants to call.
+
+I&#x27;ve spent 10+ years fixing exactly this, for 250+ brands in 47+ industries across 21+ countries.
+
+Here&#x27;s what I found: the companies with predictable revenue don&#x27;t have better luck. They run one measured system:
+
+→ Traffic: calendar invites, cold email and LinkedIn, sent from their own accounts
+→ A registration page that feeds one CRM
+→ Reminders by email and WhatsApp, so registrants actually show up
+→ A live session that ends with the right people asking for a call
+→ One pipeline, and one weekly number for every stage
+
+For a UK business-coaching group we built this around a webinar series. Across 11 webinars: 765,105 people reached, 6,517 registered, 80 sales calls booked.
+
+Today I run Tantra. We build that system with B2B teams, and AI now does most of the repetitive work: the invites, the reminders, the follow-ups.
+
+Every Thursday at 10:00 UK time, I take it apart live, stage by stage, in 60 minutes. You&#x27;ll see how the invites are written, how the reminders are timed, and how 45 minutes turns into booked calls.
+
+Save your seat: {{domains.funnel_domain}}</div>
+      <div class="lbl">About <span class="cnt ok">1,321 / 2,600</span> · first 3 lines before "see more": <em>Referrals got you here. They won&#x27;t get you to next year&#x27;s number.
+
+You know the pattern. A great month, then a quiet one. A pipeline that depends on who introduced you to whom. A marketing budget that produces leads nobody in sales wants to call.</em></div></div>
+    <div class="card"><h3>Experience</h3>
+      <div class="exp"><img src="src/brand/tantra-avatar.jpg" alt="Tantra"><div><b>Founder</b>
+      <div class="co">Tantra</div><div class="txt">I founded Tantra and host our weekly live webinar.
+
+Tantra builds AI revenue systems with B2B companies: the funnel, the outreach, the nurture and the pipeline, wired into one CRM with one weekly number for every stage.
+
+What we build with your team:
+→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts
+→ Capture: registration and booking pages that feed one CRM
+→ Nurture: email and WhatsApp reminders and follow-ups
+→ Conversion: a weekly live webinar that ends in booked sales calls
+→ Pipeline: every booking, call and proposal tracked to the deal
+
+The team behind Tantra has built funnels and outreach for 250+ brands in 47+ industries across 21+ countries, over 10+ years.
+
+Two ways to work with us: the Tantra platform at usetantra.com, or Tantra Enterprise, where we build your funnel with you, coach your team for 3 months and give you a year on the platform.
+
+See the system live: our webinar runs every Thursday at 10:00 UK time. Register at {{domains.funnel_domain}}</div></div></div>
+      <div class="lbl">Title: Founder (matches brand.host_title (Founder, Tantra)) · Description <span class="cnt ok">1,007 / 2,000</span></div></div>
+  </div>
+  <aside class="side">
+    <h4>Phone view</h4>
+    <div class="phone"><img src="assets/adi-cover-1584x396.png" alt=""><div class="pav">AM</div></div>
+    <h4>Files at 100%</h4>
+    <p><a href="assets/adi-cover-1584x396.png" target="_blank">adi-cover-1584x396.png</a><br><a href="assets/adi-featured-1200x627.png" target="_blank">adi-featured-1200x627.png</a></p>
+    <div class="steps"><h4>Manual team step (after Adi approves)</h4>
+<p class="who">Done by Adi, signed in as themself. First: item 6 rename is live and <code>domains.funnel_domain</code> is filled.</p>
+<ol>
+<li><b>Cover:</b> open <a href="https://www.linkedin.com/in/adisuja/" target="_blank">https://www.linkedin.com/in/adisuja/</a>, click the camera icon on the cover, Change photo (or Upload photo), pick <code>adi-cover-1584x396.png</code>, no zoom, Apply, Save.</li>
+<li><b>Headline:</b> open <a href="https://www.linkedin.com/in/adisuja/edit/intro/" target="_blank">https://www.linkedin.com/in/adisuja/edit/intro/</a> (or the pencil beside the name). Headline field: paste the headline. Current position: Tantra. Save.</li>
+<li><b>About:</b> on <a href="https://www.linkedin.com/in/adisuja/" target="_blank">https://www.linkedin.com/in/adisuja/</a>, About section pencil (no About yet: Add profile section, Core, Add about). Paste the About text. Save.</li>
+<li><b>Featured:</b> open <a href="https://www.linkedin.com/in/adisuja/details/featured/" target="_blank">https://www.linkedin.com/in/adisuja/details/featured/</a> (no Featured yet: Add profile section, Recommended, Add featured). Click +, Add a link, paste the link shown under Featured, Add. Replace Title and Description with the ones above. Thumbnail (if LinkedIn offers an upload or Change image): upload <code>adi-featured-1200x627.png</code>; if not, the card shows the registration page's share image. Save. Drag it to first place.</li>
+<li><b>Experience:</b> open <a href="https://www.linkedin.com/in/adisuja/details/experience/" target="_blank">https://www.linkedin.com/in/adisuja/details/experience/</a>. Pencil on the GrowthClub.org or Tantra position (none: + then Add position). Title as above; Company: type Tantra and pick the Tantra page with about 8,810 followers (linkedin.com/company/13588687, the renamed GrowthClub page), not the other Tantra page; Description: paste. Save.</li>
+<li><b>Contact info:</b> on <a href="https://www.linkedin.com/in/adisuja/edit/intro/" target="_blank">https://www.linkedin.com/in/adisuja/edit/intro/</a>, Contact info, Edit. Remove growthclub.org and any old booking link, then Add website: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=profile&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi-contact</code>, type Other, label "Live webinar". Save.</li>
+</ol></div>
+  </aside>
+  </div>
+</section>
+<section class="person" id="bhaskar">
+  <header class="ph"><h2>Bhaskar <small>CMO</small></h2>
+  <a href="https://www.linkedin.com/in/bhaskar-dev/" target="_blank" rel="noopener">https://www.linkedin.com/in/bhaskar-dev/</a></header>
+  <div class="cols">
+  <div class="li">
+    <div class="card top">
+      <div class="cv"><img class="cover" src="assets/bhaskar-cover-1584x396.png" alt="Bhaskar cover">
+      <div class="avatar">B</div></div>
+      <div class="intro"><div class="nm">Bhaskar</div>
+        <div class="hl">CMO, Tantra | Webinar funnels and outreach that book sales calls, not vanity leads | Join our live webinar every Thursday: register in Featured below</div>
+        <div class="meta">Tantra</div></div>
+      <div class="lbl">Headline <span class="cnt ok">149 / 220</span></div>
+    </div>
+    <div class="card"><h3>Featured</h3>
+      <div class="feat"><img src="assets/bhaskar-featured-1200x627.png" alt="Bhaskar featured"><div class="ft">
+        <div class="tag">Link</div><b>The Webinar Funnel That Books Sales Calls</b><p>A live 60-minute webinar with Adi, founder of Tantra, every Thursday at 10:00 UK time. Which invites, pages and reminders actually turn into booked calls. Save your seat.</p></div></div>
+      <div class="lbl">Title <span class="cnt ok">41 / 60 (under)</span> &nbsp; Description <span class="cnt ok">170 / 300</span></div>
+      <div class="lbl">Link: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=profile&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar-featured</code></div>
+    </div>
+    <div class="card"><h3>About</h3><div class="txt">Your dashboard says 1,200 leads this quarter. Sales says they booked nine calls.
+
+If you run marketing, you&#x27;ve sat in that meeting. Every channel is &quot;performing&quot;, and nobody can tell you which post, invite or email put a real buyer on a call.
+
+I&#x27;m the CMO at Tantra. My job is the opposite of vanity metrics: I track every touch from first invite to booked sales call, and I cut what doesn&#x27;t move that number.
+
+The channel I trust most is a weekly live webinar, because every step of it is measurable:
+
+→ Reached
+→ Registered
+→ Came live
+→ Booked a sales call
+
+For a UK business-coaching group, the registration rate went from 0.23% on the first webinar to 2.0% on the best one. Behind it: a weekly analytics sheet and a 12-item experiment log.
+
+That&#x27;s what the team builds with B2B companies at Tantra: the outreach, the pages, the nurture, and the analytics sheet that tells you on Monday which number to fix.
+
+Every Thursday at 10:00 UK time, our founder Adi walks through the whole funnel live in 60 minutes. Bring your own numbers. You&#x27;ll leave knowing which stage of yours is leaking.
+
+Save your seat: {{domains.funnel_domain}}</div>
+      <div class="lbl">About <span class="cnt ok">1,133 / 2,600</span> · first 3 lines before "see more": <em>Your dashboard says 1,200 leads this quarter. Sales says they booked nine calls.
+
+If you run marketing, you&#x27;ve sat in that meeting. Every channel is &quot;performing&quot;, and nobody can tell you which post, invite or email put a real buyer on a call.</em></div></div>
+    <div class="card"><h3>Experience</h3>
+      <div class="exp"><img src="src/brand/tantra-avatar.jpg" alt="Tantra"><div><b>Chief Marketing Officer</b>
+      <div class="co">Tantra</div><div class="txt">I lead marketing: the content, invites and webinars that book sales calls, and the numbers that show which ones do.
+
+Tantra builds AI revenue systems with B2B companies: the funnel, the outreach, the nurture and the pipeline, wired into one CRM with one weekly number for every stage.
+
+What we build with your team:
+→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts
+→ Capture: registration and booking pages that feed one CRM
+→ Nurture: email and WhatsApp reminders and follow-ups
+→ Conversion: a weekly live webinar that ends in booked sales calls
+→ Pipeline: every booking, call and proposal tracked to the deal
+
+The team behind Tantra has built funnels and outreach for 250+ brands in 47+ industries across 21+ countries, over 10+ years.
+
+Two ways to work with us: the Tantra platform at usetantra.com, or Tantra Enterprise, where we build your funnel with you, coach your team for 3 months and give you a year on the platform.
+
+See the system live: our webinar runs every Thursday at 10:00 UK time. Register at {{domains.funnel_domain}}</div></div></div>
+      <div class="lbl">Title: Chief Marketing Officer (proposed from the role (CMO); Adi confirms) · Description <span class="cnt ok">1,072 / 2,000</span></div></div>
+  </div>
+  <aside class="side">
+    <h4>Phone view</h4>
+    <div class="phone"><img src="assets/bhaskar-cover-1584x396.png" alt=""><div class="pav">B</div></div>
+    <h4>Files at 100%</h4>
+    <p><a href="assets/bhaskar-cover-1584x396.png" target="_blank">bhaskar-cover-1584x396.png</a><br><a href="assets/bhaskar-featured-1200x627.png" target="_blank">bhaskar-featured-1200x627.png</a></p>
+    <div class="steps"><h4>Manual team step (after Adi approves)</h4>
+<p class="who">Done by Bhaskar, signed in as themself. First: item 6 rename is live and <code>domains.funnel_domain</code> is filled.</p>
+<ol>
+<li><b>Cover:</b> open <a href="https://www.linkedin.com/in/bhaskar-dev/" target="_blank">https://www.linkedin.com/in/bhaskar-dev/</a>, click the camera icon on the cover, Change photo (or Upload photo), pick <code>bhaskar-cover-1584x396.png</code>, no zoom, Apply, Save.</li>
+<li><b>Headline:</b> open <a href="https://www.linkedin.com/in/bhaskar-dev/edit/intro/" target="_blank">https://www.linkedin.com/in/bhaskar-dev/edit/intro/</a> (or the pencil beside the name). Headline field: paste the headline. Current position: Tantra. Save.</li>
+<li><b>About:</b> on <a href="https://www.linkedin.com/in/bhaskar-dev/" target="_blank">https://www.linkedin.com/in/bhaskar-dev/</a>, About section pencil (no About yet: Add profile section, Core, Add about). Paste the About text. Save.</li>
+<li><b>Featured:</b> open <a href="https://www.linkedin.com/in/bhaskar-dev/details/featured/" target="_blank">https://www.linkedin.com/in/bhaskar-dev/details/featured/</a> (no Featured yet: Add profile section, Recommended, Add featured). Click +, Add a link, paste the link shown under Featured, Add. Replace Title and Description with the ones above. Thumbnail (if LinkedIn offers an upload or Change image): upload <code>bhaskar-featured-1200x627.png</code>; if not, the card shows the registration page's share image. Save. Drag it to first place.</li>
+<li><b>Experience:</b> open <a href="https://www.linkedin.com/in/bhaskar-dev/details/experience/" target="_blank">https://www.linkedin.com/in/bhaskar-dev/details/experience/</a>. Pencil on the GrowthClub.org or Tantra position (none: + then Add position). Title as above; Company: type Tantra and pick the Tantra page with about 8,810 followers (linkedin.com/company/13588687, the renamed GrowthClub page), not the other Tantra page; Description: paste. Save.</li>
+<li><b>Contact info:</b> on <a href="https://www.linkedin.com/in/bhaskar-dev/edit/intro/" target="_blank">https://www.linkedin.com/in/bhaskar-dev/edit/intro/</a>, Contact info, Edit. Remove growthclub.org and any old booking link, then Add website: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=profile&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar-contact</code>, type Other, label "Live webinar". Save.</li>
+</ol></div>
+  </aside>
+  </div>
+</section>
+<section class="person" id="nelbin">
+  <header class="ph"><h2>Nelbin <small>Operations</small></h2>
+  <a href="https://www.linkedin.com/in/nelbin-xav/" target="_blank" rel="noopener">https://www.linkedin.com/in/nelbin-xav/</a></header>
+  <div class="cols">
+  <div class="li">
+    <div class="card top">
+      <div class="cv"><img class="cover" src="assets/nelbin-cover-1584x396.png" alt="Nelbin cover">
+      <div class="avatar">N</div></div>
+      <div class="intro"><div class="nm">Nelbin</div>
+        <div class="hl">Head of Operations, Tantra | I give every stage of a B2B funnel an owner, a checklist and a weekly number | Live webinar every Thursday: register in Featured below</div>
+        <div class="meta">Tantra</div></div>
+      <div class="lbl">Headline <span class="cnt ok">163 / 220</span></div>
+    </div>
+    <div class="card"><h3>Featured</h3>
+      <div class="feat"><img src="assets/nelbin-featured-1200x627.png" alt="Nelbin featured"><div class="ft">
+        <div class="tag">Link</div><b>How to Run a Webinar Funnel Every Single Week</b><p>A live 60-minute webinar with Adi, founder of Tantra, every Thursday at 10:00 UK time. The weekly rhythm behind a funnel that keeps booking calls. Save your seat.</p></div></div>
+      <div class="lbl">Title <span class="cnt ok">45 / 60 (under)</span> &nbsp; Description <span class="cnt ok">162 / 300</span></div>
+      <div class="lbl">Link: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=profile&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin-featured</code></div>
+    </div>
+    <div class="card"><h3>About</h3><div class="txt">The launch went fine. It&#x27;s week six that breaks.
+
+You&#x27;ve seen it. Week one gets everyone&#x27;s attention. By week six the reminder didn&#x27;t go out, the replay link is wrong, and nobody knows who was meant to follow up with the people who asked a question.
+
+Funnels rarely fail because of a bad idea. They fail because nobody owns the boring parts.
+
+I run operations at Tantra. For every stage of a client&#x27;s funnel I set three things:
+
+→ One owner
+→ One checklist
+→ One number we check every week
+
+That&#x27;s how a webinar keeps running instead of happening once. One client ran 11 webinars from May 2025 to February 2026, with a weekly analytics sheet and a 12-item experiment log behind them.
+
+If you run operations, you know the real problem: work that depends on someone remembering.
+
+Every Thursday at 10:00 UK time, our founder Adi takes the whole funnel apart live in 60 minutes, including the weekly rhythm that keeps it running.
+
+Save your seat: {{domains.funnel_domain}}</div>
+      <div class="lbl">About <span class="cnt ok">969 / 2,600</span> · first 3 lines before "see more": <em>The launch went fine. It&#x27;s week six that breaks.
+
+You&#x27;ve seen it. Week one gets everyone&#x27;s attention. By week six the reminder didn&#x27;t go out, the replay link is wrong, and nobody knows who was meant to follow up with the people who asked a question.</em></div></div>
+    <div class="card"><h3>Experience</h3>
+      <div class="exp"><img src="src/brand/tantra-avatar.jpg" alt="Tantra"><div><b>Head of Operations</b>
+      <div class="co">Tantra</div><div class="txt">I run operations: an owner, a checklist and a weekly number for every stage of every client funnel.
+
+Tantra builds AI revenue systems with B2B companies: the funnel, the outreach, the nurture and the pipeline, wired into one CRM with one weekly number for every stage.
+
+What we build with your team:
+→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts
+→ Capture: registration and booking pages that feed one CRM
+→ Nurture: email and WhatsApp reminders and follow-ups
+→ Conversion: a weekly live webinar that ends in booked sales calls
+→ Pipeline: every booking, call and proposal tracked to the deal
+
+The team behind Tantra has built funnels and outreach for 250+ brands in 47+ industries across 21+ countries, over 10+ years.
+
+Two ways to work with us: the Tantra platform at usetantra.com, or Tantra Enterprise, where we build your funnel with you, coach your team for 3 months and give you a year on the platform.
+
+See the system live: our webinar runs every Thursday at 10:00 UK time. Register at {{domains.funnel_domain}}</div></div></div>
+      <div class="lbl">Title: Head of Operations (proposed from the role (operations); Adi confirms) · Description <span class="cnt ok">1,056 / 2,000</span></div></div>
+  </div>
+  <aside class="side">
+    <h4>Phone view</h4>
+    <div class="phone"><img src="assets/nelbin-cover-1584x396.png" alt=""><div class="pav">N</div></div>
+    <h4>Files at 100%</h4>
+    <p><a href="assets/nelbin-cover-1584x396.png" target="_blank">nelbin-cover-1584x396.png</a><br><a href="assets/nelbin-featured-1200x627.png" target="_blank">nelbin-featured-1200x627.png</a></p>
+    <div class="steps"><h4>Manual team step (after Adi approves)</h4>
+<p class="who">Done by Nelbin, signed in as themself. First: item 6 rename is live and <code>domains.funnel_domain</code> is filled.</p>
+<ol>
+<li><b>Cover:</b> open <a href="https://www.linkedin.com/in/nelbin-xav/" target="_blank">https://www.linkedin.com/in/nelbin-xav/</a>, click the camera icon on the cover, Change photo (or Upload photo), pick <code>nelbin-cover-1584x396.png</code>, no zoom, Apply, Save.</li>
+<li><b>Headline:</b> open <a href="https://www.linkedin.com/in/nelbin-xav/edit/intro/" target="_blank">https://www.linkedin.com/in/nelbin-xav/edit/intro/</a> (or the pencil beside the name). Headline field: paste the headline. Current position: Tantra. Save.</li>
+<li><b>About:</b> on <a href="https://www.linkedin.com/in/nelbin-xav/" target="_blank">https://www.linkedin.com/in/nelbin-xav/</a>, About section pencil (no About yet: Add profile section, Core, Add about). Paste the About text. Save.</li>
+<li><b>Featured:</b> open <a href="https://www.linkedin.com/in/nelbin-xav/details/featured/" target="_blank">https://www.linkedin.com/in/nelbin-xav/details/featured/</a> (no Featured yet: Add profile section, Recommended, Add featured). Click +, Add a link, paste the link shown under Featured, Add. Replace Title and Description with the ones above. Thumbnail (if LinkedIn offers an upload or Change image): upload <code>nelbin-featured-1200x627.png</code>; if not, the card shows the registration page's share image. Save. Drag it to first place.</li>
+<li><b>Experience:</b> open <a href="https://www.linkedin.com/in/nelbin-xav/details/experience/" target="_blank">https://www.linkedin.com/in/nelbin-xav/details/experience/</a>. Pencil on the GrowthClub.org or Tantra position (none: + then Add position). Title as above; Company: type Tantra and pick the Tantra page with about 8,810 followers (linkedin.com/company/13588687, the renamed GrowthClub page), not the other Tantra page; Description: paste. Save.</li>
+<li><b>Contact info:</b> on <a href="https://www.linkedin.com/in/nelbin-xav/edit/intro/" target="_blank">https://www.linkedin.com/in/nelbin-xav/edit/intro/</a>, Contact info, Edit. Remove growthclub.org and any old booking link, then Add website: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=profile&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin-contact</code>, type Other, label "Live webinar". Save.</li>
+</ol></div>
+  </aside>
+  </div>
+</section>
+<section class="person" id="aquila">
+  <header class="ph"><h2>Aquila <small>Automation</small></h2>
+  <a href="https://www.linkedin.com/in/aquilaeldho/" target="_blank" rel="noopener">https://www.linkedin.com/in/aquilaeldho/</a></header>
+  <div class="cols">
+  <div class="li">
+    <div class="card top">
+      <div class="cv"><img class="cover" src="assets/aquila-cover-1584x396.png" alt="Aquila cover">
+      <div class="avatar">AE</div></div>
+      <div class="intro"><div class="nm">Aquila Eldho</div>
+        <div class="hl">Automation Lead, Tantra | I automate the reminders, follow-ups and handoffs B2B teams still do by hand | Live webinar every Thursday: register in Featured below</div>
+        <div class="meta">Tantra</div></div>
+      <div class="lbl">Headline <span class="cnt ok">160 / 220</span></div>
+    </div>
+    <div class="card"><h3>Featured</h3>
+      <div class="feat"><img src="assets/aquila-featured-1200x627.png" alt="Aquila featured"><div class="ft">
+        <div class="tag">Link</div><b>The Follow-Ups That Run Without You</b><p>A live 60-minute webinar with Adi, founder of Tantra, every Thursday at 10:00 UK time. The reminders, follow-ups and handoffs AI runs, and the parts that still need you. Save your seat.</p></div></div>
+      <div class="lbl">Title <span class="cnt ok">35 / 60 (under)</span> &nbsp; Description <span class="cnt ok">185 / 300</span></div>
+      <div class="lbl">Link: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=profile&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila-featured</code></div>
+    </div>
+    <div class="card"><h3>About</h3><div class="txt">Someone registers for your webinar on Monday. By Thursday they&#x27;ve forgotten why.
+
+Nobody sent the reminder. Or it went out at 2am their time. Or it landed in an inbox they check once a week.
+
+Most of what happens between &quot;registered&quot; and &quot;booked a call&quot; is repetitive work: reminders, follow-ups, handoffs to sales. None of it should depend on a person remembering.
+
+I build the automation at Tantra. My work sits in those gaps:
+
+→ Reminders by email and WhatsApp, timed to each registrant
+→ Follow-ups that change with what each person did: came live, left early, didn&#x27;t show
+→ Handoffs that put a booked call in front of the right closer, with the context attached
+
+Tantra now runs most of this across Gmail, LinkedIn and WhatsApp, from your own accounts.
+
+In one client&#x27;s best webinar, 1,990 people registered and 321 came live. That gap is where automation earns its keep.
+
+Every Thursday at 10:00 UK time, our founder Adi shows the whole system live in 60 minutes, including exactly which parts AI runs and which still need you.
+
+Save your seat: {{domains.funnel_domain}}</div>
+      <div class="lbl">About <span class="cnt ok">1,076 / 2,600</span> · first 3 lines before "see more": <em>Someone registers for your webinar on Monday. By Thursday they&#x27;ve forgotten why.
+
+Nobody sent the reminder. Or it went out at 2am their time. Or it landed in an inbox they check once a week.</em></div></div>
+    <div class="card"><h3>Experience</h3>
+      <div class="exp"><img src="src/brand/tantra-avatar.jpg" alt="Tantra"><div><b>Automation Lead</b>
+      <div class="co">Tantra</div><div class="txt">I build the automation: the reminders, follow-ups and handoffs that run without a person.
+
+Tantra builds AI revenue systems with B2B companies: the funnel, the outreach, the nurture and the pipeline, wired into one CRM with one weekly number for every stage.
+
+What we build with your team:
+→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts
+→ Capture: registration and booking pages that feed one CRM
+→ Nurture: email and WhatsApp reminders and follow-ups
+→ Conversion: a weekly live webinar that ends in booked sales calls
+→ Pipeline: every booking, call and proposal tracked to the deal
+
+The team behind Tantra has built funnels and outreach for 250+ brands in 47+ industries across 21+ countries, over 10+ years.
+
+Two ways to work with us: the Tantra platform at usetantra.com, or Tantra Enterprise, where we build your funnel with you, coach your team for 3 months and give you a year on the platform.
+
+See the system live: our webinar runs every Thursday at 10:00 UK time. Register at {{domains.funnel_domain}}</div></div></div>
+      <div class="lbl">Title: Automation Lead (proposed from the role (automation); Adi confirms) · Description <span class="cnt ok">1,046 / 2,000</span></div></div>
+  </div>
+  <aside class="side">
+    <h4>Phone view</h4>
+    <div class="phone"><img src="assets/aquila-cover-1584x396.png" alt=""><div class="pav">AE</div></div>
+    <h4>Files at 100%</h4>
+    <p><a href="assets/aquila-cover-1584x396.png" target="_blank">aquila-cover-1584x396.png</a><br><a href="assets/aquila-featured-1200x627.png" target="_blank">aquila-featured-1200x627.png</a></p>
+    <div class="steps"><h4>Manual team step (after Adi approves)</h4>
+<p class="who">Done by Aquila, signed in as themself. First: item 6 rename is live and <code>domains.funnel_domain</code> is filled.</p>
+<ol>
+<li><b>Cover:</b> open <a href="https://www.linkedin.com/in/aquilaeldho/" target="_blank">https://www.linkedin.com/in/aquilaeldho/</a>, click the camera icon on the cover, Change photo (or Upload photo), pick <code>aquila-cover-1584x396.png</code>, no zoom, Apply, Save.</li>
+<li><b>Headline:</b> open <a href="https://www.linkedin.com/in/aquilaeldho/edit/intro/" target="_blank">https://www.linkedin.com/in/aquilaeldho/edit/intro/</a> (or the pencil beside the name). Headline field: paste the headline. Current position: Tantra. Save.</li>
+<li><b>About:</b> on <a href="https://www.linkedin.com/in/aquilaeldho/" target="_blank">https://www.linkedin.com/in/aquilaeldho/</a>, About section pencil (no About yet: Add profile section, Core, Add about). Paste the About text. Save.</li>
+<li><b>Featured:</b> open <a href="https://www.linkedin.com/in/aquilaeldho/details/featured/" target="_blank">https://www.linkedin.com/in/aquilaeldho/details/featured/</a> (no Featured yet: Add profile section, Recommended, Add featured). Click +, Add a link, paste the link shown under Featured, Add. Replace Title and Description with the ones above. Thumbnail (if LinkedIn offers an upload or Change image): upload <code>aquila-featured-1200x627.png</code>; if not, the card shows the registration page's share image. Save. Drag it to first place.</li>
+<li><b>Experience:</b> open <a href="https://www.linkedin.com/in/aquilaeldho/details/experience/" target="_blank">https://www.linkedin.com/in/aquilaeldho/details/experience/</a>. Pencil on the GrowthClub.org or Tantra position (none: + then Add position). Title as above; Company: type Tantra and pick the Tantra page with about 8,810 followers (linkedin.com/company/13588687, the renamed GrowthClub page), not the other Tantra page; Description: paste. Save.</li>
+<li><b>Contact info:</b> on <a href="https://www.linkedin.com/in/aquilaeldho/edit/intro/" target="_blank">https://www.linkedin.com/in/aquilaeldho/edit/intro/</a>, Contact info, Edit. Remove growthclub.org and any old booking link, then Add website: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=profile&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila-contact</code>, type Other, label "Live webinar". Save.</li>
+</ol></div>
+  </aside>
+  </div>
+</section>
+<section class="person" id="bharath">
+  <header class="ph"><h2>Bharath <small>CTO</small></h2>
+  <a href="https://www.linkedin.com/in/bkp31415/" target="_blank" rel="noopener">https://www.linkedin.com/in/bkp31415/</a></header>
+  <div class="cols">
+  <div class="li">
+    <div class="card top">
+      <div class="cv"><img class="cover" src="assets/bharath-cover-1584x396.png" alt="Bharath cover">
+      <div class="avatar">B</div></div>
+      <div class="intro"><div class="nm">Bharath</div>
+        <div class="hl">CTO, Tantra | I connect the stack behind B2B funnels so no lead gets lost between tools, and build the AI agents that run the follow-up | Live webinar every Thursday: register in Featured below</div>
+        <div class="meta">Tantra</div></div>
+      <div class="lbl">Headline <span class="cnt ok">193 / 220</span></div>
+    </div>
+    <div class="card"><h3>Featured</h3>
+      <div class="feat"><img src="assets/bharath-featured-1200x627.png" alt="Bharath featured"><div class="ft">
+        <div class="tag">Link</div><b>Where Leads Get Lost Between Your Tools</b><p>A live 60-minute webinar with Adi, founder of Tantra, every Thursday at 10:00 UK time. How every form, booking and webinar event lands in one CRM. Save your seat.</p></div></div>
+      <div class="lbl">Title <span class="cnt ok">39 / 60 (under)</span> &nbsp; Description <span class="cnt ok">162 / 300</span></div>
+      <div class="lbl">Link: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=profile&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath-featured</code></div>
+    </div>
+    <div class="card"><h3>About</h3><div class="txt">Your form tool, your webinar platform, your CRM and your email tool all say they &quot;integrate&quot;. Then a lead registers and shows up in three of the four.
+
+Most B2B stacks leak at the joins. The lead isn&#x27;t lost inside a tool. It&#x27;s lost between two of them, and nobody notices until a sales rep asks why the CRM record is empty.
+
+I&#x27;m the CTO at Tantra. I build the layer that connects it all:
+
+→ Every form, booking and webinar event posts to one CRM
+→ Every link is tagged by source, so you know which channel produced the call
+→ AI agents send the invites, reminders and follow-ups from your own Gmail, LinkedIn and WhatsApp
+
+One record per person, from first invite to signed client. That&#x27;s the whole idea.
+
+Every Thursday at 10:00 UK time, our founder Adi maps the full funnel live in 60 minutes. If you own the stack, watch where each event goes and which system is the source of truth.
+
+Save your seat: {{domains.funnel_domain}}</div>
+      <div class="lbl">About <span class="cnt ok">929 / 2,600</span> · first 3 lines before "see more": <em>Your form tool, your webinar platform, your CRM and your email tool all say they &quot;integrate&quot;. Then a lead registers and shows up in three of the four.
+
+Most B2B stacks leak at the joins. The lead isn&#x27;t lost inside a tool. It&#x27;s lost between two of them, and nobody notices until a sales rep asks why the CRM record is empty.</em></div></div>
+    <div class="card"><h3>Experience</h3>
+      <div class="exp"><img src="src/brand/tantra-avatar.jpg" alt="Tantra"><div><b>Chief Technology Officer</b>
+      <div class="co">Tantra</div><div class="txt">I lead technology: the stack, the integrations and the AI agents behind every Tantra funnel.
+
+Tantra builds AI revenue systems with B2B companies: the funnel, the outreach, the nurture and the pipeline, wired into one CRM with one weekly number for every stage.
+
+What we build with your team:
+→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts
+→ Capture: registration and booking pages that feed one CRM
+→ Nurture: email and WhatsApp reminders and follow-ups
+→ Conversion: a weekly live webinar that ends in booked sales calls
+→ Pipeline: every booking, call and proposal tracked to the deal
+
+The team behind Tantra has built funnels and outreach for 250+ brands in 47+ industries across 21+ countries, over 10+ years.
+
+Two ways to work with us: the Tantra platform at usetantra.com, or Tantra Enterprise, where we build your funnel with you, coach your team for 3 months and give you a year on the platform.
+
+See the system live: our webinar runs every Thursday at 10:00 UK time. Register at {{domains.funnel_domain}}</div></div></div>
+      <div class="lbl">Title: Chief Technology Officer (proposed from the role (CTO); Adi confirms) · Description <span class="cnt ok">1,049 / 2,000</span></div></div>
+  </div>
+  <aside class="side">
+    <h4>Phone view</h4>
+    <div class="phone"><img src="assets/bharath-cover-1584x396.png" alt=""><div class="pav">B</div></div>
+    <h4>Files at 100%</h4>
+    <p><a href="assets/bharath-cover-1584x396.png" target="_blank">bharath-cover-1584x396.png</a><br><a href="assets/bharath-featured-1200x627.png" target="_blank">bharath-featured-1200x627.png</a></p>
+    <div class="steps"><h4>Manual team step (after Adi approves)</h4>
+<p class="who">Done by Bharath, signed in as themself. First: item 6 rename is live and <code>domains.funnel_domain</code> is filled.</p>
+<ol>
+<li><b>Cover:</b> open <a href="https://www.linkedin.com/in/bkp31415/" target="_blank">https://www.linkedin.com/in/bkp31415/</a>, click the camera icon on the cover, Change photo (or Upload photo), pick <code>bharath-cover-1584x396.png</code>, no zoom, Apply, Save.</li>
+<li><b>Headline:</b> open <a href="https://www.linkedin.com/in/bkp31415/edit/intro/" target="_blank">https://www.linkedin.com/in/bkp31415/edit/intro/</a> (or the pencil beside the name). Headline field: paste the headline. Current position: Tantra. Save.</li>
+<li><b>About:</b> on <a href="https://www.linkedin.com/in/bkp31415/" target="_blank">https://www.linkedin.com/in/bkp31415/</a>, About section pencil (no About yet: Add profile section, Core, Add about). Paste the About text. Save.</li>
+<li><b>Featured:</b> open <a href="https://www.linkedin.com/in/bkp31415/details/featured/" target="_blank">https://www.linkedin.com/in/bkp31415/details/featured/</a> (no Featured yet: Add profile section, Recommended, Add featured). Click +, Add a link, paste the link shown under Featured, Add. Replace Title and Description with the ones above. Thumbnail (if LinkedIn offers an upload or Change image): upload <code>bharath-featured-1200x627.png</code>; if not, the card shows the registration page's share image. Save. Drag it to first place.</li>
+<li><b>Experience:</b> open <a href="https://www.linkedin.com/in/bkp31415/details/experience/" target="_blank">https://www.linkedin.com/in/bkp31415/details/experience/</a>. Pencil on the GrowthClub.org or Tantra position (none: + then Add position). Title as above; Company: type Tantra and pick the Tantra page with about 8,810 followers (linkedin.com/company/13588687, the renamed GrowthClub page), not the other Tantra page; Description: paste. Save.</li>
+<li><b>Contact info:</b> on <a href="https://www.linkedin.com/in/bkp31415/edit/intro/" target="_blank">https://www.linkedin.com/in/bkp31415/edit/intro/</a>, Contact info, Edit. Remove growthclub.org and any old booking link, then Add website: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=profile&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath-contact</code>, type Other, label "Live webinar". Save.</li>
+</ol></div>
+  </aside>
+  </div>
+</section>
+<section class="person" id="ben">
+  <header class="ph"><h2>Ben <small>Development</small></h2>
+  <a href="https://www.linkedin.com/in/ben-basil-tomy-5533b9218/" target="_blank" rel="noopener">https://www.linkedin.com/in/ben-basil-tomy-5533b9218/</a></header>
+  <div class="cols">
+  <div class="li">
+    <div class="card top">
+      <div class="cv"><img class="cover" src="assets/ben-cover-1584x396.png" alt="Ben cover">
+      <div class="avatar">BB</div></div>
+      <div class="intro"><div class="nm">Ben Basil Tomy</div>
+        <div class="hl">Development Lead, Tantra | I build the pages, forms and tracking behind B2B webinar funnels, then test what stays | Live webinar every Thursday: register in Featured below</div>
+        <div class="meta">Tantra</div></div>
+      <div class="lbl">Headline <span class="cnt ok">171 / 220</span></div>
+    </div>
+    <div class="card"><h3>Featured</h3>
+      <div class="feat"><img src="assets/ben-featured-1200x627.png" alt="Ben featured"><div class="ft">
+        <div class="tag">Link</div><b>The Pages Behind a Webinar Funnel That Converts</b><p>A live 60-minute webinar with Adi, founder of Tantra, every Thursday at 10:00 UK time. The registration, thank-you and replay pages, and the tests that decide what stays. Save your seat.</p></div></div>
+      <div class="lbl">Title <span class="cnt ok">47 / 60 (under)</span> &nbsp; Description <span class="cnt ok">186 / 300</span></div>
+      <div class="lbl">Link: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=profile&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben-featured</code></div>
+    </div>
+    <div class="card"><h3>About</h3><div class="txt">You spent three weeks on the landing page. Nobody can tell you if it worked.
+
+No source tags on the links. A form that posts to an inbox. A thank-you page with no next step. The page &quot;launched&quot;, and that&#x27;s the last anyone heard of it.
+
+I build the pages and tracking for Tantra&#x27;s client funnels:
+
+→ Registration, thank-you and replay pages
+→ Forms that post every sign-up straight to the CRM
+→ Source tags on every link, so each registration has a channel
+→ Tests that decide which version stays
+
+One client tested a long landing page against a short one. The long page aimed for 70 registrations and got 96. Without the test, nobody would have known which one to keep.
+
+Every Thursday at 10:00 UK time, our founder Adi takes the whole funnel apart live in 60 minutes, including the pages and what we measure on each one.
+
+Save your seat: {{domains.funnel_domain}}</div>
+      <div class="lbl">About <span class="cnt ok">864 / 2,600</span> · first 3 lines before "see more": <em>You spent three weeks on the landing page. Nobody can tell you if it worked.
+
+No source tags on the links. A form that posts to an inbox. A thank-you page with no next step. The page &quot;launched&quot;, and that&#x27;s the last anyone heard of it.</em></div></div>
+    <div class="card"><h3>Experience</h3>
+      <div class="exp"><img src="src/brand/tantra-avatar.jpg" alt="Tantra"><div><b>Development Lead</b>
+      <div class="co">Tantra</div><div class="txt">I build the pages, forms and tracking for client funnels, and the tests that decide what stays.
+
+Tantra builds AI revenue systems with B2B companies: the funnel, the outreach, the nurture and the pipeline, wired into one CRM with one weekly number for every stage.
+
+What we build with your team:
+→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts
+→ Capture: registration and booking pages that feed one CRM
+→ Nurture: email and WhatsApp reminders and follow-ups
+→ Conversion: a weekly live webinar that ends in booked sales calls
+→ Pipeline: every booking, call and proposal tracked to the deal
+
+The team behind Tantra has built funnels and outreach for 250+ brands in 47+ industries across 21+ countries, over 10+ years.
+
+Two ways to work with us: the Tantra platform at usetantra.com, or Tantra Enterprise, where we build your funnel with you, coach your team for 3 months and give you a year on the platform.
+
+See the system live: our webinar runs every Thursday at 10:00 UK time. Register at {{domains.funnel_domain}}</div></div></div>
+      <div class="lbl">Title: Development Lead (proposed from the role (development); Adi confirms) · Description <span class="cnt ok">1,052 / 2,000</span></div></div>
+  </div>
+  <aside class="side">
+    <h4>Phone view</h4>
+    <div class="phone"><img src="assets/ben-cover-1584x396.png" alt=""><div class="pav">BB</div></div>
+    <h4>Files at 100%</h4>
+    <p><a href="assets/ben-cover-1584x396.png" target="_blank">ben-cover-1584x396.png</a><br><a href="assets/ben-featured-1200x627.png" target="_blank">ben-featured-1200x627.png</a></p>
+    <div class="steps"><h4>Manual team step (after Adi approves)</h4>
+<p class="who">Done by Ben, signed in as themself. First: item 6 rename is live and <code>domains.funnel_domain</code> is filled.</p>
+<ol>
+<li><b>Cover:</b> open <a href="https://www.linkedin.com/in/ben-basil-tomy-5533b9218/" target="_blank">https://www.linkedin.com/in/ben-basil-tomy-5533b9218/</a>, click the camera icon on the cover, Change photo (or Upload photo), pick <code>ben-cover-1584x396.png</code>, no zoom, Apply, Save.</li>
+<li><b>Headline:</b> open <a href="https://www.linkedin.com/in/ben-basil-tomy-5533b9218/edit/intro/" target="_blank">https://www.linkedin.com/in/ben-basil-tomy-5533b9218/edit/intro/</a> (or the pencil beside the name). Headline field: paste the headline. Current position: Tantra. Save.</li>
+<li><b>About:</b> on <a href="https://www.linkedin.com/in/ben-basil-tomy-5533b9218/" target="_blank">https://www.linkedin.com/in/ben-basil-tomy-5533b9218/</a>, About section pencil (no About yet: Add profile section, Core, Add about). Paste the About text. Save.</li>
+<li><b>Featured:</b> open <a href="https://www.linkedin.com/in/ben-basil-tomy-5533b9218/details/featured/" target="_blank">https://www.linkedin.com/in/ben-basil-tomy-5533b9218/details/featured/</a> (no Featured yet: Add profile section, Recommended, Add featured). Click +, Add a link, paste the link shown under Featured, Add. Replace Title and Description with the ones above. Thumbnail (if LinkedIn offers an upload or Change image): upload <code>ben-featured-1200x627.png</code>; if not, the card shows the registration page's share image. Save. Drag it to first place.</li>
+<li><b>Experience:</b> open <a href="https://www.linkedin.com/in/ben-basil-tomy-5533b9218/details/experience/" target="_blank">https://www.linkedin.com/in/ben-basil-tomy-5533b9218/details/experience/</a>. Pencil on the GrowthClub.org or Tantra position (none: + then Add position). Title as above; Company: type Tantra and pick the Tantra page with about 8,810 followers (linkedin.com/company/13588687, the renamed GrowthClub page), not the other Tantra page; Description: paste. Save.</li>
+<li><b>Contact info:</b> on <a href="https://www.linkedin.com/in/ben-basil-tomy-5533b9218/edit/intro/" target="_blank">https://www.linkedin.com/in/ben-basil-tomy-5533b9218/edit/intro/</a>, Contact info, Edit. Remove growthclub.org and any old booking link, then Add website: <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=profile&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben-contact</code>, type Other, label "Live webinar". Save.</li>
+</ol></div>
+  </aside>
+  </div>
+</section>
+</div></body></html>

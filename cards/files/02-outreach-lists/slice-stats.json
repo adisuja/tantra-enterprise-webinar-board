@@ -2,14 +2,14 @@
  "_about": "Count-only stats from slice_enterprise_lists.py. No email, name or recipient domain.",
  "master_sha256_prefix": "471e2415af35d28a (first 1 MiB)",
  "params": {
-  "weeks": 10,
+  "first_webinar": "2026-11-12",
   "week_size": 100000,
   "pools": 4,
+  "max_weeks": 40,
+  "caps": "0,0,0,0,5040,10080,10080,8640,8640,10080,25200,37800,50400,75600",
+  "p0_caps": "1750,1750,1750,1750",
   "domain_week_cap": 3,
   "domain_total_cap": 30,
-  "ramp": "22000,22000,22000,17600,17600,22000,55000,55000,55000,55000",
-  "ramp_start_week": 4,
-  "day0": "2026-11-09",
   "min_gap_days": 60
  },
  "funnel": {
@@ -19,626 +19,936 @@
   "dropped_role": 2931,
   "dropped_declined": 154792,
   "excluded_edu_gov_mil": 115161,
-  "dropped_duplicate_email": 0,
-  "warm_total": 20776,
-  "warm_held_gdpr_review": 1849,
-  "warm_list": 18927,
-  "cold_held_gdpr_review": 391906,
-  "cold_personal_mailbox_dropped": 29403,
-  "cold_usable": 2037463
+  "outside_eu_uk": 2085136,
+  "eu_uk_dropped_personal_mailbox": 370,
+  "dropped_duplicate_email": 0
+ },
+ "usable_total": 394042,
+ "usable_by_language_tier": {
+  "1": {
+   "rows": 127218,
+   "warm": 467
+  },
+  "2": {
+   "rows": 79393,
+   "warm": 277
+  },
+  "3": {
+   "rows": 187431,
+   "warm": 1091
+  }
+ },
+ "usable_by_country": {
+  "United Kingdom": 118817,
+  "Netherlands": 41320,
+  "Germany": 41157,
+  "France": 29633,
+  "Italy": 20450,
+  "Switzerland": 17936,
+  "Sweden": 15667,
+  "Poland": 14489,
+  "Belgium": 13979,
+  "European Union": 12238,
+  "Spain": 10926,
+  "Denmark": 7856,
+  "Ireland": 7515,
+  "Finland": 7342,
+  "Portugal": 6581,
+  "Norway": 6543,
+  "Austria": 4875,
+  "Romania": 2813,
+  "Greece": 2062,
+  "Czechia": 2031,
+  "Hungary": 1714,
+  "Luxembourg": 1227,
+  "Estonia": 1118,
+  "Lithuania": 913,
+  "Slovakia": 913,
+  "Slovenia": 830,
+  "Iceland": 665,
+  "Cyprus": 539,
+  "United Kingdom (.london)": 491,
+  "Croatia": 396,
+  "Bulgaria": 363,
+  "Malta": 229,
+  "Liechtenstein": 135,
+  "Latvia": 113,
+  "United Kingdom (.scot)": 84,
+  "United Kingdom (.wales)": 57,
+  "United Kingdom (.cymru)": 25
+ },
+ "usable_by_fit": {
+  "A": 36488,
+  "B": 328071,
+  "C": 29483
  },
  "reinvite_gap": {
   "last_invited_date_min": "2026-07-22",
   "last_invited_date_max": "2026-10-19",
-  "last_invited_date_blank": 22986,
+  "last_invited_date_blank": 1917,
   "rows_by_last_invited_month": {
-   "2026-07": 211645,
-   "2026-08": 637386,
-   "2026-09": 712732,
-   "2026-10": 471641
+   "2026-07": 108883,
+   "2026-08": 184345,
+   "2026-09": 95216,
+   "2026-10": 3681
   },
-  "week_starts": {
-   "R01": "2026-11-30",
-   "R02": "2026-12-07",
-   "R03": "2026-12-14",
-   "R04": "2026-12-21",
-   "R05": "2026-12-28",
-   "R06": "2027-01-04",
-   "R07": "2027-01-11",
-   "R08": "2027-01-18",
-   "R09": "2027-01-25",
-   "R10": "2027-02-01",
-   "S01": "2027-02-08",
-   "S02": "2027-02-15",
-   "S03": "2027-02-22",
-   "S04": "2027-03-01",
-   "S05": "2027-03-08",
-   "S06": "2027-03-15",
-   "S07": "2027-03-22",
-   "S08": "2027-03-29",
-   "S09": "2027-04-05",
-   "S10": "2027-04-12"
-  },
-  "cold_rows_too_recent_for_week": {
-   "R01": 427587,
-   "R02": 254513,
-   "R03": 98510,
-   "R04": 0,
-   "R05": 0,
-   "R06": 0,
-   "R07": 0,
-   "R08": 0,
-   "R09": 0,
-   "R10": 0,
-   "S01": 0
+  "too_recent_at_window": {
+   "S01 (2026-11-05)": 61547,
+   "S02 (2026-11-12)": 37885,
+   "S03 (2026-11-19)": 20601,
+   "S04 (2026-11-26)": 6013,
+   "S05 (2026-12-03)": 2735,
+   "S06 (2026-12-10)": 1917
   }
  },
- "cold_usable_by_tier": {
-  "A": 478607,
-  "B": 1395291,
-  "C": 163565
+ "week_send_windows": {
+  "S01": "2026-11-05",
+  "S02": "2026-11-12",
+  "S03": "2026-11-19",
+  "S04": "2026-11-26",
+  "S05": "2026-12-03",
+  "S06": "2026-12-10",
+  "S07": "2026-12-17",
+  "S08": "2026-12-24",
+  "S09": "2026-12-31",
+  "S10": "2027-01-07",
+  "S11": "2027-01-14",
+  "S12": "2027-01-21",
+  "S13": "2027-01-28",
+  "S14": "2027-02-04",
+  "S15": "2027-02-11",
+  "S16": "2027-02-18",
+  "S17": "2027-02-25",
+  "S18": "2027-03-04",
+  "S19": "2027-03-11",
+  "S20": "2027-03-18",
+  "S21": "2027-03-25",
+  "S22": "2027-04-01",
+  "S23": "2027-04-08",
+  "S24": "2027-04-15",
+  "S25": "2027-04-22",
+  "S26": "2027-04-29",
+  "S27": "2027-05-06",
+  "S28": "2027-05-13",
+  "S29": "2027-05-20",
+  "S30": "2027-05-27",
+  "S31": "2027-06-03",
+  "S32": "2027-06-10",
+  "S33": "2027-06-17",
+  "S34": "2027-06-24",
+  "S35": "2027-07-01",
+  "S36": "2027-07-08",
+  "S37": "2027-07-15",
+  "S38": "2027-07-22",
+  "S39": "2027-07-29",
+  "S40": "2027-08-05"
  },
- "main_total": 1000000,
- "gap_to_main_target": 0,
- "main_slices": {
+ "slices": {
   "S01": {
-   "rows": 100000,
-   "tier": {
-    "A": 100000
+   "webinar": "2026-11-12",
+   "send_from": "2026-11-05",
+   "send_to": "2026-11-11",
+   "capacity": 1750,
+   "capacity_new_senders": 0,
+   "capacity_older_senders": 1750,
+   "rows": 1750,
+   "warm": 1672,
+   "language_tier": {
+    "1": 506,
+    "2": 261,
+    "3": 983
+   },
+   "fit": {
+    "A": 168,
+    "B": 1526,
+    "C": 56
    },
    "name_confidence": {
-    "high": 100000
+    "high": 1542,
+    "none": 198,
+    "medium": 10
    },
-   "email_type": {
-    "business": 100000
-   },
-   "has_segment_bucket": 62492,
-   "distinct_recipient_domains": 76143,
+   "distinct_recipient_domains": 1677,
    "max_rows_one_domain": 3,
-   "last_invited_series": {
-    "never": 1791,
-    "E150": 11674,
-    "E151": 6941,
-    "E152": 6719,
-    "E153": 4339,
-    "E154": 22992,
-    "E155": 7653,
-    "E156": 16119,
-    "E157": 10647,
-    "E158": 11125
+   "rows_by_pool": {
+    "P0": 1750
    }
   },
   "S02": {
-   "rows": 100000,
-   "tier": {
-    "A": 100000
+   "webinar": "2026-11-19",
+   "send_from": "2026-11-12",
+   "send_to": "2026-11-18",
+   "capacity": 1750,
+   "capacity_new_senders": 0,
+   "capacity_older_senders": 1750,
+   "rows": 1750,
+   "warm": 64,
+   "language_tier": {
+    "1": 1702,
+    "2": 5,
+    "3": 43
+   },
+   "fit": {
+    "A": 1700,
+    "B": 48,
+    "C": 2
    },
    "name_confidence": {
-    "high": 100000
+    "high": 1741,
+    "none": 9
    },
-   "email_type": {
-    "business": 100000
-   },
-   "has_segment_bucket": 91606,
-   "distinct_recipient_domains": 62258,
+   "distinct_recipient_domains": 1603,
    "max_rows_one_domain": 3,
-   "last_invited_series": {
-    "never": 216,
-    "E150": 220,
-    "E151": 224,
-    "E152": 63,
-    "E153": 99,
-    "E154": 2658,
-    "E155": 455,
-    "E156": 2576,
-    "E157": 1338,
-    "E158": 9705,
-    "E159": 14882,
-    "E160": 9957,
-    "E161": 34150,
-    "E162": 23457
+   "rows_by_pool": {
+    "P0": 1750
    }
   },
   "S03": {
-   "rows": 100000,
-   "tier": {
-    "A": 100000
+   "webinar": "2026-11-26",
+   "send_from": "2026-11-19",
+   "send_to": "2026-11-25",
+   "capacity": 1750,
+   "capacity_new_senders": 0,
+   "capacity_older_senders": 1750,
+   "rows": 1750,
+   "warm": 53,
+   "language_tier": {
+    "1": 1709,
+    "2": 4,
+    "3": 37
+   },
+   "fit": {
+    "A": 1719,
+    "B": 31
    },
    "name_confidence": {
-    "none": 64896,
-    "high": 30217,
-    "medium": 4887
+    "high": 1733,
+    "none": 16,
+    "medium": 1
    },
-   "email_type": {
-    "business": 100000
-   },
-   "has_segment_bucket": 87325,
-   "distinct_recipient_domains": 62227,
+   "distinct_recipient_domains": 1612,
    "max_rows_one_domain": 3,
-   "last_invited_series": {
-    "never": 998,
-    "E150": 2623,
-    "E151": 1702,
-    "E152": 1710,
-    "E153": 1104,
-    "E154": 15186,
-    "E155": 4400,
-    "E156": 14649,
-    "E157": 5400,
-    "E158": 8810,
-    "E159": 11493,
-    "E160": 9694,
-    "E161": 9064,
-    "E162": 13167
+   "rows_by_pool": {
+    "P0": 1750
    }
   },
   "S04": {
-   "rows": 100000,
-   "tier": {
-    "A": 63946,
-    "B": 36054
+   "webinar": "2026-12-03",
+   "send_from": "2026-11-26",
+   "send_to": "2026-12-02",
+   "capacity": 1750,
+   "capacity_new_senders": 0,
+   "capacity_older_senders": 1750,
+   "rows": 1750,
+   "warm": 31,
+   "language_tier": {
+    "1": 1725,
+    "2": 5,
+    "3": 20
+   },
+   "fit": {
+    "A": 1726,
+    "B": 21,
+    "C": 3
    },
    "name_confidence": {
-    "none": 50162,
-    "high": 49093,
-    "medium": 745
+    "high": 1740,
+    "none": 10
    },
-   "email_type": {
-    "business": 100000
-   },
-   "has_segment_bucket": 62292,
-   "distinct_recipient_domains": 64940,
+   "distinct_recipient_domains": 1537,
    "max_rows_one_domain": 3,
-   "last_invited_series": {
-    "never": 446,
-    "E150": 35856,
-    "E151": 37,
-    "E152": 24,
-    "E153": 34,
-    "E154": 4380,
-    "E155": 379,
-    "E156": 4705,
-    "E157": 1093,
-    "E158": 1014,
-    "E159": 6483,
-    "E160": 3875,
-    "E161": 23730,
-    "E162": 17944
+   "rows_by_pool": {
+    "P0": 1750
    }
   },
   "S05": {
-   "rows": 100000,
-   "tier": {
-    "A": 26382,
-    "B": 73618
+   "webinar": "2026-12-10",
+   "send_from": "2026-12-03",
+   "send_to": "2026-12-09",
+   "capacity": 5040,
+   "capacity_new_senders": 5040,
+   "capacity_older_senders": 0,
+   "rows": 5040,
+   "warm": 9,
+   "language_tier": {
+    "1": 5033,
+    "3": 7
+   },
+   "fit": {
+    "A": 4397,
+    "B": 643
    },
    "name_confidence": {
-    "high": 81644,
-    "none": 17859,
-    "medium": 497
+    "high": 3509,
+    "none": 1427,
+    "medium": 104
    },
-   "email_type": {
-    "business": 100000
-   },
-   "has_segment_bucket": 25488,
-   "distinct_recipient_domains": 73407,
+   "distinct_recipient_domains": 4286,
    "max_rows_one_domain": 3,
-   "last_invited_series": {
-    "never": 132,
-    "E150": 39375,
-    "E151": 34280,
-    "E152": 12,
-    "E153": 16,
-    "E154": 2840,
-    "E155": 173,
-    "E156": 2575,
-    "E157": 656,
-    "E158": 582,
-    "E159": 4997,
-    "E160": 1931,
-    "E161": 6415,
-    "E162": 6016
+   "rows_by_pool": {
+    "P1": 1260,
+    "P2": 1260,
+    "P3": 1260,
+    "P4": 1260
    }
   },
   "S06": {
-   "rows": 100000,
-   "tier": {
-    "A": 16702,
-    "B": 83298
+   "webinar": "2026-12-17",
+   "send_from": "2026-12-10",
+   "send_to": "2026-12-16",
+   "capacity": 10080,
+   "capacity_new_senders": 10080,
+   "capacity_older_senders": 0,
+   "rows": 10080,
+   "warm": 1,
+   "language_tier": {
+    "1": 10080
+   },
+   "fit": {
+    "A": 350,
+    "B": 9730
    },
    "name_confidence": {
-    "high": 88682,
-    "none": 10858,
-    "medium": 460
+    "high": 9969,
+    "none": 103,
+    "medium": 8
    },
-   "email_type": {
-    "business": 100000
-   },
-   "has_segment_bucket": 16091,
-   "distinct_recipient_domains": 81257,
+   "distinct_recipient_domains": 8764,
    "max_rows_one_domain": 3,
-   "last_invited_series": {
-    "never": 92,
-    "E150": 814,
-    "E151": 36479,
-    "E152": 46026,
-    "E153": 11,
-    "E154": 2100,
-    "E155": 98,
-    "E156": 1566,
-    "E157": 419,
-    "E158": 365,
-    "E159": 4039,
-    "E160": 1074,
-    "E161": 3417,
-    "E162": 3500
+   "rows_by_pool": {
+    "P1": 2520,
+    "P2": 2520,
+    "P3": 2520,
+    "P4": 2520
    }
   },
   "S07": {
-   "rows": 100000,
-   "tier": {
-    "A": 11808,
-    "B": 88192
+   "webinar": "2026-12-24",
+   "send_from": "2026-12-17",
+   "send_to": "2026-12-23",
+   "capacity": 10080,
+   "capacity_new_senders": 10080,
+   "capacity_older_senders": 0,
+   "rows": 10080,
+   "warm": 5,
+   "language_tier": {
+    "1": 10077,
+    "2": 2,
+    "3": 1
+   },
+   "fit": {
+    "A": 198,
+    "B": 9882
    },
    "name_confidence": {
-    "high": 91926,
-    "none": 7681,
-    "medium": 393
+    "high": 10026,
+    "none": 48,
+    "medium": 6
    },
-   "email_type": {
-    "business": 100000
-   },
-   "has_segment_bucket": 11363,
-   "distinct_recipient_domains": 85985,
+   "distinct_recipient_domains": 8997,
    "max_rows_one_domain": 3,
-   "last_invited_series": {
-    "never": 57,
-    "E150": 300,
-    "E151": 663,
-    "E152": 40856,
-    "E153": 46401,
-    "E154": 1631,
-    "E155": 92,
-    "E156": 1052,
-    "E157": 306,
-    "E158": 242,
-    "E159": 3399,
-    "E160": 602,
-    "E161": 2171,
-    "E162": 2228
+   "rows_by_pool": {
+    "P1": 2520,
+    "P2": 2520,
+    "P3": 2520,
+    "P4": 2520
    }
   },
   "S08": {
-   "rows": 100000,
-   "tier": {
-    "A": 8916,
-    "B": 91084
+   "webinar": "2026-12-31",
+   "send_from": "2026-12-24",
+   "send_to": "2026-12-30",
+   "capacity": 8640,
+   "capacity_new_senders": 8640,
+   "capacity_older_senders": 0,
+   "rows": 8640,
+   "warm": 0,
+   "language_tier": {
+    "1": 8640
+   },
+   "fit": {
+    "A": 58,
+    "B": 8582
    },
    "name_confidence": {
-    "high": 93823,
-    "none": 5853,
-    "medium": 324
+    "high": 8618,
+    "none": 18,
+    "medium": 4
    },
-   "email_type": {
-    "business": 100000
-   },
-   "has_segment_bucket": 13291,
-   "distinct_recipient_domains": 80341,
+   "distinct_recipient_domains": 7486,
    "max_rows_one_domain": 3,
-   "last_invited_series": {
-    "never": 41,
-    "E150": 176,
-    "E151": 213,
-    "E152": 422,
-    "E153": 43345,
-    "E154": 37221,
-    "E155": 11057,
-    "E156": 725,
-    "E157": 210,
-    "E158": 184,
-    "E159": 2828,
-    "E160": 389,
-    "E161": 1557,
-    "E162": 1632
+   "rows_by_pool": {
+    "P1": 2160,
+    "P2": 2160,
+    "P3": 2160,
+    "P4": 2160
    }
   },
   "S09": {
-   "rows": 100000,
-   "tier": {
-    "A": 6842,
-    "B": 93158
+   "webinar": "2027-01-07",
+   "send_from": "2026-12-31",
+   "send_to": "2027-01-06",
+   "capacity": 8640,
+   "capacity_new_senders": 8640,
+   "capacity_older_senders": 0,
+   "rows": 8640,
+   "warm": 0,
+   "language_tier": {
+    "1": 8640
+   },
+   "fit": {
+    "A": 16,
+    "B": 8624
    },
    "name_confidence": {
-    "high": 95235,
-    "none": 4524,
-    "medium": 241
+    "high": 8639,
+    "none": 1
    },
-   "email_type": {
-    "business": 100000
-   },
-   "has_segment_bucket": 33871,
-   "distinct_recipient_domains": 75053,
+   "distinct_recipient_domains": 8088,
    "max_rows_one_domain": 3,
-   "last_invited_series": {
-    "never": 36,
-    "E150": 134,
-    "E151": 129,
-    "E152": 217,
-    "E153": 900,
-    "E154": 4802,
-    "E155": 41118,
-    "E156": 37150,
-    "E157": 10444,
-    "E158": 135,
-    "E159": 2301,
-    "E160": 264,
-    "E161": 1177,
-    "E162": 1193
+   "rows_by_pool": {
+    "P1": 2160,
+    "P2": 2160,
+    "P3": 2160,
+    "P4": 2160
    }
   },
   "S10": {
-   "rows": 100000,
-   "tier": {
-    "A": 5343,
-    "B": 94657
+   "webinar": "2027-01-14",
+   "send_from": "2027-01-07",
+   "send_to": "2027-01-13",
+   "capacity": 10080,
+   "capacity_new_senders": 10080,
+   "capacity_older_senders": 0,
+   "rows": 10080,
+   "warm": 0,
+   "language_tier": {
+    "1": 10080
+   },
+   "fit": {
+    "A": 13,
+    "B": 10067
    },
    "name_confidence": {
-    "high": 96294,
-    "none": 3491,
-    "medium": 215
+    "high": 10079,
+    "medium": 1
    },
-   "email_type": {
-    "business": 100000
-   },
-   "has_segment_bucket": 43042,
-   "distinct_recipient_domains": 78290,
+   "distinct_recipient_domains": 9319,
    "max_rows_one_domain": 3,
-   "last_invited_series": {
-    "never": 30,
-    "E150": 112,
-    "E151": 87,
-    "E152": 148,
-    "E153": 426,
-    "E154": 2656,
-    "E155": 2447,
-    "E156": 4186,
-    "E157": 48184,
-    "E158": 37865,
-    "E159": 1842,
-    "E160": 188,
-    "E161": 936,
-    "E162": 893
+   "rows_by_pool": {
+    "P1": 2520,
+    "P2": 2520,
+    "P3": 2520,
+    "P4": 2520
+   }
+  },
+  "S11": {
+   "webinar": "2027-01-21",
+   "send_from": "2027-01-14",
+   "send_to": "2027-01-20",
+   "capacity": 25200,
+   "capacity_new_senders": 25200,
+   "capacity_older_senders": 0,
+   "rows": 25200,
+   "warm": 0,
+   "language_tier": {
+    "1": 25200
+   },
+   "fit": {
+    "A": 9,
+    "B": 25191
+   },
+   "name_confidence": {
+    "high": 25200
+   },
+   "distinct_recipient_domains": 22023,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 6300,
+    "P2": 6300,
+    "P3": 6300,
+    "P4": 6300
+   }
+  },
+  "S12": {
+   "webinar": "2027-01-28",
+   "send_from": "2027-01-21",
+   "send_to": "2027-01-27",
+   "capacity": 37800,
+   "capacity_new_senders": 37800,
+   "capacity_older_senders": 0,
+   "rows": 37800,
+   "warm": 0,
+   "language_tier": {
+    "1": 30715,
+    "2": 7085
+   },
+   "fit": {
+    "A": 6593,
+    "B": 31207
+   },
+   "name_confidence": {
+    "high": 20717,
+    "none": 15824,
+    "medium": 1259
+   },
+   "distinct_recipient_domains": 31175,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 9450,
+    "P2": 9450,
+    "P3": 9450,
+    "P4": 9450
+   }
+  },
+  "S13": {
+   "webinar": "2027-02-04",
+   "send_from": "2027-01-28",
+   "send_to": "2027-02-03",
+   "capacity": 50400,
+   "capacity_new_senders": 50400,
+   "capacity_older_senders": 0,
+   "rows": 50400,
+   "warm": 0,
+   "language_tier": {
+    "1": 907,
+    "2": 49493
+   },
+   "fit": {
+    "A": 452,
+    "B": 49948
+   },
+   "name_confidence": {
+    "high": 48691,
+    "none": 991,
+    "medium": 718
+   },
+   "distinct_recipient_domains": 38604,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 12600,
+    "P2": 12600,
+    "P3": 12600,
+    "P4": 12600
+   }
+  },
+  "S14": {
+   "webinar": "2027-02-11",
+   "send_from": "2027-02-04",
+   "send_to": "2027-02-10",
+   "capacity": 75600,
+   "capacity_new_senders": 75600,
+   "capacity_older_senders": 0,
+   "rows": 75600,
+   "warm": 0,
+   "language_tier": {
+    "1": 198,
+    "2": 15243,
+    "3": 60159
+   },
+   "fit": {
+    "A": 16593,
+    "B": 59007
+   },
+   "name_confidence": {
+    "high": 55983,
+    "none": 19021,
+    "medium": 596
+   },
+   "distinct_recipient_domains": 59203,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 18900,
+    "P2": 18900,
+    "P3": 18900,
+    "P4": 18900
+   }
+  },
+  "S15": {
+   "webinar": "2027-02-18",
+   "send_from": "2027-02-11",
+   "send_to": "2027-02-17",
+   "capacity": 100000,
+   "capacity_new_senders": 100000,
+   "capacity_older_senders": 0,
+   "rows": 100000,
+   "warm": 0,
+   "language_tier": {
+    "1": 78,
+    "2": 654,
+    "3": 99268
+   },
+   "fit": {
+    "A": 1119,
+    "B": 98881
+   },
+   "name_confidence": {
+    "high": 55099,
+    "none": 42126,
+    "medium": 2775
+   },
+   "distinct_recipient_domains": 78976,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 25000,
+    "P2": 25000,
+    "P3": 25000,
+    "P4": 25000
+   }
+  },
+  "S16": {
+   "webinar": "2027-02-25",
+   "send_from": "2027-02-18",
+   "send_to": "2027-02-24",
+   "capacity": 100000,
+   "capacity_new_senders": 100000,
+   "capacity_older_senders": 0,
+   "rows": 37210,
+   "warm": 0,
+   "language_tier": {
+    "1": 11342,
+    "2": 5899,
+    "3": 19969
+   },
+   "fit": {
+    "A": 481,
+    "B": 8434,
+    "C": 28295
+   },
+   "name_confidence": {
+    "high": 24752,
+    "none": 11907,
+    "medium": 551
+   },
+   "distinct_recipient_domains": 29742,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 8775,
+    "P2": 10014,
+    "P3": 8918,
+    "P4": 9503
+   }
+  },
+  "S17": {
+   "webinar": "2027-03-04",
+   "send_from": "2027-02-25",
+   "send_to": "2027-03-03",
+   "capacity": 100000,
+   "capacity_new_senders": 100000,
+   "capacity_older_senders": 0,
+   "rows": 2916,
+   "warm": 0,
+   "language_tier": {
+    "1": 196,
+    "2": 205,
+    "3": 2515
+   },
+   "fit": {
+    "A": 268,
+    "B": 2013,
+    "C": 635
+   },
+   "name_confidence": {
+    "high": 1720,
+    "none": 1096,
+    "medium": 100
+   },
+   "distinct_recipient_domains": 1283,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 701,
+    "P2": 811,
+    "P3": 686,
+    "P4": 718
+   }
+  },
+  "S18": {
+   "webinar": "2027-03-11",
+   "send_from": "2027-03-04",
+   "send_to": "2027-03-10",
+   "capacity": 100000,
+   "capacity_new_senders": 100000,
+   "capacity_older_senders": 0,
+   "rows": 1522,
+   "warm": 0,
+   "language_tier": {
+    "1": 42,
+    "2": 99,
+    "3": 1381
+   },
+   "fit": {
+    "A": 171,
+    "B": 1171,
+    "C": 180
+   },
+   "name_confidence": {
+    "high": 948,
+    "none": 526,
+    "medium": 48
+   },
+   "distinct_recipient_domains": 592,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 347,
+    "P2": 445,
+    "P3": 368,
+    "P4": 362
+   }
+  },
+  "S19": {
+   "webinar": "2027-03-18",
+   "send_from": "2027-03-11",
+   "send_to": "2027-03-17",
+   "capacity": 100000,
+   "capacity_new_senders": 100000,
+   "capacity_older_senders": 0,
+   "rows": 978,
+   "warm": 0,
+   "language_tier": {
+    "1": 22,
+    "2": 67,
+    "3": 889
+   },
+   "fit": {
+    "A": 108,
+    "B": 778,
+    "C": 92
+   },
+   "name_confidence": {
+    "high": 628,
+    "none": 304,
+    "medium": 46
+   },
+   "distinct_recipient_domains": 378,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 221,
+    "P2": 281,
+    "P3": 235,
+    "P4": 241
+   }
+  },
+  "S20": {
+   "webinar": "2027-03-25",
+   "send_from": "2027-03-18",
+   "send_to": "2027-03-24",
+   "capacity": 100000,
+   "capacity_new_senders": 100000,
+   "capacity_older_senders": 0,
+   "rows": 647,
+   "warm": 0,
+   "language_tier": {
+    "1": 17,
+    "2": 49,
+    "3": 581
+   },
+   "fit": {
+    "A": 68,
+    "B": 529,
+    "C": 50
+   },
+   "name_confidence": {
+    "high": 413,
+    "none": 198,
+    "medium": 36
+   },
+   "distinct_recipient_domains": 250,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 143,
+    "P2": 166,
+    "P3": 160,
+    "P4": 178
+   }
+  },
+  "S21": {
+   "webinar": "2027-04-01",
+   "send_from": "2027-03-25",
+   "send_to": "2027-03-31",
+   "capacity": 100000,
+   "capacity_new_senders": 100000,
+   "capacity_older_senders": 0,
+   "rows": 437,
+   "warm": 0,
+   "language_tier": {
+    "1": 11,
+    "2": 43,
+    "3": 383
+   },
+   "fit": {
+    "A": 41,
+    "B": 362,
+    "C": 34
+   },
+   "name_confidence": {
+    "high": 286,
+    "none": 123,
+    "medium": 28
+   },
+   "distinct_recipient_domains": 161,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 103,
+    "P2": 111,
+    "P3": 106,
+    "P4": 117
+   }
+  },
+  "S22": {
+   "webinar": "2027-04-08",
+   "send_from": "2027-04-01",
+   "send_to": "2027-04-07",
+   "capacity": 100000,
+   "capacity_new_senders": 100000,
+   "capacity_older_senders": 0,
+   "rows": 320,
+   "warm": 0,
+   "language_tier": {
+    "2": 32,
+    "3": 288
+   },
+   "fit": {
+    "A": 33,
+    "B": 266,
+    "C": 21
+   },
+   "name_confidence": {
+    "high": 211,
+    "none": 80,
+    "medium": 29
+   },
+   "distinct_recipient_domains": 114,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 78,
+    "P2": 87,
+    "P3": 73,
+    "P4": 82
+   }
+  },
+  "S23": {
+   "webinar": "2027-04-15",
+   "send_from": "2027-04-08",
+   "send_to": "2027-04-14",
+   "capacity": 100000,
+   "capacity_new_senders": 100000,
+   "capacity_older_senders": 0,
+   "rows": 229,
+   "warm": 0,
+   "language_tier": {
+    "2": 15,
+    "3": 214
+   },
+   "fit": {
+    "A": 27,
+    "B": 182,
+    "C": 20
+   },
+   "name_confidence": {
+    "high": 155,
+    "none": 61,
+    "medium": 13
+   },
+   "distinct_recipient_domains": 86,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 64,
+    "P2": 62,
+    "P3": 41,
+    "P4": 62
+   }
+  },
+  "S24": {
+   "webinar": "2027-04-22",
+   "send_from": "2027-04-15",
+   "send_to": "2027-04-21",
+   "capacity": 100000,
+   "capacity_new_senders": 100000,
+   "capacity_older_senders": 0,
+   "rows": 82,
+   "warm": 0,
+   "language_tier": {
+    "2": 11,
+    "3": 71
+   },
+   "fit": {
+    "B": 65,
+    "C": 17
+   },
+   "name_confidence": {
+    "high": 50,
+    "none": 28,
+    "medium": 4
+   },
+   "distinct_recipient_domains": 34,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 19,
+    "P2": 18,
+    "P3": 21,
+    "P4": 24
+   }
+  },
+  "S25": {
+   "webinar": "2027-04-29",
+   "send_from": "2027-04-22",
+   "send_to": "2027-04-28",
+   "capacity": 100000,
+   "capacity_new_senders": 100000,
+   "capacity_older_senders": 0,
+   "rows": 12,
+   "warm": 0,
+   "language_tier": {
+    "2": 7,
+    "3": 5
+   },
+   "fit": {
+    "C": 12
+   },
+   "name_confidence": {
+    "high": 6,
+    "none": 5,
+    "medium": 1
+   },
+   "distinct_recipient_domains": 5,
+   "max_rows_one_domain": 3,
+   "rows_by_pool": {
+    "P1": 3,
+    "P2": 6,
+    "P3": 1,
+    "P4": 2
    }
   }
  },
- "main_slice_pool_rows": {
-  "S01_P1": 25000,
-  "S01_P2": 25000,
-  "S01_P3": 25000,
-  "S01_P4": 25000,
-  "S02_P1": 25000,
-  "S02_P2": 25000,
-  "S02_P3": 25000,
-  "S02_P4": 25000,
-  "S03_P1": 25000,
-  "S03_P2": 25000,
-  "S03_P3": 25000,
-  "S03_P4": 25000,
-  "S04_P1": 25000,
-  "S04_P2": 25000,
-  "S04_P3": 25000,
-  "S04_P4": 25000,
-  "S05_P1": 25000,
-  "S05_P2": 25000,
-  "S05_P3": 25000,
-  "S05_P4": 25000,
-  "S06_P1": 25000,
-  "S06_P2": 25000,
-  "S06_P3": 25000,
-  "S06_P4": 25000,
-  "S07_P1": 25000,
-  "S07_P2": 25000,
-  "S07_P3": 25000,
-  "S07_P4": 25000,
-  "S08_P1": 25000,
-  "S08_P2": 25000,
-  "S08_P3": 25000,
-  "S08_P4": 25000,
-  "S09_P1": 25000,
-  "S09_P2": 25000,
-  "S09_P3": 25000,
-  "S09_P4": 25000,
-  "S10_P1": 25000,
-  "S10_P2": 25000,
-  "S10_P3": 25000,
-  "S10_P4": 25000
+ "coverage": {
+  "scheduled": 392913,
+  "slices_with_rows": 25,
+  "last_webinar": "2027-04-29",
+  "full_slices": 1,
+  "first_full_slice": "S15",
+  "before_first_full": 248560
  },
- "ramp_cold": {
-  "R01_P1": 1428,
-  "R01_P2": 853,
-  "R01_P3": 1431,
-  "R01_P4": 1551,
-  "R02_P1": 5319,
-  "R02_P2": 5287,
-  "R02_P3": 5300,
-  "R02_P4": 5284,
-  "R03_P1": 5257,
-  "R03_P2": 5269,
-  "R03_P3": 5332,
-  "R03_P4": 5318,
-  "R04_P1": 4222,
-  "R04_P2": 4253,
-  "R04_P3": 4300,
-  "R04_P4": 4269,
-  "R05_P1": 4400,
-  "R05_P2": 4400,
-  "R05_P3": 4400,
-  "R05_P4": 4400,
-  "R06_P1": 5500,
-  "R06_P2": 5500,
-  "R06_P3": 5500,
-  "R06_P4": 5500,
-  "R07_P1": 13750,
-  "R07_P2": 13750,
-  "R07_P3": 13750,
-  "R07_P4": 13750,
-  "R08_P1": 13750,
-  "R08_P2": 13750,
-  "R08_P3": 13750,
-  "R08_P4": 13750,
-  "R09_P1": 13750,
-  "R09_P2": 13750,
-  "R09_P3": 13750,
-  "R09_P4": 13750,
-  "R10_P1": 13750,
-  "R10_P2": 13750,
-  "R10_P3": 13750,
-  "R10_P4": 13750
- },
- "ramp_warm": {
-  "R01_P1": 4072,
-  "R01_P2": 4647,
-  "R01_P3": 4069,
-  "R01_P4": 3949,
-  "R02_P1": 181,
-  "R02_P2": 213,
-  "R02_P3": 200,
-  "R02_P4": 216,
-  "R03_P1": 243,
-  "R03_P2": 231,
-  "R03_P3": 168,
-  "R03_P4": 182,
-  "R04_P1": 178,
-  "R04_P2": 147,
-  "R04_P3": 100,
-  "R04_P4": 131
- },
- "ramp_week_totals": {
-  "R01": 22000,
-  "R02": 22000,
-  "R03": 22000,
-  "R04": 17600,
-  "R05": 17600,
-  "R06": 22000,
-  "R07": 55000,
-  "R08": 55000,
-  "R09": 55000,
-  "R10": 55000
- },
- "warm_list": {
-  "rows": 18927,
-  "tier": {
-   "A": 3327,
-   "B": 14451,
-   "C": 1149
+ "reserve": {
+  "rows": 1129,
+  "warm": 0,
+  "language_tier": {
+   "1": 298,
+   "2": 214,
+   "3": 617
+  },
+  "fit": {
+   "A": 180,
+   "B": 883,
+   "C": 66
   },
   "name_confidence": {
-   "high": 13225,
-   "none": 5455,
-   "medium": 247
+   "high": 834,
+   "none": 238,
+   "medium": 57
   },
-  "email_type": {
-   "business": 18312,
-   "personal": 615
-  },
-  "has_segment_bucket": 3458,
-  "distinct_recipient_domains": 14745,
-  "max_rows_one_domain": 512,
-  "last_invited_series": {
-   "never": 8833,
-   "E150": 1007,
-   "E151": 548,
-   "E152": 825,
-   "E153": 765,
-   "E154": 867,
-   "E155": 521,
-   "E156": 802,
-   "E157": 775,
-   "E158": 849,
-   "E159": 573,
-   "E160": 854,
-   "E161": 620,
-   "E162": 1088
-  },
-  "registered_no_show": 17092,
-  "yes_maybe_only": 1835,
-  "unscheduled": 0
+  "distinct_recipient_domains": 73,
+  "max_rows_one_domain": 119
  },
- "hold_gdpr_review": {
-  "cold": 391906,
-  "warm": 1849,
-  "by_country_domain": {
-   "uk": 118886,
-   "nl": 41390,
-   "de": 41171,
-   "fr": 29718,
-   "it": 20467,
-   "ch": 17936,
-   "se": 15667,
-   "pl": 14490,
-   "be": 14083,
-   "eu": 12238,
-   "es": 10933,
-   "dk": 7856,
-   "ie": 7515,
-   "fi": 7342,
-   "pt": 6581,
-   "no": 6543,
-   "at": 4877,
-   "ro": 2813,
-   "gr": 2062,
-   "cz": 2032,
-   "hu": 1714,
-   "lu": 1227,
-   "ee": 1118,
-   "sk": 913,
-   "lt": 913,
-   "si": 830,
-   "is": 665,
-   "cy": 539,
-   "hr": 396,
-   "bg": 363,
-   "mt": 229,
-   "li": 135,
-   "lv": 113
-  }
- },
- "reserve_after_S10": {
-  "rows": 713190,
-  "tier": {
-   "A": 34419,
-   "B": 515206,
-   "C": 163565
-  },
-  "name_confidence": {
-   "none": 562749,
-   "high": 142113,
-   "medium": 8328
-  },
-  "email_type": {
-   "business": 713190
-  },
-  "has_segment_bucket": 232952,
-  "distinct_recipient_domains": 307907,
-  "max_rows_one_domain": 1581,
-  "last_invited_series": {
-   "never": 311,
-   "E150": 12333,
-   "E151": 5808,
-   "E152": 40447,
-   "E153": 62724,
-   "E154": 72398,
-   "E155": 51430,
-   "E156": 63996,
-   "E157": 84621,
-   "E158": 60648,
-   "E159": 59986,
-   "E160": 98634,
-   "E161": 52735,
-   "E162": 47119
-  },
-  "usable_within_domain_total_cap": 591418
- },
- "files_written": 99,
- "seconds": 26.8
+ "files_written": 101,
+ "seconds": 9.8
 }

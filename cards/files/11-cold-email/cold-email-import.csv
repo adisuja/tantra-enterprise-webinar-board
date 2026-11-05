@@ -1,101 +1,101 @@
 sequence,step,delay_days,subject,body
-A,1,0,AI for the revenue side,"Hi {{first_name}},
+A,1,0,AI for the revenue side,"Hi {{firstName}},
 
-{{ai_first_line}}
+A note for whoever owns next month's pipeline at {{company}}.
 
 Most founders use AI for content and stop there. The revenue side (who you reach, who books a call) still runs by hand.
 
-Every {{webinar.day_of_week}} at {{webinar.start_time_local}} I take it apart live. My team has worked with 250+ brands.
+I take it apart live on Thursday 12 November at 10:00 UK time (11:00 CET), and every Thursday after. My team has worked with 250+ brands.
 
-Want a seat? {{registration_link}}
+Want a seat? https://{{domains.funnel_domain}}/?utm_source=email&utm_medium=cold&utm_campaign=enterprise-webinar&utm_content=ce_a
 
-{{brand.host_name}}
-{{brand.host_title}}
+Adi
+Founder, Tantra
 
 Not for you? Reply ""no"" and you won't hear from me again."
-A,2,3,,"Hi {{first_name}},
+A,2,3,,"Hi {{firstName}},
 
 One channel most founders skip: the calendar invite.
 
 A UK coaching company my team worked with went from 30 registrations on its first webinar to 1,990 on its best. That week, 98,000 of the 99,859 people it reached got there by calendar invite.
 
-In the session I show how that list was built and sent. {{registration_link}}
+In the session I show how that list was built and sent. https://{{domains.funnel_domain}}/?utm_source=email&utm_medium=cold&utm_campaign=enterprise-webinar&utm_content=ce_a
 
-{{brand.host_name}}
+Adi
 
 Not for you? Reply ""no"" and you won't hear from me again."
-A,3,4,,"Hi {{first_name}},
+A,3,4,,"Hi {{firstName}},
 
 Last note from me. If a predictable pipeline isn't a priority this quarter, no problem.
 
-If it is, the session runs live every {{webinar.day_of_week}}. Can't make the time? Register anyway and you'll get the recording. {{registration_link}}
+If it is, the session runs live every Thursday at 10:00 UK time (11:00 CET). Can't make the time? Register anyway and you'll get the recording. https://{{domains.funnel_domain}}/?utm_source=email&utm_medium=cold&utm_campaign=enterprise-webinar&utm_content=ce_a
 
-{{brand.host_name}}
+Adi
 
 Not for you? Reply ""no"" and you won't hear from me again."
-B,1,0,if referrals slowed down next month,"Hi {{first_name}},
+B,1,0,if referrals slowed down next month,"Hi {{firstName}},
 
-{{ai_first_line}}
+A note on how {{company}} fills its sales calendar.
 
 Founder-led revenue usually rides on referrals and the founder selling. Good month, quiet month, and nobody knows which step broke.
 
 The fix: measure every step and let AI run the repetitive work.
 
-I show it live every {{webinar.day_of_week}}, {{webinar.start_time_local}}.
+I show it live on Thursday 12 November, 10:00 UK time (11:00 CET).
 
-Save your seat: {{registration_link}}
+Save your seat: https://{{domains.funnel_domain}}/?utm_source=email&utm_medium=cold&utm_campaign=enterprise-webinar&utm_content=ce_b
 
-{{brand.host_name}}
-{{brand.host_title}}
+Adi
+Founder, Tantra
 
 Not for you? Reply ""no"" and you won't hear from me again."
-B,2,3,,"Hi {{first_name}},
+B,2,3,,"Hi {{firstName}},
 
 A London fintech network my team worked with sells a board-readiness programme. We ran its webinar on calendar invites, grew its outreach from 10,000 to 30,000 people across three sessions, and booked 17 sales calls along the way.
 
-I'll walk through how it was set up, step by step. {{registration_link}}
+I'll walk through how it was set up, step by step. https://{{domains.funnel_domain}}/?utm_source=email&utm_medium=cold&utm_campaign=enterprise-webinar&utm_content=ce_b
 
-{{brand.host_name}}
+Adi
 
 Not for you? Reply ""no"" and you won't hear from me again."
-B,3,4,,"Hi {{first_name}},
+B,3,4,,"Hi {{firstName}},
 
 I'll stop here. If revenue feels steady right now, that's a good sign.
 
-If it ever stalls and you want to see exactly which step broke, the session runs every {{webinar.day_of_week}}: {{registration_link}}
+If it ever stalls and you want to see exactly which step broke, the session runs every Thursday at 10:00 UK time (11:00 CET): https://{{domains.funnel_domain}}/?utm_source=email&utm_medium=cold&utm_campaign=enterprise-webinar&utm_content=ce_b
 
-{{brand.host_name}}
+Adi
 
 Not for you? Reply ""no"" and you won't hear from me again."
-C,1,0,"build it yourself, or with us","Hi {{first_name}},
+C,1,0,"build it yourself, or with us","Hi {{firstName}},
 
-{{ai_first_line}}
+This one is for whoever owns growth at {{company}}.
 
 Most founders don't need another AI tool. They need the revenue system built with them and handed over working.
 
-Every {{webinar.day_of_week}} at {{webinar.start_time_local}} I show that build live, and how we'd do it with you.
+On Thursday 12 November at 10:00 UK time (11:00 CET) I show that build live, and how we'd do it with you.
 
-Grab a seat: {{registration_link}}
+Grab a seat: https://{{domains.funnel_domain}}/?utm_source=email&utm_medium=cold&utm_campaign=enterprise-webinar&utm_content=ce_c
 
-{{brand.host_name}}
-{{brand.host_title}}
+Adi
+Founder, Tantra
 
 Not for you? Reply ""no"" and you won't hear from me again."
-C,2,3,,"Hi {{first_name}},
+C,2,3,,"Hi {{firstName}},
 
 Who the session suits best: founders who want the system built with them and are ready to invest in growth this year.
 
-If that's you, you'll see exactly what gets built, in what order, and what each step should produce. {{registration_link}}
+If that's you, you'll see exactly what gets built, in what order, and what each step should produce. https://{{domains.funnel_domain}}/?utm_source=email&utm_medium=cold&utm_campaign=enterprise-webinar&utm_content=ce_c
 
-{{brand.host_name}}
+Adi
 
 Not for you? Reply ""no"" and you won't hear from me again."
-C,3,4,,"Hi {{first_name}},
+C,3,4,,"Hi {{firstName}},
 
-Last one from me. Whether you build it yourself or with us, the session gives you the full map in {{webinar.duration_minutes}} minutes.
+Last one from me. Whether you build it yourself or with us, the session gives you the full map in 60 minutes.
 
-It runs every {{webinar.day_of_week}}, and registrants get the recording. {{registration_link}}
+It runs every Thursday at 10:00 UK time (11:00 CET), and registrants get the recording. https://{{domains.funnel_domain}}/?utm_source=email&utm_medium=cold&utm_campaign=enterprise-webinar&utm_content=ce_c
 
-{{brand.host_name}}
+Adi
 
 Not for you? Reply ""no"" and you won't hear from me again."

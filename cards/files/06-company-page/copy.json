@@ -1,0 +1,31 @@
+{
+  "_about": "Every word for item 6. src/build.py fills {{when}}, {{day}} and {{minutes}} from deliverables/_shared/funnel-config.json and leaves {{domains.funnel_domain}} for the lead to fill after deploy.",
+  "page_id": "13588687",
+  "name": "Tantra",
+  "tagline": "AI revenue systems for B2B teams: the funnel, the outreach and the pipeline. See it live at our weekly webinar.",
+  "cover": {
+    "headline": "See the Whole AI Revenue Funnel, Live"
+  },
+  "about": "Most B2B companies don't have a lead problem. They have a leak problem. Marketing counts leads, sales counts deals, and nobody owns what happens in between.\n\nTantra builds the in between: AI revenue systems that take a stranger from first invite to signed client, with one CRM and one weekly number for every stage.\n\nSee it working first. {{when_cap}}, our founder Adi runs a live {{minutes}}-minute webinar that takes the whole funnel apart:\n\n→ How to fill a session from a cold list with calendar invites, cold email and LinkedIn\n→ The email and WhatsApp reminders that get registrants into the room\n→ How 45 minutes becomes booked sales calls\n→ The weekly rhythm: one pipeline, one analytics sheet, one experiment log\n→ Which parts AI runs, and which still need you\n\nRegister with the button at the top of this page.\n\nWhat we build with your team:\n→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts\n→ Capture: registration and booking pages that feed one CRM\n→ Nurture: email and WhatsApp reminders and follow-ups\n→ Conversion: a weekly live webinar that ends in booked sales calls\n→ Pipeline: every booking, call and proposal tracked to the deal\n\nOur team has built funnels and outreach for 250+ brands in 47+ industries across 21+ countries, over 10+ years.\n\nTwo ways to work with us:\n→ The Tantra platform: run outreach and nurture from your own accounts. Start at usetantra.com\n→ Tantra Enterprise: we build your funnel with you, coach your team for 3 months, and you get a year on the platform\n\nStart with the webinar: {{domains.funnel_domain}}",
+  "about_before_live_note": "Until the registration page is live, leave out two lines: \"Register with the button at the top of this page.\" and the last line. Add them once the Register button is on.",
+  "website": "https://usetantra.com",
+  "industry": "Technology, Information and Internet",
+  "company_size": "11-50 employees (keep unless the real team is 10 or fewer)",
+  "specialties": ["AI RevOps", "Revenue Operations", "Webinar Funnels", "B2B Lead Generation", "Cold Email Outreach", "Calendar Invite Outreach", "LinkedIn Outreach", "WhatsApp Nurture", "Marketing Automation", "Sales Pipeline Automation", "CRM Integration", "Funnel Analytics", "AI Agents", "Done-With-You Funnel Builds"],
+  "button": {
+    "live": {"label": "Register", "url": "{{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=company_page&utm_campaign=enterprise-webinar&utm_content=button"},
+    "before_live": {"label": "Visit website", "url": "https://usetantra.com/?utm_source=linkedin&utm_medium=company_page"}
+  },
+  "pinned_post": {
+    "text": "You sent 2,000 invites last month. How many became sales calls?\n\nIf you can't answer that with one number, the leak is somewhere between your outreach and your calendar.\n\n{{when_cap}}, our founder Adi takes a working B2B funnel apart, live, in {{minutes}} minutes:\n\n→ How one client's webinar reached 99,859 people, 98,000 of them by calendar invite\n→ The reminders we send between sign-up and the live session\n→ How 45 minutes turns into booked sales calls\n→ Which parts AI runs, and which still need you\n\nBring your own numbers. You'll leave knowing which stage of your funnel to fix first.\n\nSave your seat: {{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=company_page&utm_campaign=enterprise-webinar&utm_content=pinned-post",
+    "image_headline": "See the Whole AI Revenue Funnel, Live"
+  },
+  "event": {
+    "name": "Live: From Cold List to Booked Sales Calls (Weekly AI Funnel Webinar)",
+    "image_headline": "From Cold List to Booked Sales Calls",
+    "format": "Online, External event link",
+    "description": "A live {{minutes}}-minute webinar with Adi, founder of Tantra. He takes a working B2B funnel apart stage by stage: the calendar invites, cold email and LinkedIn that fill the session, the email and WhatsApp reminders that get people there, how 45 minutes turns into booked sales calls, and which parts AI now runs.\n\nBring your own numbers. You'll leave knowing which stage of your funnel to fix first.\n\nRegister on the event link to get your personal join link.",
+    "link": "{{domains.funnel_domain}}/?utm_source=linkedin&utm_medium=event&utm_campaign=enterprise-webinar"
+  },
+  "rename_post": "GrowthClub is now Tantra.\n\nSame team, same page, one name. For years we built funnels and outreach for clients by hand. Today we build AI revenue systems with B2B teams: the funnel, the outreach, the nurture and the pipeline, as one system.\n\nIf you work with us, please update your employer on your profile.\n\nEvery week we run a live session that walks through the whole system. The link is in the comments."
+}

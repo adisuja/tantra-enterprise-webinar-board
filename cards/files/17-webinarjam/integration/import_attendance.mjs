@@ -1,6 +1,6 @@
 // WebinarJam registrants export (CSV) -> CRM webinar.attended / webinar.no_show events (CRM_CONTRACT.md).
 //
-//   node import_attendance.mjs --csv export.csv --date 2026-11-12 [--start 11:00] [--tz America/New_York]
+//   node import_attendance.mjs --csv export.csv --date 2026-11-12 [--start 10:00] [--tz Europe/London]
 //                              [--columns columns.json] [--out events.json] [--live]
 //
 // Dry run unless --live: prints a summary and writes the events to --out (default: stdout).

@@ -1,55 +1,95 @@
 {
-  "_about": "The six senders. Adi fills every FILL_ value once, then runs build.py again. linkedin_plan is one of free, premium_career, premium_business, sales_navigator. account_tier is new, established or mature (see OVERVIEW.md, Daily Limits). Tiers marked assumed stay at the safe value until Adi confirms.",
+  "_about": "The six senders and their LinkedIn limits. build.py reads this file. Adi's decisions of 2026-11-05: all six are on the free plan now; Sales Navigator comes soon and doubles every number. Change linkedin_plan to sales_navigator per person when their upgrade is live, then run build.py again. Titles stay role based until the separate headline task writes new ones.",
+  "sending_days_per_week": 5,
+  "sending_days_note": "Monday to Friday, in UK and Central European business hours (08:00 to 17:00 UK time).",
+  "tantra_ceilings": {
+    "_source": "https://usetantra.com/use-cases/linkedin-outreach (read 2026-11-05): Tantra's default limits per LinkedIn account; they can be lowered, never raised. Tantra caps per account, not per campaign.",
+    "connection_requests_day": 80, "connection_requests_week": 180,
+    "messages_day": 120, "messages_week": 600,
+    "profile_visits_day": 80, "profile_visits_week": 400
+  },
+  "tantra_guidance": {
+    "_source": "Same page, 'Limits by Account Type' (conservative operating ranges, not published by LinkedIn).",
+    "free": "15 to 20 connection requests a day, without a note; up to 100 a week; about 3 personalised notes a month (200 characters each); no InMail",
+    "sales_navigator": "20 to 30 connection requests a day; 150 to 200 a week; up to 100 messages a day; 50 InMail credits a month"
+  },
+  "plans": {
+    "free": {
+      "_source": "Adi 2026-11-05",
+      "connector_requests": 15,
+      "messenger_messages": 20,
+      "inmail": 0,
+      "content_engagement_requests": 5,
+      "content_engagement_messages": 5,
+      "connection_note": false,
+      "_connection_note": "Free accounts get about 3 personalised notes a month, so every connection request on a free account goes without a note. The first message after acceptance carries the opener."
+    },
+    "sales_navigator": {
+      "_source": "Adi 2026-11-05: 2x every free number, InMail campaigns switch on. The InMail number is our recommendation.",
+      "connector_requests": 30,
+      "messenger_messages": 40,
+      "inmail": 10,
+      "inmail_is_recommendation": true,
+      "_inmail": "Sales Navigator gives 50 credits a month (about 2 a sending day), so about 2 a day go on credits and the rest only to Open Profiles, which use no credit. If the list has too few Open Profiles, drop to 2 a day.",
+      "content_engagement_requests": 10,
+      "content_engagement_messages": 10,
+      "connection_note": true
+    }
+  },
   "profiles": [
     {
       "key": "adi", "name": "Adi", "role": "Owner and host",
       "voice": "Founder to founder: revenue, predictability, the whole engine. Speaks as the host.",
+      "post_lane": "Founder posts on predictable pipeline and the full revenue engine",
       "audience": "Founders, CEOs, MDs and owners of B2B companies (catch-all when no other title matches)",
-      "linkedin_url": "https://www.linkedin.com/in/adisuja",
-      "linkedin_url_source": "found in the Tantra webinar deck and repo context; Adi confirms",
-      "title": "Founder, Tantra (brand.host_title in funnel-config.json; Adi confirms it matches the LinkedIn headline)",
-      "linkedin_plan": "FILL_ADI_LINKEDIN_PLAN",
-      "account_tier": "mature (assumed)"
+      "linkedin_url": "https://www.linkedin.com/in/adisuja/",
+      "title": "Founder, Tantra (role based; the public profile page title reads 'Adithya Murali - GrowthClub.org', read through Agent Reach 2026-11-05)",
+      "linkedin_plan": "free", "plan_next": "sales_navigator (upgrade coming soon)"
     },
     {
       "key": "aquila", "name": "Aquila", "role": "Automation",
       "voice": "The automation layer: reminders, follow-ups and handoffs that should not need a person.",
+      "post_lane": "Posts on automations: reminders, follow-ups, handoffs",
       "audience": "RevOps, marketing ops, sales ops, automation and no-code leads",
-      "linkedin_url": "FILL_AQUILA_LINKEDIN_URL", "linkedin_url_source": "not found in any context",
-      "title": "FILL_AQUILA_LINKEDIN_TITLE",
-      "linkedin_plan": "FILL_AQUILA_LINKEDIN_PLAN", "account_tier": "new (assumed)"
+      "linkedin_url": "https://www.linkedin.com/in/aquilaeldho/",
+      "title": "Automation, Tantra (role based; public headline is login walled)",
+      "linkedin_plan": "free", "plan_next": "sales_navigator (upgrade coming soon)"
     },
     {
       "key": "nelbin", "name": "Nelbin", "role": "Operations",
       "voice": "Process: an owner, a checklist and a weekly number for every stage.",
+      "post_lane": "Posts on process: owners, checklists, weekly numbers",
       "audience": "COOs, heads of operations, chiefs of staff, general managers",
-      "linkedin_url": "FILL_NELBIN_LINKEDIN_URL", "linkedin_url_source": "not found in any context",
-      "title": "FILL_NELBIN_LINKEDIN_TITLE",
-      "linkedin_plan": "FILL_NELBIN_LINKEDIN_PLAN", "account_tier": "new (assumed)"
+      "linkedin_url": "https://www.linkedin.com/in/nelbin-xav/",
+      "title": "Operations, Tantra (role based; public headline is login walled)",
+      "linkedin_plan": "free", "plan_next": "sales_navigator (upgrade coming soon)"
     },
     {
       "key": "bharath", "name": "Bharath", "role": "CTO",
       "voice": "The stack and the agents: what connects to what, and where leads get lost between tools.",
+      "post_lane": "Posts on the revenue stack and AI agents",
       "audience": "CTOs, VPs and heads of engineering, technical co-founders",
-      "linkedin_url": "FILL_BHARATH_LINKEDIN_URL", "linkedin_url_source": "not found in any context",
-      "title": "FILL_BHARATH_LINKEDIN_TITLE",
-      "linkedin_plan": "FILL_BHARATH_LINKEDIN_PLAN", "account_tier": "new (assumed)"
+      "linkedin_url": "https://www.linkedin.com/in/bkp31415/",
+      "title": "CTO, Tantra (role based; public headline is login walled)",
+      "linkedin_plan": "free", "plan_next": "sales_navigator (upgrade coming soon)"
     },
     {
       "key": "bhaskar", "name": "Bhaskar", "role": "CMO",
       "voice": "Pipeline and content: which posts, invites and webinars actually book calls.",
+      "post_lane": "Posts on content, invites and webinars that book calls",
       "audience": "CMOs, VPs and heads of marketing, growth and demand generation",
-      "linkedin_url": "FILL_BHASKAR_LINKEDIN_URL", "linkedin_url_source": "not found in any context",
-      "title": "FILL_BHASKAR_LINKEDIN_TITLE",
-      "linkedin_plan": "FILL_BHASKAR_LINKEDIN_PLAN", "account_tier": "new (assumed)"
+      "linkedin_url": "https://www.linkedin.com/in/bhaskar-dev/",
+      "title": "CMO, Tantra (role based; public headline is login walled)",
+      "linkedin_plan": "free", "plan_next": "sales_navigator (upgrade coming soon)"
     },
     {
       "key": "ben", "name": "Ben", "role": "Development",
       "voice": "The build: pages, forms, tracking and the tests that decide what stays.",
+      "post_lane": "Posts on pages, forms, tracking and tests",
       "audience": "Heads of digital, web and product; agency owners who build sites and funnels",
-      "linkedin_url": "FILL_BEN_LINKEDIN_URL", "linkedin_url_source": "not found in any context",
-      "title": "FILL_BEN_LINKEDIN_TITLE",
-      "linkedin_plan": "FILL_BEN_LINKEDIN_PLAN", "account_tier": "new (assumed)"
+      "linkedin_url": "https://www.linkedin.com/in/ben-basil-tomy-5533b9218/",
+      "title": "Development, Tantra (role based; public headline is login walled)",
+      "linkedin_plan": "free", "plan_next": "sales_navigator (upgrade coming soon)"
     }
   ]
 }
