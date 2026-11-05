@@ -174,6 +174,12 @@ def selftest():
     checks.append(("real schedule, London: H3 at 07:00 UK is email only (before the 08:00 WhatsApp window)", uk["15B-H3"] == ("email",)))
     for sid in ("15B-H1", "15B-M15", "15B-L0", "15B-L10"):
         checks.append(("real schedule, London: %s keeps WhatsApp" % sid, uk[sid] == ("email", "whatsapp")))
+    LONDON = ZoneInfo("Europe/London")
+    days = {sid: t.astimezone(LONDON).strftime("%a %H:%M") for sid, t, _ in plan(R - timedelta(days=10), R, "Europe/London")}
+    checks.append(("real schedule, London: no step on a Saturday or Sunday (V2 on Friday, T minus 6 days)",
+                   not any(v[:3] in ("Sat", "Sun") for v in days.values()) and days["15B-V2"] == "Fri 10:00"))
+    checks.append(("real schedule, London: day-level steps at 10:00 UK, C1 Wednesday 12:00, C2 Thursday 09:45",
+                   all(days[s].endswith("10:00") for s in DAY_LEVEL) and days["15B-C1"] == "Wed 12:00" and days["15B-C2"] == "Thu 09:45"))
     eu = {sid: ch for sid, _, ch in plan(R - timedelta(days=10), R, "Europe/Berlin")}
     checks.append(("real schedule, Berlin: every live-day step keeps WhatsApp (H3 at 08:00 CET)",
                    all(eu[s] == ("email", "whatsapp") for s in ("15B-H3", "15B-H1", "15B-M15", "15B-L0", "15B-L10"))))

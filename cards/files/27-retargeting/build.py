@@ -18,7 +18,7 @@ WHO = ("segment early_leaver or no_show, status active on the day (retarget_segm
 BOOK = ("Book My Evaluation Call", "booking_url")
 
 STEPS = [
-dict(step_id="27-W3", title="Week 3: the three numbers that decide a webinar", anchor="webinar_start", offset=17 * DAY, template="rt_w3", trigger=WHO,
+dict(step_id="27-W3", title="Week 3: the three numbers that decide a webinar", anchor="webinar_start", offset=19 * DAY, template="rt_w3", trigger=WHO,
  email=dict(subject="The 3 numbers that decide every webinar", preheader="Reach, show-up, calls per 100 live.", eyebrow="Week 3",
    headline="The Three Numbers That Decide Every Webinar",
    paras=["Hi {{first_name}},",
@@ -30,7 +30,7 @@ dict(step_id="27-W3", title="Week 3: the three numbers that decide a webinar", a
    cta=BOOK, cta2=("see how we measure them in the recording", "recording_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, it's [[host]]. Every webinar comes down to 3 numbers: reach to registration, registration to live, live to calls. Do you know yours?\n\nIf not, we can find them with you: {{booking_url}}\nRecording: {{recording_url}}\n\n" + STOP),
 
-dict(step_id="27-W4", title="Week 4: what a done-with-you build looks like", anchor="webinar_start", offset=24 * DAY, template="rt_w4", trigger=WHO,
+dict(step_id="27-W4", title="Week 4: what a done-with-you build looks like", anchor="webinar_start", offset=26 * DAY, template="rt_w4", trigger=WHO,
  email=dict(subject="What \"done with you\" actually means", preheader="Four parts, built with your team.", eyebrow="Week 4",
    headline="What \"Built With You\" Actually Means",
    paras=["Hi {{first_name}},",
@@ -42,7 +42,7 @@ dict(step_id="27-W4", title="Week 4: what a done-with-you build looks like", anc
    cta=BOOK, cta2=("watch the session first", "recording_url"), cta2_lead="Or"),
  ),
 
-dict(step_id="27-W5", title="Week 5: everything we built for one client", anchor="webinar_start", offset=31 * DAY, template="rt_w5", trigger=WHO,
+dict(step_id="27-W5", title="Week 5: everything we built for one client", anchor="webinar_start", offset=33 * DAY, template="rt_w5", trigger=WHO,
  email=dict(subject="Everything we built for one client, in one list", preheader="Not one tactic. A system.", eyebrow="Week 5",
    headline="Everything We Built for One Client, in One List",
    paras=["Hi {{first_name}},",
@@ -66,7 +66,7 @@ dict(step_id="27-W6", title="Week 6: last email and last WhatsApp, then I stop",
 
 LINKEDIN = [
  {"step_id": "27-L1", "trigger": "webinar_start | early_leaver or no_show with a LinkedIn profile URL, not yet connected to Adi; Tantra LinkedIn campaign on Adi's account; skip if excluded",
-  "offset_minutes": 3 * DAY, "channel": "linkedin_connection", "template_name": "rt_li_connect", "subject": "",
+  "offset_minutes": 6 * DAY, "channel": "linkedin_connection", "template_name": "rt_li_connect", "subject": "",
   "body": "Hi {{linkedin_first_name}}, you signed up for my live session on the AI revenue engine. I'd like to connect here. [[host]]"},
  {"step_id": "27-L2", "trigger": "webinar_start | connected (L1 accepted or already a connection), still active; Tantra send_message step",
   "offset_minutes": 20 * DAY, "channel": "linkedin_message", "template_name": "rt_li_msg1", "subject": "",
@@ -76,7 +76,22 @@ LINKEDIN = [
   "body": "{{linkedin_first_name}}, one question: where do leads go quiet in your funnel right now? Registration, show-up, or after the call?\n\nIf it's worth a conversation, here's my team's calendar: {{booking_url}}"},
 ]
 
-ADS_COLUMNS = ["ad_id", "platform", "audiences", "phase_days", "format", "primary_text", "headline", "description", "cta_button", "destination", "creative_brief"]
+ADS_COLUMNS = ["ad_id", "platform", "audiences", "phase_days", "format", "primary_text", "headline", "description", "cta_button", "destination",
+               "locations", "location_rule", "language", "ad_schedule", "budget", "creative_brief"]
+
+# Targeting for a UK and EU audience (RETARGETING_PLAN.md, "Ad Settings"). Countries: item 2's language tiers.
+from retarget_segments import GEO_TIERS
+LOCATIONS = "; ".join("Tier %d: %s" % (t, ", ".join(v[0] for v in GEO_TIERS.values() if v[1] == t)) for t in (1, 2, 3))
+TARGETING = {
+    "meta": {"locations": LOCATIONS, "location_rule": "People living in this location",
+             "language": "English (All)",
+             "ad_schedule": "Lifetime budget, Run ads on a schedule: every day 07:00 to 22:00, Use viewer's time zone",
+             "budget": "FILL_RETARGET_BUDGET_GBP (state it in GBP; ad account currency GBP, time zone Europe/London)"},
+    "linkedin": {"locations": LOCATIONS, "location_rule": "Permanent location",
+                 "language": "English (profile language)",
+                 "ad_schedule": "Run continuously; if Campaign Manager offers ad scheduling, Monday to Friday 07:00 to 20:00 (unverified)",
+                 "budget": "FILL_RETARGET_BUDGET_GBP (state it in GBP; ad account currency GBP)"},
+}
 UTM = "?utm_source=%s&utm_medium=paid&utm_campaign=tew-retarget&utm_content=%s"
 ADS = []
 for plat, short in (("meta", "meta"), ("linkedin", "li")):
@@ -123,6 +138,7 @@ def main():
         row = {k: L.resolve(v) for k, v in a.items()}
         row["description"] = row["description"][0].upper() + row["description"][1:]
         problems += L.check_text(row["ad_id"], " ".join(row.values()))
+        row.update(TARGETING[row["platform"]])
         if row["platform"] == "meta" and len(row["headline"]) > 40:
             problems.append("%s: Meta headline over 40 characters" % row["ad_id"])
         if row["platform"] == "linkedin" and len(row["primary_text"]) > 600:
@@ -137,8 +153,9 @@ def main():
             f.write("### %s (%s, day %d)\n\n%s\n\n```\n%s\n```\n\n" % (r["step_id"], r["channel"], r["offset_minutes"] // DAY, r["trigger"], r["body"]))
         f.write("## Ads (Meta and LinkedIn)\n\n")
         for r in ad_rows:
-            f.write("### %s (%s, days %s)\n\n- Audiences: %s\n- Primary text: %s\n- Headline: %s\n- Description: %s\n- Button: %s\n- Destination: %s\n- Creative: %s\n\n" % (
-                r["ad_id"], r["platform"], r["phase_days"], r["audiences"], r["primary_text"], r["headline"], r["description"], r["cta_button"], r["destination"], r["creative_brief"]))
+            f.write("### %s (%s, days %s)\n\n- Audiences: %s\n- Primary text: %s\n- Headline: %s\n- Description: %s\n- Button: %s\n- Destination: %s\n- Locations (%s): %s\n- Language: %s\n- Schedule: %s\n- Budget: %s\n- Creative: %s\n\n" % (
+                r["ad_id"], r["platform"], r["phase_days"], r["audiences"], r["primary_text"], r["headline"], r["description"], r["cta_button"], r["destination"],
+                r["location_rule"], r["locations"], r["language"], r["ad_schedule"], r["budget"], r["creative_brief"]))
     for p in problems:
         print("PROBLEM", p)
     print("27 build: %d steps, %d LinkedIn, %d ads, %d problems" % (len(STEPS), len(li_rows), len(ad_rows), len(problems)))

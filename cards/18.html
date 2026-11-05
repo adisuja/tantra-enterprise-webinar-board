@@ -278,9 +278,11 @@
 <li>Conor's and Scott's full names, work emails, Cal.com usernames and WhatsApp numbers (funnel-config.json <code>booking.closers</code>, and the Lists tab of the CRM sheet).</li>
 <li>The round-robin URL once the event type exists (<code>booking.round_robin_url</code>, Lists <code>booking_url</code>).</li>
 <li>The onboarding booking link sent on Closed Won (Lists <code>onboarding_link</code>).</li>
-<li>Decisions in 18-speed-to-lead.md, section 9: no-show rebooking (Seq. C switch, default OFF, also used for a missed Call 2), who the setter is, proposal timing, send mode, the Not ready end date, the Call 2 booking window (<code>booking.call2.book_within_days</code>).</li>
+<li>Decisions in 18-speed-to-lead.md, section 9: no-show rebooking (Seq. C switch, default OFF, also used for a missed Call 2), who the setter is, proposal timing, send mode, the Not ready end date. (The Call 2 booking window is decided: 3 business days.)</li>
 <li>Conor's and Scott's Proposal Review links once each has created the event type (19, section 8): funnel-config.json <code>booking.call2.conor_url</code> and <code>scott_url</code>, and the CRM Lists tab column <code>closer_call2_url</code>. Until then the proposal email and every Call 2 message wait as <code>blocked</code>.</li>
 </ul>
+<h2>Time Zones (UK and EU Audience, 2026-11-05)</h2>
+<p>Webinar Thursdays 10:00 to 11:00 UK time (Europe/London, 11:00 CET). Cal.com schedules are in Europe/London: weekdays 09:00 to 18:00, Thursday 11:30 to 19:00; minimum notice 3 hours, so people booking during the offer get same-day slots from 14:00 UK; bookers see slots in their own timezone (19, section 3a). WhatsApp, calls and voice notes go only 08:00 to 20:00 on the lead's clock; closers work UK hours (18, section 2).</p>
 <h2>Call 1 Description: One Approved Change</h2>
 <p>The Call 1 description in 19-calcom-round-robin.md, section 4, is the T-072 text word for word except one addition <strong>approved by Adi on 2026-11-05</strong> for Call 2, at the end of the first sentence of its last paragraph: "If it's a fit, you'll receive a written Enterprise proposal within one business day, and we'll book a short call to walk you through it." Paste the new text into the live event type when you create it.</p>
 <h2>Proof Used</h2>
@@ -1336,6 +1338,8 @@
 </table>
 <p>Rules:
 - <strong>Night bookings.</strong> A booking between 20:00 and 08:00 in the lead's timezone gets the call or voice note at 08:00 their time, not at night. The runner holds the WhatsApp the same way.
+- <strong>Two clocks.</strong> Everything the lead receives (WhatsApp, calls, voice notes, the times in each message) runs on the lead's own clock from Cal.com: 08:00 to 20:00 their time, quiet outside it. Your shift runs on UK time (Europe/London): Monday to Friday 09:00 to 18:00, Thursday 11:30 to 19:00 after the 10:00 to 11:00 UK webinar (item 19, section 3a). The closer alert shows the call in both.
+- <strong>Weekend and out-of-shift bookings.</strong> The 5-minute rule applies on shift. A booking that lands outside your shift (a Saturday, or 21:00 UK) is confirmed first thing on your next shift, by 09:15 UK, and only once it is 08:00 or later on the lead's clock. Helsinki is two hours ahead of London, so by 09:00 UK every EU and UK lead is inside the window.
 - <strong>Cover.</strong> If the assigned closer is on a call, the other closer does minutes 1 to 5 and writes "covered by" in Pipeline notes. The Summary tab's "Rep tasks open" shows anything left.
 - <strong>Never</strong> cancel or move a booking for the lead on this call. Send them the reschedule link from their confirmation email.</p>
 <h2>3. Call-Confirmation Script</h2>
@@ -1562,7 +1566,7 @@
 <li><strong>Proposal timing.</strong> The playbook says send it within 1 hour of the call; your description promises one business day. Built to the description, with the task telling closers to aim for the same day.</li>
 <li><strong>How messages send.</strong> Default <code>queue</code>: the closer sends each due WhatsApp and email from Tantra (the CRM emails them the exact text). <code>tantra</code> mode sends through the Tantra API as single-step campaigns; it is untested on the live account because Tantra has no "add one person to a running campaign" call. Keep queue until one test send passes.</li>
 <li><strong>Not ready end date.</strong> The playbook has no exit for Seq. F. Built: a deal still in Showed 14 days after the 30-day check-in moves to Nurture. Confirm or change.</li>
-<li><strong>Call 2 booking window.</strong> How many days after the proposal can Call 2 be booked (<code>booking.call2.book_within_days</code>, FILL; suggested 3 business days)? It sets Limit future bookings on the two Proposal Review event types. The copy names no number of days, so nothing changes in the messages.</li>
+<li><strong>Call 2 booking window.</strong> Decided 2026-11-05: 3 business days (<code>booking.call2.book_within_days</code>). It sets Limit future bookings, "business days", on the two Proposal Review event types. The copy names no number of days, so nothing changes in the messages.</li>
 <li><strong>Missed Call 2.</strong> Built to follow the same <code>seq_c_rebook</code> switch as a missed Call 1 (OFF: no rebooking, Nurture on day 7). Say if a missed Call 2, which comes after a written proposal, should always get the rebook messages instead.</li>
 </ol></div></details><details class="doc"><summary>RECONCILE.md</summary><div class="md"><h1>Reconcile: Call 2 in Items 18, 19 and 23 (Done)</h1>
 <p><strong>Status: done, 2026-11-05.</strong> Adi decided (the task board): yes, add Call 2 after the proposal, as in his sales journey reference (Call 1, custom proposal and due diligence, Call 2, contract and payment). Call 2 is "Tantra Enterprise Proposal Review", 30 minutes, booked from the proposal email, always with the closer who ran Call 1, and it is where the decision is made. Every point this file raised is now built; the table says where.</p>
@@ -1627,7 +1631,7 @@
 <tr>
 <td>19.4</td>
 <td>Limits: the proposal-to-Call-2 window</td>
-<td>Limit future bookings = <code>booking.call2.book_within_days</code> (FILL, decision 6)</td>
+<td>Limit future bookings = <code>booking.call2.book_within_days</code>: 3 business days (decided 2026-11-05)</td>
 <td>Section 8, Event Type</td>
 </tr>
 <tr>

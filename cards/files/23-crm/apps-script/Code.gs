@@ -285,8 +285,8 @@ var SCHEMA = {
   },
   {
    "setting": "default_timezone",
-   "value": "America/New_York",
-   "setting_note": "Used when Cal.com sends no attendee timezone. Change when webinar.timezone is decided."
+   "value": "Europe/London",
+   "setting_note": "Europe/London (webinar.timezone): used when Cal.com or the registration sends no timezone, for the closer's side of every alert, and as the sheet's timezone (Set up applies it)."
   },
   {
    "setting": "whatsapp_start_hour",
@@ -1237,7 +1237,7 @@ function whatsappWindow_(d, tz) {
 
 function tzOf_(contact) {
   var tz = contact && !blank_(contact.timezone) ? String(contact.timezone) : '';
-  return tz || setting_('default_timezone', 'America/New_York');
+  return tz || setting_('default_timezone', 'Europe/London');
 }
 
 /* ---------- rendering ---------- */
@@ -1908,7 +1908,7 @@ function alertCloser_(kind, deal, contact, d) {
   var setterEmail = blank_(setting_('setter_email')) ? '' : setting_('setter_email');
   if (!to && !setterEmail) return;
   var c = contact.o, f = mergeFields_(c, deal.o);
-  var closerTz = setting_('default_timezone', 'America/New_York');
+  var closerTz = setting_('default_timezone', 'Europe/London');
   var isCall2 = /^Call 2/.test(kind);
   var call = toDate_(isCall2 ? deal.o.call2_date : deal.o.call_date);
   if (isCall2) { f.call_day = f.call2_day; f.call_time = f.call2_time; f.join_link = f.call2_join_link; }
@@ -2223,12 +2223,21 @@ function setup() {
   var props = PropertiesService.getScriptProperties();
   props.setProperty('SHEET_ID', ss.getId());
   ensureTabs_(ss);
+  applySheetTimeZone_(ss);
   if (!props.getProperty('SHARED_SECRET')) props.setProperty('SHARED_SECRET', Utilities.getUuid().replace(/-/g, '') + Utilities.getUuid().replace(/-/g, ''));
   ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === 'runFollowUps') ScriptApp.deleteTrigger(t); });
   ScriptApp.newTrigger('runFollowUps').timeBased().everyMinutes(5).create();
   var msg = 'Set up done. Runner installed (every 5 minutes).\n\nYour shared secret (Project Settings, Script Properties, SHARED_SECRET) is:\n\n' +
     props.getProperty('SHARED_SECRET') + '\n\nAdd it to the web app URL as ?k=<secret> wherever a tool posts to the CRM. Never put it in the repo.';
   try { SpreadsheetApp.getUi().alert(msg); } catch (e) { Logger.log(msg); }
+}
+
+/* Timestamps written as dates show in the spreadsheet's timezone. The CRM runs on UK time
+ * (webinar.timezone, Lists setting default_timezone), whatever the owner's Google account uses. */
+function applySheetTimeZone_(ss) {
+  var tz = setting_('default_timezone', 'Europe/London') || 'Europe/London';
+  if (ss.getSpreadsheetTimeZone && ss.getSpreadsheetTimeZone() !== tz) ss.setSpreadsheetTimeZone(tz);
+  return tz;
 }
 
 function ensureTabs_(ss) {
@@ -2279,6 +2288,13 @@ function upgradeLists_(sh) {
   var have = sh.getRange(2, sc + 1, n, 1).getValues().map(function (r) { return String(r[0]).trim(); });
   var last = 0;
   have.forEach(function (v, i) { if (v) last = i + 1; });
+  // The live sheet was seeded before the webinar timezone was decided: replace that placeholder only.
+  var vc = head.indexOf('value'), tzRow = have.indexOf('default_timezone');
+  var tzWant = SCHEMA.settings.filter(function (s) { return s.setting === 'default_timezone'; })[0];
+  if (vc >= 0 && tzRow >= 0 && tzWant && String(sh.getRange(tzRow + 2, vc + 1).getValue()).trim() === 'America/New_York') {
+    sh.getRange(tzRow + 2, vc + 1).setValue(tzWant.value);
+    if (head.indexOf('setting_note') >= 0) sh.getRange(tzRow + 2, head.indexOf('setting_note') + 1).setValue(tzWant.setting_note);
+  }
   var missing = SCHEMA.settings.filter(function (s) { return have.indexOf(s.setting) < 0; });
   if (missing.length) sh.getRange(last + 2, sc + 1, missing.length, 3).setValues(missing.map(function (s) { return [s.setting, s.value, s.setting_note]; }));
 }

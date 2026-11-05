@@ -30,7 +30,7 @@ Watch Video 1: Funnels: {{video_funnels_url}}
 We go live {{webinar_date_local}} at {{webinar_time_local}}. Your join link stays the same.
 
 Adi",first_name; webinar_date_local; video_funnels_url; webinar_time_local
-15B-V2,webinar_start | every registrant (email); whatsapp_opt_in = true (WhatsApp),-7200,email,tew_video2_email,Video 2: where pipelines go quiet,"Hi {{first_name}},
+15B-V2,webinar_start | every registrant (email); whatsapp_opt_in = true (WhatsApp),-8640,email,tew_video2_email,Video 2: where pipelines go quiet,"Hi {{first_name}},
 
 Here's where most teams lose money. Not at the top, where everybody is looking. After the yes.
 

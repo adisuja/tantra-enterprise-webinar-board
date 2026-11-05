@@ -25,7 +25,7 @@ If you want to see how I map it, it's in the first half of the recording.
 Rewatch the Funnel Section: {{recording_url}}
 
 Adi",first_name; recording_url
-22A-2,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; email only (Track A WhatsApp goes on days 0, 3, 7 and 14)",2880,email,pw_a2_email,"From 10,000 people reached to 30,000 invites","Hi {{first_name}},
+22A-2,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; email only (Track A WhatsApp goes on days 0, 5, 7 and 14)",5760,email,pw_a2_email,"From 10,000 people reached to 30,000 invites","Hi {{first_name}},
 
 The first episode of a webinar series is the hardest. Small list, no data, no idea what works.
 
@@ -40,7 +40,7 @@ Book My Evaluation Call: {{booking_url}}
 Or rewatch the session: {{recording_url}}
 
 Adi",first_name; booking_url; recording_url
-22A-3,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",4320,email,pw_a3_email,What happens on the evaluation call,"Hi {{first_name}},
+22A-3,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",7200,email,pw_a3_email,What happens on the evaluation call,"Hi {{first_name}},
 
 Some people don't book because they don't know what they're walking into. Fair enough. Here's exactly what happens.
 
@@ -57,7 +57,7 @@ Book My Evaluation Call: {{booking_url}}
 Or rewatch the session first: {{recording_url}}
 
 Adi",first_name; booking_url; recording_url
-22A-4,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; teaching email, no booking link (they already sat through the offer); no WhatsApp",7200,email,pw_a4_email,"If you build it yourself, build it in this order","Hi {{first_name}},
+22A-4,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; teaching email, no booking link (they already sat through the offer); no WhatsApp",8640,email,pw_a4_email,"If you build it yourself, build it in this order","Hi {{first_name}},
 
 Plenty of teams build this themselves. The ones who stall usually start everything at once. Here's the order I'd follow.
 
@@ -71,7 +71,7 @@ Finish one before you start the next. Each piece is in the recording if you want
 Rewatch the Build: {{recording_url}}
 
 Adi",first_name; recording_url
-22A-5,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",10080,email,pw_a5_email,"30 registrations to 1,990","Hi {{first_name}},
+22A-5,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",10320,email,pw_a5_email,"30 registrations to 1,990","Hi {{first_name}},
 
 Growth Idea's first webinar with us, in May 2025, got 30 registrations and 7 people live.
 
@@ -88,7 +88,7 @@ Book My Evaluation Call: {{booking_url}}
 Or rewatch the session: {{recording_url}}
 
 Adi",first_name; booking_url; recording_url
-22A-6,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; teaching email, no booking link (they already sat through the offer); no WhatsApp",14400,email,pw_a6_email,The 20-minute review I'd run every week,"Hi {{first_name}},
+22A-6,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; teaching email, no booking link (they already sat through the offer); no WhatsApp",15840,email,pw_a6_email,The 20-minute review I'd run every week,"Hi {{first_name}},
 
 Most funnels don't break in one go. They drift. A reminder stops sending, a page gets slower, a follow-up goes out a day late, and nobody notices for a month.
 
@@ -103,7 +103,7 @@ That's it. One change a week adds up faster than a big rebuild twice a year. I w
 Rewatch the Numbers Section: {{recording_url}}
 
 Adi",first_name; recording_url
-22A-7,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; last step, then the newsletter (newsletter_opt_in only)",20160,email,pw_a7_email,My last note about the call,"Hi {{first_name}},
+22A-7,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; last step, then the newsletter (newsletter_opt_in only)",20400,email,pw_a7_email,My last note about the call,"Hi {{first_name}},
 
 This is the last email I'll send you about the evaluation call.
 
@@ -142,7 +142,7 @@ Book My Evaluation Call: {{booking_url}}
 Or watch that part of the recording: {{recording_offer_url}}
 
 Adi",first_name; booking_url; recording_offer_url
-22B-2,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",2880,email,pw_b2_email,"One webinar: 1,990 registrations, 25 sales calls","Hi {{first_name}},
+22B-2,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",5760,email,pw_b2_email,"One webinar: 1,990 registrations, 25 sales calls","Hi {{first_name}},
 
 Here's what the full system looked like for one client. Growth Idea is a UK business-coaching group. Their best webinar with us reached 99,859 people, 98,000 of them through calendar invites.
 
@@ -157,7 +157,7 @@ Watch the Recording: {{recording_url}}
 Or skip ahead and book an evaluation call: {{booking_url}}
 
 Adi",first_name; recording_url; booking_url
-22B-3,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",5760,email,pw_b3_email,What happens on the evaluation call,"Hi {{first_name}},
+22B-3,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",7200,email,pw_b3_email,What happens on the evaluation call,"Hi {{first_name}},
 
 You left the session before I explained the call, so here it is.
 
@@ -174,7 +174,7 @@ Book My Evaluation Call: {{booking_url}}
 Or watch the full session first: {{recording_url}}
 
 Adi",first_name; booking_url; recording_url
-22B-4,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",10080,email,pw_b4_email,"From 10,000 people reached to 30,000 invites","Hi {{first_name}},
+22B-4,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",10320,email,pw_b4_email,"From 10,000 people reached to 30,000 invites","Hi {{first_name}},
 
 The first episode of a webinar series is the hardest. Small list, no data, no idea what works.
 
@@ -189,7 +189,7 @@ Book My Evaluation Call: {{booking_url}}
 Or watch the second half of the recording: {{recording_offer_url}}
 
 Adi",first_name; booking_url; recording_offer_url
-22B-5,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",14400,email,pw_b5_email,Is this a fit? A straight answer,"Hi {{first_name}},
+22B-5,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",15840,email,pw_b5_email,Is this a fit? A straight answer,"Hi {{first_name}},
 
 You left the session early, so you may not know whether any of this is for you. Here's the straight version.
 
@@ -207,7 +207,7 @@ Book My Evaluation Call: {{booking_url}}
 Or keep the recording: {{recording_url}}
 
 Adi",first_name; booking_url; recording_url
-22B-6,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; then item 27 weeks 3 to 6",20160,email,pw_b6_email,Two weeks on: what's changed?,"Hi {{first_name}},
+22B-6,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; then item 27 weeks 3 to 6",20400,email,pw_b6_email,Two weeks on: what's changed?,"Hi {{first_name}},
 
 Two weeks ago you joined my session. One honest question: what has changed in your pipeline since?
 
@@ -244,7 +244,7 @@ Watch the Recording: {{recording_url}}
 Or talk it through with us on an evaluation call: {{booking_url}}
 
 Adi",first_name; recording_url; booking_url
-22C-2,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",2880,email,pw_c2_email,"One webinar: 1,990 registrations, 25 sales calls","Hi {{first_name}},
+22C-2,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",5760,email,pw_c2_email,"One webinar: 1,990 registrations, 25 sales calls","Hi {{first_name}},
 
 Here's what the full system looked like for one client. Growth Idea is a UK business-coaching group. Their best webinar with us reached 99,859 people, 98,000 of them through calendar invites.
 
@@ -259,7 +259,7 @@ Watch the Recording: {{recording_url}}
 Or skip ahead and book an evaluation call: {{booking_url}}
 
 Adi",first_name; recording_url; booking_url
-22C-3,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",5760,email,pw_c3_email,How we build it with you,"Hi {{first_name}},
+22C-3,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",7200,email,pw_c3_email,How we build it with you,"Hi {{first_name}},
 
 You missed the live session, so you also missed the part where I explain how we work with companies directly. Here it is in three lines.
 
@@ -274,7 +274,7 @@ Book My Evaluation Call: {{booking_url}}
 Or watch that part of the recording: {{recording_offer_url}}
 
 Adi",first_name; booking_url; recording_offer_url
-22C-4,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",10080,email,pw_c4_email,"From 10,000 people reached to 30,000 invites","Hi {{first_name}},
+22C-4,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",10320,email,pw_c4_email,"From 10,000 people reached to 30,000 invites","Hi {{first_name}},
 
 The first episode of a webinar series is the hardest. Small list, no data, no idea what works.
 
@@ -289,7 +289,7 @@ Book My Evaluation Call: {{booking_url}}
 Or watch the recording: {{recording_url}}
 
 Adi",first_name; booking_url; recording_url
-22C-5,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",14400,email,pw_c5_email,Is this a fit? A straight answer,"Hi {{first_name}},
+22C-5,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost",15840,email,pw_c5_email,Is this a fit? A straight answer,"Hi {{first_name}},
 
 You haven't seen the session yet, so here's the straight version of who it's for.
 
@@ -307,7 +307,7 @@ Book My Evaluation Call: {{booking_url}}
 Or start with the recording: {{recording_url}}
 
 Adi",first_name; booking_url; recording_url
-22C-6,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; then item 27 weeks 3 to 6",20160,email,pw_c6_email,Two weeks on: still worth an hour?,"Hi {{first_name}},
+22C-6,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; then item 27 weeks 3 to 6",20400,email,pw_c6_email,Two weeks on: still worth an hour?,"Hi {{first_name}},
 
 Two weeks ago you signed up for my session and couldn't make it. Life happens.
 

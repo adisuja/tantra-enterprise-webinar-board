@@ -52,10 +52,32 @@ RETARGET_DAYS = 42
 REPLAY_DAYS = 14
 META_MIN, LINKEDIN_MIN = 100, 300  # smallest audience each platform will serve (check in the ad tools)
 
-COUNTRY_NAMES = {"united states": "us", "usa": "us", "united kingdom": "gb", "uk": "gb", "india": "in",
-                 "canada": "ca", "australia": "au", "germany": "de", "france": "fr", "ireland": "ie",
-                 "singapore": "sg", "united arab emirates": "ae", "uae": "ae", "netherlands": "nl",
-                 "spain": "es", "italy": "it", "new zealand": "nz", "south africa": "za"}
+# Geo for a UK and EU audience: the language tiers of item 2 (02-outreach-lists/ICP_AND_SEGMENTS.md).
+# ISO code: (English name, language tier, calling code). Ad locations in ads.csv come from here.
+GEO_TIERS = {
+    "gb": ("United Kingdom", 1, "44"), "ie": ("Ireland", 1, "353"), "mt": ("Malta", 1, "356"),
+    "nl": ("Netherlands", 2, "31"), "se": ("Sweden", 2, "46"), "dk": ("Denmark", 2, "45"), "fi": ("Finland", 2, "358"),
+    "no": ("Norway", 2, "47"), "is": ("Iceland", 2, "354"),
+    "at": ("Austria", 3, "43"), "be": ("Belgium", 3, "32"), "bg": ("Bulgaria", 3, "359"), "hr": ("Croatia", 3, "385"),
+    "cy": ("Cyprus", 3, "357"), "cz": ("Czechia", 3, "420"), "ee": ("Estonia", 3, "372"), "fr": ("France", 3, "33"),
+    "de": ("Germany", 3, "49"), "gr": ("Greece", 3, "30"), "hu": ("Hungary", 3, "36"), "it": ("Italy", 3, "39"),
+    "lv": ("Latvia", 3, "371"), "lt": ("Lithuania", 3, "370"), "lu": ("Luxembourg", 3, "352"), "pl": ("Poland", 3, "48"),
+    "pt": ("Portugal", 3, "351"), "ro": ("Romania", 3, "40"), "sk": ("Slovakia", 3, "421"), "si": ("Slovenia", 3, "386"),
+    "es": ("Spain", 3, "34"), "ch": ("Switzerland", 3, "41"), "li": ("Liechtenstein", 3, "423"),
+}
+CALLING = {k: v[2] for k, v in GEO_TIERS.items()}
+CALLING.update({"us": "1", "ca": "1", "in": "91", "au": "61", "nz": "64", "sg": "65", "ae": "971", "za": "27"})
+TRUNK_ZERO_KEPT = {"it"}  # Italian numbers keep their leading 0 after the country code
+
+COUNTRY_NAMES = {v[0].lower(): k for k, v in GEO_TIERS.items()}
+COUNTRY_NAMES.update({
+    "uk": "gb", "u.k.": "gb", "great britain": "gb", "britain": "gb", "england": "gb", "scotland": "gb", "wales": "gb",
+    "northern ireland": "gb", "republic of ireland": "ie", "the netherlands": "nl", "holland": "nl", "nederland": "nl",
+    "sverige": "se", "danmark": "dk", "suomi": "fi", "norge": "no", "ísland": "is", "czech republic": "cz", "česko": "cz",
+    "deutschland": "de", "österreich": "at", "belgië": "be", "belgique": "be", "españa": "es", "italia": "it",
+    "polska": "pl", "schweiz": "ch", "suisse": "ch", "svizzera": "ch",
+    "united states": "us", "usa": "us", "canada": "ca", "australia": "au", "india": "in", "singapore": "sg",
+    "united arab emirates": "ae", "uae": "ae", "new zealand": "nz", "south africa": "za"})
 
 def sha256(v):
     return hashlib.sha256(v.encode("utf-8")).hexdigest()
@@ -73,17 +95,19 @@ def norm_country(v):
         return v
     return COUNTRY_NAMES.get(v, "")
 
-def norm_phone(v, cc=""):
-    """Digits with country code, no plus, no leading zeros (Meta spec). Unknown country code: drop."""
+def norm_phone(v, cc="", country=""):
+    """Digits with country code, no plus, no trunk zero (Meta spec). A national number such as
+    07700 900123 takes its country code from the phone country code column, else from the
+    Country column (UK and EU registrants often type it that way). Unknown country code: drop."""
     v = (v or "").strip()
     if not v:
         return ""
     digits = re.sub(r"\D", "", v)
     if v.startswith("+") or v.startswith("00"):
         return digits.lstrip("0")
-    ccd = re.sub(r"\D", "", cc or "")
+    ccd = re.sub(r"\D", "", cc or "") or CALLING.get(country, "")
     if ccd:
-        return ccd + digits.lstrip("0")
+        return ccd + (digits if country in TRUNK_ZERO_KEPT else digits.lstrip("0"))
     return ""
 
 def parse_minutes(v, unit="minutes", colon_format="h:mm"):
@@ -179,7 +203,7 @@ def read_exports(paths, cols, fallback_date):
                     attended = bool(parsed) or bool(joined)
                 # CRM_CONTRACT attendance rule: whole minutes, floored at 1 for anyone attended
                 minutes = max(1, int(parsed or 0)) if attended else 0
-                rows.append(dict(email=email, first=first, last=last, phone=norm_phone(g("phone"), g("phone_country_code")),
+                rows.append(dict(email=email, first=first, last=last, phone=norm_phone(g("phone"), g("phone_country_code"), norm_country(g("country"))),
                                  country=norm_country(g("country")), webinar_date=wdate, minutes=minutes,
                                  attended=attended, joined=joined, left=left))
     return rows, mapping_report

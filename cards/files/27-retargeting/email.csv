@@ -1,5 +1,5 @@
 step_id,trigger,offset_minutes,channel,template_name,subject,body,variables
-27-W3,"webinar_start | segment early_leaver or no_show, status active on the day (retarget_segments.py); email to all, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won, deal.lost, or a new webinar.registered",24480,email,rt_w3_email,The 3 numbers that decide every webinar,"Hi {{first_name}},
+27-W3,"webinar_start | segment early_leaver or no_show, status active on the day (retarget_segments.py); email to all, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won, deal.lost, or a new webinar.registered",27360,email,rt_w3_email,The 3 numbers that decide every webinar,"Hi {{first_name}},
 
 A few weeks ago you signed up for my live session. Here's the one idea from it I'd want you to keep, even if you never watch the recording.
 
@@ -18,7 +18,7 @@ Book My Evaluation Call: {{booking_url}}
 Or see how we measure them in the recording: {{recording_url}}
 
 Adi",first_name; booking_url; recording_url
-27-W4,"webinar_start | segment early_leaver or no_show, status active on the day (retarget_segments.py); email to all, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won, deal.lost, or a new webinar.registered",34560,email,rt_w4_email,"What ""done with you"" actually means","Hi {{first_name}},
+27-W4,"webinar_start | segment early_leaver or no_show, status active on the day (retarget_segments.py); email to all, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won, deal.lost, or a new webinar.registered",37440,email,rt_w4_email,"What ""done with you"" actually means","Hi {{first_name}},
 
 ""Done for you"" usually means someone builds a thing, hands it over, and leaves. Six months later nobody on your team knows how it works.
 
@@ -38,7 +38,7 @@ Book My Evaluation Call: {{booking_url}}
 Or watch the session first: {{recording_url}}
 
 Adi",first_name; booking_url; recording_url
-27-W5,"webinar_start | segment early_leaver or no_show, status active on the day (retarget_segments.py); email to all, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won, deal.lost, or a new webinar.registered",44640,email,rt_w5_email,"Everything we built for one client, in one list","Hi {{first_name}},
+27-W5,"webinar_start | segment early_leaver or no_show, status active on the day (retarget_segments.py); email to all, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won, deal.lost, or a new webinar.registered",47520,email,rt_w5_email,"Everything we built for one client, in one list","Hi {{first_name}},
 
 People sometimes ask what we actually build. So here's the full list for one client: Growth Idea, a UK business-coaching group, over 11 webinars between May 2025 and February 2026.
 

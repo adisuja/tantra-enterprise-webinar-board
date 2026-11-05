@@ -4,7 +4,8 @@
 Run:  python3 deliverables/22-post-nurture/build.py
 Writes email.csv, whatsapp.csv, emails/*.html, emails/index.html and COPY.md.
 Uses the 15b builder (deliverables/15b-pre-nurture/nurture_lib.py). Offsets are minutes from
-webinar start. Every message carries {{booking_url}} and the recording page.
+webinar start (Thursday 10:00 UK). Day-level steps land on weekdays only, at 10:00 UK; days 7 and
+14 are the next Thursdays, so they go at 14:00 UK, after that day's live session. Every message carries {{booking_url}} and the recording page.
 """
 import os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -77,21 +78,21 @@ dict(step_id="22A-1", title="Stayed: teach, find the leak closest to the money",
    cta=("Rewatch the Funnel Section", "recording_url")),
 ),
 
-dict(step_id="22A-2", title="Stayed: FintechCircle proof", anchor="webinar_start", offset=2880, template="pw_a2", trigger=trig("A") + "; email only (Track A WhatsApp goes on days 0, 3, 7 and 14)",
+dict(step_id="22A-2", title="Stayed: FintechCircle proof", anchor="webinar_start", offset=5760, template="pw_a2", trigger=trig("A") + "; email only (Track A WhatsApp goes on days 0, 5, 7 and 14)",
  email=dict(subject="From 10,000 people reached to 30,000 invites", preheader="What kept improving from episode one to three.", eyebrow="How it compounds",
    headline="What Happened When FintechCircle Kept Going",
    paras=["Hi {{first_name}},"] + FINTECH + ["That's what we build with you. Book a call and we'll show you what it looks like for your funnel."],
    cta=BOOK, cta2=("rewatch the session", "recording_url"), cta2_lead="Or")),
 
-dict(step_id="22A-3", title="Stayed: what happens on the call", anchor="webinar_start", offset=4320, template="pw_a3", trigger=trig("A"),
+dict(step_id="22A-3", title="Stayed: what happens on the call", anchor="webinar_start", offset=7200, template="pw_a3", trigger=trig("A"),
  email=dict(subject="What happens on the evaluation call", preheader="Before, during and after. No surprises.", eyebrow="The call",
    headline="What Happens on the [[call_minutes]]-Minute Call",
    paras=["Hi {{first_name}},", "Some people don't book because they don't know what they're walking into. Fair enough. Here's exactly what happens."] + CALL_STEPS + [CALL_RULE],
    cta=BOOK, cta2=("rewatch the session first", "recording_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, here's what happens on the evaluation call: [[call_minutes]] minutes on your funnel and numbers, a straight answer on fit, and [[proposal]] if it fits.\n\nBook here: {{booking_url}}\nRecording: {{recording_url}}\n\n" + STOP),
 
-dict(step_id="22A-4", title="Stayed: teach, if you build it yourself, build it in this order", anchor="webinar_start", offset=7200, template="pw_a4", trigger=trig("A") + "; teaching email, no booking link (they already sat through the offer); no WhatsApp",
- email=dict(subject="If you build it yourself, build it in this order", preheader="Four pieces, one at a time.", eyebrow="Day 5",
+dict(step_id="22A-4", title="Stayed: teach, if you build it yourself, build it in this order", anchor="webinar_start", offset=8640, template="pw_a4", trigger=trig("A") + "; teaching email, no booking link (they already sat through the offer); no WhatsApp",
+ email=dict(subject="If you build it yourself, build it in this order", preheader="Four pieces, one at a time.", eyebrow="Day 6",
    headline="If You Build It Yourself, Build It in This Order",
    paras=["Hi {{first_name}},",
      "Plenty of teams build this themselves. The ones who stall usually start everything at once. Here's the order I'd follow.",
@@ -100,15 +101,15 @@ dict(step_id="22A-4", title="Stayed: teach, if you build it yourself, build it i
    cta=("Rewatch the Build", "recording_url")),
 ),
 
-dict(step_id="22A-5", title="Stayed: Growth Idea, 30 to 1,990", anchor="webinar_start", offset=10080, template="pw_a5", trigger=trig("A"),
+dict(step_id="22A-5", title="Stayed: Growth Idea, 30 to 1,990", anchor="webinar_start", offset=10320, template="pw_a5", trigger=trig("A"),
  email=dict(subject="30 registrations to 1,990", preheader="Same company, different engine.", eyebrow="One week on",
    headline="From 30 Registrations to 1,990",
    paras=["Hi {{first_name}},"] + GROWTH_COMPOUND + ["If your first webinars look like their first one, that's normal. The question is whether you have the system to get from one to the other.", "Book a call and we'll show you where that gap is in your funnel."],
    cta=BOOK, cta2=("rewatch the session", "recording_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, one more client example. Growth Idea's first webinar with us got 30 registrations. Their best got 1,990, with 321 live and 25 sales calls.\n\nFind your gap on a call: {{booking_url}}\nRecording: {{recording_url}}\n\n" + STOP),
 
-dict(step_id="22A-6", title="Stayed: teach, the weekly 20-minute review", anchor="webinar_start", offset=14400, template="pw_a6", trigger=trig("A") + "; teaching email, no booking link (they already sat through the offer); no WhatsApp",
- email=dict(subject="The 20-minute review I'd run every week", preheader="Three numbers, one change.", eyebrow="Day 10",
+dict(step_id="22A-6", title="Stayed: teach, the weekly 20-minute review", anchor="webinar_start", offset=15840, template="pw_a6", trigger=trig("A") + "; teaching email, no booking link (they already sat through the offer); no WhatsApp",
+ email=dict(subject="The 20-minute review I'd run every week", preheader="Three numbers, one change.", eyebrow="Day 11",
    headline="The 20-Minute Review I'd Run Every Week",
    paras=["Hi {{first_name}},",
      "Most funnels don't break in one go. They drift. A reminder stops sending, a page gets slower, a follow-up goes out a day late, and nobody notices for a month.",
@@ -118,7 +119,7 @@ dict(step_id="22A-6", title="Stayed: teach, the weekly 20-minute review", anchor
    cta=("Rewatch the Numbers Section", "recording_url")),
 ),
 
-dict(step_id="22A-7", title="Stayed: last note about the call", anchor="webinar_start", offset=20160, template="pw_a7", trigger=trig("A") + "; last step, then the newsletter (newsletter_opt_in only)",
+dict(step_id="22A-7", title="Stayed: last note about the call", anchor="webinar_start", offset=20400, template="pw_a7", trigger=trig("A") + "; last step, then the newsletter (newsletter_opt_in only)",
  email=dict(subject="My last note about the call", preheader="The link, one more time.", eyebrow="Last note",
    headline="My Last Note About the Call",
    paras=["Hi {{first_name}},",
@@ -147,35 +148,35 @@ dict(step_id="22B-1", title="Early leaver: what came after you left", anchor="we
    cta=BOOK, cta2=("watch that part of the recording", "recording_offer_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, what came after you left: the system, how we build it with your team ([[offer]], [[price]]) and who it's for.\n\nWatch that part: {{recording_offer_url}}\nOr book a call: {{booking_url}}\n\n" + STOP),
 
-dict(step_id="22B-2", title="Early leaver: Growth Idea best webinar", anchor="webinar_start", offset=2880, template="pw_b2", trigger=trig("B"),
+dict(step_id="22B-2", title="Early leaver: Growth Idea best webinar", anchor="webinar_start", offset=5760, template="pw_b2", trigger=trig("B"),
  email=dict(subject="One webinar: 1,990 registrations, 25 sales calls", preheader="What the full system looked like for one client.", eyebrow="Client example",
    headline="What the Full System Looked Like for One Client",
    paras=["Hi {{first_name}},"] + GROWTH_BEST + ["The recording walks through it from the point you left."],
    cta=REC, cta2=("skip ahead and book an evaluation call", "booking_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, one client's best webinar with us: 99,859 people reached, 1,990 registrations, 321 live, 25 sales calls. The second half of the session shows the engine behind it.\n\nRecording: {{recording_url}}\nBook a call: {{booking_url}}\n\n" + STOP),
 
-dict(step_id="22B-3", title="Early leaver: what happens on the call", anchor="webinar_start", offset=5760, template="pw_b3", trigger=trig("B"),
+dict(step_id="22B-3", title="Early leaver: what happens on the call", anchor="webinar_start", offset=7200, template="pw_b3", trigger=trig("B"),
  email=dict(subject="What happens on the evaluation call", preheader="Before, during and after.", eyebrow="The call",
    headline="What Happens on the [[call_minutes]]-Minute Call",
    paras=["Hi {{first_name}},", "You left the session before I explained the call, so here it is."] + CALL_STEPS + [CALL_RULE],
    cta=BOOK, cta2=("watch the full session first", "recording_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, you left before I explained the evaluation call: [[call_minutes]] minutes on your funnel and numbers, a straight answer on fit, and [[proposal]] if it fits.\n\nBook: {{booking_url}}\nRecording: {{recording_url}}\n\n" + STOP),
 
-dict(step_id="22B-4", title="Early leaver: FintechCircle proof", anchor="webinar_start", offset=10080, template="pw_b4", trigger=trig("B"),
+dict(step_id="22B-4", title="Early leaver: FintechCircle proof", anchor="webinar_start", offset=10320, template="pw_b4", trigger=trig("B"),
  email=dict(subject="From 10,000 people reached to 30,000 invites", preheader="What kept improving from episode one to three.", eyebrow="One week on",
    headline="What Happened When FintechCircle Kept Going",
    paras=["Hi {{first_name}},"] + FINTECH + ["That's the engine the second half of the session covers. Book a call to see it for your funnel."],
    cta=BOOK, cta2=("watch the second half of the recording", "recording_offer_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, FintechCircle's webinar series grew from 10,000 people reached to 30,000 calendar invites by episode three, with 17 calls booked across the first three.\n\nBook: {{booking_url}}\nRecording: {{recording_url}}\n\n" + STOP),
 
-dict(step_id="22B-5", title="Early leaver: who it fits", anchor="webinar_start", offset=14400, template="pw_b5", trigger=trig("B"),
+dict(step_id="22B-5", title="Early leaver: who it fits", anchor="webinar_start", offset=15840, template="pw_b5", trigger=trig("B"),
  email=dict(subject="Is this a fit? A straight answer", preheader="Who it's for, and who it isn't.", eyebrow="Fit",
    headline="Who This Is For, and Who It Isn't",
    paras=["Hi {{first_name}},", "You left the session early, so you may not know whether any of this is for you. Here's the straight version."] + FIT,
    cta=BOOK, cta2=("keep the recording", "recording_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, a straight answer on fit. [[offer]] is for teams that want it built with them and have [[fit_budget]] to invest in the next 12 months.\n\nIf that's you: {{booking_url}}\nIf not, keep the recording: {{recording_url}}\n\n" + STOP),
 
-dict(step_id="22B-6", title="Early leaver: two weeks on", anchor="webinar_start", offset=20160, template="pw_b6", trigger=trig("B") + "; then item 27 weeks 3 to 6",
+dict(step_id="22B-6", title="Early leaver: two weeks on", anchor="webinar_start", offset=20400, template="pw_b6", trigger=trig("B") + "; then item 27 weeks 3 to 6",
  email=dict(subject="Two weeks on: what's changed?", preheader="One honest question.", eyebrow="Two weeks on",
    headline="Two Weeks On, What's Changed in Your Pipeline?",
    paras=["Hi {{first_name}},", "Two weeks ago you joined my session. One honest question: what has changed in your pipeline since?",
@@ -202,14 +203,14 @@ dict(step_id="22C-1", title="No-show: watch it with one question", anchor="webin
    cta=REC, cta2=("talk it through with us on an evaluation call", "booking_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, before you watch the recording, write down the one step where your leads go quiet. Then watch with that in mind.\n\nRecording: {{recording_url}}\nOr talk it through: {{booking_url}}\n\n" + STOP),
 
-dict(step_id="22C-2", title="No-show: Growth Idea best webinar", anchor="webinar_start", offset=2880, template="pw_c2", trigger=trig("C"),
+dict(step_id="22C-2", title="No-show: Growth Idea best webinar", anchor="webinar_start", offset=5760, template="pw_c2", trigger=trig("C"),
  email=dict(subject="One webinar: 1,990 registrations, 25 sales calls", preheader="What the full system looked like for one client.", eyebrow="Client example",
    headline="What the Full System Looked Like for One Client",
    paras=["Hi {{first_name}},"] + GROWTH_BEST[:2] + ["That's what the session covers. Not one tactic, but the engine that turns reach into calls, week after week.", "It's all in the recording."],
    cta=REC, cta2=("skip ahead and book an evaluation call", "booking_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, one client's best webinar with us: 99,859 people reached, 1,990 registrations, 321 live, 25 sales calls. The recording shows the engine behind it.\n\nRecording: {{recording_url}}\nBook a call: {{booking_url}}\n\n" + STOP),
 
-dict(step_id="22C-3", title="No-show: how we build it with you", anchor="webinar_start", offset=5760, template="pw_c3", trigger=trig("C"),
+dict(step_id="22C-3", title="No-show: how we build it with you", anchor="webinar_start", offset=7200, template="pw_c3", trigger=trig("C"),
  email=dict(subject="How we build it with you", preheader="What's included, what it costs, who it's for.", eyebrow="The offer",
    headline="How We Build the System With Your Team",
    paras=["Hi {{first_name}},", "You missed the live session, so you also missed the part where I explain how we work with companies directly. Here it is in three lines.",
@@ -218,21 +219,21 @@ dict(step_id="22C-3", title="No-show: how we build it with you", anchor="webinar
    cta=BOOK, cta2=("watch that part of the recording", "recording_offer_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, the part of the session you missed: how we build the system with your team. [[offer]], [[price]], for teams with [[fit_budget]] to invest this year.\n\nBook a call: {{booking_url}}\nWatch that part: {{recording_offer_url}}\n\n" + STOP),
 
-dict(step_id="22C-4", title="No-show: FintechCircle proof", anchor="webinar_start", offset=10080, template="pw_c4", trigger=trig("C"),
+dict(step_id="22C-4", title="No-show: FintechCircle proof", anchor="webinar_start", offset=10320, template="pw_c4", trigger=trig("C"),
  email=dict(subject="From 10,000 people reached to 30,000 invites", preheader="What kept improving from episode one to three.", eyebrow="One week on",
    headline="What Happened When FintechCircle Kept Going",
    paras=["Hi {{first_name}},"] + FINTECH + ["The recording shows the system. The call shows what it looks like for your funnel."],
    cta=BOOK, cta2=("watch the recording", "recording_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, FintechCircle's webinar series grew from 10,000 people reached to 30,000 calendar invites by episode three, with 17 calls booked across the first three.\n\nBook: {{booking_url}}\nRecording: {{recording_url}}\n\n" + STOP),
 
-dict(step_id="22C-5", title="No-show: who it fits", anchor="webinar_start", offset=14400, template="pw_c5", trigger=trig("C"),
+dict(step_id="22C-5", title="No-show: who it fits", anchor="webinar_start", offset=15840, template="pw_c5", trigger=trig("C"),
  email=dict(subject="Is this a fit? A straight answer", preheader="Who it's for, and who it isn't.", eyebrow="Fit",
    headline="Who This Is For, and Who It Isn't",
    paras=["Hi {{first_name}},", "You haven't seen the session yet, so here's the straight version of who it's for."] + FIT,
    cta=BOOK, cta2=("start with the recording", "recording_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, a straight answer on fit. [[offer]] is for teams that want it built with them and have [[fit_budget]] to invest in the next 12 months.\n\nIf that's you: {{booking_url}}\nIf not, the recording: {{recording_url}}\n\n" + STOP),
 
-dict(step_id="22C-6", title="No-show: two weeks on", anchor="webinar_start", offset=20160, template="pw_c6", trigger=trig("C") + "; then item 27 weeks 3 to 6",
+dict(step_id="22C-6", title="No-show: two weeks on", anchor="webinar_start", offset=20400, template="pw_c6", trigger=trig("C") + "; then item 27 weeks 3 to 6",
  email=dict(subject="Two weeks on: still worth an hour?", preheader="One honest question.", eyebrow="Two weeks on",
    headline="Is Your Pipeline Worth One Hour This Week?",
    paras=["Hi {{first_name}},", "Two weeks ago you signed up for my session and couldn't make it. Life happens.",

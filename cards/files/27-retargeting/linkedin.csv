@@ -1,5 +1,5 @@
 step_id,trigger,offset_minutes,channel,template_name,subject,body,variables
-27-L1,"webinar_start | early_leaver or no_show with a LinkedIn profile URL, not yet connected to Adi; Tantra LinkedIn campaign on Adi's account; skip if excluded",4320,linkedin_connection,rt_li_connect,,"Hi {{linkedin_first_name}}, you signed up for my live session on the AI revenue engine. I'd like to connect here. Adi",linkedin_first_name
+27-L1,"webinar_start | early_leaver or no_show with a LinkedIn profile URL, not yet connected to Adi; Tantra LinkedIn campaign on Adi's account; skip if excluded",8640,linkedin_connection,rt_li_connect,,"Hi {{linkedin_first_name}}, you signed up for my live session on the AI revenue engine. I'd like to connect here. Adi",linkedin_first_name
 27-L2,"webinar_start | connected (L1 accepted or already a connection), still active; Tantra send_message step",28800,linkedin_message,rt_li_msg1,,"Thanks for connecting, {{linkedin_first_name}}. The recording of the session you signed up for is here if it's useful: {{recording_url}}
 
 If you'd rather have the system built with your team, my team runs 30-minute evaluation calls: {{booking_url}}",linkedin_first_name; recording_url; booking_url

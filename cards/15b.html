@@ -78,7 +78,7 @@ Reply STOP to opt out.
 </code></pre>
 <h2>15B-V2: Video 2 (RevOps OS)</h2>
 <ul>
-<li>When: webinar_start, offset -7200 minutes</li>
+<li>When: webinar_start, offset -8640 minutes</li>
 <li>Who: every registrant (email); whatsapp_opt_in = true (WhatsApp)</li>
 </ul>
 <p><strong>Email subject:</strong> Video 2: where pipelines go quiet<br />
@@ -425,7 +425,7 @@ Reply STOP to opt out.
 <p>webinar.title; webinar.join_url (the generic room link, a fallback only); domains.funnel_domain; media.indoctrination_videos (4); booking.round_robin_url; brand.legal_footer_address; integrations.vodex_agent_id and vodex_caller_number; the sending mailbox (not on growthclub.org, usetantra.com or free Gmail).</p>
 <h2>Notes for the Lead</h2>
 <ul>
-<li><strong>WhatsApp window:</strong> every WhatsApp step, live-day reminders included, goes only 08:00 to 20:00 in the registrant's timezone; outside it only the email goes. On the decided schedule (Thursday 10:00 UK time, 11:00 CET; first session 12 November 2026) UK registrants get 15B-H3 (3 hours before, 07:00 UK) by email only; every other live-day step keeps WhatsApp. Central Europe and India keep WhatsApp on every step; US East Coast registrants (05:00 local) get the live-day reminders by email only. Waiving the window for 15B-H3 is Adi's decision (the task board).</li>
+<li><strong>WhatsApp window:</strong> every WhatsApp step, live-day reminders included, goes only 08:00 to 20:00 in the registrant's timezone; outside it only the email goes. On the decided schedule (Thursday 10:00 UK time, 11:00 CET; first session 12 November 2026) UK registrants get 15B-H3 (3 hours before, 07:00 UK) by email only; every other live-day step keeps WhatsApp. Central Europe and India keep WhatsApp on every step; US East Coast registrants (05:00 local) get the live-day reminders by email only. Waiving the window for 15B-H3 is Adi's decision (the task board). Day-level steps go on weekdays at 10:00 UK (11:00 CET), never on a weekend: SEQUENCE_MAP.md, "On the UK Clock".</li>
 <li><strong>WhatsApp categories:</strong> Utility for reminders; Marketing for 15B-D3 and 15B-X1 (the trigger column of whatsapp.csv says which). 15B-R0 and 15B-X2 are kept to 3 and 2 variables.</li>
 <li><strong>15B-L0 and 15B-L10</strong> use WebinarJam's live attendance to skip people already in the room (item 17). Without it, L10 goes to everyone and its copy says "Already in? Ignore this."</li>
 <li><strong>15B-C1</strong> targets "opened no 15b email": needs open tracking in Tantra; if Tantra has no opens, use "clicked no link and no reply".</li>
@@ -472,7 +472,7 @@ Reply STOP to opt out.
 </tr>
 <tr>
 <td>15B-V2</td>
-<td>T minus 5 days</td>
+<td>T minus 6 days</td>
 <td>yes</td>
 <td>yes</td>
 <td></td>
@@ -587,6 +587,99 @@ Reply STOP to opt out.
 <li><strong>Quick replies</strong> (YES, CAL, CANT) post <code>contact.quick_reply</code> (CRM_CONTRACT): they do not stop the reminders. CAL sends X2. CANT moves the contact to the replay track and sends X1. Any other reply goes to a person (posts <code>contact.replied</code>).</li>
 <li><strong>Calls</strong> offer a way out on every call: "say stop at any time, or reply STOP to any of Adi's emails."</li>
 </ul>
+<h2>On the UK Clock (Thursday 10:00 UK Session)</h2>
+<p>The webinar runs Thursdays at 10:00 UK time (Europe/London, 11:00 CET). Offsets put every day-level step on a weekday at 10:00 UK: nothing lands on a Saturday or Sunday (V2 is T minus 6 days, the Friday, so it skips the weekend).</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>UK (London, Dublin, Lisbon)</th>
+<th>Central Europe (Amsterdam, Berlin, Stockholm)</th>
+<th>Finland (Helsinki)</th>
+<th>WhatsApp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td>Thursday a week before, 10:00</td>
+<td>11:00</td>
+<td>12:00</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>V2</td>
+<td>Friday, 10:00</td>
+<td>11:00</td>
+<td>12:00</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>Monday, 10:00</td>
+<td>11:00</td>
+<td>12:00</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>V4</td>
+<td>Tuesday, 10:00</td>
+<td>11:00</td>
+<td>12:00</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>D1</td>
+<td>Wednesday, 10:00</td>
+<td>11:00</td>
+<td>12:00</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>C1 (call)</td>
+<td>Wednesday, 12:00</td>
+<td>13:00</td>
+<td>14:00</td>
+<td>call</td>
+</tr>
+<tr>
+<td>H3</td>
+<td>Thursday, 07:00</td>
+<td>08:00</td>
+<td>09:00</td>
+<td>UK, Ireland, Portugal and Iceland: email only (before 08:00 local). Waiving that is Adi's decision</td>
+</tr>
+<tr>
+<td>H1</td>
+<td>09:00</td>
+<td>10:00</td>
+<td>11:00</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>M15 and C2 (call)</td>
+<td>09:45</td>
+<td>10:45</td>
+<td>11:45</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>L0</td>
+<td>10:00</td>
+<td>11:00</td>
+<td>12:00</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>L10</td>
+<td>10:10</td>
+<td>11:10</td>
+<td>12:10</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>The UK and the EU change clocks on the same Sundays, so these local times hold all year.</p>
 <h2>Late Registrants</h2>
 <ol>
 <li><strong>Registered after the start:</strong> only 15B-L0 (we're live) goes out, at once, and only while the session is still running (before start + <code>webinar.duration_minutes</code>). Registered after it ended: nothing from 15b; the item 22 no-show track or the next date applies.</li>
@@ -854,4 +947,5 @@ Great. I'll send the join link to your WhatsApp right now so it's one tap away.<
 </tbody>
 </table>
 <p>Verified 2026-11-04 (after the critic's 16 fixes): build.py 0 problems, scan.py 0 failures, scheduler.py --selftest 0 failures.</p>
-<p>Verified 2026-11-05 on the decided schedule (Thursday 12 November 2026, 10:00 UK time, 11:00 CET, weekly): build.py 0 problems; COPY.md and the email gallery print the schedule from funnel-config.json; scheduler.py --selftest 0 failures, now with real-schedule checks (London H3 at 07:00 is email only; Berlin keeps WhatsApp on every live-day step); --start defaults to the first session.</p></div></details><details class="doc"><summary>Files for import or upload (23)</summary><ul class="files"><li><a href="cards/files/15b-pre-nurture/build.py" target="_blank" rel="noopener">build.py</a></li><li><a href="cards/files/15b-pre-nurture/email.csv" target="_blank" rel="noopener">email.csv</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-D1.html" target="_blank" rel="noopener">emails/15B-D1.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-D3.html" target="_blank" rel="noopener">emails/15B-D3.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-H1.html" target="_blank" rel="noopener">emails/15B-H1.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-H3.html" target="_blank" rel="noopener">emails/15B-H3.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-L0.html" target="_blank" rel="noopener">emails/15B-L0.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-L10.html" target="_blank" rel="noopener">emails/15B-L10.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-M15.html" target="_blank" rel="noopener">emails/15B-M15.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-R1.html" target="_blank" rel="noopener">emails/15B-R1.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-V2.html" target="_blank" rel="noopener">emails/15B-V2.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-V4.html" target="_blank" rel="noopener">emails/15B-V4.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-W1.html" target="_blank" rel="noopener">emails/15B-W1.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-X1.html" target="_blank" rel="noopener">emails/15B-X1.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-X2.html" target="_blank" rel="noopener">emails/15B-X2.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/img/tantra-mark-ink.png" target="_blank" rel="noopener">emails/img/tantra-mark-ink.png</a></li><li><a href="cards/files/15b-pre-nurture/emails/index.html" target="_blank" rel="noopener">emails/index.html</a></li><li><a href="cards/files/15b-pre-nurture/nurture_lib.py" target="_blank" rel="noopener">nurture_lib.py</a></li><li><a href="cards/files/15b-pre-nurture/scheduler.py" target="_blank" rel="noopener">scheduler.py</a></li><li><a href="cards/files/15b-pre-nurture/vodex/agent-settings.json" target="_blank" rel="noopener">vodex/agent-settings.json</a></li><li><a href="cards/files/15b-pre-nurture/vodex/trigger-call.example.json" target="_blank" rel="noopener">vodex/trigger-call.example.json</a></li><li><a href="cards/files/15b-pre-nurture/vodex.csv" target="_blank" rel="noopener">vodex.csv</a></li><li><a href="cards/files/15b-pre-nurture/whatsapp.csv" target="_blank" rel="noopener">whatsapp.csv</a></li></ul></details>
+<p>Verified 2026-11-05 on the decided schedule (Thursday 12 November 2026, 10:00 UK time, 11:00 CET, weekly): build.py 0 problems; COPY.md and the email gallery print the schedule from funnel-config.json; scheduler.py --selftest 0 failures, now with real-schedule checks (London H3 at 07:00 is email only; Berlin keeps WhatsApp on every live-day step); --start defaults to the first session.</p>
+<p>UK and EU pass 2026-11-05: 15B-V2 moved from T minus 5 days (a Saturday) to T minus 6 days (Friday 10:00 UK), so no step lands on a weekend; SEQUENCE_MAP.md has the UK, CET and Finland clock for every step; selftest adds two real-schedule checks (no weekend step; day-level steps at 10:00 UK, C1 Wednesday 12:00, C2 Thursday 09:45). build.py 0 problems, selftest 0 failures.</p></div></details><details class="doc"><summary>Files for import or upload (23)</summary><ul class="files"><li><a href="cards/files/15b-pre-nurture/build.py" target="_blank" rel="noopener">build.py</a></li><li><a href="cards/files/15b-pre-nurture/email.csv" target="_blank" rel="noopener">email.csv</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-D1.html" target="_blank" rel="noopener">emails/15B-D1.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-D3.html" target="_blank" rel="noopener">emails/15B-D3.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-H1.html" target="_blank" rel="noopener">emails/15B-H1.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-H3.html" target="_blank" rel="noopener">emails/15B-H3.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-L0.html" target="_blank" rel="noopener">emails/15B-L0.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-L10.html" target="_blank" rel="noopener">emails/15B-L10.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-M15.html" target="_blank" rel="noopener">emails/15B-M15.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-R1.html" target="_blank" rel="noopener">emails/15B-R1.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-V2.html" target="_blank" rel="noopener">emails/15B-V2.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-V4.html" target="_blank" rel="noopener">emails/15B-V4.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-W1.html" target="_blank" rel="noopener">emails/15B-W1.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-X1.html" target="_blank" rel="noopener">emails/15B-X1.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/15B-X2.html" target="_blank" rel="noopener">emails/15B-X2.html</a></li><li><a href="cards/files/15b-pre-nurture/emails/img/tantra-mark-ink.png" target="_blank" rel="noopener">emails/img/tantra-mark-ink.png</a></li><li><a href="cards/files/15b-pre-nurture/emails/index.html" target="_blank" rel="noopener">emails/index.html</a></li><li><a href="cards/files/15b-pre-nurture/nurture_lib.py" target="_blank" rel="noopener">nurture_lib.py</a></li><li><a href="cards/files/15b-pre-nurture/scheduler.py" target="_blank" rel="noopener">scheduler.py</a></li><li><a href="cards/files/15b-pre-nurture/vodex/agent-settings.json" target="_blank" rel="noopener">vodex/agent-settings.json</a></li><li><a href="cards/files/15b-pre-nurture/vodex/trigger-call.example.json" target="_blank" rel="noopener">vodex/trigger-call.example.json</a></li><li><a href="cards/files/15b-pre-nurture/vodex.csv" target="_blank" rel="noopener">vodex.csv</a></li><li><a href="cards/files/15b-pre-nurture/whatsapp.csv" target="_blank" rel="noopener">whatsapp.csv</a></li></ul></details>

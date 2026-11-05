@@ -66,7 +66,12 @@ This value goes into <code>booking.round_robin_url</code> in funnel-config.json 
 <tr>
 <td>Working hours</td>
 <td>https://app.cal.com/availability</td>
-<td>One schedule named "Enterprise calls" with the hours they take calls, in their own timezone</td>
+<td>One schedule named "Enterprise calls", Timezone <strong>Europe/London</strong>, set as default. Monday, Tuesday, Wednesday and Friday 09:00 to 18:00; Thursday 11:30 to 19:00. Section 3a explains the hours</td>
+</tr>
+<tr>
+<td>Profile timezone</td>
+<td>https://app.cal.com/settings/my-account/general</td>
+<td>Timezone <strong>Europe/London</strong>, so the closer's own Cal.com and calendar views match the schedule. A closer who lives outside the UK keeps their own timezone here but sets the schedule above in Europe/London, so the hours stay UK hours</td>
 </tr>
 <tr>
 <td>Name</td>
@@ -129,7 +134,7 @@ This value goes into <code>booking.round_robin_url</code> in funnel-config.json 
 <tr>
 <td>Limits</td>
 <td>Minimum notice</td>
-<td>4 hours (leaves room for the 5-minute confirmation and the 2-hour prep task)</td>
+<td>3 hours (someone who books at 10:45 UK during the offer gets same-day slots from 14:00 UK, 15:00 CET; still leaves room for the 5-minute confirmation and the 2-hour prep task, which the CRM skips if it would fall before the booking)</td>
 </tr>
 <tr>
 <td>Limits</td>
@@ -144,7 +149,7 @@ This value goes into <code>booking.round_robin_url</code> in funnel-config.json 
 <tr>
 <td>Limits</td>
 <td>Limit future bookings</td>
-<td>21 days into the future</td>
+<td>21 calendar days into the future (three Thursday sessions)</td>
 </tr>
 <tr>
 <td>Assignment</td>
@@ -173,6 +178,11 @@ This value goes into <code>booking.round_robin_url</code> in funnel-config.json 
 </tr>
 <tr>
 <td>Advanced</td>
+<td>Lock timezone on booking page</td>
+<td>Off. The booking page shows every slot in the booker's own timezone (read from their browser, changeable in the timezone menu on the page), so a lead in Amsterdam sees 10:00, not 09:00</td>
+</tr>
+<tr>
+<td>Advanced</td>
 <td>Booking questions</td>
 <td>Section 5</td>
 </tr>
@@ -193,6 +203,43 @@ This value goes into <code>booking.round_robin_url</code> in funnel-config.json 
 </tr>
 </tbody>
 </table>
+<h3>3a. Hours for a UK and EU Audience</h3>
+<p>The webinar runs Thursdays 10:00 to 11:00 UK time (Europe/London, 11:00 CET), and the audience is UK and EU first. Conor and Scott take calls in UK business hours. One schedule covers both, because the event uses each host's "Enterprise calls" schedule.</p>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>UK (Europe/London)</th>
+<th>Central Europe (CET)</th>
+<th>Finland (EET)</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monday, Tuesday, Wednesday, Friday</td>
+<td>09:00 to 18:00</td>
+<td>10:00 to 19:00</td>
+<td>11:00 to 20:00</td>
+<td>UK working day; still inside office hours for Ireland and the Continent</td>
+</tr>
+<tr>
+<td>Thursday (webinar day)</td>
+<td>11:30 to 19:00</td>
+<td>12:30 to 20:00</td>
+<td>13:30 to 21:00</td>
+<td>The closers are in the live room 10:00 to 11:00 and on hot-lead calls straight after; the extra hour at the end adds same-day slots for people booking during the offer</td>
+</tr>
+<tr>
+<td>Saturday, Sunday</td>
+<td>Off</td>
+<td>Off</td>
+<td>Off</td>
+<td>B2B buyers; the 5-minute confirmation needs a person on shift</td>
+</tr>
+</tbody>
+</table>
+<p>With 3 hours' minimum notice, someone who books during the offer (about 10:45 UK) sees Thursday slots from 14:00 to 18:30 UK, then Friday and Monday from 09:00 UK. The clocks change on the same Sundays in the UK and the EU (last Sunday of March and October), so these hours hold all year in Cal.com without edits. Adi's own Cal.com profile keeps his timezone (Asia/Kolkata): he is not a host, so it changes nothing for bookers.</p>
 <p>Cal.com sends its own confirmation and cancellation emails with the calendar invite. Keep them on: they carry the .ics and the Meet link. The CRM's Seq. A email is the closer's personal note on top.</p>
 <h2>4. Description (Corrected by Adi, Word for Word)</h2>
 <p>Paste exactly this into Event Setup, Description. It is the T-072 text word for word with one addition Adi approved on 2026-11-05 for Call 2, at the end of the first sentence of the last paragraph: ", and we'll book a short call to walk you through it".</p>
@@ -509,7 +556,7 @@ If it's a fit, you'll receive a written Enterprise proposal within one business 
 <tr>
 <td>Limits</td>
 <td>Minimum notice</td>
-<td>4 hours (leaves room for the 2-hour prep task)</td>
+<td>4 hours (leaves room for the 2-hour prep task; Call 2 is booked from the proposal email, so no same-day rush)</td>
 </tr>
 <tr>
 <td>Limits</td>
@@ -519,7 +566,17 @@ If it's a fit, you'll receive a written Enterprise proposal within one business 
 <tr>
 <td>Limits</td>
 <td>Limit future bookings</td>
-<td><code>booking.call2.book_within_days</code> once Adi sets it (FILL; suggested 3 business days). Until then, 14 days</td>
+<td>3 business days into the future (<code>booking.call2.book_within_days</code>, decided 2026-11-05: pick "business days", not "calendar days"). A proposal sent on Friday then offers Monday to Wednesday</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>Schedule</td>
+<td>The same "Enterprise calls" schedule, Europe/London (section 3a)</td>
+</tr>
+<tr>
+<td>Advanced</td>
+<td>Lock timezone on booking page</td>
+<td>Off (slots show in the booker's own timezone)</td>
 </tr>
 <tr>
 <td>Advanced</td>

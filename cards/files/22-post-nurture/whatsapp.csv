@@ -6,19 +6,19 @@ Book your 30-minute evaluation call here: {{2}}
 The recording, if you want any part again: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=booking_url; {{3}}=recording_url
-22A-3,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",4320,whatsapp,pw_a3_wa,,"Hi {{1}}, here's what happens on the evaluation call: 30 minutes on your funnel and numbers, a straight answer on fit, and a written proposal within one business day of the call if it fits.
+22A-3,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",7200,whatsapp,pw_a3_wa,,"Hi {{1}}, here's what happens on the evaluation call: 30 minutes on your funnel and numbers, a straight answer on fit, and a written proposal within one business day of the call if it fits.
 
 Book here: {{2}}
 Recording: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=booking_url; {{3}}=recording_url
-22A-5,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",10080,whatsapp,pw_a5_wa,,"Hi {{1}}, one more client example. Growth Idea's first webinar with us got 30 registrations. Their best got 1,990, with 321 live and 25 sales calls.
+22A-5,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",10320,whatsapp,pw_a5_wa,,"Hi {{1}}, one more client example. Growth Idea's first webinar with us got 30 registrations. Their best got 1,990, with 321 live and 25 sales calls.
 
 Find your gap on a call: {{2}}
 Recording: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=booking_url; {{3}}=recording_url
-22A-7,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; last step, then the newsletter (newsletter_opt_in only); WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",20160,whatsapp,pw_a7_wa,,"Hi {{1}}, last message from me about the evaluation call.
+22A-7,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; last step, then the newsletter (newsletter_opt_in only); WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",20400,whatsapp,pw_a7_wa,,"Hi {{1}}, last message from me about the evaluation call.
 
 If the timing's right: {{2}}
 The recording stays here: {{3}}
@@ -37,31 +37,31 @@ Watch that part: {{2}}
 Or book a call: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=recording_offer_url; {{3}}=booking_url
-22B-2,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",2880,whatsapp,pw_b2_wa,,"Hi {{1}}, one client's best webinar with us: 99,859 people reached, 1,990 registrations, 321 live, 25 sales calls. The second half of the session shows the engine behind it.
+22B-2,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",5760,whatsapp,pw_b2_wa,,"Hi {{1}}, one client's best webinar with us: 99,859 people reached, 1,990 registrations, 321 live, 25 sales calls. The second half of the session shows the engine behind it.
 
 Recording: {{2}}
 Book a call: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=recording_url; {{3}}=booking_url
-22B-3,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",5760,whatsapp,pw_b3_wa,,"Hi {{1}}, you left before I explained the evaluation call: 30 minutes on your funnel and numbers, a straight answer on fit, and a written proposal within one business day of the call if it fits.
+22B-3,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",7200,whatsapp,pw_b3_wa,,"Hi {{1}}, you left before I explained the evaluation call: 30 minutes on your funnel and numbers, a straight answer on fit, and a written proposal within one business day of the call if it fits.
 
 Book: {{2}}
 Recording: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=booking_url; {{3}}=recording_url
-22B-4,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",10080,whatsapp,pw_b4_wa,,"Hi {{1}}, FintechCircle's webinar series grew from 10,000 people reached to 30,000 calendar invites by episode three, with 17 calls booked across the first three.
+22B-4,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",10320,whatsapp,pw_b4_wa,,"Hi {{1}}, FintechCircle's webinar series grew from 10,000 people reached to 30,000 calendar invites by episode three, with 17 calls booked across the first three.
 
 Book: {{2}}
 Recording: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=booking_url; {{3}}=recording_url
-22B-5,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",14400,whatsapp,pw_b5_wa,,"Hi {{1}}, a straight answer on fit. Tantra Enterprise is for teams that want it built with them and have $10,000 or more to invest in the next 12 months.
+22B-5,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",15840,whatsapp,pw_b5_wa,,"Hi {{1}}, a straight answer on fit. Tantra Enterprise is for teams that want it built with them and have $10,000 or more to invest in the next 12 months.
 
 If that's you: {{2}}
 If not, keep the recording: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=booking_url; {{3}}=recording_url
-22B-6,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; then item 27 weeks 3 to 6; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",20160,whatsapp,pw_b6_wa,,"Hi {{1}}, two weeks since the session. What's changed in your pipeline? If the answer is nothing yet, that's the gap we close with you.
+22B-6,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; then item 27 weeks 3 to 6; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",20400,whatsapp,pw_b6_wa,,"Hi {{1}}, two weeks since the session. What's changed in your pipeline? If the answer is nothing yet, that's the gap we close with you.
 
 Book: {{2}}
 Recording: {{3}}
@@ -78,31 +78,31 @@ Recording: {{2}}
 Or talk it through: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=recording_url; {{3}}=booking_url
-22C-2,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",2880,whatsapp,pw_c2_wa,,"Hi {{1}}, one client's best webinar with us: 99,859 people reached, 1,990 registrations, 321 live, 25 sales calls. The recording shows the engine behind it.
+22C-2,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",5760,whatsapp,pw_c2_wa,,"Hi {{1}}, one client's best webinar with us: 99,859 people reached, 1,990 registrations, 321 live, 25 sales calls. The recording shows the engine behind it.
 
 Recording: {{2}}
 Book a call: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=recording_url; {{3}}=booking_url
-22C-3,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",5760,whatsapp,pw_c3_wa,,"Hi {{1}}, the part of the session you missed: how we build the system with your team. Tantra Enterprise, $9,999, for teams with $10,000 or more to invest this year.
+22C-3,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",7200,whatsapp,pw_c3_wa,,"Hi {{1}}, the part of the session you missed: how we build the system with your team. Tantra Enterprise, $9,999, for teams with $10,000 or more to invest this year.
 
 Book a call: {{2}}
 Watch that part: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=booking_url; {{3}}=recording_offer_url
-22C-4,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",10080,whatsapp,pw_c4_wa,,"Hi {{1}}, FintechCircle's webinar series grew from 10,000 people reached to 30,000 calendar invites by episode three, with 17 calls booked across the first three.
+22C-4,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",10320,whatsapp,pw_c4_wa,,"Hi {{1}}, FintechCircle's webinar series grew from 10,000 people reached to 30,000 calendar invites by episode three, with 17 calls booked across the first three.
 
 Book: {{2}}
 Recording: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=booking_url; {{3}}=recording_url
-22C-5,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",14400,whatsapp,pw_c5_wa,,"Hi {{1}}, a straight answer on fit. Tantra Enterprise is for teams that want it built with them and have $10,000 or more to invest in the next 12 months.
+22C-5,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",15840,whatsapp,pw_c5_wa,,"Hi {{1}}, a straight answer on fit. Tantra Enterprise is for teams that want it built with them and have $10,000 or more to invest in the next 12 months.
 
 If that's you: {{2}}
 If not, the recording: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=booking_url; {{3}}=recording_url
-22C-6,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; then item 27 weeks 3 to 6; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",20160,whatsapp,pw_c6_wa,,"Hi {{1}}, two weeks since the session you missed. If a lead goes quiet this week, does anything catch it? The recording shows how: {{2}}
+22C-6,"webinar_start | segment no_show (registered, minutes_in_room = 0); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; then item 27 weeks 3 to 6; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",20400,whatsapp,pw_c6_wa,,"Hi {{1}}, two weeks since the session you missed. If a lead goes quiet this week, does anything catch it? The recording shows how: {{2}}
 
 Or talk it through: {{3}}
 

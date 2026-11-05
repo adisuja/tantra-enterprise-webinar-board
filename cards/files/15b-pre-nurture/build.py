@@ -60,7 +60,7 @@ dict(step_id="15B-W1", title="One week out + video 1 (Funnels)", anchor="webinar
      ),
      whatsapp="Hi {{first_name}}, it's [[host]]. We go live in one week, on {{webinar_date_local}}.\n\nBefore then, watch video 1. It takes apart the funnel you just came through, step by step: {{video_funnels_url}}\n\n" + STOP),
 
-dict(step_id="15B-V2", title="Video 2 (RevOps OS)", anchor="webinar_start", offset=-7200,
+dict(step_id="15B-V2", title="Video 2 (RevOps OS)", anchor="webinar_start", offset=-8640,
      template="tew_video2", trigger=ALL,
      email=dict(
         subject="Video 2: where pipelines go quiet",
