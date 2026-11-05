@@ -21,13 +21,7 @@
 </thead>
 <tbody>
 <tr>
-<td>Calendar invites, older senders, sending from Fri 6 Nov</td>
-<td>5 senders x 50 x 6 days = 1,500</td>
-<td>3 to 30</td>
-<td>1 to 7</td>
-</tr>
-<tr>
-<td>The same, if sending starts Mon 9 Nov</td>
+<td>Calendar invites, older senders, if the domain is live Mon 9 Nov</td>
 <td>5 x 50 x 3 = 750</td>
 <td>2 to 15</td>
 <td>0 to 3</td>
@@ -52,7 +46,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Plainly: 12 November will be a small room, likely under 40 registrations and under 10 live.</strong> Its real job is to run the whole funnel once end to end (registration, reminders, the live session, the offer, a booked call, the CRM) before volume arrives. Volume grows from 3 December (new senders start) to the first full 100,000-invite week on 18 February 2027.</p>
+<p><strong>Plainly: 12 November will be a small room, likely under 20 registrations from calendar invites and a handful live, plus whatever LinkedIn and Adi's own channels bring.</strong> Its real job is to run the whole funnel once end to end (registration, reminders, the live session, the offer, a booked call, the CRM) before volume arrives. Volume grows from 3 December (new senders start) to the first full 100,000-invite week on 18 February 2027.</p>
 <h2>Critical Path</h2>
 <table>
 <thead>
@@ -80,7 +74,7 @@
 <td>No fallback: the webinar needs the room</td>
 </tr>
 <tr>
-<td>Fri 6 Nov</td>
+<td>The day the domain is live</td>
 <td>Load S01 into the older senders and start sending</td>
 <td>Team</td>
 <td>2, 12</td>
@@ -98,7 +92,7 @@
 <td>Funnel domain chosen; I deploy the pages and run <code>tools/set_funnel_domain.py</code>, which fills every link</td>
 <td>Adi, then me</td>
 <td>13</td>
-<td>Invites use WebinarJam's own registration link (below)</td>
+<td>No fallback (Adi 2026-11-05): calendar invites wait for it</td>
 </tr>
 <tr>
 <td>Mon 9 Nov</td>
@@ -144,7 +138,7 @@
 </tr>
 </tbody>
 </table>
-<h2>The Link Problem, and the Fix</h2>
-<p>Invites must start Friday to reach 1,500, but our page has no domain yet. <strong>Recommendation: for 12 November only, put WebinarJam's own registration link in the invites</strong> (Webinars, Your links, Registration page, in WebinarJam once the event exists). From 19 November every link points to our registration page on the funnel domain. Registrations still land in WebinarJam, and its attendee export feeds the CRM.</p>
+<h2>The Link: Invites Wait for the Funnel Domain (Adi 2026-11-05)</h2>
+<p>Invites carry our own registration page only, never WebinarJam's registration link. So calendar sending starts the day the pages are live on the funnel domain: I deploy and run <code>tools/set_funnel_domain.py</code>, which fills every link, the same day the domain is chosen. Domain live by Monday 9 November: up to 750 invites (3 days). By Tuesday 10: 500. By Wednesday 11: 250. The S01 rows not sent roll into S02 for 19 November.</p>
 <h2>Warm Audiences First</h2>
 <p>The S01 slice already puts 1,672 of the 1,835 past Yes, Maybe and registered no-show contacts first (the rest follow in S02). Add, from Adi's own channels: one GrowthClub Pro post (card 7, priority A), and the LinkedIn messenger campaign to existing connections before any cold connector request.</p></div></details>
