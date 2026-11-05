@@ -1,7 +1,7 @@
 <details class="doc" open><summary>CUSTOMISE.md</summary><div class="md"><h1>How To Customise a Post for One Group</h1>
 <ol>
 <li>Read the group's rules and pinned post. Copy the rule on links and promotion into the tracker's <code>rules</code> column.</li>
-<li>Pick the post by group type (<code>posts.md</code>) and the link placement from its table.</li>
+<li>Take the approved idea for that group from <code>GROUPS.md</code> (the post itself comes from the content studio) and its "Can we post ourselves?" line.</li>
 <li>Admin approval needed for promotion? Ask the admin first, in the way the rules say.</li>
 <li>Rewrite the first line in the group's own words: its niche, or a question members asked this week.</li>
 <li>Regional groups: fill <code>{{region}}</code>, and give the time in the members' own zone next to UK time (for example "10:00 UK time, 11:00 in Berlin"; outside Europe convert it first: 15:30 in India).</li>
@@ -9,9 +9,8 @@
 <li>Never post identical text in two groups on the same day, and post in at most 3 groups a day.</li>
 <li>Reply to every comment the same day.</li>
 <li>Log the posted date, placement and post URL in <code>group-tracker.csv</code>; add registrations by <code>utm_content</code> a week later.</li>
-</ol></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 7: Facebook Group Announcement Posts</h1>
-<p>Adi's group list is not known yet, so this is a template set by group type. Once Adi sends his list, each group gets its own customised post from these templates.</p>
-<p><strong>Claim to verify:</strong> the first comment and the promo-thread version print <code>{{webinar.title}}</code>, and every candidate title carries "400+ founders" and "$100K to $300K a month". Neither has a source yet (PROOF_PACK.md section 2, the task board). The posts themselves use approved proof only: worked with 400+ brands across 21+ countries; Growth Idea (30 then 1,990 registrations, 98,000 of 99,859 reached by calendar invite; 1,990 registered, 321 live, 25 calls); FintechCircle as "a London fintech network" (10,000 to 30,000 outreach, 17 calls). Each client is named at most once per post.</p>
+</ol></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 7: Facebook Groups</h1>
+<p>Every group Adi is in, read on 2026-11-05 from his own Facebook through the Agent Reach OpenCLI route (his signed-in Chrome, read only: the groups list, then each group's About page). Nothing was posted, joined or changed.</p>
 <h2>What Is Here</h2>
 <table>
 <thead>
@@ -22,50 +21,809 @@
 </thead>
 <tbody>
 <tr>
-<td><code>posts.md</code></td>
-<td>6 posts (founder and entrepreneur, B2B sales and marketing, agency owners, coaching and consulting, SaaS, regional business), the link placement table, the first comment, the promo-thread version</td>
+<td><code>GROUPS.md</code></td>
+<td>The 60 business groups that fit this webinar, by category and priority: link, what the group is about, members, public or private, where members are, Facebook tags and topics, activity, whether we may post ourselves (from the group's own rules), the rules, and one pitched post idea each. Then the 4 pending join requests and the 15 off-topic business groups</td>
 </tr>
 <tr>
-<td><code>CUSTOMISE.md</code></td>
-<td>The 9-step checklist for turning a template into one group's post</td>
+<td><code>groups.csv</code></td>
+<td>The same data as a sheet</td>
 </tr>
 <tr>
 <td><code>group-tracker.csv</code></td>
-<td>Header-only tracker: group name, url, type, rules, post variant, link placement, posted date, results</td>
+<td>One row per group worth posting in (46): fill posted date, post URL, comments and registrations as posts go out</td>
 </tr>
 <tr>
-<td><code>EVAL.md</code></td>
-<td>The done checklist, checked</td>
+<td><code>CUSTOMISE.md</code></td>
+<td>The posting checklist (rules first, one group a day per type, time zones, utm tags, reply to every comment)</td>
+</tr>
+<tr>
+<td><code>build_groups.py</code>, <code>classify.py</code>, <code>groups-data.json</code></td>
+<td>Rebuild: <code>python3 build_groups.py</code>. <code>classify.py</code> holds the judgements (category, priority, permission, idea)</td>
+</tr>
+<tr>
+<td><code>_archive/</code></td>
+<td>The earlier 6 template posts by group type, superseded</td>
 </tr>
 </tbody>
 </table>
-<h2>Merge Fields</h2>
+<p>Personal groups (housing, household help, gaming, fitness and similar) are counted in <code>GROUPS.md</code> and listed by name only in <code>private/07-facebook-personal-groups.md</code> (gitignored), never on the public board.</p>
+<h2>The Process (Adi 2026-11-05)</h2>
+<ol>
+<li>Adi approves or edits the pitched idea per group in <code>GROUPS.md</code>.</li>
+<li>The posts are written in the content studio project (the content process workflow), not here.</li>
+<li>Adi posts them himself from his own account, following each group's rules: most groups allow no promotion and no links, so those posts teach and the invite reaches people through Adi's profile (card 29).</li>
+</ol>
+<p>Registration link per group, once the pages deploy: <code>domains.funnel_domain</code> + <code>/?utm_source=facebook&amp;utm_medium=group&amp;utm_campaign=enterprise-webinar&amp;utm_content=fb_&lt;group-slug&gt;</code>. Times: Thursday 12 November 2026, 10:00 UK time (11:00 CET); convert for regional groups.</p></div></details><details class="doc"><summary>GROUPS.md</summary><div class="md"><h1>Facebook Groups: Every Group, Categorised, With a Post Idea Each</h1>
+<p>Read on 2026-11-05 from Adi's own Facebook (Groups you've joined, then each group's About page), through the Agent Reach OpenCLI route in his signed-in Chrome, read only. Adi is in 113 groups and has 4 join requests pending. 60 are business groups that fit this webinar; the other 15 business groups are listed at the end as off-topic; personal groups (housing, household help, gaming, fitness and similar) are counted only and kept off this public board.</p>
+<p><strong>How to read it.</strong> Priority A: post first (fit, size and activity). B: post in week 2 or 3. C: low reach (quiet or tiny group) or a weak fit. "Can we post ourselves" comes from each group's own written rules. Most groups ban promotion and links, so the idea there is a teaching post with no link: readers who want more open Adi's profile, which the profile branding (card 29) points at the registration page.</p>
+<p><strong>Member location.</strong> Facebook shows where a group is based (the location the admins set) but never where its members are; the member location column is that setting plus what the group's name, description and rules say.</p>
+<p><strong>Ideas only (Adi 2026-11-05).</strong> Each row carries one pitched idea for Adi to approve. The posts themselves are written later in the content studio project. Priority A: 7 groups, B: 15, C: 38.</p>
+<h2>Own communities (2)</h2>
+<h3>A · <a href="https://www.facebook.com/groups/631154788582473/">GrowthClub Pro: The Community for Growth Leaders &amp; Innovators</a></h3>
+<ul>
+<li><strong>About:</strong> Adi's own community for founders, marketing and sales leaders building growth systems.</li>
+<li><strong>Members:</strong> 3,964 · Public group, visible in search · created 8 September 2022. Name last changed on 8 July 2025.</li>
+<li><strong>Where the members are:</strong> Global (no location set)</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Growth, founders, marketing, sales</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Yes: our own group</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Announcement plus a pinned event: "Thursday 12 November, 10:00 UK: I'm taking the whole funnel apart live." Lead with the Growth Idea jump from 30 to 1,990 registrations; registration link in the post; repost the replay after.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/thegrowthclub.org/">GrowthClub.org</a></h3>
+<ul>
+<li><strong>About:</strong> GrowthClub's original group (4 members).</li>
+<li><strong>Members:</strong> 4 · Private group, visible in search · created 3 August 2020</li>
+<li><strong>Where the members are:</strong> Lewes, Delaware (group setting)</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Growth</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Yes: our own group</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Skip: 4 members. Point them to GrowthClub Pro instead with one line.</li>
+</ul>
+<h2>Startups and founders (Europe and UK) (3)</h2>
+<h3>A · <a href="https://www.facebook.com/groups/222801067848068/">European B2B Startups, Startup Studio and Venture Builders</a></h3>
+<ul>
+<li><strong>About:</strong> European B2B startups, studios and venture builders; pitching a B2B startup and organising events are allowed.</li>
+<li><strong>Members:</strong> 18,374 · Public group, visible in search · created 6 September 2012. Name last changed on 7 October 2023.</li>
+<li><strong>Where the members are:</strong> Europe (group rule: live in an EU country)</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> B2B startups, investment, events in Europe</li>
+<li><strong>Activity:</strong> 2 new posts today; 120 in the last month; + 28 in the last week</li>
+<li><strong>Can we post ourselves?</strong> Pitching and events are allowed, but the group rule says members live in an EU country; Adi is not EU-based, so message the admin first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Live in Europe: Live in any Eu country</li>
+<li><strong>Pitched idea:</strong> Event post for European B2B founders: "How a UK coaching company went from 30 to 1,990 webinar registrations with calendar invites". 10:00 UK, 11:00 CET in the first line; registration link allowed. Check the residency rule first (see note).</li>
+</ul>
+<h3>B · <a href="https://www.facebook.com/groups/324240387777890/">Startups UK</a></h3>
+<ul>
+<li><strong>About:</strong> UK startup founders sharing ideas; only conduct rules, no promotion rule.</li>
+<li><strong>Members:</strong> 7,354 · Private group, visible in search · created 23 December 2014</li>
+<li><strong>Where the members are:</strong> London, United Kingdom</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> UK startups, founders</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> No hate speech or bullying: Make sure everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things such as race, religion, culture, sexual orientation, gender or identity will not be tolerated. | Be kind and courteous: We're all in this together to create a welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required. | Respect everyone's privacy: Being part of this group requires mutual trust. Authentic, expressive discussions make groups great, but may also be sensitive and private. What's shared in the group </li>
+<li><strong>Pitched idea:</strong> UK-founder angle: "The first webinar we ran for a UK client: 12,898 invited, 30 registered, 7 came. Here's what changed by webinar 11." Short lesson list; invite in the last line (no rule against it). Group is quiet: low reach.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/swissstartupclub/">Switzerland StartUp Club</a></h3>
+<ul>
+<li><strong>About:</strong> Swiss startup community; no marketing, profit-oriented events only with admin consent.</li>
+<li><strong>Members:</strong> 2,172 · Private group, visible in search · created 26 February 2012</li>
+<li><strong>Where the members are:</strong> Switzerland</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Swiss startups</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Ask the admin first (their rule)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Ask the admin first (their rule). If yes: the same European founders' event post with Zurich time (11:00). Quiet group.</li>
+</ul>
+<h2>Outreach software and lead generation (9)</h2>
+<h3>A · <a href="https://www.facebook.com/groups/coldemailmasterclass/">Cold Email Masterclass - by Instantly</a></h3>
+<ul>
+<li><strong>About:</strong> Instantly's cold email community (60K, very active); cold email topics only, no self-promotion or links.</li>
+<li><strong>Members:</strong> 60,399 · Private group, visible in search · created 3 February 2022. Name last changed on 4 March 2022.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Cold email</li>
+<li><strong>Activity:</strong> 3 new posts today; 48 in the last month; + 58 in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> No promotions or spam: Give more than you take in this group. Self-promotion, spam and irrelevant links aren't allowed. | No bug reports and support tickets: This group is for strategic cold email discussions. Please use our Live Chat in case of bugs or any other support tickets. | Be kind and courteous: We're all in this together to create a Welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required. | No misleading or speculative claims: While there's room to speculate on cold email strategies, if there are clearly misleading posts and com</li>
+<li><strong>Pitched idea:</strong> Cold-email-only teaching post: "The 3-email sequence we use to fill a webinar, and why email 1 never pitches the webinar". No link, no webinar mention in the post (topic rule).</li>
+</ul>
+<h3>A · <a href="https://www.facebook.com/groups/leadgeninsiders/">Cold Email &amp; B2B Lead Generation Insiders</a></h3>
+<ul>
+<li><strong>About:</strong> Lead Gen Jay's cold email and B2B lead generation community; self-promotion and links not allowed.</li>
+<li><strong>Members:</strong> 10,162 · Private group, visible in search · created 28 December 2023. Name last changed on 13 January 2024.</li>
+<li><strong>Where the members are:</strong> Global, mostly US</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Cold email, lead generation, B2B marketing</li>
+<li><strong>Activity:</strong> No posts today; 29 in the last month; + 54 in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> No promotions or spam: Give more than you take in this group. Self-promotion, spam and irrelevant links aren't allowed. | Be kind and courteous: We're all in this together to create a Welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required.</li>
+<li><strong>Pitched idea:</strong> Value post: "Cold email vs calendar invites to the same list: what each got us" with the FintechCircle ramp (10,000 to 38,138 invites, 17 calls). No link; answer questions in comments.</li>
+</ul>
+<h3>B · <a href="https://www.facebook.com/groups/linkedin.outreach.family/">Expandi: GTM &amp; Full Funnel Family</a></h3>
+<ul>
+<li><strong>About:</strong> Expandi's LinkedIn outreach and GTM group; must share value or teach; no promotion.</li>
+<li><strong>Members:</strong> 13,168 · Private group, visible in search · created 8 June 2020. Name last changed on 22 September 2025.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> LinkedIn outreach, growth hacking</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> NO AFFILIATE LINKS!: NO AFFILIATE LINKS! | No Promotions or Spam: Self-promotion, spam and irrelevant links aren't allowed. We need you to give more than you take to this group. | Publish quality content: Post content which will bring value not only to you, but also to the community. Make sure it's relevant and awesome, this is the place with sales experts like you are and be sure to share only the cool content! 😎 | Zero Bully Zone: Make sure everyone feels safe. We do not allow bullying of any kind. Degrading comments about things as race, culture, religion sexual orientation, identity or gen</li>
+<li><strong>Pitched idea:</strong> Teaching post: "Free LinkedIn accounts: the limits we run (15 requests, 20 messages a day) and how 6 accounts still fill a webinar". No link.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/leadmarketplace/">Lead Marketplace - Buy &amp; Sell Leads</a></h3>
+<ul>
+<li><strong>About:</strong> Lead buyers and sellers; no promotional posts without approval.</li>
+<li><strong>Members:</strong> 24,279 · Private group, visible in search · created 18 February 2015</li>
+<li><strong>Where the members are:</strong> Global, mostly US</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Lead generation, lead buying</li>
+<li><strong>Activity:</strong> 1 new post today; 23 in the last month; + 155 in the last week</li>
+<li><strong>Can we post ourselves?</strong> Ask the admin first (their rule)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> No Promotional Posts: No posts about affiliate offers, your company, or a service you've used, etc. without explicit permission from an Admin. If its something that may help the group like a new tool or something then we may allow it. This group is for buying and selling leads only. | Be Respectful - No Trolling: Be positive, constructive &amp; respectful no matter the persons level. If you can't say something nice or helpful, don't say anything at all. Do NOT post about a "bad experience" you had buying someones course, or a network that didn't pay you on time. | No Hate Speech or Bullying: Make </li>
+<li><strong>Pitched idea:</strong> Skip: it is a lead marketplace, not our buyers. If anything, ask the admin about a post on list quality.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/TheEmailOutreachFamily/">lemlist family</a></h3>
+<ul>
+<li><strong>About:</strong> lemlist's outbound community; moved to a new platform, Facebook group is quiet; no promotion or affiliate links.</li>
+<li><strong>Members:</strong> 21,186 · Private group, visible in search · created 30 June 2018. Name last changed on 2 November 2020.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Outbound, sales</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> NO AFFILIATE LINKS.: NO AFFILIATE LINKS. | Zero Bully Zone: Make sure everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things like race, religion, culture, sexual orientation, gender or identity will not be tolerated. | Only High-Quality content: If you share something, be sure that it's relevant and awesome (it's the place with sales experts like you're, and be sure to share only cool content) | No Promotions or Spam: Give more than you take to this group. Self-promotion, spam and irrelevant links aren't allowed. | NO CUSTOMER DISCOVERY QUESTIONS: If the a</li>
+<li><strong>Pitched idea:</strong> Teaching post on multichannel outbound (email, LinkedIn, calendar) feeding one event. No link. Low priority: group is inactive.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/engageai/">Engage AI - Official Group - ChatGPT on LinkedIn</a></h3>
+<ul>
+<li><strong>About:</strong> Engage AI users (LinkedIn AI commenting); no promotion.</li>
+<li><strong>Members:</strong> 3,012 · Private group, visible in search · created 7 March 2020</li>
+<li><strong>Where the members are:</strong> San Francisco (group setting), global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> LinkedIn, AI</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> No Promotions or Spam: Give more than you take to this group. Self-promotion, spam and irrelevant links aren't allowed. | No Hate Speech or Bullying: Make sure everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things like race, religion, culture, sexual orientation, gender or identity will not be tolerated. | Respect Everyone's Privacy: Being part of this group requires mutual trust. Authentic, expressive discussions make groups great, but may also be sensitive and private. What's shared in the group should stay in the group.</li>
+<li><strong>Pitched idea:</strong> Teaching post on turning LinkedIn engagement into event registrations (the content engagement campaign). No link. Quiet group.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/HyperPersonalisation/">Hyper Personalisation Hacks with Hyperise</a></h3>
+<ul>
+<li><strong>About:</strong> Hyperise's personalisation group (quiet).</li>
+<li><strong>Members:</strong> 1,694 · Private group, visible in search · created 15 May 2019. Name last changed on 12 June 2019.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Personalisation, outreach</li>
+<li><strong>Activity:</strong> No posts today; 1 in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> "Merge fields, not AI first lines: why we went back to plain personalisation" short post; invite in the last line. Quiet group.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/b2bsalesautomation/">Cold to Gold Selling with Uptics</a></h3>
+<ul>
+<li><strong>About:</strong> Uptics' B2B sales automation community; no promotion or pitching.</li>
+<li><strong>Members:</strong> 1,180 · Private group, visible in search · created 1 March 2019. Name last changed on 24 September 2021.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> Entrepreneurship &amp; start-ups, Brand and marketing · <strong>Topics:</strong> Entrepreneurship and start-ups, brand and marketing</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Be Kind and Courteous: We're all in this together to create a welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required. | No Promotions or Spam: Give more than you take to this group. Self-promotion, spam and irrelevant links aren't allowed. | Respect Everyone's Privacy: Being part of this group requires mutual trust. Authentic, expressive discussions make groups great, but may also be sensitive and private. What's shared in the group should stay in the group. | There are no political posts allowed: Do not post about politics. It will be r</li>
+<li><strong>Pitched idea:</strong> Teaching post on nurture between registration and the live session (reminders that lifted show-up). No link. Quiet group.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/albacross/">Albacross Community</a></h3>
+<ul>
+<li><strong>About:</strong> Albacross users (intent data, ads); quiet.</li>
+<li><strong>Members:</strong> 1,137 · Private group, visible in search · created 28 February 2018. Name last changed on 13 August 2018.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Intent data, ads</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Skip or one short post on retargeting webinar no-shows. Quiet, user-only group.</li>
+</ul>
+<h2>LinkedIn sales and marketing (4)</h2>
+<h3>B · <a href="https://www.facebook.com/groups/linkedingrowthhackers/">LinkedIn Growth Hackers</a></h3>
+<ul>
+<li><strong>About:</strong> LinkedIn lead generation support group for entrepreneurs (22K).</li>
+<li><strong>Members:</strong> 21,999 · Private group, visible in search · created 9 February 2017. Name last changed on 21 February 2019.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> LinkedIn lead generation</li>
+<li><strong>Activity:</strong> No posts today; 13 in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> "6 LinkedIn accounts, 1 weekly webinar: the exact daily limits and message order" post; invite in the last line (no written rule against it).</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/limarketingmastery/">Linkedin Sales &amp; Marketing Mastery</a></h3>
+<ul>
+<li><strong>About:</strong> LinkedIn sales and marketing for business owners; no promotion, links or DM asks.</li>
+<li><strong>Members:</strong> 1,582 · Private group, visible in search · created 4 March 2019. Name last changed on 5 November 2021.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> LinkedIn, sales</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Welcome To b2b marketing mastery: To get the most out of this group, ask questions &amp; comment. Support others, ask for help &amp; leverage the free resources that we have for you inside! | No going LIVE, No Promotions/Spam (Links Included): Give more than you take to this group. Self-promotion, spam, and irrelevant links aren't allowed. When people ask for advice, do not answer with links/try to sell them. No videos of you please (including the comments) - screenshots are okay. | No Recruiting/Hiring Posts: This isn't the place for hiring/biz ops - use a job board for that :-) | Get Involved: You'l</li>
+<li><strong>Pitched idea:</strong> Question post: "What's your LinkedIn-to-booked-call rate?" then share ours in the comments. No link. Quiet group.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/linkedinsuccess/">LinkedIn™ Growth Strategies #LinkedInSuccess</a></h3>
+<ul>
+<li><strong>About:</strong> Small invite-only LinkedIn strategy group (494, quiet).</li>
+<li><strong>Members:</strong> 494 · Private group, visible in search · created 13 November 2017</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> LinkedIn</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Short version of the LinkedIn Growth Hackers post. Quiet group.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/thelinkedingrowthcamp/">The LinkedIn Growthcamp</a></h3>
+<ul>
+<li><strong>About:</strong> 2 members.</li>
+<li><strong>Members:</strong> 2 · Private group, visible in search · created 4 January 2021</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> LinkedIn</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Skip: 2 members.</li>
+</ul>
+<h2>B2B growth and GTM (2)</h2>
+<h3>B · <a href="https://www.facebook.com/groups/hackgrowth/">Badass Marketers &amp; Founders (BAMF): B2B Content, Leads &amp; Sales on Autopilot</a></h3>
+<ul>
+<li><strong>About:</strong> Invite-only B2B marketing and acquisition advice group; only value posts are approved, no promotional links.</li>
+<li><strong>Members:</strong> 5,832 · Private group, visible in search · created 28 April 2019. Name last changed on 20 August 2021.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> Entrepreneurship &amp; start-ups, Brand and marketing · <strong>Topics:</strong> Entrepreneurship and start-ups, brand and marketing</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> No Promotional Links: Our group is a place to teach and learn, not promote your product. Only posts that provide value will be approved. This means no external links to your blog or website. | Absolutely No Spam: This includes everything from viral videos, general spam, shameless self promotion, FOREX/Crypto/Other "Get Rich Quick Schemes" -- if you spam, we typically do not warn before kicking and blocking. | No Hate Speech or Bullying: Make sure everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things like race, religion, culture, sexual orientation, gender</li>
+<li><strong>Pitched idea:</strong> Teaching post: "Why one webinar booked 25 sales calls when the first one booked 1" (the 5 changes, with numbers). No link; people who want more find Adi's profile, which points to registration (card 29).</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/growthband.io/">GrowthBand - Level up your B2B growth with powerful GTM strategies</a></h3>
+<ul>
+<li><strong>About:</strong> B2B tech GTM and outbound lead generation (quiet).</li>
+<li><strong>Members:</strong> 612 · Private group, visible in search · created 27 February 2023. Name last changed on 28 May 2024.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> GTM, outbound, B2B tech</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> "Calendar invites as an outbound channel: 98,000 sent, 1,990 registered" breakdown. Invite in the last line. Quiet group.</li>
+</ul>
+<h2>Growth hacking and marketing (6)</h2>
+<h3>B · <a href="https://www.facebook.com/groups/learndm/">Learn Digital Marketing (by LearnToday.com)</a></h3>
+<ul>
+<li><strong>About:</strong> Very large digital marketing learning group (194K, active); no direct links, no promotion.</li>
+<li><strong>Members:</strong> 193,772 · Private group, visible in search · created 29 August 2015. Name last changed on 30 July 2021.</li>
+<li><strong>Where the members are:</strong> Global, mostly India</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Digital marketing</li>
+<li><strong>Activity:</strong> 2 new posts today; 92 in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Be kind and courteous: We're all in this together to create a welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required. | No hate speech or bullying: Make sure that everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things such as race, religion, culture, sexual orientation, gender or identity will not be tolerated. | No promotions or spam: Give more to this group than you take. Self-promotion, spam and irrelevant links aren't allowed.</li>
+<li><strong>Pitched idea:</strong> Teaching post: "Calendar invites: the channel most marketers never test" with the 98,000 to 1,990 numbers. No link. Audience skews to learners, not buyers.</li>
+</ul>
+<h3>B · <a href="https://www.facebook.com/groups/growthmarketers/">Product &amp; Growth with Josh Fechter</a></h3>
+<ul>
+<li><strong>About:</strong> Josh Fechter's product and growth community (22.8K, quiet).</li>
+<li><strong>Members:</strong> 22,788 · Private group, visible in search · created 8 April 2016. Name last changed on 7 April 2019.</li>
+<li><strong>Where the members are:</strong> San Francisco, San Diego (group settings)</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Product, growth</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> "The 12-item experiment log behind a 2.0% webinar registration rate". Invite in the last line.</li>
+</ul>
+<h3>B · <a href="https://www.facebook.com/groups/growthhackingandoutboundmarketing/">Growth Hacking and Outbound Marketing</a></h3>
+<ul>
+<li><strong>About:</strong> Growth marketing and outbound (11.6K); no promotion in posts, links only in comments.</li>
+<li><strong>Members:</strong> 11,651 · Private group, visible in search · created 31 July 2017. Name last changed on 15 June 2021.</li>
+<li><strong>Where the members are:</strong> Miami, New York, Barcelona</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Growth hacking, outbound</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion in the post, link only in a comment</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Read The Rules Before Posting! | No outbound links are allowed: (Except in comments) | No Spamming: You might be banned for that. | No promotion in the posts | Respect each other | Give value because you get value</li>
+<li><strong>Pitched idea:</strong> Teaching post: "Outbound that books calls without a sales team: invite, register, show up, book". Registration link in the first comment (allowed).</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/smartmarketingmastermind/">Digital Marketing Mastermind</a></h3>
+<ul>
+<li><strong>About:</strong> Students of a Facebook ads course (37K, some activity).</li>
+<li><strong>Members:</strong> 37,009 · Private group, visible in search · created 16 May 2017. Name last changed on 22 February 2018.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Facebook ads</li>
+<li><strong>Activity:</strong> 1 new post today; 9 in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Retargeting angle: "Who to retarget after a webinar (and who never to)". Invite in the last line. Audience is Facebook-ads learners: low fit.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/themarketingpicnic/">The Marketing Picnic - Show about Marketing, Productivity, and Leadership</a></h3>
+<ul>
+<li><strong>About:</strong> B2B growth marketing show community (2.4K, quiet).</li>
+<li><strong>Members:</strong> 2,384 · Public group, visible in search · created 23 February 2017. Name last changed on 13 November 2020.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> B2B growth marketing</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Short version of the experiment-log post. Quiet group.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/growthfolksofficial/">Growth Folks</a></h3>
+<ul>
+<li><strong>About:</strong> Growth hackers and marketers (1.7K, quiet); no promotion.</li>
+<li><strong>Members:</strong> 1,702 · Private group, visible in search · created 30 May 2018</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Growth hacking</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> No Promotions or Spam: Give more than you take to this group. Self-promotion, spam and irrelevant links aren't allowed. | Be Kind and Courteous: We're all in this together to create a welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required.</li>
+<li><strong>Pitched idea:</strong> Short teaching post on the experiment log (event description change: target 200, got 332). No link.</li>
+</ul>
+<h2>SaaS founders and marketing (5)</h2>
+<h3>B · <a href="https://www.facebook.com/groups/SaaSgrowthhacking/">SaaS Growth Hacks</a></h3>
+<ul>
+<li><strong>About:</strong> SaaS founders and CEOs (30.7K); no promotion.</li>
+<li><strong>Members:</strong> 30,705 · Private group, visible in search · created 26 April 2016</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> Entrepreneurship &amp; start-ups, Technology · <strong>Topics:</strong> Entrepreneurship and start-ups, technology</li>
+<li><strong>Activity:</strong> No posts today; 2 in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Be respectful and kind: We're all in this together to create a welcoming environment. Healthy discussions are natural, but kindness is required. You can listen without agreeing with someone | No hate speech or bullying: Make sure everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things like race, religion, culture, sexual orientation, gender or identity will not be tolerated. | Diversity and inclusion: We seek to be a space that is inclusive, values diversity, practices antiracism, and listens to, believes and amplifies the voices of people from marginalized</li>
+<li><strong>Pitched idea:</strong> SaaS angle: "Demo-call pipeline from a weekly webinar: the funnel math". No link.</li>
+</ul>
+<h3>B · <a href="https://www.facebook.com/groups/saasproductsandmarketing/">SaaS Products &amp; Marketing</a></h3>
+<ul>
+<li><strong>About:</strong> SaaS product and marketing tips (21K, quiet).</li>
+<li><strong>Members:</strong> 21,115 · Private group, visible in search · created 9 May 2017</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> SaaS marketing</li>
+<li><strong>Activity:</strong> No posts today; 2 in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Case-study post: FintechCircle's invites grew 10,000 to 38,138 in 4 episodes. Invite in the last line.</li>
+</ul>
+<h3>B · <a href="https://www.facebook.com/groups/saasfoundersnetwork/">SaaS Founders 🚀</a></h3>
+<ul>
+<li><strong>About:</strong> SaaS founders and execs only (14.9K); no product promotion, no links in posts, hashtags required.</li>
+<li><strong>Members:</strong> 14,918 · Private group, visible in search · created 9 March 2017. Name last changed on 11 November 2022.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> Technology, Apps &amp; software · <strong>Topics:</strong> Technology, apps and software</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Answer the Admission Questions [REQUIRED]: This is our way of ensuring you are a relevant member for the group. Requests to join without answering the group admission questions will be rejected. | SaaS Founders &amp; Execs Only: This group is designed for SaaS Founders and Execs. If you don't own or work in a SaaS company, please don't join. NO Marketers or promoting your product. | Don't ask SaaS founders for 'feedback': Don't ask SaaS founders for 'feedback', what their 'biggest challenge' is, or ask them to complete a survey to help you build services to sell to them. We often share community p</li>
+<li><strong>Pitched idea:</strong> Hashtagged teaching post: "Founder-led webinars as a sales channel: our numbers after 11 sessions". No link.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/saasrevolution/">SaaS Revolutionaries</a></h3>
+<ul>
+<li><strong>About:</strong> Curated SaaS founders, execs and investors (6.8K, quiet); no sales pitches in posts.</li>
+<li><strong>Members:</strong> 6,771 · Private group, visible in search · created 11 November 2017. Name last changed on 17 July 2018.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> SaaS</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Respect everyone's privacy: Being part of this group requires mutual trust. Authentic, expressive discussions make groups great, but may also be sensitive and private. What's shared in the group should stay in the group. | Strictly - No promotions or spam on posts: Self-promotion, and irrelevant links aren't allowed. However, self-promotion is acceptable when the value is explicitly presented. If a member has a problem and your services could be the answer, you may comment indicating this and take it offline | no sales pitching on posts - Ask for feedback: We won't accept generic posts with pr</li>
+<li><strong>Pitched idea:</strong> Ask-for-feedback format (their rule): "Which part of this webinar funnel would you cut?" with the 6 stages. No link.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/saasbreakthrough/">SaaS Breakthrough Marketing Community</a></h3>
+<ul>
+<li><strong>About:</strong> SaaS marketers (2K, quiet); links only in comments in reply to a question.</li>
+<li><strong>Members:</strong> 1,952 · Private group, visible in search · created 11 January 2018</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> SaaS marketing</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion in the post, link only in a comment</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> No links or posts for direct self-promotion: You can post an article in the comments in response to a question. We will have dedicated posts for promotional content. Promotional content posted in the group outside of those dedicated posts will be deleted. | Post Articles and content with key points: We want to make sure content sources don't overwhelm the group, so if you are going to post articles or content, please make sure to also read the article and post the key points for discussion or any insights you gained.</li>
+<li><strong>Pitched idea:</strong> Question post on webinar show-up rates; share our 21% in the comments. Quiet group.</li>
+</ul>
+<h2>Coaching and consulting (2)</h2>
+<h3>A · <a href="https://www.facebook.com/groups/howtolaunchandgrowyourcoachingbusiness/">How to LAUNCH &amp; GROW Your Coaching Business</a></h3>
+<ul>
+<li><strong>About:</strong> Coaches and consultants using LinkedIn (12.7K, active); moved to Skool but still posting; no promotion or links.</li>
+<li><strong>Members:</strong> 12,763 · Private group, visible in search · created 13 April 2018. Name last changed on 21 June 2023.</li>
+<li><strong>Where the members are:</strong> London, United Kingdom; Lakeshore, Ontario</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Coaching, LinkedIn</li>
+<li><strong>Activity:</strong> No posts today; 33 in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Join With Your Personal Profile: We recommend you join with your Personal Facebook Profile and introduce yourself in our Community so we can personally connect with you. This will also help us to share our weekly actionable coaching business insights with you. | No Promotions or Spam: Give more than you take to this group. Self-promotion, spam and irrelevant links aren't allowed. | Be Kind and Courteous: We're all in this together to create a welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required. | No Hate Speech or Bullying: Make sure </li>
+<li><strong>Pitched idea:</strong> Teaching post for coaches: "A UK coaching company booked 80 sales calls from 11 webinars. The one change that mattered most." No link.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/NinjaMarketingForCoaches/">Prosperous Coaches - Traffic, Sales, Conversions</a></h3>
+<ul>
+<li><strong>About:</strong> Coaches and consultants growing with LinkedIn and Facebook (224, quiet).</li>
+<li><strong>Members:</strong> 224 · Private group, visible in search · created 21 November 2019</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Coaching, LinkedIn, Facebook</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Coach angle using Growth Idea (a UK coaching group): first vs best webinar. Invite in the last line. Small, quiet.</li>
+</ul>
+<h2>Agencies and service businesses (1)</h2>
+<h3>C · <a href="https://www.facebook.com/groups/sixfigurebusinessbuilders/">Six Figure Business Builders: Personal Branding, Digital Agencies &amp; Funnels</a></h3>
+<ul>
+<li><strong>About:</strong> Personal branding, digital agencies and funnels (quiet).</li>
+<li><strong>Members:</strong> 1,256 · Private group, visible in search · created 13 October 2017. Name last changed on 3 March 2019.</li>
+<li><strong>Where the members are:</strong> Tallinn, Estonia (group setting)</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Personal branding, agencies, funnels</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Agency-owner angle: "Your agency's next 10 clients from one webinar a week". Invite in the last line. Quiet group.</li>
+</ul>
+<h2>AI automation and agencies (2)</h2>
+<h3>A · <a href="https://www.facebook.com/groups/LocalSEOShark/">AI Clients &amp; Cashflow by Offline Sharks</a></h3>
+<ul>
+<li><strong>About:</strong> Entrepreneurs and marketers using AI to win clients (25K, active); strategy only, posts need a hashtag (#SHARE), no promotion, no DMs.</li>
+<li><strong>Members:</strong> 25,473 · Private group, visible in search · created 24 March 2016. Name last changed on 21 March 2025.</li>
+<li><strong>Where the members are:</strong> Kihei, Hawaii (group setting), global</li>
+<li><strong>Facebook tags:</strong> Entrepreneurship &amp; start-ups, Brand and marketing · <strong>Topics:</strong> Entrepreneurship and start-ups, brand and marketing</li>
+<li><strong>Activity:</strong> 2 new posts today; 21 in the last month; + 1 in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> No Promotions or Spam: Give more than you take to this group. Self-promotion, spam and irrelevant links aren't allowed. PS.. This is a strategy group!! Please do not attempt to promote your job opportunities here or set up posts or comments about your availability to take on a job. | No DMs: DM's to other members are NOT allowed! The group is formed to discuss strategies as a community, and so we would like all discussions to remain public so everyone can benefit from what is being shared! | USE the required hashtags: We require all posts to include one of the following hashtags: #ASK - If you</li>
+<li><strong>Pitched idea:</strong> #SHARE post: "How we use AI to research 100,000 prospects before the first invite" with the step list. No link, no DMs (their rules).</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/3501761776707095/">AI Automation Agency Entrepreneurs (Answerly, Retune) Chatbot ChatGPT SAAS</a></h3>
+<ul>
+<li><strong>About:</strong> AI chatbot and automation agency founders (15K); no promotion; quiet.</li>
+<li><strong>Members:</strong> 15,316 · Public group, visible in search · created 25 October 2023. Name last changed on 3 November 2023.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> AI agencies, chatbots, white label</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; + 48 in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Be kind and courteous: We're all in this together to create a Welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required. | No hate speech or bullying: Make sure everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things like race, religion, culture, sexual orientation, gender or identity will not be tolerated. | No promotions or spam: Give more than you take in this group. Self-promotion, spam, affiliate links and irrelevant links aren't allowed. | Respect everyone's privacy: Being part of this group requir</li>
+<li><strong>Pitched idea:</strong> Teaching post: "Where AI actually runs in our funnel (and where a person still has to)". No link. Quiet group.</li>
+</ul>
+<h2>Sales and high-ticket closing (2)</h2>
+<h3>C · <a href="https://www.facebook.com/groups/storysellingtribe/">StorySelling - Storytelling for Sales Experts &amp; Entrepreneurs</a></h3>
+<ul>
+<li><strong>About:</strong> Storytelling for sales; 500-word limit, no links or promos, ask permission.</li>
+<li><strong>Members:</strong> 4,585 · Private group, hidden in search · created 8 March 2022. Name last changed on 23 February 2023.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Sales, storytelling</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Ask the admin first (their rule)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Our Community Rules: 500 word post limit. There are NO links, promos, trademarked/watermarked images allowed. No comment ladders, sharing of FB Pages and no GPOY selfies (gratuitous picture of yourself). NO AFFILIATE LINKS. Promos allowed only on the official promo threads. | Ask For Permission: In an effort to reduce people sniping, fishing for clients, or generating leads from group members, unsolicited PM's are grounds for removal. If you'd like to PM someone, you MUST ask permission first | We Serve Others: Help and serve without an ulterior motive (amazing things will happen). Commenting </li>
+<li><strong>Pitched idea:</strong> Story post (under 500 words): the first webinar that had 7 people in the room. No link; ask the admin before mentioning the event.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/highticketsettersclub/">High Ticket Marketers Club🚀​ Clients, Commission, Closing</a></h3>
+<ul>
+<li><strong>About:</strong> Organic DM appointment setters (220, quiet).</li>
+<li><strong>Members:</strong> 220 · Private group, visible in search · created 15 April 2021. Name last changed on 9 October 2023.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> Sales and marketing, Entrepreneurship &amp; start-ups · <strong>Topics:</strong> Sales and marketing, entrepreneurship</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Skip: setters, not buyers. Optional: Call 1 to Call 2 process post.</li>
+</ul>
+<h2>Webinars and funnels (1)</h2>
+<h3>C · <a href="https://www.facebook.com/groups/234158605381428/">Demio's Webinar Workshop Community</a></h3>
+<ul>
+<li><strong>About:</strong> Demio's webinar workshop alumni group (43 members, quiet).</li>
+<li><strong>Members:</strong> 43 · Private group, visible in search · created 16 August 2021</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Webinars, webinar marketing</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> "The 4 numbers I check after every webinar (registered, show-up, calls booked, clients)" with the Growth Idea 11-webinar totals. Invite in the last line. Tiny group.</li>
+</ul>
+<h2>Software deals and tools (4)</h2>
+<h3>A · <a href="https://www.facebook.com/groups/tekpon/">TNW</a></h3>
+<ul>
+<li><strong>About:</strong> TNW: large tech community (127K, active, London); no promotion, no links in posts.</li>
+<li><strong>Members:</strong> 126,766 · Private group, visible in search · created 2 August 2018. Name last changed on 6 February 2026.</li>
+<li><strong>Where the members are:</strong> London, United Kingdom</li>
+<li><strong>Facebook tags:</strong> Entrepreneurship &amp; start-ups, Business leadership · <strong>Topics:</strong> Entrepreneurship and start-ups, business leadership</li>
+<li><strong>Activity:</strong> No posts today; 128 in the last month; + 1 in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion in the post, link only in a comment</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> No Promotion or Spam… You will be banned!: Spam can be defined as irrelevant such as advertising, binary option, forex, Trading, Affiliate, work from home, make money from home, bitcoin, Network Marketing, phishing, Fake Telegram channels, spreading malware &amp; Malicious links, Videos, etc. | No links: No links in your posts, this will hurt your engagement and the groups. If you want to post a link do so in the first comment. | Search Function: Use the search function to avoid repeat questions or ask your questions specific to your situation so we can all learn! | Respect Everyone's Privacy: Bei</li>
+<li><strong>Pitched idea:</strong> Teaching post for tech founders: "AI didn't replace our sales team. It replaced the 40 hours before the first call." No link in the post; link only if their rule allows it in comments.</li>
+</ul>
+<h3>B · <a href="https://www.facebook.com/groups/loudegg/">LoudEgg - Software, AI, and Marketing</a></h3>
+<ul>
+<li><strong>About:</strong> Software, AI and marketing (4.1K, active); links allowed, services must give value.</li>
+<li><strong>Members:</strong> 4,105 · Private group, visible in search · created 16 June 2021. Name last changed on 14 April 2026.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> Sales and marketing, Technology · <strong>Topics:</strong> Sales and marketing, technology</li>
+<li><strong>Activity:</strong> 4 new posts today; 111 in the last month; + 4 in the last week</li>
+<li><strong>Can we post ourselves?</strong> Yes: promotion and links allowed by the rules</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Content we like and will approve: Tech, AI, software, LTDs, SEO, digital marketing, design, web, and just about anything combining creativity with technology. Founders, please contact admins to gain approval and support to share news and updates. See Rule 2. Use #adminapproved by "admin member name" You may share links to your website and other Facebook groups, but don't abuse this or Spam. Please | No hate speech or bullying: Make sure that everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things such as race, religion, culture, sexual orientation, gender o</li>
+<li><strong>Pitched idea:</strong> "The AI tools behind a 100,000-invite webinar funnel" breakdown with the registration link at the end (links allowed).</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/softwarelifetimedealsappsumosaasltdkenmoo/">🎁 Ken Moo SaaS Lifetime Deals | 🏆 #1 Place to Discuss &amp; Research LTDs 🔍</a></h3>
+<ul>
+<li><strong>About:</strong> SaaS lifetime-deal discussion (25.8K, very active); no self-promotion without Ken or Swapnil's OK.</li>
+<li><strong>Members:</strong> 25,768 · Private group, visible in search · created 15 November 2020. Name last changed on 4 April 2023.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> Marketing &amp; sales, Software and tech · <strong>Topics:</strong> Marketing and sales, software</li>
+<li><strong>Activity:</strong> 29 new posts today; 755 in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Ask the admin first (their rule)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> ❌ No Self-Promotion (Ask Ken or Swapnil first): Give more than what you take to this group. While sharing valuable insights and personal experiences is encouraged, announcing or recruiting for other communities or groups is not allowed. We constantly monitor the group and we'll remove posts like this without prior notice. | 💩 Smelly founder: Are you a smelly founder? Check if you: (1) Change LTD terms. (2) Don’t deliver on promises. (3) Charge extra for features that should be included. (4) Create new pricing tiers to push LTD buyers to lower plans. (5) Always add features to plans that LTD bu</li>
+<li><strong>Pitched idea:</strong> Ask Ken or Swapnil first. If yes: "The outreach stack we run a weekly webinar on". Deal hunters: low buyer fit.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/alstonantony/">Alston Antony's SEO with AI &amp; Lifetime SaaS Deals</a></h3>
+<ul>
+<li><strong>About:</strong> SEO, AI and lifetime-deal community; contact admin before promotion.</li>
+<li><strong>Members:</strong> 7,057 · Private group, visible in search · created 4 May 2019. Name last changed on 9 April 2026.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> Entrepreneurship &amp; start-ups, Apps &amp; software · <strong>Topics:</strong> Entrepreneurship and start-ups, apps and software</li>
+<li><strong>Activity:</strong> No posts today; 4 in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Ask the admin first (their rule)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> No Affiliate/Referral Posts: You cannot use your affiliate links, and if you want to share any resources, make sure that it's a normal link (non-affiliate). Only administrators are allowed to post affiliate links | Be Respectful and Honest: We welcome honest discussions but keep it professional, but character, personal attacks, or bad language will not be tolerated. We understand there are language barriers etc. Any member who keeps on not following this rule will be removed. | No Hate Speech or Bullying: Make sure everyone feels safe. Bullying of any kind isn't allowed, and insulting comments</li>
+<li><strong>Pitched idea:</strong> Skip unless the admin invites it: SEO and deals audience.</li>
+</ul>
+<h2>Startups and founders (global) (9)</h2>
+<h3>B · <a href="https://www.facebook.com/groups/charmoffensivegroup/">Charm Offensive</a></h3>
+<ul>
+<li><strong>About:</strong> Cold email humour and practice for service businesses (17.5K, some activity).</li>
+<li><strong>Members:</strong> 17,523 · Private group, visible in search · created 23 March 2017. Name last changed on 10 October 2017.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Cold email, service businesses</li>
+<li><strong>Activity:</strong> No posts today; 5 in the last month; + 2 in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Light, story-led post: the calendar invite that got 441 people live when we hoped for 250. Invite in the last line.</li>
+</ul>
+<h3>B · <a href="https://www.facebook.com/groups/769423876592746/">Entrepreneur's, Business Owners and Start-Ups</a></h3>
+<ul>
+<li><strong>About:</strong> Entrepreneurs and start-ups (3.6K, some activity); no promotion.</li>
+<li><strong>Members:</strong> 3,564 · Private group, visible in search · created 23 February 2018</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Entrepreneurship</li>
+<li><strong>Activity:</strong> No posts today; 7 in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Be Kind and Courteous: We're all in this together to create a welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required. | No Hate Speech or Bullying: Make sure everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things like race, religion, culture, sexual orientation, gender or identity will not be tolerated. | No Promotions or Spam: Give more than you take to this group. Self-promotion, spam and irrelevant links aren't allowed.</li>
+<li><strong>Pitched idea:</strong> Teaching post: "The six steps between a stranger and a signed client". No link.</li>
+</ul>
+<h3>B · <a href="https://www.facebook.com/groups/armyoftrust/">B2B Entrepreneurs Group (Army of Trust)</a></h3>
+<ul>
+<li><strong>About:</strong> Small B2B owners mastermind (agencies, SaaS, high-ticket); no selling, no links out, lurkers removed.</li>
+<li><strong>Members:</strong> 738 · Private group, visible in search · created 12 November 2019. Name last changed on 29 September 2020.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> B2B lead generation</li>
+<li><strong>Activity:</strong> No posts today; 1 in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Must have at least one employee: You need to be a business owner. This is NOT a freelancer group and it's not for employees. | Only B2B or Entrepreneur Content: Don't post content that isn't related to growing a B2B business or B2B themed. Anything else will be deleted. If you keep posting weird shit, you'll be removed from the community. | No Selling &amp; Pitching - Spammers will be deleted!: Do not pitch your services. Get to know folks at a human level. Add useful tips, advice, &amp; assets that show your expertise. This will get you more business than being a sleazy spammer. | No direct selling t</li>
+<li><strong>Pitched idea:</strong> Mastermind-style post: "How are you generating leads this quarter? Here's our split by channel." No link, answer every comment.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/BadBusinessSecrets/">Bad Business Secrets with Daniel Doan</a></h3>
+<ul>
+<li><strong>About:</strong> Tongue-in-cheek business advice for founders, coaches and service providers (3.3K, quiet).</li>
+<li><strong>Members:</strong> 3,294 · Private group, visible in search · created 30 June 2019. Name last changed on 1 July 2019.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Business advice</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Contrarian post: "Worst advice I followed: 'just post more content'". Invite in the last line. Quiet group.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/DigitalMarketingTrainingCertification/">Startup Business Guide</a></h3>
+<ul>
+<li><strong>About:</strong> How to start a business (1.9K, quiet).</li>
+<li><strong>Members:</strong> 1,928 · Public group, visible in search · created 22 May 2017. Name last changed on 16 April 2018.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Starting a business</li>
+<li><strong>Activity:</strong> No posts today; 1 in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Skip: early-stage, not Enterprise buyers.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/585823261437664/">Entrepreneur Mindset &amp; Principles</a></h3>
+<ul>
+<li><strong>About:</strong> Owners who want a business that runs without them; no promotion.</li>
+<li><strong>Members:</strong> 1,083 · Private group, visible in search · created 16 April 2013. Name last changed on 30 December 2021.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> Entrepreneurship &amp; start-ups, Business leadership · <strong>Topics:</strong> Entrepreneurship and start-ups, business leadership</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Negative and derogatory comments: These will be removed immediately. Please only post informative and helpful comments and posts | Be kind and courteous: We're all in this together to create a welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required. | No hate speech or bullying: Make sure that everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things such as race, religion, culture, sexual orientation, gender or identity will not be tolerated. | Respect everyone's privacy: Being part of this group requir</li>
+<li><strong>Pitched idea:</strong> "The sales pipeline that runs while you're on holiday" teaching post. No link. Quiet group.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/ZeroBSMarketing/">Zero BS Marketing - for Startups, Entrepreneurs, and smart Business Owners</a></h3>
+<ul>
+<li><strong>About:</strong> Practical marketing for startups and small business (293, quiet).</li>
+<li><strong>Members:</strong> 293 · Private group, visible in search · created 15 May 2016. Name last changed on 28 March 2017.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Marketing</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Short teaching post. Quiet group.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/leaderswithoutlimits/">Leaders Without Limits</a></h3>
+<ul>
+<li><strong>About:</strong> Professionals' wellbeing and performance (262, quiet).</li>
+<li><strong>Members:</strong> 262 · Private group, visible in search · created 29 July 2019. Name last changed on 10 September 2019.</li>
+<li><strong>Where the members are:</strong> Global</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Leadership, wellbeing</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Skip: not our topic.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/363129550860693/">Startup Ideas</a></h3>
+<ul>
+<li><strong>About:</strong> Startup ideas, government tenders (167).</li>
+<li><strong>Members:</strong> 167 · Public group, visible in search · created 10 May 2018</li>
+<li><strong>Where the members are:</strong> Dubai, United Arab Emirates (group setting)</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Startups</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Skip: not our audience.</li>
+</ul>
+<h2>Startups and founders (US and other regions) (8)</h2>
+<h3>B · <a href="https://www.facebook.com/groups/Like4LikeB2B/">USA Business &amp; Startups</a></h3>
+<ul>
+<li><strong>About:</strong> US business networking (39K); sharing your business is welcome.</li>
+<li><strong>Members:</strong> 38,991 · Public group, visible in search · created 6 May 2014. Name last changed on 26 April 2018.</li>
+<li><strong>Where the members are:</strong> USA</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Business networking</li>
+<li><strong>Activity:</strong> No posts today; 2 in the last month; + 139 in the last week</li>
+<li><strong>Can we post ourselves?</strong> Yes: promotion and links allowed by the rules</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Sharing your business is welcome but: No scam sounding ads, asking for people to send PM for more details on some puffy wording. | Be Kind and Courteous: We're all in this together to create a welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required. | No Hate Speech or Bullying: Make sure everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things like race, religion, culture, sexual orientation, gender or identity will not be tolerated.</li>
+<li><strong>Pitched idea:</strong> Event post with the time in US Eastern (05:00) and the replay offer. Registration link allowed. US audience: lower live fit, good for replay.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/australiastartupclub/">Australia Start-Up Club</a></h3>
+<ul>
+<li><strong>About:</strong> Australian startups; rule: must live in Australia.</li>
+<li><strong>Members:</strong> 10,092 · Public group, visible in search · created 26 February 2012</li>
+<li><strong>Where the members are:</strong> Australia</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Startups</li>
+<li><strong>Activity:</strong> No posts today; 2 in the last month; + 8 in the last week</li>
+<li><strong>Can we post ourselves?</strong> No: residency or local-only rule</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Must live in Australia</li>
+<li><strong>Pitched idea:</strong> Not eligible: residency rule.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/Business.Owners.Montreal/">Entrepreneurs and Start-Ups, Business Owners in Montreal</a></h3>
+<ul>
+<li><strong>About:</strong> Montreal small business owners; local promotion allowed.</li>
+<li><strong>Members:</strong> 9,998 · Public group, visible in search · created 14 August 2014</li>
+<li><strong>Where the members are:</strong> Montreal, Quebec</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Local business</li>
+<li><strong>Activity:</strong> 2 new posts today; 17 in the last month; + 58 in the last week</li>
+<li><strong>Can we post ourselves?</strong> No: residency or local-only rule</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Not eligible: local Montreal group.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/827994360679427/">Stand-up Entrepreneurs, Start-up India</a></h3>
+<ul>
+<li><strong>About:</strong> Indian startup founders (8.1K, active).</li>
+<li><strong>Members:</strong> 8,128 · Public group, visible in search · created 22 January 2016</li>
+<li><strong>Where the members are:</strong> India</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Startups</li>
+<li><strong>Activity:</strong> 2 new posts today; 91 in the last month; + 8 in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> No Hate Speech or Bullying: Make sure everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things like race, religion, culture, sexual orientation, gender or identity will not be tolerated. | Respect everyone's privacy: Being part of this group requires mutual trust. Authentic, expressive discussions make groups great, but may also be sensitive and private. What's shared in the group should stay in the group.</li>
+<li><strong>Pitched idea:</strong> Teaching post with the time in IST (15:30). Invite in the last line. India is outside this webinar's EU/UK focus.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/1546739095618342/">USA startup</a></h3>
+<ul>
+<li><strong>About:</strong> Immigrants to the US in IT; no promotion.</li>
+<li><strong>Members:</strong> 4,081 · Private group, visible in search · created 5 February 2016</li>
+<li><strong>Where the members are:</strong> USA</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> IT careers</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Be Kind and Courteous: We're all in this together to create a welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required. | No Hate Speech or Bullying: Make sure everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things like race, religion, culture, sexual orientation, gender or identity will not be tolerated. | No Promotions or Spam: Give more than you take to this group. Self-promotion, spam and irrelevant links aren't allowed. | Respect Everyone's Privacy: Being part of this group requires mutual trust. </li>
+<li><strong>Pitched idea:</strong> Skip: not our audience.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/USA.StartupCompany/">USA Startup Company</a></h3>
+<ul>
+<li><strong>About:</strong> US startup posts (very active, 261 a month); promotion gets you removed.</li>
+<li><strong>Members:</strong> 3,216 · Private group, visible in search · created 14 August 2017</li>
+<li><strong>Where the members are:</strong> New York, USA</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Startups</li>
+<li><strong>Activity:</strong> No posts today; 261 in the last month; + 122 in the last week</li>
+<li><strong>Can we post ourselves?</strong> Value post only: no promotion, no links (the invite reaches people through Adi's profile)</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Teaching post only, no webinar mention (their rule is strict). US time zone: low fit.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/38778163105/">USA SAN FRANCISCO STARTUP GENERATOR</a></h3>
+<ul>
+<li><strong>About:</strong> San Francisco startup networking (quiet).</li>
+<li><strong>Members:</strong> 1,997 · Public group, visible in search · created 16 February 2015</li>
+<li><strong>Where the members are:</strong> San Francisco, USA</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Startups</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> Be Kind and Courteous: We're all in this together to create a welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required. | No Hate Speech or Bullying: Make sure everyone feels safe. Bullying of any kind isn't allowed, and degrading comments about things like race, religion, culture, sexual orientation, gender or identity will not be tolerated. | Respect Everyone's Privacy: Being part of this group requires mutual trust. Authentic, expressive discussions make groups great, but may also be sensitive and private. What's shared in the group sho</li>
+<li><strong>Pitched idea:</strong> Skip: quiet; 10:00 UK is 02:00 in San Francisco.</li>
+</ul>
+<h3>C · <a href="https://www.facebook.com/groups/startup.usa/">startup-usa</a></h3>
+<ul>
+<li><strong>About:</strong> A US dev agency's own group (962).</li>
+<li><strong>Members:</strong> 962 · Private group, visible in search · created 30 January 2014</li>
+<li><strong>Where the members are:</strong> USA</li>
+<li><strong>Facebook tags:</strong> none set · <strong>Topics:</strong> Web and app development</li>
+<li><strong>Activity:</strong> No posts today; No posts in the last month; No new members in the last week</li>
+<li><strong>Can we post ourselves?</strong> No promotion rule written: a value-first post with a one-line invite is acceptable; read the pinned post first</li>
+<li><strong>Rules (the admins' own words, shortened):</strong> no written rules</li>
+<li><strong>Pitched idea:</strong> Skip: a vendor's group.</li>
+</ul>
+<h2>Pending Join Requests (4)</h2>
+<p>Join requests Adi sent that were never approved: The Backlinko Mastermind Community (https://www.facebook.com/groups/backlinko/, 2,597 members, private, quiet; Backlinko students), B2B SaaS Founders Mastermind - LearnSaaS.com (https://www.facebook.com/groups/learnsaas/, 3,233 members, private, quiet; asks 3 joining questions) and Epic Founders &amp; Hustlers (https://www.facebook.com/groups/852445548256718/, 24 members). One more pending request is a personal group. Only the LearnSaaS group is worth finishing (answer its 3 questions); none can be posted in until approved.</p>
+<h2>Business Groups That Don't Fit This Webinar (15)</h2>
 <table>
 <thead>
 <tr>
-<th>Field</th>
-<th>Filled from</th>
+<th>Group</th>
+<th>Members</th>
+<th>Why not</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>{{registration_link}}</code></td>
-<td><code>domains.funnel_domain</code> + <code>/</code> + <code>?utm_source=facebook&amp;utm_medium=group&amp;utm_campaign=enterprise-webinar&amp;utm_content=fb_&lt;group-slug&gt;</code></td>
+<td><a href="https://www.facebook.com/groups/886741009807878/">n8n Philippines</a></td>
+<td>95,103</td>
+<td>Automation community for the Philippines; outside the EU/UK audience</td>
 </tr>
 <tr>
-<td><code>{{webinar.title}}</code></td>
-<td><code>deliverables/_shared/funnel-config.json</code> (not picked yet)</td>
+<td><a href="https://www.facebook.com/groups/936485032390764/">an AI video tool AI Community</a></td>
+<td>119,128</td>
+<td>Users of an AI video tool, not buyers of a sales funnel</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/airecruitmentengineers/">AI Recruitment Engineers</a></td>
+<td>6,506</td>
+<td>Recruitment automation; quiet</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/SEOSignalsLab/">SEO Signals Lab</a></td>
+<td>78,722</td>
+<td>SEO practitioners; strict no-promotion SEO group</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/woohelp/">WooCommerce Help &amp; Share</a></td>
+<td>41,410</td>
+<td>WooCommerce store support</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/wordpressheroes/">WordPress Website Support Group for Businesses Owners and Entrepreneurs</a></td>
+<td>153,599</td>
+<td>WordPress website support</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/1720664947967116/">POD Success Group - WC Fulfillment</a></td>
+<td>47,765</td>
+<td>Print-on-demand fulfilment</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/business.productivity.hacks/">KeepSolid Goals Business Productivity Community</a></td>
+<td>193</td>
+<td>Productivity app users; quiet</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/135758807061/">xMatters, inc.</a></td>
+<td>7</td>
+<td>A company group (7 members)</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/complaintcentre/">CRC - Complaint Reporting Center</a></td>
+<td>1,256</td>
+<td>Complaint reporting</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/269446580163450/">Startup Websites / Startup Help with Web</a></td>
+<td>433</td>
+<td>Startup website help; quiet</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/374149126370819/">SM ENGAGEMENT POD/ SEO HELP</a></td>
+<td>21</td>
+<td>Engagement pod (like-for-like); no buyers, risks the account's reach</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/linkedinpod/">LinkedIN Engagement Group</a></td>
+<td>3,366</td>
+<td>Engagement pod (like-for-like)</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/socialengagementpod/">Social Engagement Pod</a></td>
+<td>691</td>
+<td>Engagement pod (like-for-like)</td>
+</tr>
+<tr>
+<td><a href="https://www.facebook.com/groups/UpvoteCrew/">Upvote Crew</a></td>
+<td>192</td>
+<td>Upvote exchange</td>
 </tr>
 </tbody>
 </table>
-<p>The day and time are written in: every Thursday at 10:00 UK time (11:00 CET), first session Thursday 12 November 2026 (<code>funnel-config.json</code>, Adi 2026-11-05).
-| <code>{{region}}</code> | per regional group, by hand (<code>CUSTOMISE.md</code> step 5) |</p>
-<h2>Adi Steps</h2>
-<ol>
-<li><strong>Send the list of groups you are in.</strong> Open https://www.facebook.com/groups/joins/ (Facebook, Groups, "Groups you've joined", See all). Scroll to the bottom so every group loads. Paste each group's name and URL into the chat (or into <code>group-tracker.csv</code>, columns <code>group_name</code> and <code>group_url</code>). Then each group gets its customised post and tracker row.</li>
-<li><strong>Post them yourself.</strong> Agents never post to Facebook. For each group: open the group URL from the tracker, click "Write something...", paste the post, click Post; if the placement is "first comment", paste the first comment under your post straight after.</li>
-</ol>
-<p>Fill before posting: <code>domains.funnel_domain</code> and <code>webinar.title</code> in <code>funnel-config.json</code>.</p></div></details><details class="doc"><summary>posts.md</summary><div class="md"><h1>Facebook Group Announcement Posts</h1>
+<h2>Personal Groups</h2>
+<p>Adi's personal groups (Bangalore housing and household help, gaming, fitness, diet, a residential community and similar) are not business channels for this webinar. They are counted here and listed by name only in the private repo folder, never on this public board.</p></div></details><details class="doc"><summary>_archive/posts-by-group-type-superseded.md</summary><div class="md"><h1>Facebook Group Announcement Posts</h1>
 <p>One post per group type, posted by Adi from his own profile. Each gives a usable lesson first and mentions the session only in the last line. Paste the text inside each box as it is: Facebook shows plain text only.</p>
 <p><strong>Link placement.</strong> Every post ends "Link in the first comment." (the default, since many groups remove posts with links). Then:</p>
 <table>
@@ -205,17 +963,14 @@ If you can, work out the two rates between them: 2 divided by 1, then 3 divided 
 My team has worked with 400+ brands across 21+ countries, and every build starts with these three numbers.
 
 I run a live session on it every Thursday at 10:00 UK time (11:00 CET). Link in the first comment if it's useful.
-</code></pre></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: Item 7, Facebook Group Announcement Posts</h1>
+</code></pre></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>Item 7: Done Criteria</h1>
 <ul>
-<li>[x] 1. One announcement post for each of 6 group types: founder and entrepreneur, B2B sales and marketing, agency owners, coaching and consulting, SaaS, regional business.</li>
-<li>[x] 2. Every post gives value first (a usable lesson in the first 70% of the text) and mentions the session only at the end.</li>
-<li>[x] 3. Every post has two link placements ready: link in a first comment (default) and an in-post version, plus the first-comment text.</li>
-<li>[x] 4. Proof only from PROOF_PACK.md; a client named at most once per post; no invented numbers.</li>
-<li>[x] 5. A how-to-customise checklist of 10 lines or fewer.</li>
-<li>[x] 6. <code>group-tracker.csv</code> with columns group name, url, rules, post variant, posted date and link placement (plus the utm tag and result columns).</li>
-<li>[x] 7. The Adi step (send the list of groups he is in) with the full URL and exact clicks.</li>
-<li>[x] 8. Plain text that pastes into Facebook (no markdown inside the posts), no em or en dashes, no banned filler.</li>
-<li>[x] 9. Scan prints 0 failures.</li>
-</ul>
-<p>Result 2026-11-04 (after critic fixes): all points pass. Regional post uses <code>{{webinar.start_time_local}}</code>; "worked with 400+ brands". Session mentioned only in the last 7 to 12% of each post; scan 0 failures. Group-specific posts wait on Adi's group list.</p>
-<p>2026-11-05: the decided schedule is written into the posts (every Thursday at 10:00 UK time, 11:00 CET; first session 12 November 2026). Only <code>{{webinar.title}}</code> and <code>{{registration_link}}</code> stay as merge fields. Scan 0 failures.</p></div></details><details class="doc"><summary>Files for import or upload (1)</summary><ul class="files"><li><a href="cards/files/07-facebook-groups/group-tracker.csv" target="_blank" rel="noopener">group-tracker.csv</a></li></ul></details>
+<li>[x] Every group Adi is in was read from his own Facebook (113 joined plus 4 pending; 116 About pages read; one duplicate in Facebook's count).</li>
+<li>[x] Every business group is listed with its link, what it is about, members, public or private, member location, Facebook tags and topics, activity and rules.</li>
+<li>[x] Each relevant group says whether we may post ourselves, taken from its own written rules.</li>
+<li>[x] Groups are categorised (entrepreneurship and startups, funnels and webinars, revenue and growth, outreach software, LinkedIn, SaaS, coaching, agencies) and prioritised A, B, C.</li>
+<li>[x] One pitched idea per group, for Adi to approve; no finished posts (Adi 2026-11-05: posts are made in the content studio).</li>
+<li>[x] Personal groups are kept off the public board.</li>
+<li>[x] Approved proof only in the ideas (Growth Idea and FintechCircle measured numbers, 400+ brands).</li>
+<li>[x] scan.py: 0 failures.</li>
+</ul></div></details><details class="doc"><summary>Files for import or upload (5)</summary><ul class="files"><li><a href="cards/files/07-facebook-groups/build_groups.py" target="_blank" rel="noopener">build_groups.py</a></li><li><a href="cards/files/07-facebook-groups/classify.py" target="_blank" rel="noopener">classify.py</a></li><li><a href="cards/files/07-facebook-groups/group-tracker.csv" target="_blank" rel="noopener">group-tracker.csv</a></li><li><a href="cards/files/07-facebook-groups/groups-data.json" target="_blank" rel="noopener">groups-data.json</a></li><li><a href="cards/files/07-facebook-groups/groups.csv" target="_blank" rel="noopener">groups.csv</a></li></ul></details>
