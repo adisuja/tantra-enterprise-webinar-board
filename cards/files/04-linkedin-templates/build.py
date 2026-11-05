@@ -33,7 +33,7 @@ TANTRA_ACTIONS = {"visit_profile", "connection_request", "send_message"}   # CHA
 WORST = {"{{firstName}}": 15, "{{company}}": 35, "{{custom.post_topic}}": 40}
 BANNED = ["leverage", "unlock", "seamless", "game-changer", "game changer", "supercharge", "fast-paced",
           "end to end", "end-to-end", "engineered system", "delve", "robust", "elevate", "no " + "pitch",
-          "nothing to " + "buy", "100% " + "free", "400+", "$100k to $300k", "guarantee",
+          "nothing to " + "buy", "100% " + "free", "400+ founders", "$100k to $300k", "guarantee",
           "hope all is", "hope things are", "thought of you", "you'd get a lot", "{{custom.company}}"]
 
 V, C, M, I = "visit_profile", "connection_request", "send_message", "inmail"
@@ -87,7 +87,7 @@ If not, no hard feelings. Good luck with the quarter."""),
 
 For most founders I speak with, it's most of it.
 
-[hosts] a live session [when] on building the other kind: a funnel, a RevOps system and AI on the busywork, measured stage by stage. It draws on 10+ years of work with 250+ brands.
+[hosts] a live session [when] on building the other kind: a funnel, a RevOps system and AI on the busywork, measured stage by stage. It draws on 10+ years of work with 400+ brands.
 
 [min] minutes. Want a seat? [link]"""),
   step(M, 4, message="""
@@ -109,7 +109,7 @@ Quick question: could you predict next quarter's booked sales calls at [co] toda
 
 Most founders I speak with can't. Leads come from referrals, a good month on ads, a lucky post. Nothing they can measure and repeat.
 
-[hosts] a live session [when] on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 250+ brands.
+[hosts] a live session [when] on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 400+ brands.
 
 [min] minutes, including [qa] minutes of Q&A. Save your seat: [link]
 

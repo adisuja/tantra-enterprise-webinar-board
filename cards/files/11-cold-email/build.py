@@ -35,7 +35,7 @@ A note for whoever owns next month's pipeline at {{company}}.
 
 Most founders use AI for content and stop there. The revenue side (who you reach, who books a call) still runs by hand.
 
-I take it apart live on [[date_short]] at [[time_words]], and every [[day]] after. My team has worked with 250+ brands.
+I take it apart live on [[date_short]] at [[time_words]], and every [[day]] after. My team has worked with 400+ brands.
 
 Want a seat? [[registration_link]]
 

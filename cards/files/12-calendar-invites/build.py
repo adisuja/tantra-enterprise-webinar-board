@@ -29,7 +29,7 @@ TAIL = """If it's not relevant, just decline. No follow-up from me.
 Get your join link here: [[registration_link]]
 
 The session: [[webinar.title]]
-Your host: [[brand.host_name]] ([[brand.host_full_name]]), [[brand.host_title]]. 250+ brands, 21+ countries, 10+ years.
+Your host: [[brand.host_name]] ([[brand.host_full_name]]), [[brand.host_title]]. 400+ brands, 21+ countries, 10+ years.
 
 Yes or Maybe keeps the time on your calendar. Your personal join link arrives when you register at the link above."""
 
