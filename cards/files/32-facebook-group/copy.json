@@ -1,0 +1,15 @@
+{
+  "_about": "Every word for item 32. src/build.py fills {{when}}, {{when_cap}}, {{day}}, {{minutes}} and {{first}} from deliverables/_shared/funnel-config.json and leaves {{domains.funnel_domain}} for the lead to fill after deploy.",
+  "group_id": "631154788582473",
+  "old_name": "GrowthClub Pro: The Community for Growth Leaders & Innovators",
+  "members": "3,964",
+  "name": "Tantra: AI Revenue Systems for B2B Growth Leaders",
+  "name_alternate": "Tantra Community: AI Funnels, Outreach and Pipeline for B2B Leaders",
+  "cover": {
+    "headline": "See the Whole AI Revenue Funnel, Live",
+    "sub": "Hosted by Adi, Tantra Founder"
+  },
+  "description": "Most B2B teams don't have a lead problem. They have a leak problem: the invites go out, a few people sign up, and nobody can say how many became sales calls.\n\nThis group is where I fix that in public. I'm Adi, founder of Tantra (formerly GrowthClub). My team has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries, over 10+ years.\n\nWhat you get here:\n→ The weekly live webinar, {{when}}: I take a working B2B funnel apart in {{minutes}} minutes\n→ Breakdowns of real outreach: calendar invites, cold email and LinkedIn\n→ The reminders and follow-ups that turn sign-ups into booked sales calls\n→ Straight answers when you post your own numbers\n\nWant to run it yourself? Start at usetantra.com\n\nSave your seat for this week's session: {{domains.funnel_domain}}",
+  "description_before_live_note": "Until the registration page is live, leave out the last line (Save your seat). Add it once the page is on.",
+  "rename_post": "GrowthClub Pro is now Tantra.\n\nSame group, same people, a new name. GrowthClub built funnels and outreach for clients by hand. Tantra is what that work became: AI revenue systems for B2B teams, from the first invite to the signed client.\n\nHere's what changes for you: {{when}} I run a live {{minutes}}-minute session that takes a working funnel apart, and this group is where we pick it over afterwards.\n\nThe first one is {{first}}. The link is in the comments."
+}

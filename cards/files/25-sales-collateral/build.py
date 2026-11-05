@@ -1,3 +1,4 @@
+from pathlib import Path
 #!/usr/bin/env python3
 """Build the sales collateral: fill src/*.html from funnel-config.json, then render PDFs.
 
@@ -74,6 +75,12 @@ def main():
                 pg.close()
                 if i > 0:
                     out_html.unlink()
+                # Pin metadata and IDs so an unchanged rebuild is byte for byte the same (no noise in team pull requests).
+                doc = fitz.open(pdf)
+                doc.set_metadata({"title": doc.metadata.get("title") or name, "creator": "Tantra", "producer": "Tantra",
+                                  "creationDate": "D:20261105000000Z", "modDate": "D:20261105000000Z"})
+                doc.save(str(pdf) + ".tmp", garbage=4, deflate=True, no_new_id=True)
+                doc.close(); Path(str(pdf) + ".tmp").replace(pdf)
                 n = len(fitz.open(pdf))
                 report.append((pdf.name, n))
                 if name in MUST_FIT_ONE_PAGE and n != 1:

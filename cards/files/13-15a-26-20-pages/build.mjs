@@ -3,6 +3,7 @@
 // usage: node build.mjs [--config <path to funnel-config.json>] [--out <dir>] [--version <asset cache key>]
 // Default config: ../_shared/funnel-config.json. Default output: ./site
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { makeCtx, icsFile } from './src/lib.mjs';
@@ -19,7 +20,10 @@ const cfgPath = arg('--config', path.join(here, '..', '_shared', 'funnel-config.
 const out = arg('--out', path.join(here, 'site'));
 const cfg = JSON.parse(fs.readFileSync(cfgPath, 'utf8'));
 // --version pins the ?v= asset cache key, so a rebuild can be diffed byte for byte against the last one.
-const version = process.argv.includes('--version') ? process.argv[process.argv.indexOf('--version') + 1] : Date.now().toString(36);
+// Default: a hash of the assets and the config, so an unchanged build is byte for byte the same on every machine (no noise in team pull requests).
+const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name)).flatMap((e) => (e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]));
+const contentHash = () => { const h = crypto.createHash('sha256'); for (const f of walk(path.join(here, 'src'))) h.update(fs.readFileSync(f)); h.update(JSON.stringify(cfg)); return h.digest('hex').slice(0, 10); };
+const version = process.argv.includes('--version') ? process.argv[process.argv.indexOf('--version') + 1] : contentHash();
 
 fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
