@@ -145,7 +145,7 @@ Not for you? Reply &quot;no&quot; and you won't hear from me again.
 </code></pre></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 11: Cold Email Templates</h1>
 <p>Three cold email templates inviting Enterprise-fit founders to the weekly webinar, sent from Tantra. Each: 3 subject lines, a step 1 and 2 follow-ups. Every step names the real session: <strong>Thursday 12 November 2026, 10:00 UK time (11:00 CET)</strong>, then every Thursday at the same time.</p>
 <p><strong>Personalisation (Adi 2026-11-05):</strong> merge tags only. The AI first line (<code>{{ai_first_line}}</code>, <code>{{custom.ai_first_line}}</code>) and its prompt file <code>ai-first-line.md</code> are retired and deleted. Step 1 now opens on a fixed line carrying <code>{{company}}</code>, and every step is a Tantra <strong>Predefined template</strong>, never <strong>AI-personalized</strong>.</p>
-<p><strong>Claim to verify:</strong> none in these emails. They name the session in plain words and never print <code>{{webinar.title}}</code>, so the $100K to $300K range (no source yet, PROOF_PACK.md section 2) appears only on the registration page. All proof is from PROOF_PACK.md: worked with 400+ brands; Growth Idea (as "a UK coaching company"): 30 then 1,990 registrations, 98,000 of 99,859 reached by calendar invite; FintechCircle (as "a London fintech network"): 10,000 to 30,000 outreach, 17 calls in episodes 1 to 3; the offer's fit (wants it built with them).</p>
+<p><strong>Claim to verify:</strong> none in these emails. They name the session in plain words and never print <code>{{webinar.title}}</code>, so the title's $100K to $300K range (from Adi's brief) appears only on the registration page. All proof is from PROOF_PACK.md: worked with 400+ brands; Growth Idea (as "a UK coaching company"): 30 then 1,990 registrations, 98,000 of 99,859 reached by calendar invite; FintechCircle (as "a London fintech network"): 10,000 to 30,000 outreach, 17 calls in episodes 1 to 3; the offer's fit (wants it built with them).</p>
 <h2>What Is Here</h2>
 <table>
 <thead>
@@ -238,6 +238,7 @@ Not for you? Reply &quot;no&quot; and you won't hear from me again.
 </table>
 <p>Tantra renders a tag with no value as blank and has no if/else (https://usetantra.com/help/templates-and-ai/merge-tags-and-spintax), so the fallbacks must be in the contact data: a blank company would print "at ." in step 1.</p>
 <p>Each thread points at one session: for a later week, <code>python3 build.py --tantra --date 2026-11-19</code> (a date that is not a Thursday is refused).</p>
+<p><strong>First send:</strong> the first Thursday after the funnel domain is live, with the 8 days a thread needs (threads start 8 days before the session). 12 November 2026 is already out of reach (its threads would have started 4 November). Run <code>python3 build.py --tantra --date &lt;that Thursday&gt;</code>; the default date is <code>webinar.first_date</code>, so never run it without <code>--date</code>.</p>
 <h2>Loading and Testing (manual, by the team, once the funnel domain is set)</h2>
 <ol>
 <li><code>python3 deliverables/11-cold-email/build.py --tantra --date &lt;session date&gt;</code> writes <code>cold-email-tantra.csv</code>.</li>

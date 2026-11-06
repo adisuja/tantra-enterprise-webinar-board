@@ -6,7 +6,7 @@ Book your 30-minute evaluation call here: {{2}}
 The recording, if you want any part again: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=booking_url; {{3}}=recording_url
-22A-3,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",7200,whatsapp,pw_a3_wa,,"Hi {{1}}, here's what happens on the evaluation call: 30 minutes on your funnel and numbers, a straight answer on fit, and a written proposal within one business day of the call if it fits.
+22A-3,"webinar_start | segment stayed_to_offer (attended, minutes_in_room >= 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",7200,whatsapp,pw_a3_wa,,"Hi {{1}}, here's what happens on the evaluation call: 30 minutes on your funnel and numbers, a straight answer on fit and, if it fits, a written proposal within one business day of the call, then a Proposal Review call with the same person, where we decide together.
 
 Book here: {{2}}
 Recording: {{3}}
@@ -43,7 +43,7 @@ Recording: {{2}}
 Book a call: {{3}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=recording_url; {{3}}=booking_url
-22B-3,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",7200,whatsapp,pw_b3_wa,,"Hi {{1}}, you left before I explained the evaluation call: 30 minutes on your funnel and numbers, a straight answer on fit, and a written proposal within one business day of the call if it fits.
+22B-3,"webinar_start | segment early_leaver (attended, minutes_in_room under 25); email to all in segment, WhatsApp to whatsapp_opt_in; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",7200,whatsapp,pw_b3_wa,,"Hi {{1}}, you left before I explained the evaluation call: 30 minutes on your funnel and numbers, a straight answer on fit and, if it fits, a written proposal within one business day of the call, then a Proposal Review call with the same person, where we decide together.
 
 Book: {{2}}
 Recording: {{3}}

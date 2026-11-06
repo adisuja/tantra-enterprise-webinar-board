@@ -493,7 +493,7 @@ If it's a fit, you'll receive a written Enterprise proposal within one business 
 <ol>
 <li><strong>Create the team.</strong> Open https://app.cal.com/settings/teams/new. Team name: <code>Tantra</code>. Team URL: <code>tantra</code>. Click Continue, approve the Teams plan for 3 seats on the checkout page (Adi only: it is a purchase). After: the team page opens.</li>
 <li><strong>Invite Conor and Scott.</strong> Team page, Members, Add member (https://app.cal.com/settings/teams, pick Tantra, Members). Enter each email, role Member, Send invite. After: each gets an email from Cal.com.</li>
-<li><strong>Send me their details</strong> (or fill them in funnel-config.json <code>booking.closers</code>): Conor's and Scott's full names, work emails, Cal.com usernames and WhatsApp numbers. The CRM's Lists tab Closers table needs the same emails, because the round-robin host's email is how a booking finds its closer.</li>
+<li><strong>Send me their details</strong> (or fill them in funnel-config.json <code>booking.closers</code>): work emails, Cal.com usernames and WhatsApp numbers for Conor Norton and Scott McArthur. The CRM's Lists tab Closers table needs the same emails, because the round-robin host's email is how a booking finds its closer.</li>
 <li><strong>Conor and Scott each</strong> do section 2 (calendar, Google Meet, availability).</li>
 <li><strong>Create the event type</strong> at https://app.cal.com/event-types: New, team Tantra, then every field in sections 3 to 5. Click Save.</li>
 <li><strong>After item 23 is deployed:</strong> event type, Webhooks tab, New webhook, fields in section 6, Create. Paste the round-robin link into funnel-config.json <code>booking.round_robin_url</code> and the CRM Lists tab <code>booking_url</code> setting.</li>
@@ -501,6 +501,7 @@ If it's a fit, you'll receive a written Enterprise proposal within one business 
 </ol>
 <h2>8. Call 2: Proposal Review Event Type (One per Closer)</h2>
 <p>Adi approved Call 2 on 2026-11-05 (the task board). After the written proposal, the closer who ran Call 1 walks the prospect through it and asks for the decision. It is never round robin: each closer gets the same event type on their own profile, and the proposal email carries the deal closer's own link.</p>
+<p><strong>Open:</strong> Call 2 length is open: 30 minutes now (the Cal.com event type), the sales scripts doc proposes 45; Adi decides.</p>
 <p><strong>The links (after each closer creates it):</strong> <code>https://cal.com/&lt;conor-username&gt;/proposal-review</code> and <code>https://cal.com/&lt;scott-username&gt;/proposal-review</code>. They go into funnel-config.json <code>booking.call2.conor_url</code> and <code>booking.call2.scott_url</code>, and into the CRM Lists tab, Closers table, column <code>closer_call2_url</code>. Until a closer's link is set, every message that needs it (D1 to D4, RN, RC) waits as <code>blocked</code> and the proposal shows an amber FILL box, so nothing goes out without it.</p>
 <h3>Event Type</h3>
 <p>Each closer creates it at https://app.cal.com/event-types, New, on their <strong>own</strong> profile (not the Tantra team).</p>
@@ -526,7 +527,7 @@ If it's a fit, you'll receive a written Enterprise proposal within one business 
 <tr>
 <td>Create dialog</td>
 <td>Duration</td>
-<td>30</td>
+<td>30 (open: the sales scripts doc proposes 45; Adi decides)</td>
 </tr>
 <tr>
 <td>Event Setup</td>
@@ -566,7 +567,7 @@ If it's a fit, you'll receive a written Enterprise proposal within one business 
 <tr>
 <td>Limits</td>
 <td>Limit future bookings</td>
-<td>3 business days into the future (<code>booking.call2.book_within_days</code>, decided 2026-11-05: pick "business days", not "calendar days"). A proposal sent on Friday then offers Monday to Wednesday</td>
+<td>3 business days into the future (<code>booking.call2.book_within_days</code>, a proposed default, not Adi's decision yet: pick "business days", not "calendar days"). A proposal sent on Friday then offers Monday to Wednesday</td>
 </tr>
 <tr>
 <td>Availability</td>

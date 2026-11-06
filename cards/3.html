@@ -6,7 +6,7 @@
 <ol>
 <li>Open https://usetantra.com, <strong>Accounts</strong>, and search each of: strategywebinars, visionarywebinars, seminarvision, nextgenwebinars, signonline.</li>
 <li>For each, note whether it shows <strong>Connected</strong> and the date its Workspace was created.</li>
-<li>Tell the build agent the count that is Connected and past day 60. If it is under five, the agent reruns the item 2 slicer so S01 matches (1,750 is the five-sender figure).</li>
+<li>Tell the build agent the count that is Connected and past day 60. If it is under five, the agent reruns the item 2 slicer so S01 matches (750 is the five-sender, three-day figure).</li>
 </ol>
 <h2>Step 1. The strategywebinars Workspace (W1): Domain, Plan, $100</h2>
 <p>Adi gives the team member the W1 admin login from <code>~/.config/tantra/keys/strategywebinars-workspace.env</code> (Adi only; an agent never opens it).</p>
@@ -88,7 +88,7 @@
 </ol>
 <h2>What Happens Next</h2>
 <p>With every sender Connected and the payment dates in hand, the build agent re-dates <code>deliverables/02-outreach-lists/SLICING_PLAN.md</code> and the first new-sender slice (S05, 10 December) can be built as Tantra drafts. Adi approves each launch.</p></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 3: Outreach Infrastructure for 100,000 Calendar Invites a Week</h1>
-<p>Adi, 2026-11-05: 100,000 invites a week at 200 a sending account a day, 7 days a week. 100,000 / 7 / 200 = 71.4, so <strong>72 sending accounts on 12 domains at 6 mailboxes each</strong>, in 4 Google Workspaces (the strategywebinars one plus 3 new): 100,800 a week at full volume. Setup is a manual step the team completes; payments are Adi's. If every Workspace is paid by 9 November 2026, the first full 100,000 week is the 18 February 2027 webinar. The 12 November webinar runs before any warm-up: up to 1,750 invites from the older Tantra senders, or none.</p>
+<p>Adi, 2026-11-05: 100,000 invites a week at 200 a sending account a day, 7 days a week. 100,000 / 7 / 200 = 71.4, so <strong>72 sending accounts on 12 domains at 6 mailboxes each</strong>, in 4 Google Workspaces (the strategywebinars one plus 3 new): 100,800 a week at full volume. Setup is a manual step the team completes; payments are Adi's. If every Workspace is paid by 9 November 2026, the first full 100,000 week is the 18 February 2027 webinar. The 12 November webinar runs before any warm-up: up to 750 from the five older senders, only once the funnel domain is live (if live Monday 9 November) from the older Tantra senders, or none.</p>
 <h2>What Is Here</h2>
 <table>
 <thead>
@@ -136,10 +136,10 @@
 <li><strong>Adi pays:</strong> the card at each Workspace checkout, the $100 prepay per Workspace (4), and the seats (about $630 a month on Flexible: check https://workspace.google.com/pricing).</li>
 <li><strong>The team:</strong> domains, Workspaces, DNS, DKIM, users, Tantra connection (<code>ADI_STEPS.md</code>), and in the roster <code>created</code>, <code>warmup_start_day0</code> (the $100 payment date) and <code>tantra_service_account_connected</code>.</li>
 <li>The two Google values per domain (verification TXT, DKIM), pasted at iFreeDomains, never in this repo.</li>
-<li>The funnel domain for the 301 forward (<code>domains.funnel_domain</code> in <code>funnel-config.json</code>, still FILL).</li>
+<li>The funnel domain for the 301 forward (<code>domains.funnel_domain</code> in <code>funnel-config.json</code>; Claude fills it once the pages deploy).</li>
 </ul>
-<h2>Open Question for Adi</h2>
-<p>The calendar rule is one service account per sender: 72 "Authorize" clicks in Google Admin. Tantra already serves all cold email inboxes from one service account. If it can do the same for calendar senders, this drops to 4. Worth asking before step 8.</p>
+<h2>Team Check Before Step 8 (Nelbin)</h2>
+<p>The calendar rule is one service account per sender: 72 "Authorize" clicks in Google Admin. Tantra already serves all cold email inboxes from one service account. Ask Tantra support whether calendar senders can share one per Workspace (4 clicks instead of 72) before step 8.</p>
 <h2>Never Done Here</h2>
 <p>No sign-in, no account created, no domain bought, no Workspace or Tantra setting changed. The Workspace login file <code>~/.config/tantra/keys/strategywebinars-workspace.env</code> was never opened. Domain availability comes from public RDAP only.</p>
 <p>No claim to verify: this folder prints no 400+ or revenue claims.</p></div></details><details class="doc"><summary>CAPACITY_PLAN.md</summary><div class="md"><h1>Capacity Plan: 100,000 Calendar Invites a Week</h1>
@@ -756,7 +756,7 @@ prints 404 when the name is free.</p>
 <ul>
 <li>[x] 1. <code>CAPACITY_PLAN.md</code> shows Adi's maths: 100,000 / 7 / 200 = 71.4, so 72 senders; 12 domains x 6 mailboxes; 72 x 200 x 7 = 100,800 a week; 4 Workspaces of 3 domains and 18 senders.</li>
 <li>[x] 2. The warm-up ramp runs from day 1 to 200 a day, dated from Day 0 = Monday 9 November 2026, one row per webinar week, and names the first full 100,000 week: the 18 February 2027 webinar (sent 11 to 17 February).</li>
-<li>[x] 3. It says plainly that the 12 November webinar runs before warm-up and what is realistic for it: 0 from the new senders, up to 1,750 from the five older senders only if they are Connected and past day 60.</li>
+<li>[x] 3. It says plainly that the 12 November webinar runs before warm-up and what is realistic for it: 0 from the new senders, up to 750 from the five older senders, only once the funnel domain is live (if live Monday 9 November) if they are Connected and past day 60.</li>
 <li>[x] 4. It states where 200 a day sits against the playbook (its ceiling) and the blog (above its 100 to 150 ceiling), and the 8,400 invites a domain a week against the exports' 1,440, with the stop rule and spares.</li>
 <li>[x] 5. The 80/20 domain and 440/800 sender options are gone from every file in this folder (grep finds none).</li>
 <li>[x] 6. <code>DOMAIN_SHORTLIST.md</code>: 12 sending domains and 4 spares, all from the checked list, <code>.com</code>, no hyphens, never growthclub.org, usetantra.com or free Gmail, each rechecked "not found" at Verisign RDAP on 2026-11-05.</li>

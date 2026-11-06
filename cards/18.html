@@ -1,4 +1,5 @@
 <details class="doc" open><summary>18-call-2-proposal-review-script.md</summary><div class="md"><h1>Call 2 Script: Tantra Enterprise Proposal Review (30 Minutes)</h1>
+<p><strong>Open:</strong> Call 2 length is open: 30 minutes now (the Cal.com event type), the sales scripts doc proposes 45; Adi decides. This script is timed for 30.</p>
 <p>For Conor and Scott. The prospect has read your written proposal and booked this call from the proposal email, on your own Proposal Review link. You ran their Call 1, so you run this one. This is the call where the decision is made: by minute 30 you have a yes, a no, or the one thing still in the way, written down.</p>
 <p>Approved by Adi on 2026-11-05 (the task board). Proof comes from PROOF_PACK.md only. Objection answers come from the FAQ: objections-faq.html (PDF: <code>deliverables/25-sales-collateral/objections-faq-a4.pdf</code>).</p>
 <table>
@@ -41,7 +42,7 @@
 <ul>
 <li>[ ] Re-read the proposal you sent (<code>proposal_url</code> on the Pipeline row) and your three lines of Call 1 notes.</li>
 <li>[ ] Check the Pipeline row: did they open a reply, ask anything, or forward it? Anything in <code>notes</code> since Call 1?</li>
-<li>[ ] Have the agreement and the payment link for $9,999 ready to send while you are still on the call. Tool and payment terms: FILL until Adi sets them (the task board). Until then, promise no terms on the call.</li>
+<li>[ ] Have the agreement and the payment link for $9,999 ready to send while you are still on the call. Tool and payment terms: FILL until Adi sets them (an open point in the sales scripts doc, README). Until then, promise no terms on the call.</li>
 <li>[ ] Guess the two questions they are most likely to ask, and find each in the FAQ.</li>
 <li>[ ] Sign-off: is the person who signs on the invite? If not, plan the ask in "Decide".</li>
 </ul>
@@ -271,14 +272,23 @@
 </tbody>
 </table>
 <p>The CRM side (doPost, runner, sheet) is item 23: <code>deliverables/23-crm/</code>.</p>
+<p>Sales scripts (Google Doc): https://docs.google.com/document/d/1BLQf_i5WhhpTBIq4GeTfh8GKwar2951uSps1LJPdoRQ/edit (the sales process recreated for Tantra Enterprise, 5 November: 1st Call Script v2, TAM prompt, 2nd Call Script v2, Financial and Objections scripts). Open points it raises for Adi:</p>
+<ul>
+<li>A custom package before Call 2 (sample lead list, calendar invite, event mock-up, funnel maths).</li>
+<li>Call 2 length is open: 30 minutes now (the Cal.com event type), the sales scripts doc proposes 45; Adi decides.</li>
+<li>Payment terms.</li>
+<li>The 13-week plan.</li>
+<li>What is not included.</li>
+<li>Client approval and follow-up windows.</li>
+</ul>
 <h2>Sales Journey Page</h2>
 <p>sales-journey/index.html: "Sales Journey: first touch to signed client", one self-contained page mirroring the reference Adi gave (<code>references/user-images/qs-sales-journey-first-touch-to-signed.webp</code>): the journey line with drop-offs, time to close, stage by stage, KPI sheet, questions to ask (ticks save in the browser) and a funnel calculator. Call 2 is a normal stage (08) with its KPIs, Call 2 show rate and close rate (targets FILL). Edit <code>sales-journey/src.html</code>, then <code>python3 deliverables/18-19-booking/sales-journey/build.py</code> (fills funnel-config values, embeds fonts). Mirror map and checks: <code>sales-journey/EVAL.md</code>; screenshots beside the reference: <code>sales-journey/compare/</code>.</p>
 <h2>What Adi Must Fill</h2>
 <ul>
-<li>Conor's and Scott's full names, work emails, Cal.com usernames and WhatsApp numbers (funnel-config.json <code>booking.closers</code>, and the Lists tab of the CRM sheet).</li>
+<li>Closers (per Adi's call transcript): Conor Norton and Scott McArthur. Still needed: their work emails, Cal.com usernames and WhatsApp numbers (funnel-config.json <code>booking.closers</code>, and the Lists tab of the CRM sheet).</li>
 <li>The round-robin URL once the event type exists (<code>booking.round_robin_url</code>, Lists <code>booking_url</code>).</li>
 <li>The onboarding booking link sent on Closed Won (Lists <code>onboarding_link</code>).</li>
-<li>Decisions in 18-speed-to-lead.md, section 9: no-show rebooking (Seq. C switch, default OFF, also used for a missed Call 2), who the setter is, proposal timing, send mode, the Not ready end date. (The Call 2 booking window is decided: 3 business days.)</li>
+<li>Decisions in 18-speed-to-lead.md, section 9: no-show rebooking (Seq. C switch, default OFF, also used for a missed Call 2), who the setter is, proposal timing, send mode, the Not ready end date. Also the Call 2 booking window: 3 business days is built as a proposed default (<code>booking.call2.book_within_days</code>), not Adi's decision yet.</li>
 <li>Conor's and Scott's Proposal Review links once each has created the event type (19, section 8): funnel-config.json <code>booking.call2.conor_url</code> and <code>scott_url</code>, and the CRM Lists tab column <code>closer_call2_url</code>. Until then the proposal email and every Call 2 message wait as <code>blocked</code>.</li>
 </ul>
 <h2>Time Zones (UK and EU Audience, 2026-11-05)</h2>
@@ -1566,7 +1576,7 @@
 <li><strong>Proposal timing.</strong> The playbook says send it within 1 hour of the call; your description promises one business day. Built to the description, with the task telling closers to aim for the same day.</li>
 <li><strong>How messages send.</strong> Default <code>queue</code>: the closer sends each due WhatsApp and email from Tantra (the CRM emails them the exact text). <code>tantra</code> mode sends through the Tantra API as single-step campaigns; it is untested on the live account because Tantra has no "add one person to a running campaign" call. Keep queue until one test send passes.</li>
 <li><strong>Not ready end date.</strong> The playbook has no exit for Seq. F. Built: a deal still in Showed 14 days after the 30-day check-in moves to Nurture. Confirm or change.</li>
-<li><strong>Call 2 booking window.</strong> Decided 2026-11-05: 3 business days (<code>booking.call2.book_within_days</code>). It sets Limit future bookings, "business days", on the two Proposal Review event types. The copy names no number of days, so nothing changes in the messages.</li>
+<li><strong>Call 2 booking window.</strong> Proposed default, not Adi's decision yet: 3 business days (<code>booking.call2.book_within_days</code>). It sets Limit future bookings, "business days", on the two Proposal Review event types. The copy names no number of days, so nothing changes in the messages.</li>
 <li><strong>Missed Call 2.</strong> Built to follow the same <code>seq_c_rebook</code> switch as a missed Call 1 (OFF: no rebooking, Nurture on day 7). Say if a missed Call 2, which comes after a written proposal, should always get the rebook messages instead.</li>
 </ol></div></details><details class="doc"><summary>RECONCILE.md</summary><div class="md"><h1>Reconcile: Call 2 in Items 18, 19 and 23 (Done)</h1>
 <p><strong>Status: done, 2026-11-05.</strong> Adi decided (the task board): yes, add Call 2 after the proposal, as in his sales journey reference (Call 1, custom proposal and due diligence, Call 2, contract and payment). Call 2 is "Tantra Enterprise Proposal Review", 30 minutes, booked from the proposal email, always with the closer who ran Call 1, and it is where the decision is made. Every point this file raised is now built; the table says where.</p>
@@ -1631,7 +1641,7 @@
 <tr>
 <td>19.4</td>
 <td>Limits: the proposal-to-Call-2 window</td>
-<td>Limit future bookings = <code>booking.call2.book_within_days</code>: 3 business days (decided 2026-11-05)</td>
+<td>Limit future bookings = <code>booking.call2.book_within_days</code>: 3 business days (a proposed default, not Adi's decision yet)</td>
 <td>Section 8, Event Type</td>
 </tr>
 <tr>

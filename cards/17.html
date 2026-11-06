@@ -54,7 +54,7 @@
 </tr>
 <tr>
 <td>Webinar title (public, max 70 [SOP 23:00])</td>
-<td><code>webinar.title</code>: "How 400+ Brands Use AI Funnels to Generate $100K to $300K Monthly" (Adi's pick 2026-11-05), 65 characters, fits. Claim to verify: the revenue range ($100K to $300K) has no source yet</td>
+<td><code>webinar.title</code>: "How 400+ Brands Use AI Funnels to Generate $100K to $300K Monthly" (Adi's pick 2026-11-05), 65 characters, fits.. Claims from Adi's brief, approved</td>
 </tr>
 <tr>
 <td>Webinar description (public, max 150 [SOP 23:00])</td>
@@ -449,7 +449,7 @@
 </tr>
 </tbody>
 </table>
-<p>After each session: <strong>Your links, Replay</strong>, pick the session, <strong>download</strong> the recording for item 26 (<code>media.recording_video_url</code>) [H 15370036].</p>
+<p>Replay (Adi 2026-11-04): the replay will come through the WebinarJam API into <code>webinar.replay_url</code> later; that step is not built yet, and the recording page (item 26) shows a placeholder until then. Interim fallback, manual, until the API step exists: after each session, <strong>Your links, Replay</strong>, pick the session, <strong>download</strong> the recording for item 26 (<code>media.recording_video_url</code>) [H 15370036].</p>
 <h2>9. Finish</h2>
 <p>Save. Then, from <strong>Webinars</strong>, <strong>Advanced</strong> above this webinar, <strong>API custom integration</strong>: copy the <strong>Webinar ID</strong> into <code>integrations.webinarjam_webinar_id</code> and the <strong>API key</strong> into the Worker's environment only (README steps 3 and 4). The key is account-wide and the same for every webinar [H 15370144].</p>
 <h2>Sources</h2>
@@ -588,7 +588,7 @@ fetch(F.register_worker_url, { method: 'POST', headers: { 'Content-Type': 'appli
 </ul>
 <h2>T Plus 1 Day</h2>
 <ul>
-<li>[ ] <strong>Ops, WebinarJam:</strong> <strong>Your links</strong>, <strong>Replay</strong>, pick the session, download the recording for item 26.</li>
+<li>[ ] <strong>Ops, WebinarJam (interim fallback, manual):</strong> <strong>Your links</strong>, <strong>Replay</strong>, pick the session, download the recording for item 26. The replay will come through the WebinarJam API later (not built yet; the recording page shows a placeholder until then), and this step goes when it does.</li>
 <li>[ ] <strong>Ops, CRM:</strong> The Webinar tab for this date has a segment on every row (<code>stayed_to_offer</code>, <code>early_leaver</code> or <code>no_show</code>) and <code>retarget_until</code> on early leavers and no-shows.</li>
 <li>[ ] <strong>Adi:</strong> The change agreed in the Review block is assigned for next week.</li>
 </ul></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: Item 17, WebinarJam Event Setup and Integrations</h1>

@@ -12,6 +12,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "15b-pre-nurture"))
 import nurture_lib as L
 
+# Next step after Call 1 (Adi, 2026-11-04): written proposal, then Call 2 with the same closer.
+L.TOKENS["next_step"] = lambda: L.TOKENS["proposal"]() + ", then a Proposal Review call with the same person, where we decide together"
+
 STOP = "Reply STOP to opt out."
 EXIT = "; stops on booking.created, contact.replied, contact.opted_out, deal.won or deal.lost"
 SEG = {
@@ -29,7 +32,7 @@ REC = ("Watch the Recording", "recording_url")
 CALL_STEPS = [
     "1. **When you book,** you answer a few short questions, so the call starts on your numbers, not on small talk.",
     "2. **On the call** we go through your funnel, your numbers and what you want from the next 12 months. Then we tell you straight whether [[offer]] fits.",
-    "3. **After the call,** if it fits, you get [[proposal]]. If it doesn't, we say so.",
+    "3. **After the call,** if it fits, you get [[next_step]]. If it doesn't, we say so.",
 ]
 CALL_RULE = "One rule: a missed call isn't rescheduled. So pick a time you'll actually keep."
 OFFER_LIST = "It's [[inc1]], [[inc2]], [[inc3]], and [[inc4]], for [[price]]."
@@ -37,7 +40,7 @@ FIT = [
     "[[offer]] fits if both of these are true:",
     "1. You want the system built with you, not just explained to you.\n2. You have [[fit_budget]] to invest in the next 12 months.",
     "It doesn't fit if you'd rather build it all yourself, or if that budget isn't there yet. Both are fine. Keep the recording and use it.",
-    "If it does fit, the call is [[call_minutes]] minutes, and you get [[proposal]] if we both want to go ahead.",
+    "If it does fit, the call is [[call_minutes]] minutes. If we both want to go ahead, you get [[next_step]].",
 ]
 FINTECH = [
     "The first episode of a webinar series is the hardest. Small list, no data, no idea what works.",
@@ -62,7 +65,7 @@ dict(step_id="22A-0", title="Stayed: recording + book the call", anchor="webinar
    headline="Thanks for Staying to the End",
    paras=["Hi {{first_name}},",
      "Thanks for staying for the whole session. You saw the part most webinars skip: how the system actually gets built with your team.",
-     "If you want it built with you, the next step is a [[call_minutes]]-minute [[call_title]] with my team. We look at your funnel, your numbers and your goals. If it's a fit, you get [[proposal]].",
+     "If you want it built with you, the next step is a [[call_minutes]]-minute [[call_title]] with my team. We look at your funnel, your numbers and your goals. If it's a fit, you get [[next_step]].",
      "Book it while the session is still fresh in your head."],
    cta=BOOK, cta2=("rewatch the recording", "recording_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, it's [[host]]. Thanks for staying to the end today.\n\nBook your [[call_minutes]]-minute evaluation call here: {{booking_url}}\n\nThe recording, if you want any part again: {{recording_url}}\n\n" + STOP),
@@ -89,7 +92,7 @@ dict(step_id="22A-3", title="Stayed: what happens on the call", anchor="webinar_
    headline="What Happens on the [[call_minutes]]-Minute Call",
    paras=["Hi {{first_name}},", "Some people don't book because they don't know what they're walking into. Fair enough. Here's exactly what happens."] + CALL_STEPS + [CALL_RULE],
    cta=BOOK, cta2=("rewatch the session first", "recording_url"), cta2_lead="Or"),
- whatsapp="Hi {{first_name}}, here's what happens on the evaluation call: [[call_minutes]] minutes on your funnel and numbers, a straight answer on fit, and [[proposal]] if it fits.\n\nBook here: {{booking_url}}\nRecording: {{recording_url}}\n\n" + STOP),
+ whatsapp="Hi {{first_name}}, here's what happens on the evaluation call: [[call_minutes]] minutes on your funnel and numbers, a straight answer on fit and, if it fits, [[next_step]].\n\nBook here: {{booking_url}}\nRecording: {{recording_url}}\n\n" + STOP),
 
 dict(step_id="22A-4", title="Stayed: teach, if you build it yourself, build it in this order", anchor="webinar_start", offset=8640, template="pw_a4", trigger=trig("A") + "; teaching email, no booking link (they already sat through the offer); no WhatsApp",
  email=dict(subject="If you build it yourself, build it in this order", preheader="Four pieces, one at a time.", eyebrow="Day 6",
@@ -144,7 +147,7 @@ dict(step_id="22B-1", title="Early leaver: what came after you left", anchor="we
    headline="Here's What Came After You Left",
    paras=["Hi {{first_name}},", "In case you don't get to the recording, here's the short version of what came after you left.",
      "1. **The system.** Funnels, the RevOps OS and the traffic channels, built to run every week, not once.\n2. **How we build it with you: [[offer]].** " + OFFER_LIST + "\n3. **Who it's for.** Teams that want it built with them and have [[fit_budget]] to invest in the next 12 months.",
-     "The next step is a [[call_minutes]]-minute evaluation call. If it fits, you get [[proposal]]."],
+     "The next step is a [[call_minutes]]-minute evaluation call. If it fits, you get [[next_step]]."],
    cta=BOOK, cta2=("watch that part of the recording", "recording_offer_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, what came after you left: the system, how we build it with your team ([[offer]], [[price]]) and who it's for.\n\nWatch that part: {{recording_offer_url}}\nOr book a call: {{booking_url}}\n\n" + STOP),
 
@@ -160,7 +163,7 @@ dict(step_id="22B-3", title="Early leaver: what happens on the call", anchor="we
    headline="What Happens on the [[call_minutes]]-Minute Call",
    paras=["Hi {{first_name}},", "You left the session before I explained the call, so here it is."] + CALL_STEPS + [CALL_RULE],
    cta=BOOK, cta2=("watch the full session first", "recording_url"), cta2_lead="Or"),
- whatsapp="Hi {{first_name}}, you left before I explained the evaluation call: [[call_minutes]] minutes on your funnel and numbers, a straight answer on fit, and [[proposal]] if it fits.\n\nBook: {{booking_url}}\nRecording: {{recording_url}}\n\n" + STOP),
+ whatsapp="Hi {{first_name}}, you left before I explained the evaluation call: [[call_minutes]] minutes on your funnel and numbers, a straight answer on fit and, if it fits, [[next_step]].\n\nBook: {{booking_url}}\nRecording: {{recording_url}}\n\n" + STOP),
 
 dict(step_id="22B-4", title="Early leaver: FintechCircle proof", anchor="webinar_start", offset=10320, template="pw_b4", trigger=trig("B"),
  email=dict(subject="From 10,000 people reached to 30,000 invites", preheader="What kept improving from episode one to three.", eyebrow="One week on",
@@ -214,7 +217,7 @@ dict(step_id="22C-3", title="No-show: how we build it with you", anchor="webinar
  email=dict(subject="How we build it with you", preheader="What's included, what it costs, who it's for.", eyebrow="The offer",
    headline="How We Build the System With Your Team",
    paras=["Hi {{first_name}},", "You missed the live session, so you also missed the part where I explain how we work with companies directly. Here it is in three lines.",
-     "1. **What it is: [[offer]].** " + OFFER_LIST + "\n2. **Who it's for.** Teams that want it built with them and have [[fit_budget]] to invest in the next 12 months.\n3. **How it starts.** A [[call_minutes]]-minute evaluation call. If it fits, you get [[proposal]].",
+     "1. **What it is: [[offer]].** " + OFFER_LIST + "\n2. **Who it's for.** Teams that want it built with them and have [[fit_budget]] to invest in the next 12 months.\n3. **How it starts.** A [[call_minutes]]-minute evaluation call. If it fits, you get [[next_step]].",
      CALL_RULE],
    cta=BOOK, cta2=("watch that part of the recording", "recording_offer_url"), cta2_lead="Or"),
  whatsapp="Hi {{first_name}}, the part of the session you missed: how we build the system with your team. [[offer]], [[price]], for teams with [[fit_budget]] to invest this year.\n\nBook a call: {{booking_url}}\nWatch that part: {{recording_offer_url}}\n\n" + STOP),

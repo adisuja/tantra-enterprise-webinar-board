@@ -90,7 +90,7 @@
 <td>0:00</td>
 <td>Holding slide: brand eyebrow, centred two-line "starting soon" headline</td>
 <td>1 title, 0</td>
-<td>Headline is the working title plus a small line with the schedule (Thursday 12 November 2026, 10:00 UK time) and "starting in a moment": the brief asks for the schedule on the title</td>
+<td>Headline is Adi's chosen title ("How 400+ Brands Use AI Funnels to Generate $100K to $300K Monthly", 2026-11-05) plus a small line with the schedule (Thursday 12 November 2026, 10:00 UK time) and "starting in a moment": the brief asks for the schedule on the title</td>
 </tr>
 <tr>
 <td>2</td>
@@ -1052,7 +1052,7 @@ python3 compare.py /tmp/deckshots               # rebuilds ../compare/ (needs Pi
 </ul>
 <h2>Claim to Verify</h2>
 <ul>
-<li>"$100K to $300K Monthly" (webinar.title) has no source yet (see the task board). "400+ brands" is approved (Adi 2026-11-05) and matches the host slides.</li>
+<li>Claims: "400+ brands" and "$100K to $300K Monthly" are from Adi's brief and his picked title (2026-11-05), approved; the host slides match.</li>
 <li>Slide 69 shows "12 months of the platform, included". The $1,188 value (12 months of Tantra Pro at $99 a month) is in the speaker notes only, until Adi confirms Enterprise's platform year is the Pro tier.</li>
 <li>Slide 40 notes: "many of you are here because of one" (a calendar invite): say it only if that week's traffic used calendar invites.</li>
 <li>Slide 31 is a labelled example: 50,000 buyers at 5 minutes of research each is about 4,170 hours, about 2 years at 40 hours a week.</li>
@@ -1386,7 +1386,7 @@ python3 compare.py /tmp/deckshots               # rebuilds ../compare/ (needs Pi
 <li>[x] Every slide names its reference frame (<code>ref</code> in the spec; the build fails without it) and keeps the reference's order of moves: opening, interaction rules, the question, what this is not, who I am, already working, gifts, agenda, qualifier, the real problem in three parts, the three-step system with 01 / 02 / 03 numeral dividers and UI slides per step, mid-deck QR, proof cards, recap funnel, tabbed built-with-you, journey, what it costs, build it yourself vs us, why not generic AI, cost of inaction, final QR, Q and A.</li>
 <li>[x] The reference's formatting is reproduced: near-black ground, mono uppercase eyebrow with a dot, tight bold left headline with one accent phrase (ember for the negative), empty space, product UI built as HTML (dot grids, sending engine, calendar, metric chains, funnel bars), tabbed slides with the footer counter, progress bar and Previous / Next tab buttons. Only palette (ink, iris, volt, signal, ember) and fonts (Inter, JetBrains Mono, the only two loaded) are Tantra's; current logo only, small.</li>
 <li>[x] <code>compare/</code> holds a side-by-side image (reference frame left, ours right, 1920 by 1080) for every slide and tab state (110), each looked at; layout, hierarchy and visual element match or the deviation is in REFERENCE_MAP.</li>
-<li>[x] No reference wording, names or numbers: a 6-word overlap check of <code>build/spec.mjs</code> and <code>deck/index.html</code> against the srt returns 0 shared runs. No client photos (monograms), no AI brand logos, no invented prices, savings, salaries, guarantees, scarcity or bonuses (each is a marked FILL or a proposal for Adi).</li>
+<li>[x] No reference wording, names or numbers: a 6-word overlap check of <code>build/spec.mjs</code> and <code>deck/index.html</code> against the srt returns 0 shared runs. Testimonial and case-study people shown with their real, already published photos, designations and company logos (rule 9 exception, Adi 2026-11-05); no other client photos, no AI brand logos, no invented prices, savings, salaries, guarantees, scarcity or bonuses (each is a marked FILL or a proposal for Adi).</li>
 </ol>
 <p>Result 2026-11-05: points 1 to 15 pass for the rebuilt deck. <code>build.mjs</code>: 45 slides, 64 states, 4 polls, 14 chat prompts, ends at minute 60. <code>probe.mjs</code>: all 45 slides (every tab) clean. 6-word overlap: 0. Scan on 16-deck and 21-engagement: 0 failures, 0 warnings. Item 21 re-timed to the new slides (engagement.json regenerated, ENGAGEMENT_PLAN and RUN_OF_SHOW updated, fixtures shifted); its test passes (52 checks). Point 1's teardown is unchanged; point 3's doctrine items now live inside the reference order (the objection loop is slides 40 to 42; testimonials are no longer on a slide, because the reference has none).</p>
 <p>Fidelity critic fixes 2026-11-05 (16): no FILL text on screen (slide 38's third card is the first step; slide 35's limit line is off; both FILLs in notes), invite block sized for two lines, the slide 21 example labelled, recap rates labelled derived, $1,188 moved to notes, 8.6x, agenda sums to 45, slide 27 single state with a denser dot flow, slide 20 dot density, tag inside the card, unused fonts removed, run-of-show date check, "6 parts" tied to slide 40, the map names no competitor, the build's dash check uses escapes. <code>probe.mjs</code> now also fails text that runs past a fixed-height box (measured against the box's natural height; it catches the old invite block). Probe: all 45 slides (every tab) clean.</p>

@@ -88,7 +88,7 @@
 <tr>
 <td>3</td>
 <td>Huge caps headline, figure in highlighter</td>
-<td>Our title from config (working title until Adi picks), the revenue range in the highlighter</td>
+<td>Adi's chosen title from config ("How 400+ Brands Use AI Funnels to Generate $100K to $300K Monthly", 2026-11-05), the revenue range in the highlighter</td>
 <td>Copy</td>
 </tr>
 <tr>
@@ -518,7 +518,7 @@
 </tr>
 <tr>
 <td>FILL_TEAM_PHOTOS_AND_LINKS, FILL_BIO</td>
-<td>team photos, LinkedIn links, Bhaskar's and Bharath's bios (a bio row renders only once its text exists)</td>
+<td>team photos; LinkedIn links for Amal, Conor and Scott (the other six read from <code>04-linkedin-templates/profiles.json</code>); Bhaskar's and Bharath's bios (a bio row renders only once its text exists)</td>
 <td>/due-diligence/</td>
 </tr>
 <tr>
@@ -749,7 +749,7 @@
 <ul>
 <li>Countdowns: once <code>webinar.first_date</code>, <code>webinar.start_time_local</code> and <code>webinar.timezone</code> are set, every D/H/M/S box and every "Live session starts in" line counts down to that session. Cadence <code>weekly</code> rolls a past date forward to the next week's session. Until then the boxes read 00 and the pills say what is missing. There is never an evergreen timer. Checked with a test config (2026-11-12 11:00 America/New_York): boxes counted down, text timer read "7 days and 20 hours".</li>
 <li>Live form: when <code>integrations.register_worker_url</code> and <code>integrations.turnstile_site_key</code> are both filled, Turnstile renders in the popup and the form posts to the Worker (item 17). Otherwise the review stub: no external script, no request.</li>
-<li>Replay: every replay slot (the /recording/ hero and the due diligence Step 2 "Webinar Replay" row) reads <code>webinar.replay_url</code>. Nobody uploads it by hand: WebinarJam records each session and the replay link comes from WebinarJam through its API (the item 17 integration writes it into <code>webinar.replay_url</code>). Until then the slot is a designed placeholder with the <code>FILL_REPLAY_URL</code> pill. Note for the lead: the config comment on <code>webinar.replay_url</code> still describes it as the recording page URL; it should say "WebinarJam replay link (from the API)".</li>
+<li>Replay: every replay slot (the /recording/ hero and the due diligence Step 2 "Webinar Replay" row) reads <code>webinar.replay_url</code>. WebinarJam records each session; the replay link will be filled later through the WebinarJam API (Adi 2026-11-04). That API step is not built yet. Until then the slot is a designed placeholder with the <code>FILL_REPLAY_URL</code> pill.</li>
 <li>Videos: the VSL, the four /watch/ videos, the Program Deep-Dive and the case videos stay designed placeholders (play mark, title, "Video added once it is recorded", the FILL pill and the script file) until Adi records them; each fills from one config key.</li>
 <li>Case stages: set 2026-11-05 in <code>src/data/cases.json</code> (Growth Idea <code>scale</code>, FintechCircle <code>growth</code>), each with a <code>stage_basis</code> note ("Estimated from filed Companies House accounts and published prices; see CASE_STAGE_RESEARCH.md"). The matrix puts a case in its stage column; a case with <code>stage: null</code> would show a <code>FILL_STAGE</code> pill and take the first open cell.</li>
 <li>Values the shared config does not have yet, shown as local pills: <code>FILL_DEEP_DIVE_VIDEO</code> (<code>media.deep_dive</code>), <code>FILL_GROWTH_IDEA_VIDEO</code> and <code>FILL_FINTECHCIRCLE_VIDEO</code> (<code>media.case_videos.&lt;id&gt;</code>), <code>FILL_REPLAY_CLOSES_AT</code> (<code>webinar.replay_closes_at</code>, ISO), <code>FILL_CHAPTER_TIMES</code>, <code>FILL_CLIENT_MESSAGE</code>, <code>FILL_TEAM_PHOTOS_AND_LINKS</code>, <code>FILL_BIO</code>, Privacy and Fulfillment policy links. The lead adds the keys to the config when the values exist.</li>
@@ -759,11 +759,11 @@
 <p>Validation, states and payload are as before: <code>?state=invalid</code> opens the popup with the inline errors, <code>?state=error</code> opens it with sample details and the server error (resubmitting shows it again). The number is required only when the WhatsApp or call box is ticked. Payload: the <code>webinar.registered</code> body from CRM_CONTRACT.md, unchanged, with one addition the contract already lists: <code>data.last_name</code>, sent only when filled. <code>phone</code> is the dial code plus the number (for example <code>+44 7700 900123</code>).</p>
 <h2>Deviations from the reference, and why</h2>
 <p>Registration (13)
-- Headline figure: our working title's "$100K to $300K" sits in the highlighter. Claim to verify (below).
+- Headline figure: Adi's chosen title (2026-11-05), "How 400+ Brands Use AI Funnels to Generate $100K to $300K Monthly", with "$100K to $300K" in the highlighter.
 - Stat bar: 4 counters from the approved lines (400+, 10+, 21+, 47+) instead of client and revenue totals we cannot claim.
 - Results band: two dashboards rebuilt in HTML from the trackers' measured numbers, each labelled "Rebuilt from the client's webinar tracker", instead of screenshots. Growth Idea shows the 11-webinar totals and first vs best webinar; a bar per webinar for all 11 is not possible because PROOF_PACK holds only the totals, the first and the best. FintechCircle shows outreach per episode with calls booked.
 - Testimonial collage: 6 verbatim quotes as cards with the person's real published photo, designation and company logo (rule 9 exception, Adi 2026-11-05). No chat screenshots, no app bars or timestamps.
-- Companies banner: the real logos of the nine companies already published with our testimonials plus Growth Idea and FintechCircle (rule 9 exception). Adi to confirm the strip.
+- Companies banner: 11 real logos, the nine companies already published with our testimonials plus Growth Idea and FintechCircle (rule 9 exception). Adi to confirm the 11-logo strip.
 - Hosted by: Adi alone, one card centred (the reference's single-card variant). Adi, 2026-11-05: no co-host. The claim line under it reads "My team and I have built revenue engines for...".
 - Bonus block: the 3 cards are real assets we already built (item 16 run sheet, item 12 invite templates and A/B plan, item 23 CRM sheet). <strong>Proposed bonus stack, Adi to approve (the task board).</strong> The product photo is an HTML stack of three Tantra covers.
 - Timers under CTAs: the real countdown, never the reference's evergreen "15 minutes".
@@ -784,16 +784,140 @@
 - The Step 3 button goes to an on-page "Client Recommendations" section (all 9 quotes), added after Recent Wins, because we have no third-party review site to link to.
 - Phones: the nav collapses to a Menu button with a full-width panel (sub-pages listed inline); the matrix stacks; the wins slider is a snap swipe showing the next phone's edge, with a "Swipe to see more" cue and dots that follow the phone in view.
 - Recent Wins: 3 phone frames marked <code>FILL_CLIENT_MESSAGE</code>; item 28 fills them with real messages and written permission.
-- Team: 3 groups from our roster (no research group). Monograms until photos arrive; Adi's Kie.ai avatar. A LinkedIn button only for Adi (the one confirmed URL).
+- Team: 3 groups from our roster (no research group). Monograms until photos arrive; Adi's Kie.ai avatar. LinkedIn buttons for Adi, Bhaskar, Bharath, Nelbin, Aquila and Ben (URLs read from <code>04-linkedin-templates/profiles.json</code>, Adi 2026-11-05); Amal, Conor and Scott get one once their URLs arrive.
 - Bios: Adi's from approved lines; Bhaskar and Bharath <code>FILL_BIO</code>.
 - Black band: "What You Get" holds the 6 build stages and the 4 includes (the reference band is empty in the capture); "Our Clients" is the logo strip.
 - Industry pages: hero, the one-row matrix, the case cards that fit (Coaching and Training: both) or a "Your Case Study Could Be Here" card, the quotes from that industry, other industries.</p>
 <h2>What Adi must fill</h2>
-<p>In funnel-config.json: webinar.title, webinar.subtitle, webinar.first_date, webinar.start_time_local, webinar.timezone, media.vsl_video_url, media.indoctrination_videos (4), webinar.replay_url (from the WebinarJam API), community.whatsapp_community_url, booking.round_robin_url, brand.support_email, brand.legal_footer_address, integrations.webinarjam_sender_email, integrations.register_worker_url and integrations.turnstile_site_key (live form). Decisions: the bonus stack, the company name strip, team photos, bios and LinkedIn links, the replay window, policy links. Record: the VSL, the four videos, the 10-minute Program Deep-Dive (DEEP_DIVE_SCRIPT.md).</p>
+<p>In funnel-config.json (title, subtitle, date, time and time zone are set): media.vsl_video_url, media.indoctrination_videos (4), webinar.replay_url (later, from the WebinarJam API; not built yet), community.whatsapp_community_url, booking.round_robin_url, brand.support_email, brand.legal_footer_address, integrations.webinarjam_sender_email, integrations.register_worker_url and integrations.turnstile_site_key (live form). Decisions: the bonus stack, the 11-logo company strip, team photos, bios, LinkedIn links for Amal, Conor and Scott, the replay window, policy links. Record: the VSL, the four videos, the 10-minute Program Deep-Dive (DEEP_DIVE_SCRIPT.md).</p>
 <h2>Claim to verify</h2>
 <ul>
-<li>Claim to verify: the $100K to $300K range in the title has no source yet (see the task board). 400+ brands is approved (Adi 2026-11-05).</li>
+<li>Claims: 400+ brands and the $100K to $300K range are from Adi's brief and his picked title (2026-11-05), approved.</li>
 <li>Testimonial clearance: the nine quotes are published on our own /masterclass page, but no written clearance exists (PROOF_PACK section 4).</li>
 <li>Industry grouping of the quotes on the industry pages is my reading of each company's public category. Adi to confirm.</li>
 <li>Proposed bonus stack, Adi to approve (the task board).</li>
-</ul></div></details><details class="doc"><summary>Files for import or upload (3)</summary><ul class="files"><li><a href="cards/files/13-15a-26-20-pages/build.mjs" target="_blank" rel="noopener">build.mjs</a></li><li><a href="cards/files/13-15a-26-20-pages/h1-1440.png" target="_blank" rel="noopener">h1-1440.png</a></li><li><a href="cards/files/13-15a-26-20-pages/h1-390.png" target="_blank" rel="noopener">h1-390.png</a></li></ul></details>
+</ul></div></details><details class="doc"><summary>SOURCES.md</summary><div class="md"><h1>Sources: testimonial and case-study photos, designations and logos</h1>
+<p>Researched 2026-11-05 for items 13, 14 and 20 (Adi: correct designations, real photos and company logos). Rule 9 exception: people who gave a testimonial or appear in a case study are shown with their own real, already published photo. No face is generated or upscaled with AI; small sources are plain LANCZOS resamples. Files live in <code>src/assets/img/people/</code> (360 x 450 JPEG, 4:5, 12 to 22 KB) and <code>src/assets/img/logos/</code> (trimmed transparent PNG, 12 to 33 KB). Processing: crop to 4:5 head and shoulders; logos rasterised from the source SVG or PNG, trimmed, and where a logo is white for dark grounds its white parts are set to ink #0b0d12 (wxrks, the "idea" in Growth Idea).</p>
+<p>Designations: the nine titles are the ones published on our own /masterclass page (<code>context/from-tantra-content/11-testimonials-and-proof.md</code> section A), checked against each company's own site where the site names the person. None was changed: where a site disagrees, the published title stays and the point is listed for Adi below. Names: testimonial givers in full (as published); case-study contacts by first name only (PROOF_PACK section 3).</p>
+<p>Masterclass page used below: https://adisuja.github.io/tantra-workshop-live/site/masterclass/ (our own published page; its image files are the same files as <code>~/tantra-redesign/cloud/public/brand/people/</code> and <code>.../logos/clients/</code>).</p>
+<h2>Testimonials (9)</h2>
+<table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Designation shown</th>
+<th>Designation check</th>
+<th>Photo source</th>
+<th>Logo source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ajit Thomas</td>
+<td>Co-Founder &amp; CMO, Cavli Wireless</td>
+<td>Matches cavliwireless.com/about (structured data: "Co-founder, Chief Marketing Officer")</td>
+<td>/masterclass <code>brand/people/ajit-thomas.jpg</code> (local: ~/tantra-redesign/cloud/public/brand/people/ajit-thomas.jpg)</td>
+<td>/masterclass <code>brand/logos/clients/cavli.svg</code> (Cavli Wireless wordmark)</td>
+</tr>
+<tr>
+<td>Sachin Dutta</td>
+<td>Chief Growth Officer, Merkle Science · ex-CMO, Coinfirm</td>
+<td>As published on /masterclass. merklescience.com does not list him; not independently verified</td>
+<td>/masterclass <code>brand/people/sachin-dutta.jpg</code></td>
+<td>merklescience.com header logo (cdn.prod.website-files.com/6058883b1b6e85eceae76f61/6097cd679a058883a86f6d41_logo.svg). /masterclass shows the Coinfirm logo beside him instead</td>
+</tr>
+<tr>
+<td>Tom Alfoldi</td>
+<td>Founder &amp; CEO, Growth Factors by Appster</td>
+<td>As published on /masterclass. Growth Factors by Appster is a dead site (liquidated 2018, client roster sheet); usetantra.com/pro reads "Founder, Growth Generals · CEO, Growth Factors by Appster"</td>
+<td>/masterclass <code>brand/people/tom-alfoldi.jpg</code> (same file as ~/tantra-content/content/brand/people/clients/tom-alfoldi.jpg)</td>
+<td>/masterclass <code>brand/logos/clients/appster.svg</code> (Appster wordmark; no Growth Factors mark exists)</td>
+</tr>
+<tr>
+<td>Anand Kadakol</td>
+<td>Co-Founder, Netwrk.ai · Partner, SpringUp Capital</td>
+<td>As published on /masterclass and /pro. netwrk.ai and SpringUp sites did not resolve on 2026-11-05</td>
+<td>/masterclass <code>brand/people/anand-kadakol.jpg</code></td>
+<td>~/tantra-redesign/cloud/public/brand/logos/clients/netwrk.png (from our own /pro logo set). It is a mark with no wordmark, so the page sets "Netwrk.ai" beside it. /masterclass shows the iKrshna logo beside him instead</td>
+</tr>
+<tr>
+<td>Gabriel Fairman</td>
+<td>Founder &amp; CEO, wxrks (formerly Bureau Works) · Forbes Technology Council</td>
+<td>As published; wxrks.com/about shows him as CEO (image file "Gabriel-ceo-bureau-works")</td>
+<td>/masterclass <code>brand/people/gabriel-fairman.jpg</code></td>
+<td>wxrks.com header logo (cdn.prod.website-files.com/65a6d693980f7ac91c0d37a3/69c142001137a96582581281_logo-wxrks.svg), white set to ink</td>
+</tr>
+<tr>
+<td>Werner Decker</td>
+<td>Head of Growth, DataGuard · ex-Optimizely</td>
+<td>As published on /masterclass. dataguard.com does not list him; not independently verified</td>
+<td>/masterclass <code>brand/people/werner-decker.jpg</code> (original 200 px, resampled)</td>
+<td>/masterclass <code>brand/logos/clients/dataguard.svg</code></td>
+</tr>
+<tr>
+<td>Marc Eichner</td>
+<td>Co-founder &amp; CEO, Omniance (formerly cyne.one)</td>
+<td>As published. omniance.io is inconsistent (2026-11-05): /en says "Founder &amp; AI Strategist" and "Founder, Omniance"; /en/about says "AI Solution Designer &amp; AI Strategist" and "Two founders" (Marc and Artur), which supports Co-founder; "CEO" appears on no page. "(formerly cyne.one)": client roster sheet, rebrand</td>
+<td>/masterclass <code>brand/people/marc-imaginegrowth.jpg</code> (original 200 px). Same person as omniance.io/marc-eichner.webp (checked side by side); the colour file is used to match the other portraits</td>
+<td>omniance.io/Omniance-gold-transparent.png</td>
+</tr>
+<tr>
+<td>Vishnu J P</td>
+<td>Founder &amp; CEO, iBoson Innovations</td>
+<td>Matches iboson.io/about-us ("Vishnu J P, Founder &amp; CEO")</td>
+<td>iboson.io/Assests/Vishnu.jpg (170 x 214, cleaner than the 141 px /masterclass file, which has black corners)</td>
+<td>iboson.io/Assests/logo.svg</td>
+</tr>
+<tr>
+<td>Aiman Kabli</td>
+<td>Founder &amp; Community Leader, MyFELS</td>
+<td>As published; myfels.com/fels-founder-spotlight confirms he is the FELS founder</td>
+<td>/masterclass <code>brand/people/aiman-kabli.jpg</code></td>
+<td>myfels.com header logo (wp-content/uploads/2023/09/FELS-Logo.png), the current FELS mark, with its tagline line trimmed so it reads at small size. /masterclass uses an older "FELS Home" mark</td>
+</tr>
+</tbody>
+</table>
+<h2>Case studies (2)</h2>
+<table>
+<thead>
+<tr>
+<th>Client and contact</th>
+<th>Designation shown</th>
+<th>Designation source</th>
+<th>Photo source</th>
+<th>Logo source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Growth Idea, Shweta (Shweta Jhajharia)</td>
+<td>Founder &amp; CEO, Growth Idea</td>
+<td>Her signature on Growth Idea's own campaign emails in the client library (~/tantra-redesign/workshop-plan/library/clients/_raw_v2/growth-idea_doc.md, "Founder &amp; CEO, Growth Idea"); growthidea.co.uk calls her "Our Founder". The same library also uses "Founder and Principal Coach"</td>
+<td>growthidea.co.uk/media/2ce7e69cfbc40ecad66b6c843308e05c.jpg (studio portrait on her company site), cropped to head and shoulders</td>
+<td>growthidea.co.uk/images/logo.svg, the white "idea" set to ink</td>
+</tr>
+<tr>
+<td>FintechCircle, Susanne (Susanne Chishti)</td>
+<td>Founder &amp; Chair, FintechCircle</td>
+<td>fintechcircle.com (2026-11-05): "Susanne Chishti, Founder &amp; Chair of FINTECH Circle". Older client docs say "Founder &amp; CEO"</td>
+<td>fintechcircle.com/__l5e/assets-v1/e1804961-cb2e-4743-9309-c493c23c357b/susanne-chishti.jpg</td>
+<td>fintechcircle.com/__l5e/assets-v1/396a2706-60be-4945-b686-7efe8f588097/fintech-circle-logo.png</td>
+</tr>
+</tbody>
+</table>
+<h2>Company logo strip ("Companies We've Worked With", "Our Clients")</h2>
+<p>The strip names companies we worked with, so it follows the pairing /masterclass publishes (owner-corrected): Coinfirm for Sachin Dutta's work and iKrshna for Anand Kadakol's, not Merkle Science or Netwrk.ai. Strip: Cavli Wireless, Coinfirm, Appster, iKrshna, wxrks, DataGuard, Omniance, iBoson Innovations, MyFELS, Growth Idea, FintechCircle. Coinfirm: /masterclass <code>brand/logos/clients/coinfirm.svg</code> (Coinfirm was acquired by Lukka in 2024). iKrshna: /masterclass <code>brand/logos/clients/ikrshna.png</code>, white set to ink. The strip shows every logo in one mono tone (dark grey on light grounds, white on dark).</p>
+<h2>Where each asset appears</h2>
+<ul>
+<li>Registration (/ and /palette-b/): six testimonial cards (Werner, Ajit, Tom, Marc, Sachin, Vishnu) and the eleven logos in "Companies We've Worked With".</li>
+<li>Thank-you: both case cards (logo, contact photo, designation), the matrix (contact photos), and three testimonial cards (Gabriel, Anand, Aiman).</li>
+<li>Due diligence home: matrix, featured Growth Idea case, all nine testimonial cards, the logo strip in "Our Clients". Industry pages: the matching case cards and quotes. Recording (item 26) shares the case card and matrix, so it shows the same logos and photos.</li>
+</ul>
+<h2>For Adi to confirm</h2>
+<ol>
+<li>Marc Eichner's designation: keep the published "Co-founder &amp; CEO" or change it to an omniance.io wording. PROOF_PACK section 4 records the check.</li>
+<li>Logo on Sachin Dutta's and Anand Kadakol's cards: we show the company in their designation (Merkle Science; the Netwrk.ai mark with its name set beside it, since no Netwrk wordmark is published). /masterclass shows Coinfirm and iKrshna there, and the logo strip uses those two.</li>
+<li>Tom Alfoldi: Growth Factors by Appster no longer exists; keep the published title and the Appster logo, or use "Founder, Growth Generals" (as on /pro).</li>
+<li>Susanne's company styled "FintechCircle" (as in every deliverable) although her site writes "FINTECH Circle".</li>
+<li>Testimonial clearance and photo use: the nine photos are already published on our own /masterclass page; Shweta's and Susanne's come from their own company sites, with no written clearance on file for use on our pages.</li>
+</ol></div></details><details class="doc"><summary>Files for import or upload (3)</summary><ul class="files"><li><a href="cards/files/13-15a-26-20-pages/build.mjs" target="_blank" rel="noopener">build.mjs</a></li><li><a href="cards/files/13-15a-26-20-pages/h1-1440.png" target="_blank" rel="noopener">h1-1440.png</a></li><li><a href="cards/files/13-15a-26-20-pages/h1-390.png" target="_blank" rel="noopener">h1-390.png</a></li></ul></details>

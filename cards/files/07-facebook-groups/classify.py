@@ -1,7 +1,7 @@
 # slug: (category, priority, permission_code, about, audience, topics, idea)
 # permission codes: OWN, YES, YES_EU, COMMENTS, VALUE, ADMIN, NORULES, NO
 C = {
-'631154788582473': ("Own communities","A","OWN","Adi's own community for founders, marketing and sales leaders building growth systems.","Global (no location set)","Growth, founders, marketing, sales",
+'631154788582473': ("Own communities","A","OWN","Adi's own community for founders, marketing and sales leaders building growth systems; being renamed for Tantra (card 32).","Global (no location set)","Growth, founders, marketing, sales",
  "Announcement plus a pinned event: \"Thursday 12 November, 10:00 UK: I'm taking the whole funnel apart live.\" Lead with the Growth Idea jump from 30 to 1,990 registrations; registration link in the post; repost the replay after."),
 'thegrowthclub.org': ("Own communities","C","OWN","GrowthClub's original group (4 members).","Lewes, Delaware (group setting)","Growth",
  "Skip: 4 members. Point them to GrowthClub Pro instead with one line."),

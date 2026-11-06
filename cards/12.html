@@ -88,7 +88,7 @@
 <p>The winner becomes the control. Each new challenger changes one thing (the title, or the opening line), never both, so the next result names its cause.</p></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 12: Cold Calendar Invite Templates</h1>
 <p>Two cold calendar invite variants for the weekly webinar, sent as Tantra Smart Google Calendar campaigns, with an A/B plan and an import CSV. Session: <strong>Thursday 12 November 2026, 10:00 to 11:00 UK time (11:00 to 12:00 CET)</strong>, then every Thursday at the same time (<code>funnel-config.json</code>, Adi 2026-11-05).</p>
 <p><strong>Personalisation (Adi 2026-11-05):</strong> merge tags only. No AI personalisation field and no AI rewrite: the old <code>{{ai_first_line}}</code> style is gone from every Tantra template, and the Tantra switch <strong>Use AI personalization</strong> stays off.</p>
-<p><strong>Claim to verify:</strong> both descriptions print <code>{{webinar.title}}</code>, and the title carries "$100K to $300K" (no source yet; 400+ brands is approved) (PROOF_PACK.md section 2, the task board). Host lines use approved proof only: 400+ brands, 21+ countries, 10+ years.</p>
+<p><strong>Title:</strong> both descriptions print the title Adi picked on 2026-11-05, "How 400+ Brands Use AI Funnels to Generate $100K to $300K Monthly" (400+ brands and the range are from his brief, approved). Host lines use approved proof only: 400+ brands, 21+ countries, 10+ years. The only value still pending is the funnel domain.</p>
 <h2>What Is Here</h2>
 <table>
 <thead>
@@ -159,9 +159,9 @@
 <td>pending until the pages deploy</td>
 </tr>
 <tr>
-<td><code>{{webinar.title}}</code></td>
-<td><code>build.py</code>, once Adi picks the title (item 1)</td>
-<td>pending</td>
+<td>Webinar title</td>
+<td><code>build.py</code> from <code>funnel-config.json</code></td>
+<td>set: How 400+ Brands Use AI Funnels to Generate $100K to $300K Monthly (Adi 2026-11-05)</td>
 </tr>
 </tbody>
 </table>
@@ -175,7 +175,7 @@
 </ul>
 <h2>Next Weeks</h2>
 <p>Each Thursday is its own campaign pair: <code>python3 build.py --date 2026-11-19</code> (the script refuses a date that is not a Thursday). <code>schedule.py</code> switches CET to CEST after the clocks change, so the summer line reads "10:00 UK time (11:00 CEST)".</p>
-<h2>Loading and Testing (manual, by the team, once the funnel domain and title are set)</h2>
+<h2>Loading and Testing (manual, by the team, once the funnel domain is set)</h2>
 <ol>
 <li><code>python3 deliverables/12-calendar-invites/build.py --tantra --date 2026-11-12</code> writes <code>calendar-tantra.csv</code>.</li>
 <li>Open https://usetantra.com/campaigns, <strong>Create Campaign</strong>, <strong>Smart Google Calendar</strong>. One campaign per CSV row.
@@ -184,11 +184,11 @@
    - Step 3 <strong>Senders</strong>: every calendar sender, in both campaigns.
    - Step 4 <strong>Event Details</strong>: <strong>Event Title</strong> = <code>event_title</code>; <strong>Time Zone</strong> = Europe/London; <strong>Event Start Time</strong> 12 Nov 2026 10:00, <strong>Event End Time</strong> 11:00; <strong>Location / Link</strong> = <code>location</code>; description = <code>description</code>. Switches, the same in both campaigns: <strong>Use Personalized Template</strong> on (it opens the description editor and builds one event per guest, so A and B go out the same way; A simply has no tags), <strong>Use AI personalization</strong> switched OFF (it turns on by default), <strong>Enable UTM Parameters</strong> off, <strong>Schedule for later</strong> on, 8 to 12 days before the session.</li>
 <li>Test before the real list: a list of two internal addresses (one with first name and company filled, one with <code>there</code> and <code>your company</code>). Pass when B shows "Hi <name>," and the company, the fallback reads "Hi there," and "the pipeline at your company", no raw braces and no literal <code>&lt;br&gt;</code> (if the editor is plain text, paste the description from <code>calendar-import.csv</code> instead), the time shows 10:00 UK and 11:00 CET, and the link opens the registration page with <code>utm_content</code>.</li>
-<li>Only then <strong>Launch Campaign</strong>, <strong>Yes, Launch Campaign</strong>, on the real lists. Sender limits: 20 a day while a Workspace is under 60 days old, 50 after, never above 200.</li>
+<li>Only then <strong>Launch Campaign</strong>, <strong>Yes, Launch Campaign</strong>, on the real lists. Sender limits: 200 invites per sender a day (Adi 2026-11-05: 72 senders, about 100,000 invites a week). Warm-up is the ramp to get there: 20 a day while a Workspace is under 60 days old, 50 after, then up to 200, never above.</li>
 <li>48 hours after the session: <code>python3 deliverables/12-calendar-invites/ab_decide.py ...</code> with the counts from each campaign's detail page.</li>
 </ol></div></details><details class="doc"><summary>invites.md</summary><div class="md"><h1>Cold Calendar Invites (generated by build.py: edit the copy there, then rerun)</h1>
 <p>Session: Thursday 12 November 2026, 10:00 UK time (11:00 CET), 60 minutes. Weekly, every Thursday at 10:00 UK time (11:00 CET).</p>
-<p><code>{{firstName}}</code> and <code>{{company}}</code> are Tantra merge tags, filled per guest at send. Any other <code>{{...}}</code> is a funnel-config value not set yet (<code>{{webinar.title}}</code>, <code>{{domains.funnel_domain}}</code>).</p>
+<p><code>{{firstName}}</code> and <code>{{company}}</code> are Tantra merge tags, filled per guest at send. Any other <code>{{...}}</code> is a funnel-config value not set yet (only <code>{{domains.funnel_domain}}</code> is pending; the title is set).</p>
 <h2>Variant A: Meeting-style topic title, no merge fields</h2>
 <p><strong>Event title (as it shows in Google Calendar):</strong></p>
 <pre><code class="language-text">AI revenue generation teardown (60 min)
@@ -238,11 +238,11 @@ Yes or Maybe keeps the time on your calendar. Your personal join link arrives wh
 <li>[x] 2. Titles follow the calendar rules: named like a meeting, no "$", no "%", no "free", readable in the first 24 characters of a calendar grid.</li>
 <li>[x] 3. Descriptions: first line (after variant B's greeting) is the real date and time with both zones: "Thursday 12 November 2026, 10:00 to 11:00 UK time (11:00 to 12:00 CET)"; then who it is for and what they leave with; an easy decline line; the registration link tagged per variant.</li>
 <li>[x] 4. Merge tags only, in Tantra's own form (<code>{{firstName}}</code>, <code>{{company}}</code>, from https://usetantra.com/help/templates-and-ai/merge-tags-and-spintax); no AI personalisation field anywhere; the import fallbacks (<code>there</code>, <code>your company</code>) are stated because Tantra renders a missing value blank.</li>
-<li>[x] 5. Date, time, CET equivalent and minutes come from <code>funnel-config.json</code> through <code>schedule.py</code> (CEST in summer, a non-Thursday date refused); nothing hardcoded. Unset values (<code>webinar.title</code>, <code>domains.funnel_domain</code>) show as visible merge fields and block <code>--tantra</code>.</li>
+<li>[x] 5. Date, time, CET equivalent and minutes come from <code>funnel-config.json</code> through <code>schedule.py</code> (CEST in summer, a non-Thursday date refused); nothing hardcoded. The title is set (Adi 2026-11-05); the one unset value, <code>domains.funnel_domain</code>, shows as a visible merge field and blocks <code>--tantra</code>.</li>
 <li>[x] 6. A/B plan with split, sample size, metrics and a decision rule a person can apply without judgement.</li>
 <li>[x] 7. <code>calendar-import.csv</code> holds both variants in the Tantra calendar shape (title, description, date, time, end time, minutes, time zone, location) plus the step 4 switches; <code>calendar-series-example.ics</code> is a valid weekly series (RRULE weekly on Thursday, Europe/London VTIMEZONE, CRLF, lines folded at 75 octets).</li>
 <li>[x] 8. No invented proof; host lines only from PROOF_PACK.md section 1.</li>
 <li>[x] 9. README with the loading and test steps (manual, by the team), the field map and "Claim to verify".</li>
 <li>[x] 10. Scan prints 0 failures.</li>
 </ul>
-<p>Result 2026-11-05: all points pass. Rebuilt for the decided schedule and the merge-tags-only rule (Adi 2026-11-05). <code>build.py --tantra</code> refuses with "fill these in funnel-config.json first: domains.funnel_domain, webinar.title", as it should. <code>--date 2026-11-13</code> is refused (a Friday). Loading and the internal test send are manual team steps (README).</p></div></details><details class="doc"><summary>Files for import or upload (4)</summary><ul class="files"><li><a href="cards/files/12-calendar-invites/ab_decide.py" target="_blank" rel="noopener">ab_decide.py</a></li><li><a href="cards/files/12-calendar-invites/build.py" target="_blank" rel="noopener">build.py</a></li><li><a href="cards/files/12-calendar-invites/calendar-import.csv" target="_blank" rel="noopener">calendar-import.csv</a></li><li><a href="cards/files/12-calendar-invites/schedule.py" target="_blank" rel="noopener">schedule.py</a></li></ul></details>
+<p>Result 2026-11-05: all points pass. Rebuilt for the decided schedule and the merge-tags-only rule (Adi 2026-11-05). Rerun 2026-11-06 with the title set: <code>build.py --tantra</code> refuses with "fill these in funnel-config.json first: domains.funnel_domain", as it should (only the funnel domain is pending). <code>--date 2026-11-13</code> is refused (a Friday). Loading and the internal test send are manual team steps (README).</p></div></details><details class="doc"><summary>Files for import or upload (4)</summary><ul class="files"><li><a href="cards/files/12-calendar-invites/ab_decide.py" target="_blank" rel="noopener">ab_decide.py</a></li><li><a href="cards/files/12-calendar-invites/build.py" target="_blank" rel="noopener">build.py</a></li><li><a href="cards/files/12-calendar-invites/calendar-import.csv" target="_blank" rel="noopener">calendar-import.csv</a></li><li><a href="cards/files/12-calendar-invites/schedule.py" target="_blank" rel="noopener">schedule.py</a></li></ul></details>

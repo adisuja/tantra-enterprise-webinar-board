@@ -293,7 +293,8 @@ If it's worth a conversation, here's my team's calendar: {{booking_url}}
 <li>Early leaver is measured by minutes in the room (contract), not the minute someone left; a late joiner who stayed 10 minutes counts as an early leaver.</li>
 <li><strong>LinkedIn upload format:</strong> the LinkedIn files carry one column, <code>email</code>, SHA-256 of the lowercase address. That is our reading of LinkedIn's contact-list spec, not yet tested: on the first upload, check Campaign Manager accepts it and reports a match rate; if not, switch to its current template.</li>
 <li><strong>Exclusions file:</strong> must include booked, replied, opted out, re-registered, won and lost; the script stops if it has no email column or no rows.</li>
-<li>Ads use "one client" with no name; ad creatives need Adi's Kie.ai avatar (item 5 to 10 design or a new render).</li>
+<li>Ads use "one client" with no name. The ad creatives (with Adi's Kie.ai avatar) are made later in the separate content studio project; ads.csv holds the copy and audiences only.</li>
+<li>LinkedIn steps 27-L1 to 27-L3 run from Adi's account and share its free-plan limits with every other campaign on it: 15 connection requests and 20 messages a day per account. Retargeting does not get its own quota, so cap these steps inside that total.</li>
 </ul>
 <p>No "Claim to verify" in this folder. Proof used: Growth Idea rows from PROOF_PACK section 3.</p></div></details><details class="doc"><summary>RETARGETING_PLAN.md</summary><div class="md"><h1>27 Retargeting Plan: Six Weeks, Then Dropped</h1>
 <p>Who: registrants who left before minute 25 or never showed. What: six weeks of email, WhatsApp, LinkedIn via Tantra, and Meta and LinkedIn ad audiences. Then they drop out, unless they book, reply or opt out first. Copy: COPY.md. Imports: email.csv, whatsapp.csv, linkedin.csv, ads.csv. Code: retarget_segments.py.</p>

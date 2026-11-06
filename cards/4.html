@@ -424,7 +424,7 @@
 </tr>
 </tbody>
 </table>
-<p>Each message names a client at most once, never a contact. No 400+, no revenue range, no bonus, no deadline, no replay promise, no webinar title (so the copy is ready before the title is picked).</p>
+<p>Each message names a client at most once, never a contact. No 400+, no revenue range, no bonus, no deadline, no replay promise, no webinar title (keeps notes short).</p>
 <h2>Tantra Fit</h2>
 <ul>
 <li><strong>Step actions.</strong> LinkedIn steps are <code>visit_profile</code>, <code>connection_request</code> and <code>send_message</code> (Tantra source, <code>src/lib/channels/types.ts</code>, clone of 2026-10-11). The Tantra CSVs hold only these; build.py fails on anything else. CSV columns map to the step fields: <code>delay_days</code> to the wait, <code>action</code> to the step action, <code>message</code> to the template. <code>plan_rule</code> says whether a row runs on free, on Sales Navigator only, or (for notes) goes without a note on free.</li>
@@ -3024,7 +3024,7 @@ And if a quick chat about {{company}} would help more than a session, just reply
 <td>5</td>
 <td>LinkedIn URLs from Adi in <code>profiles.json</code>; titles role based where headlines are login walled</td>
 <td>profiles.json; Agent Reach (<code>curl https://r.jina.ai/...</code>) tried on all six</td>
-<td>Pass: 6 URLs filled; only Adi's page answered ("Adithya Murali - GrowthClub.org"); Bhaskar URL flagged in README</td>
+<td>Pass: 6 URLs filled; only Adi's page answered ("Adithya Murali - GrowthClub.org"); Bhaskar URL confirmed by Adi 2026-11-05</td>
 </tr>
 <tr>
 <td>6</td>

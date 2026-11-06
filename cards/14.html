@@ -1,4 +1,70 @@
-<details class="doc" open><summary>VSL_SCRIPT.md</summary><div class="md"><h1>VSL Script: Thank-You Page (item 14)</h1>
+<details class="doc" open><summary>REFERENCE_MAP.md (section 14)</summary><div class="md"><h2>14 Thank-you (qs-thank-you), in this exact order</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>QS block</th>
+<th>Our block</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Black band. "Thanks for signing up for:" then the webinar title large in gold Montserrat, subline</td>
+<td>Black band, same shape, title in iris (#a78bfa) Inter 800, subline "A live session hosted by Adi, founder of Tantra"</td>
+</tr>
+<tr>
+<td>2</td>
+<td>"WEBINAR STARTS IN" countdown in dark boxes</td>
+<td>Same, real date</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Personal join button (green, "Enter Live Masterclass"; states "Preparing your link...", "Link unavailable")</td>
+<td>Same button and states, resolved server-side through the register Worker (never a token in the page). Review mode shows the "Your personal link is in your email" state</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Two columns: left a white rounded card "GO TO YOUR EMAIL (AND SPAM FOLDER), THE LINK IS THERE TO JOIN" over a Gmail-search illustration; right the VSL with "Click to Unmute"</td>
+<td>Same two columns. Left: same card and an HTML illustration of an inbox search for the sender name. Right: the VSL slot (config URL, FILL frame until recorded) with a "Click to unmute" overlay style</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Three buttons: Open Gmail (red), Open Outlook (blue), Open Yahoo (purple), deep links searching the sender name</td>
+<td>Same three buttons, same colours, deep links built from <code>integrations.webinarjam_sender_email</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>(not in QS; required by Adi's brief)</td>
+<td>A row right under the buttons: "Join the WhatsApp community" (green WhatsApp button, config link) and "Watch the 4 videos before the session" (link to /watch/), plus Add to Google Calendar and .ics</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Cream band: "YOUR INDUSTRY COULD BE THE NEXT BIG SUCCESS STORY", green subline, arrow</td>
+<td>Paper band, same heading and subline in our words, arrow</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Matrix: industry rows (Consulting and Professional Services, Software, Coaching and Training, Agencies) by stage columns (EARLY, GROWTH, SCALE, LARGE with current and goal ranges), round headshots with names linking to case studies</td>
+<td>Same matrix and column heads. Filled cells: Growth Idea (Coaching and Training) and FintechCircle (Coaching and Training, education) as round badges with the client contact's published photo (Adi 2026-11-05) and the company name. Empty cells show a soft "Next case study" ghost circle. Data-driven from one JSON so item 28 fills it later. Stage ranges in our words only if they are generic bands; never QS's numbers</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Case study cards (one per client): gold header bar with name, two columns (Company Profile, Company Size, Challenge / Results with 3 pills), grey KPI strip (3 KPIs with from and to), "Case Study" video, quote, LinkedIn button</td>
+<td>Two cards in the same template: Growth Idea and FintechCircle. Profile and challenge from PROOF_PACK descriptors only; Company Size: omit the block if unknown (do not invent). Results pills: 3 measured facts each. KPI strip: 3 measured KPIs (for example Reached 12,898 to 99,859; Registered 30 to 1,990; Live 7 to 321 for Growth Idea, first vs best webinar). Video: FILL slot "Case study video (item 28)". Quote: none exists, omit. LinkedIn button: omit until item 28</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Black band "CLIENT RATINGS" with gold rating badges and a review widget</td>
+<td>Black band, heading "WHAT CLIENTS SAY" in the same style, and the remaining verbatim testimonials as gold-on-black style cards (iris on black for us). No fake rating badges</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Footer</td>
+<td>Same</td>
+</tr>
+</tbody>
+</table></div></details><details class="doc"><summary>VSL_SCRIPT.md</summary><div class="md"><h1>VSL Script: Thank-You Page (item 14)</h1>
 <p><strong>Speaker:</strong> Adi. <strong>Runtime:</strong> about 2 minutes 30 seconds (about 360 spoken words at 150 words a minute). <strong>Where it plays:</strong> the video slot in step 1 of /thank-you/ (<code>media.vsl_video_url</code> in funnel-config.json).
 <strong>Delivery:</strong> calm, direct, to camera. No music bed under the proof lines. Captions on (the player starts muted).
 <strong>Visual:</strong> Adi's AI avatar or Adi to camera; on-screen text only where marked.</p>
