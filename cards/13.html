@@ -332,7 +332,7 @@
 <li>No section of a reference is missing without a line in README saying why (and what honest equivalent replaced it).</li>
 <li>Everything else from AGENT_RULES still holds: approved proof only, no dashes, Brian Dean voice, form states and payload unchanged, noindex, 390 wide works.</li>
 </ul></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Items 13, 14, 15a, 26, 20: the funnel pages (rebuilt to mirror the references)</h1>
-<p>A static review site for the Tantra Enterprise webinar funnel: registration (13), thank-you with VSL (14), indoctrination (15a), recording (26) and due diligence with four industry pages (20). Rebuilt 2026-11-05 after Adi rejected the first build: every page now mirrors the reference page he gave, section for section (spec: REFERENCE_MAP.md). Only the palette and type are Tantra's (volt, ink, night, lilac, iris; Inter only, the typeface usetantra.com uses), and the copy and proof are ours. Refined 2026-11-05 after Adi's feedback on the font and finish: Inter replaces Clash Display everywhere, every section was re-set on one type scale and an 8px grid, and every page was rebuilt mobile first (design system below). Every page is <code>noindex,nofollow</code>, has no trackers, and posts nowhere in review mode.</p>
+<p>A static review site for the Tantra Enterprise webinar funnel: registration (13), the thank-you flow (14: survey page, VIP page, confirmed page and the Revenue Plan calculator; spec in ../14-thank-you-survey/), indoctrination (15a), recording (26) and due diligence with four industry pages (20). Rebuilt 2026-11-05 after Adi rejected the first build: every page now mirrors the reference page he gave, section for section (spec: REFERENCE_MAP.md). Only the palette and type are Tantra's (volt, ink, night, lilac, iris; Inter only, the typeface usetantra.com uses), and the copy and proof are ours. Refined 2026-11-05 after Adi's feedback on the font and finish: Inter replaces Clash Display everywhere, every section was re-set on one type scale and an 8px grid, and every page was rebuilt mobile first (design system below). Every page is <code>noindex,nofollow</code>, has no trackers, and posts nowhere in review mode.</p>
 <h2>Review links</h2>
 <p>Live: https://adisuja.github.io/tantra-enterprise-webinar-pages/ (public repo adisuja/tantra-enterprise-webinar-pages, GitHub Pages from main, root; robots.txt disallows everything).</p>
 <table>
@@ -345,31 +345,43 @@
 <tbody>
 <tr>
 <td>13 Registration, default</td>
-<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/?v=1793823903</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/?v=ec008d3ff0</td>
 </tr>
 <tr>
 <td>13 Registration, popup open</td>
-<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/?v=1793823903#register</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/?v=ec008d3ff0#register</td>
 </tr>
 <tr>
 <td>13 Registration, inline validation</td>
-<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/?state=invalid&amp;v=1793823903</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/?state=invalid&amp;v=ec008d3ff0</td>
 </tr>
 <tr>
 <td>13 Registration, server error</td>
-<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/?state=error&amp;v=1793823903</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/?state=error&amp;v=ec008d3ff0</td>
 </tr>
 <tr>
-<td>14 Thank-you (the form lands here)</td>
+<td>14 Thank-you page 1: video and survey (the form lands here)</td>
 <td>https://adisuja.github.io/tantra-enterprise-webinar-pages/thank-you/?v=1793823903</td>
 </tr>
 <tr>
-<td>14 Thank-you, join button "Preparing your link"</td>
-<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/thank-you/?state=preparing&amp;v=1793823903</td>
+<td>14 VIP upsell (after the survey)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/vip/?v=1793823903</td>
 </tr>
 <tr>
-<td>14 Thank-you, join button "Link unavailable"</td>
-<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/thank-you/?state=unavailable&amp;v=1793823903</td>
+<td>14 Confirmed: WhatsApp and the Revenue Plan link (the previous thank-you page)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/confirmed/?v=1793823903</td>
+</tr>
+<tr>
+<td>14 Revenue Plan (calculator)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/calculator/?v=1793823903</td>
+</tr>
+<tr>
+<td>14 Confirmed, join button "Preparing your link"</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/confirmed/?state=preparing&amp;v=1793823903</td>
+</tr>
+<tr>
+<td>14 Confirmed, join button "Link unavailable"</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/confirmed/?state=unavailable&amp;v=1793823903</td>
 </tr>
 <tr>
 <td>15a Indoctrination, 4 videos</td>
@@ -422,7 +434,19 @@
 <tbody>
 <tr>
 <td>13 Registration</td>
-<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/?review=1&amp;v=1793823903</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/?review=1&amp;v=ec008d3ff0</td>
+</tr>
+<tr>
+<td>13 Bonus book bundle (hover the books)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/?v=ec008d3ff0#bonus</td>
+</tr>
+<tr>
+<td>13 Registration, new palette</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/palette-b/?v=ec008d3ff0</td>
+</tr>
+<tr>
+<td>13 Bonus covers, full page (6)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/assets/img/bonus/full/playbook-a.webp?v=ec008d3ff0 (also prompts-a, calculator-a, and -b for the new palette)</td>
 </tr>
 <tr>
 <td>14 Thank-you</td>
