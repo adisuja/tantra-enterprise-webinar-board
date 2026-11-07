@@ -1,108 +1,2446 @@
-<details class="doc" open><summary>REFERENCE_MAP.md (section 14)</summary><div class="md"><h2>14 Thank-you (qs-thank-you), in this exact order</h2>
+<details class="doc" open><summary>1-FLOW-AND-REVIEW.md</summary><div class="md"><h1>Thank-you page 1, the survey and the Revenue Plan</h1>
+<p>Adi, 2026-11-08: the first page after registration mirrors the reference survey page, with a video and a survey below it. The survey builds a personal revenue plan on a rebranded calculator at a new link. Nobody sees their plan straight away: after the survey comes an upsell page, and only then the WhatsApp links and the plan link.</p>
+<h2>The flow</h2>
 <table>
 <thead>
 <tr>
-<th>#</th>
-<th>QS block</th>
-<th>Our block</th>
+<th>Step</th>
+<th>Page</th>
+<th>What happens</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>Black band. "Thanks for signing up for:" then the webinar title large in gold Montserrat, subline</td>
-<td>Black band, same shape, title in iris (#a78bfa) Inter 800, subline "A live session hosted by Adi, founder of Tantra"</td>
+<td>Registration (/)</td>
+<td>The form saves the seat, then sends people to the thank-you page</td>
 </tr>
 <tr>
 <td>2</td>
-<td>"WEBINAR STARTS IN" countdown in dark boxes</td>
-<td>Same, real date</td>
+<td>Thank-you page 1 (/thank-you/)</td>
+<td>Warning banner, a 62% progress bar, a 2-minute video, then 10 questions. On submit the answers are saved, the plan link is built, and the payload goes to the CRM</td>
 </tr>
 <tr>
 <td>3</td>
-<td>Personal join button (green, "Enter Live Masterclass"; states "Preparing your link...", "Link unavailable")</td>
-<td>Same button and states, resolved server-side through the register Worker (never a token in the page). Review mode shows the "Your personal link is in your email" state</td>
+<td>VIP page (/vip/)</td>
+<td>The optional paid upgrade, at 73%. Yes goes to checkout, which then returns to step 4; No goes straight to step 4</td>
 </tr>
 <tr>
 <td>4</td>
-<td>Two columns: left a white rounded card "GO TO YOUR EMAIL (AND SPAM FOLDER), THE LINK IS THERE TO JOIN" over a Gmail-search illustration; right the VSL with "Click to Unmute"</td>
-<td>Same two columns. Left: same card and an HTML illustration of an inbox search for the sender name. Right: the VSL slot (config URL, FILL frame until recorded) with a "Click to unmute" overlay style</td>
+<td>Confirmed (/confirmed/)</td>
+<td>Registration complete, at 100%. Step 1: join the WhatsApp community and the announcement group. Step 2: open your Personal Revenue Plan. Below that is the previous thank-you page content: the join link, calendar buttons, case studies and testimonials</td>
 </tr>
 <tr>
 <td>5</td>
-<td>Three buttons: Open Gmail (red), Open Outlook (blue), Open Yahoo (purple), deep links searching the sender name</td>
-<td>Same three buttons, same colours, deep links built from <code>integrations.webinarjam_sender_email</code></td>
+<td>Revenue Plan (/calculator/#p=...)</td>
+<td>The rebranded calculator, pre-filled from the answers. Ten funnels, ranked for this business, every KPI editable. The same link goes out by email</td>
+</tr>
+</tbody>
+</table>
+<h2>Review links</h2>
+<table>
+<thead>
+<tr>
+<th>Page and state</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Thank-you page 1: video and survey (public view)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/thank-you/?v=1220092129</td>
+</tr>
+<tr>
+<td>1. Thank-you page 1, review mode (video FILL and script note)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/thank-you/?review=1&amp;v=1220092129</td>
+</tr>
+<tr>
+<td>1. Survey at question 10, sample answers filled (live funnel ranking)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/thank-you/?state=q10&amp;v=1220092129</td>
+</tr>
+<tr>
+<td>2. VIP page (public view: VIP opens shortly until price and checkout are set)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/vip/?v=1220092129</td>
+</tr>
+<tr>
+<td>2. VIP page, review mode (every FILL and PROPOSED slot)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/vip/?review=1&amp;v=1220092129</td>
+</tr>
+<tr>
+<td>3. Confirmed: WhatsApp and the Revenue Plan link (open after doing the survey to see the plan button)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/confirmed/?v=1220092129</td>
+</tr>
+<tr>
+<td>3. Confirmed, review mode</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/confirmed/?review=1&amp;v=1220092129</td>
+</tr>
+<tr>
+<td>3. Confirmed, join button: preparing your link</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/confirmed/?state=preparing&amp;v=1220092129</td>
+</tr>
+<tr>
+<td>3. Confirmed, join button: link unavailable</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/confirmed/?state=unavailable&amp;v=1220092129</td>
+</tr>
+<tr>
+<td>4. Revenue Plan, worked example (no survey answers)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/calculator/?v=1220092129</td>
+</tr>
+<tr>
+<td>4. Revenue Plan built from survey answers (the link people receive)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/calculator/?v=1220092129#p=eyJvZmZlcl90eXBlIjoiY29uc3VsdGluZyIsIm1hcmtldCI6ImIyYiIsIm9mZmVyX2Rlc2MiOiIiLCJwcmljZSI6OTk5OSwicHJpY2VfbW9kZWwiOiJvbmVfdGltZSIsImVudHJ5X3ByaWNlIjowLCJtb3Rpb24iOiJjYWxsIiwiY3ljbGUiOiJ3ZWVrcyIsInJldmVudWVfbm93IjoyLCJnb2FsIjo1MDAwMDAsInJldmVudWVfYnVpbHQiOjMsInRlYW1fbGVkIjoxLCJ5ZWFycyI6MywiY2xpZW50cyI6MiwiY2FzZV9zdHVkaWVzIjoyLCJicmFuZHMiOjEsImZ1bm5lbF9leHAiOjEsImZ1bm5lbHNfYnVpbHQiOlsid2ViaW5hciJdLCJyZXZvcHMiOjEsImVtYWlsX2xpc3QiOjIwMDAsImZvbGxvd2VycyI6MzAwMCwieW91dHViZSI6MCwiY29tbXVuaXR5IjowLCJzaXRlIjowLCJjaGFubmVscyI6WyJjb2xkX2VtYWlsIiwibGlua2VkaW4iLCJhZHMiXSwiYWRfYnVkZ2V0IjoyMDAwLCJob3VycyI6MSwidGVhbV9oZWxwIjoxLCJmdW5uZWwiOiJ3ZWJpbmFyIiwiY29tcGFyZSI6bnVsbH0</td>
+</tr>
+</tbody>
+</table>
+<p>To walk the whole flow: open the registration page, press any button, fill the popup, then answer the survey. The survey takes you to the VIP page, "No" takes you to the confirmed page, and the plan button opens your plan. The How to use panel opens on a first visit; reopen it from "How to use" in the top bar.</p>
+<h2>What is built</h2>
+<ul>
+<li><strong>Thank-you page 1.</strong> Every reference block in order: banner, bar, headline, video, jump button, Step 2 pill, headline, survey card (5-REFERENCE-MAP.md). The video script is in 4-VIDEO-SCRIPTS.md.</li>
+<li><strong>The survey.</strong> Ten screens with Next and Back and inline errors. Two follow-up fields appear only when needed: which funnels, and the ad budget. Screen 10 ranks the ten funnels live, with reasons. Webinar and reverse squeeze page are boosted, and the others rise when the answers suit them (2-SURVEY.md).</li>
+<li><strong>The Revenue Plan.</strong> It covers ten funnels on the playbook's six stages: webinar, reverse squeeze page, workshop series, OOO, SLO, book a call, challenge, community, social following and product launch.</li>
+<li>Every KPI shows its low, typical and strong value with the source. The survey answers place each KPI inside that range.</li>
+<li>The right column is one consolidated plan:<ul>
+<li>the 12-month revenue</li>
+<li>the traffic needed and where it comes from (owned audience, ads, outreach volume, inboxes and LinkedIn accounts)</li>
+<li>new customers and calls a month</li>
+<li>the funnel per cycle</li>
+<li>the KPI to hit at each stage (plan and target band)</li>
+<li>the three changes that move the plan most</li>
+<li>the top funnels side by side</li>
+</ul>
+</li>
+<li>A strategy call button for Tantra Enterprise. You can also copy the link or save the plan as a PDF.</li>
+<li><strong>How to use your plan.</strong> Five short guides sit in one panel under the header: read your plan, switch funnels, change any number, set your goal, price and traffic, and save, share or reset. Each guide expands, has its numbered steps, and shows a small drawn preview of the control it explains. The panel opens on a first visit and remembers when it is closed. "How to use" in the top bar and the two inline links ("How to switch funnels", "How to change a number") open the right guide and highlight it.</li>
+<li>The model is in 3-REVENUE-PLAN-MODEL.md, generated from the code. The sources are in 6-BENCHMARKS.md.</li>
+<li><strong>VIP page.</strong> Mirrors the reference section for section. It uses our two approved case studies, with no invented member results and no giveaways.</li>
+<li><strong>Confirmed page.</strong> The previous thank-you page, with the two last steps added on top.</li>
+</ul>
+<h2>What Adi decides</h2>
+<ol>
+<li><strong>The VIP offer.</strong> It needs four things: the price and anchor price, the checkout link, the guarantee terms, and whether the five bonuses stand. Those bonuses are two private sessions, a strategist's review of the plan, the case study breakdowns, the build templates and a WhatsApp concierge. Until these are set, the public page says "VIP opens shortly" and shows no Yes button. Review mode shows every slot.</li>
+<li><strong>The two video recordings.</strong> These are the thank-you video and the VIP video. Both scripts are in 4-VIDEO-SCRIPTS.md.</li>
+</ol>
+<p>Already asked on this card, still open: the WhatsApp community and announcement links. The confirmed page shows them once set.</p>
+<h2>Before launch (team)</h2>
+<ul>
+<li>The register Worker (item 17) accepts a second event, <code>webinar.survey_completed</code>, and writes it to the CRM with <code>fit_tier</code> and <code>report_url</code>.</li>
+<li>The post-registration emails (15b) send <code>report_url</code> as "Your Revenue Plan".</li>
+<li>VIP checkout returns to /confirmed/ after payment.</li>
+</ul></div></details><details class="doc"><summary>2-SURVEY.md</summary><div class="md"><h1>The survey: ten questions that build the Revenue Plan</h1>
+<p>One question per screen with Next and Back, as the reference's survey does. Several answers per screen where they describe one thing. Every answer feeds the plan; nothing is asked for its own sake.</p>
+<h2>The questions</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Screen title</th>
+<th>Fields (all required unless marked optional)</th>
+<th>What it drives in the plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>What do you <strong>sell</strong>?</td>
+<td>Offer type (service, consulting, coaching, course, software, product); who buys (B2B, B2C, both); one-line result (optional)</td>
+<td>Funnel fit; ad cost (B2B $1.95 a click, B2C $0.75)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>What does your main offer <strong>cost</strong>?</td>
+<td>Price (USD); paid one-time, monthly or annually; low-priced entry offer price (optional)</td>
+<td>Revenue per customer in 12 months (monthly offers use churn); the entry price in the OOO and SLO funnels</td>
+</tr>
+<tr>
+<td>3</td>
+<td>How do your clients <strong>buy</strong>?</td>
+<td>After a call, online without a call, or both; time from first contact to paid deal</td>
+<td>Call path (booking, show, close) or checkout path; "both" splits at $2,000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Where is your <strong>revenue</strong> today?</td>
+<td>Monthly revenue band (7 bands); new revenue this funnel should add in 12 months (blank: double today's run rate, at least $120,000)</td>
+<td>The goal the plan back-solves from; sales score; Enterprise fit score</td>
+</tr>
+<tr>
+<td>5</td>
+<td>What have you <strong>built before</strong>?</td>
+<td>Best year of revenue in any business you ran or led (7 bands); largest team led; years in business</td>
+<td>Sales score: moves close rates inside their range</td>
 </tr>
 <tr>
 <td>6</td>
-<td>(not in QS; required by Adi's brief)</td>
-<td>A row right under the buttons: "Join the WhatsApp community" (green WhatsApp button, config link) and "Watch the 4 videos before the session" (link to /watch/), plus Add to Google Calendar and .ics</td>
+<td>What <strong>proof</strong> can you show?</td>
+<td>Clients served; case studies with real numbers; brands worked with</td>
+<td>Proof score: moves page, booking and close rates</td>
 </tr>
 <tr>
 <td>7</td>
-<td>Cream band: "YOUR INDUSTRY COULD BE THE NEXT BIG SUCCESS STORY", green subline, arrow</td>
-<td>Paper band, same heading and subline in our words, arrow</td>
+<td>Have you built <strong>funnels</strong> before?</td>
+<td>Never, tried and failed, one works, several work; which ones (shown only if any); how leads are tracked (none, spreadsheet, CRM, CRM with automation)</td>
+<td>Experience score: moves show-up and nurture rates; funnel fit bonus for types already built</td>
 </tr>
 <tr>
 <td>8</td>
-<td>Matrix: industry rows (Consulting and Professional Services, Software, Coaching and Training, Agencies) by stage columns (EARLY, GROWTH, SCALE, LARGE with current and goal ranges), round headshots with names linking to case studies</td>
-<td>Same matrix and column heads. Filled cells: Growth Idea (Coaching and Training) and FintechCircle (Coaching and Training, education) as round badges with the client contact's published photo (Adi 2026-11-05) and the company name. Empty cells show a soft "Next case study" ghost circle. Data-driven from one JSON so item 28 fills it later. Stage ranges in our words only if they are generic bands; never QS's numbers</td>
+<td>What <strong>audience</strong> do you already own?</td>
+<td>Email list, followers on the biggest platform, YouTube subscribers, community or WhatsApp members, website visitors a month</td>
+<td>Free monthly traffic before any outreach; warm-audience score; launch, social and community fit</td>
 </tr>
 <tr>
 <td>9</td>
-<td>Case study cards (one per client): gold header bar with name, two columns (Company Profile, Company Size, Challenge / Results with 3 pills), grey KPI strip (3 KPIs with from and to), "Case Study" video, quote, LinkedIn button</td>
-<td>Two cards in the same template: Growth Idea and FintechCircle. Profile and challenge from PROOF_PACK descriptors only; Company Size: omit the block if unknown (do not invent). Results pills: 3 measured facts each. KPI strip: 3 measured KPIs (for example Reached 12,898 to 99,859; Registered 30 to 1,990; Live 7 to 321 for Growth Idea, first vs best webinar). Video: FILL slot "Case study video (item 28)". Quote: none exists, omit. LinkedIn button: omit until item 28</td>
+<td>How will you <strong>drive traffic</strong>?</td>
+<td>Channels (cold email, LinkedIn, calendar invites, WhatsApp, paid ads, organic content, partners); monthly ad budget (shown only if ads); hours a week; people who can help</td>
+<td>How the remaining traffic is split; ad spend; capacity score; funnels that need time</td>
 </tr>
 <tr>
 <td>10</td>
-<td>Black band "CLIENT RATINGS" with gold rating badges and a review widget</td>
-<td>Black band, heading "WHAT CLIENTS SAY" in the same style, and the remaining verbatim testimonials as gold-on-black style cards (iris on black for us). No fake rating badges</td>
+<td>Pick the <strong>funnel</strong> for your plan</td>
+<td>Ten funnels ranked live from answers 1 to 9, with the fit score, up to three reasons and one caution each. Top three marked; webinar and reverse squeeze page get a priority boost</td>
+<td>The funnel the plan opens on (every other funnel is one click away on the plan)</td>
+</tr>
+</tbody>
+</table>
+<p>Confidentiality line under the money questions (2 and 4): "Your answers are confidential. We only use them to build your plan and to shape the session around your business."</p>
+<h2>How the answers move each KPI</h2>
+<p>Each KPI has a low, typical and strong value (see 3-REVENUE-PLAN-MODEL.md). Five scores from 0 to 1 come from the answers:</p>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Built from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Proof</td>
+<td>case studies 45%, clients served 35%, brands 20%</td>
 </tr>
 <tr>
-<td>11</td>
-<td>Footer</td>
+<td>Experience</td>
+<td>funnel experience 60%, tracking system 40%</td>
+</tr>
+<tr>
+<td>Sales</td>
+<td>best revenue year 40%, revenue now 35%, years in business 25%</td>
+</tr>
+<tr>
+<td>Warm audience</td>
+<td>the audience you own, on a log scale (about 100,000 reachable people scores 1)</td>
+</tr>
+<tr>
+<td>Capacity</td>
+<td>hours a week 60%, people who can help 40%</td>
+</tr>
+</tbody>
+</table>
+<p>Each KPI belongs to one lever, and the lever mixes the scores: page and sign-up rates (proof, warm audience, experience); show-up and nurture (experience, warm audience, capacity); booking and purchase (proof, experience, warm audience); close rates (sales, proof, experience); 52-week return (experience, proof, capacity). The mix places the KPI between 15% and 85% of the way through its range: a cold start plans near low, the strongest profile near strong, never past it. Buy-online rates also fall as the price rises above the funnel's reference price; call close rates fall 15% above $15,000 and rise 15% under $2,000.</p>
+<h2>What is sent when they submit</h2>
+<p>No network call in review mode (the payload prints in the browser console). Live, it posts to the register Worker (<code>integrations.register_worker_url</code>, item 17), which writes it to the CRM.</p>
+<pre><code class="language-json">{
+  &quot;event&quot;: &quot;webinar.survey_completed&quot;,
+  &quot;email&quot;: &quot;from the registration, this browser tab&quot;,
+  &quot;source&quot;: &quot;thank_you_survey&quot;,
+  &quot;data&quot;: {
+    &quot;first_name&quot;: &quot;from the registration&quot;,
+    &quot;answers&quot;: { &quot;offer_type&quot;: &quot;consulting&quot;, &quot;price&quot;: 9999, &quot;...&quot;: &quot;all ten screens&quot; },
+    &quot;recommended&quot;: [&quot;webinar&quot;, &quot;rsp&quot;, &quot;book&quot;],
+    &quot;chosen_funnel&quot;: &quot;webinar&quot;,
+    &quot;fit_tier&quot;: &quot;A&quot;,
+    &quot;fit_score&quot;: 9,
+    &quot;report_url&quot;: &quot;https://.../calculator/#p=...&quot;,
+    &quot;utm_source&quot;: &quot;when present&quot;
+  }
+}
+</code></pre>
+<ul>
+<li><code>report_url</code> is the person's Revenue Plan. The answers ride in the link's fragment (after #), so no server ever receives them from the link, and the link never carries a name or email. The post-registration emails (15b) send this link.</li>
+<li><code>fit_tier</code> is an Enterprise fit score for the sales team (item 18): price of $2,000 or more, revenue of $10K a month or more, a goal of $250,000 or more, B2B, case studies, budget or team, and no CRM yet each add points. A is 7 or more, B is 4 to 6, C is 3 or less.</li>
+</ul>
+<h2>After submit</h2>
+<p>The survey never shows the plan. It goes to the VIP page (/vip/), then to /confirmed/, where the WhatsApp links and the Revenue Plan link appear together (Adi 2026-11-08).</p></div></details><details class="doc"><summary>3-REVENUE-PLAN-MODEL.md</summary><div class="md"><h1>The Revenue Plan model: ten funnels, six stages, every KPI</h1>
+<p>Generated from the calculator's own code (src/assets/plan-model.js in the pages folder) by tools/model-doc.mjs. Change the code, then rerun it.</p>
+<h2>How the plan is worked out</h2>
+<ol>
+<li>
+<p><strong>Goal.</strong> The 12-month revenue goal from question 4 (blank: double today's run rate, at least $120,000), split across the funnel's cycles in a year (a webinar runs 52 times, a challenge 6, a launch 3, evergreen funnels 12 months).
+Sources marked "self-reported; treat as a planning assumption" come from operator and agency reports, not audited data (grade B in 6-BENCHMARKS.md).</p>
+</li>
+<li>
+<p><strong>Revenue per entry visit.</strong> Every funnel is a chain of stage rates from the entry page to a paying customer. One visit's expected revenue is the chain's customers times the revenue per customer in the first 12 months, plus any low-ticket sales (OOO and SLO).</p>
+</li>
+<li><strong>Traffic needed.</strong> Goal per cycle divided by revenue per visit. Plan from traffic instead: type the visits, and the revenue comes out.</li>
+<li><strong>Where the traffic comes from.</strong> The audience you own first (email list, followers, YouTube, community, site visitors, each with its own monthly rate), then the ad budget, then the outreach channels picked in question 9, split evenly. Each channel shows the outreach volume it needs (emails, connection requests, invites, ad spend) and, for cold email and LinkedIn, how many inboxes or accounts that takes.</li>
+<li><strong>Revenue per customer.</strong> One-time and annual offers: the price. Monthly offers: customers join evenly through the year and leave at the monthly churn (9% for a cold start down to 4% for the strongest profile, inside the sourced 4% to 9% range), so the average customer pays for fewer than 12 months.</li>
+<li><strong>The next 52 weeks.</strong> Everyone who joined the list and did not buy is worked for a year (weekly email, WhatsApp, check-in calls). The extra customers are tied to the funnel's own conversion (Nurture Recovery Rate, a planning figure), shown as a count only and never counted in the goal.</li>
+<li><strong>Personalisation.</strong> Each KPI sits between its low and strong value (never outside them), placed by the survey (2-SURVEY.md, "How the answers move each KPI"). Every KPI can be typed over; "Auto" puts it back.</li>
+</ol>
+<h2>Funnel fit (question 10)</h2>
+<p>Every funnel starts at 50 points; the answers add or take away points with a reason the person sees (price, sales motion, B2B or B2C, audience size, ad budget, hours, proof, funnels already built). Webinar and reverse squeeze page carry a priority boost of 12 (Adi 2026-11-08: prioritise them), workshop series 4, book a call and challenge 2. The top three are marked recommended.</p>
+<h2>The six stages and every KPI</h2>
+<p>Low, typical and strong are percentages. "call" KPIs apply only when clients buy after a call; "online" only when they buy without one. Stage numbers follow the playbook's FunnelOS canon: 1 Traffic, 2 Landing and sign-up, 3 Nurture, 4 Conversion, 5 Revenue and pipeline, 6 The next 52 weeks.</p>
+<h3>Webinar</h3>
+<p>A weekly live session that teaches, proves and makes one offer. Attendees book a call (or buy) live and from the replay. Entry: registration page visits. Cadence: 52 weeks a year.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>KPI</th>
+<th>Definition</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Applies</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Registration Rate (RR)</td>
+<td>registrants ÷ page visits</td>
+<td>12%</td>
+<td>25%</td>
+<td>40%</td>
+<td>always</td>
+<td>Webinar registration benchmarks 2025 to 2026 (AssetAcademy, BeKnownOnline) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Show-Up Rate (SUR)</td>
+<td>live attendees ÷ registrants</td>
+<td>30%</td>
+<td>45%</td>
+<td>57%</td>
+<td>always</td>
+<td>Livestorm 2026 report: 47.7% show-up across 33,786 sessions</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Replay Watch Rate (RWR)</td>
+<td>replay viewers ÷ registrants who missed it live</td>
+<td>10%</td>
+<td>20%</td>
+<td>25%</td>
+<td>always</td>
+<td>Replay watch among no-shows: practitioner estimate (Lilach Bullock) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Booking Rate (BR)</td>
+<td>calls booked ÷ live attendees</td>
+<td>3%</td>
+<td>8%</td>
+<td>15%</td>
+<td>call</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Replay Booking Rate (RBR)</td>
+<td>calls booked ÷ replay viewers</td>
+<td>1%</td>
+<td>3%</td>
+<td>5%</td>
+<td>call</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Purchase Rate (PUR)</td>
+<td>buyers ÷ live attendees</td>
+<td>0.5%</td>
+<td>2%</td>
+<td>5%</td>
+<td>online</td>
+<td>High-ticket webinar purchase rates (ClickMeeting via DollarPocket 2026) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Replay Purchase Rate (RPUR)</td>
+<td>buyers ÷ replay viewers</td>
+<td>0.5%</td>
+<td>1.5%</td>
+<td>3%</td>
+<td>online</td>
+<td>High-ticket webinar purchase rates (ClickMeeting via DollarPocket 2026) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Call Show Rate (CSR)</td>
+<td>calls held ÷ calls booked</td>
+<td>55%</td>
+<td>70%</td>
+<td>84%</td>
+<td>call</td>
+<td>Call show rates (RevenueHero 6,428 meetings; CashflowCoaches 2026)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Close Rate (CLOSE)</td>
+<td>customers ÷ calls held</td>
+<td>12%</td>
+<td>22%</td>
+<td>35%</td>
+<td>call</td>
+<td>High-ticket call close rates (LeadsNow 2026, 50,769 booked calls) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Nurture Recovery Rate (NRR)</td>
+<td>customers the 52 weeks of nurture add ÷ customers the funnel made the first time</td>
+<td>10%</td>
+<td>20%</td>
+<td>35%</td>
+<td>always</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+</tbody>
+</table>
+<h3>Reverse Squeeze Page</h3>
+<p>An evergreen video page that teaches before it asks. Viewers who watch past halfway give their email to unlock part two, reminders bring them back to watch it, and part two ends with the offer. Entry: video page visits. Cadence: 12 months a year.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>KPI</th>
+<th>Definition</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Applies</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Half-Watch Rate (HWR)</td>
+<td>people who watch past halfway on their first visit ÷ page visits</td>
+<td>15%</td>
+<td>25%</td>
+<td>40%</td>
+<td>always</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Opt-In Rate (OIR)</td>
+<td>half-watchers who give their email to unlock part two ÷ half-watchers</td>
+<td>25%</td>
+<td>40%</td>
+<td>55%</td>
+<td>always</td>
+<td>Opt-in benchmarks (Unbounce 2024; lead magnet funnels); for half-watchers this is a planning figure</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Part Two Watch Rate (P2R)</td>
+<td>opt-ins who watch part two, with reminders ÷ opt-ins</td>
+<td>30%</td>
+<td>45%</td>
+<td>60%</td>
+<td>always</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Booking Rate (BR)</td>
+<td>calls booked ÷ part two viewers</td>
+<td>8%</td>
+<td>15%</td>
+<td>30%</td>
+<td>call</td>
+<td>VSL application rates (Inflo Partners) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Purchase Rate (PUR)</td>
+<td>buyers ÷ part two viewers</td>
+<td>2%</td>
+<td>5%</td>
+<td>10%</td>
+<td>online</td>
+<td>VSL benchmarks (Focus Digital 2026: 44% average watched; VSLStats) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Call Show Rate (CSR)</td>
+<td>calls held ÷ calls booked</td>
+<td>55%</td>
+<td>70%</td>
+<td>84%</td>
+<td>call</td>
+<td>Call show rates (RevenueHero 6,428 meetings; CashflowCoaches 2026)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Close Rate (CLOSE)</td>
+<td>customers ÷ calls held</td>
+<td>12%</td>
+<td>22%</td>
+<td>35%</td>
+<td>call</td>
+<td>High-ticket call close rates (LeadsNow 2026, 50,769 booked calls) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Nurture Recovery Rate (NRR)</td>
+<td>customers the 52 weeks of nurture add ÷ customers the funnel made the first time</td>
+<td>10%</td>
+<td>20%</td>
+<td>35%</td>
+<td>always</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+</tbody>
+</table>
+<h3>Workshop Series</h3>
+<p>A live workshop over two or three days. The people who stay for a day and a half are the ones who book. Entry: registration page visits. Cadence: 12 months a year.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>KPI</th>
+<th>Definition</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Applies</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Registration Rate (RR)</td>
+<td>registrants ÷ page visits</td>
+<td>20%</td>
+<td>32%</td>
+<td>45%</td>
+<td>always</td>
+<td>Challenge benchmarks 2026 (ScaleForImpact; Communipass) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Day-and-a-Half Rate (DHR)</td>
+<td>registrants who attend 1.5 days or more ÷ registrants</td>
+<td>20%</td>
+<td>35%</td>
+<td>50%</td>
+<td>always</td>
+<td>Challenge benchmarks 2026 (ScaleForImpact; Communipass) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Booking Rate (BR)</td>
+<td>calls booked ÷ day-and-a-half attendees</td>
+<td>8%</td>
+<td>15%</td>
+<td>25%</td>
+<td>call</td>
+<td>Challenge benchmarks 2026 (ScaleForImpact; Communipass) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Purchase Rate (PUR)</td>
+<td>buyers ÷ day-and-a-half attendees</td>
+<td>3%</td>
+<td>8%</td>
+<td>15%</td>
+<td>online</td>
+<td>Challenge benchmarks 2026 (ScaleForImpact; Communipass) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Call Show Rate (CSR)</td>
+<td>calls held ÷ calls booked</td>
+<td>55%</td>
+<td>70%</td>
+<td>84%</td>
+<td>call</td>
+<td>Call show rates (RevenueHero 6,428 meetings; CashflowCoaches 2026)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Close Rate (CLOSE)</td>
+<td>customers ÷ calls held</td>
+<td>12%</td>
+<td>22%</td>
+<td>35%</td>
+<td>call</td>
+<td>High-ticket call close rates (LeadsNow 2026, 50,769 booked calls) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Nurture Recovery Rate (NRR)</td>
+<td>customers the 52 weeks of nurture add ÷ customers the funnel made the first time</td>
+<td>10%</td>
+<td>20%</td>
+<td>35%</td>
+<td>always</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+</tbody>
+</table>
+<h3>OOO Funnel</h3>
+<p>A lead magnet, a low-ticket offer on the thank-you page and a one-click upsell. Buyers then move up to your main offer. Entry: opt-in page visits. Cadence: 12 months a year. Default prices: entry $27, upsell $297 (the survey's entry price replaces the entry default).</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>KPI</th>
+<th>Definition</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Applies</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Opt-In Rate (OPT)</td>
+<td>leads ÷ page visits</td>
+<td>15%</td>
+<td>30%</td>
+<td>45%</td>
+<td>always</td>
+<td>Opt-in benchmarks (Unbounce 2024; lead magnet funnels); Funnel Master OOO diagram (30% opt-in, 10% buy, 20% upsell)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Offer Take Rate (TW)</td>
+<td>low-ticket buyers ÷ leads</td>
+<td>3%</td>
+<td>7%</td>
+<td>12%</td>
+<td>always</td>
+<td>Tripwire and upsell take rates (CartFlows; WinMassiveImpact) (self-reported; treat as a planning assumption); Funnel Master OOO diagram (30% opt-in, 10% buy, 20% upsell)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Upsell Take Rate (UP)</td>
+<td>one-click upsell buyers ÷ low-ticket buyers</td>
+<td>5%</td>
+<td>12%</td>
+<td>25%</td>
+<td>always</td>
+<td>Tripwire and upsell take rates (CartFlows; WinMassiveImpact) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Ascension Rate (ASC)</td>
+<td>buyers who move to your main offer in 90 days ÷ low-ticket buyers</td>
+<td>1%</td>
+<td>3%</td>
+<td>5%</td>
+<td>always</td>
+<td>Backend ascension of low-ticket buyers (WinMassiveImpact; LTO Ads) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Nurture Recovery Rate (NRR)</td>
+<td>customers the 52 weeks of nurture add ÷ customers the funnel made the first time</td>
+<td>10%</td>
+<td>20%</td>
+<td>35%</td>
+<td>always</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+</tbody>
+</table>
+<h3>SLO Funnel</h3>
+<p>Paid ads sell a low-ticket offer that covers the ad spend. The profit is in the backend: the order bump, the $297 offer and your main offer. Entry: offer page visits from ads. Cadence: 12 months a year. Traffic is paid ads only. Default prices: entry $37, bump $17, backend $297 (the survey's entry price replaces the entry default).</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>KPI</th>
+<th>Definition</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Applies</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Offer Conversion Rate (CONV)</td>
+<td>buyers ÷ offer page visits</td>
+<td>1%</td>
+<td>2.5%</td>
+<td>5%</td>
+<td>always</td>
+<td>Tripwire and upsell take rates (CartFlows; WinMassiveImpact) (self-reported; treat as a planning assumption); Funnel Master SLO diagram (5% buy, 20% backend)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Order Bump Rate (BUMP)</td>
+<td>buyers who add the bump ÷ buyers</td>
+<td>15%</td>
+<td>30%</td>
+<td>45%</td>
+<td>always</td>
+<td>Tripwire and upsell take rates (CartFlows; WinMassiveImpact) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Backend Offer Rate (BACK)</td>
+<td>buyers of the backend offer ÷ buyers</td>
+<td>5%</td>
+<td>12%</td>
+<td>20%</td>
+<td>always</td>
+<td>Tripwire and upsell take rates (CartFlows; WinMassiveImpact) (self-reported; treat as a planning assumption); Funnel Master SLO diagram (5% buy, 20% backend)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Ascension Rate (ASC)</td>
+<td>buyers who move to your main offer in 90 days ÷ buyers</td>
+<td>1%</td>
+<td>3%</td>
+<td>5%</td>
+<td>always</td>
+<td>Backend ascension of low-ticket buyers (WinMassiveImpact; LTO Ads) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Nurture Recovery Rate (NRR)</td>
+<td>customers the 52 weeks of nurture add ÷ customers the funnel made the first time</td>
+<td>10%</td>
+<td>20%</td>
+<td>35%</td>
+<td>always</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+</tbody>
+</table>
+<h3>Book a Call</h3>
+<p>One page with one action: apply for a call. A short qualification screen (budget, authority, need, timeline) keeps the calendar full of buyers. Entry: booking page visits. Cadence: 12 months a year. Always a call offer.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>KPI</th>
+<th>Definition</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Applies</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Application Rate (APR)</td>
+<td>applications ÷ page visits</td>
+<td>3%</td>
+<td>7%</td>
+<td>12%</td>
+<td>always</td>
+<td>Application page rates (Unbounce professional services; Inflo Partners) (self-reported; treat as a planning assumption); Funnel Master Book a Call diagram (8% apply, 60% qualify, 80% show, 45% close)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Qualification Rate (QR)</td>
+<td>qualified applicants ÷ applications</td>
+<td>40%</td>
+<td>60%</td>
+<td>75%</td>
+<td>always</td>
+<td>Funnel Master Book a Call diagram (8% apply, 60% qualify, 80% show, 45% close); no public benchmark</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Call Show Rate (CSR)</td>
+<td>calls held ÷ calls booked</td>
+<td>60%</td>
+<td>75%</td>
+<td>87%</td>
+<td>always</td>
+<td>Call show rates (RevenueHero 6,428 meetings; CashflowCoaches 2026)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Close Rate (CLOSE)</td>
+<td>customers ÷ calls held</td>
+<td>15%</td>
+<td>25%</td>
+<td>38%</td>
+<td>always</td>
+<td>B2B close rates (HubSpot; First Page Sage); High-ticket call close rates (LeadsNow 2026, 50,769 booked calls) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Nurture Recovery Rate (NRR)</td>
+<td>customers the 52 weeks of nurture add ÷ customers the funnel made the first time</td>
+<td>10%</td>
+<td>20%</td>
+<td>35%</td>
+<td>always</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+</tbody>
+</table>
+<h3>Challenge</h3>
+<p>A free challenge with one task a day and a group to report wins in. Momentum sells the next step on the last day. Entry: registration page visits. Cadence: 6 challenges a year.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>KPI</th>
+<th>Definition</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Applies</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Registration Rate (RR)</td>
+<td>registrants ÷ page visits</td>
+<td>25%</td>
+<td>35%</td>
+<td>50%</td>
+<td>always</td>
+<td>Challenge benchmarks 2026 (ScaleForImpact; Communipass) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Day 1 Attendance (D1R)</td>
+<td>day 1 attendees ÷ registrants</td>
+<td>35%</td>
+<td>45%</td>
+<td>50%</td>
+<td>always</td>
+<td>Challenge benchmarks 2026 (ScaleForImpact; Communipass) (self-reported; treat as a planning assumption); Funnel Master Challenge diagram (90% day 1, 50% complete, 20% buy)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Completion Rate (COMP)</td>
+<td>people who finish ÷ day 1 attendees</td>
+<td>35%</td>
+<td>50%</td>
+<td>65%</td>
+<td>always</td>
+<td>Challenge benchmarks 2026 (ScaleForImpact; Communipass) (self-reported; treat as a planning assumption); Funnel Master Challenge diagram (90% day 1, 50% complete, 20% buy)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Booking Rate (BR)</td>
+<td>calls booked ÷ people who finish</td>
+<td>10%</td>
+<td>15%</td>
+<td>20%</td>
+<td>call</td>
+<td>Challenge benchmarks 2026 (ScaleForImpact; Communipass) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Purchase Rate (PUR)</td>
+<td>buyers ÷ people who finish</td>
+<td>2%</td>
+<td>5%</td>
+<td>15%</td>
+<td>online</td>
+<td>Challenge benchmarks 2026 (ScaleForImpact; Communipass) (self-reported; treat as a planning assumption); Funnel Master Challenge diagram (90% day 1, 50% complete, 20% buy)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Call Show Rate (CSR)</td>
+<td>calls held ÷ calls booked</td>
+<td>55%</td>
+<td>70%</td>
+<td>84%</td>
+<td>call</td>
+<td>Call show rates (RevenueHero 6,428 meetings; CashflowCoaches 2026)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Close Rate (CLOSE)</td>
+<td>customers ÷ calls held</td>
+<td>20%</td>
+<td>28%</td>
+<td>40%</td>
+<td>call</td>
+<td>Challenge benchmarks 2026 (ScaleForImpact; Communipass) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Nurture Recovery Rate (NRR)</td>
+<td>customers the 52 weeks of nurture add ÷ customers the funnel made the first time</td>
+<td>10%</td>
+<td>20%</td>
+<td>35%</td>
+<td>always</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+</tbody>
+</table>
+<h3>Community</h3>
+<p>Content brings people into a free community. Active members upgrade to a paid tier or book a call, and retention compounds the revenue. Entry: join page visits. Cadence: 12 months a year.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>KPI</th>
+<th>Definition</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Applies</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Join Rate (JOIN)</td>
+<td>new members ÷ join page visits</td>
+<td>8%</td>
+<td>15%</td>
+<td>25%</td>
+<td>always</td>
+<td>Funnel Master Community diagram (15% join, 60% active, 8% premium, 85% retained)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Active Member Rate (ACT)</td>
+<td>members active in a month ÷ members</td>
+<td>40%</td>
+<td>60%</td>
+<td>75%</td>
+<td>always</td>
+<td>Funnel Master Community diagram (15% join, 60% active, 8% premium, 85% retained); no public benchmark</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Upgrade Rate (UPG)</td>
+<td>paid members ÷ active members</td>
+<td>3%</td>
+<td>6%</td>
+<td>10%</td>
+<td>online</td>
+<td>Community conversion and churn (AdvLaunch; Kourses; SkoolFiles) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Booking Rate (BKR)</td>
+<td>calls booked ÷ active members</td>
+<td>1%</td>
+<td>3%</td>
+<td>6%</td>
+<td>call</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Call Show Rate (CSR)</td>
+<td>calls held ÷ calls booked</td>
+<td>55%</td>
+<td>70%</td>
+<td>84%</td>
+<td>call</td>
+<td>Call show rates (RevenueHero 6,428 meetings; CashflowCoaches 2026)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Close Rate (CLOSE)</td>
+<td>customers ÷ calls held</td>
+<td>12%</td>
+<td>22%</td>
+<td>35%</td>
+<td>call</td>
+<td>High-ticket call close rates (LeadsNow 2026, 50,769 booked calls) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Nurture Recovery Rate (NRR)</td>
+<td>customers the 52 weeks of nurture add ÷ customers the funnel made the first time</td>
+<td>10%</td>
+<td>20%</td>
+<td>35%</td>
+<td>always</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+</tbody>
+</table>
+<h3>Social Following</h3>
+<p>Daily value posts build trust. One offer post in ten asks people to comment, the comments become DM conversations, and the DMs become calls. Entry: people who see an offer post. Cadence: 12 months a year. Always a call offer. Traffic is your own posts only.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>KPI</th>
+<th>Definition</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Applies</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Comment Rate (CMT)</td>
+<td>people who comment on an offer post ÷ people who see it</td>
+<td>1%</td>
+<td>3%</td>
+<td>5%</td>
+<td>always</td>
+<td>LinkedIn engagement 2025 (Socialinsider); Funnel Master Social Following diagram (5% comment, 40% book, 50% close)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Conversation Rate (DMR)</td>
+<td>DM conversations ÷ commenters</td>
+<td>40%</td>
+<td>50%</td>
+<td>60%</td>
+<td>always</td>
+<td>Comment to DM and DM to meeting rates (SBL; CClarity) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Booking Rate (BKR)</td>
+<td>calls booked ÷ DM conversations</td>
+<td>20%</td>
+<td>35%</td>
+<td>50%</td>
+<td>always</td>
+<td>Comment to DM and DM to meeting rates (SBL; CClarity) (self-reported; treat as a planning assumption); Funnel Master Social Following diagram (5% comment, 40% book, 50% close)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Call Show Rate (CSR)</td>
+<td>calls held ÷ calls booked</td>
+<td>60%</td>
+<td>75%</td>
+<td>87%</td>
+<td>always</td>
+<td>Call show rates (RevenueHero 6,428 meetings; CashflowCoaches 2026)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Close Rate (CLOSE)</td>
+<td>customers ÷ calls held</td>
+<td>12%</td>
+<td>20%</td>
+<td>30%</td>
+<td>always</td>
+<td>B2B close rates (HubSpot; First Page Sage)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Nurture Recovery Rate (NRR)</td>
+<td>customers the 52 weeks of nurture add ÷ customers the funnel made the first time</td>
+<td>10%</td>
+<td>20%</td>
+<td>35%</td>
+<td>always</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+</tbody>
+</table>
+<h3>Product Launch</h3>
+<p>A free three-video series builds the case, a short open cart sells the offer, and the last 24 hours bring in the late buyers. Entry: opt-in page visits. Cadence: 3 launchs a year.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>KPI</th>
+<th>Definition</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Applies</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Opt-In Rate (OPT)</td>
+<td>launch registrants ÷ page visits</td>
+<td>25%</td>
+<td>40%</td>
+<td>55%</td>
+<td>always</td>
+<td>Funnel Master Product Launch diagram (40% opt-in, 90%, 85%, 80% video views)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Video 1 View Rate (V1R)</td>
+<td>video 1 viewers ÷ registrants</td>
+<td>60%</td>
+<td>80%</td>
+<td>90%</td>
+<td>always</td>
+<td>Funnel Master Product Launch diagram (40% opt-in, 90%, 85%, 80% video views); no public benchmark</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Video 3 Retention (V3R)</td>
+<td>video 3 viewers ÷ video 1 viewers</td>
+<td>50%</td>
+<td>65%</td>
+<td>80%</td>
+<td>always</td>
+<td>Funnel Master Product Launch diagram (40% opt-in, 90%, 85%, 80% video views); no public benchmark</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Cart Conversion (BUY)</td>
+<td>buyers ÷ video 3 viewers (final 24 hours included)</td>
+<td>2%</td>
+<td>4%</td>
+<td>9%</td>
+<td>online</td>
+<td>Launch conversion (Denise Duffield-Thomas launch review; Jeff Walker) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Booking Rate (BR)</td>
+<td>calls booked ÷ video 3 viewers</td>
+<td>3%</td>
+<td>8%</td>
+<td>15%</td>
+<td>call</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Call Show Rate (CSR)</td>
+<td>calls held ÷ calls booked</td>
+<td>55%</td>
+<td>70%</td>
+<td>84%</td>
+<td>call</td>
+<td>Call show rates (RevenueHero 6,428 meetings; CashflowCoaches 2026)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Close Rate (CLOSE)</td>
+<td>customers ÷ calls held</td>
+<td>12%</td>
+<td>22%</td>
+<td>35%</td>
+<td>call</td>
+<td>High-ticket call close rates (LeadsNow 2026, 50,769 booked calls) (self-reported; treat as a planning assumption)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Nurture Recovery Rate (NRR)</td>
+<td>customers the 52 weeks of nurture add ÷ customers the funnel made the first time</td>
+<td>10%</td>
+<td>20%</td>
+<td>35%</td>
+<td>always</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+</tbody>
+</table>
+<h2>Traffic channels (stage 1)</h2>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Page visits per unit</th>
+<th>How</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cold email</td>
+<td>1.97% of emails sent</td>
+<td>delivered 97% × (opened 27% and clicked 2%, plus replied 3.43% and asked for the link 50%) × page loads 90%</td>
+<td>Cold email 2025 to 2026 (Instantly; Woodpecker); click and interested shares are planning figures</td>
+</tr>
+<tr>
+<td>LinkedIn outreach</td>
+<td>1.85% of connection requests</td>
+<td>accepted 28.5% × messaged 90% × clicked 8% × page loads 90%</td>
+<td>LinkedIn outreach 2026 (Expandi, 13.2M requests); click rate is a planning figure</td>
+</tr>
+<tr>
+<td>Calendar invites</td>
+<td>1.32% of invites sent</td>
+<td>delivered 98% × clicked 1.5% × page loads 90%</td>
+<td>The RevOps Funnel Equations (planning figures)</td>
+</tr>
+<tr>
+<td>WhatsApp outreach</td>
+<td>3.63% of messages sent</td>
+<td>delivered 95% × read 85% × clicked 5% × page loads 90%</td>
+<td>The RevOps Funnel Equations (planning figures)</td>
+</tr>
+<tr>
+<td>Paid ads (B2B)</td>
+<td>$2.29 per visit</td>
+<td>$1.95 a click (Meta B2B) ÷ 85% of clicks that load the page</td>
+<td>Meta B2B ads 2025 (Metadata.io; WordStream)</td>
+</tr>
+<tr>
+<td>Paid ads (B2C)</td>
+<td>$0.88 per visit</td>
+<td>$0.75 a click (Meta, all industries) ÷ 85% of clicks that load the page</td>
+<td>Meta B2B ads 2025 (Metadata.io; WordStream)</td>
+</tr>
+<tr>
+<td>Organic content</td>
+<td>1.35% of post impressions</td>
+<td>link clicks 1.5% of impressions × page loads 90%</td>
+<td>LinkedIn engagement 2025 (Socialinsider); link click rate is a planning figure</td>
+</tr>
+<tr>
+<td>Partners and referrals</td>
+<td>2.00% of partner audience reached</td>
+<td>about 2% of a partner’s audience visits from one mailing</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Audience you own</th>
+<th>Visits a month per person</th>
+<th>How</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Your email list</td>
+<td>1.48%</td>
+<td>2 promotional sends a month × delivered 97% × opened 32.7% × clicked 2.6% × page loads 90%</td>
+<td>Email marketing benchmarks (Mailchimp)</td>
+</tr>
+<tr>
+<td>Your social following</td>
+<td>0.81%</td>
+<td>12 posts a month × 5% of followers reached × 1.5% click × page loads 90%</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+<tr>
+<td>Your YouTube channel</td>
+<td>0.72%</td>
+<td>4 videos a month × 10% of subscribers watch × 2% click the link × 90%</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+<tr>
+<td>Your community or WhatsApp group</td>
+<td>5.40%</td>
+<td>2 posts a month × 60% read × 5% click × 90%</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+<tr>
+<td>Your website visitors</td>
+<td>2.00%</td>
+<td>2% of monthly site visitors click through to the funnel</td>
+<td>Planning figure: no public benchmark found. Replace it with your own number once you have it</td>
+</tr>
+</tbody>
+</table>
+<h2>Worked example (shown when no survey answers exist)</h2>
+<p>A B2B consultant selling a $9,999 one-time offer after a call, $10K to $50K a month now, goal $500,000 in 12 months, 3 to 5 case studies, one funnel tried before, spreadsheets, 2,000 email subscribers, 3,000 followers, cold email, LinkedIn and $2,000 a month of ads, 5 to 10 hours a week.</p>
+<table>
+<thead>
+<tr>
+<th>Funnel</th>
+<th>Fit</th>
+<th>Visits a month for the goal</th>
+<th>Customers a year</th>
+<th>Calls held a month</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webinar</td>
+<td>96%</td>
+<td>2,858</td>
+<td>50</td>
+<td>19.2</td>
+</tr>
+<tr>
+<td>Reverse Squeeze Page</td>
+<td>96%</td>
+<td>4,100</td>
+<td>50</td>
+<td>19.2</td>
+</tr>
+<tr>
+<td>Book a Call</td>
+<td>92%</td>
+<td>531</td>
+<td>50</td>
+<td>16.9</td>
+</tr>
+<tr>
+<td>Social Following</td>
+<td>70%</td>
+<td>5,432</td>
+<td>50</td>
+<td>21.1</td>
+</tr>
+<tr>
+<td>Workshop Series</td>
+<td>64%</td>
+<td>1,709</td>
+<td>50</td>
+<td>19.2</td>
+</tr>
+<tr>
+<td>Challenge</td>
+<td>62%</td>
+<td>1,930</td>
+<td>50</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>SLO Funnel</td>
+<td>58%</td>
+<td>4,337</td>
+<td>39</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Product Launch</td>
+<td>56%</td>
+<td>1,729</td>
+<td>50</td>
+<td>19.2</td>
+</tr>
+<tr>
+<td>Community</td>
+<td>50%</td>
+<td>10,358</td>
+<td>50</td>
+<td>19.2</td>
+</tr>
+<tr>
+<td>OOO Funnel</td>
+<td>42%</td>
+<td>5,387</td>
+<td>41</td>
+<td>none</td>
+</tr>
+</tbody>
+</table></div></details><details class="doc"><summary>4-VIDEO-SCRIPTS.md</summary><div class="md"><h1>Video scripts: thank-you page 1 and the VIP page</h1>
+<p>Speaker: Adi, to camera. Captions burned in (the reference video runs with captions on and autoplays muted).</p>
+<h2>How the reference video is built (what we mirror)</h2>
+<p>The reference thank-you video runs 2 minutes 2 seconds, in eight beats. We keep the beats and their order, and write every word ourselves.</p>
+<table>
+<thead>
+<tr>
+<th>Beat</th>
+<th>Reference (paraphrased)</th>
+<th>Ours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1, 0:00</td>
+<td>Congratulations, but do not close the page: registration is not complete</td>
+<td>Same move, our session</td>
+</tr>
+<tr>
+<td>2, 0:09</td>
+<td>What the event is: a live build, with a workbook per session</td>
+<td>What the webinar is: the funnel for 250+ brands, mapped onto your business live</td>
+</tr>
+<tr>
+<td>3, 0:21</td>
+<td>One resource you can use right now, an income calculator</td>
+<td>The AI RevOps Revenue Calculator (already one of the registration bonuses)</td>
+</tr>
+<tr>
+<td>4, 0:27</td>
+<td>What it does with your situation</td>
+<td>What the Revenue Plan works out from your answers</td>
+</tr>
+<tr>
+<td>5, 0:46</td>
+<td>You only get it inside the WhatsApp group</td>
+<td>You get it on the last page, with the WhatsApp group</td>
+</tr>
+<tr>
+<td>6, 1:09</td>
+<td>The survey below powers it; honest answers, two minutes</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>7, 1:26</td>
+<td>After the survey, an optional VIP upgrade</td>
+<td>Same, honest: optional</td>
+</tr>
+<tr>
+<td>8, 1:41</td>
+<td>Go to the end, join WhatsApp, click the button</td>
 <td>Same</td>
 </tr>
 </tbody>
-</table></div></details><details class="doc"><summary>VSL_SCRIPT.md</summary><div class="md"><h1>VSL Script: Thank-You Page (item 14)</h1>
-<p><strong>Speaker:</strong> Adi. <strong>Runtime:</strong> about 2 minutes 30 seconds (about 360 spoken words at 150 words a minute). <strong>Where it plays:</strong> the video slot in step 1 of /thank-you/ (<code>media.vsl_video_url</code> in funnel-config.json).
-<strong>Delivery:</strong> calm, direct, to camera. No music bed under the proof lines. Captions on (the player starts muted).
-<strong>Visual:</strong> Adi's AI avatar or Adi to camera; on-screen text only where marked.</p>
-<hr />
-<p><strong>[0:00 Hook]</strong></p>
-<p>You're in.</p>
-<p>Before you close this tab, give me two minutes. What you do in the next five minutes decides whether this training changes anything for you.</p>
-<p><strong>[0:15 The pain]</strong></p>
-<p>Here's what I see over and over.</p>
-<p>A founder has a good offer. Referrals got them here. But every month starts at zero. The pipeline depends on who they happen to meet, and they're still the one chasing every deal.</p>
-<p>If that sounds like you, you're in the right place.</p>
-<p><strong>[0:35 Who I am]</strong></p>
-<p>I'm Adi. I founded Tantra and GrowthClub. For the last decade I've built revenue engines for other people: 400+ brands across 21+ countries and 47+ industries.</p>
-<p><em>On screen: 400+ brands. 21+ countries. 47+ industries.</em></p>
-<p><strong>[0:50 What the training covers]</strong></p>
-<p>In the live session I'll show you the funnel my team builds: calendar invites that fill a session every week, reminders that get people there, and a pipeline that books calls without you chasing each one.</p>
-<p>It's the funnel we ran for Growth Idea, a UK coaching group. Over 11 webinars it reached 765,105 people, registered 6,517 and booked 80 sales calls. Those are measured counts from their webinar tracker.</p>
-<p><em>On screen: Growth Idea, 11 webinars, May 2025 to Feb 2026: 765,105 reached, 6,517 registered, 80 sales calls booked.</em></p>
-<p><strong>[1:20 Why come live]</strong></p>
-<p>Come live. The last fifteen minutes are your questions, about your business, not a made-up one. That part only happens live.</p>
-<p><strong>[1:30 The three steps]</strong></p>
-<p>Three things to do right now, all on this page.</p>
-<p>One: add the training to your calendar. One click.</p>
-<p>Two: join the WhatsApp community, so your join link and reminders reach you where you'll see them.</p>
-<p>Three: press Watch the 4 videos at the bottom of this page. Funnels, the RevOps operating system, traffic channels, and what you get if we build it with you. Five to eight minutes each.</p>
-<p><em>On screen: Add to calendar. Join WhatsApp. Watch the 4 videos (bottom of this page).</em></p>
-<p><strong>[2:05 What to bring]</strong></p>
-<p>And have one thing ready when we start: your rough numbers from last month. How many people you reached, how many booked a call, how many bought.</p>
-<p>Don't have them? That's fine. Finding out you don't is the first lesson.</p>
-<p><strong>[2:25 Be straight about the offer]</strong></p>
-<p>I'll be straight with you. At the end I'll explain Tantra Enterprise, where my team builds this funnel with you over three months. It's for founders with $10,000 or more to invest in growth over the next year.</p>
-<p>If that's not you, the training still gives you the whole map.</p>
-<p>See you live.</p>
-<hr />
-<h2>Proof used (all from PROOF_PACK.md)</h2>
+</table>
+<h2>Thank-you page 1 video (about 2 minutes, 300 words)</h2>
+<p>Config key: <code>media.survey_video_url</code>. On-screen: the page headline and the button stay visible under the video.</p>
+<blockquote>
+<p><strong>[0:00]</strong> Congratulations. You just saved your seat for the live session. But please don't close this page yet, because your registration isn't finished.</p>
+<p><strong>[0:09]</strong> This isn't a talk where you sit back and take notes. I'm going to walk you through the funnel we've built for more than 250 brands, stage by stage, and you'll map it onto your own business while we go.</p>
+<p><strong>[0:21]</strong> And there's one bonus you can use right now. It's called the AI RevOps Revenue Calculator.</p>
+<p><strong>[0:27]</strong> You tell it about your offer, your price, where your revenue is today and the channels you use. It works out which funnel fits your business, how much traffic you need, the number you have to hit at every stage of the funnel, and the revenue it adds over the next 12 months.</p>
+<p><strong>[0:44]</strong> Most people guess these numbers. You won't have to.</p>
+<p><strong>[0:47]</strong> Here's how you unlock it. Right below this video there's a short survey: ten questions. Your answers power your plan. They also tell me what to cover in the session, so I can build it around businesses like yours.</p>
+<p><strong>[1:02]</strong> The more honest you are, the more accurate your plan. It takes about two minutes.</p>
+<p><strong>[1:08]</strong> After the survey, you'll see an option to upgrade to a VIP seat, with extra private sessions with me and my team. It's completely optional. Take it or skip it.</p>
+<p><strong>[1:19]</strong> Either way, go all the way to the last page. That's where you join the WhatsApp group and open your Revenue Plan. The WhatsApp group is where I send the join link, the reminders and everything you need for the session, so your registration is only complete once you're in it.</p>
+<p><strong>[1:36]</strong> So click the button below, answer the ten questions, and I'll see you live.</p>
+</blockquote>
+<h2>VIP page video (about 90 seconds, 220 words)</h2>
+<p>Config key: <code>media.vip_video_url</code>. The page's reveal timer runs for the length of this video (100 seconds now; set it to the final length). Everything marked PROPOSED on the page is Adi's call: the number of private sessions, the price, the guarantee.</p>
+<blockquote>
+<p><strong>[0:00]</strong> Hold on. Don't close this page yet. Your registration isn't complete, and there's one thing I want to offer you first.</p>
+<p><strong>[0:08]</strong> Your Revenue Plan shows you the numbers: the traffic, the KPIs, the revenue. The webinar shows you the system. But the people who get results fastest are the ones who get help putting it into their own business.</p>
+<p><strong>[0:21]</strong> So for a small group, I'm opening a VIP seat.</p>
+<p><strong>[0:25]</strong> With VIP you get two private deep-dive sessions with me and my team after the webinar. You bring your funnel and your numbers, and we work on your business, not a general one.</p>
+<p><strong>[0:37]</strong> One of our strategists reviews the Revenue Plan you just built and sends you the three changes that lift your numbers the most.</p>
+<p><strong>[0:45]</strong> You get the full breakdowns of two client funnels, Growth Idea and FintechCircle: what we built, what we changed first, and how long it took.</p>
+<p><strong>[0:55]</strong> You get the page, email and WhatsApp templates for the funnel your plan recommends. And you get a concierge on WhatsApp, so you never miss a session.</p>
+<p><strong>[1:05]</strong> It's optional. The free seat is complete on its own. <em>[FILL: guarantee line once Adi sets it.]</em></p>
+<p><strong>[1:12]</strong> Whichever you choose, the next page gives you the WhatsApp group and your Revenue Plan. Pick your seat below.</p>
+</blockquote></div></details><details class="doc"><summary>5-REFERENCE-MAP.md</summary><div class="md"><h1>Mirror map: reference block, our block, what changed</h1>
+<p>Reference pages: the survey page (event.monetise.com/survey) and its VIP page (event.monetise.com/vip). Only the palette, type, words and proof are ours; structure, order and formatting follow the reference.</p>
+<h2>Thank-you page 1 (/thank-you/)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Reference block</th>
+<th>Ours</th>
+<th>What changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Red banner: "Do not close or refresh this page!"</td>
+<td>Same words, amber banner</td>
+<td>Tantra has no red; amber is our warning colour</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Progress bar at 62%, the number on the fill</td>
+<td>Same, 62%</td>
+<td>Volt to iris fill</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Headline "Wait! Your Registration Is Temporarily Reserved...", second line in the accent colour</td>
+<td>"Wait! Your Seat Is Temporarily Reserved...", second line in iris</td>
+<td>Words</td>
+</tr>
+<tr>
+<td>4</td>
+<td>One line: watch the video, fill the survey to unlock a free AI tool inside the WhatsApp group</td>
+<td>Watch the video, answer the survey to unlock your Personal Revenue Plan</td>
+<td>The unlock is the plan, delivered on the last page</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Framed video, captions on, progress line under it</td>
+<td>Same frame and line; the video slot shows a placeholder until <code>media.survey_video_url</code> is set</td>
+<td>Script in 4-VIDEO-SCRIPTS.md</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Ringed pill button "Fill out survey to join the group", jumps to the survey</td>
+<td>"Answer the survey to get your plan", jumps to #survey</td>
+<td>Volt gradient pill, same dark ring</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Glow behind the hero</td>
+<td>Volt and iris glow</td>
+<td>Colour</td>
+</tr>
+<tr>
+<td>8</td>
+<td>"Step 2" pill</td>
+<td>Same</td>
+<td>Colour</td>
+</tr>
+<tr>
+<td>9</td>
+<td>"Fill Out The Quick Survey Below To Unlock Your FREE AI Tool Inside The WhatsApp Group:" with accent words</td>
+<td>"Fill Out The Quick Survey Below To Unlock Your Personal Revenue Plan" with accent words</td>
+<td>Words</td>
+</tr>
+<tr>
+<td>10</td>
+<td>White card, one question per screen, bold key words, Next button, confidentiality note under money questions</td>
+<td>Same; 10 questions (theirs is 11); progress line on the card; Back button added</td>
+<td>Ours ranks the funnels live on the last screen</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Footer: policies, platform disclaimer, copyright</td>
+<td>The site footer (same three parts)</td>
+<td>Ours</td>
+</tr>
+</tbody>
+</table>
+<h2>VIP page (/vip/)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Reference block</th>
+<th>Ours</th>
+<th>What changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Banner "Wait! Do not close this page yet! Your registration isn't complete"</td>
+<td>Same words, amber</td>
+<td>Colour</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Progress bar at 73%</td>
+<td>Same</td>
+<td>Colour</td>
+</tr>
+<tr>
+<td>3</td>
+<td>"You've Been Selected to Attend 5 Extra Private Calls with Me And My Team"</td>
+<td>"You Qualify for Two Extra Private Sessions With Me and My Team"</td>
+<td>Number of sessions is PROPOSED</td>
+</tr>
+<tr>
+<td>4</td>
+<td>"Watch the video to understand how to accept", video</td>
+<td>Same</td>
+<td>Script in 4-VIDEO-SCRIPTS.md</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Timer "You will be able to access VIP tickets in 01:40", offer hidden until it ends</td>
+<td>Same 1:40 timer, runs once the VIP video exists; until then the offer shows at once</td>
+<td><code>?state=offer</code> opens it for review</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Yes button with price and refund line; No button "keep my free ticket"</td>
+<td>Same pair; Yes shows only once the price and checkout link are set (review mode shows it with the FILL pills)</td>
+<td>No dead button in public</td>
+</tr>
+<tr>
+<td>7</td>
+<td>"Select your ticket type", WhatsApp note, Free and VIP tickets side by side, crossed-out items on Free, anchor price and "Only $15" on VIP</td>
+<td>Same layout</td>
+<td>Price and anchor are FILL</td>
+</tr>
+<tr>
+<td>8</td>
+<td>"Most of the biggest results came from VIP members", three member stories</td>
+<td>"The fastest results come from the people who get help applying it", our two approved case studies (Growth Idea, FintechCircle)</td>
+<td>We have no VIP member stories; the honest equivalent is our case studies</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Yes and No buttons</td>
+<td>Same</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>100% money-back guarantee block</td>
+<td>Same block, review mode only, until Adi sets the terms</td>
+<td>FILL_VIP_GUARANTEE</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Six member results with tracked sales</td>
+<td>Dropped</td>
+<td>We have no such results; never invented</td>
+</tr>
+<tr>
+<td>12</td>
+<td>"Everything you get with VIP": bonuses 1 to 5</td>
+<td>Bonuses 1 to 5: private sessions, a strategist's review of your plan, case study breakdowns, build templates, WhatsApp concierge</td>
+<td>Each marked PROPOSED in review mode; no giveaways (none approved)</td>
+</tr>
+<tr>
+<td>13</td>
+<td>"So you have 2 options right now"</td>
+<td>Same</td>
+<td>Words</td>
+</tr>
+<tr>
+<td>14</td>
+<td>The two tickets again</td>
+<td>Same</td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td>FAQ</td>
+<td>Same, five questions</td>
+<td>Guarantee answer in review mode only</td>
+</tr>
+</tbody>
+</table>
+<h2>Confirmed page (/confirmed/)</h2>
+<p>The previous thank-you page (the QS mirror, REFERENCE_MAP.md section 14 in the pages folder) moved here unchanged, with three additions: the green "Registration complete" banner and a 100% bar on top (continuing the flow), and two cards under the headline: Step 1, join the WhatsApp community and announcements group; Step 2, open your Personal Revenue Plan.</p>
+<h2>Revenue Plan (/calculator/)</h2>
+<p>Mirrors the current calculator (adisuja.github.io/tantra-vision/calculator/): controls on top, each stage's KPIs on the left in open-and-close sections, results on the right. Changed: Tantra palette and Inter instead of Big Shoulders and Hanken Grotesk; ten funnels instead of three; every KPI shows its range and source; the right column is one consolidated plan.</p></div></details><details class="doc"><summary>6-BENCHMARKS.md</summary><div class="md"><h1>KPI benchmarks for the revenue calculator</h1>
+<p>Compiled 2026-11-08 from public web sources. Every row cites a URL. Rules used:
+- Low / typical / strong are taken from the cited range(s). Where I set them from several sources, the rows say "range across sources".
+- Source grade: <strong>A</strong> = vendor or study publishing its own measured data (page opened and checked, or primary named). <strong>B</strong> = vendor, agency or operator blog (self-reported, no audited sample). <strong>C</strong> = secondhand roundup of someone else's number (not opened at the primary).
+- Most funnel numbers (VSL, challenge, tripwire, high-ticket close) are grade B only. The calculator should show them as "planning assumption", not "benchmark".
+- "No source found" means no credible public source turned up.</p>
+<h2>1. Webinar funnel (B2B, high-ticket call offer)</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Context</th>
+<th>Source (year, grade)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registration page conversion, cold paid traffic</td>
+<td>10%</td>
+<td>20% to 30%</td>
+<td>35% to 45%</td>
+<td>Visitor to registrant. Range across sources</td>
+<td>https://assetacademy.io/funnels/webinars/webinar-conversion-rate-benchmarks/ (2025, B); https://beknownonline.com/webinar-registration-funnels-2026-benchmarks-and-paid-ads/ (2026, B); https://wavecnct.com/blogs/webinar-statistics (2026, C)</td>
+</tr>
+<tr>
+<td>Registration page conversion, warm (email list / organic)</td>
+<td>30%</td>
+<td>40% to 50%</td>
+<td>60%+</td>
+<td>Same sources; email converts 2x to 3x cold</td>
+<td>https://beknownonline.com/webinar-registration-funnels-2026-benchmarks-and-paid-ads/ (2026, B); https://easywebinar.com/blog/webinar-marketing-guide/ (2026, B)</td>
+</tr>
+<tr>
+<td>Live show-up rate (live attendees / registrants)</td>
+<td>35%</td>
+<td>44% to 49%</td>
+<td>55% to 58%</td>
+<td>B2B, live only</td>
+<td>Livestorm 47.7%, 33,786 sessions, 2025 data: https://livestorm.co/webinar-benchmark-report-2026 (2026, A). BigMarker 49% avg, 58% high performers (secondhand): https://contenthub.meetyoo.com/resources/webinar-benchmarks-2026 (2026, C). Contrast 44% to 50% good: https://www.getcontrast.io/learn/webinar-benchmarks (2026, C; page returned 403 to me)</td>
+</tr>
+<tr>
+<td>Show-up, cold paid traffic only</td>
+<td>10%</td>
+<td>10% to 15%</td>
+<td>25%</td>
+<td>Cold registrants show up much less than warm</td>
+<td>https://beknownonline.com/webinar-registration-funnels-2026-benchmarks-and-paid-ads/ (2026, B). Single source, treat as soft</td>
+</tr>
+<tr>
+<td>Show-up, warm list</td>
+<td>20%</td>
+<td>20% to 40% (same source)</td>
+<td>49%+</td>
+<td>Use platform averages above for strong</td>
+<td>same as above (B)</td>
+</tr>
+<tr>
+<td>Registrant to attendee incl. replay</td>
+<td>50%</td>
+<td>57% to 60%</td>
+<td>61%</td>
+<td>ON24 counts live plus on-demand</td>
+<td>ON24 60% in 2025, 57% in 2024, 56% in 2023 (secondhand summary): https://www.digitalapplied.com/blog/webinar-statistics-2026-attendance-conversion-data (2026, C); ON24 blog: https://www.on24.com/blog/the-state-of-digital-engagement-9-benchmarks-you-need-to-know/ (A)</td>
+</tr>
+<tr>
+<td>Replay-only viewers, as % of all registrants</td>
+<td>10%</td>
+<td>12% to 14%</td>
+<td>25%</td>
+<td>Within about 7 days of live</td>
+<td>https://easywebinar.com/blog/improve-webinar-attendance/ (2026, cites Univid, C); https://www.ringcentral.com/us/en/blog/webinar-statistics/ (25%, C). Replay link within 24h drives 48% of replay views (same C source family)</td>
+</tr>
+<tr>
+<td>Replay watch rate among no-shows</td>
+<td>10%</td>
+<td>10% to 20%</td>
+<td>25%</td>
+<td>Practitioner estimate only</td>
+<td>https://www.lilachbullock.com/what-does-a-webinar-look-like-for-attendees/ (B, anecdotal)</td>
+</tr>
+<tr>
+<td>Attendee to purchase / action, general webinar</td>
+<td>1%</td>
+<td>5% to 10%</td>
+<td>15%+</td>
+<td>Mixes sales and call bookings; definitions differ</td>
+<td>https://easywebinar.com/blog/demio-pricing/ (5% to 10%, B); https://entrepreneurshq.com/webinar-statistics/ (B)</td>
+</tr>
+<tr>
+<td>Attendee to purchase, high-ticket ($2k+ / $5k+)</td>
+<td>0.5%</td>
+<td>1% to 3%</td>
+<td>2% to 5%</td>
+<td>Direct purchase, not call booking</td>
+<td>https://www.dollarpocket.com/webinar-conversion-benchmarks-report (2026, cites ClickMeeting, C)</td>
+</tr>
+<tr>
+<td>Attendee to booked call (offer-to-booking)</td>
+<td>no source found</td>
+<td>no source found</td>
+<td>no source found</td>
+<td>Only blended "attendee to action" figures exist. Planning proxy: 10% to 20% of challenge completers book a discovery call</td>
+<td>https://scaleforimpact.co/challenge-funnel-the-complete-guide-to-building-running-and-scaling-a-5-day-sales-machine/ (B)</td>
+</tr>
+<tr>
+<td>Call show rate for post-webinar booked calls</td>
+<td>55%</td>
+<td>70%</td>
+<td>85%</td>
+<td>Warm, post-webinar bookings</td>
+<td>https://cashflowcoaches.io/coaching-funnel-benchmarks (2026, B). See section 5</td>
+</tr>
+<tr>
+<td>Close rate on high-ticket calls ($3k to $10k)</td>
+<td>12%</td>
+<td>20% to 25%</td>
+<td>30% to 38%</td>
+<td>Calls held, coaching / info-product style</td>
+<td>https://leadsnow.ai/how-to-price-high-ticket-coaching-offer/ (12% to 38%, 50,769 booked calls, B); https://cashflowcoaches.io/coaching-funnel-benchmarks (B)</td>
+</tr>
+</tbody>
+</table>
+<p>Note: "conversion" figures of 56% to 61% quoted for ON24, GoToWebinar and TwentyThree are registrant-to-attendee, not attendee-to-sale (dollarpocket link above flags this).</p>
+<h2>2. Reverse squeeze page / VSL funnel</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Context</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VSL average share watched</td>
+<td>44%</td>
+<td>44% to 50%</td>
+<td>65% (claim)</td>
+<td>Measured landing-page VSLs average 44.39%; 50% is a target</td>
+<td>https://focus-digital.co/average-video-completion-rate/ (2026, B, measured 44.39%); https://greenfroglabs.com/blog/what-is-vsl (B, 50%+ target); 65% to 85% claim at https://www.myfunnelsecrets.com/sales-funnel/types/video-sales-letter-funnel/ (B, unsourced, do not use as default)</td>
+</tr>
+<tr>
+<td>VSL page conversion, cold traffic</td>
+<td>0.5%</td>
+<td>1% to 3%</td>
+<td>5%</td>
+<td>To purchase or booked call</td>
+<td>https://vslstats.com/blog/sales-funnel-stages (B, notes no industry body has measured VSL metrics); https://www.myfunnelsecrets.com/sales-funnel/types/video-sales-letter-funnel/ (2% to 8%, B)</td>
+</tr>
+<tr>
+<td>VSL page conversion, warm / retargeting</td>
+<td>2%</td>
+<td>2% to 8%</td>
+<td>12%</td>
+<td>Lead-gen or mid-ticket</td>
+<td>https://robpalmer.com/blog/long-form-sales-letter-vs-vsl (5% to 12%, B); 12.7% "Unbounce 2025" figure repeated by several blogs, original not verified, do not use</td>
+</tr>
+<tr>
+<td>VSL page to booked call, high-ticket application</td>
+<td>8%</td>
+<td>15% to 40% application rate when VSL used</td>
+<td>40%</td>
+<td>Coaching agency claim; landing page without VSL 8% to 12%</td>
+<td>https://www.inflopartners.com/blog/vsl-funnel-high-ticket-coaching (B, agency claim)</td>
+</tr>
+<tr>
+<td>Reverse squeeze page specifically</td>
+<td>no source found</td>
+<td>no source found</td>
+<td>no source found</td>
+<td>Use VSL or opt-in figures as proxy</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>3. OOO funnel (opt-in, low-ticket offer, one-click upsell)</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Context</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opt-in page conversion, cold</td>
+<td>10%</td>
+<td>median 6.6% all pages; 25% to 35% for lead-magnet funnels</td>
+<td>40%+</td>
+<td>Unbounce median is all landing pages with any goal, not opt-in only</td>
+<td>Unbounce 2024 (57M conversions, 41,000 pages): https://unbounce.com/landing-pages/whats-a-good-conversion-rate/ (A). Opt-in 25% to 35% healthy: https://www.inflopartners.com/blog/application-funnel-vs-calendar-booking-10k-coaching (B)</td>
+</tr>
+<tr>
+<td>Tripwire ($7 to $47) conversion of new leads, cold</td>
+<td>0.5%</td>
+<td>1.5% to 3%</td>
+<td>5%</td>
+<td>Visitor to buyer</td>
+<td>https://datadrivenmarketing.co/blog/tripwire-sales-funnel-conversion-rates/ (B); https://winmassiveimpact.com/resources/marketing/low-ticket-sales-funnel (B); https://passion.io/blog/5-high-converting-funnel-templates-to-make-money-from-online-courses-no-coding (2% to 5%, B)</td>
+</tr>
+<tr>
+<td>Tripwire, warm traffic</td>
+<td>4%</td>
+<td>4% to 8%</td>
+<td>10% to 15%</td>
+<td></td>
+<td>https://winmassiveimpact.com/resources/marketing/low-ticket-sales-funnel (B); https://passion.io/blog/5-high-converting-funnel-templates-to-make-money-from-online-courses-no-coding (B)</td>
+</tr>
+<tr>
+<td>Order bump take rate</td>
+<td>15%</td>
+<td>25% to 40%</td>
+<td>45% to 60%</td>
+<td>Cold lower end, warm upper</td>
+<td>https://cartflows.com/blog/tripwire-funnel/ (30% to 40%, B); https://systeme.io/free-tools/funnel-stack-pricing-calculator/ (15% to 35%, cites public ClickFunnels breakdowns, B); https://datadrivenmarketing.co/blog/tripwire-sales-funnel-conversion-rates/ (20% to 60%, B)</td>
+</tr>
+<tr>
+<td>One-click upsell take rate</td>
+<td>5%</td>
+<td>8% to 14% cold; 15% to 25% warm</td>
+<td>28%</td>
+<td></td>
+<td>https://cartflows.com/blog/tripwire-funnel/ (B); https://winmassiveimpact.com/resources/marketing/low-ticket-sales-funnel (8% to 14% cold, B); https://datadrivenmarketing.co/blog/tripwire-sales-funnel-conversion-rates/ (19% to 28%, B)</td>
+</tr>
+<tr>
+<td>Downsell take rate (of declined upsell)</td>
+<td>15%</td>
+<td>15% to 30%</td>
+<td>30%</td>
+<td></td>
+<td>https://winmassiveimpact.com/resources/marketing/low-ticket-sales-funnel (B)</td>
+</tr>
+<tr>
+<td>Official ClickFunnels / Russell Brunson page-level benchmarks</td>
+<td>no source found</td>
+<td></td>
+<td></td>
+<td>ClickFunnels only states a 10% sales-page target, no measured average</td>
+<td>https://www.clickfunnels.com/blog/sales-funnel-conversion-rates/ (B)</td>
+</tr>
+</tbody>
+</table>
+<h2>4. SLO funnel (self-liquidating offer)</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Context</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Front-end sales page conversion, cold paid traffic</td>
+<td>1%</td>
+<td>1.5% to 3%</td>
+<td>5%</td>
+<td>Aim above 2.5% on $7 to $47 offer</td>
+<td>https://winmassiveimpact.com/resources/marketing/low-ticket-sales-funnel (B); https://assetacademy.io/offers/offer-types/self-liquidating-offer-explained/ (B); https://www.articos.com/blog/funnel-conversion-rate (cold paid 1% to 2%, B)</td>
+</tr>
+<tr>
+<td>Backend high-ticket ascension of buyers, 90 days</td>
+<td>1%</td>
+<td>1% to 2% cold; 3% to 5% warm</td>
+<td>5%</td>
+<td>$497 to $2,000+ backend</td>
+<td>https://winmassiveimpact.com/resources/marketing/low-ticket-sales-funnel (B); https://ltoads.com/blog/self-liquidating-offer-math-paid-email-list (B)</td>
+</tr>
+<tr>
+<td>Break-even ROAS</td>
+<td>1.0x gross is NOT break-even</td>
+<td>contribution break-even must include refunds, payment fees, delivery cost</td>
+<td></td>
+<td>Worked example: 1.11x gross still lost money</td>
+<td>https://ltoads.com/blog/self-liquidating-offer-math-paid-email-list (B). Formula, not a benchmark. Calculator should compute it from user inputs</td>
+</tr>
+<tr>
+<td>CPC Meta, B2B</td>
+<td>$0.75</td>
+<td>$0.75 to $1.95</td>
+<td>n/a</td>
+<td>Traffic campaigns, business services</td>
+<td>WordStream 2025 (1,000+ campaigns): https://www.wordstream.com/blog/facebook-ads-benchmarks-2025 (A, $0.70 all-industry, $0.75 business services, per search summary). Metadata.io 2025: $1.95 (71 advertisers, B2B): https://metadata.io/b2b-advertising-benchmarks (A, opened)</td>
+</tr>
+<tr>
+<td>CPM Meta, B2B</td>
+<td>$15</td>
+<td>$15.50</td>
+<td>$18</td>
+<td></td>
+<td>Metadata.io 2025, same URL (A, opened); Instagram $18.25</td>
+</tr>
+<tr>
+<td>CTR Meta, B2B</td>
+<td>0.65%</td>
+<td>0.79% to 1.38%</td>
+<td>1.7%</td>
+<td></td>
+<td>Metadata.io (0.79%) and WordStream (1.38% business services, 1.71% all) as above</td>
+</tr>
+<tr>
+<td>Cost per lead Meta</td>
+<td>$17</td>
+<td>$27.66 (all-industry lead campaigns) to $145 (B2B advertisers)</td>
+<td></td>
+<td>Huge spread by audience seniority</td>
+<td>WordStream: https://www.wordstream.com/blog/facebook-ads-benchmarks-2025 (A); Metadata.io: https://metadata.io/b2b-advertising-benchmarks (A, $145)</td>
+</tr>
+<tr>
+<td>CPC Google Search, B2B</td>
+<td>$4.50</td>
+<td>$5.26 to $5.87</td>
+<td>$9.76</td>
+<td>Business services CPC $5.58 to $5.87</td>
+<td>WordStream/LocaliQ 2025 and 2026 editions via https://whatagraph.com/blog/articles/ppc-benchmarks (2026, C); Metadata.io $9.76 (56 advertisers, 6.33% CTR, $524 per lead): https://metadata.io/b2b-advertising-benchmarks (A, opened)</td>
+</tr>
+<tr>
+<td>CPC LinkedIn Ads</td>
+<td>$5.50</td>
+<td>$9.39</td>
+<td>$15.72</td>
+<td>CPM $63.19, CTR 0.67%, CPL $202</td>
+<td>Metadata.io 2025, 138 advertisers (A, opened); HockeyStack ($10.48 to $15.72 by quarter): https://www.hockeystack.com/lab-blog-posts/linkedin-ads-benchmarks (2025, A)</td>
+</tr>
+</tbody>
+</table>
+<h2>5. Book a Call funnel</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Context</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Booking / application page conversion</td>
+<td>8%</td>
+<td>12% to 20% of email traffic; 15% to 40% with VSL</td>
+<td>40%</td>
+<td>Application rate. Unbounce professional services median 6.1%, top quartile 14.1%</td>
+<td>https://www.inflopartners.com/blog/application-funnel-vs-calendar-booking-10k-coaching (B); Unbounce 2024: https://unbounce.com/landing-pages/whats-a-good-conversion-rate/ (A, opened)</td>
+</tr>
+<tr>
+<td>Qualification rate (applicants passing screen)</td>
+<td>no source found</td>
+<td>no source found</td>
+<td>no source found</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Call show rate, calendar booking, no reminders</td>
+<td>50%</td>
+<td>50% to 60% on high-ticket direct calendar; inbound demo 84% (15.9% no-show)</td>
+<td>87%</td>
+<td>No-show 40% to 50% direct calendar vs 15% to 25% application funnel (agency data)</td>
+<td>https://cashflowcoaches.io/high-ticket-funnel (B); RevenueHero 6,428 meetings, 2025: average 15.9% / median 13.5% no-show, via https://leadbutton.io/2026/10/05/sales-meeting-no-show-rate/ (2026, opened, C of RevenueHero)</td>
+</tr>
+<tr>
+<td>Call show rate, cold-booked outbound meetings</td>
+<td>60%</td>
+<td>75% to 85%</td>
+<td>95%</td>
+<td>No-show 15% to 25%, internal data, sample undisclosed</td>
+<td>https://leadbutton.io/2026/10/05/sales-meeting-no-show-rate/ (UpliftSales, B)</td>
+</tr>
+<tr>
+<td>Effect of reminders</td>
+<td>no measured lift</td>
+<td>Calendly: 88% of surveyed sales users said no-shows fell (not a measured %); "28% fewer no-shows" is repeated but unconfirmed</td>
+<td>Personal email with agenda: 50% show vs 20% plain invite (RevenueHero)</td>
+<td>SMS open rate 98% vs about 20% email</td>
+<td>https://leadbutton.io/2026/10/05/sales-meeting-no-show-rate/ (opened); Calendly 2020 claim via https://www.chilipiper.com/article/improve-your-show-rates (B)</td>
+</tr>
+<tr>
+<td>Close rate, consultative B2B services</td>
+<td>12%</td>
+<td>19% to 22%</td>
+<td>25% to 29%</td>
+<td>All-industry 20% (HubSpot survey, no sample size); software 22%; First Page Sage SQL to closed 11% to 29%; legal 19%, financial 16%, B2B SaaS 12%; Gong enterprise opp-to-close about 25% in 2025</td>
+<td>https://blog.hubspot.com/sales/new-sales-close-rate-industry-benchmarks-how-does-your-close-rate-compare (2024, B); https://www.gong.io/win-rates (A); https://www.saastr.com/gong-100k-deals-take-about-days-to-close (2025, C); Bridge Group median 19%, via https://www.cirrusinsight.com/blog/sales-conversion-rate-benchmarks (C)</td>
+</tr>
+<tr>
+<td>Win rate by deal size (B2B SaaS, Optifai median)</td>
+<td>&lt;$10k: 31%</td>
+<td>$10k to $50k: 24%; $50k to $100k: 18%</td>
+<td>&gt;$100k: 15%</td>
+<td>Larger deals close less</td>
+<td>https://salesmotion.io/blog/sales-win-rate-benchmarks-2026 (C, not Gong)</td>
+</tr>
+</tbody>
+</table>
+<h2>6. Challenge funnel (5 to 7 day)</h2>
+<p>All grade B (coach / agency blogs). No independent dataset found.</p>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Context</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registration page conversion</td>
+<td>25%</td>
+<td>30% to 40%</td>
+<td>50%</td>
+<td>Warm 25% to 40%; well-promoted up to 50%</td>
+<td>https://scaleforimpact.co/challenge-funnel-the-complete-guide-to-building-running-and-scaling-a-5-day-sales-machine/ (B); https://communipass.com/blog/interactive-challenge-funnel-2026-3/ (B)</td>
+</tr>
+<tr>
+<td>Day 1 attendance</td>
+<td>35%</td>
+<td>35% to 50%</td>
+<td>50%</td>
+<td>Warm, well-nurtured</td>
+<td>https://scaleforimpact.co/challenge-funnel-email-sequence-the-pre-challenge-nurture-series-that-drives-day-1-show-ups/ (B)</td>
+</tr>
+<tr>
+<td>Daily task completion</td>
+<td>40%</td>
+<td>40% to 60%</td>
+<td>60%</td>
+<td>With push notifications</td>
+<td>https://communipass.com/blog/9-day-challenge-funnel-email-sequence-2026/ (B)</td>
+</tr>
+<tr>
+<td>Completion, free challenge</td>
+<td>35%</td>
+<td>35% to 45% single channel; 55% to 70% multi-channel</td>
+<td>70%</td>
+<td>Paid challenges 70% to 80%</td>
+<td>same communipass source (B)</td>
+</tr>
+<tr>
+<td>Offer conversion, all registrants</td>
+<td>3%</td>
+<td>5% to 12%</td>
+<td>10% to 20% (up to 30% claimed)</td>
+<td>Course-style offer</td>
+<td>https://passion.io/blog/5-high-converting-funnel-templates-to-make-money-from-online-courses-no-coding (B); communipass links above</td>
+</tr>
+<tr>
+<td>Offer conversion, completers</td>
+<td>2% (5-day)</td>
+<td>2% to 7% (5-day); 4% to 15% (9-day)</td>
+<td>15%</td>
+<td>Completers convert 3x to 5x vs drop-offs</td>
+<td>https://communipass.com/blog/9-day-challenge-funnel-for-course-creators-2026-conversion-framework/ (B)</td>
+</tr>
+<tr>
+<td>High-ticket backend from completers</td>
+<td>10% book a call</td>
+<td>10% to 20% book; 25% to 40% of calls close</td>
+<td></td>
+<td>Paid-front-end challenge: 8% to 15% to $1k to $5k backend</td>
+<td>https://scaleforimpact.co/challenge-funnel-the-complete-guide-to-building-running-and-scaling-a-5-day-sales-machine/ (B)</td>
+</tr>
+</tbody>
+</table>
+<h2>7. Community funnel (Skool / Circle)</h2>
+<p>Skool and Circle publish no benchmarks. All numbers are third-party.</p>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Context</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Free-to-paid / lead-to-paid conversion</td>
+<td>1.5%</td>
+<td>2% to 4% direct ad; 4% to 6% via free webinar</td>
+<td>5% to 7% existing audience; 6% to 12% via paid challenge</td>
+<td>Ad agency data</td>
+<td>https://advlaunch.us/blog/skool-community-conversion-rate-benchmarks (2026, B)</td>
+</tr>
+<tr>
+<td>Active member rate</td>
+<td>no source found</td>
+<td>no source found</td>
+<td>no source found</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Monthly churn, paid community</td>
+<td>8% to 12% (average)</td>
+<td>4% to 9%</td>
+<td>2% to 5%</td>
+<td>Conflicting: 12% to 18% claim by one vendor; 5.8% avg for membership communities; $200+/mo curated communities 2% to 3%</td>
+<td>https://kourses.com/member-retention/ (6% to 9%, B); https://retentioncheck.com/churn-benchmarks/membership-communities (5.8%, B); https://www.skoolfiles.com/blog/average-skool-churn-rate (4% to 9%, C); https://www.skoolgrades.com/published/skool-churn-rate (argues no reliable Skool figure exists)</td>
+</tr>
+<tr>
+<td>Median Skool price</td>
+<td></td>
+<td>$27 per month</td>
+<td></td>
+<td>1,000 trending communities, July 2026 (secondhand)</td>
+<td>https://www.skoolfiles.com/blog/average-skool-churn-rate (C)</td>
+</tr>
+<tr>
+<td>Circle / Kajabi primary survey data</td>
+<td>no source found</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>8. Social following funnel (organic posts to DMs to calls)</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Context</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LinkedIn engagement rate, by impressions</td>
+<td>3.25% (links)</td>
+<td>4.5% (text) to 5.2% (all posts)</td>
+<td>6.45% (multi-image) to 7.0% (native document)</td>
+<td>2025 data; company pages</td>
+<td>Socialinsider: https://www.socialinsider.io/social-media-benchmarks/linkedin (2026, A). Smaller accounts engage higher</td>
+</tr>
+<tr>
+<td>LinkedIn engagement rate, by reach</td>
+<td></td>
+<td>6.2% median</td>
+<td>21.77% carousel median</td>
+<td>Buffer, 52M+ posts. Different formula; do not mix with the row above</td>
+<td>via https://meet-lea.com/en/blog/linkedin-content-formats-performance (C)</td>
+</tr>
+<tr>
+<td>Instagram engagement rate</td>
+<td>not researched in depth</td>
+<td></td>
+<td></td>
+<td></td>
+<td>https://iqfluence.io/public/blog/social-media-benchmarks (C), unchecked</td>
+</tr>
+<tr>
+<td>Comment to DM conversation rate</td>
+<td>40%</td>
+<td>40% to 60% reply to DM after a comment</td>
+<td></td>
+<td>Reply, not booking</td>
+<td>https://sbl.so/blog/linkedin-outreach-benchmarks-reply-rates (285,000+ messages, vendor, B)</td>
+</tr>
+<tr>
+<td>DM response to meeting, warm</td>
+<td>30%</td>
+<td>30% to 50% (of responders)</td>
+<td></td>
+<td>Warm DM response rate 15% to 25%; cold 5% to 10% and 10% to 20%</td>
+<td>https://cclarity.io/linkedin-lead-generation-statistics (3 clients, 7,793 engagements, B). Only 2.9% of engagers matched ICP</td>
+</tr>
+<tr>
+<td>Prospects messaged to meeting</td>
+<td>2%</td>
+<td>2% to 5%</td>
+<td></td>
+<td></td>
+<td>https://sbl.so/blog/linkedin-outreach-benchmarks-reply-rates (B)</td>
+</tr>
+<tr>
+<td>Close rate, inbound from founder content</td>
+<td>1.7% (cold outbound)</td>
+<td></td>
+<td>14.6%</td>
+<td>Secondhand citation of Linkboost report</td>
+<td>https://signalscout.kokasexton.com/newsletter/founder-led-growth-linkedin (C, unverified)</td>
+</tr>
+<tr>
+<td>Public dataset for post to DM to call to client</td>
+<td>no source found</td>
+<td></td>
+<td></td>
+<td>LinkMagnet states none exists</td>
+<td>https://linkmagnet.gg/blog/statistiques-lead-generation-linkedin-2026 (B)</td>
+</tr>
+</tbody>
+</table>
+<h2>9. Product launch funnel (Jeff Walker style)</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Context</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revenue per name on internal launch</td>
+<td>$50</td>
+<td>$50 to $100</td>
+<td>about $150</td>
+<td>Walker's own target for his house list; self-reported</td>
+<td>https://www.shortform.com/pdf/launch-pdf-jeff-walker and https://www.earlytorise.com/how-to-make-your-product-launch-6-to-11-times-more-successful-2/ (B/C)</td>
+</tr>
+<tr>
+<td>Launch opt-in to buyer</td>
+<td>1%</td>
+<td>1% to 3%</td>
+<td>4.7%</td>
+<td>Denise Duffield-Thomas case: 643 sales / 13,686 launch opt-ins, $197 product</td>
+<td>https://www.denisedt.com/blog/product-launch-review-march-2017/ (2017, B, single case)</td>
+</tr>
+<tr>
+<td>Share of whole list that buys</td>
+<td>1%</td>
+<td>about 1%</td>
+<td>2% to 4%</td>
+<td>Whole-list denominator is lower than launch opt-in denominator. "1% to 5% of list" is common lore, no audited source</td>
+<td>same denisedt link (B); PLF review anecdote 2% to 4%: https://www.productlaunchclass.com/jeff-walkers-plf-review/ (B)</td>
+</tr>
+<tr>
+<td>Video series view decay</td>
+<td>no source found</td>
+<td>no source found</td>
+<td>no source found</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>10. Traffic channels</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Low</th>
+<th>Typical</th>
+<th>Strong</th>
+<th>Context</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cold email reply rate</td>
+<td>1.5% (Woodpecker median)</td>
+<td>3.43% (Instantly average)</td>
+<td>5.5% (top quartile) to 10.7% (top 10%)</td>
+<td>2025 data. Methodologies disagree up to 18x (Belkins 0.45%)</td>
+<td>Instantly 2026 report, billions of interactions: https://instantly.ai/cold-email-benchmark-report-2026 (A, opened); https://woodpecker.co/cold-email-benchmarks/ (A); https://somethinginc.com/blog/cold-email-reply-rate-benchmark-contradiction/ (B)</td>
+</tr>
+<tr>
+<td>Cold email open rate</td>
+<td>21%</td>
+<td>26% to 28%</td>
+<td>28% (1 to 5 word subjects)</td>
+<td>Apple MPP inflates opens. Instantly does not report open rate in its page</td>
+<td>Woodpecker median 26%: https://woodpecker.co/cold-email-benchmarks/ (A); 27.7% via https://www.lemlist.com/blog/cold-email-benchmarks (C)</td>
+</tr>
+<tr>
+<td>Cold email click rate</td>
+<td>no source found</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Reply lift from follow-ups</td>
+<td>4.1% (no follow-up)</td>
+<td></td>
+<td>8.3% (3 to 5 follow-ups)</td>
+<td>Woodpecker, via secondary summary</td>
+<td>https://woodpecker.co/cold-email-benchmarks/ (C as summarized); Instantly: 58% of replies come from step 1</td>
+</tr>
+<tr>
+<td>LinkedIn connection acceptance</td>
+<td>21%</td>
+<td>26% to 28.5%</td>
+<td>30% to 37%</td>
+<td>13.2M requests, May 2025 to Apr 2026</td>
+<td>Expandi: https://expandi.io/blog/linkedin-outreach-benchmarks-2026/ (2026, A, opened). HeyReach 96,051 campaigns about 21%: https://www.heyreach.io/blog/linkedin-outreach-benchmark-report-2026 (A)</td>
+</tr>
+<tr>
+<td>LinkedIn reply rate</td>
+<td>2.2% (of requests)</td>
+<td>3.0% of requests; 10.4% of messages sent</td>
+<td>22% of accepted (HeyReach)</td>
+<td>Definitions differ</td>
+<td>Expandi (A, opened); HeyReach (A); Reachium: https://www.reachium.io/research/the-reply-rate-collapse (A)</td>
+</tr>
+<tr>
+<td>Email marketing open / click (warm list)</td>
+<td>25.7% / 2.4%</td>
+<td>32.7% / 2.62% (Mailchimp prof. services open; all-industry click)</td>
+<td>35.6% / 3.2%</td>
+<td>Mailchimp data updated Dec 2023</td>
+<td>https://www.sona.com/blog/mailchimp-email-marketing-benchmarks-2025-average-open-click-rates-explained/ (C); Klaviyo 31% open, 1.69% click: https://konabayev.com/blog/email-marketing-benchmarks-2026/ (C)</td>
+</tr>
+<tr>
+<td>Paid CPM / CTR / CPC</td>
+<td>see section 4</td>
+<td></td>
+<td></td>
+<td>Metadata.io, WordStream, HockeyStack</td>
+<td></td>
+</tr>
+<tr>
+<td>LinkedIn Thought Leader Ads</td>
+<td></td>
+<td>CTR 2.68%, CPC $2.29 vs 0.42% and $13.23 single image</td>
+<td></td>
+<td>Single vendor</td>
+<td>https://datavinity.com/en/linkedin-ads-benchmarks-2026/ (B)</td>
+</tr>
+<tr>
+<td>Organic LinkedIn post CTR</td>
+<td>no source found</td>
+<td></td>
+<td></td>
+<td>Engagement rates exist (section 8); link CTR does not</td>
+<td></td>
+</tr>
+<tr>
+<td>Webinar paid acquisition cost per registrant</td>
+<td>$8</td>
+<td>$42 (LinkedIn B2B), $72 average, $78 (search)</td>
+<td>$8 to $12 (Facebook, cold, B2C-style)</td>
+<td>Vendor reports</td>
+<td>https://easywebinar.com/blog/webinar-marketing-guide/ and https://beknownonline.com/webinar-registration-funnels-2026-benchmarks-and-paid-ads/ (B)</td>
+</tr>
+</tbody>
+</table>
+<h2>11. Seller profile effects</h2>
+<table>
+<thead>
+<tr>
+<th>Effect</th>
+<th>Evidence</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Warm list vs cold traffic on registration</td>
+<td>Email converts 2x to 3x cold paid; warm 40% to 50% vs cold 30% to 40% (one report) or 10% to 20% (others)</td>
+<td>https://beknownonline.com/webinar-registration-funnels-2026-benchmarks-and-paid-ads/ (B)</td>
+</tr>
+<tr>
+<td>Warm vs cold on tripwire / upsell</td>
+<td>Tripwire 4% to 8% warm vs 1.5% to 3% cold; upsell 15% to 25% warm vs 5% to 10% cold</td>
+<td>https://winmassiveimpact.com/resources/marketing/low-ticket-sales-funnel and https://cartflows.com/blog/tripwire-funnel/ (B)</td>
+</tr>
+<tr>
+<td>Warm vs cold on call quality</td>
+<td>Inbound founder-content close 14.6% vs 1.7% cold outbound (secondhand); cold-booked meetings no-show 15% to 25% vs inbound demo about 13.5% median</td>
+<td>https://signalscout.kokasexton.com/newsletter/founder-led-growth-linkedin (C); https://leadbutton.io/2026/10/05/sales-meeting-no-show-rate/</td>
+</tr>
+<tr>
+<td>Seniority of sender on LinkedIn outreach</td>
+<td>Little effect: C-level 29.4% acceptance vs junior 26.3%</td>
+<td>https://expandi.io/blog/linkedin-outreach-benchmarks-2026/ (A)</td>
+</tr>
+<tr>
+<td>Testimonials / case studies lift page conversion</td>
+<td>Realistic range +5% to +35% relative for a well-placed specific element. WikiJobs A/B: +34% purchases. Logo strip +8%, single testimonial +14%, named-customer claim +22% (2,000 pages tested, vendor). Video testimonials moved higher: 3.91% to 6.38% (single case)</td>
+<td>https://www.flint.com/articles/landing-page-social-proof-element-performance-statistics (C); https://www.digitalapplied.com/blog/landing-page-conversion-study-2000-pages-tested-2026 (B); https://unbounce.com/landing-pages/social-proof/ (A, guidance)</td>
+</tr>
+<tr>
+<td>Reading level</td>
+<td>Grade 5 to 7 copy median 11.1% vs college-level 5.3% (Unbounce 2024)</td>
+<td>https://unbounce.com/landing-pages/whats-a-good-conversion-rate/ (A, per search summary)</td>
+</tr>
+<tr>
+<td>Email list monetization</td>
+<td>Common rule: about $1 per subscriber per month ($12 per year). Observed $0.30 to $1.00 (DTC), $0.50 to $1.50 median newsletter, $3 to $5+ B2B / finance newsletters, range $0.10 to $10+. Needs open rate &gt;15% and click &gt;1%</td>
+<td>https://topgrowthmarketing.com/how-much-is-your-email-list-worth/ (B); https://theeliteengines.com/guides/newsletter-earnings-per-subscriber.html (B). No primary source</td>
+</tr>
+<tr>
+<td>Launch revenue per name</td>
+<td>$50 to $150 per name on a launch to a house list (Walker, self-reported)</td>
+<td>see section 9</td>
+</tr>
+<tr>
+<td>First-time vs experienced funnel builders</td>
+<td>no source found</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Gaps (no credible public source)</h2>
 <ul>
-<li>400+ brands, 21+ countries, 47+ industries, a decade: section 1.</li>
-<li>Growth Idea, 11 webinars, May 2025 to Feb 2026: 765,105 reached, 6,517 registered, 80 sales calls booked: section 3 (measured).</li>
-<li>Tantra Enterprise, 3 months, $10,000+ fit: section 6.</li>
-</ul>
-<p>No modelled pipeline, no testimonial, no bonus and no deadline is used.</p></div></details>
+<li>Reverse squeeze page conversion (no data distinct from opt-in and VSL)</li>
+<li>Attendee to booked-call rate after a webinar offer (only blended "attendee to action")</li>
+<li>Qualification / screen-pass rate for applications</li>
+<li>Active member rate for Skool / Circle communities; any primary Skool, Circle or Kajabi benchmark</li>
+<li>Video series view decay for launch series</li>
+<li>Cold email click rate (Instantly page does not publish open or click)</li>
+<li>Organic LinkedIn post link CTR (engagement rate only)</li>
+<li>Public comment-to-DM-to-call dataset (vendors say none exists)</li>
+<li>First-time vs experienced funnel builders</li>
+<li>Official ClickFunnels or Russell Brunson measured page benchmarks</li>
+<li>Independent (non-vendor) data for tripwire, OTO, challenge and high-ticket close rates: everything found is agency or coach self-report</li>
+<li>Contrast and BigMarker primary reports were not opened (403 / not found); their figures are secondhand</li>
+<li>Unbounce "VSL 12.7% vs 4.8%" claim: original not found, excluded</li>
+</ul></div></details><details class="doc"><summary>Files for import or upload (1)</summary><ul class="files"><li><a href="cards/files/14-thank-you-survey/tools/model-doc.mjs" target="_blank" rel="noopener">tools/model-doc.mjs</a></li></ul></details>
