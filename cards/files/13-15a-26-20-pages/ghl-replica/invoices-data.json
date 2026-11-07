@@ -1,0 +1,129 @@
+{
+ "location_name": "Tantra Enterprise",
+ "location_city": "Bengaluru, Karnataka",
+ "user_initials": "AM",
+ "range": [
+  "January 1, 2026",
+  "July 31, 2026"
+ ],
+ "cards": [
+  [
+   "1 Invoice(s) in Draft",
+   "$8,400.00"
+  ],
+  [
+   "2 Invoice(s) in Due",
+   "$19,100.00"
+  ],
+  [
+   "34 Invoice(s) received",
+   "$333.30k"
+  ],
+  [
+   "3 Invoice(s) Overdue",
+   "$34,200.00"
+  ]
+ ],
+ "rows": [
+  {
+   "status": "Overdue",
+   "amount": "$11,400.00",
+   "name": "Webinar Funnel Setup Q2",
+   "number": "INV-001258",
+   "customer": "Patrick Doyle",
+   "initials": "PD",
+   "avatar": "rgb(153, 189, 117)",
+   "date": "Jul 6, 2026"
+  },
+  {
+   "status": "Paid",
+   "amount": "$15,600.00",
+   "name": "VSL Funnel Build Phase 2",
+   "number": "INV-001240",
+   "customer": "Simon Archer",
+   "initials": "SA",
+   "avatar": "rgb(94, 165, 160)",
+   "date": "Jul 6, 2026"
+  },
+  {
+   "status": "Paid",
+   "amount": "$14,600.00",
+   "name": "AI Calling Setup",
+   "number": "INV-001236",
+   "customer": "Sofia Marchetti",
+   "initials": "SM",
+   "avatar": "rgb(184, 112, 89)",
+   "date": "Jun 15, 2026"
+  },
+  {
+   "status": "Paid",
+   "amount": "$12,900.00",
+   "name": "Pipeline Automation Build Q1",
+   "number": "INV-001225",
+   "customer": "Caleb Morrison",
+   "initials": "CM",
+   "avatar": "rgb(184, 112, 89)",
+   "date": "May 24, 2026"
+  },
+  {
+   "status": "Paid",
+   "amount": "$7,700.00",
+   "name": "AI RevOps Retainer Q2",
+   "number": "INV-001214",
+   "customer": "Jonas Albrecht",
+   "initials": "JA",
+   "avatar": "rgb(199, 140, 84)",
+   "date": "Apr 21, 2026"
+  },
+  {
+   "status": "Overdue",
+   "amount": "$12,200.00",
+   "name": "Paid Ads Funnel Launch Phase 1",
+   "number": "INV-001213",
+   "customer": "Henry Lancaster",
+   "initials": "HL",
+   "avatar": "rgb(153, 189, 117)",
+   "date": "Apr 14, 2026"
+  },
+  {
+   "status": "Paid",
+   "amount": "$10,400.00",
+   "name": "Priya Webinar Funnel Setup",
+   "number": "INV-001203",
+   "customer": "Priya Natarajan",
+   "initials": "PN",
+   "avatar": "rgb(176, 104, 184)",
+   "date": "Mar 12, 2026"
+  },
+  {
+   "status": "Paid",
+   "amount": "$9,100.00",
+   "name": "Yuki AI Calling Setup",
+   "number": "INV-001196",
+   "customer": "Yuki Tanaka",
+   "initials": "YT",
+   "avatar": "rgb(184, 112, 89)",
+   "date": "Feb 12, 2026"
+  },
+  {
+   "status": "Paid",
+   "amount": "$5,200.00",
+   "name": "AI RevOps Retainer",
+   "number": "INV-001193",
+   "customer": "Anika Bose",
+   "initials": "AB",
+   "avatar": "rgb(110, 138, 199)",
+   "date": "Feb 6, 2026"
+  },
+  {
+   "status": "Overdue",
+   "amount": "$10,600.00",
+   "name": "AI RevOps Retainer",
+   "number": "INV-001184",
+   "customer": "Ethan Brooks",
+   "initials": "EB",
+   "avatar": "rgb(153, 189, 117)",
+   "date": "Jan 29, 2026"
+  }
+ ]
+}

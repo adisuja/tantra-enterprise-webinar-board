@@ -62,7 +62,7 @@ TRANSFORM = r"""
     });
   }
   // 3. Anything not rendered goes (menus, popovers, hidden templates): no stray data rides along.
-  if (D.sweep) $$('body *').forEach(e => { if (e.isConnected && getComputedStyle(e).display === 'none') e.remove(); });
+  if (D.sweep) $$('body *').forEach(e => { if (e.isConnected && !e.closest('table') && getComputedStyle(e).display === 'none') e.remove(); });
   // 4. Attributes that point at the source account or a person.
   const kill = new RegExp([D.loc, 'msgsndr-private', 'customers/detail', 'companyPhotos'].filter(Boolean).join('|'));
   $$('body, body *').forEach(e => [...e.attributes].forEach(a => {
@@ -72,10 +72,11 @@ TRANSFORM = r"""
   }));
   $$('[id]').forEach(e => { if (/^[A-Za-z0-9]{20}$/.test(e.id)) e.removeAttribute('id'); });
   $$('img:not([src])').forEach(e => e.remove());
-  $$('input').forEach(e => e.removeAttribute('value'));
+  $$('input:not([data-keep])').forEach(e => e.removeAttribute('value')); $$('[data-keep]').forEach(e => e.removeAttribute('data-keep'));
   // 5. CSS: keep only rules that match something, plus fonts, keyframes and variables.
   const used = (sel) => sel.split(',').some(p => {
-    const s = p.replace(/::?[a-zA-Z-]+(\([^)]*\))?/g, '').trim() || '*';
+    // Strip pseudo-classes, but not the escaped colons inside Tailwind class names (xl\:w-36).
+    const s = p.replace(/(?<!\\)::?[a-zA-Z-]+(\([^)]*\))?/g, '').trim() || '*';
     try { return !!document.querySelector(s); } catch { return true; }
   });
   const keep = (rules) => [...rules].map(r => {
