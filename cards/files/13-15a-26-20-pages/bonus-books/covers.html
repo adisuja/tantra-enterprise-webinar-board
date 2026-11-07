@@ -8,12 +8,13 @@ body { background: #222; }
 .cv::after { content: ''; position: absolute; inset: 64px; border: 2px solid rgba(255,255,255,.16); border-radius: 18px; }
 .in { position: absolute; inset: 64px; padding: 96px 104px; display: flex; flex-direction: column; z-index: 1; }
 .top { display: flex; justify-content: space-between; align-items: center; }
-.no { font: 600 34px/1 'JetBrains Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.78); }
+.top { align-items: flex-start; }
+.no { margin-top: 30px; font: 600 34px/1 'JetBrains Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.78); }
 .no b { color: var(--accent); font-weight: 700; }
-.logo { display: flex; align-items: center; gap: 16px; }
-.logo img:first-child { height: 84px; } .logo img:nth-child(2) { height: 46px; }
-.logo sup { font: 500 34px/1 'Inter', sans-serif; color: rgba(255,255,255,.85); margin-left: 2px; align-self: flex-start; margin-top: 6px; }
-.kick { display: inline-block; margin-top: 190px; padding: 10px 26px 14px; background: var(--accent); color: var(--ink); border-radius: 12px;
+.logo { display: flex; align-items: center; gap: 26px; margin-left: -18px; }
+.logo img:first-child { height: 196px; } .logo img:nth-child(2) { height: 82px; }
+.logo sup { font: 500 46px/1 'Inter', sans-serif; color: rgba(255,255,255,.9); margin-left: -8px; align-self: flex-start; margin-top: 52px; }
+.kick { display: inline-block; margin-top: 70px; padding: 10px 26px 14px; background: var(--accent); color: var(--ink); border-radius: 12px;
   font: 800 92px/1 'Archivo', sans-serif; font-stretch: 75%; letter-spacing: .01em; text-transform: uppercase; align-self: flex-start;
   box-shadow: 0 20px 60px -10px var(--glow); }
 h1 { margin-top: 34px; font: 900 238px/.86 'Archivo', sans-serif; font-stretch: 72%; letter-spacing: -.012em; text-transform: uppercase;
@@ -21,16 +22,23 @@ h1 { margin-top: 34px; font: 900 238px/.86 'Archivo', sans-serif; font-stretch: 
 h1 span { display: block; }
 .rule { width: 160px; height: 8px; border-radius: 4px; background: var(--accent); margin-top: 56px; box-shadow: 0 0 30px var(--glow); }
 .sub { margin-top: 40px; max-width: 980px; font: 500 46px/1.32 'Inter', sans-serif; letter-spacing: -.01em; color: rgba(255,255,255,.86); }
-.cv--long .kick { margin-top: 120px; }
+.cv--long .kick { margin-top: 30px; }
 .cv--long h1 { font-size: 214px; margin-top: 28px; }
 .cv--long .rule { margin-top: 44px; }
 .cv--long .sub { margin-top: 32px; }
 .sub { text-shadow: 0 2px 24px rgba(0,0,0,.6); }
+.cv--light { color: #0b0d12; }
+.cv--light::before { background: linear-gradient(180deg, rgb(var(--paper) / .94) 0%, rgb(var(--paper) / .88) 40%, rgb(var(--paper) / .62) 54%, rgb(var(--paper) / .22) 66%, rgb(var(--paper) / 0) 76%, rgb(var(--paper) / 0) 84%, rgb(var(--paper) / .6) 100%); }
+.cv--light::after { border-color: rgba(11,13,18,.14); }
+.cv--light .no, .cv--light .foot { color: rgba(11,13,18,.62); }
+.cv--light .logo sup { color: #0b0d12; }
+.cv--light h1 { text-shadow: none; }
+.cv--light .sub { color: rgba(11,13,18,.8); text-shadow: 0 1px 18px rgba(255,255,255,.8); }
 .foot { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; font: 600 30px/1 'JetBrains Mono', monospace;
   letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.7); }
-</style></head><body><section class="cv" id="playbook-a" style="background-image:url(art/playbook-a.webp);--accent:#a78bfa;--ink:#0b0d12;--glow:rgba(109,74,255,.55)">
+</style></head><body><section class="cv" id="playbook-a" style="background-image:url(art/playbook-a.webp);--accent:#a78bfa;--ink:#0b0d12;--glow:rgba(109,74,255,.55);--paper:255 255 255">
   <div class="in">
-    <div class="top"><p class="no">Bonus <b>01</b></p><p class="logo"><img src="../src/assets/img/tantra-mark-white.png" alt=""><img src="../src/assets/img/tantra-word-white.png" alt="Tantra"><sup>&copy;</sup></p></div>
+    <div class="top"><p class="logo"><img src="../src/assets/img/tantra-mark-white.png" alt=""><img src="../src/assets/img/tantra-word-white.png" alt="Tantra"><sup>&copy;</sup></p><p class="no">Bonus <b>01</b></p></div>
     <p class="kick">The $1MN+</p>
     <h1><span>B2B RevOps</span><span>Playbook</span></h1>
     <div class="rule"></div>
@@ -38,9 +46,9 @@ h1 span { display: block; }
     <div class="foot"><span>usetantra.com</span><span>&copy; 2026 Tantra</span></div>
   </div>
 </section>
-<section class="cv cv--long" id="prompts-a" style="background-image:url(art/prompts-a.webp);--accent:#ffffff;--ink:#2a1a7a;--glow:rgba(201,188,252,.5)">
+<section class="cv cv--long" id="prompts-a" style="background-image:url(art/prompts-a.webp);--accent:#ffffff;--ink:#2a1a7a;--glow:rgba(201,188,252,.5);--paper:255 255 255">
   <div class="in">
-    <div class="top"><p class="no">Bonus <b>02</b></p><p class="logo"><img src="../src/assets/img/tantra-mark-white.png" alt=""><img src="../src/assets/img/tantra-word-white.png" alt="Tantra"><sup>&copy;</sup></p></div>
+    <div class="top"><p class="logo"><img src="../src/assets/img/tantra-mark-white.png" alt=""><img src="../src/assets/img/tantra-word-white.png" alt="Tantra"><sup>&copy;</sup></p><p class="no">Bonus <b>02</b></p></div>
     <p class="kick">The $1MN+</p>
     <h1><span>AI Funnel</span><span>Prompt</span><span>Library</span></h1>
     <div class="rule"></div>
@@ -48,9 +56,19 @@ h1 span { display: block; }
     <div class="foot"><span>usetantra.com</span><span>&copy; 2026 Tantra</span></div>
   </div>
 </section>
-<section class="cv" id="playbook-b" style="background-image:url(art/playbook-b.webp);--accent:#0297de;--ink:#02070a;--glow:rgba(2,151,222,.5)">
+<section class="cv cv--light" id="calculator-a" style="background-image:url(art/calculator-a.webp);--accent:#6d4aff;--ink:#ffffff;--glow:rgba(109,74,255,.4);--paper:246 244 255">
   <div class="in">
-    <div class="top"><p class="no">Bonus <b>01</b></p><p class="logo"><img src="../src/assets/img/tantra-mark-white.png" alt=""><img src="../src/assets/img/tantra-word-white.png" alt="Tantra"><sup>&copy;</sup></p></div>
+    <div class="top"><p class="logo"><img src="../src/assets/img/tantra-mark-ink.png" alt=""><img src="../src/assets/img/tantra-word-ink.png" alt="Tantra"><sup>&copy;</sup></p><p class="no">Bonus <b>03</b></p></div>
+    <p class="kick">The AI RevOps</p>
+    <h1 style="font-size:212px"><span>Revenue</span><span>Calculator</span></h1>
+    <div class="rule"></div>
+    <p class="sub">Understand exactly what you need to do to achieve your revenue goals.</p>
+    <div class="foot"><span>usetantra.com</span><span>&copy; 2026 Tantra</span></div>
+  </div>
+</section>
+<section class="cv" id="playbook-b" style="background-image:url(art/playbook-b.webp);--accent:#0297de;--ink:#02070a;--glow:rgba(2,151,222,.5);--paper:255 255 255">
+  <div class="in">
+    <div class="top"><p class="logo"><img src="../src/assets/img/tantra-mark-white.png" alt=""><img src="../src/assets/img/tantra-word-white.png" alt="Tantra"><sup>&copy;</sup></p><p class="no">Bonus <b>01</b></p></div>
     <p class="kick">The $1MN+</p>
     <h1><span>B2B RevOps</span><span>Playbook</span></h1>
     <div class="rule"></div>
@@ -58,13 +76,23 @@ h1 span { display: block; }
     <div class="foot"><span>usetantra.com</span><span>&copy; 2026 Tantra</span></div>
   </div>
 </section>
-<section class="cv cv--long" id="prompts-b" style="background-image:url(art/prompts-b.webp);--accent:#fc734d;--ink:#02070a;--glow:rgba(252,115,77,.5)">
+<section class="cv cv--long" id="prompts-b" style="background-image:url(art/prompts-b.webp);--accent:#fc734d;--ink:#02070a;--glow:rgba(252,115,77,.5);--paper:255 255 255">
   <div class="in">
-    <div class="top"><p class="no">Bonus <b>02</b></p><p class="logo"><img src="../src/assets/img/tantra-mark-white.png" alt=""><img src="../src/assets/img/tantra-word-white.png" alt="Tantra"><sup>&copy;</sup></p></div>
+    <div class="top"><p class="logo"><img src="../src/assets/img/tantra-mark-white.png" alt=""><img src="../src/assets/img/tantra-word-white.png" alt="Tantra"><sup>&copy;</sup></p><p class="no">Bonus <b>02</b></p></div>
     <p class="kick">The $1MN+</p>
     <h1><span>AI Funnel</span><span>Prompt</span><span>Library</span></h1>
     <div class="rule"></div>
     <p class="sub">The prompts we use to engineer over 100+ RevOps funnel elements using AI.</p>
+    <div class="foot"><span>usetantra.com</span><span>&copy; 2026 Tantra</span></div>
+  </div>
+</section>
+<section class="cv cv--light" id="calculator-b" style="background-image:url(art/calculator-b.webp);--accent:#0297de;--ink:#02070a;--glow:rgba(2,151,222,.4);--paper:244 247 248">
+  <div class="in">
+    <div class="top"><p class="logo"><img src="../src/assets/img/tantra-mark-ink.png" alt=""><img src="../src/assets/img/tantra-word-ink.png" alt="Tantra"><sup>&copy;</sup></p><p class="no">Bonus <b>03</b></p></div>
+    <p class="kick">The AI RevOps</p>
+    <h1 style="font-size:212px"><span>Revenue</span><span>Calculator</span></h1>
+    <div class="rule"></div>
+    <p class="sub">Understand exactly what you need to do to achieve your revenue goals.</p>
     <div class="foot"><span>usetantra.com</span><span>&copy; 2026 Tantra</span></div>
   </div>
 </section></body></html>
