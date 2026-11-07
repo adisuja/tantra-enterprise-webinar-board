@@ -26,6 +26,8 @@ body { width: 428px; font-family: -apple-system, 'SF Pro Text', system-ui, sans-
   font-size: 12.5px; font-weight: 600; letter-spacing: .1px; }
 .row { position: relative; padding-left: 44px; padding-right: 60px; }
 .av { position: absolute; left: -36px; bottom: -1px; width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+.av--l { display: grid; place-items: center; color: #fff; font-size: 14px; font-weight: 500; }
+.av--n { background: #3b3e3f; overflow: hidden; }
 .bub { position: relative; display: inline-block; max-width: 324px; min-width: 120px; padding: 4px 11px 4.6px; border-radius: 8px 8px 8px 0;
   background: #232626; box-shadow: 0 1px 1.5px rgba(0, 0, 0, .35); }
 .tail { position: absolute; left: -6px; bottom: 0; width: 7px; height: 13px; }
@@ -69,8 +71,18 @@ def message_html(m, i, avatars):
     if m.get('reactions'):
         rx = '<div class="rx">' + ''.join(f'<b>{e}</b>' for e in m['reactions']) + (f'<span>{m["count"]}</span>' if m.get('count', 0) > 1 else '') + '</div>'
     date = f'<div class="date">{html.escape(m["date"])}</div>' if m.get('date') else ''
-    return (f'<section class="shot" id="m{i}">{date}<div class="row{" has-rx" if rx else ""}">'
-            f'<div class="bub"><img class="av" src="{avatars[m["avatar"]]}" alt="">{TAIL}<div class="hd">{who}</div>'
+    # No photo: WhatsApp's initial circle in the sender's colour, or its grey default silhouette.
+    if m['avatar'] == 'letter':
+        av = f'<span class="av av--l" style="background:{m["color"]}">{html.escape((m.get("name") or "#")[0].upper())}</span>'
+    elif m['avatar'] == 'none':
+        av = ('<span class="av av--n"><svg viewBox="0 0 28 28" width="28" height="28"><circle cx="14" cy="11" r="5.2" fill="#8a8e8f"/>'
+              '<path d="M3.5 28c.8-6.2 5.2-9.6 10.5-9.6S23.7 21.8 24.5 28z" fill="#8a8e8f"/></svg></span>')
+    else:
+        av = f'<img class="av" src="{avatars[m["avatar"]]}" alt="">'
+    # Every crop is a little different, like screenshots taken by hand: random space above and below.
+    pad = f'padding:{rng.randint(4, 34)}px 0 {rng.randint(6, 36)}px'
+    return (f'<section class="shot" id="m{i}" style="{pad}">{date}<div class="row{" has-rx" if rx else ""}">'
+            f'<div class="bub">{av}{TAIL}<div class="hd">{who}</div>'
             f'<div class="tx">{emoji(html.escape(m["text"].replace("\'", "\u2019")))}<span class="sp"></span></div><span class="tm">{html.escape(m["time"])}</span></div>'
             f'{"<br>" + rx if rx else ""}</div></section>')
 
@@ -105,6 +117,11 @@ def main():
             from PIL import Image
             import io
             im = Image.open(io.BytesIO(png)).convert('RGB')
+            # Random right edge: the crop ends a little past the widest of the bubble, reactions and date chip.
+            right = pg.evaluate(f"(() => {{ const s = document.querySelector('#m{i}'), x = s.getBoundingClientRect().left;"
+                                f" return Math.max(...[...s.querySelectorAll('.bub, .rx, .date')].map(e => e.getBoundingClientRect().right - x)); }})()")
+            cut = min(W, right + random.Random(f'crop-{i}').randint(6, 110))
+            im = im.crop((0, 0, round(cut * a.scale), im.height))
             im.save(f, 'WEBP', quality=90, method=6)
             m = msgs[i]
             sizes.append({'file': f.name, 'w': im.size[0], 'h': im.size[1],

@@ -1,144 +1,35 @@
 {
- "_note": "PLACEHOLDER mockup messages (Adi, 2026-11-07): invented names, numbers and results, to be replaced with real Tantra client screenshots. Avatars are generated faces of people who do not exist (avatars/generate_grid.py).",
+ "_note": "PLACEHOLDER mockup messages (Adi, 2026-11-07): invented names, numbers and results, to be replaced with real Tantra client screenshots. Avatars are generated faces of people who do not exist (avatars/generate_grid.py); avatar 'letter' is WhatsApp's initial circle, 'none' its grey default. About half carry reactions.",
  "messages": [
-  {
-   "name": "Ryan Costa",
-   "phone": "+1 (512)",
-   "color": "#acfcac",
-   "avatar": "a08",
-   "date": "Tue, Sep 9",
-   "time": "9:12 PM",
-   "text": "Webinar #4 done. 212 live, 31 calls booked and 9 closed on the call 🔥",
-   "reactions": [
-    "🔥",
-    "🎉",
-    "👍"
-   ],
-   "count": 6
-  },
-  {
-   "name": "Priya Raman",
-   "phone": "+91 98451",
-   "color": "#ff9876",
-   "avatar": "a00",
-   "time": "11:47 AM",
-   "text": "The reverse squeeze page is printing leads. 1,140 opt ins this week at $2.10 each 😅",
-   "reactions": [
-    "🥳",
-    "👍"
-   ],
-   "count": 3
-  },
-  {
-   "name": null,
-   "phone": "+1 (404)",
-   "color": "#53bdeb",
-   "avatar": "a06",
-   "date": "Mon, Oct 6",
-   "time": "8:03 AM",
-   "text": "Launch closed last night. $86,400 in 5 days. Still can't believe it",
-   "reactions": [
-    "🎉",
-    "🔥",
-    "🥳"
-   ],
-   "count": 11
-  },
-  {
-   "name": "Daniel Okafor",
-   "phone": "+44 7700",
-   "color": "#06cf9c",
-   "avatar": "a01",
-   "time": "6:21 PM",
-   "text": "Closed 2 more from Thursday's webinar. That's $24k from one session 🙌",
-   "reactions": [
-    "👍",
-    "🎉"
-   ],
-   "count": 4
-  },
-  {
-   "name": "Sophie Laurent",
-   "phone": "+33 6 12",
-   "color": "#a791ff",
-   "avatar": "a02",
-   "date": "Tue, Sep 23",
-   "time": "3:58 PM",
-   "text": "18 sales calls booked for next week and it's only Tuesday 😂",
-   "reactions": [
-    "🔥",
-    "🥳"
-   ],
-   "count": 5
-  },
-  {
-   "name": "Kevin Tan",
-   "phone": "+65 9123",
-   "color": "#fb5061",
-   "avatar": "a03",
-   "time": "10:36 PM",
-   "text": "First launch on the new funnel: 3,200 leads, 96 sales calls, $142k collected.",
-   "reactions": [
-    "🔥",
-    "🎉",
-    "👍",
-    "🥳"
-   ],
-   "count": 14
-  },
-  {
-   "name": null,
-   "phone": "+61 412",
-   "color": "#fe6633",
-   "avatar": "a09",
-   "date": "Thu, Oct 16",
-   "time": "7:15 AM",
-   "text": "Squeeze page went live Monday. 640 leads and 22 booked calls so far 👀",
-   "reactions": [
-    "👍",
-    "🔥"
-   ],
-   "count": 3
-  },
-  {
-   "name": "Rajesh Iyer",
-   "phone": "+91 99001",
-   "color": "#53a6fd",
-   "avatar": "a07",
-   "time": "4:42 PM",
-   "text": "Best sales day ever. 4 deals closed, all from the webinar replay sequence 🙏",
-   "reactions": [
-    "🥳",
-    "🎉"
-   ],
-   "count": 7
-  },
-  {
-   "name": "Omar Al Mansoori",
-   "phone": "+971 50",
-   "color": "#06cf9c",
-   "avatar": "a05",
-   "date": "Wed, Oct 1",
-   "time": "1:09 PM",
-   "text": "Show rate went from 19% to 41% with the reminder flow. Sales calls doubled.",
-   "reactions": [
-    "👍",
-    "🥳"
-   ],
-   "count": 2
-  },
-  {
-   "name": "Elena Ruiz",
-   "phone": "+1 (305)",
-   "color": "#ff9876",
-   "avatar": "a10",
-   "time": "9:54 PM",
-   "text": "Launch day 2: $31,500 in and the inbox is on fire 🔥🔥",
-   "reactions": [
-    "🎉",
-    "🔥"
-   ],
-   "count": 9
-  }
+  {"name": "Ryan Costa", "phone": "+1 (512)", "color": "#acfcac", "avatar": "a08", "date": "Tue, Sep 9", "time": "9:12 PM",
+   "text": "Webinar #4 done. 212 live, 31 calls booked and 9 closed on the call 🔥", "reactions": ["🔥", "🎉", "👍"], "count": 6},
+  {"name": "Priya", "phone": "+91 98451", "color": "#ff9876", "avatar": "a00", "time": "11:47 AM",
+   "text": "The reverse squeeze page is printing leads. 1,140 opt ins this week at $2.10 each 😅"},
+  {"name": null, "phone": "+1 (404)", "color": "#53bdeb", "avatar": "a06", "date": "Mon, Oct 6", "time": "8:03 AM",
+   "text": "Launch closed last night. $86,400 in 5 days. Still can't believe it", "reactions": ["🎉", "🔥", "🥳"], "count": 11},
+  {"name": "Daniel Okafor", "phone": "+44 7700", "color": "#06cf9c", "avatar": "a01", "time": "6:21 PM",
+   "text": "Closed 2 more from Thursday's webinar. That's $24k from one session"},
+  {"name": "Sophie", "phone": "+33 6 12", "color": "#a791ff", "avatar": "letter", "date": "Tue, Sep 23", "time": "3:58 PM",
+   "text": "18 sales calls booked for next week and it's only Tuesday 😂", "reactions": ["🔥", "🥳"], "count": 5},
+  {"name": "Kevin Tan", "phone": "+65 9123", "color": "#fb5061", "avatar": "a03", "time": "10:36 PM",
+   "text": "First launch on the new funnel: 3,200 leads, 96 sales calls, $142k collected.", "reactions": ["🔥", "🎉", "👍", "🥳"], "count": 14},
+  {"name": null, "phone": "+61 412", "color": "#fe6633", "avatar": "a09", "date": "Thu, Oct 16", "time": "7:15 AM",
+   "text": "Squeeze page went live Monday. 640 leads and 22 booked calls so far 👀"},
+  {"name": "Rajesh", "phone": "+91 99001", "color": "#53a6fd", "avatar": "a07", "time": "4:42 PM",
+   "text": "Best sales day ever. 4 deals closed, all from the webinar replay sequence", "reactions": ["🥳", "🎉"], "count": 7},
+  {"name": "Omar Al Mansoori", "phone": "+971 50", "color": "#06cf9c", "avatar": "a05", "date": "Wed, Oct 1", "time": "1:09 PM",
+   "text": "Show rate went from 19% to 41% with the reminder flow. Sales calls doubled."},
+  {"name": "Elena Ruiz", "phone": "+1 (305)", "color": "#ff9876", "avatar": "a10", "time": "9:54 PM",
+   "text": "Launch day 2: $31,500 in and the inbox is on fire 🔥🔥", "reactions": ["🎉", "🔥"], "count": 9},
+  {"name": "Khalid Rahman", "phone": "+971 55", "color": "#53bdeb", "avatar": "a04", "date": "Fri, Oct 10", "time": "11:02 PM",
+   "text": "Quick update from this week. We ran the new webinar twice: 186 registrations on Tuesday and 241 on Thursday. 14 calls booked in total and we already closed 5 of them. Two more proposals are out. Honestly did not expect this so soon."},
+  {"name": "Hannah", "phone": "+1 (617)", "color": "#fb5061", "avatar": "a02", "time": "2:26 PM",
+   "text": "Squeeze page converting at 38% now 🤯", "reactions": ["👍", "🔥"], "count": 4},
+  {"name": null, "phone": "+44 7911", "color": "#a791ff", "avatar": "none", "date": "Sat, Oct 18", "time": "10:41 AM",
+   "text": "Is it normal to get 9 sales calls from one webinar? Asking for a friend 😅"},
+  {"name": "Marco Bianchi", "phone": "+39 347", "color": "#fe6633", "avatar": "letter", "time": "7:48 PM",
+   "text": "Launch week numbers: 1,870 leads, 63 sales calls, 21 new clients. Biggest month in company history.", "reactions": ["🎉"], "count": 3},
+  {"name": "Lina", "phone": "+971 52", "color": "#acfcac", "avatar": "a11", "date": "Mon, Sep 29", "time": "9:20 AM",
+   "text": "Booked out for the next 10 days 🙌"}
  ]
 }
