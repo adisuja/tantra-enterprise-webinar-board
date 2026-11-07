@@ -117,81 +117,46 @@ def build_playbook(types, present):
 # ---------------------------------------------------------------- library
 
 CATEGORIES = [
-    ('foundation', 'Foundations', 'The documents every funnel element is written from.'),
-    ('traffic', 'Stage 1: Traffic', 'Outreach, event pages and ads that bring cold buyers to your page.'),
-    ('landing', 'Stage 2: Landing and Sign-Up', 'The pages that turn a click into a registrant.'),
-    ('nurture', 'Stage 3: Reminders and Nurture', 'What gets a registrant to show up.'),
-    ('conversion', 'Stage 4: Conversion Mechanism', 'The session, script and live engagement that make the offer.'),
-    ('sales', 'Stage 5: Follow-Up and Close', 'Everything after the session: attendees, no-shows, replays and sales calls.'),
-    ('content', 'Stage 6: Content and 52-Week Growth', 'Posts and newsletters that keep the list warm all year.'),
+    ('foundation', 'Foundations'), ('traffic', 'Stage 1: Traffic'), ('landing', 'Stage 2: Landing and sign-up'),
+    ('nurture', 'Stage 3: Reminders and nurture'), ('conversion', 'Stage 4: Conversion mechanism'),
+    ('sales', 'Stage 5: Follow-up and close'), ('growth', 'Stage 6: The next 52 weeks'),
 ]
-TYPES = {  # id: (category, name, description)
-    'company_overview': ('foundation', 'Company Overview', 'What the company does, for whom and why it is different, as briefed to the team.'),
-    'icp': ('foundation', 'Ideal Customer Profile', 'The accounts and people the funnel is built to reach.'),
-    'buyer_persona': ('foundation', 'Buyer Persona', 'The person the copy speaks to: goals, pains, objections and triggers.'),
-    'targeting_criteria': ('foundation', 'Targeting and Prospecting Criteria', 'The list filters: titles, industries, sizes and regions.'),
-    'job_titles': ('foundation', 'Job Title Lists', 'Exact titles used as list filters.'),
-    'positioning': ('foundation', 'Positioning Document', 'How the offer is framed against the alternatives.'),
-    'tone_of_voice': ('foundation', 'Tone of Voice', 'How the brand sounds, and how it never sounds.'),
-    'brand_voice_prompt': ('foundation', 'Brand Voice Prompt', 'A prompt that teaches an AI assistant the brand voice.'),
-    'profile_branding': ('foundation', 'LinkedIn Profile Branding', 'Headline, about section and banner copy for the people who send outreach.'),
-    'offer_doc': ('foundation', 'Offer Document', 'The offer, its components and its price.'),
-    'title_bank': ('foundation', 'Event Title Bank', 'Tested titles for the session or event.'),
-    'cold_email_sequence': ('traffic', 'Cold Email Sequences', 'Multi-step cold email threads that invite named buyers.'),
-    'cold_calendar_invite': ('traffic', 'Cold Calendar Invites', 'Invite titles and descriptions that land in a prospect calendar.'),
-    'linkedin_outreach_sequence': ('traffic', 'LinkedIn Outreach Sequences', 'Connection notes and the messages that follow acceptance.'),
-    'linkedin_event_page': ('traffic', 'LinkedIn Event Pages', 'The event title and description on LinkedIn.'),
-    'webinar_platform_event_page': ('traffic', 'Webinar Platform Event Pages', 'The registration page copy on the webinar platform.'),
-    'event_banner_copy': ('traffic', 'Event Banner Copy', 'The words on event and profile banners.'),
-    'ad_copy': ('traffic', 'Ad Copy', 'Paid ad headlines, primary text and calls to action.'),
-    'ad_plan': ('traffic', 'Ad Plans', 'Campaign structure, audiences and budgets.'),
-    'lead_gen_form': ('traffic', 'Lead Gen Forms', 'In-platform lead forms for paid social.'),
-    'giveaway_asset': ('traffic', 'Giveaway Assets', 'Free resources offered to earn the registration.'),
-    'event_outreach_sequence': ('traffic', 'Event Outreach Sequences', 'Outreach around an in-person or third-party event.'),
-    'landing_page_long': ('landing', 'Landing Pages (Long Form)', 'Full registration pages, section by section.'),
-    'landing_page_short': ('landing', 'Landing Pages (Short Form)', 'Short registration pages for warm traffic.'),
-    'registration_page': ('landing', 'Registration Pages', 'Platform registration page copy.'),
-    'reverse_squeeze_page': ('landing', 'Reverse Squeeze Page Scripts', 'Video-first page scripts that teach before they ask.'),
-    'website_page': ('landing', 'Website Pages', 'Supporting website copy.'),
-    'case_study': ('landing', 'Case Studies', 'Client stories used on pages, in emails and in the session.'),
-    'testimonials': ('landing', 'Testimonials', 'Client words used as proof.'),
-    'confirmation_email': ('nurture', 'Confirmation Emails', 'The message that lands the moment someone registers.'),
-    'reminder_email_sequence': ('nurture', 'Reminder Email Sequences', 'Timed reminders before the session.'),
-    'reminder_whatsapp': ('nurture', 'WhatsApp Reminders', 'Short reminder messages on WhatsApp.'),
-    'promo_email_sequence': ('nurture', 'Promotional Email Sequences', 'Emails that promote the event to an existing list.'),
-    'webinar_outline': ('conversion', 'Session Outlines', 'The structure of the live session, section by section.'),
-    'webinar_script': ('conversion', 'Session Scripts', 'Word-for-word talk tracks for the session.'),
-    'deck_outline': ('conversion', 'Deck Outlines', 'Slide-by-slide deck plans.'),
-    'bonus_slide': ('conversion', 'Bonus Slides', 'The slide that stacks the bonuses on the offer.'),
-    'start_end_slide': ('conversion', 'Start and End Slides', 'Holding slides before and after the session.'),
-    'chat_prompts': ('conversion', 'Chat Prompts', 'Questions posted in chat to keep the room engaged.'),
-    'polls': ('conversion', 'Live Polls', 'Polls that segment the room and surface buyers.'),
-    'live_dms': ('conversion', 'Live Direct Messages', 'One-to-one messages sent during the session.'),
-    'seeded_qa': ('conversion', 'Seeded Q&A', 'Questions the team asks openly to start the Q&A.'),
-    'attendee_followup': ('sales', 'Attendee Follow-Ups', 'What attendees receive after the session.'),
-    'noshow_followup': ('sales', 'No-Show Follow-Ups', 'What registrants who missed it receive.'),
-    'replay_email': ('sales', 'Replay Emails', 'Emails that deliver the recording.'),
-    'remarketing_email': ('sales', 'Remarketing Emails', 'Emails that bring past contacts back.'),
-    'whatsapp_followup': ('sales', 'WhatsApp Follow-Ups', 'Post-session follow-ups on WhatsApp.'),
-    'sales_call_reminders': ('sales', 'Sales Call Reminders', 'Reminders before a booked sales call.'),
-    'sales_call_followups': ('sales', 'Sales Call Follow-Ups', 'Follow-ups after a sales call.'),
-    'poll_reengagement': ('sales', 'Poll Re-Engagement', 'Messages to people based on their poll answers.'),
-    'cohort_email': ('sales', 'Cohort Emails', 'Emails that sell into a cohort or programme.'),
-    'rejection_downsell': ('sales', 'Downsell Emails', 'A lighter offer for people who declined.'),
-    'linkedin_post': ('content', 'LinkedIn Posts', 'Posts from founder and team profiles.'),
-    'newsletter': ('content', 'Newsletters', 'Weekly or monthly newsletters to the list.'),
-    'blog_article': ('content', 'Blog Articles', 'Long-form articles.'),
-    'content_prompt': ('content', 'Content Prompts', 'Prompts used to produce content at scale.'),
-    'content_calendar': ('content', 'Content Calendars', 'Planned posting schedules.'),
+# id: (category, name, description, playbook anchor, task number, task title, funnel to open the playbook on)
+TYPES = {
+    'brand_offer': ('foundation', 'Company, Offer and Brand Voice', 'The company overview, the offer, the positioning and the brand voice every other element is written from.', 'task-decisions-1-02', '1.02', 'Name your method, set your voice and list your proof', ''),
+    'icp': ('foundation', 'Ideal Customer Profile and Targeting', 'Who the funnel is for: the accounts, the buyer persona, and the exact list filters and job titles.', 'task-decisions-1-04', '1.04', 'Define the buyer persona from real customers', ''),
+    'event_titles': ('foundation', 'Event Titles', 'Tested titles for the session, workshop or video.', 'task-decisions-1-07', '1.07', 'Set the date and write the event line', ''),
+    'cold_email': ('traffic', 'Cold Email Sequences', 'Multi-step cold email threads that invite named buyers.', 'task-traffic-2-01', '2.01', 'Write the cold email thread', ''),
+    'calendar_invite': ('traffic', 'Cold Calendar Invites', 'Invite titles and descriptions that land in a prospect calendar.', 'task-traffic-2-02', '2.02', 'Write the cold calendar invite', ''),
+    'linkedin_outreach': ('traffic', 'LinkedIn Outreach Sequences', 'Connection notes and the messages that follow acceptance.', 'task-traffic-2-03', '2.03', 'Write the LinkedIn outreach sequence', ''),
+    'linkedin_profile': ('traffic', 'LinkedIn Profile Branding', 'Headlines, about sections and banner copy for the people who send outreach.', 'task-traffic-2-04', '2.04', 'Brand the sender profiles', ''),
+    'event_page': ('traffic', 'Event Pages', 'The event listing on LinkedIn and on the webinar platform.', 'task-traffic-2-05', '2.05', 'Publish the event pages', ''),
+    'ads': ('traffic', 'Ads and Ad Plans', 'Paid ad copy and the campaign plan behind it.', 'task-traffic-2-06', '2.06', 'Write and launch two ads', ''),
+    'social_posts': ('traffic', 'LinkedIn Posts', 'Posts that teach, build trust and promote the event.', 'task-traffic-2-07', '2.07', 'Set up your content engine', ''),
+    'lead_magnet': ('traffic', 'Lead Magnets and Giveaways', 'Free resources that earn a registration, a follow or an email.', 'task-conversion-social-5-03', '5.03', 'Offer one free resource that collects the email', 'social'),
+    'landing_page': ('landing', 'Landing Pages', 'Long-form landing pages, with their registration page, thank-you page and lead gen form.', 'task-landing-3-01', '3.01', 'Build the landing page in nine blocks', ''),
+    'proof': ('landing', 'Testimonials and Case Studies', 'Client proof used on pages, in emails and in the session.', 'task-landing-3-01', '3.01', 'Build the landing page in nine blocks', ''),
+    'confirmation': ('nurture', 'Confirmation Messages', 'The message that lands the moment someone signs up.', 'task-nurture-4-01', '4.01', 'Write the confirmation message', ''),
+    'reminders': ('nurture', 'Reminder Sequences', 'Email and WhatsApp reminders that get registrants to show up.', 'task-nurture-4-02', '4.02', 'Write the reminder sequence', ''),
+    'session': ('conversion', 'Session Outlines and Scripts', 'The structure and talk track of the live session.', 'task-conversion-webinar-5-01', '5.01', 'Write the session story', 'webinar'),
+    'deck': ('conversion', 'Deck Outlines', 'Slide-by-slide decks, bonus slides and holding slides.', 'task-conversion-webinar-5-02', '5.02', 'Build the deck', 'webinar'),
+    'live_engagement': ('conversion', 'Live Engagement: Polls, Chat, DMs and Q&A', 'Everything that keeps the room talking and surfaces buyers during the session.', 'task-conversion-webinar-5-03', '5.03', 'Write the run of show, polls, chat prompts and DMs', 'webinar'),
+    'vsl': ('conversion', 'Video Sales Letter Scripts', 'Video-first scripts for a reverse squeeze page: teach first, then ask.', 'task-conversion-rsp-5-01', '5.01', 'Write the video sales letter script', 'rsp'),
+    'event_followup': ('sales', 'Attendee and No-Show Follow-Ups', 'What attendees, no-shows and replay viewers receive after the session.', 'task-close-6-01', '6.01', 'Follow up attendees and no-shows', ''),
+    'call_followup': ('sales', 'Sales Call Reminders and Follow-Ups', 'The messages around a booked sales call.', 'task-close-6-03', '6.03', 'Put a clock on every pipeline stage', ''),
+    'offer_emails': ('sales', 'Offer, Cohort and Downsell Emails', 'Emails that sell the offer, a cohort seat or a lighter version.', 'task-conversion-launch-5-03', '5.03', 'Open the cart and close it on time', 'launch'),
+    'newsletter': ('growth', 'Newsletters', 'The weekly letter that keeps every non-buyer warm for a year.', 'task-growth-7-01', '7.01', 'Write the welcome series that teaches your method', ''),
+    'reengagement': ('growth', 'Re-Engagement and Remarketing', 'Emails that bring back past registrants, old leads and lost deals.', 'task-growth-7-03', '7.03', 'Reactivate the old list', ''),
 }
 DASH_FIX = [(re.compile(r'(?<=\d)\s?[–—]\s?(?=\d)'), ' to '), (re.compile(r'\s+[–—]\s+'), ', '), (re.compile('[–—]'), ', ')]
+CLEAN = HERE / '_work' / 'clean'
 
 def undash(o):
     if isinstance(o, dict): return {k: undash(v) for k, v in o.items()}
     if isinstance(o, list): return [undash(x) for x in o]
     if isinstance(o, str):
         for rx, rep in DASH_FIX: o = rx.sub(rep, o)
-        return o
+        return re.sub(r'\n{3,}', '\n\n', re.sub(r'[ \t]+\n', '\n', o)).strip() if '\n' in o else o.strip()
     return o
 
 def offer_group(t):
@@ -201,31 +166,62 @@ def offer_group(t):
     if 'consult' in t or 'coaching' in t: return 'Consulting'
     return 'Done-for-You Service'
 
+# One document per brand for these types (Adi, 2026-11-08): ICP, persona, targeting and job titles are one thing;
+# company overview, offer, positioning and brand voice are one thing.
+SINGLE = {
+    'icp': ('Ideal Customer Profile and Targeting', ['Ideal customer profile', 'Buyer persona', 'Targeting criteria', 'Job titles']),
+    'brand_offer': ('Company, Offer and Brand Voice', ['Company overview', 'Offer', 'Positioning', 'Brand voice']),
+}
+
+def merge_single(elements, brands):
+    out, groups = [], {}
+    for e in elements:
+        if e['type'] in SINGLE: groups.setdefault((e['type'], e['brand']), []).append(e)
+        else: out.append(e)
+    for (t, b), els in groups.items():
+        name, order = SINGLE[t]
+        els.sort(key=lambda e: order.index(e['subtype']) if e['subtype'] in order else 9)
+        parts = []
+        for e in els:
+            for v in e['versions'][:1]:
+                for p in v['parts']:
+                    lab = e['subtype'] + (': ' + p['label'] if p.get('label') and p['label'].lower() != e['subtype'].lower() else '')
+                    parts.append({**p, 'label': lab})
+        niche = brands[b].get('niche') or brands[b].get('label', '')
+        subs = ', '.join(dict.fromkeys(e['subtype'] for e in els if e['subtype']))
+        out.append({'id': els[0]['id'], 'brand': b, 'type': t, 'subtype': subs, 'title': f'{name}: {niche}'[:90],
+                    'context': f'One document holding the {subs.lower()} for a {niche} brand.', 'funnel': 'any', 'versions': [{'label': '', 'parts': parts}]})
+    return out
+
 def library_data():
-    if not ANON.exists():
+    if not CLEAN.exists():
         return json.loads(DATA_SNAPSHOT.read_text())
     brands, elements = {}, []
-    for d in sorted(p for p in ANON.iterdir() if p.is_dir()):
-        b = json.loads((d / '_brand.json').read_text()) if (d / '_brand.json').exists() else {}
+    for d in sorted(p for p in CLEAN.iterdir() if p.is_dir()):
+        src = ANON / d.name / '_brand.json'
+        b = json.loads(src.read_text()) if src.exists() else {}
         code = 'b' + str(len(brands) + 1)
-        brands[code] = {k: b.get(k, '') for k in ('label', 'industry', 'niche', 'offer', 'offer_type', 'audience', 'geography', 'funnels_used', 'conversion_mechanism')}
-        brands[code]['offer_type'] = offer_group(b.get('offer_type', ''))
+        label = b.get('label', '')
+        brands[code] = {'label': label, 'industry': b.get('industry', ''), 'niche': label.split(' · ', 1)[-1] if ' · ' in label else b.get('niche', ''),
+                        'offer_type': offer_group(b.get('offer_type', '')), 'audience': b.get('audience', '')}
         for f in sorted(d.glob('*.json')):
             if f.name.startswith('_'): continue
             el = json.loads(f.read_text())
-            if el.get('type') not in TYPES: continue
-            keep = {k: el[k] for k in ('title', 'type', 'funnel', 'context', 'variants', 'sections') if el.get(k)}
-            keep['id'] = f'{code}-{len(elements) + 1}'; keep['brand'] = code
-            if not re.sub(r'\[[^\]]*\]|[^A-Za-z]', '', keep.get('title', '')):   # title was only a placeholder after anonymising
-                keep['title'] = TYPES[el['type']][1].rstrip('s') + (': ' + keep['title'] if keep.get('title') else '')
-            keep['category'] = TYPES[el['type']][0]
+            if el.get('type') not in TYPES or not el.get('versions'): continue
+            versions = [{'label': v.get('label', ''), 'parts': [{k: p[k] for k in ('label', 'subject', 'preheader', 'body', 'cta') if p.get(k)} for p in v.get('parts', []) if p.get('body')]} for v in el['versions']]
+            versions = [v for v in versions if v['parts']]
+            if not versions: continue
+            keep = {'id': f'{code}-{len(elements) + 1}', 'brand': code, 'type': el['type'], 'subtype': el.get('subtype', ''), 'title': el.get('title', ''),
+                    'context': el.get('context', ''), 'funnel': el.get('funnel', ''), 'versions': versions}
             elements.append(undash(keep))
+    elements = merge_single(elements, brands)
     order = {t: i for i, t in enumerate(TYPES)}
-    elements.sort(key=lambda e: (order[e['type']], e['brand']))
+    elements.sort(key=lambda e: (order[e['type']], e['subtype'], e['brand']))
     industries = sorted({b['industry'] for b in brands.values() if b.get('industry')})
     offers = sorted({b['offer_type'] for b in brands.values() if b.get('offer_type')})
-    cats = [{'id': c, 'name': n, 'desc': d, 'types': [{'id': t, 'name': v[1], 'desc': v[2]} for t, v in TYPES.items() if v[0] == c]} for c, n, d in CATEGORIES]
-    data = {'brands': undash(brands), 'elements': elements, 'categories': cats, 'industries': industries, 'offers': offers, 'funnelNames': {**FN, 'reverse-squeeze': 'Reverse Squeeze Page', 'book-a-call': 'Book a Call', 'product-launch': 'Product Launch'}}
+    present = {e['type'] for e in elements}
+    cats = [{'id': c, 'name': n, 'types': [{'id': t, 'name': v[1], 'desc': v[2], 'task': v[3], 'taskNum': v[4], 'taskTitle': v[5], 'funnel': v[6]} for t, v in TYPES.items() if v[0] == c and t in present]} for c, n in CATEGORIES]
+    data = {'brands': undash(brands), 'elements': elements, 'categories': [c for c in cats if c['types']], 'industries': industries, 'offers': offers}
     DATA_SNAPSHOT.parent.mkdir(exist_ok=True)
     DATA_SNAPSHOT.write_text(json.dumps(data, ensure_ascii=False))
     return data
@@ -279,13 +275,14 @@ def hub():
     return page('Your Webinar Bonuses', 'hub', body, css=['hub.css'])
 
 def library_page(data):
-    body = '''<main id="main" class="lib">
-  <div class="lib__hero"><div><h1>The <em>$1MN+</em> AI Funnel Prompt Library</h1><p>Real funnel elements we wrote for B2B brands, with every brand name removed. Pick an industry or offer, open an element type on the left, read the real examples, then copy the AI prompt that rebuilds it for your brand.</p></div><div class="lib__stats"></div></div>
-  <ol class="steps3"><li><b>Set up once.</b> Paste the <a href="/prompts/#setup">setup prompt</a> into a new project in ChatGPT, Claude, Gemini, Grok or any assistant, and fill in your Funnel Brief.</li><li><b>Pick an element.</b> Choose the element type on the left, then open an example that fits your industry and offer.</li><li><b>Copy the AI prompt.</b> Press <b>Copy AI prompt with this example</b>, fill every [FILL: ...] and paste it into the same project.</li></ol>
-  <div class="filters"></div>
-  <div class="lib__grid">
-    <aside class="rail"><button class="btn rail__toggle" aria-expanded="false"><span>Element types</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="rail__body"><input class="search" type="search" placeholder="Search every element" aria-label="Search every element"><nav aria-label="Element types"></nav></div></aside>
-    <section class="list" aria-live="polite"><div id="list"></div></section>
+    n_el, n_ty = len(data['elements']), sum(len(c['types']) for c in data['categories'])
+    body = f'''<main id="main" class="lib">
+  <div class="lib__top"><div><h1>The $1MN+ AI Funnel Prompt Library</h1><p>{n_el} real funnel elements from seven B2B funnels, in {n_ty} types that follow the playbook. Read an example, then copy its prompt: your AI assistant rebuilds it for your brand.</p></div><a class="btn" href="/prompts/#setup">Start with the setup prompt</a></div>
+  <div class="bar2"><div class="seg seg--i" role="group" aria-label="Industry"></div><select class="sel sel--o" aria-label="Offer type"></select><input class="search" type="search" placeholder="Search every element" aria-label="Search every element"></div>
+  <div class="panes">
+    <aside class="rail" aria-label="Element types"><nav></nav></aside>
+    <section class="col" aria-label="Examples"><select class="sel picker" aria-label="Element type"></select><div class="list" aria-live="polite"></div></section>
+    <section class="pv" aria-label="Preview" aria-live="polite"></section>
   </div>
 </main>'''
     return page('The $1MN+ AI Funnel Prompt Library', 'library', body, css=['library.css'], js=['library.js'])
@@ -293,26 +290,32 @@ def library_page(data):
 def prompts_page(prompts, data):
     present = {e['type'] for e in data['elements']}
     tools = [('ChatGPT', 'Projects: New project, paste the setup prompt into the project instructions, upload your Funnel Brief as a file.'),
-             ('Claude', 'Projects: Create project, paste the setup prompt into project instructions, add your Funnel Brief to project knowledge.'),
+             ('Claude', 'Projects: Create project, paste the setup prompt into the project instructions, add your Funnel Brief to the project knowledge.'),
              ('Gemini', 'Gems: New Gem, paste the setup prompt as the instructions, add your Funnel Brief as a knowledge file.'),
-             ('Grok', 'Projects (or a new chat with the setup prompt as the first message), then attach your Funnel Brief.'),
+             ('Grok', 'Projects, or a new chat with the setup prompt as the first message, then attach your Funnel Brief.'),
              ('Codex, Claude Code or Cursor', 'Make a folder, save the setup prompt as AGENTS.md (Codex, Cursor) or CLAUDE.md (Claude Code), and save your Funnel Brief as funnel-brief.md next to it.'),
              ('Any other assistant', 'Paste the setup prompt and your filled Funnel Brief as the first message of a new chat, and keep using that chat.')]
     tl = ''.join(f'<li><b>{esc(a)}</b>{esc(b)}</li>' for a, b in tools)
+    ex = 'REFERENCE EXAMPLE:\n"""\n[FILL: paste one example from the library here, or use Copy prompt on an example in the library to get this filled in]\n"""'
     by_cat = []
     for c in data['categories']:
-        items = ''.join(f'<details><summary>{esc(t["name"])}<span>{f'<a href="/library/#t={t["id"]}">See examples</a>' if t["id"] in present else 'No library examples yet'}</span></summary><div>{prompt_box(t["name"] + " prompt", prompts["types"][t["id"]]["prompt"].replace("{{EXAMPLE}}", "REFERENCE EXAMPLE:" + chr(10) + chr(34) * 3 + chr(10) + "[FILL: paste one example from the library, or use Copy AI prompt with this example in the library]" + chr(10) + chr(34) * 3))}</div></details>' for t in c['types'] if t['id'] in prompts['types'])
-        if items: by_cat.append(f'<h3 class="pp__cat">{esc(c["name"])}</h3><div class="plist">{items}</div>')
+        rows = []
+        for t in c['types']:
+            if t['id'] not in prompts['types']: continue
+            body = prompts['types'][t['id']]['prompt'].replace('{{EXAMPLE}}', ex)
+            link = f'<a href="/library/#t={t["id"]}">See examples</a>' if t['id'] in present else ''
+            rows.append(f'<div class="prow"><div class="prow__h"><b>{esc(t["name"])}</b>{link}<button class="btn btn--sm btn--primary" data-copy-raw>Copy prompt</button></div><details><summary>Read the prompt</summary>{prompt_box(t["name"] + " prompt", body)}</details></div>')
+        if rows: by_cat.append(f'<h3 class="pp__cat">{esc(c["name"])}</h3><div class="plist">{"".join(rows)}</div>')
     body = f'''<main id="main" class="pp">
   <h1>The AI prompts</h1>
-  <p class="lead">One setup prompt turns your AI assistant into a funnel copywriter that knows your brand. Then one prompt per funnel element rebuilds any example in the library for your offer, your buyer and your links.</p>
+  <p class="lead">One setup prompt turns your AI assistant into a funnel copywriter that knows your business. Then one prompt per funnel element writes it for your offer, your buyer and your links, following a proven template.</p>
   <h2 id="setup">Step 1: The setup prompt</h2>
-  <p>Run this once per brand. It holds your Funnel Brief and the rules every element follows, so each element prompt after it stays short.</p>
+  <p>Run it once per funnel, with your Funnel Brief filled in. Every element prompt after it relies on it.</p>
   {prompt_box('Setup prompt', prompts['setup'])}
   <h2 id="where">Step 2: Where to paste it</h2>
   <ul class="tools">{tl}</ul>
   <h2 id="elements">Step 3: One prompt per element</h2>
-  <p>Fill every <span class="fill" style="color:#92400e;background:#fef3c7">[FILL: ...]</span>. In the <a href="/library/">library</a>, <b>Copy AI prompt with this example</b> on any example gives you the same prompt with that example already pasted in.</p>
+  <p>Each prompt holds the element's full template. Fill every <span class="fill" style="color:#92400e;background:#fef3c7">[FILL: ...]</span>. In the <a href="/library/">library</a>, the Prompt button on any example gives you the same prompt with that example already inside.</p>
   {''.join(by_cat)}
 </main>'''
     return page('The AI prompts', 'prompts', body, css=['library.css'])
