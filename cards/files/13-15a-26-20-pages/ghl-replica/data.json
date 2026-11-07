@@ -1,0 +1,396 @@
+{
+ "location_name": "Tantra Enterprise",
+ "location_city": "Bengaluru, Karnataka",
+ "user_initials": "AM",
+ "total": "1014 opportunities",
+ "views": [
+  "Open opportunities",
+  "Webinar Leads",
+  "VSL Leads",
+  "Enterprise - 2026 Opps"
+ ],
+ "stages": [
+  {
+   "stage": "Duplicates",
+   "count": "38 opportunities",
+   "total": "$142 600,00",
+   "cards": [
+    {
+     "name": "Gabriel Santos",
+     "business": "Evergreen Coaching Co",
+     "funnel": "Webinar 7",
+     "value": "$9900,00",
+     "when": "Oct 26th, 2:30 pm",
+     "assignee": "KR"
+    },
+    {
+     "name": "Adrian Cho",
+     "business": "Ridgeway Solar",
+     "funnel": "VSL 2",
+     "value": "$8000,00",
+     "when": "Oct 12th, 10:00 am",
+     "assignee": "SM"
+    },
+    {
+     "name": "Felix Andersson",
+     "business": "Foundry Leadership",
+     "funnel": "VSL 2",
+     "value": "$9600,00",
+     "when": "Oct 16th, 10:30 am",
+     "assignee": "KR"
+    },
+    {
+     "name": "Owen Gallagher",
+     "business": "Ashford Private Clinic",
+     "funnel": "Webinar 11",
+     "value": "$6500,00",
+     "when": "Oct 27th, 9:30 am",
+     "assignee": "NB"
+    },
+    {
+     "name": "Marcus Ellery",
+     "business": "Lighthouse Edtech",
+     "funnel": "Webinar 11",
+     "value": "$12 000,00",
+     "when": "Oct 25th, 9:00 am",
+     "assignee": "KR"
+    }
+   ]
+  },
+  {
+   "stage": "Application, No Booking",
+   "count": "126 opportunities",
+   "total": "$468 300,00",
+   "cards": [
+    {
+     "name": "Rachel Okafor",
+     "business": "Vantage Point Labs",
+     "funnel": "Webinar 10",
+     "value": "$9000,00",
+     "when": "Oct 25th, 5:00 pm",
+     "assignee": "NB"
+    },
+    {
+     "name": "Declan Murphy",
+     "business": "Highline Fintech",
+     "funnel": "VSL 5",
+     "value": "$8200,00",
+     "when": "Oct 26th, 1:00 pm",
+     "assignee": "KR"
+    },
+    {
+     "name": "Claire Dubois",
+     "business": "Arcadia Travel",
+     "funnel": "Webinar 11",
+     "value": "$7800,00",
+     "when": "Oct 8th, 3:00 pm",
+     "assignee": "SM"
+    },
+    {
+     "name": "Nadia Petrova",
+     "business": "Tidewater Marine",
+     "funnel": "Webinar 9",
+     "value": "$7000,00",
+     "when": "Oct 16th, 4:00 pm",
+     "assignee": "DL"
+    },
+    {
+     "name": "Sofia Marchetti",
+     "business": "Pinnacle Talent",
+     "funnel": "VSL 4",
+     "value": "$5200,00",
+     "when": "Oct 30th, 9:00 am",
+     "assignee": "NB"
+    }
+   ]
+  },
+  {
+   "stage": "Upcoming 1st Call Booked",
+   "count": "184 opportunities",
+   "total": "$812 700,00",
+   "cards": [
+    {
+     "name": "Omar Haddad",
+     "business": "Ironclad Logistics",
+     "funnel": "Webinar 9",
+     "value": "$6300,00",
+     "when": "Oct 13th, 5:30 pm",
+     "assignee": "KR"
+    },
+    {
+     "name": "Tessa Monroe",
+     "business": "Harbor & Pine Capital",
+     "funnel": "VSL 2",
+     "value": "$7400,00",
+     "when": "Oct 22nd, 3:00 pm",
+     "assignee": "DL"
+    },
+    {
+     "name": "Isaac Thornton",
+     "business": "Halcyon Wellness",
+     "funnel": "Webinar 11",
+     "value": "$5800,00",
+     "when": "Oct 17th, 11:00 am",
+     "assignee": "DL"
+    },
+    {
+     "name": "Naomi Fischer",
+     "business": "Meridian SaaS",
+     "funnel": "Webinar 12",
+     "value": "$12 000,00",
+     "when": "Oct 19th, 4:00 pm",
+     "assignee": "KR"
+    },
+    {
+     "name": "Kieran Walsh",
+     "business": "Kestrel Ventures",
+     "funnel": "Webinar 11",
+     "value": "$4200,00",
+     "when": "Oct 26th, 9:30 am",
+     "assignee": "KR"
+    }
+   ]
+  },
+  {
+   "stage": "1st Call Done",
+   "count": "352 opportunities",
+   "total": "$1 694 200,00",
+   "cards": [
+    {
+     "name": "Julia Novak",
+     "business": "Northbridge Advisory",
+     "funnel": "Webinar 7",
+     "value": "$6500,00",
+     "when": "Oct 15th, 9:00 am",
+     "assignee": "SM"
+    },
+    {
+     "name": "Brianna Cole",
+     "business": "Silverleaf Dental Group",
+     "funnel": "Webinar 10",
+     "value": "$10 600,00",
+     "when": "Oct 28th, 1:30 pm",
+     "assignee": "NB"
+    },
+    {
+     "name": "Ruth Abernathy",
+     "business": "Atlas Learning Co",
+     "funnel": "Webinar 11",
+     "value": "$6600,00",
+     "when": "Oct 26th, 10:30 am",
+     "assignee": "DL"
+    },
+    {
+     "name": "Megan Sullivan",
+     "business": "Keystone Legal Group",
+     "funnel": "Webinar 9",
+     "value": "$5400,00",
+     "when": "Oct 9th, 3:00 pm",
+     "assignee": "KR"
+    },
+    {
+     "name": "Chloe Bennett",
+     "business": "Sparrow Creative",
+     "funnel": "Webinar 8",
+     "value": "$8300,00",
+     "when": "Oct 6th, 10:00 am",
+     "assignee": "KR"
+    }
+   ]
+  },
+  {
+   "stage": "2nd Call Done (In Prog)",
+   "count": "147 opportunities",
+   "total": "$1 128 900,00",
+   "cards": [
+    {
+     "name": "Lucia Ferreira",
+     "business": "Cobalt Security",
+     "funnel": "VSL 3",
+     "value": "$7800,00",
+     "when": "Oct 27th, 5:30 pm",
+     "assignee": "KR"
+    },
+    {
+     "name": "Victor Lindqvist",
+     "business": "Riverstone Finance",
+     "funnel": "Webinar 8",
+     "value": "$15 900,00",
+     "when": "Oct 11th, 11:00 am",
+     "assignee": "SM"
+    },
+    {
+     "name": "Elena Vasquez",
+     "business": "Nimbus Cloud Services",
+     "funnel": "VSL 2",
+     "value": "$6600,00",
+     "when": "Oct 17th, 10:00 am",
+     "assignee": "NB"
+    },
+    {
+     "name": "Ingrid Solberg",
+     "business": "Stonebridge Partners",
+     "funnel": "Webinar 7",
+     "value": "$23 300,00",
+     "when": "Oct 22nd, 4:30 pm",
+     "assignee": "SM"
+    },
+    {
+     "name": "Mei Lin Tan",
+     "business": "Sterling Payroll",
+     "funnel": "VSL 2",
+     "value": "$14 800,00",
+     "when": "Oct 26th, 5:30 pm",
+     "assignee": "DL"
+    }
+   ]
+  },
+  {
+   "stage": "Warm List (1st or 2nd Call done)",
+   "count": "61 opportunities",
+   "total": "$497 300,00",
+   "cards": [
+    {
+     "name": "Fatima Zahra",
+     "business": "Quarry Street Studios",
+     "funnel": "VSL 5",
+     "value": "$10 600,00",
+     "when": "Oct 7th, 10:00 am",
+     "assignee": "DL"
+    },
+    {
+     "name": "Leila Haddadi",
+     "business": "Bluefin Analytics",
+     "funnel": "VSL 3",
+     "value": "$5500,00",
+     "when": "Oct 31st, 12:30 pm",
+     "assignee": "KR"
+    },
+    {
+     "name": "Mateo Rinaldi",
+     "business": "Larkspur Interiors",
+     "funnel": "Webinar 7",
+     "value": "$3200,00",
+     "when": "Oct 28th, 4:30 pm",
+     "assignee": "NB"
+    },
+    {
+     "name": "Arjun Kapoor",
+     "business": "Granite Peak Builders",
+     "funnel": "Webinar 12",
+     "value": "$7900,00",
+     "when": "Oct 12th, 10:00 am",
+     "assignee": "SM"
+    },
+    {
+     "name": "Daniel Whitford",
+     "business": "Westbrook Accounting",
+     "funnel": "Webinar 9",
+     "value": "$7400,00",
+     "when": "Oct 18th, 2:30 pm",
+     "assignee": "KR"
+    }
+   ]
+  },
+  {
+   "stage": "Hot List (Verbal Commit)",
+   "count": "34 opportunities",
+   "total": "$318 600,00",
+   "cards": [
+    {
+     "name": "Henry Lancaster",
+     "business": "Orbit Ecommerce",
+     "funnel": "Webinar 11",
+     "value": "$23 000,00",
+     "when": "Oct 14th, 9:30 am",
+     "assignee": "NB"
+    },
+    {
+     "name": "Caleb Morrison",
+     "business": "Elevate Health Group",
+     "funnel": "Webinar 9",
+     "value": "$10 600,00",
+     "when": "Oct 31st, 9:30 am",
+     "assignee": "NB"
+    },
+    {
+     "name": "Yuki Tanaka",
+     "business": "Parkside Physio",
+     "funnel": "Webinar 11",
+     "value": "$10 300,00",
+     "when": "Oct 11th, 12:00 pm",
+     "assignee": "SM"
+    },
+    {
+     "name": "Hannah Kowalski",
+     "business": "Crescent Fitness Studios",
+     "funnel": "Webinar 10",
+     "value": "$14 500,00",
+     "when": "Oct 10th, 11:00 am",
+     "assignee": "DL"
+    },
+    {
+     "name": "Anika Bose",
+     "business": "Redwood Wealth Partners",
+     "funnel": "Webinar 10",
+     "value": "$18 700,00",
+     "when": "Oct 27th, 12:00 pm",
+     "assignee": "KR"
+    }
+   ]
+  },
+  {
+   "stage": "Deal Won",
+   "count": "72 opportunities",
+   "total": "$1 246 800,00",
+   "cards": [
+    {
+     "name": "Rohan Mehta",
+     "business": "Brightwave Media",
+     "funnel": "VSL 5",
+     "value": "$20 800,00",
+     "when": "Oct 20th, 4:30 pm",
+     "assignee": "NB"
+    },
+    {
+     "name": "Simon Archer",
+     "business": "Fernwood Academy",
+     "funnel": "VSL 2",
+     "value": "$16 100,00",
+     "when": "Oct 19th, 9:00 am",
+     "assignee": "DL"
+    },
+    {
+     "name": "Grant Holloway",
+     "business": "Lumen Growth Partners",
+     "funnel": "VSL 5",
+     "value": "$13 200,00",
+     "when": "Oct 21st, 2:00 pm",
+     "assignee": "NB"
+    },
+    {
+     "name": "Jonas Albrecht",
+     "business": "Beacon Recruitment",
+     "funnel": "Webinar 10",
+     "value": "$23 000,00",
+     "when": "Oct 18th, 3:00 pm",
+     "assignee": "NB"
+    },
+    {
+     "name": "Patrick Doyle",
+     "business": "Copperline Agency",
+     "funnel": "Webinar 10",
+     "value": "$11 000,00",
+     "when": "Oct 6th, 4:00 pm",
+     "assignee": "DL"
+    }
+   ]
+  },
+  {
+   "stage": "Long Term Nurture",
+   "count": "0 opportunities",
+   "total": "$0,00",
+   "cards": []
+  }
+ ]
+}
