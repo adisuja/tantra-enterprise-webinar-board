@@ -18,10 +18,10 @@ OUT = IMG / 'bonus'
 W, H = 1600, 2400
 
 BOOKS = {
-    'playbook': {'no': '01', 'kicker': 'The $1MN+', 'title': ['B2B RevOps', 'Playbook'],
+    'playbook': {'no': '01', 'big': '$1MN+', 'title': ['B2B RevOps', 'Playbook'],
                  'sub': 'The exact blueprint we use to build high-converting RevOps processes & funnels.'},
-    'prompts': {'no': '02', 'kicker': 'The $1MN+', 'title': ['AI Funnel', 'Prompt', 'Library'],
-                'sub': 'The prompts we use to engineer over 100+ RevOps funnel elements using AI.'},
+    'prompts': {'no': '02', 'big': '$1MN+', 'title': ['AI Funnel', 'Prompt', 'Library'],
+                'sub': 'The prompts we use to engineer 100+ RevOps funnel elements using AI.'},
     'calculator': {'no': '03', 'kicker': 'The AI RevOps', 'title': ['Revenue', 'Calculator'], 'light': True, 'size': 212,
                    'sub': 'Understand exactly what you need to do to achieve your revenue goals.'},
 }
@@ -60,6 +60,18 @@ h1 span { display: block; }
 .rule { width: 160px; height: 8px; border-radius: 4px; background: var(--accent); margin-top: 56px; box-shadow: 0 0 30px var(--glow); }
 .sub { margin-top: 40px; max-width: 980px; font: 500 46px/1.32 'Inter', sans-serif; letter-spacing: -.01em; color: rgba(255,255,255,.86); }
 .cv--long .kick { margin-top: 30px; }
+/* $1MN+ is the most important part of the title (Adi 2026-11-08): the largest type on the cover, in a highlight box */
+.pre { margin-top: 64px; font: 800 64px/1 'Archivo', sans-serif; font-stretch: 75%; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.big { margin-top: 18px; align-self: flex-start; }
+.big span { display: inline-block; padding: 6px 30px 18px 26px; border-radius: 22px; background: var(--accent); color: var(--ink);
+  font: 900 380px/.86 'Archivo', sans-serif; font-stretch: 72%; letter-spacing: -.01em;
+  box-shadow: 0 30px 90px -20px var(--glow), inset 0 -10px 0 rgba(0,0,0,.12); }
+.big + h1 { margin-top: 30px; font-size: 168px; line-height: .9; }
+.cv--long .pre { margin-top: 36px; }
+.cv--long .big span { font-size: 330px; }
+.cv--long .big + h1 { font-size: 138px; margin-top: 24px; }
+.cv--long .big ~ .rule { margin-top: 36px; }
+.cv--long .big ~ .sub { margin-top: 26px; }
 .cv--long h1 { font-size: 214px; margin-top: 28px; }
 .cv--long .rule { margin-top: 44px; }
 .cv--long .sub { margin-top: 32px; }
@@ -84,7 +96,7 @@ def cover(book, pal):
     return f"""<section class="cv{' cv--long' if len(b['title']) > 2 else ''}{' cv--light' if b.get('light') else ''}" id="{book}-{pal}" style="background-image:url({art});--accent:{c['accent']};--ink:{c['ink']};--glow:{c['glow']};--paper:{c.get('paper', '255 255 255')}">
   <div class="in">
     <div class="top"><p class="logo"><img src="{mark}" alt=""><img src="{word}" alt="Tantra"><sup>&copy;</sup></p><p class="no">Bonus <b>{b['no']}</b></p></div>
-    <p class="kick">{b['kicker']}</p>
+    {f'<p class="pre">The</p><p class="big"><span>{b["big"]}</span></p>' if b.get('big') else f'<p class="kick">{b["kicker"]}</p>'}
     <h1{f' style="font-size:{b["size"]}px"' if b.get('size') else ''}>{''.join(f'<span>{t}</span>' for t in b['title'])}</h1>
     <div class="rule"></div>
     <p class="sub">{b['sub'].replace('&', '&amp;')}</p>
