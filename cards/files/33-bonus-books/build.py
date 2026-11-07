@@ -230,6 +230,10 @@ def load_prompts():
     """content/prompts/setup.md is the setup prompt; content/prompts/types.md holds '## <type_id> | <name>' sections."""
     setup = (CONTENT / 'prompts' / 'setup.md').read_text().strip() if (CONTENT / 'prompts' / 'setup.md').exists() else ''
     types = {}
+    for f in sorted((CONTENT / 'prompts' / 'types').glob('*.md')):   # one file per element type: first line '# <name>'
+        head, _, body = f.read_text().partition('\n')
+        types[f.stem] = {'name': head.lstrip('# ').strip(), 'prompt': body.strip()}
+    if types: return {'setup': setup, 'types': types}
     p = CONTENT / 'prompts' / 'types.md'
     if p.exists():
         for blk in re.split(r'^## ', p.read_text(), flags=re.M)[1:]:
@@ -296,7 +300,7 @@ def prompts_page(prompts, data):
              ('Codex, Claude Code or Cursor', 'Make a folder, save the setup prompt as AGENTS.md (Codex, Cursor) or CLAUDE.md (Claude Code), and save your Funnel Brief as funnel-brief.md next to it.'),
              ('Any other assistant', 'Paste the setup prompt and your filled Funnel Brief as the first message of a new chat, and keep using that chat.')]
     tl = ''.join(f'<li><b>{esc(a)}</b>{esc(b)}</li>' for a, b in tools)
-    ex = 'REFERENCE EXAMPLE:\n"""\n[FILL: paste one example from the library here, or use Copy prompt on an example in the library to get this filled in]\n"""'
+    ex = '"""\n[FILL: paste one example from the library here, or press Prompt on an example in the library to get this filled in]\n"""'
     by_cat = []
     for c in data['categories']:
         rows = []
