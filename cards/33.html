@@ -1,0 +1,13 @@
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>Item 33: the two webinar bonuses</h1>
+<p>Live, behind the bonus password from the brief (not written here because this README appears on the public board): https://tantra-bonuses.growthcluborg.workers.dev/</p>
+<ul>
+<li><code>/playbook/</code>: The $1MN+ B2B RevOps Playbook. Source: <code>content/playbook/*.md</code>.</li>
+<li><code>/library/</code>: The $1MN+ AI Funnel Prompt Library. Data: <code>private/library.json</code> (anonymised; rebuilt from <code>_work/anon/</code> when it exists).</li>
+<li><code>/prompts/</code>: the setup prompt and one prompt per element type. Source: <code>content/prompts/</code>.</li>
+</ul>
+<p>Rebuild and deploy: <code>bash publish.sh</code> (runs <code>build.py</code>, then <code>wrangler deploy</code> from <code>worker/</code> to the Growthcluborg Cloudflare account). The Worker (<code>worker/src/index.js</code>) checks the password on the server, so no page, data file or image is served without it. Secrets: <code>BONUS_PASSWORD</code>, <code>COOKIE_SECRET</code> (<code>wrangler secret put</code>).</p>
+<p>Library pipeline (private, <code>_work/</code> is git-ignored because it holds raw client copy):
+1. <code>tools/fetch_docs.py</code> pulls the 7 client docs (all tabs) with the local Google token; <code>tools/split_tabs.py</code> writes one file per tab.
+2. One Sonnet agent per brand extracts elements verbatim by line slicing (<code>_work/EXTRACT_BRIEF.md</code>), with an identifier list (<code>_subs.json</code>) and an anonymous brand profile.
+3. <code>tools/anonymise.py</code> replaces every brand, person, client, programme, link, email and phone; a Haiku pass reviews leftover capitalised words (<code>_extra_subs.json</code>).
+4. <code>build.py</code> writes <code>private/library.json</code> and the site; it stops the build if an em or en dash appears anywhere.</p></div></details><details class="doc"><summary>Files for import or upload (5)</summary><ul class="files"><li><a href="cards/files/33-bonus-books/build.py" target="_blank" rel="noopener">build.py</a></li><li><a href="cards/files/33-bonus-books/tools/anatomy_patch.py" target="_blank" rel="noopener">tools/anatomy_patch.py</a></li><li><a href="cards/files/33-bonus-books/tools/anonymise.py" target="_blank" rel="noopener">tools/anonymise.py</a></li><li><a href="cards/files/33-bonus-books/tools/fetch_docs.py" target="_blank" rel="noopener">tools/fetch_docs.py</a></li><li><a href="cards/files/33-bonus-books/tools/split_tabs.py" target="_blank" rel="noopener">tools/split_tabs.py</a></li></ul></details>
