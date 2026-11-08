@@ -12,7 +12,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 W = ROOT / '_work'
 OUT = ROOT / 'site' / 'library' / 'media'
 FACE = cv2.CascadeClassifier(str(W / 'models' / 'face.xml'))
-BRAND_OF = lambda b: 'bighammer' if b.startswith('bighammer') else b
+ALIAS = json.loads((W / 'brand_alias.json').read_text()) if (W / 'brand_alias.json').exists() else {}   # source folder prefix -> brand folder (private)
+BRAND_OF = lambda b: next((v for k, v in ALIAS.items() if b.startswith(k)), b)
 
 def anon_name(path, ext='webp'):
     return hashlib.sha1(('tb1:' + str(path)).encode()).hexdigest()[:16] + '.' + ext
@@ -57,7 +58,7 @@ def main():
             if not brand:
                 brand = BRAND_OF(rf.stem.replace('review_', ''))
             if it.get('attach_to'):
-                attach.setdefault(f"{brand}/{it['attach_to']}", []).append(rec)
+                attach.setdefault(f"{brand}/{pathlib.Path(it['attach_to']).name}", []).append(rec)
             elif it.get('new_element'):
                 ne = it['new_element']; key = f"{brand}/{ne.get('key', 'media')}"
                 g = new_groups.setdefault(key, {'brand': brand, **{k: ne.get(k, '') for k in ('type', 'subtype', 'title', 'context')}, 'media': []})
