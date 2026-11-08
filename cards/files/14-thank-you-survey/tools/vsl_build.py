@@ -80,7 +80,7 @@ def scripts_md():
           "## Still open before you record", "",
           "1. **How buyers receive the OS (U31).** The line says they get it straight away after clicking Yes; the checkout session confirms the delivery.",
           "2. **The WhatsApp group name (T08).** The phone mock shows it.",
-          "3. **Real client WhatsApp screenshots (U10).** The registration page's 15 messages are placeholders with invented names, so the montage needs real ones, or the editor cuts that 3-second beat.",
+          "3. **Mock case studies (U09A to U09C, U10).** Ryan Costa (Costa Consultants), Daniel Okafor (Daniel Okafor Consulting) and Elena Ruiz (Synergy Solutions), their figures, logos and the WhatsApp montage are mock elements for the team review. The team replaces them with real client names, numbers, logos and screenshots before the video is recorded and published.",
           "4. **Pages that still use the old wording.** The thank-you and confirmed pages say 'Personal Revenue Plan', and /funnelos/ lists three pack parts and '$15,000 to $25,000'. They should match the videos: 'Revenue Calculator', two parts, 'from $15,000'.", ""]
     return "\n".join(o)
 
@@ -135,8 +135,8 @@ def plan_md():
                 m = re.match(r"\[(\w+)\]\s*(.*)", a)
                 tag, txt = (m.group(1), m.group(2)) if m else ("NOTE", a)
                 seen.setdefault(tag, []).append(f"{txt} ({x['id']})")
-    names = {"ADI": "Only Adi can supply", "CAPTURE": "Screen-record from our pages", "MAKE": "Design new", "HAVE": "Already in the repo", "NOTE": "Notes"}
-    for tag in ["ADI", "CAPTURE", "MAKE", "HAVE", "NOTE"]:
+    names = {"MOCK": "Mock for the team review: replace with real client data before launch", "ADI": "Only Adi can supply", "CAPTURE": "Screen-record from our pages", "MAKE": "Design new", "HAVE": "Already in the repo", "NOTE": "Notes"}
+    for tag in ["MOCK", "ADI", "CAPTURE", "MAKE", "HAVE", "NOTE"]:
         if tag in seen:
             o += [f"**{names[tag]}**", ""] + [f"- {i}" for i in seen[tag]] + [""]
     o += ["## Proof used, and where it comes from", "",
@@ -145,7 +145,7 @@ def plan_md():
           "- Ajit (Cavli) and Tom (Growth Factors by Appster) quotes: verbatim from the registration page.",
           "- $15,000 minimum Enterprise billing, tens of thousands, $99, 100 hours, weeks to hours, 12 years: Adi's brief and his script edits.",
           "- Revenue figures for the case studies (Growth Idea $150,000+, FintechCircle $100,000+ in the bank and about $300,000 pipeline, Cavli $1M+ closed): Adi's figures, 2026-11-08 (the trackers hold reach, calls and clients, not revenue).",
-          "- The 15 WhatsApp messages on the registration page are placeholder mockups with invented names. They are layout references only; the montage in U10 needs real screenshots.",
+          "- MOCK for the team review: Ryan Costa ($72,000 from one webinar), Daniel Okafor ($24,000 from one webinar) and Elena Ruiz ($31,500 in two days), with their mock logos (vsl-assets/mock-case-studies/) and the registration page's WhatsApp mockups. Replace with real client data before launch.",
           "- Not used: the GoHighLevel invoice figure on the registration page (a replica, not a measured result).", ""]
     return "\n".join(o)
 
