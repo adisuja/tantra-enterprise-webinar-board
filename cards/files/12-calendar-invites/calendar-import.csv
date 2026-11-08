@@ -1,5 +1,5 @@
 variant,campaign_name,list_split,event_title,description,date,time,end_time,minutes,timezone,location,utm_content,use_personalized_template,use_ai_personalization,enable_utm_parameters,merge_tags
-A,Enterprise webinar 2026-11-12: calendar (A),half 0 of every sender's slice,AI revenue generation teardown (60 min),"Thursday 12 November 2026, 10:00 to 11:00 UK time (11:00 to 12:00 CET). 60 minutes, live online.
+A,Enterprise webinar 2026-11-12: calendar (A),half 0 of every sender's slice,AI revenue generation teardown (60 min),"Thursday 12 November 2026, 11:00 to 12:00 UK time (12:00 to 13:00 CET). 60 minutes, live online.
 
 For founders who want revenue that doesn't depend on referrals or on them selling every deal. You'll leave with the AI revenue system my team builds, stage by stage: who gets invited, who shows up, who books a sales call.
 
@@ -10,10 +10,10 @@ Get your join link here: https://webinar.sellwithtantra.com/?utm_source=calendar
 The session: How 400+ Brands Use AI Funnels to Generate $100K to $300K Monthly
 Your host: Adi (Adithya Murali), Founder, Tantra. 400+ brands, 21+ countries, 10+ years.
 
-Yes or Maybe keeps the time on your calendar. Your personal join link arrives when you register at the link above.",2026-11-12,10:00,11:00,60,Europe/London,https://webinar.sellwithtantra.com/?utm_source=calendar&utm_medium=invite&utm_campaign=enterprise-webinar&utm_content=cal_a,cal_a,on,off,off,none
+Yes or Maybe keeps the time on your calendar. Your personal join link arrives when you register at the link above.",2026-11-12,11:00,12:00,60,Europe/London,https://webinar.sellwithtantra.com/?utm_source=calendar&utm_medium=invite&utm_campaign=enterprise-webinar&utm_content=cal_a,cal_a,on,off,off,none
 B,Enterprise webinar 2026-11-12: calendar (B),half 1 of every sender's slice,Founder Pipeline Teardown: Where AI Fits,"Hi {{firstName}},
 
-Thursday 12 November 2026, 10:00 to 11:00 UK time (11:00 to 12:00 CET). 60 minutes, live online.
+Thursday 12 November 2026, 11:00 to 12:00 UK time (12:00 to 13:00 CET). 60 minutes, live online.
 
 If the pipeline at {{company}} still runs on referrals and your own calendar, this hour is for you. I'll take a founder's funnel apart stage by stage and show where AI takes over the repetitive work.
 
@@ -24,4 +24,4 @@ Get your join link here: https://webinar.sellwithtantra.com/?utm_source=calendar
 The session: How 400+ Brands Use AI Funnels to Generate $100K to $300K Monthly
 Your host: Adi (Adithya Murali), Founder, Tantra. 400+ brands, 21+ countries, 10+ years.
 
-Yes or Maybe keeps the time on your calendar. Your personal join link arrives when you register at the link above.",2026-11-12,10:00,11:00,60,Europe/London,https://webinar.sellwithtantra.com/?utm_source=calendar&utm_medium=invite&utm_campaign=enterprise-webinar&utm_content=cal_b,cal_b,on,off,off,{{company}} {{firstName}}
+Yes or Maybe keeps the time on your calendar. Your personal join link arrives when you register at the link above.",2026-11-12,11:00,12:00,60,Europe/London,https://webinar.sellwithtantra.com/?utm_source=calendar&utm_medium=invite&utm_campaign=enterprise-webinar&utm_content=cal_b,cal_b,on,off,off,{{company}} {{firstName}}

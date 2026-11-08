@@ -6,8 +6,8 @@ usage:
   python3 scheduler.py --selftest
   python3 scheduler.py --registered 2026-11-02T09:00:00Z [--start 2026-11-12T10:00:00Z] [--tz Europe/Berlin]
 
---start defaults to the first session in funnel-config.json (Thursday 12 November 2026, 10:00
-Europe/London = 10:00 UTC; ../12-calendar-invites/schedule.py).
+--start defaults to the first session in funnel-config.json (Thursday 12 November 2026, 11:00
+Europe/London = 11:00 UTC; ../12-calendar-invites/schedule.py).
 
 The registrant's timezone is webinar.registered data.timezone (IANA, from the browser). When it
 is missing, the webinar timezone from funnel-config.json is used (UTC while that is unfilled).
@@ -166,20 +166,20 @@ def selftest():
     for sid, t, ch in plan(at(days=10), S, "Asia/Kolkata"):
         if "whatsapp" in ch or ch == ("call",):
             checks.append(("%s inside 08:00 to 20:00 IST" % sid, 8 <= t.astimezone(ZoneInfo("Asia/Kolkata")).hour < 20))
-    # the decided schedule: Thursday 12 November 2026, 10:00 Europe/London
+    # the decided schedule: Thursday 12 November 2026, 11:00 Europe/London (Adi 2026-11-08, moved from 10:00)
     R = real_start()
-    checks.append(("real schedule: first session is 2026-11-12 10:00 UTC (10:00 GMT, 11:00 CET)",
-                   R.astimezone(ZoneInfo("UTC")).isoformat() == "2026-11-12T10:00:00+00:00"))
+    checks.append(("real schedule: first session is 2026-11-12 11:00 UTC (11:00 GMT, 12:00 CET)",
+                   R.astimezone(ZoneInfo("UTC")).isoformat() == "2026-11-12T11:00:00+00:00"))
     uk = {sid: ch for sid, _, ch in plan(R - timedelta(days=10), R, "Europe/London")}
-    checks.append(("real schedule, London: H3 at 07:00 UK is email only (before the 08:00 WhatsApp window)", uk["15B-H3"] == ("email",)))
+    checks.append(("real schedule, London: H3 at 08:00 UK keeps WhatsApp (inside the 08:00 to 20:00 window)", uk["15B-H3"] == ("email", "whatsapp")))
     for sid in ("15B-H1", "15B-M15", "15B-L0", "15B-L10"):
         checks.append(("real schedule, London: %s keeps WhatsApp" % sid, uk[sid] == ("email", "whatsapp")))
     LONDON = ZoneInfo("Europe/London")
     days = {sid: t.astimezone(LONDON).strftime("%a %H:%M") for sid, t, _ in plan(R - timedelta(days=10), R, "Europe/London")}
     checks.append(("real schedule, London: no step on a Saturday or Sunday (V2 on Friday, T minus 6 days)",
-                   not any(v[:3] in ("Sat", "Sun") for v in days.values()) and days["15B-V2"] == "Fri 10:00"))
-    checks.append(("real schedule, London: day-level steps at 10:00 UK, C1 Wednesday 12:00, C2 Thursday 09:45",
-                   all(days[s].endswith("10:00") for s in DAY_LEVEL) and days["15B-C1"] == "Wed 12:00" and days["15B-C2"] == "Thu 09:45"))
+                   not any(v[:3] in ("Sat", "Sun") for v in days.values()) and days["15B-V2"] == "Fri 11:00"))
+    checks.append(("real schedule, London: day-level steps at 11:00 UK, C1 Wednesday 13:00, C2 Thursday 10:45",
+                   all(days[s].endswith("11:00") for s in DAY_LEVEL) and days["15B-C1"] == "Wed 13:00" and days["15B-C2"] == "Thu 10:45"))
     eu = {sid: ch for sid, _, ch in plan(R - timedelta(days=10), R, "Europe/Berlin")}
     checks.append(("real schedule, Berlin: every live-day step keeps WhatsApp (H3 at 08:00 CET)",
                    all(eu[s] == ("email", "whatsapp") for s in ("15B-H3", "15B-H1", "15B-M15", "15B-L0", "15B-L10"))))

@@ -2,11 +2,11 @@
 # permission codes: OWN, YES, YES_EU, COMMENTS, VALUE, ADMIN, NORULES, NO
 C = {
 '631154788582473': ("Own communities","A","OWN","Adi's own community for founders, marketing and sales leaders building growth systems; being renamed for Tantra (card 32).","Global (no location set)","Growth, founders, marketing, sales",
- "Announcement plus a pinned event: \"Thursday 12 November, 10:00 UK: I'm taking the whole funnel apart live.\" Lead with the Growth Idea jump from 30 to 1,990 registrations; registration link in the post; repost the replay after."),
+ "Announcement plus a pinned event: \"Thursday 12 November, 11:00 UK: I'm taking the whole funnel apart live.\" Lead with the Growth Idea jump from 30 to 1,990 registrations; registration link in the post; repost the replay after."),
 'thegrowthclub.org': ("Own communities","C","OWN","GrowthClub's original group (4 members).","Lewes, Delaware (group setting)","Growth",
  "Skip: 4 members. Point them to GrowthClub Pro instead with one line."),
 '222801067848068': ("Startups and founders (Europe and UK)","A","YES_EU","European B2B startups, studios and venture builders; pitching a B2B startup and organising events are allowed.","Europe (group rule: live in an EU country)","B2B startups, investment, events in Europe",
- "Event post for European B2B founders: \"How a UK coaching company went from 30 to 1,990 webinar registrations with calendar invites\". 10:00 UK, 11:00 CET in the first line; registration link allowed. Check the residency rule first (see note)."),
+ "Event post for European B2B founders: \"How a UK coaching company went from 30 to 1,990 webinar registrations with calendar invites\". 11:00 UK, 12:00 CET in the first line; registration link allowed. Check the residency rule first (see note)."),
 '324240387777890': ("Startups and founders (Europe and UK)","B","NORULES","UK startup founders sharing ideas; only conduct rules, no promotion rule.","London, United Kingdom","UK startups, founders",
  "UK-founder angle: \"The first webinar we ran for a UK client: 12,898 invited, 30 registered, 7 came. Here's what changed by webinar 11.\" Short lesson list; invite in the last line (no rule against it). Group is quiet: low reach."),
 'swissstartupclub': ("Startups and founders (Europe and UK)","C","ADMIN","Swiss startup community; no marketing, profit-oriented events only with admin consent.","Switzerland","Swiss startups",
@@ -92,7 +92,7 @@ C = {
  "\"The sales pipeline that runs while you're on holiday\" teaching post. No link. Quiet group."),
 'DigitalMarketingTrainingCertification': ("Startups and founders (global)","C","NORULES","How to start a business (1.9K, quiet).","Global","Starting a business","Skip: early-stage, not Enterprise buyers."),
 '363129550860693': ("Startups and founders (global)","C","NORULES","Startup ideas, government tenders (167).","Dubai, United Arab Emirates (group setting)","Startups","Skip: not our audience."),
-'38778163105': ("Startups and founders (US and other regions)","C","NORULES","San Francisco startup networking (quiet).","San Francisco, USA","Startups","Skip: quiet; 10:00 UK is 02:00 in San Francisco."),
+'38778163105': ("Startups and founders (US and other regions)","C","NORULES","San Francisco startup networking (quiet).","San Francisco, USA","Startups","Skip: quiet; 11:00 UK is 03:00 in San Francisco."),
 'Like4LikeB2B': ("Startups and founders (US and other regions)","B","YES","US business networking (39K); sharing your business is welcome.","USA","Business networking",
  "Event post with the time in US Eastern (05:00) and the replay offer. Registration link allowed. US audience: lower live fit, good for replay."),
 'startup.usa': ("Startups and founders (US and other regions)","C","NORULES","A US dev agency's own group (962).","USA","Web and app development","Skip: a vendor's group."),

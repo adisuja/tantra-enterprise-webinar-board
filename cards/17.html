@@ -114,7 +114,7 @@
 </tr>
 <tr>
 <td>Sessions</td>
-<td>Time zone <strong>London</strong> (<code>webinar.timezone</code> Europe/London: GMT in winter, BST in summer, so the session stays 10:00 UK time). Add 4 weeks ahead, each Thursday <strong>10:00</strong>, 60 minutes: <strong>12 Nov 2026, 19 Nov 2026, 26 Nov 2026, 3 Dec 2026</strong> (<code>webinar.first_date</code>, <code>day_of_week</code>, <code>start_time_local</code>). Then <strong>Add</strong> one more Thursday every week (RUN_CHECKLIST, T minus 7). 10:00 UK time is 11:00 CET for EU registrants</td>
+<td>Time zone <strong>London</strong> (<code>webinar.timezone</code> Europe/London: GMT in winter, BST in summer, so the session stays 11:00 UK time). Add 4 weeks ahead, each Thursday <strong>10:00</strong>, 60 minutes: <strong>12 Nov 2026, 19 Nov 2026, 26 Nov 2026, 3 Dec 2026</strong> (<code>webinar.first_date</code>, <code>day_of_week</code>, <code>start_time_local</code>). Then <strong>Add</strong> one more Thursday every week (RUN_CHECKLIST, T minus 7). 10:00 UK time is 11:00 CET for EU registrants</td>
 </tr>
 <tr>
 <td>Allow time zone conversion</td>
@@ -549,74 +549,58 @@ fetch(F.register_worker_url, { method: 'POST', headers: { 'Content-Type': 'appli
 <li>The <code>/registrants</code> reply shape for paging (the help article shows it only as an image); the reconcile reads <code>registrants</code>, <code>registrants.data</code> or <code>data</code>, and stops at <code>last_page</code>.</li>
 <li>That <code>timezone_id</code> is accepted for non-Texas Central and Mountain registrants (step 6 from a Central time zone browser shows it).</li>
 <li>Whether invisible captcha affects API registrations, whether the confirmation email carries WebinarJam's own unsubscribe link, whether the live room accent can take <code>brand.accent</code>, and whether "3rd party tracking systems" covers the live room.</li>
-</ul></div></details><details class="doc"><summary>NO_API_KEY_PLAN.md</summary><div class="md"><h1>Registering people in WebinarJam without an API key (8 November 2026)</h1>
-<p>Event: https://event.webinarjam.com/7222k8/register/v888zgb7 (webinar hash v888zgb7, one session, schedule_id 2).</p>
-<h2>What WebinarJam's documentation says</h2>
+</ul></div></details><details class="doc"><summary>NO_API_KEY_PLAN.md</summary><div class="md"><h1>WebinarJam on the trial plan: how registration and data work without an API key (live 8 November 2026)</h1>
+<p>Event: "Tantra Enterprise Weekly", Thursday 12 November 2026, 11:00 AM, time zone Europe/London (fixed on 8 November: the session had been set to 11:00 AM US Eastern, which is 16:00 UK).</p>
+<h2>Into WebinarJam: the registration handoff</h2>
+<p>Our own registration popup on https://webinar.sellwithtantra.com/ stays exactly as designed. When someone submits it, the site Worker (card 46):</p>
+<ol>
+<li>saves the registration in D1 first, so nobody is lost;</li>
+<li>registers the person in WebinarJam with the same request WebinarJam's own registration form sends (it reads the form page for the session, CSRF token, honeypot value and time zone, then posts the details);</li>
+<li>reads the person's personal live-room link from WebinarJam's thank-you page and returns it, so the confirmation page shows it.</li>
+</ol>
+<p>WebinarJam then sends its own confirmation and reminder emails. Typical time: 3 to 4.5 seconds. Failures are recorded in D1 (wj_status, wj_error) and retried every 5 minutes, up to 6 times. This is WebinarJam's form endpoint, not a published API: if WebinarJam changes its form, the retries fail visibly in D1 and the registration itself is never lost.</p>
+<p>Why not WebinarJam's embedded form: it loads in an iframe from WebinarJam's domain, so our design cannot be applied inside it beyond four templates and colours.</p>
+<h2>Out of WebinarJam: the Custom Webhook</h2>
+<p>Profile, Integrations, Autoresponder, Custom Webhook: base URL https://webinar.sellwithtantra.com/api/wj , Bearer token (in ~/.config/tantra/keys/webinar-site.env). Rules on the event:</p>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
-<th>Puts registrants into WebinarJam?</th>
-<th>Needs an API key?</th>
-<th>Source</th>
+<th>WebinarJam trigger</th>
+<th>Path</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>API <code>POST /webinarjam/register</code></td>
-<td>Yes, returns the personal <code>live_room_url</code></td>
-<td>Yes. Paid accounts apply in Profile, API tab; reviewed "typically within two business days"</td>
-<td>support.webinarjam.com/en/articles/15370143</td>
+<td>They register</td>
+<td>/registered</td>
 </tr>
 <tr>
-<td>One-click registration links</td>
-<td>Yes</td>
-<td>Yes, and only from autoresponder emails, never a website form</td>
-<td>support.webinarjam.com/en/articles/15370017</td>
+<td>They attend the live webinar</td>
+<td>/attended</td>
 </tr>
 <tr>
-<td>Embedded registration form</td>
-<td>Yes: WebinarJam's own form on our page</td>
-<td>No</td>
-<td>support.webinarjam.com/support/solutions/articles/153000168614</td>
+<td>They miss the live webinar</td>
+<td>/missed</td>
 </tr>
 <tr>
-<td>External confirmation page</td>
-<td>No, but after a WebinarJam registration it sends the person to our page with <code>wj_lead_email</code>, <code>wj_lead_first_name</code>, <code>wj_lead_phone_number</code>, <code>wj_lead_unique_link_live_room</code> (the personal join link), <code>wj_event_ts</code> and more</td>
-<td>No</td>
-<td>support.webinarjam.com/en/articles/15370001</td>
+<td>They attend the webinar replay</td>
+<td>/replay</td>
 </tr>
 <tr>
-<td>Custom Webhook (Integrations, Autoresponder)</td>
-<td>No: it sends data out of WebinarJam on Registered, Attended, Missed and other conditions, with lead details</td>
-<td>No</td>
-<td>support.webinarjam.com/support/solutions/articles/153000254989</td>
-</tr>
-<tr>
-<td>Zapier "register" action</td>
-<td>Yes</td>
-<td>Yes (uses the API)</td>
-<td></td>
+<td>They leave before 0 hr 25 min</td>
+<td>/left-early</td>
 </tr>
 </tbody>
 </table>
-<p>So the Custom Webhook in the screenshot cannot add registrants to WebinarJam. It is still useful: it tells us who attended and who missed, which drives the post-session messages (E-P1, E-P2, W-P1, W-P2).</p>
-<h2>Recommended: three parts</h2>
-<ol>
-<li><strong>Now, no key: WebinarJam's embedded form inside our registration popup.</strong> WebinarJam registers the person (its confirmation and reminder emails go out), then sends them to our thank-you page with their personal join link in the URL. Our page saves it with the registration (D1 now, the CRM later), and the confirmation page and WhatsApp messages use it. Our own design stays around the form; the form fields themselves are WebinarJam's (first name, email, phone). To check on the first test: that the redirect from the embedded form reaches our page (the embed script only sets its redirect flag on WebinarJam's own domain; if the in-page form does not redirect, the pop-up embed format is used instead).</li>
-<li><strong>In parallel: apply for the API key today.</strong> Once approved (about two business days), the register Worker already built for card 17 registers people from our own form and the embed is no longer needed.</li>
-<li><strong>Custom Webhook: attendance into our system.</strong> Base URL <code>https://webinar.sellwithtantra.com/api/wj</code> with a bearer token; rules for Registered, Attended and Missed. The endpoint stores every call, so the exact payload is confirmed on the first test.</li>
-</ol>
-<p>Not used: posting directly to WebinarJam's internal form endpoint (<code>/register/v888zgb7/process</code>). It is undocumented, can change without notice and risks the account.</p>
-<h2>Session time mismatch (needs Adi)</h2>
-<p>The WebinarJam event shows "Thursday, November 12 2026, 11:00 AM" US Eastern (timestamp 1794499200 = 16:00 UTC = 16:00 UK). Every page, email, the WhatsApp group scheduler and the deck say 10:00 UK. One of them changes.</p>
-<h2>Text for the API application (Profile, API tab)</h2>
+<p>Payload (confirmed on a test registration): trigger, lead (first and last name, email, phone country code and number, custom fields), links (personal live_room, personal replay_room, unsubscribe), webinar (id, name). Every call is stored in the D1 table wj_events. This feeds the WhatsApp messages (card 42), the post-session bonus and replay messages, and the CRM sync (card 41).</p>
+<h2>Tested on 8 November</h2>
 <ul>
-<li><strong>App URL:</strong> https://webinar.sellwithtantra.com/</li>
-<li><strong>How the app uses the API:</strong> Our own registration page for the weekly Tantra webinar. When a visitor submits the form (first name, email, phone, privacy consent, protected by Cloudflare Turnstile), a Cloudflare Worker calls /webinarjam/webinar once to read the schedule and /webinarjam/register to register the person, then shows them their personal live room link. After each session it reads /webinarjam/registrants to record attendance for follow-up emails.</li>
-<li><strong>Subscribes users to webinars?</strong> Yes. Only people who fill in our registration form themselves, one registration per submission, with consent to the privacy policy. No list uploads or bulk imports.</li>
+<li>Handoff: three test registrations reached WebinarJam (dashboard count went up) and returned personal live-room links.</li>
+<li>Full browser flow on a test copy (Cloudflare's Turnstile test keys): register, survey, upsell, confirmation showing the personal WebinarJam link.</li>
+<li>Webhook: the "register" trigger reached /api/wj/registered within seconds with the payload above.</li>
+<li>Test rows deleted from D1. Test registrants adi+wjtest3 and adi+wjtest4 (@growthclub.org) remain in WebinarJam's registrant list.</li>
 </ul></div></details><details class="doc"><summary>RUN_CHECKLIST.md</summary><div class="md"><h1>Weekly Run Checklist: One Webinar, T Minus 7 Days to T Plus 1 Day</h1>
-<p>T is the start time: Thursday 10:00 UK time (11:00 CET), first session 12 November 2026 (<code>webinar.start_time_local</code>, <code>webinar.timezone</code>, <code>webinar.first_date</code>). Owners: <strong>Adi</strong> (host), <strong>Support</strong> (the second presenter, <code>webinar.moderator_name</code> once set), <strong>Ops</strong> (whoever runs the scripts; commands run from <code>deliverables/17-webinarjam/</code>). WebinarJam: https://app.webinarjam.com/webinars</p>
+<p>T is the start time: Thursday 11:00 UK time (12:00 CET), first session 12 November 2026 (<code>webinar.start_time_local</code>, <code>webinar.timezone</code>, <code>webinar.first_date</code>). Owners: <strong>Adi</strong> (host), <strong>Support</strong> (the second presenter, <code>webinar.moderator_name</code> once set), <strong>Ops</strong> (whoever runs the scripts; commands run from <code>deliverables/17-webinarjam/</code>). WebinarJam: https://app.webinarjam.com/webinars</p>
 <p>Export files with registrant data stay outside the repo (for example <code>~/Downloads/</code>) and are deleted after the import.</p>
 <h2>T Minus 7 Days</h2>
 <ul>
