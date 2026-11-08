@@ -1,0 +1,93 @@
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>Item 52: LinkedIn outreach list for the team's profiles</h1>
+<p>The prospect list the team works from in LinkedIn outreach across the six sender profiles (Adi, Aquila, Nelbin, Bharath, Bhaskar, Ben). The copy they send is in card 4.</p>
+<h2>Where the data is</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Live sheet (the team edits this one)</td>
+<td><a href="https://docs.google.com/spreadsheets/d/1RUnFypILu9n-Yf5g_76c5ZCxrXIPFmPKJWESleqiLTg/edit?gid=1678608658#gid=1678608658">Tantra Webinar Prospects</a></td>
+</tr>
+<tr>
+<td>Snapshot of 8 November 2026 (one CSV per tab, plus a manifest with row counts and SHA-256)</td>
+<td><a href="https://drive.google.com/drive/folders/1bF_SuiuotCzKOHHaxg7TXzWF1G1Sc9Z8">Private Drive folder</a></td>
+</tr>
+</tbody>
+</table>
+<p>The snapshot is in Adi's growthclub.org Drive, which only growthclub.org accounts can open. It is never stored in this repo or on the public board. A working copy is kept on Adi's Mac at <code>~/tantra-enterprise-lists/linkedin/</code> (folder mode 700, files mode 600).</p>
+<h2>What is in it</h2>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>Rows</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sheet1</td>
+<td>17,918</td>
+<td>Broad prospect pull</td>
+</tr>
+<tr>
+<td>Webinar Prospects</td>
+<td>973</td>
+<td>971 of these are already in Sheet1</td>
+</tr>
+<tr>
+<td>Business Coaches</td>
+<td>13,030</td>
+<td>One profile overlaps with Sheet1</td>
+</tr>
+<tr>
+<td><strong>Unique LinkedIn profiles, all tabs</strong></td>
+<td><strong>30,817</strong></td>
+<td>Matched on LinkedIn URL</td>
+</tr>
+</tbody>
+</table>
+<p>Every tab has the same 22 columns: <code>id, name, first_name, last_name, title, headline, email, email_status, linkedin_url, twitter_url, facebook_url, city, state, country, time_zone, organization_name, organization_domain, organization_website, organization_linkedin, organization_phone, organization_employees, organization_industries</code>.</p>
+<p>Country mix of the 30,817 unique profiles:</p>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>Profiles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>United States</td>
+<td>8,848</td>
+</tr>
+<tr>
+<td>EU</td>
+<td>7,401</td>
+</tr>
+<tr>
+<td>India</td>
+<td>2,486</td>
+</tr>
+<tr>
+<td>United Kingdom</td>
+<td>2,132</td>
+</tr>
+<tr>
+<td>Rest of the world</td>
+<td>9,950</td>
+</tr>
+</tbody>
+</table>
+<p>Email status: 11,776 verified, 3,731 extrapolated, 14,617 unavailable, 693 blank. LinkedIn outreach needs only the profile URL, so a missing email doesn't stop a row from being used.</p>
+<h2>Next</h2>
+<ol>
+<li>Give each profile one sender with <code>deliverables/04-linkedin-templates/dedupe.py</code>, keyed on LinkedIn URL, so no prospect hears from two senders.</li>
+<li>Load each sender's share into their Tantra LinkedIn campaigns, following card 4's daily limits.</li>
+<li>Note on audience: card 4's copy is written for English-speaking contacts in the UK and EU (9,533 of these profiles). The rest are mostly the US, India and other regions.</li>
+</ol></div></details>
