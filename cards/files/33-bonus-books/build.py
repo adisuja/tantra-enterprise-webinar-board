@@ -117,9 +117,9 @@ def build_playbook(types, present):
 # ---------------------------------------------------------------- library
 
 CATEGORIES = [
-    ('foundation', 'Foundations'), ('traffic', 'Stage 1: Traffic'), ('landing', 'Stage 2: Landing and sign-up'),
-    ('nurture', 'Stage 3: Reminders and nurture'), ('conversion', 'Stage 4: Conversion mechanism'),
-    ('sales', 'Stage 5: Follow-up and close'), ('growth', 'Stage 6: The next 52 weeks'),
+    ('foundation', 'Foundations'), ('traffic', 'Stage 1: Traffic Generation Engine'), ('landing', 'Stage 2: Landing and Registration'),
+    ('nurture', 'Stage 3: Multi-Channel Nurture'), ('conversion', 'Stage 4: Conversion Mechanism'),
+    ('sales', 'Stage 5: Revenue Engine'), ('growth', 'Stage 6: Long-Term Nurture Engine'),
 ]
 # id: (category, name, description, playbook anchor, task number, task title, funnel to open the playbook on)
 TYPES = {
@@ -195,14 +195,18 @@ def merge_single(elements, brands):
         subs = ', '.join(sl)
         said = (', '.join(sl[:-1]) + ' and ' + sl[-1]) if len(sl) > 1 else (sl[0] if sl else name)
         art = 'an' if niche[:1].lower() in 'aeiou' else 'a'
-        out.append({'id': els[0]['id'], 'brand': b, 'type': t, 'subtype': subs, 'title': f'{name}: {niche}'[:90],
+        media = [m for e in els for m in e.get('media', [])]
+        out.append({**({'media': media} if media else {}), 'id': els[0]['id'], 'brand': b, 'type': t, 'subtype': subs, 'title': f'{name}: {niche}'[:90],
                     'context': f'One document holding the {said.lower()} for {art} {niche} brand.', 'funnel': 'any', 'versions': [{'label': '', 'parts': parts}]})
     return out
 
+MEDIA_MAP = HERE / '_work' / 'media' / 'media_map.json'
+
 def library_data():
+    mm = json.loads(MEDIA_MAP.read_text()) if MEDIA_MAP.exists() else {'attach': {}, 'elements': [], 'pages': []}
     if not CLEAN.exists():
         return json.loads(DATA_SNAPSHOT.read_text())
-    brands, elements = {}, []
+    brands, elements, codes = {}, [], {}
     for d in sorted(p for p in CLEAN.iterdir() if p.is_dir()):
         src = ANON / d.name / '_brand.json'
         b = json.loads(src.read_text()) if src.exists() else {}
@@ -216,13 +220,23 @@ def library_data():
             if el.get('type') not in TYPES or not el.get('versions'): continue
             versions = [{'label': v.get('label', ''), 'parts': [{k: (re.sub(r'(^|:\s*)Section:\s*', r'\1', p[k]) if k == 'label' else p[k]) for k in ('label', 'subject', 'preheader', 'body', 'cta') if p.get(k)} for p in v.get('parts', []) if p.get('body')]} for v in el['versions']]
             versions = [v for v in versions if v['parts']]
-            if not versions: continue
+            media = mm['attach'].get(f'{d.name}/{f.name}', [])
+            if not versions and not media: continue
             keep = {'id': f'{code}-{len(elements) + 1}', 'brand': code, 'type': el['type'], 'subtype': el.get('subtype', ''), 'title': el.get('title', ''),
                     'context': el.get('context', ''), 'funnel': el.get('funnel', ''), 'versions': versions}
+            if media: keep['media'] = media
             elements.append(undash(keep))
+        codes[d.name] = code
+    for g in mm['elements'] + mm['pages']:   # media-only elements and live page captures
+        if g.get('type') not in TYPES or g.get('brand') not in codes: continue
+        e = {'id': f"{codes[g['brand']]}-{len(elements) + 1}", 'brand': codes[g['brand']], 'type': g['type'], 'subtype': g.get('subtype', ''),
+             'title': g.get('title', ''), 'context': g.get('context', ''), 'funnel': 'any', 'versions': []}
+        if g.get('media'): e['media'] = g['media']
+        if g.get('page'): e['page'] = g['page']
+        elements.append(undash(e))
     elements = merge_single(elements, brands)
     order = {t: i for i, t in enumerate(TYPES)}
-    elements.sort(key=lambda e: (order[e['type']], e['subtype'], e['brand']))
+    elements.sort(key=lambda e: (order[e['type']], 0 if e.get('page') else 1, e['subtype'], e['brand']))
     industries = sorted({b['industry'] for b in brands.values() if b.get('industry')})
     offers = sorted({b['offer_type'] for b in brands.values() if b.get('offer_type')})
     present = {e['type'] for e in elements}

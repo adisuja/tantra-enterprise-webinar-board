@@ -27,13 +27,17 @@ def walk(tabs, depth=0):
         props = tb['tabProperties']
         yield depth, props.get('title', ''), props.get('tabId'), text_of(tb.get('documentTab', {}).get('body', {}).get('content', []))
         yield from walk(tb.get('childTabs', []), depth + 1)
-out = pathlib.Path(sys.argv[1]); at = token()
-for did in sys.argv[2:]:
-    req = urllib.request.Request(f'https://docs.googleapis.com/v1/documents/{did}?includeTabsContent=true', headers={'Authorization': 'Bearer ' + at})
-    try: d = json.load(urllib.request.urlopen(req, context=CTX))
-    except Exception as e: print(did, 'ERROR', e); continue
-    parts = [f'@@DOC {d["title"]}\n']
-    for depth, title, tid, txt in walk(d.get('tabs', [])):
-        parts.append(f'\n@@TAB {"  " * depth}{title} ({tid})\n{txt}')
-    (out / f'{did}.txt').write_text(''.join(parts))
-    print(did, d['title'], len(''.join(parts)), 'chars', sum(1 for _ in walk(d.get('tabs', []))), 'tabs')
+def main():
+  out = pathlib.Path(sys.argv[1]); at = token()
+  for did in sys.argv[2:]:
+      req = urllib.request.Request(f'https://docs.googleapis.com/v1/documents/{did}?includeTabsContent=true', headers={'Authorization': 'Bearer ' + at})
+      try: d = json.load(urllib.request.urlopen(req, context=CTX))
+      except Exception as e: print(did, 'ERROR', e); continue
+      parts = [f'@@DOC {d["title"]}\n']
+      for depth, title, tid, txt in walk(d.get('tabs', [])):
+          parts.append(f'\n@@TAB {"  " * depth}{title} ({tid})\n{txt}')
+      (out / f'{did}.txt').write_text(''.join(parts))
+      print(did, d['title'], len(''.join(parts)), 'chars', sum(1 for _ in walk(d.get('tabs', []))), 'tabs')
+
+if __name__ == '__main__':
+    main()
