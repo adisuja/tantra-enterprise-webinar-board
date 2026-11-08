@@ -40,7 +40,7 @@ def process(src, boxes, max_side=1600):
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     attach, new_groups, page_boxes = {}, {}, {}
-    kept = dropped = 0
+    kept = dropped = 0; outmap = {}
     for rf in sorted((W / 'media').glob('review_*.json')):
         items = json.loads(rf.read_text())
         if rf.stem == 'review_pages':
@@ -51,6 +51,7 @@ def main():
             src = W / it['file']
             if not src.exists(): print('missing', src); continue
             name = anon_name(it['file']); process(src, it.get('blur')).save(OUT / name, 'WEBP', quality=80); kept += 1
+            outmap[name] = {'review': rf.name, 'file': it['file']}
             rec = {'src': 'media/' + name, 'caption': it.get('caption', '')}
             brand = BRAND_OF(it.get('brand') or src.parts[src.parts.index('raw') + 1] if 'raw' in src.parts else '')
             if not brand:
@@ -71,10 +72,14 @@ def main():
             for f in files:
                 rel = f'media/pages/{pid}/{f}'
                 name = anon_name(rel); process(W / rel, page_boxes.get(rel, []), max_side=99999).save(OUT / name, 'WEBP', quality=78)
+                outmap[name] = {'review': 'review_pages.json', 'file': rel}
                 segs[mode].append('media/' + name)
         pages.append({'brand': pd['brand'], 'type': pd['type'], 'subtype': pd['subtype'], 'title': pd['title'],
                       'context': pd.get('context') or 'The real page as it ran, with brand names replaced and logos, names and faces blurred. Scroll it like the live page; switch between desktop and mobile.',
                       'page': segs})
+    (W / 'media' / 'out_map.json').write_text(json.dumps(outmap, indent=1))
+    for old in OUT.glob('*.webp'):
+        if old.name not in outmap: old.unlink()   # drop images no longer kept
     (W / 'media' / 'media_map.json').write_text(json.dumps({'attach': attach, 'elements': list(new_groups.values()), 'pages': pages}, indent=1))
     print(f'kept {kept}, dropped {dropped}, attached to {len(attach)} elements, {len(new_groups)} new media elements, {len(pages)} pages')
 
