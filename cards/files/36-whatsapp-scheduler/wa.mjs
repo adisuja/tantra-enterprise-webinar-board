@@ -50,16 +50,18 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function connect({ linking = false, phone = null } = {}) {
   fs.mkdirSync(AUTH, { recursive: true, mode: 0o700 });
   const { state, saveCreds } = await useMultiFileAuthState(AUTH);
-  if (!linking && !state.creds.registered) throw new Error(`Not linked yet. Run: node wa.mjs link`);
+  if (!linking && !state.creds.me) throw new Error(`Not linked yet. Run: node wa.mjs link`);
   const { version } = await fetchLatestBaileysVersion();
   return new Promise((resolve, reject) => {
     let pairingAsked = false;
     const open = () => {
-      const sock = makeWASocket({ version, auth: state, browser: Browsers.macOS('Tantra Scheduler'), logger: pino({ level: 'silent' }), markOnlineOnConnect: false, syncFullHistory: false });
+      const sock = makeWASocket({ version, auth: state, browser: Browsers.macOS('Chrome'), logger: pino({ level: 'silent' }), markOnlineOnConnect: false, syncFullHistory: false });
       sock.ev.on('creds.update', saveCreds);
       sock.ev.on('connection.update', async (u) => {
         if (u.qr && linking && !phone) {
           await QRCode.toFile(path.join(STATE, 'qr.png'), u.qr, { width: 420 });
+          // A page that reloads itself, so the QR on screen is always the current one (they rotate every ~20 s).
+          fs.writeFileSync(path.join(STATE, 'qr.html'), `<!doctype html><meta http-equiv="refresh" content="3"><title>Link the Tantra scheduler</title><body style="font:16px system-ui;text-align:center;padding:40px"><p>On the scheduler phone: WhatsApp, Settings, Linked devices, Link a device, then scan.</p><img src="qr.png?${Date.now()}" width="420" height="420" alt="WhatsApp link QR code">`);
           console.log(await QRCode.toString(u.qr, { type: 'terminal', small: true }));
           log(`Scan with the admin phone: WhatsApp, Settings, Linked devices, Link a device. Also saved: ${path.join(STATE, 'qr.png')}`);
         }
@@ -205,6 +207,26 @@ async function postNow() {
   await done(sock);
 }
 
-const run = { link: async () => { const s = await connect({ linking: true, phone: flag('phone') }); log('Linked.'); await done(s); }, groups, plan: async () => plan(), 'send-due': sendDue, post: postNow }[cmd];
+// Pairing codes and QR codes expire after about 2 minutes; keep issuing fresh ones for up to 10 minutes.
+async function link() {
+  const until = Date.now() + 10 * 60000;
+  for (;;) {
+    try { const s = await connect({ linking: true, phone: flag('phone') }); log('Linked.'); await done(s); return; }
+    catch (e) { if (!/expired/i.test(e.message) || Date.now() > until) throw e; log('Code expired, issuing a new one.'); }
+  }
+}
+// join: the linked number joins the community (and so its Announcements group) through the public invite link.
+async function join() {
+  const cfg = readJson(path.join(ROOT, 'deliverables', '_shared', 'funnel-config.json'), {});
+  const code = (cfg.community?.whatsapp_announcement_url || '').split('/').pop();
+  if (!code || code.startsWith('FILL')) throw new Error('No community invite link in funnel-config (community.whatsapp_announcement_url)');
+  const sock = await connect();
+  const info = await sock.communityGetInviteInfo(code).catch(() => null);
+  log('Invite is for:', info?.subject || '(unknown)');
+  const res = await sock.communityAcceptInvite(code);
+  log('Joined:', res || 'ok');
+  await done(sock);
+}
+const run = { link, join, groups, plan: async () => plan(), 'send-due': sendDue, post: postNow }[cmd];
 if (!run) { console.log(fs.readFileSync(fileURLToPath(import.meta.url), 'utf8').split('\n').filter((l) => l.startsWith('//')).slice(0, 22).map((l) => l.slice(3)).join('\n')); process.exit(cmd ? 1 : 0); }
 run().then(() => process.exit(0)).catch((e) => { log('ERROR', e.message); process.exit(1); });

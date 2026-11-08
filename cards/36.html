@@ -41,7 +41,8 @@
 <h2>Set up (once)</h2>
 <ol>
 <li><code>npm install</code></li>
-<li>Make the spare number an admin of the Tantra Community, then <code>node wa.mjs link</code> and scan the QR with that phone (WhatsApp, Settings, Linked devices, Link a device). Or <code>node wa.mjs link --phone 447700900000</code> for an 8-character pairing code.</li>
+<li><code>node wa.mjs link</code> and scan the QR with that phone (WhatsApp, Settings, Linked devices, Link a device). Or <code>node wa.mjs link --phone 447700900000</code> for an 8-character pairing code.</li>
+<li><code>node wa.mjs join</code> joins the community through its invite link; an admin then promotes the number to admin (only admins post in Announcements).</li>
 <li><code>node wa.mjs groups</code> finds the Tantra Community, its Announcements group and THE COMMUNITY.</li>
 <li><code>node wa.mjs plan --weeks 4</code> writes <code>schedule.json</code>: the 15b WhatsApp copy for tomorrow, 1 hour, 15 minutes and live now, as group posts. A post waits (HOLD) until every link it needs is in funnel-config.json (the WebinarJam room link).</li>
 <li><code>node wa.mjs send-due --dry-run</code> shows what would go out now. Then <code>./install-launchd.sh</code>.</li>
@@ -53,4 +54,6 @@
 <li>The schedule: <code>schedule.json</code> here (no secrets). Rebuild it with <code>plan</code> whenever the date or the copy changes.</li>
 <li>Log: <code>~/.config/tantra/whatsapp/scheduler.log</code>.</li>
 </ul>
-<p>The Mac must be awake at post time. If that becomes a problem, the same script runs unchanged on any always-on machine with Node.</p></div></details><details class="doc"><summary>Files for import or upload (4)</summary><ul class="files"><li><a href="cards/files/36-whatsapp-scheduler/package-lock.json" target="_blank" rel="noopener">package-lock.json</a></li><li><a href="cards/files/36-whatsapp-scheduler/package.json" target="_blank" rel="noopener">package.json</a></li><li><a href="cards/files/36-whatsapp-scheduler/schedule.json" target="_blank" rel="noopener">schedule.json</a></li><li><a href="cards/files/36-whatsapp-scheduler/wa.mjs" target="_blank" rel="noopener">wa.mjs</a></li></ul></details>
+<p>The Mac must be awake at post time. If that becomes a problem, the same script runs unchanged on any always-on machine with Node.</p>
+<h2>Status (2026-11-08)</h2>
+<p>Linked: the scheduler number +91 62828 64296. Joined the Tantra Community; Announcements found. The runner is installed (launchd, every minute). Waiting on: admin rights for the number, and the WebinarJam room link (all posts HOLD until then).</p></div></details><details class="doc"><summary>Files for import or upload (4)</summary><ul class="files"><li><a href="cards/files/36-whatsapp-scheduler/package-lock.json" target="_blank" rel="noopener">package-lock.json</a></li><li><a href="cards/files/36-whatsapp-scheduler/package.json" target="_blank" rel="noopener">package.json</a></li><li><a href="cards/files/36-whatsapp-scheduler/schedule.json" target="_blank" rel="noopener">schedule.json</a></li><li><a href="cards/files/36-whatsapp-scheduler/wa.mjs" target="_blank" rel="noopener">wa.mjs</a></li></ul></details>
