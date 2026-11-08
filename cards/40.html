@@ -1,0 +1,139 @@
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>Card 40: launch audit (8 November 2026)</h1>
+<p>What has to be true before the first live session, and before any traffic is sent. It covers everything built in the last 24 hours (registration page, survey, upsell, checkout, confirmation, calculator, bonuses, WhatsApp, funnel map, Tantra CRM) and the cards around them. Every gap has a card; the board now lists cards by priority: launch blockers first, finished cards at the bottom.</p>
+<h2>Verdict</h2>
+<p>The pages, bonuses, checkout and copy are built. The funnel cannot take a real registration yet: nothing is deployed to a funnel domain, the register Worker is not deployed, WebinarJam is not set up, no CRM receives the funnel's events, and nothing sends the 34 messages. The RevOps OS that the upsell sells does not exist as a product yet.</p>
+<p><strong>Date risk.</strong> The first session is Thursday 12 November at 10:00 UK, four days away. Calendar invites need the pages live first (card 30), and the WhatsApp group scheduler will post the first reminder for 12 November into the community on Wednesday 11 November whatever happens. Decide the date now (card 30): keep 12 November, or make it an internal dry run and go live on 19 November.</p>
+<h2>Status by area</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Built</th>
+<th>Missing before launch</th>
+<th>Card</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registration page</td>
+<td>Live on the review site, two palettes, form with email and phone</td>
+<td>Palette pick, support email and postal address, real WhatsApp proof screenshots; form still posts to a stub</td>
+<td>13, 46</td>
+</tr>
+<tr>
+<td>Survey thank-you page</td>
+<td>10 questions, calculator link, CRM payload</td>
+<td>Video recording; survey still posts to a stub</td>
+<td>14, 48, 41</td>
+</tr>
+<tr>
+<td>Upsell (RevOps OS, $99)</td>
+<td>Page, live Dodo checkout, webhook Worker that records payments</td>
+<td>The product itself, its delivery, guarantee and terms, video, timer</td>
+<td>44, 45, 48, 34</td>
+</tr>
+<tr>
+<td>Confirmation page</td>
+<td>WhatsApp buttons, calendar, calculator, case explorer, payment states</td>
+<td>Personal WebinarJam link from the CRM</td>
+<td>35, 41</td>
+</tr>
+<tr>
+<td>Revenue Calculator</td>
+<td>Live, built from survey answers</td>
+<td>Nothing blocking</td>
+<td></td>
+</tr>
+<tr>
+<td>Bonuses (Playbook, Prompt Library)</td>
+<td>Live behind one password</td>
+<td>Adi's review</td>
+<td>33</td>
+</tr>
+<tr>
+<td>WhatsApp group</td>
+<td>Join buttons, scheduler on Cloudflare</td>
+<td>Date decision (first post Wed 11 Nov), switch to the six reminder times</td>
+<td>36, 39</td>
+</tr>
+<tr>
+<td>WhatsApp 1-to-1</td>
+<td>Worker built on the Twilio sandbox</td>
+<td>Twilio upgrade, sender number, Meta business signup, 13 templates approved</td>
+<td>43, 37</td>
+</tr>
+<tr>
+<td>Emails and WhatsApp copy</td>
+<td>34 messages on the funnel map with templates and fields</td>
+<td>Adi's approval; nothing sends them yet</td>
+<td>39, 42</td>
+</tr>
+<tr>
+<td>WebinarJam</td>
+<td>Event sheet, register Worker code</td>
+<td>Account and API, event, Worker deployed with secrets, join link wired</td>
+<td>17, 35, 46</td>
+</tr>
+<tr>
+<td>CRM</td>
+<td>Google Sheet CRM designed (card 23); Tantra CRM app live at crm.usetantra.com (card 38)</td>
+<td>Which CRM is the record; no endpoint receives webinar.registered, survey, purchase, attendance or booking events</td>
+<td>41, 23, 38</td>
+</tr>
+<tr>
+<td>Calls and sales</td>
+<td>Scripts, sequences, proposal, collateral, due diligence page</td>
+<td>Cal.com team, closers' details, payment terms</td>
+<td>19, 18, 24</td>
+</tr>
+<tr>
+<td>Funnel domain</td>
+<td>Pages on adisuja.github.io (noindex)</td>
+<td>Domain, DNS, deploy, live switch, links in every outreach file</td>
+<td>46, 30</td>
+</tr>
+<tr>
+<td>Tracking and compliance</td>
+<td>Privacy policy page</td>
+<td>Pixels, consent banner, WhatsApp opt-in, privacy policy naming WebinarJam and Twilio, refund terms</td>
+<td>47</td>
+</tr>
+<tr>
+<td>Videos</td>
+<td>Scripts and production plan</td>
+<td>Survey video and upsell video at minimum</td>
+<td>48</td>
+</tr>
+<tr>
+<td>Promotion</td>
+<td>Lists, invite, cold email and LinkedIn templates, Facebook groups, profiles</td>
+<td>Sender domains and Workspaces, funnel domain in every link, Adi's approvals</td>
+<td>3, 12, 11, 4, 7, 29, 6, 32</td>
+</tr>
+<tr>
+<td>Measurement</td>
+<td>Benchmarks and our own webinar data</td>
+<td>A weekly funnel dashboard</td>
+<td>51</td>
+</tr>
+</tbody>
+</table>
+<h2>Critical path</h2>
+<ol>
+<li>Date decision (card 30), and pause or move the group scheduler if the date moves (card 36).</li>
+<li>Funnel domain and deploy (card 46), WebinarJam account and event (card 17), register Worker deployed.</li>
+<li>CRM of record chosen and the funnel events wired into it (card 41).</li>
+<li>Twilio production (card 43), then the message engine sends the approved sequence (cards 39, 42).</li>
+<li>RevOps OS built and delivered, or the upsell switched off until it is (cards 44, 45).</li>
+<li>Survey and upsell videos (card 48), tracking and consent (card 47).</li>
+<li>Cal.com team and closers (cards 19, 18), then calendar invites start (cards 3, 12).</li>
+<li>End-to-end launch test with test contacts (card 49). Traffic starts only after it passes.</li>
+</ol>
+<h2>Risks worth knowing</h2>
+<ul>
+<li>Sending the upsell before the OS exists: buyers get only a receipt. Either build it (card 44) or hide the Yes button until it is ready.</li>
+<li>WhatsApp without an explicit opt-in tick box can get the sender number flagged by Meta (card 47 decision).</li>
+<li>The Twilio API key secret pasted in chat on 8 November still needs rotating (card 43).</li>
+<li>Tantra CRM code lives in Usetantra repos on branch <code>feature/crm-plivo-dialer</code>; agents never push there, so the funnel endpoint in card 41 is applied by Adi or Bharath.</li>
+<li>The community group scheduler posts to real members on a schedule; a moved date must move it too.</li>
+</ul></div></details>
