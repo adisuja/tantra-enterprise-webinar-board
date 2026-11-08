@@ -15,10 +15,15 @@ import vsl_scenes as S
 ROOT = Path(__file__).resolve().parents[1]
 PRIV = ROOT / "private" / "vsl-reference"
 SRC = {"ty": Path.home() / "Desktop/thank you page 1.mp4", "up": Path.home() / "Desktop/upsell VSL.mp4"}
-WPM = 188  # Adi's read after jump cuts; the references run at 218 to 223
+WPM = 205  # after jump cuts; the references run at 218 to 223, a slower read is shown alongside (SLOW_WPM)
+SLOW_WPM = 188
 
 def wc(t):
     return len(re.findall(r"[\w$%+.,']+", t))
+
+def slow(scenes):
+    t = sum(wc(x["vo"]) for x in scenes)
+    return tc(t / SLOW_WPM * 60 + 0.25 * len(scenes))
 
 def tc(sec):
     m, s = divmod(int(round(sec)), 60)
@@ -50,7 +55,7 @@ def scripts_md():
         words = sum(wc(x["vo"]) for x in v["scenes"])
         o += [f"## {v['title']}", "",
               f"Goes on: {v['page']} (config `{v['cfg']}`). Reference length: {v['ref_len']}. Target: {v['target']}. "
-              f"This script: {words} words, about {tc(total)} after jump cuts.", "",
+              f"This script: {words} words: about {tc(total)} at 205 words a minute after jump cuts (the reference speaker runs at about 220), about {slow(v['scenes'])} at a slower 188.", "",
               "| Time | Scene | What you say | Camera |", "|---|---|---|---|"]
         for x, a, b in rows:
             vo = x["vo"]
@@ -64,15 +69,19 @@ def scripts_md():
                 o += ["(TAKE B) " + x["vo_alt"], ""]
         o[-1:] = ["```", ""]
         if v["key"] == "ty":
-            o += ["**If it runs long**, cut in this order: T07 (the 'know your numbers' line, about 5 s), then 'Ten questions' stays but cut 'and they tell me what to cover in the workshop, so I can build it around businesses like yours' in T10 (about 5 s).", ""]
+            o += ["**If it runs long**, cut in this order: T07 (the 'know your numbers' line, about 4 s), then in T03 cut 'and why funnels matter' through 'money in the bank' (about 9 s).", ""]
         else:
             o += ["**If it runs long**, tier 1 (about 20 s): U10 (3 s; cut it anyway if no real WhatsApp screenshots arrive), U19 (the assistant names, 3 s; they already show in U18), U27 (the recap, 9 s), the second sentence of U11 (4 s).", "", "Tier 2 (about 30 s more): the first sentence of U20 ('In the workshop, I'm teaching a whole room at once...', 6 s); in U13, cut from 'So you spent the next hour' to 'forgotten all of it' (10 s); in U25, cut 'you don't spend after the workshop' (2 s); in U21, drop the stage-four list after 'conversion mechanism' (4 s); U27 if still in.", ""]
-    o += ["## Decisions before you record", "",
-          "1. **Guarantee on the OS (U30).** The reference offers 7 days, money back. Record both takes: Take A with the number of days, Take B without a guarantee. Keep the one you choose.",
-          "2. **What the $99 pack contains (U24, U27, U29).** The script names three parts, from your brief: the OS file pack, the setup guide and the first-build guide. If the pack holds anything else, tell me before you record.",
-          "3. **The WhatsApp group name (T08).** The phone mock shows it.",
-          "4. **How buyers receive the OS (U31).** The line says they get it straight away after clicking Yes. Confirm the delivery (an instant download link on the next page, or an email) before you record that clause.",
-          "5. **The upsell page.** /funnelos/ now sells the Tantra RevOps OS at $99 with the same anchor, the Yes and No buttons and the six stages the video talks about. It needs the checkout link before the Yes button goes public.", ""]
+    o += ["## Decided (Adi, 2026-11-08)", "",
+          "- No money-back guarantee line: the upsell says the offer only lives on this page (U30).",
+          "- The pack is two parts: the Tantra RevOps OS pack and the setup guide (U24, U27, U29).",
+          "- The bonus is named as on the registration page: the AI RevOps Revenue Calculator, then the Revenue Calculator.",
+          "- Stage names: traffic generation engine, landing and registration, multi-channel nurture, conversion mechanism, revenue engine, long-term nurture engine.", "",
+          "## Still open before you record", "",
+          "1. **How buyers receive the OS (U31).** The line says they get it straight away after clicking Yes; the checkout session confirms the delivery.",
+          "2. **The WhatsApp group name (T08).** The phone mock shows it.",
+          "3. **Real client WhatsApp screenshots (U10).** The registration page's 15 messages are placeholders with invented names, so the montage needs real ones, or the editor cuts that 3-second beat.",
+          "4. **Pages that still use the old wording.** The thank-you and confirmed pages say 'Personal Revenue Plan', and /funnelos/ lists three pack parts and '$15,000 to $25,000'. They should match the videos: 'Revenue Calculator', two parts, 'from $15,000'.", ""]
     return "\n".join(o)
 
 # ---------------------------------------------------------------- 9-VSL-PRODUCTION-PLAN.md
@@ -134,7 +143,8 @@ def plan_md():
           "- 400+ brands, 200,000+ webinar registrations, $300MN+ cumulative revenue, 21+ countries and 47+ industries: Adi's registration-page numbers (2026-11-07).",
           "- Growth Idea and FintechCircle figures: measured, from their trackers (data/cases.json). Both are cleared to name with first-name contacts.",
           "- Ajit (Cavli) and Tom (Growth Factors by Appster) quotes: verbatim from the registration page.",
-          "- $15,000 to $25,000, $99, 100 hours, weeks to hours: Adi's brief for this video.",
+          "- $15,000 minimum Enterprise billing, tens of thousands, $99, 100 hours, weeks to hours, 12 years: Adi's brief and his script edits.",
+          "- Revenue figures for the case studies (Growth Idea $150,000+, FintechCircle $100,000+ in the bank and about $300,000 pipeline, Cavli $1M+ closed): Adi's figures, 2026-11-08 (the trackers hold reach, calls and clients, not revenue).",
           "- The 15 WhatsApp messages on the registration page are placeholder mockups with invented names. They are layout references only; the montage in U10 needs real screenshots.",
           "- Not used: the GoHighLevel invoice figure on the registration page (a replica, not a measured result).", ""]
     return "\n".join(o)
@@ -228,7 +238,7 @@ pre{{white-space:pre-wrap;background:#0b0d12;color:#e7e9ef;padding:20px;border-r
 @media(max-width:700px){{td.m:last-child,th:last-child{{display:none}}}}</style></head><body><main>
 <nav><a href="../{other}/">{other_t}</a><a href="https://adisuja.github.io/tantra-enterprise-webinar-board/#item-14">Board card 14</a></nav>
 <h1>{e(v['title'])}</h1>
-<p class="meta">Goes on: {e(v['page'])}. Reference length {e(v['ref_len'])}. Target {e(v['target'])}. This script: {words} words, about {tc(total)} after jump cuts. Read at your normal pace; the editor removes pauses with jump cuts.</p>
+<p class="meta">Goes on: {e(v['page'])}. Reference length {e(v['ref_len'])}. Target {e(v['target'])}. This script: {words} words: about {tc(total)} at 205 words a minute after jump cuts, about {slow(v['scenes'])} at a slower 188. Read at your normal pace; the editor removes pauses with jump cuts.</p>
 <h2>The script, scene by scene</h2><table><tr><th>Time</th><th>Scene</th><th>What you say</th><th>Camera</th></tr>{trs}</table>
 <h2>Teleprompter text <button onclick="navigator.clipboard.writeText(document.getElementById('p').innerText);this.textContent='Copied'">Copy</button></h2>
 <pre id="p">{e(prompter)}</pre></main></body></html>"""
