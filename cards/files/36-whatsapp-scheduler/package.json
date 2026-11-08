@@ -1,0 +1,8 @@
+{
+  "name": "tantra-whatsapp-scheduler",
+  "private": true,
+  "type": "module",
+  "description": "Posts the webinar reminders into the Tantra Community on WhatsApp (Announcements and THE COMMUNITY) from a linked admin number. Free: Baileys (MIT), runs on the Mac via launchd.",
+  "scripts": { "plan": "node wa.mjs plan", "due": "node wa.mjs send-due" },
+  "dependencies": { "baileys": "7.0.0-rc14", "qrcode": "^1.5.4", "pino": "^9.6.0" }
+}
