@@ -123,7 +123,7 @@ CATEGORIES = [
 ]
 # id: (category, name, description, playbook anchor, task number, task title, funnel to open the playbook on)
 TYPES = {
-    'brand_offer': ('foundation', 'Company, Offer and Brand Voice', 'The company overview, the offer, the positioning and the brand voice every other element is written from.', 'task-decisions-1-02', '1.02', 'Name your method, set your voice and list your proof', ''),
+    'brand_offer': ('foundation', 'Company, Offer and Brand Voice', 'The company overview, the offer, the positioning and the brand voice every other element is written from, as one document per brand.', 'task-decisions-1-02', '1.02', 'Name your method, set your voice and list your proof', ''),
     'icp': ('foundation', 'Ideal Customer Profile and Targeting', 'Who the funnel is for: the accounts, the buyer persona, and the exact list filters and job titles.', 'task-decisions-1-04', '1.04', 'Define the buyer persona from real customers', ''),
     'event_titles': ('foundation', 'Event Titles', 'Tested titles for the session, workshop or video.', 'task-decisions-1-07', '1.07', 'Set the date and write the event line', ''),
     'cold_email': ('traffic', 'Cold Email Sequences', 'Multi-step cold email threads that invite named buyers.', 'task-traffic-2-01', '2.01', 'Write the cold email thread', ''),
@@ -134,10 +134,10 @@ TYPES = {
     'ads': ('traffic', 'Ads and Ad Plans', 'Paid ad copy and the campaign plan behind it.', 'task-traffic-2-06', '2.06', 'Write and launch two ads', ''),
     'social_posts': ('traffic', 'LinkedIn Posts', 'Posts that teach, build trust and promote the event.', 'task-traffic-2-07', '2.07', 'Set up your content engine', ''),
     'lead_magnet': ('traffic', 'Lead Magnets and Giveaways', 'Free resources that earn a registration, a follow or an email.', 'task-conversion-social-5-03', '5.03', 'Offer one free resource that collects the email', 'social'),
-    'landing_page': ('landing', 'Landing Pages', 'Long-form landing pages, with their registration page, thank-you page and lead gen form.', 'task-landing-3-01', '3.01', 'Build the landing page in nine blocks', ''),
+    'landing_page': ('landing', 'Landing Pages', 'Long-form landing pages and their parts: registration pages, a thank-you page and a lead gen form.', 'task-landing-3-01', '3.01', 'Build the landing page in nine blocks', ''),
     'proof': ('landing', 'Testimonials and Case Studies', 'Client proof used on pages, in emails and in the session.', 'task-landing-3-01', '3.01', 'Build the landing page in nine blocks', ''),
     'confirmation': ('nurture', 'Confirmation Messages', 'The message that lands the moment someone signs up.', 'task-nurture-4-01', '4.01', 'Write the confirmation message', ''),
-    'reminders': ('nurture', 'Reminder Sequences', 'Email and WhatsApp reminders that get registrants to show up.', 'task-nurture-4-02', '4.02', 'Write the reminder sequence', ''),
+    'reminders': ('nurture', 'Reminders and Promotion', 'Email and WhatsApp reminders that get registrants to show up, and promotion emails to your own list.', 'task-nurture-4-02', '4.02', 'Write the reminder sequence', ''),
     'session': ('conversion', 'Session Outlines and Scripts', 'The structure and talk track of the live session.', 'task-conversion-webinar-5-01', '5.01', 'Write the session story', 'webinar'),
     'deck': ('conversion', 'Deck Outlines', 'Slide-by-slide decks, bonus slides and holding slides.', 'task-conversion-webinar-5-02', '5.02', 'Build the deck', 'webinar'),
     'live_engagement': ('conversion', 'Live Engagement: Polls, Chat, DMs and Q&A', 'Everything that keeps the room talking and surfaces buyers during the session.', 'task-conversion-webinar-5-03', '5.03', 'Write the run of show, polls, chat prompts and DMs', 'webinar'),
@@ -181,16 +181,22 @@ def merge_single(elements, brands):
     for (t, b), els in groups.items():
         name, order = SINGLE[t]
         els.sort(key=lambda e: order.index(e['subtype']) if e['subtype'] in order else 9)
-        parts = []
+        parts, seen = [], set()
         for e in els:
             for v in e['versions'][:1]:
                 for p in v['parts']:
                     lab = e['subtype'] + (': ' + p['label'] if p.get('label') and p['label'].lower() != e['subtype'].lower() else '')
+                    if lab.lower() in seen: lab = f"{lab} ({e['title']})"
+                    seen.add(lab.lower())
+                    if any(p['body'].strip() == q['body'].strip() for q in parts): continue
                     parts.append({**p, 'label': lab})
         niche = brands[b].get('niche') or brands[b].get('label', '')
-        subs = ', '.join(dict.fromkeys(e['subtype'] for e in els if e['subtype']))
+        sl = list(dict.fromkeys(e['subtype'] for e in els if e['subtype']))
+        subs = ', '.join(sl)
+        said = (', '.join(sl[:-1]) + ' and ' + sl[-1]) if len(sl) > 1 else (sl[0] if sl else name)
+        art = 'an' if niche[:1].lower() in 'aeiou' else 'a'
         out.append({'id': els[0]['id'], 'brand': b, 'type': t, 'subtype': subs, 'title': f'{name}: {niche}'[:90],
-                    'context': f'One document holding the {subs.lower()} for a {niche} brand.', 'funnel': 'any', 'versions': [{'label': '', 'parts': parts}]})
+                    'context': f'One document holding the {said.lower()} for {art} {niche} brand.', 'funnel': 'any', 'versions': [{'label': '', 'parts': parts}]})
     return out
 
 def library_data():
@@ -208,7 +214,7 @@ def library_data():
             if f.name.startswith('_'): continue
             el = json.loads(f.read_text())
             if el.get('type') not in TYPES or not el.get('versions'): continue
-            versions = [{'label': v.get('label', ''), 'parts': [{k: p[k] for k in ('label', 'subject', 'preheader', 'body', 'cta') if p.get(k)} for p in v.get('parts', []) if p.get('body')]} for v in el['versions']]
+            versions = [{'label': v.get('label', ''), 'parts': [{k: (re.sub(r'(^|:\s*)Section:\s*', r'\1', p[k]) if k == 'label' else p[k]) for k in ('label', 'subject', 'preheader', 'body', 'cta') if p.get(k)} for p in v.get('parts', []) if p.get('body')]} for v in el['versions']]
             versions = [v for v in versions if v['parts']]
             if not versions: continue
             keep = {'id': f'{code}-{len(elements) + 1}', 'brand': code, 'type': el['type'], 'subtype': el.get('subtype', ''), 'title': el.get('title', ''),
@@ -220,7 +226,7 @@ def library_data():
     industries = sorted({b['industry'] for b in brands.values() if b.get('industry')})
     offers = sorted({b['offer_type'] for b in brands.values() if b.get('offer_type')})
     present = {e['type'] for e in elements}
-    cats = [{'id': c, 'name': n, 'types': [{'id': t, 'name': v[1], 'desc': v[2], 'task': v[3], 'taskNum': v[4], 'taskTitle': v[5], 'funnel': v[6]} for t, v in TYPES.items() if v[0] == c and t in present]} for c, n in CATEGORIES]
+    cats = [{'id': c, 'name': n, 'types': [{'id': t, 'name': v[1], 'desc': v[2], 'task': v[3], 'taskNum': v[4], 'taskTitle': v[5], 'funnel': v[6], 'funnelName': FN.get(v[6], '')} for t, v in TYPES.items() if v[0] == c and t in present]} for c, n in CATEGORIES]
     data = {'brands': undash(brands), 'elements': elements, 'categories': [c for c in cats if c['types']], 'industries': industries, 'offers': offers}
     DATA_SNAPSHOT.parent.mkdir(exist_ok=True)
     DATA_SNAPSHOT.write_text(json.dumps(data, ensure_ascii=False))
@@ -281,7 +287,7 @@ def hub():
 def library_page(data):
     n_el, n_ty = len(data['elements']), sum(len(c['types']) for c in data['categories'])
     body = f'''<main id="main" class="lib">
-  <div class="lib__top"><div><h1>The $1MN+ AI Funnel Prompt Library</h1><p>{n_el} real funnel elements from seven B2B funnels, in {n_ty} types that follow the playbook. Read an example, then copy its prompt: your AI assistant rebuilds it for your brand.</p></div><a class="btn" href="/prompts/#setup">Start with the setup prompt</a></div>
+  <div class="lib__top"><div><h1>The $1MN+ AI Funnel Prompt Library</h1><p>{n_el} real funnel elements from {len(data['brands'])} B2B funnels, in {n_ty} types that follow the playbook. Read an example, then copy its prompt: your AI assistant rebuilds it for your brand.</p></div><a class="btn" href="/prompts/#setup">Start with the setup prompt</a></div>
   <div class="bar2"><div class="seg seg--i" role="group" aria-label="Industry"></div><select class="sel sel--o" aria-label="Offer type"></select><input class="search" type="search" placeholder="Search every element" aria-label="Search every element"></div>
   <div class="panes">
     <aside class="rail" aria-label="Element types"><nav></nav></aside>
