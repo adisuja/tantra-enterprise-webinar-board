@@ -35,7 +35,7 @@ def timed(scenes):
 VIDEOS = [
     dict(key="ty", title="Thank-you page video", page="Thank-you page 1 (/thank-you/), above the survey", cfg="media.survey_video_url",
          scenes=S.THANK_YOU, off=S.TY_OFFSET, ref_len="2:01 (speech 0:00 to 2:01; the file adds 6 s of player pre-roll)", target="2:01 to 2:11"),
-    dict(key="up", title="Upsell video: the Tantra RevOps OS", page="The upsell page (/vip/), between the survey and the confirmed page", cfg="media.vip_video_url",
+    dict(key="up", title="Upsell video: the Tantra RevOps OS", page="The upsell page (/funnelos/), between the survey and the confirmed page", cfg="media.vip_video_url",
          scenes=S.UPSELL, off=S.UP_OFFSET, ref_len="6:20 (the file is 8:02, but 6:21 to 8:02 is a black screen recording)", target="6:20 to 6:30"),
 ]
 
@@ -72,7 +72,7 @@ def scripts_md():
           "2. **What the $99 pack contains (U24, U27, U29).** The script names three parts, from your brief: the OS file pack, the setup guide and the first-build guide. If the pack holds anything else, tell me before you record.",
           "3. **The WhatsApp group name (T08).** The phone mock shows it.",
           "4. **How buyers receive the OS (U31).** The line says they get it straight away after clicking Yes. Confirm the delivery (an instant download link on the next page, or an email) before you record that clause.",
-          "5. **The upsell page itself.** /vip/ still describes the older VIP seat (two private sessions). It needs rewriting for the Tantra RevOps OS at $99, with the anchor and the Yes and No buttons the video points to.", ""]
+          "5. **The upsell page.** /funnelos/ now sells the Tantra RevOps OS at $99 with the same anchor, the Yes and No buttons and the six stages the video talks about. It needs the checkout link before the Yes button goes public.", ""]
     return "\n".join(o)
 
 # ---------------------------------------------------------------- 9-VSL-PRODUCTION-PLAN.md

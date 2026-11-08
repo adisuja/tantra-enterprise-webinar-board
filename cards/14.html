@@ -22,8 +22,8 @@
 </tr>
 <tr>
 <td>3</td>
-<td>VIP page (/vip/)</td>
-<td>The optional paid upgrade, at 73%. Yes goes to checkout, which then returns to step 4; No goes straight to step 4</td>
+<td>Upsell page (/funnelos/)</td>
+<td>The optional Tantra RevOps OS offer ($99), at 73%. Yes goes to checkout, which then returns to step 4; No goes straight to step 4</td>
 </tr>
 <tr>
 <td>4</td>
@@ -59,12 +59,12 @@
 <td>https://adisuja.github.io/tantra-enterprise-webinar-pages/thank-you/?state=q10&amp;v=cb9fa402c4</td>
 </tr>
 <tr>
-<td>2. VIP page (public view: VIP opens shortly until price and checkout are set)</td>
-<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/vip/?v=cb9fa402c4</td>
+<td>2. Upsell page, the Tantra RevOps OS (public view: opens shortly until the checkout link is set)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/funnelos/?v=cb9fa402c4</td>
 </tr>
 <tr>
-<td>2. VIP page, review mode (every FILL and PROPOSED slot)</td>
-<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/vip/?review=1&amp;v=cb9fa402c4</td>
+<td>2. Upsell page, review mode (Yes button, guarantee and delivery slots)</td>
+<td>https://adisuja.github.io/tantra-enterprise-webinar-pages/funnelos/?review=1&amp;v=cb9fa402c4</td>
 </tr>
 <tr>
 <td>3. Confirmed: WhatsApp and the Revenue Plan link (open after doing the survey to see the plan button)</td>
@@ -120,14 +120,14 @@
 <p><strong>Unchanged from round 1.</strong></p>
 <ul>
 <li>The flow: survey, then VIP, then confirmed, then the plan.</li>
-<li>The VIP page mirrors the reference section for section, with our two approved case studies only.</li>
+<li>The upsell page (/funnelos/) mirrors the reference VIP page section for section and sells the Tantra RevOps OS, with our two approved case studies only.</li>
 <li>The confirmed page leads with the WhatsApp group and the plan link.</li>
 <li>Video scripts are in 4-VIDEO-SCRIPTS.md; the mirror map is in 5-REFERENCE-MAP.md.</li>
 </ul>
 <h2>What Adi decides</h2>
 <ol>
-<li><strong>The VIP offer.</strong> It needs four things: the price and anchor price, the checkout link, the guarantee terms, and whether the five bonuses stand. Those bonuses are two private sessions, a strategist's review of the plan, the case study breakdowns, the build templates and a WhatsApp concierge. Until these are set, the public page says "VIP opens shortly" and shows no Yes button. Review mode shows every slot.</li>
-<li><strong>The two video recordings.</strong> These are the thank-you video and the VIP video. Both scripts are in 4-VIDEO-SCRIPTS.md.</li>
+<li><strong>The upsell offer (the Tantra RevOps OS, $99, anchored on $15,000 to $25,000 inside Tantra Enterprise).</strong> Still open: the checkout link, whether there is a guarantee and for how many days, and how buyers receive the OS. Until the checkout link is set, the public page says "The Tantra RevOps OS opens shortly" and shows no Yes button. Review mode shows every slot.</li>
+<li><strong>The two video recordings.</strong> The thank-you video and the Tantra RevOps OS upsell video. Both scripts are in 4-VIDEO-SCRIPTS.md; the shot-by-shot plan is in 9-VSL-PRODUCTION-PLAN.md.</li>
 <li><strong>BigHammer's numbers.</strong> The BigHammer dashboard opens a sign-in page, so its webinars are not in the data yet. To add them, sign in at https://bighammer-dashboard.marketing-439.workers.dev/2GTIMJ4kvohr and export the webinar table, or share the sheet behind it.</li>
 </ol>
 <p>Already asked on this card, still open: the WhatsApp community and announcement links. The confirmed page shows them once set.</p>
@@ -135,7 +135,7 @@
 <ul>
 <li>The register Worker (item 17) accepts a second event, <code>webinar.survey_completed</code>, and writes it to the CRM with <code>fit_tier</code> and <code>report_url</code>.</li>
 <li>The post-registration emails (15b) send <code>report_url</code> as "Your Revenue Plan".</li>
-<li>VIP checkout returns to /confirmed/ after payment.</li>
+<li>The Tantra RevOps OS checkout returns to /confirmed/ after payment, and delivers the OS as Adi decides.</li>
 </ul></div></details><details class="doc"><summary>2-SURVEY.md</summary><div class="md"><h1>The survey: ten questions that build the Revenue Plan</h1>
 <p>Round 2 (Adi 2026-11-08): Typeform-style, with an icon on every option.</p>
 <h2>How it works</h2>
@@ -388,7 +388,7 @@
 <li><strong><code>fit_tier</code></strong> is the Enterprise fit score for the sales team: A is 7 points or more, B is 4 to 6, C is 3 or less.</li>
 </ul>
 <h2>After submit</h2>
-<p>The survey never shows the plan. The person goes to the VIP page (/vip/), then to /confirmed/, where the WhatsApp links and the Revenue Plan link appear together.</p></div></details><details class="doc"><summary>3-REVENUE-PLAN-MODEL.md</summary><div class="md"><h1>The Revenue Plan model: ten funnels, six stages, every KPI</h1>
+<p>The survey never shows the plan. The person goes to the VIP page (/funnelos/), then to /confirmed/, where the WhatsApp links and the Revenue Plan link appear together.</p></div></details><details class="doc"><summary>3-REVENUE-PLAN-MODEL.md</summary><div class="md"><h1>The Revenue Plan model: ten funnels, six stages, every KPI</h1>
 <p>Generated from the calculator's own code (src/assets/plan-model.js in the pages folder) by tools/model-doc.mjs. Change the code, then rerun it. Round 2 (Adi 2026-11-08): every rate is built on our own webinar data (7-OUR-WEBINAR-DATA.md) and set conservatively.</p>
 <h2>How the plan is worked out</h2>
 <ol>
@@ -1585,7 +1585,7 @@ So click the button below to answer the survey, then join the WhatsApp group to 
 </code></pre>
 <p><strong>If it runs long</strong>, cut in this order: T07 (the 'know your numbers' line, about 5 s), then 'Ten questions' stays but cut 'and they tell me what to cover in the workshop, so I can build it around businesses like yours' in T10 (about 5 s).</p>
 <h2>Upsell video: the Tantra RevOps OS</h2>
-<p>Goes on: The upsell page (/vip/), between the survey and the confirmed page (config <code>media.vip_video_url</code>). Reference length: 6:20 (the file is 8:02, but 6:21 to 8:02 is a black screen recording). Target: 6:20 to 6:30. This script: 1180 words, about 6:25 after jump cuts.</p>
+<p>Goes on: The upsell page (/funnelos/), between the survey and the confirmed page (config <code>media.vip_video_url</code>). Reference length: 6:20 (the file is 8:02, but 6:21 to 8:02 is a black screen recording). Target: 6:20 to 6:30. This script: 1180 words, about 6:25 after jump cuts.</p>
 <table>
 <thead>
 <tr>
@@ -1881,7 +1881,7 @@ I can't wait to help you build your funnel. Make your choice below, and I'll see
 <li><strong>What the $99 pack contains (U24, U27, U29).</strong> The script names three parts, from your brief: the OS file pack, the setup guide and the first-build guide. If the pack holds anything else, tell me before you record.</li>
 <li><strong>The WhatsApp group name (T08).</strong> The phone mock shows it.</li>
 <li><strong>How buyers receive the OS (U31).</strong> The line says they get it straight away after clicking Yes. Confirm the delivery (an instant download link on the next page, or an email) before you record that clause.</li>
-<li><strong>The upsell page itself.</strong> /vip/ still describes the older VIP seat (two private sessions). It needs rewriting for the Tantra RevOps OS at $99, with the anchor and the Yes and No buttons the video points to.</li>
+<li><strong>The upsell page.</strong> /funnelos/ now sells the Tantra RevOps OS at $99 with the same anchor, the Yes and No buttons and the six stages the video talks about. It needs the checkout link before the Yes button goes public.</li>
 </ol></div></details><details class="doc"><summary>5-REFERENCE-MAP.md</summary><div class="md"><h1>Mirror map: reference block, our block, what changed</h1>
 <p>Reference pages: the survey page (event.monetise.com/survey) and its VIP page (event.monetise.com/vip). Only the palette, type, words and proof are ours; structure, order and formatting follow the reference.</p>
 <h2>Thank-you page 1 (/thank-you/)</h2>
@@ -1963,7 +1963,7 @@ I can't wait to help you build your funnel. Make your choice below, and I'll see
 </tr>
 </tbody>
 </table>
-<h2>VIP page (/vip/)</h2>
+<h2>VIP page (/funnelos/)</h2>
 <table>
 <thead>
 <tr>
@@ -1989,8 +1989,8 @@ I can't wait to help you build your funnel. Make your choice below, and I'll see
 <tr>
 <td>3</td>
 <td>"You've Been Selected to Attend 5 Extra Private Calls with Me And My Team"</td>
-<td>"You Qualify for Two Extra Private Sessions With Me and My Team"</td>
-<td>Number of sessions is PROPOSED</td>
+<td>"You Qualify for the Tantra RevOps OS: the System My Team Builds Every Funnel With"</td>
+<td>Offer is the OS (Adi, 2026-11-08)</td>
 </tr>
 <tr>
 <td>4</td>
@@ -2001,26 +2001,26 @@ I can't wait to help you build your funnel. Make your choice below, and I'll see
 <tr>
 <td>5</td>
 <td>Timer "You will be able to access VIP tickets in 01:40", offer hidden until it ends</td>
-<td>Same 1:40 timer, runs once the VIP video exists; until then the offer shows at once</td>
+<td>Same 1:40 timer ("You can get the Tantra RevOps OS in"), runs once the video exists; until then the offer shows at once</td>
 <td><code>?state=offer</code> opens it for review</td>
 </tr>
 <tr>
 <td>6</td>
 <td>Yes button with price and refund line; No button "keep my free ticket"</td>
-<td>Same pair; Yes shows only once the price and checkout link are set (review mode shows it with the FILL pills)</td>
+<td>"Yes! I want the Tantra RevOps OS for $99" and "No thanks, I'll build it myself"; Yes shows only once the checkout link is set (review mode shows it with the FILL pills)</td>
 <td>No dead button in public</td>
 </tr>
 <tr>
 <td>7</td>
 <td>"Select your ticket type", WhatsApp note, Free and VIP tickets side by side, crossed-out items on Free, anchor price and "Only $15" on VIP</td>
+<td>"Choose How You Build After the Workshop": Free Seat and Free Seat plus the Tantra RevOps OS, the OS items crossed out on Free, "Inside Tantra Enterprise: $15,000 to $25,000" struck through and "Only $99"</td>
 <td>Same layout</td>
-<td>Price and anchor are FILL</td>
 </tr>
 <tr>
 <td>8</td>
 <td>"Most of the biggest results came from VIP members", three member stories</td>
-<td>"The fastest results come from the people who get help applying it", our two approved case studies (Growth Idea, FintechCircle)</td>
-<td>We have no VIP member stories; the honest equivalent is our case studies</td>
+<td>"The Funnels That Compound Are Never Built From a Blank Page": the blank-chat pain, then our two approved case studies (Growth Idea, FintechCircle)</td>
+<td>We have no OS buyer stories yet; the honest equivalent is our case studies</td>
 </tr>
 <tr>
 <td>9</td>
@@ -2031,25 +2031,25 @@ I can't wait to help you build your funnel. Make your choice below, and I'll see
 <tr>
 <td>10</td>
 <td>100% money-back guarantee block</td>
-<td>Same block, review mode only, until Adi sets the terms</td>
+<td>Same block, review mode only, until Adi decides whether there is a guarantee</td>
 <td>FILL_VIP_GUARANTEE</td>
 </tr>
 <tr>
 <td>11</td>
 <td>Six member results with tracked sales</td>
-<td>Dropped</td>
-<td>We have no such results; never invented</td>
+<td>The six funnel stages the OS builds, as six cards, then the revenue equation</td>
+<td>We have no such results; never invented. Stage names verbatim from the playbook</td>
 </tr>
 <tr>
 <td>12</td>
 <td>"Everything you get with VIP": bonuses 1 to 5</td>
-<td>Bonuses 1 to 5: private sessions, a strategist's review of your plan, case study breakdowns, build templates, WhatsApp concierge</td>
-<td>Each marked PROPOSED in review mode; no giveaways (none approved)</td>
+<td>"Everything You Get With the Tantra RevOps OS": Part 1 the OS file pack, Part 2 the setup guide, Part 3 the first-build guide, then 100 hours saved, weeks to hours</td>
+<td>From Adi's brief; PROPOSED in review mode until Adi confirms the pack</td>
 </tr>
 <tr>
 <td>13</td>
 <td>"So you have 2 options right now"</td>
-<td>Same</td>
+<td>Same: build it yourself, or the Tantra RevOps OS</td>
 <td>Words</td>
 </tr>
 <tr>
@@ -2061,8 +2061,8 @@ I can't wait to help you build your funnel. Make your choice below, and I'll see
 <tr>
 <td>15</td>
 <td>FAQ</td>
-<td>Same, five questions</td>
-<td>Guarantee answer in review mode only</td>
+<td>Same, eight questions</td>
+<td>Delivery and guarantee answers in review mode only</td>
 </tr>
 </tbody>
 </table>

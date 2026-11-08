@@ -47,8 +47,8 @@ for (const page of pages) {
     live: ctx.known('integrations.register_worker_url') && ctx.known('integrations.turnstile_site_key'),
     thank_you_path: `${ctx.rel}thank-you/`,
     cal_namespace: ctx.known('booking.embed_namespace') ? ctx.get('booking.embed_namespace') : null,
-    // The thank-you flow after registration: survey (/thank-you/), VIP (/vip/), confirmed (/confirmed/), plan (/calculator/).
-    flow: { vip_path: `${ctx.rel}vip/`, confirmed_path: `${ctx.rel}confirmed/`, calculator_path: `${ctx.rel}calculator/`, vip_checkout_url: ctx.known('offer.vip_checkout_url') ? ctx.get('offer.vip_checkout_url') : null },
+    // The thank-you flow after registration: survey (/thank-you/), the Tantra RevOps OS upsell (/funnelos/), confirmed (/confirmed/), plan (/calculator/).
+    flow: { vip_path: `${ctx.rel}funnelos/`, confirmed_path: `${ctx.rel}confirmed/`, calculator_path: `${ctx.rel}calculator/`, vip_checkout_url: ctx.known('offer.vip_checkout_url') ? ctx.get('offer.vip_checkout_url') : null },
   };
   ics = ics || icsFile(ctx);
   const dir = path.join(out, page.route);
@@ -59,5 +59,8 @@ for (const page of pages) {
 if (ics) fs.writeFileSync(path.join(out, 'assets', 'webinar.ics'), ics);
 fs.writeFileSync(path.join(out, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
 fs.writeFileSync(path.join(out, '.nojekyll'), '');
+// The upsell page moved from /vip/ to /funnelos/ (Adi 2026-11-08). Old links keep working, query string included.
+fs.mkdirSync(path.join(out, 'vip'), { recursive: true });
+fs.writeFileSync(path.join(out, 'vip', 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Moved | Tantra</title><link rel="canonical" href="../funnelos/"><script>location.replace('../funnelos/' + location.search + location.hash)</script><meta http-equiv="refresh" content="0;url=../funnelos/"></head><body><p><a href="../funnelos/">Continue to the next step</a></p></body></html>\n`);
 fs.writeFileSync(path.join(out, '404.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page not found | Tantra</title><link rel="stylesheet" href="/tantra-enterprise-webinar-pages/assets/site.css"></head><body><main class="light"><div class="wrap center"><h1 class="caps">Page Not Found</h1><p>This page does not exist. <a href="/tantra-enterprise-webinar-pages/">Go to the registration page</a>.</p></div></main></body></html>\n`);
 console.log(`site written to ${out}${ics ? ' (with webinar.ics)' : ' (no .ics: date, time or time zone still FILL)'}`);
