@@ -16,4 +16,56 @@
 <li>The API refuses a registration without Turnstile, unknown events, and the export without the key.</li>
 </ul>
 <h2>Deploy</h2>
-<p><code>node deliverables/13-15a-26-20-pages/build.mjs</code>, then from <code>worker/</code>: <code>CLOUDFLARE_ACCOUNT_ID=e51d1fda77a8f98fb670b2c106bd8a33 npx wrangler deploy</code>.</p></div></details><details class="doc"><summary>Files for import or upload (1)</summary><ul class="files"><li><a href="cards/files/46-funnel-domain/worker/schema.sql" target="_blank" rel="noopener">worker/schema.sql</a></li></ul></details>
+<p><code>node deliverables/13-15a-26-20-pages/build.mjs</code>, then from <code>worker/</code>: <code>CLOUDFLARE_ACCOUNT_ID=e51d1fda77a8f98fb670b2c106bd8a33 npx wrangler deploy</code>.</p>
+<h2>CRM sync into Tantra (card 41, live 8 November)</h2>
+<p>Every funnel event updates one contact per person in Adi's Tantra workspace (api.usetantra.com, key in <code>~/.config/tantra/keys/tantra-api.env</code>, Worker secret <code>TANTRA_API_KEY</code>), matched by email, in the list "Enterprise Webinar registrants" (id 6af0c488fcb23ba374595221). The Tantra CRM (crm.usetantra.com) pulls Tantra contacts into its lead board by lead stage.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Source</th>
+<th>Tag</th>
+<th>Lead stage (only moves forward)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registered</td>
+<td>our form, WebinarJam webhook</td>
+<td>ew-registered</td>
+<td>new</td>
+</tr>
+<tr>
+<td>Survey done</td>
+<td>thank-you page</td>
+<td>ew-survey-done</td>
+<td>engaged</td>
+</tr>
+<tr>
+<td>Attended live / watched replay</td>
+<td>WebinarJam webhook</td>
+<td>ew-attended / ew-watched-replay</td>
+<td>engaged</td>
+</tr>
+<tr>
+<td>Missed / left before minute 25</td>
+<td>WebinarJam webhook</td>
+<td>ew-missed / ew-left-early</td>
+<td>unchanged</td>
+</tr>
+<tr>
+<td>RevOps OS bought</td>
+<td>checkout Worker (to wire, card 45)</td>
+<td>ew-os-buyer</td>
+<td>positive</td>
+</tr>
+<tr>
+<td>Call booked</td>
+<td>Cal.com (to wire, card 19)</td>
+<td>ew-call-booked</td>
+<td>meeting_booked</td>
+</tr>
+</tbody>
+</table>
+<p>Custom fields: ew_join_url, ew_replay_url, ew_report_url, ew_fit_tier, ew_fit_score, ew_chosen_funnel, ew_offer_type, ew_revenue_now, ew_goal, ew_registered_at, ew_timezone, ew_utm_*. Tags and custom fields are merged, never replaced. Each event row in D1 records crm_status and crm_error; failures retry every 5 minutes, up to 6 times.</p>
+<p>Tested on 8 November: four events on one contact (merge, no stage going backwards); WebinarJam register webhook into Tantra; our form plus survey plus webhook merged into one contact with UTM, links and survey answers. All test contacts, registrants and rows deleted afterwards.</p></div></details><details class="doc"><summary>Files for import or upload (1)</summary><ul class="files"><li><a href="cards/files/46-funnel-domain/worker/schema.sql" target="_blank" rel="noopener">worker/schema.sql</a></li></ul></details>

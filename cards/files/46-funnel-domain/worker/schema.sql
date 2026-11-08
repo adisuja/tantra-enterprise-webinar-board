@@ -18,3 +18,10 @@ ALTER TABLE events ADD COLUMN wj_error TEXT;
 ALTER TABLE events ADD COLUMN wj_attempts INTEGER NOT NULL DEFAULT 0;
 CREATE TABLE IF NOT EXISTS wj_events (id TEXT PRIMARY KEY, ts TEXT NOT NULL, trigger TEXT, email TEXT, body TEXT NOT NULL);
 CREATE INDEX IF NOT EXISTS wj_events_email ON wj_events(email);
+-- CRM sync (added 2026-11-08)
+ALTER TABLE events ADD COLUMN crm_status TEXT;
+ALTER TABLE events ADD COLUMN crm_error TEXT;
+ALTER TABLE events ADD COLUMN crm_attempts INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE wj_events ADD COLUMN crm_status TEXT;
+ALTER TABLE wj_events ADD COLUMN crm_error TEXT;
+ALTER TABLE wj_events ADD COLUMN crm_attempts INTEGER NOT NULL DEFAULT 0;
