@@ -8,49 +8,69 @@
 <li><strong>Timeline.</strong> All 27 messages in send order.</li>
 <li><strong>Bonuses and passwords.</strong> The 3 free bonuses and the paid upsell, the one bonus password, where it is revealed and where it is sent.</li>
 </ul>
-<h2>The sequence (new, needs Adi's ok on the copy)</h2>
+<h2>The sequence (new copy needs Adi's ok)</h2>
+<p>34 messages: 12 emails from Adi, 16 WhatsApp 1-to-1, 9 WhatsApp group posts (6 share a time with a 1-to-1 reminder), plus the WebinarJam confirmation, the Dodo receipt and the live password reveal. Every email and 1-to-1 WhatsApp before the session carries the personal WebinarJam link <code>{{join_url}}</code>; the build stops if one does not.</p>
 <table>
 <thead>
 <tr>
-<th>Group</th>
-<th>Messages</th>
+<th>Step</th>
+<th>Email</th>
+<th>WhatsApp 1-to-1</th>
+<th>WhatsApp group</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>On registration</td>
-<td>E0 WebinarJam confirmation, E1 [Action Required] 3 steps (+3 min)</td>
+<td>Registration</td>
+<td>E0 WebinarJam confirmation, E1 [Action Required] 3 steps</td>
+<td>WA-C1 confirmation with the join link, calendar and community links</td>
+<td></td>
 </tr>
 <tr>
 <td>Survey</td>
-<td>E2A calculator ready (on submit), E2B calculator still locked (+2 h, no survey)</td>
+<td>E2A calculator ready, E2B calculator locked (+2 h)</td>
+<td>WA1 calculator ready, WA1B calculator locked</td>
+<td></td>
 </tr>
 <tr>
 <td>Upsell</td>
-<td>D0 Dodo receipt (buyers), E3 second look (+24 h, non-buyers), WA2 one last thing on WhatsApp</td>
+<td>E3 second look (+24 h)</td>
+<td>WA2 one last thing (survey +10 min)</td>
+<td></td>
 </tr>
 <tr>
-<td>Confirmation (WhatsApp 1-to-1)</td>
-<td>WA0 personal link, WA1 Revenue Calculator, CAL and STOP auto-replies</td>
+<td>Checkout</td>
+<td>D0 Dodo receipt, E-OS1 start here</td>
+<td>WA-OS1 you're in</td>
+<td></td>
 </tr>
 <tr>
-<td>Reminder emails (5)</td>
+<td>Confirmation page</td>
+<td></td>
+<td>WA0 personal link reply, CAL, STOP</td>
+<td>G0 pinned welcome</td>
+</tr>
+<tr>
+<td>Countdown</td>
 <td>3 days, 1 day, 1 hour, 5 minutes, live now</td>
-</tr>
-<tr>
-<td>Reminder WhatsApp (6)</td>
-<td>3 days, 1 day, 1 hour, 5 minutes, live now, +10 minutes; each 1-to-1 and in the Announcements group</td>
+<td>3 days, 1 day, 1 hour, 5 minutes, live now, +10 minutes</td>
+<td>same six</td>
 </tr>
 <tr>
 <td>Live</td>
-<td>LIVE-PW password reveal and chat pin (~T+30), WB bonuses open (group, no password)</td>
+<td></td>
+<td></td>
+<td>WB bonuses open (LIVE-PW: password on screen and chat pin)</td>
 </tr>
 <tr>
 <td>After</td>
-<td>E-P1 bonuses and password to live attendees (T+75), E-P2 replay to no-shows (T+2 h), WR replay post (group)</td>
+<td>E-P1 bonuses and password (attendees), E-P2 replay (no-shows)</td>
+<td>W-P1 bonuses and password, W-P2 replay</td>
+<td>WR replay</td>
 </tr>
 </tbody>
 </table>
-<p>Bonus password rule: revealed only live, emailed after the session only to people who came, shown to no-shows in the replay's Bonuses chapter, never posted in the WhatsApp group.</p>
+<p>Every 1-to-1 WhatsApp that can go outside the 24-hour window has a Meta template name and category (Utility, or Marketing for WA2), with the body in numbered variables and a sample for each. The Templates and links tab downloads <code>templates/emails.csv</code> and <code>templates/whatsapp.csv</code> and lists every dynamic field with its source.</p>
+<p>Bonus password rule: revealed only live, sent after the session only to people who came (E-P1, W-P1), shown to no-shows in the replay's Bonuses chapter, never posted in the WhatsApp group.</p>
 <h2>Build</h2>
-<p><code>src/funnel.js</code> holds every page, message and bonus; <code>src/index.html</code> renders it. <code>bash publish.sh</code> builds into <code>site/</code> (git-ignored), fills the bonus password from <code>~/.config/tantra/keys/tantra-bonuses.env</code>, stops on any em or en dash, and deploys the Worker <code>tantra-funnel-map</code>, which serves the site with no password. <code>tools/shoot.py</code> refreshes the page covers; <code>tools/verify.py</code> screenshots every view.</p></div></details><details class="doc"><summary>Files for import or upload (3)</summary><ul class="files"><li><a href="cards/files/39-funnel-map/build.py" target="_blank" rel="noopener">build.py</a></li><li><a href="cards/files/39-funnel-map/tools/shoot.py" target="_blank" rel="noopener">tools/shoot.py</a></li><li><a href="cards/files/39-funnel-map/tools/verify.py" target="_blank" rel="noopener">tools/verify.py</a></li></ul></details>
+<p><code>src/funnel.js</code> holds every page, message, bonus, merge field and template name; <code>src/index.html</code> renders it; <code>tools/check.mjs</code> checks every message and exports the CSVs. <code>bash publish.sh</code> builds into <code>site/</code> (git-ignored), fills the bonus password from <code>~/.config/tantra/keys/tantra-bonuses.env</code>, stops on any em or en dash, and deploys the Worker <code>tantra-funnel-map</code>, which serves the site with no password. <code>tools/shoot.py</code> refreshes the page covers; <code>tools/verify.py</code> screenshots every view.</p></div></details><details class="doc"><summary>Files for import or upload (4)</summary><ul class="files"><li><a href="cards/files/39-funnel-map/build.py" target="_blank" rel="noopener">build.py</a></li><li><a href="cards/files/39-funnel-map/tools/check.mjs" target="_blank" rel="noopener">tools/check.mjs</a></li><li><a href="cards/files/39-funnel-map/tools/shoot.py" target="_blank" rel="noopener">tools/shoot.py</a></li><li><a href="cards/files/39-funnel-map/tools/verify.py" target="_blank" rel="noopener">tools/verify.py</a></li></ul></details>

@@ -23,5 +23,6 @@ for src, dst, px in (("tantra-mark-white.png", "mark-white.png", "96"), ("tantra
     shutil.copy(ROOT / "context/from-workshop-project/brand/assets" / src, SITE / "assets" / dst)
     subprocess.run(["sips", "-Z", px, str(SITE / "assets" / dst)], capture_output=True)
 shutil.copytree(HERE / "src/covers", SITE / "covers", dirs_exist_ok=True)
+subprocess.run(["node", str(HERE / "tools/check.mjs"), str(SITE)], check=True)
 (SITE / "robots.txt").write_text("User-agent: *\nDisallow: /\n")
 print("built", SITE)
