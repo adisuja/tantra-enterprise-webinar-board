@@ -1,16 +1,15 @@
-"""Log in to the live funnel map and screenshot each view. Usage: python3 tools/verify.py <out_dir>"""
+"""Open the live funnel map and screenshot each view. Usage: python3 tools/verify.py <out_dir>"""
 import os, sys, asyncio
 from pathlib import Path
 from playwright.async_api import async_playwright
 OUT = sys.argv[1]; U = "https://tantra-funnel-map.growthcluborg.workers.dev"
-pw = dict(l.split("=", 1) for l in (Path.home() / ".config/tantra/keys/funnel-map.env").read_text().split())["MAP_PASSWORD"]
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch()
         ctx = await b.new_context(viewport={"width": 1500, "height": 950})
         pg = await ctx.new_page(); errs = []
         pg.on("console", lambda m: m.type == "error" and errs.append(m.text)); pg.on("pageerror", lambda e: errs.append(str(e)))
-        await pg.goto(U + "/?v=1"); await pg.fill("#pw", pw); await pg.keyboard.press("Enter")
+        await pg.goto(U + "/?v=1")
         await pg.wait_for_load_state("networkidle"); await pg.wait_for_timeout(1500)
         print("chips", await pg.locator(".chip").count(), "rows", await pg.locator(".row").count(), "paths", await pg.locator("svg.wires path").count())
         await pg.screenshot(path=f"{OUT}/1-top.png")
