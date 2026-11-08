@@ -206,6 +206,36 @@ h1{font-size:26px}h2{font-size:21px;margin:40px 0 8px;color:#a78bfa}nav a{color:
     parts.append("</main>")
     (PRIV / "index.html").write_text("\n".join(parts))
 
+# ---------------------------------------------------------------- one standalone page per script (published at /internal/vsl-scripts/)
+def script_pages():
+    e = html.escape
+    out = ROOT / "scripts-html"
+    for v in VIDEOS:
+        rows, total = timed(v["scenes"])
+        words = sum(wc(x["vo"]) for x in v["scenes"])
+        trs = "".join(f'<tr><td class="t">{tc(a)}</td><td><b>{x["id"]}</b><br><span class="m">{e(x["beat"])}</span></td><td class="vo">{e(x["vo"])}'
+                      + (f'<p class="alt"><b>Take B (no guarantee):</b> {e(x["vo_alt"])}</p>' if x.get("vo_alt") else "")
+                      + f'</td><td class="m">{e(x["cam"])}</td></tr>' for x, a, b in rows)
+        prompter = "\n\n".join(x["vo"] + (f"\n\n(TAKE B) {x['vo_alt']}" if x.get("vo_alt") else "") for x, _, _ in rows)
+        other = "upsell" if v["key"] == "ty" else "thank-you"
+        other_t = "Upsell video script" if v["key"] == "ty" else "Thank-you video script"
+        doc = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{e(v['title'])}: script</title><style>body{{font:16px/1.55 Inter,system-ui,sans-serif;color:#1d2230;background:#f7f8fb;margin:0}}main{{max-width:1100px;margin:auto;padding:28px 20px 60px}}
+h1{{font-size:28px;margin:0 0 6px}}.meta{{color:#5b6472;margin:0 0 18px}}nav a{{color:#6d4aff;font-weight:600;margin-right:18px}}h2{{margin:34px 0 10px;font-size:20px}}
+table{{border-collapse:collapse;width:100%;background:#fff;border:1px solid #e6e8ef}}th,td{{border-bottom:1px solid #e6e8ef;padding:10px 12px;text-align:left;vertical-align:top}}th{{background:#f3f0ff;font-size:13px}}
+.t{{white-space:nowrap;font-weight:700;color:#6d4aff}}.vo{{font-size:17px;width:55%}}.m{{color:#5b6472;font-size:14px}}.alt{{margin:8px 0 0;font-size:15px;color:#4b2fd6}}
+pre{{white-space:pre-wrap;background:#0b0d12;color:#e7e9ef;padding:20px;border-radius:10px;font:17px/1.6 Inter,system-ui,sans-serif}}button{{background:#6d4aff;color:#fff;border:0;border-radius:999px;padding:10px 18px;font-weight:700;cursor:pointer}}
+@media(max-width:700px){{td.m:last-child,th:last-child{{display:none}}}}</style></head><body><main>
+<nav><a href="../{other}/">{other_t}</a><a href="https://adisuja.github.io/tantra-enterprise-webinar-board/#item-14">Board card 14</a></nav>
+<h1>{e(v['title'])}</h1>
+<p class="meta">Goes on: {e(v['page'])}. Reference length {e(v['ref_len'])}. Target {e(v['target'])}. This script: {words} words, about {tc(total)} after jump cuts. Read at your normal pace; the editor removes pauses with jump cuts.</p>
+<h2>The script, scene by scene</h2><table><tr><th>Time</th><th>Scene</th><th>What you say</th><th>Camera</th></tr>{trs}</table>
+<h2>Teleprompter text <button onclick="navigator.clipboard.writeText(document.getElementById('p').innerText);this.textContent='Copied'">Copy</button></h2>
+<pre id="p">{e(prompter)}</pre></main></body></html>"""
+        d = out / ("thank-you" if v["key"] == "ty" else "upsell")
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "index.html").write_text(doc)
+
 if __name__ == "__main__":
     (ROOT / "4-VIDEO-SCRIPTS.md").write_text(scripts_md())
     (ROOT / "9-VSL-PRODUCTION-PLAN.md").write_text(plan_md())
@@ -214,6 +244,7 @@ if __name__ == "__main__":
     if "--media" in sys.argv:
         media()
     storyboard()
+    script_pages()
     for v in VIDEOS:
         rows, total = timed(v["scenes"])
         print(v["key"], sum(wc(x["vo"]) for x in v["scenes"]), "words", tc(total))
