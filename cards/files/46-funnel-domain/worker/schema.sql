@@ -25,3 +25,7 @@ ALTER TABLE events ADD COLUMN crm_attempts INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE wj_events ADD COLUMN crm_status TEXT;
 ALTER TABLE wj_events ADD COLUMN crm_error TEXT;
 ALTER TABLE wj_events ADD COLUMN crm_attempts INTEGER NOT NULL DEFAULT 0;
+-- WhatsApp engine (card 42, added 2026-11-09)
+CREATE TABLE IF NOT EXISTS wa_queue (id TEXT PRIMARY KEY, dedupe TEXT UNIQUE, email TEXT, phone TEXT, step TEXT, session_date TEXT, send_at TEXT, status TEXT, attempts INTEGER NOT NULL DEFAULT 0, error TEXT, msg_sid TEXT, created TEXT, sent_at TEXT);
+CREATE INDEX IF NOT EXISTS wa_queue_due ON wa_queue(status, send_at);
+CREATE TABLE IF NOT EXISTS wa_optout (phone TEXT PRIMARY KEY, ts TEXT);
