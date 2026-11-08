@@ -1,118 +1,118 @@
 {
- "built_at": "2026-11-08T07:21:58.085Z",
+ "built_at": "2026-11-08T07:34:48.133Z",
  "source": "funnel-config.json + 15b-pre-nurture/whatsapp.csv",
  "posts": [
   {
    "id": "2026-11-12:15B-D1",
    "at": "2026-11-11T10:00:00.000Z",
    "target": "announcements",
-   "text": "We go live tomorrow, Thursday 12 November at 10:00 UK time.\n\nBring your rough lead numbers and one question for the Q&A.\n\nYour join link: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "We go live tomorrow, Thursday 12 November at 10:00 UK time.\n\nBring your rough lead numbers and one question for the Q&A.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-11-12:15B-H1",
    "at": "2026-11-12T09:00:00.000Z",
    "target": "announcements",
-   "text": "We start in one hour, at 10:00 UK time. A laptop works best because I share my screen.\n\nYour join link: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "We start in one hour, at 10:00 UK time. A laptop works best because I share my screen.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-11-12:15B-M15",
    "at": "2026-11-12T09:45:00.000Z",
    "target": "announcements",
-   "text": "The room is open and we start in 15 minutes.\n\nJoin here: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "The room is open and we start in 15 minutes.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-11-12:15B-L0",
    "at": "2026-11-12T10:00:00.000Z",
    "target": "announcements",
-   "text": "We're live now. Come in and you'll catch the start.\n\nJoin here: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "We're live now. Come in and you'll catch the start.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-11-19:15B-D1",
    "at": "2026-11-18T10:00:00.000Z",
    "target": "announcements",
-   "text": "We go live tomorrow, Thursday 19 November at 10:00 UK time.\n\nBring your rough lead numbers and one question for the Q&A.\n\nYour join link: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "We go live tomorrow, Thursday 19 November at 10:00 UK time.\n\nBring your rough lead numbers and one question for the Q&A.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-11-19:15B-H1",
    "at": "2026-11-19T09:00:00.000Z",
    "target": "announcements",
-   "text": "We start in one hour, at 10:00 UK time. A laptop works best because I share my screen.\n\nYour join link: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "We start in one hour, at 10:00 UK time. A laptop works best because I share my screen.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-11-19:15B-M15",
    "at": "2026-11-19T09:45:00.000Z",
    "target": "announcements",
-   "text": "The room is open and we start in 15 minutes.\n\nJoin here: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "The room is open and we start in 15 minutes.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-11-19:15B-L0",
    "at": "2026-11-19T10:00:00.000Z",
    "target": "announcements",
-   "text": "We're live now. Come in and you'll catch the start.\n\nJoin here: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "We're live now. Come in and you'll catch the start.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-11-26:15B-D1",
    "at": "2026-11-25T10:00:00.000Z",
    "target": "announcements",
-   "text": "We go live tomorrow, Thursday 26 November at 10:00 UK time.\n\nBring your rough lead numbers and one question for the Q&A.\n\nYour join link: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "We go live tomorrow, Thursday 26 November at 10:00 UK time.\n\nBring your rough lead numbers and one question for the Q&A.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-11-26:15B-H1",
    "at": "2026-11-26T09:00:00.000Z",
    "target": "announcements",
-   "text": "We start in one hour, at 10:00 UK time. A laptop works best because I share my screen.\n\nYour join link: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "We start in one hour, at 10:00 UK time. A laptop works best because I share my screen.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-11-26:15B-M15",
    "at": "2026-11-26T09:45:00.000Z",
    "target": "announcements",
-   "text": "The room is open and we start in 15 minutes.\n\nJoin here: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "The room is open and we start in 15 minutes.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-11-26:15B-L0",
    "at": "2026-11-26T10:00:00.000Z",
    "target": "announcements",
-   "text": "We're live now. Come in and you'll catch the start.\n\nJoin here: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "We're live now. Come in and you'll catch the start.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-12-03:15B-D1",
    "at": "2026-12-02T10:00:00.000Z",
    "target": "announcements",
-   "text": "We go live tomorrow, Thursday 3 December at 10:00 UK time.\n\nBring your rough lead numbers and one question for the Q&A.\n\nYour join link: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "We go live tomorrow, Thursday 3 December at 10:00 UK time.\n\nBring your rough lead numbers and one question for the Q&A.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-12-03:15B-H1",
    "at": "2026-12-03T09:00:00.000Z",
    "target": "announcements",
-   "text": "We start in one hour, at 10:00 UK time. A laptop works best because I share my screen.\n\nYour join link: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "We start in one hour, at 10:00 UK time. A laptop works best because I share my screen.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-12-03:15B-M15",
    "at": "2026-12-03T09:45:00.000Z",
    "target": "announcements",
-   "text": "The room is open and we start in 15 minutes.\n\nJoin here: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "The room is open and we start in 15 minutes.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   },
   {
    "id": "2026-12-03:15B-L0",
    "at": "2026-12-03T10:00:00.000Z",
    "target": "announcements",
-   "text": "We're live now. Come in and you'll catch the start.\n\nJoin here: [join_url]",
-   "hold": "waiting on join_url"
+   "text": "We're live now. Come in and you'll catch the start.\n\nYour personal join link is in your WebinarJam email and in my WhatsApp message to you.",
+   "hold": "waiting on Adi's ok of the wording"
   }
  ]
 }

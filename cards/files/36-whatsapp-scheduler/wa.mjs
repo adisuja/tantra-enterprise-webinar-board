@@ -130,8 +130,12 @@ function csv(text) {
   const [h, ...rest] = rows; return rest.filter((r) => r.length > 1).map((r) => Object.fromEntries(h.map((k, i) => [k, r[i] ?? ''])));
 }
 // The 15b 1-to-1 copy becomes a group post: no first name, no reply keywords, nothing else changed.
+// Room links are personal (one WebinarJam link per seat), so a group post never carries one: the link line becomes a
+// pointer to the person's own link, sent to them 1-to-1 (Adi 2026-11-08).
+const POINTER = 'Your personal join link is in your WebinarJam email and in my WhatsApp message to you.';
 function groupCopy(body) {
   let s = body.replace(/^Hi \{\{1\}\}, it's Adi\.\s*/, '').replace(/^Hi \{\{1\}\},\s*/, '');
+  s = s.replace(/^(Your join link|Join here|Join now): \{\{\d\}\}$/m, POINTER);
   s = s.split('\n').filter((l) => !/^Reply\b|Reply STOP|Already in\? Ignore this/.test(l.trim())).join('\n').replace(/\n{3,}/g, '\n\n').trim();
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
@@ -141,6 +145,7 @@ function plan() {
   const w = cfg.webinar; const weeks = Number(flag('weeks') || 4);
   const known = (v) => typeof v === 'string' && v && !v.startsWith('FILL_');
   const join = known(w.join_url) ? w.join_url : null;
+  const approved = !!flag('approved'); // Adi's ok of the group wording (card 36)
   const rows = csv(fs.readFileSync(path.join(ROOT, 'deliverables', '15b-pre-nurture', 'whatsapp.csv'), 'utf8'));
   const STEPS = ['15B-D1', '15B-H1', '15B-M15', '15B-L0']; // tomorrow, 1 hour, 15 minutes, live now
   const posts = [];
@@ -162,7 +167,7 @@ function plan() {
       const val = { webinar_date_local: dateLocal, webinar_time_local: timeLocal, join_url: join };
       let text = groupCopy(r.body); let missing = [];
       text = text.replace(/\{\{(\d)\}\}/g, (m, i) => { const name = vars[`{{${i}}}`]; const v = val[name]; if (!v) missing.push(name); return v || `[${name}]`; });
-      posts.push({ id: `${date}:${id}`, at: new Date(start.getTime() + Number(r.offset_minutes) * 60000).toISOString(), target: 'announcements', text, ...(missing.length ? { hold: `waiting on ${missing.join(', ')}` } : {}) });
+      posts.push({ id: `${date}:${id}`, at: new Date(start.getTime() + Number(r.offset_minutes) * 60000).toISOString(), target: 'announcements', text, ...(missing.length ? { hold: `waiting on ${missing.join(', ')}` } : approved ? {} : { hold: 'waiting on Adi\'s ok of the wording' }) });
     }
   }
   writeJson(SCHEDULE, { built_at: new Date().toISOString(), source: 'funnel-config.json + 15b-pre-nurture/whatsapp.csv', posts });
