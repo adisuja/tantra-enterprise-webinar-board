@@ -760,7 +760,7 @@
 <h2>Set 1: Content Engagement (Personal: Likers and Commenters of My Posts)</h2>
 <p><strong>Who:</strong> People who liked or commented on one of this sender's own posts. One campaign per post, started within 24 hours of the post. Split the engager export by degree: 2nd and 3rd degree run the connect track, 1st degree the message track.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{custom.post_topic}}</code> (a 2 to 6 word phrase for the post, the same value on every row of that post's export). If the test message shows <code>{{custom.post_topic}}</code> blank, type the phrase into the step text instead: each post has its own campaign.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 5 connection requests and 5 messages a day (25 and 25 a week), requests without a note. Sales Navigator: 10 and 10 a day (50 and 50 a week), with the note.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -793,28 +793,28 @@
 <td>3</td>
 <td>1 (1 day after they accept)</td>
 <td>Message</td>
-<td>451</td>
+<td>460</td>
 </tr>
 <tr>
 <td>2nd/3rd degree</td>
 <td>4</td>
 <td>4</td>
 <td>Message</td>
-<td>392</td>
+<td>401</td>
 </tr>
 <tr>
 <td>1st degree</td>
 <td>1</td>
 <td>0</td>
 <td>Message</td>
-<td>390</td>
+<td>399</td>
 </tr>
 <tr>
 <td>1st degree</td>
 <td>2</td>
 <td>4</td>
 <td>Message</td>
-<td>276</td>
+<td>285</td>
 </tr>
 </tbody>
 </table>
@@ -827,29 +827,29 @@
 
 My post on {{custom.post_topic}} was one slice. Live, I walk through the whole revenue engine behind it: the funnel, the RevOps system that runs it and the AI that does the busywork.
 
-I run it every Thursday at 10:00 UK time (11:00 in Central Europe), 60 minutes. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
+I run it every Thursday at 10:00 UK time (11:00 in Central Europe), 60 minutes. Your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
 </code></pre>
 <h3>2nd/3rd degree, Step 4: Message</h3>
 <pre><code class="language-text">{{firstName}}, one example I break down in the session.
 
 For FintechCircle, a London fintech network, outreach grew from 10,000 to 20,046 to 30,000 calendar invites across three episodes. Those three episodes booked 17 sales calls.
 
-I show how it was built, stage by stage: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
+I show how it was built, stage by stage: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
 </code></pre>
 <h3>1st degree, Step 1: Message</h3>
 <pre><code class="language-text">Hi {{firstName}}, thanks for engaging with my post on {{custom.post_topic}}.
 
 I unpack the full system behind it live every Thursday at 10:00 UK time (11:00 in Central Europe): funnel, RevOps, AI and the channels that feed it. 60 minutes.
 
-Want a seat? {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
+Want a seat? https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
 </code></pre>
 <h3>1st degree, Step 2: Message</h3>
-<pre><code class="language-text">{{firstName}}, quick follow-up. If {{custom.post_topic}} is on your plate this quarter, Thursday's session shows the full build behind it: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
+<pre><code class="language-text">{{firstName}}, quick follow-up. If {{custom.post_topic}} is on your plate this quarter, Thursday's session shows the full build behind it: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
 </code></pre>
 <h2>Set 2: InMail (Shared Template, Sales Navigator Only)</h2>
 <p><strong>Who:</strong> Prospects in this sender's audience who are not connected and are worth an InMail: Open Profiles first (no credit used), then the best fits on credits. Off until this account is on Sales Navigator. If Tantra shows no InMail step, step 1 is sent by hand in Sales Navigator and, 5 days later, <strong>only the people who did not reply</strong> are imported into the follow-up campaign.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>. If step 1 goes out by hand in Sales Navigator, type the first name and company in place of the tags. The sign-off is the sender's name.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: none. Sales Navigator: 10 a day, 50 a week (our recommendation; about 2 a day on credits, the rest Open Profiles). The follow-up requests count toward the connection request limit.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -868,7 +868,7 @@ Want a seat? {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engag
 <td>1</td>
 <td>0</td>
 <td>InMail</td>
-<td>688</td>
+<td>697</td>
 </tr>
 <tr>
 <td>Follow-up</td>
@@ -882,7 +882,7 @@ Want a seat? {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engag
 <td>2</td>
 <td>1 (1 day after they accept)</td>
 <td>Message</td>
-<td>291</td>
+<td>300</td>
 </tr>
 </tbody>
 </table>
@@ -896,7 +896,7 @@ Most founders I speak with can't. Leads come from referrals, a good month on ads
 
 I host a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 400+ brands.
 
-60 minutes, including 15 minutes of Q&amp;A. Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
+60 minutes, including 15 minutes of Q&amp;A. Save your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
 
 Adi
 </code></pre>
@@ -905,14 +905,14 @@ Adi
 <pre><code class="language-text">Hi {{firstName}}, I sent you an InMail last week about building a pipeline you can measure. Connecting either way, as our work overlaps.
 </code></pre>
 <h3>Follow-up, Step 2: Message</h3>
-<pre><code class="language-text">Thanks for connecting, {{firstName}}. Here's the session link I mentioned: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
+<pre><code class="language-text">Thanks for connecting, {{firstName}}. Here's the session link I mentioned: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
 
 It runs every Thursday at 10:00 UK time (11:00 in Central Europe), so pick whichever week suits you.
 </code></pre>
 <h2>Set 3: Connector (Shared Template)</h2>
 <p><strong>Who:</strong> Cold prospects in this sender's audience (2nd and 3rd degree). Only people who accept get the messages.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 15 connection requests a day, 75 a week, without a note. Sales Navigator: 30 a day, with the note; 130 a week under Tantra's 180 a week ceiling.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -952,21 +952,21 @@ It runs every Thursday at 10:00 UK time (11:00 in Central Europe), so pick which
 <td>4</td>
 <td>3</td>
 <td>Message</td>
-<td>446</td>
+<td>455</td>
 </tr>
 <tr>
 <td>main</td>
 <td>5</td>
 <td>4</td>
 <td>Message</td>
-<td>418</td>
+<td>427</td>
 </tr>
 <tr>
 <td>main</td>
 <td>6</td>
 <td>6</td>
 <td>Message</td>
-<td>373</td>
+<td>382</td>
 </tr>
 </tbody>
 </table>
@@ -990,7 +990,7 @@ I host the session: 60 minutes on the funnel, the RevOps system behind it, the A
 
 Bring your numbers. You'll leave knowing which stage to fix first.
 
-Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
+Save your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
 </code></pre>
 <h3>Step 5: Message</h3>
 <pre><code class="language-text">This isn't theory, {{firstName}}.
@@ -999,19 +999,19 @@ For Growth Idea, a UK business-coaching group, one webinar reached 99,859 people
 
 Their first webinar got 30 registrations. Every stage was measured, so every week got better.
 
-The session shows the build: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
+The session shows the build: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
 </code></pre>
 <h3>Step 6: Message</h3>
 <pre><code class="language-text">Last note from me, {{firstName}}.
 
-If a predictable pipeline is on this year's list for {{company}}, the session runs every Thursday at 10:00 UK time (11:00 in Central Europe): {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
+If a predictable pipeline is on this year's list for {{company}}, the session runs every Thursday at 10:00 UK time (11:00 in Central Europe): https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
 
 If not, no hard feelings. Good luck with the quarter.
 </code></pre>
 <h2>Set 4: Messenger (Shared Template, 1st-Degree Connections)</h2>
 <p><strong>Who:</strong> This sender's own 1st-degree connections who match the audience and are owned by no other sender.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 20 messages a day, 100 a week. Sales Navigator: 40 a day, 200 a week.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -1030,21 +1030,21 @@ If not, no hard feelings. Good luck with the quarter.
 <td>1</td>
 <td>0</td>
 <td>Message</td>
-<td>579</td>
+<td>588</td>
 </tr>
 <tr>
 <td>main</td>
 <td>2</td>
 <td>4</td>
 <td>Message</td>
-<td>370</td>
+<td>379</td>
 </tr>
 <tr>
 <td>main</td>
 <td>3</td>
 <td>5</td>
 <td>Message</td>
-<td>299</td>
+<td>308</td>
 </tr>
 </tbody>
 </table>
@@ -1055,17 +1055,17 @@ For most founders I speak with, it's most of it.
 
 I host a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind: a funnel, a RevOps system and AI on the busywork, measured stage by stage. It draws on 10+ years of work with 400+ brands.
 
-60 minutes. Want a seat? {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
+60 minutes. Want a seat? https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
 </code></pre>
 <h3>Step 2: Message</h3>
 <pre><code class="language-text">{{firstName}}, one number from the session: a UK coaching group went from 30 registrations on their first webinar to 1,990 on their best.
 
 Same team. The difference was measuring every stage and fixing the weakest one each week.
 
-Seat's here if useful: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
+Seat's here if useful: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
 </code></pre>
 <h3>Step 3: Message</h3>
-<pre><code class="language-text">Last nudge, {{firstName}}. It runs every week, so any Thursday works: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
+<pre><code class="language-text">Last nudge, {{firstName}}. It runs every week, so any Thursday works: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=adi
 
 And if a quick chat about {{company}} would help more than a session, just reply here.
 </code></pre></div></details><details class="doc"><summary>profiles/aquila.md</summary><div class="md"><h1>Aquila: LinkedIn Outreach Templates</h1>
@@ -1147,7 +1147,7 @@ And if a quick chat about {{company}} would help more than a session, just reply
 <h2>Set 1: Content Engagement (Personal: Likers and Commenters of My Posts)</h2>
 <p><strong>Who:</strong> People who liked or commented on one of this sender's own posts. One campaign per post, started within 24 hours of the post. Split the engager export by degree: 2nd and 3rd degree run the connect track, 1st degree the message track.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{custom.post_topic}}</code> (a 2 to 6 word phrase for the post, the same value on every row of that post's export). If the test message shows <code>{{custom.post_topic}}</code> blank, type the phrase into the step text instead: each post has its own campaign.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 5 connection requests and 5 messages a day (25 and 25 a week), requests without a note. Sales Navigator: 10 and 10 a day (50 and 50 a week), with the note.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -1180,28 +1180,28 @@ And if a quick chat about {{company}} would help more than a session, just reply
 <td>3</td>
 <td>1 (1 day after they accept)</td>
 <td>Message</td>
-<td>453</td>
+<td>462</td>
 </tr>
 <tr>
 <td>2nd/3rd degree</td>
 <td>4</td>
 <td>4</td>
 <td>Message</td>
-<td>347</td>
+<td>356</td>
 </tr>
 <tr>
 <td>1st degree</td>
 <td>1</td>
 <td>0</td>
 <td>Message</td>
-<td>365</td>
+<td>374</td>
 </tr>
 <tr>
 <td>1st degree</td>
 <td>2</td>
 <td>4</td>
 <td>Message</td>
-<td>252</td>
+<td>261</td>
 </tr>
 </tbody>
 </table>
@@ -1214,25 +1214,25 @@ And if a quick chat about {{company}} would help more than a session, just reply
 
 That post on {{custom.post_topic}} was a single automation. The session shows the whole chain: invites, reminders, follow-ups and handoffs that run without someone remembering.
 
-Adi, our founder, hosts it every Thursday at 10:00 UK time (11:00 in Central Europe). Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
+Adi, our founder, hosts it every Thursday at 10:00 UK time (11:00 in Central Europe). Your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
 </code></pre>
 <h3>2nd/3rd degree, Step 4: Message</h3>
 <pre><code class="language-text">{{firstName}}, here's what that looks like at scale: for a UK coaching group we built calendar-invite outreach at 12,000 to 120,000 invites per webinar, plus the reminders and follow-up around it.
 
-The session shows the flow: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
+The session shows the flow: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
 </code></pre>
 <h3>1st degree, Step 1: Message</h3>
 <pre><code class="language-text">Hi {{firstName}}, noticed you on my post about {{custom.post_topic}}.
 
-Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on the revenue engine, including the automations I build: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
+Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on the revenue engine, including the automations I build: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
 </code></pre>
 <h3>1st degree, Step 2: Message</h3>
-<pre><code class="language-text">{{firstName}}, a last pointer: Thursday's session shows which parts of {{custom.post_topic}} to automate first. {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
+<pre><code class="language-text">{{firstName}}, a last pointer: Thursday's session shows which parts of {{custom.post_topic}} to automate first. https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
 </code></pre>
 <h2>Set 2: InMail (Shared Template, Sales Navigator Only)</h2>
 <p><strong>Who:</strong> Prospects in this sender's audience who are not connected and are worth an InMail: Open Profiles first (no credit used), then the best fits on credits. Off until this account is on Sales Navigator. If Tantra shows no InMail step, step 1 is sent by hand in Sales Navigator and, 5 days later, <strong>only the people who did not reply</strong> are imported into the follow-up campaign.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>. If step 1 goes out by hand in Sales Navigator, type the first name and company in place of the tags. The sign-off is the sender's name.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: none. Sales Navigator: 10 a day, 50 a week (our recommendation; about 2 a day on credits, the rest Open Profiles). The follow-up requests count toward the connection request limit.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -1251,7 +1251,7 @@ Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in 
 <td>1</td>
 <td>0</td>
 <td>InMail</td>
-<td>711</td>
+<td>720</td>
 </tr>
 <tr>
 <td>Follow-up</td>
@@ -1265,7 +1265,7 @@ Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in 
 <td>2</td>
 <td>1 (1 day after they accept)</td>
 <td>Message</td>
-<td>294</td>
+<td>303</td>
 </tr>
 </tbody>
 </table>
@@ -1279,7 +1279,7 @@ Most founders I speak with can't. Leads come from referrals, a good month on ads
 
 Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 400+ brands.
 
-60 minutes, including 15 minutes of Q&amp;A. Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
+60 minutes, including 15 minutes of Q&amp;A. Save your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
 
 Aquila
 </code></pre>
@@ -1288,14 +1288,14 @@ Aquila
 <pre><code class="language-text">Hi {{firstName}}, I sent you an InMail last week about building a pipeline you can measure. Connecting either way, as our work overlaps.
 </code></pre>
 <h3>Follow-up, Step 2: Message</h3>
-<pre><code class="language-text">Thanks for connecting, {{firstName}}. Here's the session link I mentioned: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
+<pre><code class="language-text">Thanks for connecting, {{firstName}}. Here's the session link I mentioned: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
 
 It runs every Thursday at 10:00 UK time (11:00 in Central Europe), so pick whichever week suits you.
 </code></pre>
 <h2>Set 3: Connector (Shared Template)</h2>
 <p><strong>Who:</strong> Cold prospects in this sender's audience (2nd and 3rd degree). Only people who accept get the messages.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 15 connection requests a day, 75 a week, without a note. Sales Navigator: 30 a day, with the note; 130 a week under Tantra's 180 a week ceiling.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -1335,21 +1335,21 @@ It runs every Thursday at 10:00 UK time (11:00 in Central Europe), so pick which
 <td>4</td>
 <td>3</td>
 <td>Message</td>
-<td>466</td>
+<td>475</td>
 </tr>
 <tr>
 <td>main</td>
 <td>5</td>
 <td>4</td>
 <td>Message</td>
-<td>421</td>
+<td>430</td>
 </tr>
 <tr>
 <td>main</td>
 <td>6</td>
 <td>6</td>
 <td>Message</td>
-<td>376</td>
+<td>385</td>
 </tr>
 </tbody>
 </table>
@@ -1373,7 +1373,7 @@ Adi, our founder, hosts the session: 60 minutes on the funnel, the RevOps system
 
 Bring your numbers. You'll leave knowing which stage to fix first.
 
-Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
+Save your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
 </code></pre>
 <h3>Step 5: Message</h3>
 <pre><code class="language-text">This isn't theory, {{firstName}}.
@@ -1382,19 +1382,19 @@ For Growth Idea, a UK business-coaching group, one webinar reached 99,859 people
 
 Their first webinar got 30 registrations. Every stage was measured, so every week got better.
 
-The session shows the build: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
+The session shows the build: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
 </code></pre>
 <h3>Step 6: Message</h3>
 <pre><code class="language-text">Last note from me, {{firstName}}.
 
-If a predictable pipeline is on this year's list for {{company}}, the session runs every Thursday at 10:00 UK time (11:00 in Central Europe): {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
+If a predictable pipeline is on this year's list for {{company}}, the session runs every Thursday at 10:00 UK time (11:00 in Central Europe): https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
 
 If not, no hard feelings. Good luck with the quarter.
 </code></pre>
 <h2>Set 4: Messenger (Shared Template, 1st-Degree Connections)</h2>
 <p><strong>Who:</strong> This sender's own 1st-degree connections who match the audience and are owned by no other sender.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 20 messages a day, 100 a week. Sales Navigator: 40 a day, 200 a week.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -1413,21 +1413,21 @@ If not, no hard feelings. Good luck with the quarter.
 <td>1</td>
 <td>0</td>
 <td>Message</td>
-<td>599</td>
+<td>608</td>
 </tr>
 <tr>
 <td>main</td>
 <td>2</td>
 <td>4</td>
 <td>Message</td>
-<td>373</td>
+<td>382</td>
 </tr>
 <tr>
 <td>main</td>
 <td>3</td>
 <td>5</td>
 <td>Message</td>
-<td>302</td>
+<td>311</td>
 </tr>
 </tbody>
 </table>
@@ -1438,17 +1438,17 @@ For most founders I speak with, it's most of it.
 
 Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind: a funnel, a RevOps system and AI on the busywork, measured stage by stage. It draws on 10+ years of work with 400+ brands.
 
-60 minutes. Want a seat? {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
+60 minutes. Want a seat? https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
 </code></pre>
 <h3>Step 2: Message</h3>
 <pre><code class="language-text">{{firstName}}, one number from the session: a UK coaching group went from 30 registrations on their first webinar to 1,990 on their best.
 
 Same team. The difference was measuring every stage and fixing the weakest one each week.
 
-Seat's here if useful: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
+Seat's here if useful: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
 </code></pre>
 <h3>Step 3: Message</h3>
-<pre><code class="language-text">Last nudge, {{firstName}}. It runs every week, so any Thursday works: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
+<pre><code class="language-text">Last nudge, {{firstName}}. It runs every week, so any Thursday works: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=aquila
 
 And if a quick chat about {{company}} would help more than a session, just reply here.
 </code></pre></div></details><details class="doc"><summary>profiles/ben.md</summary><div class="md"><h1>Ben: LinkedIn Outreach Templates</h1>
@@ -1530,7 +1530,7 @@ And if a quick chat about {{company}} would help more than a session, just reply
 <h2>Set 1: Content Engagement (Personal: Likers and Commenters of My Posts)</h2>
 <p><strong>Who:</strong> People who liked or commented on one of this sender's own posts. One campaign per post, started within 24 hours of the post. Split the engager export by degree: 2nd and 3rd degree run the connect track, 1st degree the message track.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{custom.post_topic}}</code> (a 2 to 6 word phrase for the post, the same value on every row of that post's export). If the test message shows <code>{{custom.post_topic}}</code> blank, type the phrase into the step text instead: each post has its own campaign.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 5 connection requests and 5 messages a day (25 and 25 a week), requests without a note. Sales Navigator: 10 and 10 a day (50 and 50 a week), with the note.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -1563,28 +1563,28 @@ And if a quick chat about {{company}} would help more than a session, just reply
 <td>3</td>
 <td>1 (1 day after they accept)</td>
 <td>Message</td>
-<td>415</td>
+<td>424</td>
 </tr>
 <tr>
 <td>2nd/3rd degree</td>
 <td>4</td>
 <td>4</td>
 <td>Message</td>
-<td>301</td>
+<td>310</td>
 </tr>
 <tr>
 <td>1st degree</td>
 <td>1</td>
 <td>0</td>
 <td>Message</td>
-<td>376</td>
+<td>385</td>
 </tr>
 <tr>
 <td>1st degree</td>
 <td>2</td>
 <td>4</td>
 <td>Message</td>
-<td>248</td>
+<td>257</td>
 </tr>
 </tbody>
 </table>
@@ -1597,25 +1597,25 @@ And if a quick chat about {{company}} would help more than a session, just reply
 
 My {{custom.post_topic}} post was one part of the build. The session covers the rest: pages, forms, tracking and the tests that decide what stays.
 
-Adi, our founder, hosts it every Thursday at 10:00 UK time (11:00 in Central Europe). Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+Adi, our founder, hosts it every Thursday at 10:00 UK time (11:00 in Central Europe). Your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
 </code></pre>
 <h3>2nd/3rd degree, Step 4: Message</h3>
 <pre><code class="language-text">{{firstName}}, one test from the session: a long landing page was expected to bring 70 registrations and brought 96.
 
-We only knew because both pages were tracked. The setup is here: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+We only knew because both pages were tracked. The setup is here: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
 </code></pre>
 <h3>1st degree, Step 1: Message</h3>
 <pre><code class="language-text">{{firstName}}, appreciate you engaging with my post on {{custom.post_topic}}.
 
-Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on the full revenue engine, including the build side I work on: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on the full revenue engine, including the build side I work on: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
 </code></pre>
 <h3>1st degree, Step 2: Message</h3>
-<pre><code class="language-text">{{firstName}}, last one from me: Thursday's session shows how to test {{custom.post_topic}} with real numbers. {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+<pre><code class="language-text">{{firstName}}, last one from me: Thursday's session shows how to test {{custom.post_topic}} with real numbers. https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
 </code></pre>
 <h2>Set 2: InMail (Shared Template, Sales Navigator Only)</h2>
 <p><strong>Who:</strong> Prospects in this sender's audience who are not connected and are worth an InMail: Open Profiles first (no credit used), then the best fits on credits. Off until this account is on Sales Navigator. If Tantra shows no InMail step, step 1 is sent by hand in Sales Navigator and, 5 days later, <strong>only the people who did not reply</strong> are imported into the follow-up campaign.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>. If step 1 goes out by hand in Sales Navigator, type the first name and company in place of the tags. The sign-off is the sender's name.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: none. Sales Navigator: 10 a day, 50 a week (our recommendation; about 2 a day on credits, the rest Open Profiles). The follow-up requests count toward the connection request limit.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -1634,7 +1634,7 @@ Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in 
 <td>1</td>
 <td>0</td>
 <td>InMail</td>
-<td>705</td>
+<td>714</td>
 </tr>
 <tr>
 <td>Follow-up</td>
@@ -1648,7 +1648,7 @@ Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in 
 <td>2</td>
 <td>1 (1 day after they accept)</td>
 <td>Message</td>
-<td>291</td>
+<td>300</td>
 </tr>
 </tbody>
 </table>
@@ -1662,7 +1662,7 @@ Most founders I speak with can't. Leads come from referrals, a good month on ads
 
 Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 400+ brands.
 
-60 minutes, including 15 minutes of Q&amp;A. Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+60 minutes, including 15 minutes of Q&amp;A. Save your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
 
 Ben
 </code></pre>
@@ -1671,14 +1671,14 @@ Ben
 <pre><code class="language-text">Hi {{firstName}}, I sent you an InMail last week about building a pipeline you can measure. Connecting either way, as our work overlaps.
 </code></pre>
 <h3>Follow-up, Step 2: Message</h3>
-<pre><code class="language-text">Thanks for connecting, {{firstName}}. Here's the session link I mentioned: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+<pre><code class="language-text">Thanks for connecting, {{firstName}}. Here's the session link I mentioned: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
 
 It runs every Thursday at 10:00 UK time (11:00 in Central Europe), so pick whichever week suits you.
 </code></pre>
 <h2>Set 3: Connector (Shared Template)</h2>
 <p><strong>Who:</strong> Cold prospects in this sender's audience (2nd and 3rd degree). Only people who accept get the messages.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 15 connection requests a day, 75 a week, without a note. Sales Navigator: 30 a day, with the note; 130 a week under Tantra's 180 a week ceiling.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -1718,21 +1718,21 @@ It runs every Thursday at 10:00 UK time (11:00 in Central Europe), so pick which
 <td>4</td>
 <td>3</td>
 <td>Message</td>
-<td>463</td>
+<td>472</td>
 </tr>
 <tr>
 <td>main</td>
 <td>5</td>
 <td>4</td>
 <td>Message</td>
-<td>418</td>
+<td>427</td>
 </tr>
 <tr>
 <td>main</td>
 <td>6</td>
 <td>6</td>
 <td>Message</td>
-<td>373</td>
+<td>382</td>
 </tr>
 </tbody>
 </table>
@@ -1756,7 +1756,7 @@ Adi, our founder, hosts the session: 60 minutes on the funnel, the RevOps system
 
 Bring your numbers. You'll leave knowing which stage to fix first.
 
-Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+Save your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
 </code></pre>
 <h3>Step 5: Message</h3>
 <pre><code class="language-text">This isn't theory, {{firstName}}.
@@ -1765,19 +1765,19 @@ For Growth Idea, a UK business-coaching group, one webinar reached 99,859 people
 
 Their first webinar got 30 registrations. Every stage was measured, so every week got better.
 
-The session shows the build: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+The session shows the build: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
 </code></pre>
 <h3>Step 6: Message</h3>
 <pre><code class="language-text">Last note from me, {{firstName}}.
 
-If a predictable pipeline is on this year's list for {{company}}, the session runs every Thursday at 10:00 UK time (11:00 in Central Europe): {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+If a predictable pipeline is on this year's list for {{company}}, the session runs every Thursday at 10:00 UK time (11:00 in Central Europe): https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
 
 If not, no hard feelings. Good luck with the quarter.
 </code></pre>
 <h2>Set 4: Messenger (Shared Template, 1st-Degree Connections)</h2>
 <p><strong>Who:</strong> This sender's own 1st-degree connections who match the audience and are owned by no other sender.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 20 messages a day, 100 a week. Sales Navigator: 40 a day, 200 a week.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -1796,21 +1796,21 @@ If not, no hard feelings. Good luck with the quarter.
 <td>1</td>
 <td>0</td>
 <td>Message</td>
-<td>596</td>
+<td>605</td>
 </tr>
 <tr>
 <td>main</td>
 <td>2</td>
 <td>4</td>
 <td>Message</td>
-<td>370</td>
+<td>379</td>
 </tr>
 <tr>
 <td>main</td>
 <td>3</td>
 <td>5</td>
 <td>Message</td>
-<td>299</td>
+<td>308</td>
 </tr>
 </tbody>
 </table>
@@ -1821,17 +1821,17 @@ For most founders I speak with, it's most of it.
 
 Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind: a funnel, a RevOps system and AI on the busywork, measured stage by stage. It draws on 10+ years of work with 400+ brands.
 
-60 minutes. Want a seat? {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+60 minutes. Want a seat? https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
 </code></pre>
 <h3>Step 2: Message</h3>
 <pre><code class="language-text">{{firstName}}, one number from the session: a UK coaching group went from 30 registrations on their first webinar to 1,990 on their best.
 
 Same team. The difference was measuring every stage and fixing the weakest one each week.
 
-Seat's here if useful: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+Seat's here if useful: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
 </code></pre>
 <h3>Step 3: Message</h3>
-<pre><code class="language-text">Last nudge, {{firstName}}. It runs every week, so any Thursday works: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
+<pre><code class="language-text">Last nudge, {{firstName}}. It runs every week, so any Thursday works: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=ben
 
 And if a quick chat about {{company}} would help more than a session, just reply here.
 </code></pre></div></details><details class="doc"><summary>profiles/bharath.md</summary><div class="md"><h1>Bharath: LinkedIn Outreach Templates</h1>
@@ -1913,7 +1913,7 @@ And if a quick chat about {{company}} would help more than a session, just reply
 <h2>Set 1: Content Engagement (Personal: Likers and Commenters of My Posts)</h2>
 <p><strong>Who:</strong> People who liked or commented on one of this sender's own posts. One campaign per post, started within 24 hours of the post. Split the engager export by degree: 2nd and 3rd degree run the connect track, 1st degree the message track.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{custom.post_topic}}</code> (a 2 to 6 word phrase for the post, the same value on every row of that post's export). If the test message shows <code>{{custom.post_topic}}</code> blank, type the phrase into the step text instead: each post has its own campaign.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 5 connection requests and 5 messages a day (25 and 25 a week), requests without a note. Sales Navigator: 10 and 10 a day (50 and 50 a week), with the note.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -1946,28 +1946,28 @@ And if a quick chat about {{company}} would help more than a session, just reply
 <td>3</td>
 <td>1 (1 day after they accept)</td>
 <td>Message</td>
-<td>493</td>
+<td>502</td>
 </tr>
 <tr>
 <td>2nd/3rd degree</td>
 <td>4</td>
 <td>4</td>
 <td>Message</td>
-<td>308</td>
+<td>317</td>
 </tr>
 <tr>
 <td>1st degree</td>
 <td>1</td>
 <td>0</td>
 <td>Message</td>
-<td>342</td>
+<td>351</td>
 </tr>
 <tr>
 <td>1st degree</td>
 <td>2</td>
 <td>4</td>
 <td>Message</td>
-<td>269</td>
+<td>278</td>
 </tr>
 </tbody>
 </table>
@@ -1980,25 +1980,25 @@ And if a quick chat about {{company}} would help more than a session, just reply
 
 The post on {{custom.post_topic}} showed one piece of the stack. The session shows how it all connects: funnel, CRM, outreach and AI agents, with every stage measured.
 
-Adi, our founder, hosts it every Thursday at 10:00 UK time (11:00 in Central Europe), and the stack I build is part of what he shows. Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
+Adi, our founder, hosts it every Thursday at 10:00 UK time (11:00 in Central Europe), and the stack I build is part of what he shows. Your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
 </code></pre>
 <h3>2nd/3rd degree, Step 4: Message</h3>
 <pre><code class="language-text">{{firstName}}, a number for scale: across 11 webinars for a UK coaching group, outreach reached 765,105 people and 80 sales calls were booked.
 
-The wiring behind that is in the session: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
+The wiring behind that is in the session: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
 </code></pre>
 <h3>1st degree, Step 1: Message</h3>
 <pre><code class="language-text">{{firstName}}, saw you on my post about {{custom.post_topic}}.
 
-If you want the full stack behind it, Adi, our founder, walks through it live every Thursday at 10:00 UK time (11:00 in Central Europe): {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
+If you want the full stack behind it, Adi, our founder, walks through it live every Thursday at 10:00 UK time (11:00 in Central Europe): https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
 </code></pre>
 <h3>1st degree, Step 2: Message</h3>
-<pre><code class="language-text">{{firstName}}, if you'd rather see the wiring behind {{custom.post_topic}} than read about it, Thursday's session is the place: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
+<pre><code class="language-text">{{firstName}}, if you'd rather see the wiring behind {{custom.post_topic}} than read about it, Thursday's session is the place: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
 </code></pre>
 <h2>Set 2: InMail (Shared Template, Sales Navigator Only)</h2>
 <p><strong>Who:</strong> Prospects in this sender's audience who are not connected and are worth an InMail: Open Profiles first (no credit used), then the best fits on credits. Off until this account is on Sales Navigator. If Tantra shows no InMail step, step 1 is sent by hand in Sales Navigator and, 5 days later, <strong>only the people who did not reply</strong> are imported into the follow-up campaign.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>. If step 1 goes out by hand in Sales Navigator, type the first name and company in place of the tags. The sign-off is the sender's name.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: none. Sales Navigator: 10 a day, 50 a week (our recommendation; about 2 a day on credits, the rest Open Profiles). The follow-up requests count toward the connection request limit.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -2017,7 +2017,7 @@ If you want the full stack behind it, Adi, our founder, walks through it live ev
 <td>1</td>
 <td>0</td>
 <td>InMail</td>
-<td>713</td>
+<td>722</td>
 </tr>
 <tr>
 <td>Follow-up</td>
@@ -2031,7 +2031,7 @@ If you want the full stack behind it, Adi, our founder, walks through it live ev
 <td>2</td>
 <td>1 (1 day after they accept)</td>
 <td>Message</td>
-<td>295</td>
+<td>304</td>
 </tr>
 </tbody>
 </table>
@@ -2045,7 +2045,7 @@ Most founders I speak with can't. Leads come from referrals, a good month on ads
 
 Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 400+ brands.
 
-60 minutes, including 15 minutes of Q&amp;A. Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
+60 minutes, including 15 minutes of Q&amp;A. Save your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
 
 Bharath
 </code></pre>
@@ -2054,14 +2054,14 @@ Bharath
 <pre><code class="language-text">Hi {{firstName}}, I sent you an InMail last week about building a pipeline you can measure. Connecting either way, as our work overlaps.
 </code></pre>
 <h3>Follow-up, Step 2: Message</h3>
-<pre><code class="language-text">Thanks for connecting, {{firstName}}. Here's the session link I mentioned: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
+<pre><code class="language-text">Thanks for connecting, {{firstName}}. Here's the session link I mentioned: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
 
 It runs every Thursday at 10:00 UK time (11:00 in Central Europe), so pick whichever week suits you.
 </code></pre>
 <h2>Set 3: Connector (Shared Template)</h2>
 <p><strong>Who:</strong> Cold prospects in this sender's audience (2nd and 3rd degree). Only people who accept get the messages.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 15 connection requests a day, 75 a week, without a note. Sales Navigator: 30 a day, with the note; 130 a week under Tantra's 180 a week ceiling.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -2101,21 +2101,21 @@ It runs every Thursday at 10:00 UK time (11:00 in Central Europe), so pick which
 <td>4</td>
 <td>3</td>
 <td>Message</td>
-<td>467</td>
+<td>476</td>
 </tr>
 <tr>
 <td>main</td>
 <td>5</td>
 <td>4</td>
 <td>Message</td>
-<td>422</td>
+<td>431</td>
 </tr>
 <tr>
 <td>main</td>
 <td>6</td>
 <td>6</td>
 <td>Message</td>
-<td>377</td>
+<td>386</td>
 </tr>
 </tbody>
 </table>
@@ -2139,7 +2139,7 @@ Adi, our founder, hosts the session: 60 minutes on the funnel, the RevOps system
 
 Bring your numbers. You'll leave knowing which stage to fix first.
 
-Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
+Save your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
 </code></pre>
 <h3>Step 5: Message</h3>
 <pre><code class="language-text">This isn't theory, {{firstName}}.
@@ -2148,19 +2148,19 @@ For Growth Idea, a UK business-coaching group, one webinar reached 99,859 people
 
 Their first webinar got 30 registrations. Every stage was measured, so every week got better.
 
-The session shows the build: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
+The session shows the build: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
 </code></pre>
 <h3>Step 6: Message</h3>
 <pre><code class="language-text">Last note from me, {{firstName}}.
 
-If a predictable pipeline is on this year's list for {{company}}, the session runs every Thursday at 10:00 UK time (11:00 in Central Europe): {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
+If a predictable pipeline is on this year's list for {{company}}, the session runs every Thursday at 10:00 UK time (11:00 in Central Europe): https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
 
 If not, no hard feelings. Good luck with the quarter.
 </code></pre>
 <h2>Set 4: Messenger (Shared Template, 1st-Degree Connections)</h2>
 <p><strong>Who:</strong> This sender's own 1st-degree connections who match the audience and are owned by no other sender.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 20 messages a day, 100 a week. Sales Navigator: 40 a day, 200 a week.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -2179,21 +2179,21 @@ If not, no hard feelings. Good luck with the quarter.
 <td>1</td>
 <td>0</td>
 <td>Message</td>
-<td>600</td>
+<td>609</td>
 </tr>
 <tr>
 <td>main</td>
 <td>2</td>
 <td>4</td>
 <td>Message</td>
-<td>374</td>
+<td>383</td>
 </tr>
 <tr>
 <td>main</td>
 <td>3</td>
 <td>5</td>
 <td>Message</td>
-<td>303</td>
+<td>312</td>
 </tr>
 </tbody>
 </table>
@@ -2204,17 +2204,17 @@ For most founders I speak with, it's most of it.
 
 Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind: a funnel, a RevOps system and AI on the busywork, measured stage by stage. It draws on 10+ years of work with 400+ brands.
 
-60 minutes. Want a seat? {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
+60 minutes. Want a seat? https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
 </code></pre>
 <h3>Step 2: Message</h3>
 <pre><code class="language-text">{{firstName}}, one number from the session: a UK coaching group went from 30 registrations on their first webinar to 1,990 on their best.
 
 Same team. The difference was measuring every stage and fixing the weakest one each week.
 
-Seat's here if useful: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
+Seat's here if useful: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
 </code></pre>
 <h3>Step 3: Message</h3>
-<pre><code class="language-text">Last nudge, {{firstName}}. It runs every week, so any Thursday works: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
+<pre><code class="language-text">Last nudge, {{firstName}}. It runs every week, so any Thursday works: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bharath
 
 And if a quick chat about {{company}} would help more than a session, just reply here.
 </code></pre></div></details><details class="doc"><summary>profiles/bhaskar.md</summary><div class="md"><h1>Bhaskar: LinkedIn Outreach Templates</h1>
@@ -2296,7 +2296,7 @@ And if a quick chat about {{company}} would help more than a session, just reply
 <h2>Set 1: Content Engagement (Personal: Likers and Commenters of My Posts)</h2>
 <p><strong>Who:</strong> People who liked or commented on one of this sender's own posts. One campaign per post, started within 24 hours of the post. Split the engager export by degree: 2nd and 3rd degree run the connect track, 1st degree the message track.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{custom.post_topic}}</code> (a 2 to 6 word phrase for the post, the same value on every row of that post's export). If the test message shows <code>{{custom.post_topic}}</code> blank, type the phrase into the step text instead: each post has its own campaign.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 5 connection requests and 5 messages a day (25 and 25 a week), requests without a note. Sales Navigator: 10 and 10 a day (50 and 50 a week), with the note.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -2329,28 +2329,28 @@ And if a quick chat about {{company}} would help more than a session, just reply
 <td>3</td>
 <td>1 (1 day after they accept)</td>
 <td>Message</td>
-<td>435</td>
+<td>444</td>
 </tr>
 <tr>
 <td>2nd/3rd degree</td>
 <td>4</td>
 <td>4</td>
 <td>Message</td>
-<td>297</td>
+<td>306</td>
 </tr>
 <tr>
 <td>1st degree</td>
 <td>1</td>
 <td>0</td>
 <td>Message</td>
-<td>356</td>
+<td>365</td>
 </tr>
 <tr>
 <td>1st degree</td>
 <td>2</td>
 <td>4</td>
 <td>Message</td>
-<td>282</td>
+<td>291</td>
 </tr>
 </tbody>
 </table>
@@ -2363,25 +2363,25 @@ And if a quick chat about {{company}} would help more than a session, just reply
 
 That post on {{custom.post_topic}} was one piece of the system. The session shows the whole path from content to booked call, with a number on every stage.
 
-Adi, our founder, hosts it every Thursday at 10:00 UK time (11:00 in Central Europe). Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
+Adi, our founder, hosts it every Thursday at 10:00 UK time (11:00 in Central Europe). Your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
 </code></pre>
 <h3>2nd/3rd degree, Step 4: Message</h3>
 <pre><code class="language-text">{{firstName}}, a single episode for a London fintech network went out as 38,138 calendar invites and drew 187 Yes and 221 Maybe RSVPs.
 
-The setup behind it is in the session: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
+The setup behind it is in the session: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
 </code></pre>
 <h3>1st degree, Step 1: Message</h3>
 <pre><code class="language-text">Thanks for weighing in on my {{custom.post_topic}} post, {{firstName}}.
 
-Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on the full path from content to booked call: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
+Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on the full path from content to booked call: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
 </code></pre>
 <h3>1st degree, Step 2: Message</h3>
-<pre><code class="language-text">One more thought, {{firstName}}: if {{custom.post_topic}} matters to your pipeline this quarter, Thursday's session ties it to booked calls. {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
+<pre><code class="language-text">One more thought, {{firstName}}: if {{custom.post_topic}} matters to your pipeline this quarter, Thursday's session ties it to booked calls. https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
 </code></pre>
 <h2>Set 2: InMail (Shared Template, Sales Navigator Only)</h2>
 <p><strong>Who:</strong> Prospects in this sender's audience who are not connected and are worth an InMail: Open Profiles first (no credit used), then the best fits on credits. Off until this account is on Sales Navigator. If Tantra shows no InMail step, step 1 is sent by hand in Sales Navigator and, 5 days later, <strong>only the people who did not reply</strong> are imported into the follow-up campaign.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>. If step 1 goes out by hand in Sales Navigator, type the first name and company in place of the tags. The sign-off is the sender's name.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: none. Sales Navigator: 10 a day, 50 a week (our recommendation; about 2 a day on credits, the rest Open Profiles). The follow-up requests count toward the connection request limit.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -2400,7 +2400,7 @@ Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in 
 <td>1</td>
 <td>0</td>
 <td>InMail</td>
-<td>713</td>
+<td>722</td>
 </tr>
 <tr>
 <td>Follow-up</td>
@@ -2414,7 +2414,7 @@ Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in 
 <td>2</td>
 <td>1 (1 day after they accept)</td>
 <td>Message</td>
-<td>295</td>
+<td>304</td>
 </tr>
 </tbody>
 </table>
@@ -2428,7 +2428,7 @@ Most founders I speak with can't. Leads come from referrals, a good month on ads
 
 Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 400+ brands.
 
-60 minutes, including 15 minutes of Q&amp;A. Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
+60 minutes, including 15 minutes of Q&amp;A. Save your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
 
 Bhaskar
 </code></pre>
@@ -2437,14 +2437,14 @@ Bhaskar
 <pre><code class="language-text">Hi {{firstName}}, I sent you an InMail last week about building a pipeline you can measure. Connecting either way, as our work overlaps.
 </code></pre>
 <h3>Follow-up, Step 2: Message</h3>
-<pre><code class="language-text">Thanks for connecting, {{firstName}}. Here's the session link I mentioned: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
+<pre><code class="language-text">Thanks for connecting, {{firstName}}. Here's the session link I mentioned: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
 
 It runs every Thursday at 10:00 UK time (11:00 in Central Europe), so pick whichever week suits you.
 </code></pre>
 <h2>Set 3: Connector (Shared Template)</h2>
 <p><strong>Who:</strong> Cold prospects in this sender's audience (2nd and 3rd degree). Only people who accept get the messages.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 15 connection requests a day, 75 a week, without a note. Sales Navigator: 30 a day, with the note; 130 a week under Tantra's 180 a week ceiling.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -2484,21 +2484,21 @@ It runs every Thursday at 10:00 UK time (11:00 in Central Europe), so pick which
 <td>4</td>
 <td>3</td>
 <td>Message</td>
-<td>467</td>
+<td>476</td>
 </tr>
 <tr>
 <td>main</td>
 <td>5</td>
 <td>4</td>
 <td>Message</td>
-<td>422</td>
+<td>431</td>
 </tr>
 <tr>
 <td>main</td>
 <td>6</td>
 <td>6</td>
 <td>Message</td>
-<td>377</td>
+<td>386</td>
 </tr>
 </tbody>
 </table>
@@ -2522,7 +2522,7 @@ Adi, our founder, hosts the session: 60 minutes on the funnel, the RevOps system
 
 Bring your numbers. You'll leave knowing which stage to fix first.
 
-Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
+Save your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
 </code></pre>
 <h3>Step 5: Message</h3>
 <pre><code class="language-text">This isn't theory, {{firstName}}.
@@ -2531,19 +2531,19 @@ For Growth Idea, a UK business-coaching group, one webinar reached 99,859 people
 
 Their first webinar got 30 registrations. Every stage was measured, so every week got better.
 
-The session shows the build: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
+The session shows the build: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
 </code></pre>
 <h3>Step 6: Message</h3>
 <pre><code class="language-text">Last note from me, {{firstName}}.
 
-If a predictable pipeline is on this year's list for {{company}}, the session runs every Thursday at 10:00 UK time (11:00 in Central Europe): {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
+If a predictable pipeline is on this year's list for {{company}}, the session runs every Thursday at 10:00 UK time (11:00 in Central Europe): https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
 
 If not, no hard feelings. Good luck with the quarter.
 </code></pre>
 <h2>Set 4: Messenger (Shared Template, 1st-Degree Connections)</h2>
 <p><strong>Who:</strong> This sender's own 1st-degree connections who match the audience and are owned by no other sender.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 20 messages a day, 100 a week. Sales Navigator: 40 a day, 200 a week.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -2562,21 +2562,21 @@ If not, no hard feelings. Good luck with the quarter.
 <td>1</td>
 <td>0</td>
 <td>Message</td>
-<td>600</td>
+<td>609</td>
 </tr>
 <tr>
 <td>main</td>
 <td>2</td>
 <td>4</td>
 <td>Message</td>
-<td>374</td>
+<td>383</td>
 </tr>
 <tr>
 <td>main</td>
 <td>3</td>
 <td>5</td>
 <td>Message</td>
-<td>303</td>
+<td>312</td>
 </tr>
 </tbody>
 </table>
@@ -2587,17 +2587,17 @@ For most founders I speak with, it's most of it.
 
 Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind: a funnel, a RevOps system and AI on the busywork, measured stage by stage. It draws on 10+ years of work with 400+ brands.
 
-60 minutes. Want a seat? {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
+60 minutes. Want a seat? https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
 </code></pre>
 <h3>Step 2: Message</h3>
 <pre><code class="language-text">{{firstName}}, one number from the session: a UK coaching group went from 30 registrations on their first webinar to 1,990 on their best.
 
 Same team. The difference was measuring every stage and fixing the weakest one each week.
 
-Seat's here if useful: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
+Seat's here if useful: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
 </code></pre>
 <h3>Step 3: Message</h3>
-<pre><code class="language-text">Last nudge, {{firstName}}. It runs every week, so any Thursday works: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
+<pre><code class="language-text">Last nudge, {{firstName}}. It runs every week, so any Thursday works: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=bhaskar
 
 And if a quick chat about {{company}} would help more than a session, just reply here.
 </code></pre></div></details><details class="doc"><summary>profiles/nelbin.md</summary><div class="md"><h1>Nelbin: LinkedIn Outreach Templates</h1>
@@ -2679,7 +2679,7 @@ And if a quick chat about {{company}} would help more than a session, just reply
 <h2>Set 1: Content Engagement (Personal: Likers and Commenters of My Posts)</h2>
 <p><strong>Who:</strong> People who liked or commented on one of this sender's own posts. One campaign per post, started within 24 hours of the post. Split the engager export by degree: 2nd and 3rd degree run the connect track, 1st degree the message track.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{custom.post_topic}}</code> (a 2 to 6 word phrase for the post, the same value on every row of that post's export). If the test message shows <code>{{custom.post_topic}}</code> blank, type the phrase into the step text instead: each post has its own campaign.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 5 connection requests and 5 messages a day (25 and 25 a week), requests without a note. Sales Navigator: 10 and 10 a day (50 and 50 a week), with the note.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -2712,28 +2712,28 @@ And if a quick chat about {{company}} would help more than a session, just reply
 <td>3</td>
 <td>1 (1 day after they accept)</td>
 <td>Message</td>
-<td>437</td>
+<td>446</td>
 </tr>
 <tr>
 <td>2nd/3rd degree</td>
 <td>4</td>
 <td>4</td>
 <td>Message</td>
-<td>359</td>
+<td>368</td>
 </tr>
 <tr>
 <td>1st degree</td>
 <td>1</td>
 <td>0</td>
 <td>Message</td>
-<td>347</td>
+<td>356</td>
 </tr>
 <tr>
 <td>1st degree</td>
 <td>2</td>
 <td>4</td>
 <td>Message</td>
-<td>258</td>
+<td>267</td>
 </tr>
 </tbody>
 </table>
@@ -2746,27 +2746,27 @@ And if a quick chat about {{company}} would help more than a session, just reply
 
 My post on {{custom.post_topic}} covered one step. The session covers the whole process: who owns each stage, what gets measured weekly and what the AI handles.
 
-Adi, our founder, hosts it every Thursday at 10:00 UK time (11:00 in Central Europe). Your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+Adi, our founder, hosts it every Thursday at 10:00 UK time (11:00 in Central Europe). Your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
 </code></pre>
 <h3>2nd/3rd degree, Step 4: Message</h3>
 <pre><code class="language-text">{{firstName}}, a process example from the session.
 
 In one logged experiment for a UK coaching group, a 100,000-invite calendar push aimed for 250 attendees and got 441. Logging it is what made it repeatable.
 
-The full checklist is here: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+The full checklist is here: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
 </code></pre>
 <h3>1st degree, Step 1: Message</h3>
 <pre><code class="language-text">{{firstName}}, good to see you on my {{custom.post_topic}} post.
 
-Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building revenue as a repeatable process: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building revenue as a repeatable process: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
 </code></pre>
 <h3>1st degree, Step 2: Message</h3>
-<pre><code class="language-text">{{firstName}}, following up once. Thursday's session turns {{custom.post_topic}} into a weekly checklist you can run: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+<pre><code class="language-text">{{firstName}}, following up once. Thursday's session turns {{custom.post_topic}} into a weekly checklist you can run: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=engagement&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
 </code></pre>
 <h2>Set 2: InMail (Shared Template, Sales Navigator Only)</h2>
 <p><strong>Who:</strong> Prospects in this sender's audience who are not connected and are worth an InMail: Open Profiles first (no credit used), then the best fits on credits. Off until this account is on Sales Navigator. If Tantra shows no InMail step, step 1 is sent by hand in Sales Navigator and, 5 days later, <strong>only the people who did not reply</strong> are imported into the follow-up campaign.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>. If step 1 goes out by hand in Sales Navigator, type the first name and company in place of the tags. The sign-off is the sender's name.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: none. Sales Navigator: 10 a day, 50 a week (our recommendation; about 2 a day on credits, the rest Open Profiles). The follow-up requests count toward the connection request limit.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -2785,7 +2785,7 @@ Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in 
 <td>1</td>
 <td>0</td>
 <td>InMail</td>
-<td>711</td>
+<td>720</td>
 </tr>
 <tr>
 <td>Follow-up</td>
@@ -2799,7 +2799,7 @@ Adi, our founder, runs a live session every Thursday at 10:00 UK time (11:00 in 
 <td>2</td>
 <td>1 (1 day after they accept)</td>
 <td>Message</td>
-<td>294</td>
+<td>303</td>
 </tr>
 </tbody>
 </table>
@@ -2813,7 +2813,7 @@ Most founders I speak with can't. Leads come from referrals, a good month on ads
 
 Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind of pipeline: the funnel, the RevOps system behind it and the AI that runs the busywork. It draws on 10+ years of work with 400+ brands.
 
-60 minutes, including 15 minutes of Q&amp;A. Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+60 minutes, including 15 minutes of Q&amp;A. Save your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
 
 Nelbin
 </code></pre>
@@ -2822,14 +2822,14 @@ Nelbin
 <pre><code class="language-text">Hi {{firstName}}, I sent you an InMail last week about building a pipeline you can measure. Connecting either way, as our work overlaps.
 </code></pre>
 <h3>Follow-up, Step 2: Message</h3>
-<pre><code class="language-text">Thanks for connecting, {{firstName}}. Here's the session link I mentioned: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+<pre><code class="language-text">Thanks for connecting, {{firstName}}. Here's the session link I mentioned: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=inmail&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
 
 It runs every Thursday at 10:00 UK time (11:00 in Central Europe), so pick whichever week suits you.
 </code></pre>
 <h2>Set 3: Connector (Shared Template)</h2>
 <p><strong>Who:</strong> Cold prospects in this sender's audience (2nd and 3rd degree). Only people who accept get the messages.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 15 connection requests a day, 75 a week, without a note. Sales Navigator: 30 a day, with the note; 130 a week under Tantra's 180 a week ceiling.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -2869,21 +2869,21 @@ It runs every Thursday at 10:00 UK time (11:00 in Central Europe), so pick which
 <td>4</td>
 <td>3</td>
 <td>Message</td>
-<td>466</td>
+<td>475</td>
 </tr>
 <tr>
 <td>main</td>
 <td>5</td>
 <td>4</td>
 <td>Message</td>
-<td>421</td>
+<td>430</td>
 </tr>
 <tr>
 <td>main</td>
 <td>6</td>
 <td>6</td>
 <td>Message</td>
-<td>376</td>
+<td>385</td>
 </tr>
 </tbody>
 </table>
@@ -2907,7 +2907,7 @@ Adi, our founder, hosts the session: 60 minutes on the funnel, the RevOps system
 
 Bring your numbers. You'll leave knowing which stage to fix first.
 
-Save your seat: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+Save your seat: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
 </code></pre>
 <h3>Step 5: Message</h3>
 <pre><code class="language-text">This isn't theory, {{firstName}}.
@@ -2916,19 +2916,19 @@ For Growth Idea, a UK business-coaching group, one webinar reached 99,859 people
 
 Their first webinar got 30 registrations. Every stage was measured, so every week got better.
 
-The session shows the build: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+The session shows the build: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
 </code></pre>
 <h3>Step 6: Message</h3>
 <pre><code class="language-text">Last note from me, {{firstName}}.
 
-If a predictable pipeline is on this year's list for {{company}}, the session runs every Thursday at 10:00 UK time (11:00 in Central Europe): {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+If a predictable pipeline is on this year's list for {{company}}, the session runs every Thursday at 10:00 UK time (11:00 in Central Europe): https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=connector&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
 
 If not, no hard feelings. Good luck with the quarter.
 </code></pre>
 <h2>Set 4: Messenger (Shared Template, 1st-Degree Connections)</h2>
 <p><strong>Who:</strong> This sender's own 1st-degree connections who match the audience and are owned by no other sender.</p>
 <p><strong>Personalisation fields:</strong> <code>{{firstName}}</code> and <code>{{company}}</code>.</p>
-<p><strong>Registration link (the exact text in the copy):</strong> <code>{{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin</code>. <code>{{domains.funnel_domain}}</code> is still FILL_ in funnel-config.json: <strong>do not load these steps into Tantra until it is filled and build.py has run again</strong>, because Tantra renders an unknown tag as blank text.</p>
+<p><strong>Registration link (the exact text in the copy):</strong> <code>https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin</code>. Built from funnel-config.json.</p>
 <p><strong>Limits:</strong> Free: 20 messages a day, 100 a week. Sales Navigator: 40 a day, 200 a week.</p>
 <p><strong>Stop rules:</strong> a reply, a registration from any source (CRM <code>webinar.registered</code>) or a do-not-contact request removes the person from every LinkedIn campaign the same day.</p>
 <table>
@@ -2947,21 +2947,21 @@ If not, no hard feelings. Good luck with the quarter.
 <td>1</td>
 <td>0</td>
 <td>Message</td>
-<td>599</td>
+<td>608</td>
 </tr>
 <tr>
 <td>main</td>
 <td>2</td>
 <td>4</td>
 <td>Message</td>
-<td>373</td>
+<td>382</td>
 </tr>
 <tr>
 <td>main</td>
 <td>3</td>
 <td>5</td>
 <td>Message</td>
-<td>302</td>
+<td>311</td>
 </tr>
 </tbody>
 </table>
@@ -2972,17 +2972,17 @@ For most founders I speak with, it's most of it.
 
 Adi, our founder, hosts a live session every Thursday at 10:00 UK time (11:00 in Central Europe) on building the other kind: a funnel, a RevOps system and AI on the busywork, measured stage by stage. It draws on 10+ years of work with 400+ brands.
 
-60 minutes. Want a seat? {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+60 minutes. Want a seat? https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
 </code></pre>
 <h3>Step 2: Message</h3>
 <pre><code class="language-text">{{firstName}}, one number from the session: a UK coaching group went from 30 registrations on their first webinar to 1,990 on their best.
 
 Same team. The difference was measuring every stage and fixing the weakest one each week.
 
-Seat's here if useful: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+Seat's here if useful: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
 </code></pre>
 <h3>Step 3: Message</h3>
-<pre><code class="language-text">Last nudge, {{firstName}}. It runs every week, so any Thursday works: {{domains.funnel_domain}}/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
+<pre><code class="language-text">Last nudge, {{firstName}}. It runs every week, so any Thursday works: https://webinar.sellwithtantra.com/?utm_source=linkedin&amp;utm_medium=messenger&amp;utm_campaign=enterprise-webinar&amp;utm_content=nelbin
 
 And if a quick chat about {{company}} would help more than a session, just reply here.
 </code></pre></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: Item 4, LinkedIn Outreach Templates (Rework to Adi's Decisions of 2026-11-05)</h1>

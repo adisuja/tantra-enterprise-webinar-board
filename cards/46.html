@@ -1,1 +1,19 @@
-<p class="muted">Nothing built yet for this task.</p>
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>Card 46: the funnel live on webinar.sellwithtantra.com</h1>
+<p>Live since 8 November 2026: https://webinar.sellwithtantra.com/</p>
+<h2>What runs there</h2>
+<ul>
+<li><strong>Worker <code>tantra-webinar-site</code></strong> (growthcluborg Cloudflare account), custom domain <code>webinar.sellwithtantra.com</code>. It serves the built pages from <code>deliverables/13-15a-26-20-pages/site</code> and the form endpoint <code>/api/register</code>. The Google Workspace mail records on the same name (MX, SPF, DKIM) are untouched.</li>
+<li><strong>Registration form</strong>: Cloudflare Turnstile checks every sign-up (widget "Tantra webinar registration", keys in <code>~/.config/tantra/keys/turnstile-webinar.env</code>).</li>
+<li><strong>D1 database <code>tantra-webinar-registrations</code></strong>: every <code>webinar.registered</code> and <code>webinar.survey_completed</code> event is stored there with email, phone, UTM fields, the survey answers and the plan link, so nobody is lost while WebinarJam (card 17) and the CRM (card 41) are not switched on. <code>GET /api/admin/export</code> (Bearer key in <code>~/.config/tantra/keys/webinar-site.env</code>) lists them for the replay into both.</li>
+<li><strong>RevOps OS buy button switched off</strong> until the pack is attached (card 45). The live checkout link is kept as <code>offer.vip_checkout_url_live</code> in funnel-config.json: copy it into <code>offer.vip_checkout_url</code>, rebuild and redeploy to switch it on.</li>
+<li><strong>Every outreach link</strong> (calendar invites, cold email, LinkedIn templates and profiles, company page, Facebook group, content batches) now points at the domain.</li>
+</ul>
+<h2>Tested on 8 November</h2>
+<ul>
+<li>Every page and state on desktop and phone: no errors, no broken assets.</li>
+<li>The case explorer click test (148 checks) on the live domain.</li>
+<li>A full run on a test copy with Cloudflare's official Turnstile test keys: register, 22 survey screens, upsell, No thanks, confirmation with the plan link, the calculator from that link. Both events stored in D1 with the right fields; the test rows and the test copy were deleted.</li>
+<li>The API refuses a registration without Turnstile, unknown events, and the export without the key.</li>
+</ul>
+<h2>Deploy</h2>
+<p><code>node deliverables/13-15a-26-20-pages/build.mjs</code>, then from <code>worker/</code>: <code>CLOUDFLARE_ACCOUNT_ID=e51d1fda77a8f98fb670b2c106bd8a33 npx wrangler deploy</code>.</p></div></details><details class="doc"><summary>Files for import or upload (1)</summary><ul class="files"><li><a href="cards/files/46-funnel-domain/worker/schema.sql" target="_blank" rel="noopener">worker/schema.sql</a></li></ul></details>

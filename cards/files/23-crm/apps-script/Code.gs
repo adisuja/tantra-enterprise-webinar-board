@@ -315,7 +315,7 @@ var SCHEMA = {
   },
   {
    "setting": "due_diligence_url",
-   "value": "FILL_FUNNEL_DOMAIN/due-diligence/",
+   "value": "https://webinar.sellwithtantra.com/due-diligence/",
    "setting_note": "Due diligence page (item 20)."
   },
   {
