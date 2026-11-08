@@ -11,9 +11,8 @@ import * as registration from './src/pages/registration.mjs';
 import * as registrationB from './src/pages/registration-b.mjs';
 import * as thankYou from './src/pages/thank-you.mjs';
 import * as vip from './src/pages/vip.mjs';
-import * as confirmed from './src/pages/confirmed.mjs';
+import * as confirmation from './src/pages/confirmation.mjs';
 import * as calculator from './src/pages/calculator.mjs';
-import * as watch from './src/pages/watch.mjs';
 import * as recording from './src/pages/recording.mjs';
 import * as dd from './src/pages/due-diligence.mjs';
 import * as privacy from './src/pages/privacy-policy.mjs';
@@ -33,7 +32,7 @@ fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
 fs.cpSync(path.join(here, 'src', 'assets'), path.join(out, 'assets'), { recursive: true });
 
-const pages = [registration, registrationB, thankYou, vip, confirmed, calculator, watch, recording, ...dd.pages, privacy];
+const pages = [registration, registrationB, thankYou, vip, confirmation, calculator, recording, ...dd.pages, privacy];
 let ics = null;
 for (const page of pages) {
   const ctx = makeCtx(cfg, page.route);
@@ -47,8 +46,8 @@ for (const page of pages) {
     live: ctx.known('integrations.register_worker_url') && ctx.known('integrations.turnstile_site_key'),
     thank_you_path: `${ctx.rel}thank-you/`,
     cal_namespace: ctx.known('booking.embed_namespace') ? ctx.get('booking.embed_namespace') : null,
-    // The thank-you flow after registration: survey (/thank-you/), the Tantra RevOps OS upsell (/funnelos/), confirmed (/confirmed/), plan (/calculator/).
-    flow: { vip_path: `${ctx.rel}funnelos/`, confirmed_path: `${ctx.rel}confirmed/`, calculator_path: `${ctx.rel}calculator/`, vip_checkout_url: ctx.known('offer.vip_checkout_url') ? ctx.get('offer.vip_checkout_url') : null },
+    // The thank-you flow after registration: survey (/thank-you/), the Tantra RevOps OS upsell (/funnelos/), confirmation (/confirmation/), plan (/calculator/).
+    flow: { vip_path: `${ctx.rel}funnelos/`, confirmed_path: `${ctx.rel}confirmation/`, calculator_path: `${ctx.rel}calculator/`, vip_checkout_url: ctx.known('offer.vip_checkout_url') ? ctx.get('offer.vip_checkout_url') : null },
   };
   ics = ics || icsFile(ctx);
   const dir = path.join(out, page.route);
@@ -62,5 +61,11 @@ fs.writeFileSync(path.join(out, '.nojekyll'), '');
 // The upsell page moved from /vip/ to /funnelos/ (Adi 2026-11-08). Old links keep working, query string included.
 fs.mkdirSync(path.join(out, 'vip'), { recursive: true });
 fs.writeFileSync(path.join(out, 'vip', 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Moved | Tantra</title><link rel="canonical" href="../funnelos/"><script>location.replace('../funnelos/' + location.search + location.hash)</script><meta http-equiv="refresh" content="0;url=../funnelos/"></head><body><p><a href="../funnelos/">Continue to the next step</a></p></body></html>\n`);
+// Adi 2026-11-08: /confirmed/ is now /confirmation/ (query and hash kept, so Dodo's payment return still works), and
+// the four-video page /watch/ left the flow; old links land on the confirmation page.
+for (const [from, to] of [['confirmed', 'confirmation'], ['watch', 'confirmation']]) {
+  fs.mkdirSync(path.join(out, from), { recursive: true });
+  fs.writeFileSync(path.join(out, from, 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Moved | Tantra</title><link rel="canonical" href="../${to}/"><script>location.replace('../${to}/' + location.search + location.hash)</script><meta http-equiv="refresh" content="0; url=../${to}/"></head><body><p>This page moved: <a href="../${to}/">continue</a>.</p></body></html>\n`);
+}
 fs.writeFileSync(path.join(out, '404.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page not found | Tantra</title><link rel="stylesheet" href="/tantra-enterprise-webinar-pages/assets/site.css"></head><body><main class="light"><div class="wrap center"><h1 class="caps">Page Not Found</h1><p>This page does not exist. <a href="/tantra-enterprise-webinar-pages/">Go to the registration page</a>.</p></div></main></body></html>\n`);
 console.log(`site written to ${out}${ics ? ' (with webinar.ics)' : ' (no .ics: date, time or time zone still FILL)'}`);
