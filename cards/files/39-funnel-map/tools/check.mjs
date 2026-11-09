@@ -11,7 +11,7 @@ for (const m of MESSAGES) {
   const all = [m.subject, m.preview, m.body, m.group].filter(Boolean).join('\n');
   for (const [, f] of all.matchAll(/\{\{([a-z_]+)\}\}/g)) if (!FIELDS[f]) errs.push(`${m.id}: unknown field {{${f}}}`);
   if (/[–—]/.test(all)) errs.push(`${m.id}: em or en dash`);
-  const personal = m.ch === 'email' || m.ch === 'wa' || (m.ch === 'system' && m.id === 'E0');
+  const personal = m.ch === 'email' || m.ch === 'wa' || m.ch === 'sms' || (m.ch === 'system' && m.id === 'E0');
   if (PRE.has(m.stage) && personal && !['STOP', 'START', 'REF-X', 'CAL'].includes(m.id) && !m.body.includes('{{join_url}}')) errs.push(`${m.id}: no {{join_url}} (WebinarJam link)`);
   if ((m.group || m.ch === 'group') && PRE.has(m.stage) && !/WebinarJam email/.test(m.group || m.body)) errs.push(`${m.id}: group post does not point to the personal link`);
   if (m.ch === 'wa') {
@@ -35,4 +35,7 @@ const wa = MESSAGES.filter((m) => m.ch === 'wa' || m.ch === 'group' || m.group);
 fs.writeFileSync(path.join(site, 'templates/whatsapp.csv'), csv([['id', 'template_name', 'category', 'language', 'sends', 'trigger', 'audience', 'body_with_fields', 'meta_body', 'meta_variables', 'group_post'],
   ...wa.map((m) => { const t = WA_TEMPLATES[m.id] || ['', m.ch === 'group' ? 'Group post' : '']; const mt = metaOf(m.body);
     return [m.id, t[0], t[1], t[0] ? 'en' : '', m.when, m.trigger, m.audience, m.ch === 'group' ? '' : m.body, t[0] ? mt.text : '', t[0] ? mt.vars.map((v) => `{{${v.n}}}=${v.field} (e.g. ${v.example})`).join(' | ') : '', m.group || (m.ch === 'group' ? m.body : '')]; })]));
+const sm = MESSAGES.filter((m) => m.ch === 'sms');
+for (const m of sm) if (!/Reply STOP to opt out\.$/.test(m.body)) { console.error(`${m.id}: SMS must end with the STOP line`); process.exit(1); }
+fs.writeFileSync(path.join(site, 'templates/sms.csv'), csv([['id', 'sends', 'trigger', 'audience', 'body'], ...sm.map((m) => [m.id, m.when, m.trigger, m.audience, m.body])]));
 console.log(`check ok: ${MESSAGES.length} messages, ${em.length} emails, ${wa.length} WhatsApp rows exported`);
