@@ -106,3 +106,24 @@ def shot(image: str, audio: str, prompt: str, out: str, seed: int = 7, frames: i
         Path(out.replace(".mp4", "-gesture.mp4")).write_bytes(g)
     Path(out).write_bytes(lipsync.remote(g, Path(audio).read_bytes(), steps, guidance))
     print(f"saved {out}")
+
+
+@app.local_entrypoint()
+def dub(video: str, audio: str, out: str, steps: int = 30, guidance: float = 1.8):
+    """Redraw only the mouth of an existing clip to match new audio (LatentSync 1.6)."""
+    Path(out).write_bytes(lipsync.remote(Path(video).read_bytes(), Path(audio).read_bytes(), steps, guidance))
+    print(f"saved {out}")
+
+
+@app.function(image=wan_image, volumes={V: vol}, timeout=3600, cpu=4)
+def download_latentsync():
+    from huggingface_hub import hf_hub_download
+    for f in ("latentsync_unet.pt", "whisper/tiny.pt"):
+        hf_hub_download("ByteDance/LatentSync-1.6", f, local_dir=f"{V}/latentsync")
+    vol.commit()
+
+
+@app.local_entrypoint()
+def ls_weights():
+    download_latentsync.remote()
+    print("latentsync cached")

@@ -5,6 +5,8 @@ Qwen3-VL text encoder streamed layer by layer from host memory. Speed: LightX2V
 Ref2VA Turbo 8-step adapter (8 steps, flow_shift 6). Lip sync: audio_mode=lock_source
 keeps our waveform clean in the audio latent so the video is driven by it.
 
+Outputs:   each clip is also stored on the volume at outputs/<jobs-file-stem>/<out>; fetch with
+           modal volume get h3-weights outputs/<stem>/<out> <local path>. Run with `modal run --detach`.
 One-time:  modal run h3_modal.py::weights
 Batch:     modal run h3_modal.py::render --jobs jobs.json
   jobs.json = [{"image": "...png", "audio": "...wav", "prompt": "...", "out": "...mp4",
@@ -51,7 +53,7 @@ def download():
     print(subprocess.run(f"du -sh {MODEL} {W}/turbo", shell=True, capture_output=True, text=True).stdout)
 
 
-def _serve(ngpu: int = 2) -> subprocess.Popen:
+def _serve(ngpu: int = 2, fp8: bool = False) -> subprocess.Popen:
     env = {"VLLM_WORKER_MULTIPROC_METHOD": "spawn", "VLLM_OMNI_VIDEO_SYNC_TIMEOUT": "3600",
            "VLLM_OMNI_DLO_DP_WAVE_TIMEOUT": "3600", "HF_HUB_OFFLINE": "1",
            "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"}
@@ -63,15 +65,17 @@ def _serve(ngpu: int = 2) -> subprocess.Popen:
            "--vae-patch-parallel-size", str(ngpu), "--vae-parallel-mode", "tile", "--vae-use-tiling",
            "--diffusion-attention-backend", "FLASH_ATTN",
            "--lora-backend", "peft", "--lora-path", LORA]
-    if ngpu == 2:
+    if ngpu == 2 and not fp8:
         cmd += ["--diffusion-offload-config", '{"mode":"layer","components":["text_encoder"]}']
+    if fp8:
+        cmd += ["--quantization", "fp8"]
     return subprocess.Popen(cmd, env={**os.environ, **env})
 
 
-def _render(jobs: list, ngpu: int) -> list:
+def _render(jobs: list, ngpu: int, fp8: bool = False) -> list:
     import requests
 
-    proc = _serve(ngpu)
+    proc = _serve(ngpu, fp8)
     t0 = time.time()
     while True:
         try:
@@ -116,6 +120,12 @@ def _render(jobs: list, ngpu: int) -> list:
             print(r.text[:3000], flush=True)
             outs.append(None)
         else:
+            # Persist each clip the moment it exists, so a dropped client never loses work.
+            dest = Path(f"{W}/outputs/{j.get('batch', 'adhoc')}")
+            dest.mkdir(parents=True, exist_ok=True)
+            (dest / j["out"]).write_bytes(r.content)
+            vol.commit()
+            print(f"stored outputs/{j.get('batch', 'adhoc')}/{j['out']}", flush=True)
             outs.append(r.content)
     proc.terminate()
     return outs
@@ -133,24 +143,32 @@ def render_batch4(jobs: list) -> list:
     return _render(jobs, 4)
 
 
+@app.function(image=image, gpu="H200", volumes={W: vol}, timeout=5 * 3600,
+              memory=196608, cpu=16)
+def render_h200(jobs: list) -> list:
+    # One H200 (141 GB) holds the FP8 DiT + text encoder: no TP split, no host offload.
+    return _render(jobs, 1, fp8=True)
+
+
 @app.local_entrypoint()
 def weights():
     download.remote()
 
 
 @app.local_entrypoint()
-def render(jobs: str, gpus: int = 2):
+def render(jobs: str, gpus: int = 2, h200: bool = False):
     spec = json.loads(Path(jobs).read_text())
     base = Path(jobs).parent
     payload = []
+    batch = Path(jobs).stem
     for j in spec:
-        item = {**j, "audio_bytes": (base / j["audio"]).read_bytes()}
+        item = {**j, "batch": batch, "audio_bytes": (base / j["audio"]).read_bytes()}
         if "refs" in j:
             item["ref_files"] = [(n, (base / n).read_bytes()) for n in j["refs"]]
         else:
             item["image_bytes"] = (base / j["image"]).read_bytes()
         payload.append(item)
-    for j, out in zip(spec, (render_batch4 if gpus == 4 else render_batch).remote(payload)):
+    for j, out in zip(spec, (render_h200 if h200 else render_batch4 if gpus == 4 else render_batch).remote(payload)):
         if out:
             (base / j["out"]).write_bytes(out)
             print("saved", j["out"])

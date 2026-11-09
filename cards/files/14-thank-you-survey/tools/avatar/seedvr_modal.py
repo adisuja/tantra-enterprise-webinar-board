@@ -41,3 +41,18 @@ def main(src: str, out: str, res: int = 2160, model: str = "seedvr2_ema_7b_fp16.
     data = upscale.remote(Path(src).read_bytes(), res, model, batch)
     Path(out).write_bytes(data)
     print("saved", out)
+
+
+@app.function(image=image, volumes={"/models": vol}, timeout=3600, cpu=4)
+def fetch_models(model: str = "seedvr2_ema_7b_fp16.safetensors"):
+    """CPU-only pre-download so no GPU time is spent fetching weights."""
+    from huggingface_hub import hf_hub_download
+    for f in (model, "ema_vae_fp16.safetensors"):
+        hf_hub_download("numz/SeedVR2_comfyUI", f, local_dir="/models")
+    vol.commit()
+
+
+@app.local_entrypoint()
+def prefetch():
+    fetch_models.remote()
+    print("models cached")
