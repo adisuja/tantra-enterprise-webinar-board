@@ -1,1 +1,222 @@
-<p class="muted">Nothing built yet for this task.</p>
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>WhatsApp templates: status and blocker (card 43)</h1>
+<p>Status at 9 November 2026, 10:00 UTC. Refreshed by hand after each change.</p>
+<h2>In one line</h2>
+<p>Meta has approved the webinar templates, but Twilio lost its link to our WhatsApp Business Account (WABA), so Twilio still shows them as pending, the CRM will not send them, and nothing new reaches Meta. Fix sits with Twilio support, ticket #30331104.</p>
+<h2>What this means for Thursday 12 November if Twilio does not fix it in time</h2>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Goes out?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WebinarJam emails (7, card 17)</td>
+<td>Yes, not affected</td>
+</tr>
+<tr>
+<td>WhatsApp Announcements group posts (card 36)</td>
+<td>Yes, not affected (separate number and scheduler)</td>
+</tr>
+<tr>
+<td>WhatsApp 1-to-1 replies: #REF personal link, LINK, CAL, STOP, START</td>
+<td>Yes (free text inside the 24-hour window)</td>
+</tr>
+<tr>
+<td>WhatsApp 15-minute and live-now reminders</td>
+<td>Only to people who messaged us in the last 24 hours (free text)</td>
+</tr>
+<tr>
+<td>Every WhatsApp template message: seat confirmation, calculator, 3 days, 1 day, 1 hour, 5 minutes, late join, bonuses, replay, RevOps OS</td>
+<td>No</td>
+</tr>
+<tr>
+<td>SMS reminders (card 42)</td>
+<td>No: test mode until US toll-free verification and Adi's ok</td>
+</tr>
+</tbody>
+</table>
+<h2>Root cause and evidence</h2>
+<ul>
+<li>Meta side is intact. WhatsApp account "Adi Suja - Twilio, Inc" (ID 1168782842242870, business portfolio 877147586970367): business verification Verified, account status Approved, paid through Twilio's credit line. Partners: Twilio, Inc has Full access.</li>
+<li>Twilio side is broken. Sender XE05bfee844dca584a7b506c40f1a8b76d (+1 445 622 7661, Tantra) is Online, quality High, 80 messages a second. Its WABA ID read 1168782842242870 earlier on 9 November and now reads empty. Twilio support (9 Nov 06:16 UTC): "No valid WABA is associated with this account".</li>
+<li>Effect: templates submitted on 8 November at 19:39 UTC reached Meta before the link broke and were approved there, but Twilio shows them pending. Everything submitted from 8 November 20:24 UTC sits at Twilio's "received" step and never reaches Meta.</li>
+<li>The break lines up with the sender profile and logo change on 8 November around 20:24 UTC (card 43). Not confirmed by Twilio.</li>
+</ul>
+<h2>Template register</h2>
+<p>Meta status read in WhatsApp Manager; Twilio status read from the Content API. "Used by" is the CRM step or funnel map ID.</p>
+<table>
+<thead>
+<tr>
+<th>Template</th>
+<th>Used by</th>
+<th>Meta</th>
+<th>Twilio</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>webinar_seat_confirmed</td>
+<td>WA-C1 seat confirmation</td>
+<td>Approved, reclassified Utility to Marketing, appeal in review</td>
+<td>pending</td>
+<td></td>
+</tr>
+<tr>
+<td>revenue_calculator_ready</td>
+<td>WA1 calculator ready</td>
+<td>Approved, Utility</td>
+<td>pending</td>
+<td></td>
+</tr>
+<tr>
+<td>revenue_calculator_locked</td>
+<td>WA1B survey nudge</td>
+<td>Approved, reclassified to Marketing, appeal in review</td>
+<td>pending</td>
+<td></td>
+</tr>
+<tr>
+<td>revops_os_confirmed</td>
+<td>WA-OS1 buyer confirmation</td>
+<td>Approved, Utility</td>
+<td>pending</td>
+<td></td>
+</tr>
+<tr>
+<td>webinar_reminder_3_days</td>
+<td>W-3D</td>
+<td>Approved, reclassified to Marketing, appeal in review</td>
+<td>pending</td>
+<td>12 Nov send window already passed</td>
+</tr>
+<tr>
+<td>webinar_reminder_1_day</td>
+<td>W-1D (v1)</td>
+<td>Rejected, no reason given</td>
+<td>rejected</td>
+<td>replaced by v2 and v3</td>
+</tr>
+<tr>
+<td>webinar_reminder_1_day_v2</td>
+<td>W-1D (in the CRM)</td>
+<td>not received</td>
+<td>received</td>
+<td>stuck</td>
+</tr>
+<tr>
+<td>webinar_reminder_1_day_v3</td>
+<td>W-1D (spare copy)</td>
+<td>not received</td>
+<td>received</td>
+<td>stuck</td>
+</tr>
+<tr>
+<td>webinar_reminder_1_hour</td>
+<td>W-1H</td>
+<td>Approved, Utility</td>
+<td>pending</td>
+<td></td>
+</tr>
+<tr>
+<td>webinar_reminder_5_minutes</td>
+<td>W-5M</td>
+<td>Approved, Utility</td>
+<td>pending</td>
+<td></td>
+</tr>
+<tr>
+<td>webinar_live_now</td>
+<td>W-L0</td>
+<td>Approved, reclassified to Marketing, appeal in review</td>
+<td>pending</td>
+<td></td>
+</tr>
+<tr>
+<td>webinar_late_join</td>
+<td>W-L10</td>
+<td>Approved, reclassified to Marketing, appeal in review</td>
+<td>pending</td>
+<td></td>
+</tr>
+<tr>
+<td>webinar_bonuses_ready</td>
+<td>W-P1 bonuses</td>
+<td>Approved, reclassified to Marketing, appeal in review</td>
+<td>pending</td>
+<td></td>
+</tr>
+<tr>
+<td>webinar_replay_ready</td>
+<td>W-P2 (v1)</td>
+<td>Rejected: incorrect category</td>
+<td>rejected</td>
+<td>replaced by v2 and v3</td>
+</tr>
+<tr>
+<td>webinar_replay_ready_v2</td>
+<td>W-P2 (in the CRM)</td>
+<td>not received</td>
+<td>received</td>
+<td>stuck</td>
+</tr>
+<tr>
+<td>webinar_replay_ready_v3</td>
+<td>W-P2 (spare copy)</td>
+<td>not received</td>
+<td>received</td>
+<td>stuck</td>
+</tr>
+<tr>
+<td>revops_os_offer</td>
+<td>WA2 RevOps OS nudge (Marketing)</td>
+<td>not received</td>
+<td>received</td>
+<td>stuck; CRM sequence is a draft until the buy button is on</td>
+</tr>
+<tr>
+<td>12 image versions (*_img)</td>
+<td>image header versions of the webinar templates (another session)</td>
+<td>not received</td>
+<td>received</td>
+<td>stuck, added to the ticket</td>
+</tr>
+<tr>
+<td>revops_os_first_build and _v2</td>
+<td>RevOps OS buyer follow-up (card 54)</td>
+<td>not received</td>
+<td>received</td>
+<td>stuck, not yet on the ticket</td>
+</tr>
+</tbody>
+</table>
+<p>Marketing templates are not delivered to US numbers and cost more, which is why all 6 reclassifications are under appeal (deadline to appeal: 8 January 2027).</p>
+<h2>What has been done</h2>
+<ul>
+<li>8 Nov 19:39 UTC: 12 webinar templates submitted; 10 approved by Meta, 2 rejected.</li>
+<li>8 Nov 20:24 UTC: the 2 rejected ones resubmitted as v2: stuck at "received".</li>
+<li>9 Nov 04:44 UTC: v3 copies with clean samples and revops_os_offer submitted: stuck.</li>
+<li>9 Nov 05:24 UTC: Twilio ticket #30331104 opened (P2), copies to adi@growthclub.org and growthcluborg@gmail.com.</li>
+<li>9 Nov 05:55 UTC: the 12 image templates added to the ticket.</li>
+<li>9 Nov 06:16 UTC: Twilio replied: no valid WABA on the account.</li>
+<li>9 Nov, morning: Meta checked (approved, partner access intact); appeal filed for the 6 reclassified templates (Meta: "Successfully submitted appeal").</li>
+<li>9 Nov 09:39 UTC: replied to Twilio with the evidence, asking them to re-associate WABA 1168782842242870 with the sender, resync the approved templates, forward the stuck ones, and confirm whether a Self Sign-up re-run would keep the number online.</li>
+</ul>
+<h2>Next</h2>
+<ol>
+<li>Twilio re-associates the WABA (ticket #30331104). Do not re-run Self Sign-up until Twilio confirms it keeps +1 445 622 7661 online.</li>
+<li>Then check: the approved templates show approved in Twilio; the stuck ones move to pending and approve; point the CRM 1-day and replay steps at whichever version is approved first.</li>
+<li>Watch the 6 Marketing appeals in Meta's Business Support Home.</li>
+<li>Add revops_os_first_build and _v2 to the ticket if they are still stuck when Twilio replies.</li>
+<li>Decision for Adi: the number's safety rule says "Utility templates only, no Marketing at launch". revops_os_offer is Marketing by design, and 6 templates are Marketing until the appeals end. Keep sending the 6 if the appeals fail (US numbers will not receive them), or rewrite them as strict Utility.</li>
+</ol>
+<h2>Links</h2>
+<ul>
+<li>Twilio ticket: https://help.twilio.com/tickets/30331104</li>
+<li>Twilio WhatsApp sender: https://console.twilio.com/us1/develop/sms/senders/whatsapp-senders</li>
+<li>Meta templates: https://business.facebook.com/latest/whatsapp_manager/message_templates/?business_id=877147586970367&amp;asset_id=1168782842242870</li>
+<li>Meta appeals: https://business.facebook.com/business-support-home/877147586970367/1168782842242870/?templates_tab=category_updates</li>
+<li>CRM sequences: https://crm.usetantra.com/automation</li>
+</ul></div></details>
