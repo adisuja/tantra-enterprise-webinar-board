@@ -28,7 +28,7 @@ def upscale(video: bytes, res: int, model: str, batch: int) -> bytes:
     Path("/tmp/in.mp4").write_bytes(video)
     cmd = ["python", "inference_cli.py", "/tmp/in.mp4", "--output", "/tmp/out.mp4",
            "--model_dir", "/models", "--dit_model", model, "--resolution", str(res),
-           "--batch_size", str(batch), "--temporal_overlap", "4", "--prepend_frames", "4",
+           "--batch_size", str(batch), "--temporal_overlap", "4",
            "--color_correction", "lab", "--video_backend", "ffmpeg",
            "--vae_encode_tiled", "--vae_decode_tiled", "--attention_mode", "sdpa"]
     subprocess.run(cmd, cwd=REPO, check=True)
