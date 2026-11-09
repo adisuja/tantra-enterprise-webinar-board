@@ -1,0 +1,223 @@
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>AI calling in the Tantra CRM: spec for the 24-hour prototype (card 55)</h1>
+<p>Written 10 November 2026. Nothing is built yet. This is the spec for Adi to confirm.</p>
+<h2>In one line</h2>
+<p>An "AI call" step in the CRM sequence builder, next to SMS, WhatsApp, LinkedIn and email. First two jobs: a confirmation call when someone registers for the webinar, and a batch reminder call just before it starts. Vodex places the calls now (prepaid credits); Vapi, then Retell, sit behind the same adapter for the long term.</p>
+<h2>Decisions already made (Adi, 10 November)</h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Where it lives</td>
+<td>Tantra CRM prototype (crm.usetantra.com), merged into the main app later</td>
+</tr>
+<tr>
+<td>Providers</td>
+<td>Vodex now, only until the credits are used. Long term: the two best options, my pick</td>
+</tr>
+<tr>
+<td>First call jobs</td>
+<td>Confirmation call on registration, plus a batch reminder 5 to 10 minutes before the webinar</td>
+</tr>
+<tr>
+<td>Countries</td>
+<td>Test with Indian numbers. The product must call US, UK and India</td>
+</tr>
+<tr>
+<td>Roadmap in the notes</td>
+<td>Ignored. Live prototype inside 24 hours</td>
+</tr>
+</tbody>
+</table>
+<h2>What I found in the code</h2>
+<ul>
+<li><strong>The CRM Worker is the only place this fits in 24 hours.</strong> It already has the sequence engine, the cron that runs every minute, webinar intake (the <code>ew-registered</code> tag), consent records, a calls table and a timeline that plays call recordings. Adding a channel is one file on the backend and two on the frontend.</li>
+<li><strong>The main Tantra app cannot take it yet.</strong> Its steps are whole-day delays only, with no telephony and no usage ledger. It gets the feature when the CRM merges in.</li>
+<li><strong>One real design gap.</strong> The engine sends and moves on. A call finishes minutes later, so the step needs a "waiting for the call result" state that the provider's webhook closes.</li>
+<li><strong>A Vodex client already exists</strong> in the workshop app (verify key, save agent, trigger calls). I reuse its request shapes.</li>
+<li><strong>Vodex account today:</strong> credit for about 666 minutes, one project ready ("Gc-Webinar Calls", agent Lilly), one Indian caller ID, voicemail detection on. Campaigns were triggered by API in 2025, so a key was issued before. The key is not on this Mac or in the mailbox I can search.</li>
+</ul>
+<h2>Verdict on the research notes</h2>
+<table>
+<thead>
+<tr>
+<th>Claim in the notes</th>
+<th>Holds against our code?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Build a provider adapter, do not hard-wire one vendor</td>
+<td>Yes. This is the core of the design</td>
+</tr>
+<tr>
+<td>Vapi as the primary</td>
+<td>Yes. Most control, bring your own Twilio number, clean webhooks</td>
+</tr>
+<tr>
+<td>Retell as the second</td>
+<td>Yes. Best voice quality and latency, good batch calling</td>
+</tr>
+<tr>
+<td>Bland, Synthflow, ElevenLabs</td>
+<td>Not now. A third and fourth provider add nothing the first two lack</td>
+</tr>
+<tr>
+<td>Four-week roadmap, queue service, separate microservice</td>
+<td>No. The Worker cron and D1 already do that job</td>
+</tr>
+<tr>
+<td>Per-client keys and billing</td>
+<td>Later. The prototype uses platform keys, like SMS does today</td>
+</tr>
+</tbody>
+</table>
+<h2>Product framing (Product-Manager-Skills: epic hypothesis, PoL probe, story split)</h2>
+<p><strong>Epic hypothesis.</strong> If I add an AI call step to CRM sequences for webinar registrants, then more of them show up live, because a call gets answered when an email does not. Measured on our own webinar: show-up rate of called registrants against not-called registrants in the same week, plus answer rate and cost per answered call.</p>
+<p><strong>PoL probe (the cheapest test that tells the truth).</strong> One API-triggered Vodex call to Adi's own Indian number, with the result landing on a deal's timeline. If that fails (key, caller ID, webhook), nothing else matters, so it goes first.</p>
+<p><strong>Slices, in build order</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Slice</th>
+<th>Done when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Probe: one API call through Vodex</td>
+<td>Adi's phone rings, the agent speaks the webinar script</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>call</code> channel in the engine, Vodex adapter, result webhook, timeline entry</td>
+<td>A dry-run sequence shows the call step; a live one calls a test deal and logs outcome, summary and recording</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Confirmation call on registration</td>
+<td>Registering on the funnel with a test Indian number triggers a call inside 2 minutes</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Batch reminder before the webinar</td>
+<td>5 test deals get called in one batch at the set time; none is called twice</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Vapi adapter for US and UK</td>
+<td>A US or UK test number rings from a Twilio number through Vapi</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Retell adapter</td>
+<td>Same test passes with the provider switched to Retell</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Must for 24 hours:</strong> slices 0 to 3. <strong>Should:</strong> slice 4. <strong>Could:</strong> slice 5. <strong>Not in this build:</strong> main app merge, per-client keys screen, inbound calls, live transfer to a rep, billing.</p>
+<h2>The build</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Migration <code>0019_ai_calls.sql</code></td>
+<td>Calls table gets provider, provider call id, outcome, summary, transcript, duration. Consent gets a <code>call</code> channel</td>
+</tr>
+<tr>
+<td><code>crm-worker/src/voiceai.ts</code> (new)</td>
+<td>One interface: start call, start batch, read webhook, get transcript. Vodex first, then Vapi, then Retell</td>
+</tr>
+<tr>
+<td><code>crm-worker/src/routes/automation.ts</code></td>
+<td>New channel <code>call</code> with action <code>ai_call</code>. Checks phone, consent, do-not-call and dry run. Holds the enrollment until the result arrives or 15 minutes pass</td>
+</tr>
+<tr>
+<td>Callback route <code>/voiceai/:provider/callback</code></td>
+<td>Verifies the request, updates the call, writes the timeline entry, releases the enrollment</td>
+</tr>
+<tr>
+<td>Routing</td>
+<td>India through Vodex for now. US and UK through Vapi on a Twilio number. One setting per workspace</td>
+</tr>
+<tr>
+<td>MCP and API</td>
+<td>The call step is documented in the sequence tools in the same change</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td>"AI call" in the step picker with script, voice provider and "what counts as reached"; AI badge and transcript on the deal and calls pages</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td>Engine tests for the new step: dry run, no consent, no phone, result arrives, result times out, no double call</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step outcomes the sequence can branch on:</strong> answered, voicemail, no answer, busy, failed, opted out.</p>
+<h2>Three calls I made that you should check</h2>
+<ol>
+<li><strong>Vapi first, Retell second.</strong> Vapi gives the most control and uses our own Twilio numbers. Retell is the fallback and the voice-quality benchmark.</li>
+<li><strong>The reminder starts 15 minutes before, not 5.</strong> 98 registrants cannot all be dialled in the same minute: Vodex and the engine both cap how many go out at once. Starting at T-15 means everyone has been called by T-5.</li>
+<li><strong>A consent line on the registration form.</strong> US law needs written consent for an AI voice call. Wording: "I agree to receive a reminder call, which may use an AI voice, at the number I gave." Without it, the call step skips that person.</li>
+</ol>
+<h2>How I will prove it works</h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Pass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dry run</td>
+<td>Sequence activity shows "would call" for a test deal; no call placed</td>
+</tr>
+<tr>
+<td>Real call</td>
+<td>Test Indian number rings; timeline shows outcome, summary, recording</td>
+</tr>
+<tr>
+<td>No double call</td>
+<td>Same enrollment run twice produces one call</td>
+</tr>
+<tr>
+<td>No consent or no phone</td>
+<td>Step is skipped with the reason shown</td>
+</tr>
+<tr>
+<td>Result never arrives</td>
+<td>Enrollment moves on after 15 minutes, marked "no result"</td>
+</tr>
+<tr>
+<td>Batch</td>
+<td>5 test deals called from one reminder step, each exactly once</td>
+</tr>
+<tr>
+<td>Unit tests</td>
+<td>Worker test suite passes</td>
+</tr>
+<tr>
+<td>Second opinion</td>
+<td>Independent review of the diff before deploy</td>
+</tr>
+<tr>
+<td>Live check</td>
+<td>Every state clicked on crm.usetantra.com after deploy</td>
+</tr>
+</tbody>
+</table>
+<h2>What only Adi can do</h2>
+<p>See "What I need from you" on this card.</p></div></details>
