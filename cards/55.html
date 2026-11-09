@@ -1,5 +1,95 @@
 <details class="doc" open><summary>README.md</summary><div class="md"><h1>AI calling in the Tantra CRM: spec for the 24-hour prototype (card 55)</h1>
-<p>Written 10 November 2026. Adi confirmed it the same day; the build is in progress.</p>
+<p>Written 10 November 2026. Adi confirmed it the same day. <strong>Built, merged and live on 10 November</strong> (see "What shipped" straight below). Real calls wait on the Vodex key (card 57) and the Vapi number (card 58).</p>
+<h2>What shipped (10 November)</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI call step in the sequence builder</td>
+<td>Live on https://crm.usetantra.com/automation. Step picker shows "AI call" with opening line, call script, merge fields and "Call through" (Automatic, Vodex, Vapi)</td>
+</tr>
+<tr>
+<td>Code</td>
+<td>Merged: (in this card) (step, adapters, callback, consent, tests) and (in this card) (honest test mode, call timing rules)</td>
+</tr>
+<tr>
+<td>Engine, callback route, consent API</td>
+<td>Live on the CRM Worker (crm-api.usetantra.com). 75 unit tests pass. Independent review done before deploy; its fixes are in</td>
+</tr>
+<tr>
+<td>Sandbox to test in</td>
+<td>Pipeline "AI call test", stage "Call me", sequence "AI call test (dry run)": https://crm.usetantra.com/automation/sq_50af1c794fd0403ab65a</td>
+</tr>
+<tr>
+<td>Webinar sequence</td>
+<td>"Webinar: AI calls (confirmation and reminder)" on the Registered stage, saved as a DRAFT in test mode: https://crm.usetantra.com/automation/sq_6dc2bb12f18e400a809f. Confirmation call 2 minutes after registering; reminder call 12 minutes before the event. I switch it on only after a real test call and your go</td>
+</tr>
+<tr>
+<td>Vodex (India)</td>
+<td>Not connected: waiting on the API key (card 57)</td>
+</tr>
+<tr>
+<td>Vapi (US, UK)</td>
+<td>Key stored; not connected: no phone number yet (card 58)</td>
+</tr>
+<tr>
+<td>Retell</td>
+<td>Not built. Comes after Vapi passes</td>
+</tr>
+</tbody>
+</table>
+<h3>Checked on the live app</h3>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Test mode, number with consent</td>
+<td>Run log: "Would not call: Vodex is not connected yet (API key missing)". No call placed</td>
+</tr>
+<tr>
+<td>Test mode, number without consent</td>
+<td>Run log: "Would not call: No consent to an AI call on record for this number"</td>
+</tr>
+<tr>
+<td>Live mode, Vodex not connected</td>
+<td>Step skipped with the same reason; nothing dialled</td>
+</tr>
+<tr>
+<td>Builder</td>
+<td>Add, edit and delete the AI call step; all three "Call through" choices save; merge-field buttons insert; empty script shows a warning; "Before event" shows the exact-time note; no "send at any hour" option on call steps</td>
+</tr>
+<tr>
+<td>Real call, result on the timeline, batch of 5</td>
+<td>Not tested yet. Needs a connected provider (cards 57 and 58)</td>
+</tr>
+</tbody>
+</table>
+<h3>Where the build differs from the spec below</h3>
+<ol>
+<li><strong>The step does not hold the sequence.</strong> It places the call and moves on. The result arrives from the provider and is written to the deal timeline and to the field <code>ai_call_outcome</code> (answered, voicemail, no_answer, busy, failed, opted_out, no_result). A later step branches on it with two conditions in this order: <code>ai_call_outcome</code> is not <code>pending</code> (wait), then is not <code>answered</code> (skip). A call with no result after 15 minutes closes as <code>no_result</code>.</li>
+<li><strong>Consent is required for every AI call</strong>, from a sequence, the deal page or the API. No consent on record means no call. An opt-out on the call or by SMS blocks all later calls.</li>
+<li><strong>Calls only go out inside the sequence's send window</strong>, in the lead's time zone. "Send at any hour" does not exist for calls. A reminder timed outside the window is skipped, not delayed.</li>
+<li><strong>A failed or timed-out request is never retried</strong>, so nobody is called twice. Only a "too many requests" answer from the provider is retried.</li>
+<li><strong>The reminder is one step 12 minutes before the event.</strong> The engine sends 15 a minute, so 98 registrants take about 7 minutes and finish by T-5.</li>
+<li><strong>Not done: the consent line on the registration form.</strong> Until it is added, consent is recorded per number by hand or through the API, so webinar registrants are not called.</li>
+</ol>
+<h3>How to test it yourself (once card 57 is done)</h3>
+<ol>
+<li>Open https://crm.usetantra.com/pipeline, pipeline "AI call test".</li>
+<li>Add a deal in "Call me" with your Indian number. Tell me the number so I record consent for it.</li>
+<li>Your phone rings about a minute later. The result shows on the deal's timeline.</li>
+</ol>
+<p>Deploys of the CRM are manual (Worker and Pages); the repo's Deploy workflow skips.</p>
 <h2>In one line</h2>
 <p>An "AI call" step in the CRM sequence builder, next to SMS, WhatsApp, LinkedIn and email. First two jobs: a confirmation call when someone registers for the webinar, and a batch reminder call just before it starts. Vodex places the calls now (prepaid credits); Vapi, then Retell, sit behind the same adapter for the long term.</p>
 <h2>Decisions already made (Adi, 10 November)</h2>
