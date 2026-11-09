@@ -1,8 +1,8 @@
 <details class="doc" open><summary>README.md</summary><div class="md"><h1>WhatsApp templates: status and blocker (card 43)</h1>
-<p>Status at 9 November 2026, 10:00 UTC. Refreshed by hand after each change.</p>
+<p>Status at 10 November 2026, 20:35 UTC. Refreshed by hand after each change.</p>
 <h2>In one line</h2>
-<p>Meta has approved the webinar templates, but Twilio lost its link to our WhatsApp Business Account (WABA), so Twilio still shows them as pending, the CRM will not send them, and nothing new reaches Meta. Fix sits with Twilio support, ticket #30331104.</p>
-<h2>What this means for Thursday 12 November if Twilio does not fix it in time</h2>
+<p>FIXED 10 Nov 20:15 UTC: I re-ran Twilio Self Sign-up (the guide Twilio support sent) with the existing number and WABA. Twilio has the WABA link back, the number stayed Online, and all 18 stuck templates are now at Meta "In review". One thing left: Twilio still shows the 10 templates Meta approved on 8 November as "pending"; asked Twilio on the ticket to resync them.</p>
+<h2>What this means for Thursday 12 November if the approvals do not land in time</h2>
 <table>
 <thead>
 <tr>
@@ -40,7 +40,7 @@
 <h2>Root cause and evidence</h2>
 <ul>
 <li>Meta side is intact. WhatsApp account "Adi Suja - Twilio, Inc" (ID 1168782842242870, business portfolio 877147586970367): business verification Verified, account status Approved, paid through Twilio's credit line. Partners: Twilio, Inc has Full access.</li>
-<li>Twilio side is broken. Sender XE05bfee844dca584a7b506c40f1a8b76d (+1 445 622 7661, Tantra) is Online, quality High, 80 messages a second. Its WABA ID read 1168782842242870 earlier on 9 November and now reads empty. Twilio support (9 Nov 06:16 UTC): "No valid WABA is associated with this account".</li>
+<li>Twilio side was broken until 10 Nov 20:15 UTC (fixed by the Self Sign-up re-run, see below). Sender XE05bfee844dca584a7b506c40f1a8b76d (+1 445 622 7661, Tantra) is Online, quality High, 80 messages a second. Its WABA ID read 1168782842242870 earlier on 9 November and now reads empty. Twilio support (9 Nov 06:16 UTC): "No valid WABA is associated with this account".</li>
 <li>Effect: templates submitted on 8 November at 19:39 UTC reached Meta before the link broke and were approved there, but Twilio shows them pending. Everything submitted from 8 November 20:24 UTC sits at Twilio's "received" step and never reaches Meta.</li>
 <li>The break lines up with the sender profile and logo change on 8 November around 20:24 UTC (card 43). Not confirmed by Twilio.</li>
 </ul>
@@ -102,16 +102,16 @@
 <tr>
 <td>webinar_reminder_1_day_v2</td>
 <td>W-1D (in the CRM)</td>
-<td>not received</td>
-<td>received</td>
-<td>stuck</td>
+<td>In review (10 Nov)</td>
+<td>pending</td>
+<td>resubmitted after re-link</td>
 </tr>
 <tr>
 <td>webinar_reminder_1_day_v3</td>
 <td>W-1D (spare copy)</td>
-<td>not received</td>
-<td>received</td>
-<td>stuck</td>
+<td>In review (10 Nov)</td>
+<td>pending</td>
+<td>resubmitted after re-link</td>
 </tr>
 <tr>
 <td>webinar_reminder_1_hour</td>
@@ -158,37 +158,37 @@
 <tr>
 <td>webinar_replay_ready_v2</td>
 <td>W-P2 (in the CRM)</td>
-<td>not received</td>
-<td>received</td>
-<td>stuck</td>
+<td>In review (10 Nov)</td>
+<td>pending</td>
+<td>resubmitted after re-link</td>
 </tr>
 <tr>
 <td>webinar_replay_ready_v3</td>
 <td>W-P2 (spare copy)</td>
-<td>not received</td>
-<td>received</td>
-<td>stuck</td>
+<td>In review (10 Nov)</td>
+<td>pending</td>
+<td>resubmitted after re-link</td>
 </tr>
 <tr>
 <td>revops_os_offer</td>
 <td>WA2 RevOps OS nudge (Marketing)</td>
-<td>not received</td>
-<td>received</td>
-<td>stuck; CRM sequence is a draft until the buy button is on</td>
+<td>In review (10 Nov)</td>
+<td>pending</td>
+<td>resubmitted after re-link; CRM sequence is a draft until the buy button is on</td>
 </tr>
 <tr>
 <td>12 image versions (*_img)</td>
 <td>image header versions of the webinar templates (another session)</td>
-<td>not received</td>
-<td>received</td>
-<td>stuck, added to the ticket</td>
+<td>In review (10 Nov)</td>
+<td>pending</td>
+<td>resubmitted after re-link</td>
 </tr>
 <tr>
 <td>revops_os_first_build and _v2</td>
 <td>RevOps OS buyer follow-up (card 54)</td>
-<td>not received</td>
-<td>received</td>
-<td>stuck, not yet on the ticket</td>
+<td>In review (10 Nov)</td>
+<td>pending</td>
+<td>resubmitted after re-link</td>
 </tr>
 </tbody>
 </table>
@@ -203,13 +203,18 @@
 <li>9 Nov 06:16 UTC: Twilio replied: no valid WABA on the account.</li>
 <li>9 Nov, morning: Meta checked (approved, partner access intact); appeal filed for the 6 reclassified templates (Meta: "Successfully submitted appeal").</li>
 <li>9 Nov 09:39 UTC: replied to Twilio with the evidence, asking them to re-associate WABA 1168782842242870 with the sender, resync the approved templates, forward the stuck ones, and confirm whether a Self Sign-up re-run would keep the number online.</li>
+<li>9 Nov 15:15 UTC (Twilio time): ticket passed to Twilio's WhatsApp onboarding team.</li>
+<li>10 Nov 20:15 UTC: re-ran Self Sign-up from the guide Twilio sent (https://www.twilio.com/docs/whatsapp/self-sign-up): Twilio console, WhatsApp senders, Create new sender, +1 445 622 7661, Continue with Facebook; picked the existing registered number and the existing WABA "Adi Suja - Twilio, Inc"; Adi entered Facebook's security code. Meta: "Your account is connected to Twilio, Inc". Optional event-sharing boxes unticked.</li>
+<li>10 Nov 20:16 UTC: Senders API shows waba_id 1168782842242870 again; sender Online, quality High.</li>
+<li>10 Nov 20:20 to 20:26 UTC: resubmitted the 18 templates stuck at "received"; all 18 moved to "pending" and show "In review" in WhatsApp Manager.</li>
+<li>10 Nov 20:33 UTC: posted the result on ticket #30331104 and asked Twilio to resync the 10 approved templates.</li>
 </ul>
 <h2>Next</h2>
 <ol>
-<li>Twilio re-associates the WABA (ticket #30331104). Do not re-run Self Sign-up until Twilio confirms it keeps +1 445 622 7661 online.</li>
-<li>Then check: the approved templates show approved in Twilio; the stuck ones move to pending and approve; point the CRM 1-day and replay steps at whichever version is approved first.</li>
+<li>Wait for Meta's review of the 18 resubmitted templates (usually minutes to a few hours). Check Twilio's Content API and WhatsApp Manager.</li>
+<li>Twilio resyncs the 10 templates Meta already approved (asked on ticket #30331104, 10 Nov). If they are still "pending" on Wed 11 Nov 12:00 UTC, chase on the ticket.</li>
+<li>Point the CRM 1-day and replay steps at whichever of v2 or v3 is approved first.</li>
 <li>Watch the 6 Marketing appeals in Meta's Business Support Home.</li>
-<li>Add revops_os_first_build and _v2 to the ticket if they are still stuck when Twilio replies.</li>
 <li>Decision for Adi: the number's safety rule says "Utility templates only, no Marketing at launch". revops_os_offer is Marketing by design, and 6 templates are Marketing until the appeals end. Keep sending the 6 if the appeals fail (US numbers will not receive them), or rewrite them as strict Utility.</li>
 </ol>
 <h2>Links</h2>

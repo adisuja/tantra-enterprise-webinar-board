@@ -127,3 +127,41 @@ def download_latentsync():
 def ls_weights():
     download_latentsync.remote()
     print("latentsync cached")
+
+
+@app.function(image=ls_image, gpu="H100", volumes={V: vol}, timeout=3 * 3600)
+def lipsync_batch(items: list, steps: int, guidance: float) -> list:
+    """items: [(name, video_bytes, audio_bytes)] -> [(name, mp4_bytes or None)]; one container for all."""
+    ck = Path(LS_REPO) / "checkpoints"
+    if not ck.exists():
+        ck.symlink_to(f"{V}/latentsync")
+    out = []
+    for name, vb, ab in items:
+        Path("/tmp/in.mp4").write_bytes(vb)
+        Path("/tmp/in.wav").write_bytes(ab)
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", "/tmp/in.mp4", "-vf", "fps=25",
+                        "-c:v", "libx264", "-crf", "12", "/tmp/in25.mp4"], check=True)
+        r = subprocess.run(["python", "-m", "scripts.inference",
+                            "--unet_config_path", "configs/unet/stage2_512.yaml",
+                            "--inference_ckpt_path", "checkpoints/latentsync_unet.pt",
+                            "--inference_steps", str(steps), "--guidance_scale", str(guidance),
+                            "--video_path", "/tmp/in25.mp4", "--audio_path", "/tmp/in.wav",
+                            "--video_out_path", "/tmp/out.mp4"], cwd=LS_REPO)
+        out.append((name, Path("/tmp/out.mp4").read_bytes() if r.returncode == 0 else None))
+        print("done", name, r.returncode, flush=True)
+    return out
+
+
+@app.local_entrypoint()
+def dub_many(spec: str, steps: int = 30, guidance: float = 1.8):
+    """spec json: [{"video": path, "audio": path, "out": path}] relative to the spec file."""
+    import json
+    base = Path(spec).parent
+    jobs = json.loads(Path(spec).read_text())
+    items = [(j["out"], (base / j["video"]).read_bytes(), (base / j["audio"]).read_bytes()) for j in jobs]
+    for name, data in lipsync_batch.remote(items, steps, guidance):
+        if data:
+            (base / name).write_bytes(data)
+            print("saved", name)
+        else:
+            print("FAILED", name)

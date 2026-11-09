@@ -36,6 +36,36 @@ def upscale(video: bytes, res: int, model: str, batch: int) -> bytes:
     return Path("/tmp/out.mp4").read_bytes()
 
 
+@app.function(image=image, gpu="H100", volumes={"/models": vol}, timeout=5 * 3600, memory=98304)
+def upscale_many(items: list, res: int, model: str, batch: int, tag: str) -> list:
+    """Same CLI and settings as upscale(), one container for many pieces; each output is saved to
+    the volume (outputs/<tag>/<name>) the moment it finishes."""
+    outs = []
+    dest = Path(f"/models/outputs/{tag}"); dest.mkdir(parents=True, exist_ok=True)
+    for name, video in items:
+        Path("/tmp/in.mp4").write_bytes(video)
+        cmd = ["python", "inference_cli.py", "/tmp/in.mp4", "--output", "/tmp/out.mp4",
+               "--model_dir", "/models", "--dit_model", model, "--resolution", str(res),
+               "--batch_size", str(batch), "--temporal_overlap", "4",
+               "--color_correction", "lab", "--video_backend", "ffmpeg",
+               "--vae_encode_tiled", "--vae_decode_tiled", "--attention_mode", "sdpa"]
+        subprocess.run(cmd, cwd=REPO, check=True)
+        data = Path("/tmp/out.mp4").read_bytes()
+        (dest / name).write_bytes(data); vol.commit()
+        print("stored", f"outputs/{tag}/{name}", flush=True)
+        outs.append(data)
+    return outs
+
+
+@app.local_entrypoint()
+def many(srcs: str, outdir: str, tag: str, res: int = 2160, model: str = "seedvr2_ema_7b_fp16.safetensors", batch: int = 49):
+    """srcs: comma-separated input mp4 paths; outputs <outdir>/<stem>-4k.mp4."""
+    paths = [Path(x) for x in srcs.split(",")]
+    items = [(p.stem + "-4k.mp4", p.read_bytes()) for p in paths]
+    for (name, _), data in zip(items, upscale_many.remote(items, res, model, batch, tag)):
+        (Path(outdir) / name).write_bytes(data); print("saved", name)
+
+
 @app.local_entrypoint()
 def main(src: str, out: str, res: int = 2160, model: str = "seedvr2_ema_7b_fp16.safetensors", batch: int = 33):
     data = upscale.remote(Path(src).read_bytes(), res, model, batch)
