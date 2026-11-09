@@ -89,7 +89,8 @@ def _render(jobs: list, ngpu: int) -> list:
     outs = []
     mimes = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".mp4": "video/mp4"}
     for j in jobs:
-        audio_url = "data:audio/wav;base64," + base64.b64encode(j["audio_bytes"]).decode()
+        amime = "audio/mpeg" if j.get("audio", "").lower().endswith(".mp3") else "audio/wav"
+        audio_url = f"data:{amime};base64," + base64.b64encode(j["audio_bytes"]).decode()
         extra = {"task": "ref2va", "duration": j["duration"], "audio_mode": "lock_source",
                  "audio_flow_shift": 3.0}
         if j.get("quality"):
