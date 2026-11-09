@@ -1,5 +1,5 @@
 <details class="doc" open><summary>README.md</summary><div class="md"><h1>AI calling in the Tantra CRM: spec for the 24-hour prototype (card 55)</h1>
-<p>Written 10 November 2026. Adi confirmed it the same day. <strong>Built, merged and live on 10 November</strong> (see "What shipped" straight below). Real calls wait on the Vodex key (card 57) and the Vapi number (card 58).</p>
+<p>Written 10 November 2026. Adi confirmed it the same day. <strong>Built, merged and live on 10 November</strong> (see "What shipped" straight below). Vapi is connected; real calls wait on a test number (card 60) and the Vodex key (card 57).</p>
 <h2>What shipped (10 November)</h2>
 <table>
 <thead>
@@ -35,7 +35,7 @@
 </tr>
 <tr>
 <td>Vapi (US, UK)</td>
-<td>Key stored; not connected: no phone number yet (card 58)</td>
+<td>Connected. Calls go out from our Twilio toll-free number +1 866 292 7976 (card 58, done). No real call placed yet: needs a test number (card 60)</td>
 </tr>
 <tr>
 <td>Retell</td>
@@ -70,7 +70,7 @@
 </tr>
 <tr>
 <td>Real call, result on the timeline, batch of 5</td>
-<td>Not tested yet. Needs a connected provider (cards 57 and 58)</td>
+<td>Not tested yet. Needs a test number for Vapi (card 60) and the Vodex key (card 57)</td>
 </tr>
 </tbody>
 </table>
