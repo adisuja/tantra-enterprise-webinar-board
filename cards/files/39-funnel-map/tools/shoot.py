@@ -2,11 +2,11 @@
 import sys, asyncio
 from playwright.async_api import async_playwright
 OUT, PW = sys.argv[1], sys.argv[2]
-B = "https://adisuja.github.io/tantra-enterprise-webinar-pages"
+B = "https://webinar.sellwithtantra.com"
 PAGES = {
   "registration": B + "/?v=map",
   "survey": B + "/thank-you/?v=map",
-  "upsell": B + "/funnelos/?review=1&v=map",
+  "upsell": B + "/funnelos/?v=map",
   "confirmation": B + "/confirmation/?v=map",
   "calculator": B + "/calculator/?v=map",
   "replay": B + "/recording/?v=map",

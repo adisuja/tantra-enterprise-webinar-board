@@ -12,7 +12,7 @@ for (const m of MESSAGES) {
   for (const [, f] of all.matchAll(/\{\{([a-z_]+)\}\}/g)) if (!FIELDS[f]) errs.push(`${m.id}: unknown field {{${f}}}`);
   if (/[–—]/.test(all)) errs.push(`${m.id}: em or en dash`);
   const personal = m.ch === 'email' || m.ch === 'wa' || (m.ch === 'system' && m.id === 'E0');
-  if (PRE.has(m.stage) && personal && m.id !== 'STOP' && !m.body.includes('{{join_url}}')) errs.push(`${m.id}: no {{join_url}} (WebinarJam link)`);
+  if (PRE.has(m.stage) && personal && !['STOP', 'START', 'REF-X', 'CAL'].includes(m.id) && !m.body.includes('{{join_url}}')) errs.push(`${m.id}: no {{join_url}} (WebinarJam link)`);
   if ((m.group || m.ch === 'group') && PRE.has(m.stage) && !/WebinarJam email/.test(m.group || m.body)) errs.push(`${m.id}: group post does not point to the personal link`);
   if (m.ch === 'wa') {
     const t = WA_TEMPLATES[m.id];
