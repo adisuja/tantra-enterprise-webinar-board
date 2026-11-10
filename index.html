@@ -93,7 +93,7 @@ footer{color:var(--slate);font-size:12px;margin-top:40px;border-top:1px solid va
 <button class="head" aria-expanded="false" aria-controls="item-40-body">
 <span class="tid">40</span><span class="title"><span class="prio p-p0">Launch blocker</span>Launch audit: every gap between today and the first live session</span>
 <span class="owner">Adi</span><span class="pill prog">In progress</span><span class="chev" aria-hidden="true"></span></button>
-<div class="body" id="item-40-body" hidden><p class="next"><b>Next step:</b> 11 Nov: (1) The live thank-you and upsell pages carry the two Vidalytics VSLs and video-lock.js, which are not in the workspace repo, so a site deploy from the repo would remove both videos. Adi: commit the page source from your Mac (funnel-config.json media URLs, video-lock.js, the page changes) so the card 56 rename and the privacy policy update (cards 47, 61) can deploy. (2) jointantra.com still has no DMARC record: add TXT _dmarc = "v=DMARC1; p=none" in Cloudflare DNS. (3) Live checks passed: all 17 pages load, the session time reads 11:00 UK, the calendar file is 11:00 UTC, and the register and WebinarJam endpoints refuse unsigned requests. Visible placeholders remain until Adi sends the support email and postal address (item 22). 10 Nov: WhatsApp is partly unblocked (card 43). Four Utility steps send on approved image templates, and five Marketing ones wait on Adi.
+<div class="body" id="item-40-body" hidden><p class="next"><b>Next step:</b> 11 Nov: (1) The live thank-you and upsell pages carry the two Vidalytics VSLs and video-lock.js, which are not in the workspace repo, so a site deploy from the repo would remove both videos. Adi: commit the page source from your Mac (funnel-config.json media URLs, video-lock.js, the page changes) so the card 56 rename and the privacy policy update (cards 47, 61) can deploy. (2) DMARC for jointantra.com added 11 Nov (v=DMARC1; p=none), checked live. (3) Live checks passed: all 17 pages load, the session time reads 11:00 UK, the calendar file is 11:00 UTC, and the register and WebinarJam endpoints refuse unsigned requests. Visible placeholders remain until Adi sends the support email and postal address (item 22). 10 Nov: WhatsApp is partly unblocked (card 43). Four Utility steps send on approved image templates, and five Marketing ones wait on Adi.
 
 Adi&#x27;s open decisions are collected as one numbered sheet: deliverables/40-launch-audit/DECISIONS_FOR_ADI_2026-11-10.md
 
@@ -107,7 +107,7 @@ CARD 43 UPDATE (10 Nov): Twilio WABA link fixed, all WhatsApp templates now at M
 <button class="head" aria-expanded="false" aria-controls="item-17-body">
 <span class="tid">17</span><span class="title"><span class="prio p-p0">Launch blocker</span>WebinarJam event setup and integrations</span>
 <span class="pill prog">In progress</span><span class="chev" aria-hidden="true"></span></button>
-<div class="body" id="item-17-body" hidden><p class="next"><b>Next step:</b> 10 Nov: registration tested from a phone. The confirmation flow and the WhatsApp personal link work.
+<div class="body" id="item-17-body" hidden><p class="next"><b>Next step:</b> 11 Nov: DMARC for jointantra.com is live (TXT _dmarc = v=DMARC1; p=none), checked from public DNS. 10 Nov: registration tested from a phone. The confirmation flow and the WhatsApp personal link work.
 
 10 Nov:
 - The live text of the 7 WebinarJam emails is copied to deliverables/17-webinarjam/LIVE_EMAILS_2026-11-10.md, for card 39.
