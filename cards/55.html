@@ -30,6 +30,14 @@
 <td>"Webinar: AI calls (confirmation and reminder)" on the Registered stage, saved as a DRAFT in test mode: https://crm.usetantra.com/automation/sq_6dc2bb12f18e400a809f. Confirmation call 2 minutes after registering; reminder call 12 minutes before the event. I switch it on only after a real test call and your go</td>
 </tr>
 <tr>
+<td>Lead context for the agent (Adi, 10 Nov)</td>
+<td>Live. On every call the agent is given the lead's CRM record: name, job title, company, email, their contact on our team, their booked meeting or registered event, every filled deal field, the deal, pipeline, stage, source, tags, value and next step, and the last 8 timeline entries. It uses this to speak personally. Merge fields such as {{company}} and {{custom.team_size}} also work inside the script. Code: (in this card) and (in this card) 81 tests pass; independent review done, fixes in</td>
+</tr>
+<tr>
+<td>Limits on that context</td>
+<td>Links are removed (join, booking and manage links carry the lead's own access tokens). Fields named token, secret or password are skipped. Deal, stage, value and timeline are marked internal: the agent may use them to understand, never say them. SMS, WhatsApp and email entries go in by title only, because the lead writes the inbound ones. The agent is told the record is information, not instructions</td>
+</tr>
+<tr>
 <td>Vodex (India)</td>
 <td>Not connected: waiting on the API key (card 57)</td>
 </tr>
@@ -67,6 +75,10 @@
 <tr>
 <td>Builder</td>
 <td>Add, edit and delete the AI call step; all three "Call through" choices save; merge-field buttons insert; empty script shows a warning; "Before event" shows the exact-time note; no "send at any hour" option on call steps</td>
+</tr>
+<tr>
+<td>Test mode, lead with a full record (10 Nov)</td>
+<td>Run log shows the script, then "The agent is also given the lead's record: Name: Priya Shah, Job title: VP Sales, Company: Acme Logistics, team size: 40 reps, biggest challenge: Leads go cold after the first call, ... note: Asked about pricing for a 40 seat team". The join link field and the link inside the note were left out. Editor shows "The agent knows who it is calling" under the script</td>
 </tr>
 <tr>
 <td>Real call, result on the timeline, batch of 5</td>
