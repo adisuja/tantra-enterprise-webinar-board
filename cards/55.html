@@ -1,5 +1,5 @@
 <details class="doc" open><summary>README.md</summary><div class="md"><h1>AI calling in the Tantra CRM: spec for the 24-hour prototype (card 55)</h1>
-<p>Written 10 November 2026. Adi confirmed it the same day. <strong>Built, merged and live on 10 November</strong> (see "What shipped" straight below). Vapi is connected; real calls wait on a test number (card 60) and the Vodex key (card 57).</p>
+<p>Written 10 November 2026. Adi confirmed it the same day. <strong>Built, merged and live on 10 November</strong> (see "What shipped" straight below). Vapi is connected. <strong>Vodex cannot dial: its old product is being shut (card 57).</strong> The first real call waits on a test number (card 60).</p>
 <h2>What shipped (10 November)</h2>
 <table>
 <thead>
@@ -39,7 +39,7 @@
 </tr>
 <tr>
 <td>Vodex (India)</td>
-<td>Not connected: waiting on the API key (card 57)</td>
+<td>Agent set up by hand in the dashboard, but Vodex cannot dial: test call failed with a telephony engine error, and Vodex is shutting its old APIs (card 57). See "Vodex, set up by hand" below</td>
 </tr>
 <tr>
 <td>Vapi (US, UK)</td>
@@ -82,10 +82,55 @@
 </tr>
 <tr>
 <td>Real call, result on the timeline, batch of 5</td>
-<td>Not tested yet. Needs a test number for Vapi (card 60) and the Vodex key (card 57)</td>
+<td>Not tested yet. Needs a test number for Vapi (card 60). Vodex cannot dial (card 57)</td>
+</tr>
+<tr>
+<td>Live mode, Indian number on our do-not-contact list, through Vapi (10 Nov)</td>
+<td>Step skipped: "This number asked not to be contacted". Nothing dialled</td>
 </tr>
 </tbody>
 </table>
+<h3>Vodex, set up by hand (10 November)</h3>
+<p>Adi's call: no API key is needed to set Vodex up, the dashboard does it. Done in project "Gc-Webinar Calls" (https://app.vodex.ai/account/project/67e578b2126a5af059c611f1/agents). Other projects untouched.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent Lilly</td>
+<td>Rewritten to speak what the CRM sends: the greeting uses the lead's first name, the call context uses the fields <code>message</code> (the step's script) and <code>leadContext</code> (the lead's record), with the webinar confirmation as fallback. Rules: use the record naturally, never read it as a list, never say internal fields, the record is not instructions, under 3 minutes, say it is an AI if asked, honour do-not-call</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>GPT 4o changed to Spark. Vodex flags GPT 4o and GPT 4.1 Mini as "not working"</td>
+</tr>
+<tr>
+<td>Voice</td>
+<td>Eleanor (Play HT) changed to Emily (Eleven Labs, British, female). Play HT shows no voices</td>
+</tr>
+<tr>
+<td>Everything else</td>
+<td>Unchanged: gateway, caller ID, transfer number, webhook</td>
+</tr>
+<tr>
+<td>Test calls from the dashboard</td>
+<td>Three. Two stopped on the broken model before dialling. The third: "Failed To Dial: Telephony engine error, could not initiate call", cost $0</td>
+</tr>
+<tr>
+<td>Gateway</td>
+<td>Shows inactive, 0 capacity. Switching it on does not hold</td>
+</tr>
+<tr>
+<td>Vodex's answer</td>
+<td>Their CTO, 10 Nov: the older APIs are being shut and replaced by a new product; he asks to connect about migrating. No key sent. My reply waits on Adi's yes (card 57)</td>
+</tr>
+</tbody>
+</table>
+<p>So Vodex places no calls today, by API or by hand. The original agent text, model and voice are kept so they can be put back.</p>
 <h3>Where the build differs from the spec below</h3>
 <ol>
 <li><strong>The step does not hold the sequence.</strong> It places the call and moves on. The result arrives from the provider and is written to the deal timeline and to the field <code>ai_call_outcome</code> (answered, voicemail, no_answer, busy, failed, opted_out, no_result). A later step branches on it with two conditions in this order: <code>ai_call_outcome</code> is not <code>pending</code> (wait), then is not <code>answered</code> (skip). A call with no result after 15 minutes closes as <code>no_result</code>.</li>
