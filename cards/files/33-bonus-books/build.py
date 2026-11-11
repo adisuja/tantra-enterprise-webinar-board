@@ -289,11 +289,18 @@ def hub():
     body = f'''<main id="main" class="hub"><div class="hub__in">
   <p class="hub__k">Your webinar bonuses</p>
   <h1>Build any B2B funnel, then let AI write every piece of it.</h1>
-  <p class="hub__lead">Two of the three bonuses from the webinar are here. Start with the playbook: it walks you through every task, in order, for the funnel you choose. Use the library and its prompts whenever a task asks you to write an element.</p>
+  <p class="hub__lead">All three bonuses from the webinar are here. Start with the playbook: it walks you through every task, in order, for the funnel you choose. Use the library and its prompts whenever a task asks you to write an element.</p>
   <div class="hub__books">
     <a class="book" href="/playbook/"><img src="/assets/img/playbook-a.webp?v={V}" alt="Cover: The $1MN+ B2B RevOps Playbook" width="800" height="1200"><div><p class="book__n">Bonus 01</p><h2>The $1MN+ B2B RevOps Playbook</h2><p>Every task to plan, build, launch and run one of eight funnel types, step by step, with the prompt for each build.</p><span class="btn btn--primary">Open the playbook</span></div></a>
     <a class="book" href="/library/"><img src="/assets/img/prompts-a.webp?v={V}" alt="Cover: The $1MN+ AI Funnel Prompt Library" width="800" height="1200"><div><p class="book__n">Bonus 02</p><h2>The $1MN+ AI Funnel Prompt Library</h2><p>Real funnel elements from B2B brands, sorted by stage, industry and offer, each with a prompt that rebuilds it for your brand in any AI assistant.</p><span class="btn btn--primary">Open the library</span></div></a>
+    <a class="book" id="calc" href="https://webinar.sellwithtantra.com/calculator/"><img src="/assets/img/calculator-a.jpg?v={V}" alt="Cover: AI RevOps Revenue Calculator" width="800" height="1200"><div><p class="book__n">Bonus 03</p><h2>Your AI RevOps Revenue Calculator</h2><p>The traffic, the KPI at every stage and the revenue your funnel needs, built from your own survey answers.</p><span class="btn btn--primary">Open my calculator</span></div></a>
   </div>
+  <script>
+  // Bonus 03 is personal: the bonus link carries the person's calculator answers after #p=, kept on this device for later visits.
+  (function(){{var m=location.hash.match(/[#&]p=([^&]+)/),k='tb_calc_p',p=null;
+  try{{if(m){{p=m[1];localStorage.setItem(k,p);history.replaceState(null,'',location.pathname);}}else p=localStorage.getItem(k);}}catch(e){{}}
+  if(p)document.getElementById('calc').href='https://webinar.sellwithtantra.com/calculator/#p='+p;}})();
+  </script>
   <p class="hub__foot">Bookmark this page. Your access stays on this device for six months. <a href="/__logout">Sign out</a></p>
 </div></main>'''
     return page('Your Webinar Bonuses', 'hub', body, css=['hub.css'])

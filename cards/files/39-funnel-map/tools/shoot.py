@@ -25,12 +25,12 @@ async def main():
                 print("ok", k)
             except Exception as e:
                 print("fail", k, e)
-        await pg.goto("https://tantra-bonuses.growthcluborg.workers.dev/", wait_until="networkidle")
+        await pg.goto("https://bonuses.sellwithtantra.com/", wait_until="networkidle")
         await pg.screenshot(path=f"{OUT}/bonus-gate.png"); print("ok bonus-gate")
         await pg.fill("#pw", PW); await pg.keyboard.press("Enter"); await pg.wait_for_load_state("networkidle"); await pg.wait_for_timeout(1200)
         await pg.screenshot(path=f"{OUT}/bonus-hub.png"); print("ok bonus-hub", pg.url)
         for k, path in (("playbook", "/playbook/?funnel=webinar"), ("library", "/library/#t=landing_page")):
-            await pg.goto("https://tantra-bonuses.growthcluborg.workers.dev" + path, wait_until="networkidle"); await pg.wait_for_timeout(1500)
+            await pg.goto("https://bonuses.sellwithtantra.com" + path, wait_until="networkidle"); await pg.wait_for_timeout(1500)
             await pg.screenshot(path=f"{OUT}/{k}.png"); print("ok", k)
         await b.close()
 asyncio.run(main())
