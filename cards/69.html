@@ -26,4 +26,73 @@ Every person who acts on the webinar's Tantra plans offer lands in the CRM and g
 7. Test end to end on the live site: open https://webinar.sellwithtantra.com/tantra-plans/?v=<new> and each landing page, click every button, book a real slot in each embedded calendar with a test name and your own email, check the deal lands in the right pipeline stage, the sequences enrol (dry run first), and the Slack alert fires to the test channel. Then cancel the test bookings and delete the test deals.
 8. Board: update card 69 in tasks/tasks.json (status, review_links with cache-busted URLs for every state including ?state=expired, next_step, adi_steps), then python3 board/build.py &amp;&amp; bash board/publish.sh. Commit only your own files and hunks (other sessions share this checkout; never git add -A).</p>
 <p>DONE MEANS
-All four booking pages are live with their own multi-channel reminder sequences active and embedded on their landing pages; a test booking on each landed in the right stage and was cleaned up; Pro trials and payments from usetantra.com/pricing reach the pipeline (or Adi has one short block telling him the single step left); card 69 shows every link.</p></div></details><details class="doc"><summary>Files for import or upload (10)</summary><ul class="files"><li><a href="cards/files/69-tantra-plans/art-gen/art/club.1.png" target="_blank" rel="noopener">art-gen/art/club.1.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/club.2.png" target="_blank" rel="noopener">art-gen/art/club.2.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/enterprise.1.png" target="_blank" rel="noopener">art-gen/art/enterprise.1.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/enterprise.2.png" target="_blank" rel="noopener">art-gen/art/enterprise.2.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/guarantee.1.png" target="_blank" rel="noopener">art-gen/art/guarantee.1.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/guarantee.2.png" target="_blank" rel="noopener">art-gen/art/guarantee.2.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/pro.1.png" target="_blank" rel="noopener">art-gen/art/pro.1.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/pro.2.png" target="_blank" rel="noopener">art-gen/art/pro.2.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/gen_plans_art.py" target="_blank" rel="noopener">art-gen/gen_plans_art.py</a></li><li><a href="cards/files/69-tantra-plans/art-gen/ref/tantra.png" target="_blank" rel="noopener">art-gen/ref/tantra.png</a></li></ul></details>
+All four booking pages are live with their own multi-channel reminder sequences active and embedded on their landing pages; a test booking on each landed in the right stage and was cleaned up; Pro trials and payments from usetantra.com/pricing reach the pipeline (or Adi has one short block telling him the single step left); card 69 shows every link.</p></div></details><details class="doc"><summary>LINKS.md</summary><div class="md"><p>TANTRA ENTERPRISE WEBINAR: EVERY LIVE LINK (checked 12 November 2026, all return 200)
+Use these clean URLs as destinations in CRM sequences. Wrap each one with a CRM tracked short link (crm_trk_create_link) per sequence and step, with utm_source = channel (email, whatsapp, sms, linkedin), utm_medium = the sequence name, utm_campaign = webinar-2026-11-12. Never shorten a URL that carries a personal fragment (#p=...) or a personal join link: use the contact's merge field instead.</p>
+<ol>
+<li>
+<p>MAIN DOMAIN
+- Short domain, redirects to registration (keeps UTM tags): https://sellwithtantra.com/</p>
+</li>
+<li>
+<p>WEBINAR FUNNEL (https://webinar.sellwithtantra.com)
+- Registration: https://webinar.sellwithtantra.com/
+- Thank-you page 1, video and survey (after registering): https://webinar.sellwithtantra.com/thank-you/
+- Tantra RevOps OS offer ($99 upsell after the survey): https://webinar.sellwithtantra.com/funnelos/
+- Confirmation (countdown, join button, WhatsApp group, plan link): https://webinar.sellwithtantra.com/confirmation/
+  Personal version: https://webinar.sellwithtantra.com/confirmation/?join={{ew_join_url, URL-encoded}}
+- AI RevOps Revenue Calculator: https://webinar.sellwithtantra.com/calculator/
+  Personal version: the contact's ew_report_url field (carries #p=... ; do not shorten)
+- Recording / replay: https://webinar.sellwithtantra.com/recording/
+- Due diligence home: https://webinar.sellwithtantra.com/due-diligence/
+- Due diligence, Consulting and Professional Services: https://webinar.sellwithtantra.com/due-diligence/consulting/
+- Due diligence, Software (B2B SaaS): https://webinar.sellwithtantra.com/due-diligence/b2b-saas/
+- Due diligence, Coaching and Training: https://webinar.sellwithtantra.com/due-diligence/coaching-training/
+- Due diligence, Agencies: https://webinar.sellwithtantra.com/due-diligence/agencies/
+- Due diligence, Media, Publishing and Authors: https://webinar.sellwithtantra.com/due-diligence/media-publishing/
+- Privacy policy: https://webinar.sellwithtantra.com/privacy-policy/
+- Old addresses that redirect (do not use in new messages): /vip/ -&gt; /funnelos/, /watch/ and /confirmed/ -&gt; /confirmation/</p>
+</li>
+<li>
+<p>TANTRA PLANS (72-hour webinar offer, ends Monday 16 November 2026, 00:00 UK time)
+- All plans: https://webinar.sellwithtantra.com/tantra-plans/
+- 10X ROI Guarantee section: https://webinar.sellwithtantra.com/tantra-plans/#guarantee
+- Tantra Pro page (animated preview, walkthrough calendar): https://webinar.sellwithtantra.com/tantra-plans/pro/
+- 100K MRR Club page (application calendar): https://webinar.sellwithtantra.com/tantra-plans/100k-mrr-club/
+- Tantra Enterprise, $5M ARR Club page (calendar, guarantee): https://webinar.sellwithtantra.com/tantra-plans/enterprise/
+- $10M ARR Club page (calendar, guarantee): https://webinar.sellwithtantra.com/tantra-plans/10m-arr-club/
+- Add #book to any of the four pages to land on the calendar, e.g. https://webinar.sellwithtantra.com/tantra-plans/enterprise/#book</p>
+</li>
+<li>
+<p>BONUSES (https://bonuses.sellwithtantra.com, password-gated; password in ~/.config/tantra/keys/tantra-bonuses.env, never in a message template)
+- Bonus hub (Bonus 04, the Tantra engine offer): https://bonuses.sellwithtantra.com/
+- Bonus 04 section: https://bonuses.sellwithtantra.com/#engine
+- Bonus 01, the $1MN+ B2B RevOps Playbook: https://bonuses.sellwithtantra.com/playbook/
+- Bonus 02, the $1MN+ AI Funnel Prompt Library: https://bonuses.sellwithtantra.com/library/
+- The AI prompts: https://bonuses.sellwithtantra.com/prompts/
+- Bonus 03, the calculator, personal: https://bonuses.sellwithtantra.com/#p={{plan payload}} (sets the person's calculator link; do not shorten)</p>
+</li>
+<li>
+<p>BOOKING PAGES (Tantra CRM, hosts Conor and Scott, never named on the pages)
+- AI RevOps Strategy Consultation (webinar call, pipeline Tantra Enterprise Sales): https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation
+- Tantra Pro walkthrough (pipeline Tantra Plans): https://crm.usetantra.com/book/tantra/tantra-pro-walkthrough
+- Apply for access to the 100K MRR Club: https://crm.usetantra.com/book/tantra/100k-mrr-club
+- Join the $5M ARR Club: https://crm.usetantra.com/book/tantra/5m-arr-club
+- Join the $10M ARR Club: https://crm.usetantra.com/book/tantra/10m-arr-club</p>
+</li>
+<li>
+<p>CHECKOUT AND APP
+- Tantra Pro trial with the webinar code: https://usetantra.com/pricing?coupon=WEBINAR1112
+  ($74.97 the first month only, then $99 a month; code ends Monday 16 November 2026, 00:00 UK time)
+- Tantra RevOps OS checkout ($99, Dodo Payments, returns to the confirmation page): https://checkout.dodopayments.com/buy/pdt_0NrT0uZn0wxHm3nE0KBY5?quantity=1&amp;redirect_url=https%3A%2F%2Fwebinar.sellwithtantra.com%2Fconfirmation%2F</p>
+</li>
+<li>
+<p>WEBINARJAM AND COMMUNITY
+- WebinarJam registration (each registrant gets a personal join link in ew_join_url): https://event.webinarjam.com/7222k8/register/v888zgb7
+- WhatsApp community: https://chat.whatsapp.com/EsA4tmgYNN18P68vTt6plh
+- WhatsApp announcements group: https://chat.whatsapp.com/E4nn2piScip9c2nUdBLJTv
+- WhatsApp us (Tantra, +1 445 622 7661): https://wa.me/14456227661</p>
+</li>
+</ol>
+<p>TO FIX IN THE CRM
+- The Tantra Pro walkthrough booking page (description and confirmation) still says "$74.97 a month". Adi decided $74.97 is the first month only, then $99 a month. Also check every new Tantra Plans sequence step for the same wording.
+- The plans pages now call it "the Tantra 10X ROI Guarantee"; the $5M and $10M booking pages say "10X investment guarantee". Align them if you want one name.</p></div></details><details class="doc"><summary>Files for import or upload (10)</summary><ul class="files"><li><a href="cards/files/69-tantra-plans/art-gen/art/club.1.png" target="_blank" rel="noopener">art-gen/art/club.1.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/club.2.png" target="_blank" rel="noopener">art-gen/art/club.2.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/enterprise.1.png" target="_blank" rel="noopener">art-gen/art/enterprise.1.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/enterprise.2.png" target="_blank" rel="noopener">art-gen/art/enterprise.2.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/guarantee.1.png" target="_blank" rel="noopener">art-gen/art/guarantee.1.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/guarantee.2.png" target="_blank" rel="noopener">art-gen/art/guarantee.2.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/pro.1.png" target="_blank" rel="noopener">art-gen/art/pro.1.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/art/pro.2.png" target="_blank" rel="noopener">art-gen/art/pro.2.png</a></li><li><a href="cards/files/69-tantra-plans/art-gen/gen_plans_art.py" target="_blank" rel="noopener">art-gen/gen_plans_art.py</a></li><li><a href="cards/files/69-tantra-plans/art-gen/ref/tantra.png" target="_blank" rel="noopener">art-gen/ref/tantra.png</a></li></ul></details>
