@@ -34,10 +34,14 @@ JOBS = {
                           "a tall faceted tower of dark glass and polished gold, built from stacked layers that narrow upward like a funnel turned into a skyscraper, "
                           "warm gold light flowing up through its core, the Tantra logo glowing gold at its crown. Tiny frosted-glass panels orbit it, linked by gold light "
                           "lines. Dramatic low angle, volumetric light, reflective dark floor. Powerful, done-for-you, enterprise grade."),
+    'guarantee': BASE + ("Palette: rich polished gold (#f5c76b, #e0a94a) with a faint deep violet (#6d4aff) glow behind. Subject: a luxurious heavy guarantee seal "
+                         "medallion seen almost straight on, like a premium wax-and-gold certificate seal or a private bank coin: thick bevelled rim with fine guilloche "
+                         "engraving, a raised laurel wreath around the inner ring, and the Tantra logo embossed in polished gold at the centre. Soft rays of warm light "
+                         "behind it, resting on dark velvet. Trust, permanence, a promise in writing. Square composition, the medallion filling 70 percent of the frame."),
 }
 
 def run(name, url):
-    t = post('https://api.kie.ai/api/v1/jobs/createTask', {'model': 'nano-banana-pro', 'input': {'prompt': JOBS[name.split('.')[0]], 'image_input': [url], 'aspect_ratio': '4:3', 'resolution': '2K', 'output_format': 'png'}})
+    t = post('https://api.kie.ai/api/v1/jobs/createTask', {'model': 'nano-banana-pro', 'input': {'prompt': JOBS[name.split('.')[0]], 'image_input': [url], 'aspect_ratio': '1:1' if name.startswith('guarantee') else '4:3', 'resolution': '2K', 'output_format': 'png'}})
     tid = t['data']['taskId']
     for _ in range(150):
         time.sleep(6)

@@ -280,6 +280,7 @@ def page(title, key, body, css=(), js=(), extra=''):
 <header class="bar"><div class="bar__in"><a class="brand" href="/"><img class="m" src="/assets/img/tantra-mark-ink.png" alt="" width="45" height="30"><img class="w" src="/assets/img/tantra-word-ink.png" alt="Tantra" height="13"><span class="brand__sep"></span><span class="brand__name">{esc(name)}</span></a><nav class="bar__nav" aria-label="Bonuses">{nav}</nav></div><div class="progress"></div></header>
 {body}
 <div class="toast" role="status" aria-live="polite"></div>
+{promo_bar()}
 </body></html>'''
     if DASH.search(out):
         raise SystemExit(f'em or en dash found in {key}: ' + out[max(0, DASH.search(out).start() - 80):DASH.search(out).start() + 20])
@@ -295,6 +296,40 @@ BRANDS = {p.stem: 'data:image/svg+xml;base64,' + __import__('base64').b64encode(
 
 def brand(name, alt, size=22):
     return f'<img class="bl" src="{BRANDS[name]}" alt="{esc(alt)}" width="{size}" height="{size}">'
+
+def promo_bar():
+    """Sticky offer bar on every bonus page (Adi 2026-11-12): live countdown, the Pro first-month price, 25% off and the code,
+    always in view. Minimises to a floating pill that keeps the countdown; gone once the deadline passes (?state=expired)."""
+    pro = TP['pro']
+    code = TP.get('coupon_code') or ''
+    cta = 'https://webinar.sellwithtantra.com' + TP['path'] + 'pro/?utm_source=bonus-hub&utm_medium=promo-bar&utm_campaign=tantra-plans'
+    return f"""<aside class="pbar" id="pbar" data-deadline="{TP['deadline_utc']}" aria-label="Webinar offer" hidden>
+  <div class="pbar__in">
+    <span class="pbar__tag">Webinar offer</span>
+    <div class="pbar__cd" aria-label="Time left"><span><b data-p="d">03</b><i>d</i></span><span><b data-p="h">00</b><i>h</i></span><span><b data-p="m">00</b><i>m</i></span><span><b data-p="s">00</b><i>s</i></span></div>
+    <p class="pbar__deal"><b>Tantra Pro ${pro['price_usd']}</b> <span>first month</span> <s>${pro['list_usd']}</s> <em>25% off</em></p>
+    {f'<p class="pbar__code"><span>Code</span><code>{esc(code)}</code><button type="button" data-pcopy="{esc(code)}">Copy</button></p>' if code else ''}
+    <a class="pbar__cta" href="{cta}">Claim {pro['trial_days']} days free</a>
+    <button type="button" class="pbar__min" aria-label="Minimise the offer bar">&#215;</button>
+  </div>
+  <button type="button" class="pbar__pill" aria-label="Show the webinar offer"><i></i><b data-p2>72h left</b><em>25% off</em></button>
+</aside>
+<script>
+(function(){{var b=document.getElementById('pbar');if(!b)return;var end=Date.parse(b.dataset.deadline),k='tb_pbar_min',q=function(x){{return b.querySelector('[data-p='+x+']');}},z=function(n){{return (n<10?'0':'')+n;}};
+if(/[?&]state=expired/.test(location.search)||end-Date.now()<=0){{b.remove();return;}}
+b.hidden=false;document.body.classList.add('has-pbar');
+try{{if(localStorage.getItem(k))b.classList.add('is-min');}}catch(e){{}}
+requestAnimationFrame(function(){{setTimeout(function(){{b.classList.add('is-in');}},400);}});
+function t(){{var ms=end-Date.now();if(ms<=0){{b.remove();document.body.classList.remove('has-pbar');return;}}
+var d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;
+q('d').textContent=z(d);q('h').textContent=z(h);q('m').textContent=z(m);q('s').textContent=z(s);
+b.querySelector('[data-p2]').textContent=(d?d+'d ':'')+z(h)+':'+z(m)+':'+z(s);}}
+t();setInterval(t,1000);
+b.querySelector('.pbar__min').onclick=function(){{b.classList.add('is-min');try{{localStorage.setItem(k,'1');}}catch(e){{}}}};
+b.querySelector('.pbar__pill').onclick=function(){{b.classList.remove('is-min');try{{localStorage.removeItem(k);}}catch(e){{}}}};
+var c=b.querySelector('[data-pcopy]');if(c)c.onclick=function(){{(navigator.clipboard?navigator.clipboard.writeText(c.dataset.pcopy):Promise.reject()).then(function(){{c.textContent='Copied';setTimeout(function(){{c.textContent='Copy';}},1800);}},function(){{}});}};}})();
+</script>"""
+
 
 def engine_offer():
     pro, club = TP['pro'], TP['club_100k']
