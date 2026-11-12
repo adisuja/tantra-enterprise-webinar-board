@@ -307,7 +307,7 @@ def promo_bar():
   <div class="pbar__in">
     <span class="pbar__tag">Webinar offer</span>
     <div class="pbar__cd" aria-label="Time left"><span><b data-p="d">03</b><i>d</i></span><span><b data-p="h">00</b><i>h</i></span><span><b data-p="m">00</b><i>m</i></span><span><b data-p="s">00</b><i>s</i></span></div>
-    <p class="pbar__deal"><b>Tantra Pro ${pro['price_usd']}</b> <span>first month</span> <s>${pro['list_usd']}</s> <em>25% off</em></p>
+    <p class="pbar__deal"><b>Tantra Pro ${pro['price_usd']}</b> <span>a month for 3 months</span> <s>${pro['list_usd']}</s> <em>25% off</em></p>
     {f'<p class="pbar__code"><span>Code</span><code>{esc(code)}</code><button type="button" data-pcopy="{esc(code)}">Copy</button></p>' if code else ''}
     <a class="pbar__cta" href="{cta}">Claim {pro['trial_days']} days free</a>
     <button type="button" class="pbar__min" aria-label="Minimise the offer bar">&#215;</button>
@@ -366,7 +366,7 @@ def engine_offer():
     plans = f'''<div class="pls">
       <a class="pl pl--ent" href="{site}enterprise/{utm}"><span class="pl__k">Done for you</span><b>Tantra Enterprise</b><span class="pl__p">Built, live and bringing in revenue</span><span class="pl__c">Join the $5M ARR Club</span></a>
       <a class="pl pl--club" href="{site}100k-mrr-club/{utm}"><span class="pl__k">Build it with us</span><b>The 100K MRR Club</b><span class="pl__p">{esc(club['prices']['USD'])} {esc(club['per'])}</span><span class="pl__c">Apply for access</span></a>
-      <a class="pl pl--pro" href="{site}pro/{utm}"><span class="pl__k">Run it yourself</span><b>Tantra Pro</b><span class="pl__p"><span data-deal><s>${pro['list_usd']}</s> ${pro['price_usd']} first month</span><span data-after>${pro['list_usd']} a month</span></span><span class="pl__c">Start {pro['trial_days']} days free</span></a>
+      <a class="pl pl--pro" href="{site}pro/{utm}"><span class="pl__k">Run it yourself</span><b>Tantra Pro</b><span class="pl__p"><span data-deal><s>${pro['list_usd']}</s> ${pro['price_usd']} a month for 3 months</span><span data-after>${pro['list_usd']} a month</span></span><span class="pl__c">Start {pro['trial_days']} days free</span></a>
     </div>'''
     return f'''<section class="eng" id="engine" data-deadline="{TP['deadline_utc']}" aria-labelledby="eng-h">
     <div class="eng__top">
@@ -376,10 +376,10 @@ def engine_offer():
     <div class="eng__hero">
       <div>
         <h2 id="eng-h">The engine that filled this webinar is yours. <span>Free for {pro['trial_days']} days.</span></h2>
-        <p class="eng__lead">Email, LinkedIn, WhatsApp and cold calendar invites, run from one place, with every registrant followed up on autopilot. <span data-deal>Start before the timer hits zero and your first month is <b>${pro['price_usd']} instead of ${pro['list_usd']}</b>, 25% off.</span><span data-after>Start free today, then <b>${pro['list_usd']} a month</b>. Cancel any time.</span></p>
+        <p class="eng__lead">Email, LinkedIn, WhatsApp and cold calendar invites, run from one place, with every registrant followed up on autopilot. <span data-deal>Start before the timer hits zero and you pay <b>${pro['price_usd']} instead of ${pro['list_usd']}</b> a month for your first 3 months, 25% off.</span><span data-after>Start free today, then <b>${pro['list_usd']} a month</b>. Cancel any time.</span></p>
         <div class="eng__cta"><a class="btn btn--primary btn--lg" href="{site}{utm}">See the Tantra plans</a><a class="eng__alt" href="{site}pro/{utm}">Start my {pro['trial_days']}-day free trial</a></div>
       </div>
-      <div class="price"><p class="price__k"><span data-deal>Tantra Pro, webinar price</span><span data-after>Tantra Pro</span></p><p class="price__n"><s data-deal>${pro['list_usd']}</s><b data-deal>${pro['price_usd']}</b><b data-after>${pro['list_usd']}</b><small data-deal>first month</small><small data-after>/month</small></p><p class="price__off"><span data-deal>25% off month one, then ${pro['list_usd']}/month · </span>{pro['trial_days']} days free · cancel any time</p>{f'<p class="price__code" data-deal>Code <code>{esc(TP["coupon_code"])}</code></p>' if TP.get('coupon_code') else ''}</div>
+      <div class="price"><p class="price__k"><span data-deal>Tantra Pro, webinar price</span><span data-after>Tantra Pro</span></p><p class="price__n"><s data-deal>${pro['list_usd']}</s><b data-deal>${pro['price_usd']}</b><b data-after>${pro['list_usd']}</b><small data-deal>/month for 3 months</small><small data-after>/month</small></p><p class="price__off"><span data-deal>25% off for 3 months, then ${pro['list_usd']}/month · </span>{pro['trial_days']} days free · cancel any time</p>{f'<p class="price__code" data-deal>Code <code>{esc(TP["coupon_code"])}</code></p>' if TP.get('coupon_code') else ''}</div>
     </div>
 
     <div class="blk"><p class="blk__k">01 · Omnichannel outreach</p><h3>Every channel your buyers live in, from one engine</h3>
