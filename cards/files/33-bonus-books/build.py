@@ -285,6 +285,37 @@ def page(title, key, body, css=(), js=(), extra=''):
         raise SystemExit(f'em or en dash found in {key}: ' + out[max(0, DASH.search(out).start() - 80):DASH.search(out).start() + 20])
     return out
 
+# Bonus 04 (Adi 2026-11-12): the 72-hour Tantra engine offer. Deadline, code and prices come from the funnel config,
+# so the hub and /tantra-plans/ always agree. The block hides itself in the browser once the deadline passes.
+TP = json.loads((HERE.parent / '_shared' / 'funnel-config.json').read_text())['tantra_plans']
+
+def engine_offer():
+    pro = TP['pro']
+    plans = 'https://webinar.sellwithtantra.com' + TP['path'] + '?utm_source=bonus-hub&utm_medium=bonus04&utm_campaign=tantra-plans'
+    return f'''<section class="eng" id="engine" data-deadline="{TP['deadline_utc']}" aria-labelledby="eng-h">
+    <div class="eng__top"><p class="eng__badge">Bonus 04 · Only for the next 72 hours</p><p class="eng__clock">Ends {esc(TP['deadline_label'])} · <b data-left>72 hours left</b></p></div>
+    <h2 id="eng-h">Run your funnel on the Tantra engine: {pro['trial_days']} days free, then ${pro['price_usd']} a month instead of ${pro['list_usd']}.</h2>
+    <p class="eng__lead">It is the engine my team runs every webinar funnel on. Three things it does for you from day one:</p>
+    <div class="scr" role="img" aria-label="The Tantra app: omnichannel sequences, webinar integration and cold calendar invites">
+      <div class="scr__bar"><i></i><i></i><i></i><span>Tantra</span></div>
+      <div class="scr__grid">
+        <div class="scr__pane"><p class="scr__k">01 · Omnichannel outreach</p><h3>One sequence, every channel</h3>
+          <ol class="seq"><li><b>Day 0</b><span class="ch ch--em">Email</span></li><li><b>Day 1</b><span class="ch ch--li">LinkedIn</span></li><li><b>Day 2</b><span class="ch ch--wa">WhatsApp</span></li><li><b>Day 3</b><span class="ch ch--ci">Calendar invite</span></li></ol></div>
+        <div class="scr__pane"><p class="scr__k">02 · Webinar integration</p><h3>Every registrant tracked to the call</h3>
+          <ol class="stg"><li>Registered</li><li>Attended</li><li>Missed: replay sent</li><li class="on">Call booked</li></ol></div>
+        <div class="scr__pane"><p class="scr__k">03 · Cold calendar invites</p><h3>The only app in the world that sends them</h3>
+          <div class="inv"><p class="inv__d"><b>THU</b>12</p><div><p class="inv__t">How 400+ Brands Use AI Funnels</p><p class="inv__m">11:00 UK time · Google Meet</p><p class="inv__a"><span>Yes</span><span>Maybe</span><span>No</span></p></div></div></div>
+      </div>
+    </div>
+    <div class="eng__cta"><a class="btn btn--primary btn--lg" href="{plans}">See the Tantra plans</a><p>{pro['trial_days']}-day free trial on Tantra Pro. Webinar prices end with the timer.</p></div>
+  </section>
+  <script>
+  (function(){{var s=document.getElementById('engine'),end=Date.parse(s.dataset.deadline),o=s.querySelector('[data-left]');
+  function t(){{var ms=end-Date.now();if(/[?&]state=expired/.test(location.search))ms=-1;if(ms<=0){{s.hidden=true;return;}}
+  var d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60;o.textContent=(d?d+'d ':'')+h+'h '+m+'m left';}}
+  t();setInterval(t,30000);}})();
+  </script>'''
+
 def hub():
     body = f'''<main id="main" class="hub"><div class="hub__in">
   <p class="hub__k">Your webinar bonuses</p>
@@ -295,6 +326,7 @@ def hub():
     <a class="book" href="/library/"><img src="/assets/img/prompts-a.webp?v={V}" alt="Cover: The $1MN+ AI Funnel Prompt Library" width="800" height="1200"><div><p class="book__n">Bonus 02</p><h2>The $1MN+ AI Funnel Prompt Library</h2><p>Real funnel elements from B2B brands, sorted by stage, industry and offer, each with a prompt that rebuilds it for your brand in any AI assistant.</p><span class="btn btn--primary">Open the library</span></div></a>
     <a class="book" id="calc" href="https://webinar.sellwithtantra.com/calculator/"><img src="/assets/img/calculator-a.jpg?v={V}" alt="Cover: AI RevOps Revenue Calculator" width="800" height="1200"><div><p class="book__n">Bonus 03</p><h2>Your AI RevOps Revenue Calculator</h2><p>The traffic, the KPI at every stage and the revenue your funnel needs, built from your own survey answers.</p><span class="btn btn--primary">Open my calculator</span></div></a>
   </div>
+  {engine_offer()}
   <script>
   // Bonus 03 is personal: the bonus link carries the person's calculator answers after #p=, kept on this device for later visits.
   (function(){{var m=location.hash.match(/[#&]p=([^&]+)/),k='tb_calc_p',p=null;

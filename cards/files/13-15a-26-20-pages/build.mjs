@@ -16,6 +16,7 @@ import * as calculator from './src/pages/calculator.mjs';
 import * as recording from './src/pages/recording.mjs';
 import * as dd from './src/pages/due-diligence.mjs';
 import * as privacy from './src/pages/privacy-policy.mjs';
+import * as plans from './src/pages/plans.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const arg = (k, d) => (process.argv.includes(k) ? path.resolve(process.argv[process.argv.indexOf(k) + 1]) : d);
@@ -32,7 +33,7 @@ fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
 fs.cpSync(path.join(here, 'src', 'assets'), path.join(out, 'assets'), { recursive: true });
 
-const pages = [registration, registrationB, thankYou, vip, confirmation, calculator, recording, ...dd.pages, privacy];
+const pages = [registration, registrationB, thankYou, vip, confirmation, calculator, recording, ...dd.pages, privacy, plans];
 let ics = null;
 for (const page of pages) {
   const ctx = makeCtx(cfg, page.route);
