@@ -33,7 +33,7 @@ fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
 fs.cpSync(path.join(here, 'src', 'assets'), path.join(out, 'assets'), { recursive: true });
 
-const pages = [registration, registrationB, thankYou, vip, confirmation, calculator, recording, ...dd.pages, privacy, plans];
+const pages = [registration, registrationB, thankYou, vip, confirmation, calculator, recording, ...dd.pages, privacy, ...plans.pages];
 let ics = null;
 for (const page of pages) {
   const ctx = makeCtx(cfg, page.route);

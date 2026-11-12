@@ -285,35 +285,104 @@ def page(title, key, body, css=(), js=(), extra=''):
         raise SystemExit(f'em or en dash found in {key}: ' + out[max(0, DASH.search(out).start() - 80):DASH.search(out).start() + 20])
     return out
 
-# Bonus 04 (Adi 2026-11-12): the 72-hour Tantra engine offer. Deadline, code and prices come from the funnel config,
-# so the hub and /tantra-plans/ always agree. The block hides itself in the browser once the deadline passes.
+# Bonus 04 (Adi 2026-11-12, round 2): the 72-hour Tantra engine offer, built as a product showcase. A live countdown to the
+# second; the channels with their real logos (iconify "logos" set, CC0, and vscode-icons for Outlook, in src/brands/);
+# the webinar follow-up flow (the CRM's own webinar sequences); a custom sequence; a full cold calendar invite; and the
+# three Tantra plans. Deadline, code and prices come from the funnel config so the hub and /tantra-plans/ always agree.
+# The block hides itself once the deadline passes (?state=expired shows that state).
 TP = json.loads((HERE.parent / '_shared' / 'funnel-config.json').read_text())['tantra_plans']
+BRANDS = {p.stem: 'data:image/svg+xml;base64,' + __import__('base64').b64encode(p.read_bytes()).decode() for p in (SRC / 'brands').glob('*.svg')}
+
+def brand(name, alt, size=22):
+    return f'<img class="bl" src="{BRANDS[name]}" alt="{esc(alt)}" width="{size}" height="{size}">'
 
 def engine_offer():
-    pro = TP['pro']
-    plans = 'https://webinar.sellwithtantra.com' + TP['path'] + '?utm_source=bonus-hub&utm_medium=bonus04&utm_campaign=tantra-plans'
+    pro, club = TP['pro'], TP['club_100k']
+    site = 'https://webinar.sellwithtantra.com' + TP['path']
+    utm = '?utm_source=bonus-hub&utm_medium=bonus04&utm_campaign=tantra-plans'
+    channels = [
+        ('google-gmail', 'Gmail', 'Unlimited mailboxes, warmed up'),
+        ('outlook', 'Outlook', 'Email from your Microsoft inbox'),
+        ('google-calendar', 'Google Calendar', 'Cold invites that land on the calendar'),
+        ('microsoft-icon', 'Microsoft 365', 'Invites on Outlook calendars too'),
+        ('linkedin-icon', 'LinkedIn', 'Connection requests and messages'),
+        ('whatsapp-icon', 'WhatsApp', 'Personal messages and reminders'),
+    ]
+    ch = ''.join(f'<li>{brand(i, n, 28)}<b>{n}</b><span>{d}</span></li>' for i, n, d in channels)
+    # The webinar sequences are the ones live in the Tantra CRM for this webinar (registered, survey done, attended, missed).
+    flow = [
+        ('Registers', 'The moment they sign up', [('google-gmail', 'Confirmation email'), ('whatsapp-icon', 'WhatsApp with their join link'), ('google-calendar', 'Calendar hold')], 'v'),
+        ('Before the session', 'Day before, hour before, going live', [('google-gmail', 'Reminder emails'), ('whatsapp-icon', 'WhatsApp reminders'), (None, 'SMS at go time')], 'v'),
+        ('Attended', 'Stayed for the offer', [('google-gmail', 'Bonuses delivered'), ('whatsapp-icon', 'Book-a-call nudge')], 'g'),
+        ('Missed it', 'No-show or left early', [('google-gmail', 'Replay link'), ('whatsapp-icon', 'Replay reminder'), (None, 'SMS before the replay closes')], 'r'),
+    ]
+    def step(lg, t):
+        icon = brand(lg, '', 16) if lg else '<span class="sms">SMS</span>'
+        return f'<li>{icon}<span>{t}</span></li>'
+    fl = ''.join(f'<li class="wf__n wf__n--{tone}"><p class="wf__k">{k}</p><p class="wf__t">{t}</p><ul>{"".join(step(a, b) for a, b in steps)}</ul></li>' for k, t, steps, tone in flow)
+    seq = [
+        ('Day 0', 'google-calendar', 'Cold calendar invite', 'Lands on their calendar for Thursday 11:00', ''),
+        ('Day 0', 'google-gmail', 'Email: the why behind the invite', 'Sent from a warmed-up mailbox', ''),
+        ('Day 1', 'linkedin-icon', 'LinkedIn connection request', 'With a short personal note', 'If not accepted the invite'),
+        ('Day 2', 'whatsapp-icon', 'WhatsApp message', 'One line and the join link', 'If no reply'),
+        ('Day 3', 'google-gmail', 'Email: last call', 'Then the sequence stops', 'If still no reply'),
+    ]
+    sq = ''.join(f'<li><span class="sq__d">{d}</span>{brand(lg, "", 20)}<div><b>{t}</b><small>{s}</small></div>{f"<em>{c}</em>" if c else ""}</li>' for d, lg, t, s, c in seq)
+    plans = f'''<div class="pls">
+      <a class="pl pl--ent" href="{site}enterprise/{utm}"><span class="pl__k">Done for you</span><b>Tantra Enterprise</b><span class="pl__p">Built, live and bringing in revenue</span><span class="pl__c">Join the $5M ARR Club</span></a>
+      <a class="pl pl--club" href="{site}100k-mrr-club/{utm}"><span class="pl__k">Build it with us</span><b>The 100K MRR Club</b><span class="pl__p">{esc(club['prices']['USD'])} {esc(club['per'])}</span><span class="pl__c">Apply for access</span></a>
+      <a class="pl pl--pro" href="{site}pro/{utm}"><span class="pl__k">Run it yourself</span><b>Tantra Pro</b><span class="pl__p"><s>${pro['list_usd']}</s> ${pro['price_usd']} a month</span><span class="pl__c">Start {pro['trial_days']} days free</span></a>
+    </div>'''
     return f'''<section class="eng" id="engine" data-deadline="{TP['deadline_utc']}" aria-labelledby="eng-h">
-    <div class="eng__top"><p class="eng__badge">Bonus 04 · Only for the next 72 hours</p><p class="eng__clock">Ends {esc(TP['deadline_label'])} · <b data-left>72 hours left</b></p></div>
-    <h2 id="eng-h">Run your funnel on the Tantra engine: {pro['trial_days']} days free, then ${pro['price_usd']} a month instead of ${pro['list_usd']}.</h2>
-    <p class="eng__lead">It is the engine my team runs every webinar funnel on. Three things it does for you from day one:</p>
-    <div class="scr" role="img" aria-label="The Tantra app: omnichannel sequences, webinar integration and cold calendar invites">
-      <div class="scr__bar"><i></i><i></i><i></i><span>Tantra</span></div>
-      <div class="scr__grid">
-        <div class="scr__pane"><p class="scr__k">01 · Omnichannel outreach</p><h3>One sequence, every channel</h3>
-          <ol class="seq"><li><b>Day 0</b><span class="ch ch--em">Email</span></li><li><b>Day 1</b><span class="ch ch--li">LinkedIn</span></li><li><b>Day 2</b><span class="ch ch--wa">WhatsApp</span></li><li><b>Day 3</b><span class="ch ch--ci">Calendar invite</span></li></ol></div>
-        <div class="scr__pane"><p class="scr__k">02 · Webinar integration</p><h3>Every registrant tracked to the call</h3>
-          <ol class="stg"><li>Registered</li><li>Attended</li><li>Missed: replay sent</li><li class="on">Call booked</li></ol></div>
-        <div class="scr__pane"><p class="scr__k">03 · Cold calendar invites</p><h3>The only app in the world that sends them</h3>
-          <div class="inv"><p class="inv__d"><b>THU</b>12</p><div><p class="inv__t">How 400+ Brands Use AI Funnels</p><p class="inv__m">11:00 UK time · Google Meet</p><p class="inv__a"><span>Yes</span><span>Maybe</span><span>No</span></p></div></div></div>
-      </div>
+    <div class="eng__top">
+      <p class="eng__badge">Bonus 04 · Webinar attendees only</p>
+      <div class="cd" aria-live="off"><p class="cd__l">This offer ends in</p><div class="cd__row"><span><b data-cd="d">03</b><i>days</i></span><span><b data-cd="h">00</b><i>hours</i></span><span><b data-cd="m">00</b><i>min</i></span><span><b data-cd="s">00</b><i>sec</i></span></div><p class="cd__w">{esc(TP['deadline_label'])}</p></div>
     </div>
-    <div class="eng__cta"><a class="btn btn--primary btn--lg" href="{plans}">See the Tantra plans</a><p>{pro['trial_days']}-day free trial on Tantra Pro. Webinar prices end with the timer.</p></div>
+    <div class="eng__hero">
+      <div>
+        <h2 id="eng-h">The engine that filled this webinar is yours. <span>Free for {pro['trial_days']} days.</span></h2>
+        <p class="eng__lead">Email, LinkedIn, WhatsApp and cold calendar invites, run from one place, with every registrant followed up on autopilot. Start before the timer hits zero and you pay <b>${pro['price_usd']} a month instead of ${pro['list_usd']}</b>, 25% off.</p>
+        <div class="eng__cta"><a class="btn btn--primary btn--lg" href="{site}{utm}">See the Tantra plans</a><a class="eng__alt" href="{site}pro/{utm}">Start my {pro['trial_days']}-day free trial</a></div>
+      </div>
+      <div class="price"><p class="price__k">Tantra Pro, webinar price</p><p class="price__n"><s>${pro['list_usd']}</s><b>${pro['price_usd']}</b><small>/month</small></p><p class="price__off">25% off · {pro['trial_days']} days free · cancel any time</p>{f'<p class="price__code">Code <code>{esc(TP["coupon_code"])}</code></p>' if TP.get('coupon_code') else ''}</div>
+    </div>
+
+    <div class="blk"><p class="blk__k">01 · Omnichannel outreach</p><h3>Every channel your buyers live in, from one engine</h3>
+      <ul class="chs">{ch}</ul></div>
+
+    <div class="blk"><p class="blk__k">02 · Webinar integration</p><h3>Every registrant gets the right follow-up, on the right channel, by itself</h3>
+      <p class="blk__p">The same sequences run this webinar: Tantra reads who registered, who showed up and who missed it, and sends each person the message that fits.</p>
+      <ol class="wf">{fl}</ol></div>
+
+    <div class="blk blk--split"><div><p class="blk__k">03 · Custom sequences</p><h3>Design your own follow-up, step by step</h3>
+      <p class="blk__p">Mix calendar invites, email, LinkedIn and WhatsApp in one sequence. Set the delay for each step and the condition that moves people on, and Tantra stops the moment someone replies or accepts.</p></div>
+      <div class="sq"><div class="sq__bar"><span>Sequence</span><b>Webinar invite: VP Sales, UK</b><i>Active</i></div><ol>{sq}</ol></div></div>
+
+    <div class="blk blk--cal"><div class="cal__copy"><p class="blk__k blk__k--gold">04 · The only app in the world that does this</p><h3>Cold calendar invites that land on the calendar, not in the inbox</h3>
+      <ul class="cal__pts"><li><b>Seen where the day is planned.</b> The invite sits on their Google or Outlook calendar with your time already blocked.</li><li><b>Every answer tracked.</b> Yes, Maybe and No come back into Tantra as replies you can act on.</li><li><b>Follow-up that fits the answer.</b> A Yes gets reminders, a Maybe gets a nudge, a No stops the sequence.</li></ul></div>
+      <div class="gev" aria-label="A cold calendar invite as it appears in Google Calendar">
+        <div class="gev__top">{brand('google-calendar', 'Google Calendar', 20)}<span>Google Calendar</span><i>Invitation</i></div>
+        <div class="gev__body">
+          <p class="gev__t"><span class="gev__sw"></span>How 400+ Brands Use AI Funnels to Generate $100K to $300K Monthly</p>
+          <p class="gev__when">Thursday, 19 November · 11:00 to 12:00<br><small>United Kingdom time · does not repeat</small></p>
+          <a class="gev__join" tabindex="-1">{brand('google-meet', 'Google Meet', 18)}Join with Google Meet</a>
+          <ul class="gev__rows">
+            <li><span class="gev__i">⏰</span>Reminders: 1 day before, 30 minutes before</li>
+            <li><span class="gev__i">✉</span>Organiser: Adi, Tantra</li>
+            <li><span class="gev__i">≡</span>A 60-minute live build of the AI webinar funnel: traffic, registration, nurture, the live session and the follow-up that books calls.</li>
+          </ul>
+          <div class="gev__guests"><p>3 guests <small>1 yes, 2 awaiting</small></p><ul><li><span class="av">A</span>Adi <small>Organiser</small></li><li><span class="av av--2">Y</span>You <small>Awaiting</small></li><li><span class="av av--3">T</span>Your team <small>Awaiting</small></li></ul></div>
+          <div class="gev__rsvp"><span>Going?</span><b>Yes</b><i>No</i><i>Maybe</i></div>
+        </div>
+      </div></div>
+
+    <div class="blk blk--plans"><p class="blk__k">Choose how you want it built</p><h3>Three Tantra plans, at webinar prices until the timer ends</h3>{plans}</div>
   </section>
   <script>
-  (function(){{var s=document.getElementById('engine'),end=Date.parse(s.dataset.deadline),o=s.querySelector('[data-left]');
+  (function(){{var s=document.getElementById('engine'),end=Date.parse(s.dataset.deadline),q=function(k){{return s.querySelector('[data-cd='+k+']');}},p=function(n){{return (n<10?'0':'')+n;}};
   function t(){{var ms=end-Date.now();if(/[?&]state=expired/.test(location.search))ms=-1;if(ms<=0){{s.hidden=true;return;}}
-  var d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60;o.textContent=(d?d+'d ':'')+h+'h '+m+'m left';}}
-  t();setInterval(t,30000);}})();
+  q('d').textContent=p(Math.floor(ms/864e5));q('h').textContent=p(Math.floor(ms/36e5)%24);q('m').textContent=p(Math.floor(ms/6e4)%60);q('s').textContent=p(Math.floor(ms/1e3)%60);}}
+  t();setInterval(t,1000);}})();
   </script>'''
 
 def hub():
