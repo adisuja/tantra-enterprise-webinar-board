@@ -289,7 +289,7 @@ def page(title, key, body, css=(), js=(), extra=''):
 # second; the channels with their real logos (iconify "logos" set, CC0, and vscode-icons for Outlook, in src/brands/);
 # the webinar follow-up flow (the CRM's own webinar sequences); a custom sequence; a full cold calendar invite; and the
 # three Tantra plans. Deadline, code and prices come from the funnel config so the hub and /tantra-plans/ always agree.
-# The block hides itself once the deadline passes (?state=expired shows that state).
+# After the deadline the block stays; only the Pro discount (price, 25% tag, code, countdown) goes (?state=expired shows that state).
 TP = json.loads((HERE.parent / '_shared' / 'funnel-config.json').read_text())['tantra_plans']
 BRANDS = {p.stem: 'data:image/svg+xml;base64,' + __import__('base64').b64encode(p.read_bytes()).decode() for p in (SRC / 'brands').glob('*.svg')}
 
@@ -331,20 +331,20 @@ def engine_offer():
     plans = f'''<div class="pls">
       <a class="pl pl--ent" href="{site}enterprise/{utm}"><span class="pl__k">Done for you</span><b>Tantra Enterprise</b><span class="pl__p">Built, live and bringing in revenue</span><span class="pl__c">Join the $5M ARR Club</span></a>
       <a class="pl pl--club" href="{site}100k-mrr-club/{utm}"><span class="pl__k">Build it with us</span><b>The 100K MRR Club</b><span class="pl__p">{esc(club['prices']['USD'])} {esc(club['per'])}</span><span class="pl__c">Apply for access</span></a>
-      <a class="pl pl--pro" href="{site}pro/{utm}"><span class="pl__k">Run it yourself</span><b>Tantra Pro</b><span class="pl__p"><s>${pro['list_usd']}</s> ${pro['price_usd']} a month</span><span class="pl__c">Start {pro['trial_days']} days free</span></a>
+      <a class="pl pl--pro" href="{site}pro/{utm}"><span class="pl__k">Run it yourself</span><b>Tantra Pro</b><span class="pl__p"><span data-deal><s>${pro['list_usd']}</s> ${pro['price_usd']} a month</span><span data-after>${pro['list_usd']} a month</span></span><span class="pl__c">Start {pro['trial_days']} days free</span></a>
     </div>'''
     return f'''<section class="eng" id="engine" data-deadline="{TP['deadline_utc']}" aria-labelledby="eng-h">
     <div class="eng__top">
       <p class="eng__badge">Bonus 04 · Webinar attendees only</p>
-      <div class="cd" aria-live="off"><p class="cd__l">This offer ends in</p><div class="cd__row"><span><b data-cd="d">03</b><i>days</i></span><span><b data-cd="h">00</b><i>hours</i></span><span><b data-cd="m">00</b><i>min</i></span><span><b data-cd="s">00</b><i>sec</i></span></div><p class="cd__w">{esc(TP['deadline_label'])}</p></div>
+      <div class="cd" data-deal aria-live="off"><p class="cd__l">This offer ends in</p><div class="cd__row"><span><b data-cd="d">03</b><i>days</i></span><span><b data-cd="h">00</b><i>hours</i></span><span><b data-cd="m">00</b><i>min</i></span><span><b data-cd="s">00</b><i>sec</i></span></div><p class="cd__w">{esc(TP['deadline_label'])}</p></div>
     </div>
     <div class="eng__hero">
       <div>
         <h2 id="eng-h">The engine that filled this webinar is yours. <span>Free for {pro['trial_days']} days.</span></h2>
-        <p class="eng__lead">Email, LinkedIn, WhatsApp and cold calendar invites, run from one place, with every registrant followed up on autopilot. Start before the timer hits zero and you pay <b>${pro['price_usd']} a month instead of ${pro['list_usd']}</b>, 25% off.</p>
+        <p class="eng__lead">Email, LinkedIn, WhatsApp and cold calendar invites, run from one place, with every registrant followed up on autopilot. <span data-deal>Start before the timer hits zero and you pay <b>${pro['price_usd']} a month instead of ${pro['list_usd']}</b>, 25% off.</span><span data-after>Start free today, then <b>${pro['list_usd']} a month</b>. Cancel any time.</span></p>
         <div class="eng__cta"><a class="btn btn--primary btn--lg" href="{site}{utm}">See the Tantra plans</a><a class="eng__alt" href="{site}pro/{utm}">Start my {pro['trial_days']}-day free trial</a></div>
       </div>
-      <div class="price"><p class="price__k">Tantra Pro, webinar price</p><p class="price__n"><s>${pro['list_usd']}</s><b>${pro['price_usd']}</b><small>/month</small></p><p class="price__off">25% off · {pro['trial_days']} days free · cancel any time</p>{f'<p class="price__code">Code <code>{esc(TP["coupon_code"])}</code></p>' if TP.get('coupon_code') else ''}</div>
+      <div class="price"><p class="price__k"><span data-deal>Tantra Pro, webinar price</span><span data-after>Tantra Pro</span></p><p class="price__n"><s data-deal>${pro['list_usd']}</s><b data-deal>${pro['price_usd']}</b><b data-after>${pro['list_usd']}</b><small>/month</small></p><p class="price__off"><span data-deal>25% off · </span>{pro['trial_days']} days free · cancel any time</p>{f'<p class="price__code" data-deal>Code <code>{esc(TP["coupon_code"])}</code></p>' if TP.get('coupon_code') else ''}</div>
     </div>
 
     <div class="blk"><p class="blk__k">01 · Omnichannel outreach</p><h3>Every channel your buyers live in, from one engine</h3>
@@ -376,11 +376,11 @@ def engine_offer():
         </div>
       </div></div>
 
-    <div class="blk blk--plans"><p class="blk__k">Choose how you want it built</p><h3>Three Tantra plans, at webinar prices until the timer ends</h3>{plans}</div>
+    <div class="blk blk--plans"><p class="blk__k">Choose how you want it built</p><h3>Three Tantra plans<span data-deal>, at webinar prices until the timer ends</span></h3>{plans}</div>
   </section>
   <script>
   (function(){{var s=document.getElementById('engine'),end=Date.parse(s.dataset.deadline),q=function(k){{return s.querySelector('[data-cd='+k+']');}},p=function(n){{return (n<10?'0':'')+n;}};
-  function t(){{var ms=end-Date.now();if(/[?&]state=expired/.test(location.search))ms=-1;if(ms<=0){{s.hidden=true;return;}}
+  function t(){{var ms=end-Date.now();if(/[?&]state=expired/.test(location.search))ms=-1;if(ms<=0){{s.classList.add('is-over');return;}}
   q('d').textContent=p(Math.floor(ms/864e5));q('h').textContent=p(Math.floor(ms/36e5)%24);q('m').textContent=p(Math.floor(ms/6e4)%60);q('s').textContent=p(Math.floor(ms/1e3)%60);}}
   t();setInterval(t,1000);}})();
   </script>'''
