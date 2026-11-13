@@ -73,7 +73,7 @@
 <ul>
 <li><strong>Hub and spokes.</strong> The Funnel OS chat is the hub. Spokes: Tantra app, Tantra CRM, Content OS, payment provider, Cloudflare, analytics. Every spoke is reached through an API key or MCP connection the member creates in V03.</li>
 <li><strong>One source of truth for money.</strong> A sale exists only when the signed payment webhook reaches the Tantra CRM. Thank-you page visits never count.</li>
-<li><strong>Membership provisioning.</strong> Approved applicant pays through a Dodo subscription link ($1,999 a month). <code>subscription.active</code> and <code>payment.succeeded</code> reach the CRM, which moves the deal to Won (club) and calls the Tantra app to grant Academy access, a Tantra Pro seat and a Content OS workspace. Sequence CL-M starts. Failure mode: if the grant call fails, the CRM opens a task for the ops owner within 5 minutes and the member still gets the welcome email.</li>
+<li><strong>Membership provisioning.</strong> Approved applicant pays through a Dodo link: $5,999 once for 6 months of access, or a subscription at $1,999 for the first month then $999 a month. <code>subscription.active</code> and <code>payment.succeeded</code> reach the CRM, which moves the deal to Won (club) and calls the Tantra app to grant Academy access, a Tantra Pro seat and a Content OS workspace. Sequence CL-M starts. Failure mode: if the grant call fails, the CRM opens a task for the ops owner within 5 minutes and the member still gets the welcome email.</li>
 <li><strong>CRM fields added:</strong> contact <code>readiness_score</code>, <code>readiness_route</code>, <code>build_score</code>, <code>funnel_worst_step</code>, <code>club_cohort</code>; deal <code>plan_offer = club_100k</code> (exists), <code>os_credit_applied</code>.</li>
 <li><strong>Pipeline:</strong> the existing "Tantra Plans (webinar offer)" pipeline keeps the "100K MRR Club application" stage; add "Club approved, unpaid", "Club member (paid)", "Club churned".</li>
 <li><strong>Edge cases:</strong> applicant pays after the webinar price deadline (the price holds for approved applicants for 7 days); RevOps OS buyer applies after the 7 day credit (no credit); a member's mailboxes are not warm by day 14 (course V29 says what to run meanwhile); a member's payment provider is not verified by Day 2 (build in test mode, swap to live in V33).</li>
@@ -127,7 +127,42 @@
 <li>[ ] Every new sequence runs in dry run with a test contact before going active</li>
 <li>[ ] Board card 72 holds every link, decision and pending task</li>
 </ul>
-<h2>7. Decisions Needed From Adi</h2>
+<h2>7. Decided by Adi (13 November 2026)</h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100K MRR Club price and term</td>
+<td>Pay in full: $5,999 once for 6 months of access. Or pay monthly: $1,999 for the first month, then $999 a month. Live in <code>funnel-config.json &gt; tantra_plans.club_100k</code> and on the club page</td>
+</tr>
+<tr>
+<td>Tantra Enterprise</td>
+<td>No separate Enterprise plan any more. The done for you offers are the $5M ARR Club and the $10M ARR Club. They are groups by revenue stage, so we can focus on each group's pains and the implementation it needs. The names are not entry rules: the $5M ARR Club is for companies past roughly $0.5M to $1M ARR. Any "Enterprise" plan or "$1M ARR" plan still live on the pages, the bonus site or the CRM booking pages is removed (card 76)</td>
+</tr>
+<tr>
+<td>Calls per week</td>
+<td>Three call types each week: 100K MRR Club, $5M ARR Club and $10M ARR Club</td>
+</tr>
+<tr>
+<td>100K MRR Club coaching</td>
+<td>One weekly group coaching call only: 60 minutes, split into 4 slots of 15 minutes that members book. Every invite (the weekly call and every slot) carries the same Google Meet link, set up as an event from team@growthclubpro.com</td>
+</tr>
+<tr>
+<td>$5M and $10M ARR Club coaching</td>
+<td>One to one calls with each client for now</td>
+</tr>
+<tr>
+<td>CRM</td>
+<td>The CRM sends the reminders and the calendar invites for every call, and hosts the coaching booking page. It must be set up from the CRM screens and through the API and MCP tools, so any AI assistant can run it (card 77, spec in the CRM repo)</td>
+</tr>
+</tbody>
+</table>
+<h2>8. Still Open</h2>
 <table>
 <thead>
 <tr>
@@ -138,48 +173,58 @@
 </thead>
 <tbody>
 <tr>
-<td>D1</td>
-<td>Term. The config says "6-month membership", the page says "a year of support". Also: 6 months at $1,999 is $11,994, more than Enterprise's $9,999</td>
-<td>Month to month with a 3 month minimum, and a year of Academy and Tantra Pro access. Show Enterprise as "from" its own price on the call only</td>
-</tr>
-<tr>
 <td>D2</td>
-<td>The $99 RevOps OS credit toward the first club month, for 7 days after purchase</td>
-<td>Yes: it is the strongest reason for an OS buyer to apply this week</td>
+<td>The $99 RevOps OS payment counts toward the first club payment for 7 days</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>D3</td>
-<td>Cohorts: rolling (start any Monday) or fixed monthly</td>
-<td>Rolling weekly start every Monday after a webinar; group calls are shared across cohorts</td>
+<td>Cohorts: rolling, starting every Monday after a webinar</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>D4</td>
-<td>Application call only, or also a direct checkout for score 60 and above</td>
-<td>Application only for the first 20 members</td>
+<td>Application call only for the first 20 members</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>D5</td>
-<td>Voice clone: consent, the provider and the account</td>
-<td>Adi records a 3 minute sample; the team picks the provider</td>
+<td>Voice clone: a clean 3 minute sample, written consent, a provider</td>
+<td>Adi records the sample; the team picks the provider</td>
 </tr>
 <tr>
 <td>D6</td>
-<td>Publish V01 to V03 free as lead magnets</td>
+<td>Videos V01 to V03 free as lead magnets</td>
 <td>Yes, from cohort 2</td>
 </tr>
 <tr>
 <td>D7</td>
-<td>Coaches for the weekly group call and check-ins (never named on pages)</td>
+<td>Who coaches on the three weekly calls (never named on pages)</td>
 <td>Adi names them</td>
 </tr>
 <tr>
 <td>D8</td>
-<td>Build the Funnel Readiness Score page and the club page rebuild before 19 November</td>
+<td>Build the Funnel Readiness Score page and publish the club page before Thursday 19 November</td>
 <td>Yes</td>
+</tr>
+<tr>
+<td>D9</td>
+<td>The weekly day and time of the 100K MRR Club group call, in its time zone</td>
+<td>Thursday after the webinar is the default</td>
+</tr>
+<tr>
+<td>D10</td>
+<td>INR, GBP and EUR prices for $5,999 and $999 (now ₹5,24,999 / £4,559 / €5,219 and ₹87,499 / £759 / €869)</td>
+<td>Confirm or change</td>
+</tr>
+<tr>
+<td>D11</td>
+<td>Does the monthly plan also give 6 months of access, and can a monthly member stop before month 6?</td>
+<td>Monthly continues until cancelled; access runs while paid</td>
 </tr>
 </tbody>
 </table></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Card 72: The 100K MRR Club (offer, placement, course, membership)</h1>
-<p>Adi's brief, 13 November 2026: work out where the 100K MRR Club ($1,999 a month, Funnel OS + Content OS + Tantra Pro with coaching) is offered across the websites and the funnel, write the message sequences, design how the course is delivered, analyse both versions of the RevOps playbook and the onboarding centre to decide how many course videos are needed, script every video for a cloned voice with plain white slides, and plan the membership sign-up into the Tantra Academy in the Tantra app. A member should build, deploy and test in 2 days, drive traffic within a week, and optimise every day until closed revenue lands in the bank, with everything run from the Funnel OS chat.</p>
+<p>Adi's brief, 13 November 2026: work out where the 100K MRR Club (Funnel OS + Content OS + Tantra Pro with a weekly group coaching call; since 13 November: $5,999 once for 6 months of access, or $1,999 the first month then $999 a month) is offered across the websites and the funnel, write the message sequences, design how the course is delivered, analyse both versions of the RevOps playbook and the onboarding centre to decide how many course videos are needed, script every video for a cloned voice with plain white slides, and plan the membership sign-up into the Tantra Academy in the Tantra app. A member should build, deploy and test in 2 days, drive traffic within a week, and optimise every day until closed revenue lands in the bank, with everything run from the Funnel OS chat.</p>
 <h2>Where We Are</h2>
 <table>
 <thead>
@@ -286,9 +331,9 @@
 </tr>
 <tr>
 <td>7</td>
-<td>Club checkout: Dodo subscription product, $1,999 a month (USD, INR, GBP, EUR), payment link per approved applicant</td>
+<td>Club checkout in Dodo: pay in full ($5,999 once, 6 months) and pay monthly ($1,999, then $999 a month), in USD, INR, GBP and EUR; a payment link per approved applicant</td>
 <td>Adi</td>
-<td>D1</td>
+<td>n/a (D1 answered)</td>
 </tr>
 <tr>
 <td>8</td>
@@ -316,9 +361,9 @@
 </tr>
 <tr>
 <td>12</td>
-<td>Coaching ops: kickoff and weekly call slots, check-in booking page, WhatsApp group, coach roster (R8)</td>
-<td>Adi, Nelbin</td>
-<td>D7</td>
+<td>Coaching calls in the CRM (card 77): today, the no-code setup (team@growthclubpro.com connected, the weekly series with one Meet link set to Free, the 15 minute slot page); then the Coaching Series feature. Plus the WhatsApp group and the coach roster</td>
+<td>Adi, CRM session</td>
+<td>D7 for the coach roster</td>
 </tr>
 <tr>
 <td>13</td>
@@ -343,8 +388,8 @@
 <li>Onboarding centre and the RevOps OS knowledge base: <code>context/from-tantra-content/sources/revops-os-knowledge/</code>, <code>06-revops-ai-systems.md</code>, <code>07-tech-stack-and-integrations.md</code>.</li>
 <li>Tantra's own live build: cards 43, 54, 55, 61, 64, 67, 69 and their folders.</li>
 </ul></div></details><details class="doc"><summary>PLACEMENT_STRATEGY.md</summary><div class="md"><h1>Where the 100K MRR Club Shows Up, and Why There</h1>
-<p>The club sits in the middle of the ladder. Above it is Tantra Enterprise (we build it for you, the $5M and $10M ARR Clubs). Below it are Tantra Pro ($74.97 a month for 3 months on the webinar code, then $99) and the Tantra RevOps OS ($99, one payment). Today the club is reachable from three places only: the plans page, its own landing page and Bonus 04 on the bonus hub. Nobody who says "too expensive" to Enterprise, and nobody who buys the $99 OS or starts a Pro trial, is ever shown it.</p>
-<p>So the strategy is one sentence: <strong>put the club wherever a person has just shown they want to build it themselves, or has just told us Enterprise is out of reach.</strong> Those are the two moments a $1,999 a month coached build makes the most sense to them.</p>
+<p>The club sits in the middle of the ladder. Above it are the done for you clubs, the $5M ARR Club and the $10M ARR Club (Adi 13 November: there is no separate Tantra Enterprise plan any more). Below it are Tantra Pro ($74.97 a month for 3 months on the webinar code, then $99) and the Tantra RevOps OS ($99, one payment). Today the club is reachable from three places only: the plans page, its own landing page and Bonus 04 on the bonus hub. Nobody who says "too expensive" to Enterprise, and nobody who buys the $99 OS or starts a Pro trial, is ever shown it.</p>
+<p>So the strategy is one sentence: <strong>put the club wherever a person has just shown they want to build it themselves, or has just told us Enterprise is out of reach.</strong> Those are the two moments a coached build ($5,999 for 6 months, or $1,999 then $999 a month) makes the most sense to them.</p>
 <h2>1. The Three Doors Into the Club</h2>
 <table>
 <thead>
@@ -436,7 +481,7 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 <tr>
 <td>P6</td>
 <td><code>/due-diligence/</code> and the five industry pages</td>
-<td>One section after "The Tantra Enterprise System": "Prefer to build it in house? The 100K MRR Club." Same section on every industry page</td>
+<td>One section after the done for you system section: "Prefer to build it in house? The 100K MRR Club." Same section on every industry page</td>
 <td>Down from Ent.</td>
 <td>P1</td>
 <td>F</td>
@@ -460,7 +505,7 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 <tr>
 <td>P9</td>
 <td><code>/funnelos/</code> ($99 upsell)</td>
-<td><strong>No club placement.</strong> A $1,999 card next to a $99 impulse buy lowers the $99 take rate. The club is offered after the purchase (P3), never before it</td>
+<td><strong>No club placement.</strong> A $5,999 card next to a $99 impulse buy lowers the $99 take rate. The club is offered after the purchase (P3), never before it</td>
 <td>n/a</td>
 <td>n/a</td>
 <td>n/a</td>
@@ -525,7 +570,7 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 <tr>
 <td>S1</td>
 <td>Enterprise Evaluation Call, budget below the Enterprise floor</td>
-<td>Closer script branch: "There is a route where your team builds it and we coach them daily. It is $1,999 a month." Closer books the club application in the same call</td>
+<td>Closer script branch: "There is a route where your team builds it and we coach them daily. It is $5,999 for 6 months, or $1,999 for the first month and then $999 a month." Closer books the club application in the same call</td>
 <td>P0</td>
 <td>C</td>
 </tr>
@@ -1373,13 +1418,13 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 </tr>
 <tr>
 <td>Weekly</td>
-<td>Group coaching (60 min): each member brings their dashboard and their worst step</td>
-<td>Group call</td>
+<td>Group coaching call (60 min, one Meet link): each member brings their dashboard and their worst step</td>
+<td>Invite from team@growthclubpro.com</td>
 </tr>
 <tr>
 <td>Weekly</td>
-<td>Check-in (15 min, one to one): the experiment log and next week's change</td>
-<td>Booked in the Tantra CRM</td>
+<td>Four 15 minute slots inside that hour: a member books one when they want the call on their own build (experiment log, next week's change)</td>
+<td>Booked in the Tantra CRM, same Meet link</td>
 </tr>
 <tr>
 <td>Daily</td>
@@ -1639,15 +1684,15 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 </tr>
 <tr>
 <td>R7</td>
-<td>Club checkout: Dodo subscription product at $1,999 a month (USD, INR, GBP, EUR prices), payment link per approved applicant</td>
-<td>Payment after the application call</td>
+<td>Club checkout in Dodo, two products per currency (USD, INR, GBP, EUR): pay in full, $5,999 once for 6 months of access; pay monthly, $1,999 the first month then $999 a month. A payment link per approved applicant</td>
+<td>Payment after the application call (Adi 13 Nov)</td>
 <td>Adi (Dodo)</td>
 </tr>
 <tr>
 <td>R8</td>
-<td>Coaching ops: kickoff call slot, weekly group call slot, check-in booking page, WhatsApp group, coach roster</td>
-<td>The coaching promise</td>
-<td>Adi, Nelbin</td>
+<td>Coaching calls in the Tantra CRM, all sent from team@growthclubpro.com (card 77): the 100K MRR Club weekly group call (60 minutes, one Meet link, four 15 minute slots members book); weekly one to one calls for each $5M and $10M ARR Club client, each with its own fixed Meet link; reminders; members added on payment. Plus the WhatsApp group and the coach roster</td>
+<td>The coaching promise (Adi 13 Nov)</td>
+<td>Adi, CRM session</td>
 </tr>
 <tr>
 <td>R9</td>
