@@ -37,8 +37,12 @@
 <td>How progress and results are shown to members and coaches</td>
 </tr>
 <tr>
-<td>Membership flow: application, payment, Academy access, kickoff</td>
-<td>Paying must lead straight to access</td>
+<td>Membership flow: join page with two Dodo payment links (or an application call first), payment, Academy access the same day</td>
+<td>Adi 13 Nov: buying the club must work without anyone in the loop</td>
+</tr>
+<tr>
+<td>The 7 day Tantra Academy trial for $99 RevOps OS buyers (course only), locked on day 8, then the join page</td>
+<td>Adi 13 Nov: the only trial we offer</td>
 </tr>
 </tbody>
 </table>
@@ -50,10 +54,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>A self-serve "join now" checkout without a call</td>
-<td>Decision D4; keeps the fit check until the first cohort shows who succeeds</td>
-</tr>
 <tr>
 <td>Teaching all 25 funnel types</td>
 <td>One video helps them choose; the webinar is the default</td>
@@ -74,9 +74,9 @@
 <li><strong>Hub and spokes.</strong> The Funnel OS chat is the hub. Spokes: Tantra app, Tantra CRM, Content OS, payment provider, Cloudflare, analytics. Every spoke is reached through an API key or MCP connection the member creates in V03.</li>
 <li><strong>One source of truth for money.</strong> A sale exists only when the signed payment webhook reaches the Tantra CRM. Thank-you page visits never count.</li>
 <li><strong>Membership provisioning.</strong> Approved applicant pays through a Dodo link: $5,999 once for 6 months of access, or a subscription at $1,999 for the first month then $999 a month. <code>subscription.active</code> and <code>payment.succeeded</code> reach the CRM, which moves the deal to Won (club) and calls the Tantra app to grant Academy access, a Tantra Pro seat and a Content OS workspace. Sequence CL-M starts. Failure mode: if the grant call fails, the CRM opens a task for the ops owner within 5 minutes and the member still gets the welcome email.</li>
-<li><strong>CRM fields added:</strong> contact <code>readiness_score</code>, <code>readiness_route</code>, <code>build_score</code>, <code>funnel_worst_step</code>, <code>club_cohort</code>; deal <code>plan_offer = club_100k</code> (exists), <code>os_credit_applied</code>.</li>
+<li><strong>CRM fields added:</strong> contact <code>readiness_score</code>, <code>readiness_route</code>, <code>build_score</code>, <code>funnel_worst_step</code>, <code>academy_trial_ends</code>; deal <code>plan_offer = club_100k</code> (exists), <code>club_plan</code> (pay_in_full or monthly).</li>
 <li><strong>Pipeline:</strong> the existing "Tantra Plans (webinar offer)" pipeline keeps the "100K MRR Club application" stage; add "Club approved, unpaid", "Club member (paid)", "Club churned".</li>
-<li><strong>Edge cases:</strong> applicant pays after the webinar price deadline (the price holds for approved applicants for 7 days); RevOps OS buyer applies after the 7 day credit (no credit); a member's mailboxes are not warm by day 14 (course V29 says what to run meanwhile); a member's payment provider is not verified by Day 2 (build in test mode, swap to live in V33).</li>
+<li><strong>Edge cases:</strong> applicant pays after the webinar price deadline (the price holds for approved applicants for 7 days); a RevOps OS buyer whose 7 day Academy trial ended keeps their progress, and the Academy shows the join page with ?from=trial; a member's mailboxes are not warm by day 14 (course V29 says what to run meanwhile); a member's payment provider is not verified by Day 2 (build in test mode, swap to live in V33).</li>
 </ul>
 <h2>4. Design Review</h2>
 <table>
@@ -162,7 +162,54 @@
 </tr>
 </tbody>
 </table>
-<h2>8. Still Open</h2>
+<h2>8. Decided by Adi (13 November 2026, second round)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Topic</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D2</td>
+<td>$99 RevOps OS buyers</td>
+<td>7 days of the full Tantra Academy course, the course alone (no calls, no club systems). On day 8 the access is restricted and the Academy sends them to a separate page to join the club (built: the join page, <code>?from=trial</code>)</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>Cohorts</td>
+<td>None. Members start the course the day they join and work through it. The $5M and $10M ARR Clubs are different: an implementation and coaching structure that is built, communicated, presented and planned (<code>ENTERPRISE_PROGRAM.md</code>, card 78)</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>How people join</td>
+<td>Every high-ticket offer has a call. The 100K MRR Club can also be bought straight away through a Dodo payment link (built: the join page, waiting on the two Dodo links)</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>Voice clone</td>
+<td>Yes. Steps in <code>VOICE_CLONE_GUIDE.md</code>; sample script in <code>VOICE_SAMPLE_SCRIPT.md</code></td>
+</tr>
+<tr>
+<td>D6</td>
+<td>Free videos</td>
+<td>No free videos. The 7 day Tantra Academy access (D2) is the only trial</td>
+</tr>
+<tr>
+<td>D7</td>
+<td>Coaches</td>
+<td>Adi: content and strategy. Bhaskar: automations and the Tantra AI infrastructure. Scott: NEPQ and sales scripts for every channel. Conor: sales process and Tantra CRM automations. Never named on public pages</td>
+</tr>
+<tr>
+<td>D8</td>
+<td>Publish</td>
+<td>Now. The club page, the join page and the score page went live on 13 November</td>
+</tr>
+</tbody>
+</table>
+<h2>9. Still Open</h2>
 <table>
 <thead>
 <tr>
@@ -173,115 +220,101 @@
 </thead>
 <tbody>
 <tr>
-<td>D2</td>
-<td>The $99 RevOps OS payment counts toward the first club payment for 7 days</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>D3</td>
-<td>Cohorts: rolling, starting every Monday after a webinar</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>D4</td>
-<td>Application call only for the first 20 members</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>D5</td>
-<td>Voice clone: a clean 3 minute sample, written consent, a provider</td>
-<td>Adi records the sample; the team picks the provider</td>
-</tr>
-<tr>
-<td>D6</td>
-<td>Videos V01 to V03 free as lead magnets</td>
-<td>Yes, from cohort 2</td>
-</tr>
-<tr>
-<td>D7</td>
-<td>Who coaches on the three weekly calls (never named on pages)</td>
-<td>Adi names them</td>
-</tr>
-<tr>
-<td>D8</td>
-<td>Build the Funnel Readiness Score page and publish the club page before Thursday 19 November</td>
-<td>Yes</td>
-</tr>
-<tr>
 <td>D9</td>
-<td>The weekly day and time of the 100K MRR Club group call, in its time zone</td>
-<td>Thursday after the webinar is the default</td>
+<td>Day and time of the weekly 100K MRR Club group call, in its time zone</td>
+<td>Thursday after the webinar</td>
 </tr>
 <tr>
 <td>D10</td>
-<td>INR, GBP and EUR prices for $5,999 and $999 (now ₹5,24,999 / £4,559 / €5,219 and ₹87,499 / £759 / €869)</td>
-<td>Confirm or change</td>
+<td>INR, GBP and EUR for $5,999 and $999 (now 5,24,999 rupees, 4,559 pounds, 5,219 euros; 87,499 rupees, 759 pounds, 869 euros)</td>
+<td>Confirm</td>
 </tr>
 <tr>
 <td>D11</td>
-<td>Does the monthly plan also give 6 months of access, and can a monthly member stop before month 6?</td>
-<td>Monthly continues until cancelled; access runs while paid</td>
+<td>Does the monthly plan run until cancelled, with access while paid?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>D12</td>
+<td>The two Dodo payment links for the join page</td>
+<td>Adi creates them (card 72 steps)</td>
+</tr>
+<tr>
+<td>D13</td>
+<td>$5M and $10M ARR Club price, the guarantee window, who leads the $10M calls (<code>ENTERPRISE_PROGRAM.md</code>)</td>
+<td>Adi</td>
 </tr>
 </tbody>
 </table></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Card 72: The 100K MRR Club (offer, placement, course, membership)</h1>
 <p>Adi's brief, 13 November 2026: work out where the 100K MRR Club (Funnel OS + Content OS + Tantra Pro with a weekly group coaching call; since 13 November: $5,999 once for 6 months of access, or $1,999 the first month then $999 a month) is offered across the websites and the funnel, write the message sequences, design how the course is delivered, analyse both versions of the RevOps playbook and the onboarding centre to decide how many course videos are needed, script every video for a cloned voice with plain white slides, and plan the membership sign-up into the Tantra Academy in the Tantra app. A member should build, deploy and test in 2 days, drive traffic within a week, and optimise every day until closed revenue lands in the bank, with everything run from the Funnel OS chat.</p>
-<h2>Where We Are</h2>
+<h2>Where We Are (13 November 2026, evening)</h2>
 <table>
 <thead>
 <tr>
 <th>Part</th>
 <th>Status</th>
-<th>File</th>
+<th>File or link</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>PRD (gstack planning: office hours, CEO, engineering and design review, QA and ship)</td>
-<td>Done, 8 decisions waiting on Adi (card 73)</td>
+<td>Club landing page: 7 days, the course, two scores, fit check, FAQ, new prices, Join today</td>
+<td><strong>Live</strong></td>
+<td>https://webinar.sellwithtantra.com/tantra-plans/100k-mrr-club/</td>
+</tr>
+<tr>
+<td>Join page: pay in full ($5,999) or monthly ($1,999 then $999) through Dodo; trial ended state</td>
+<td><strong>Live</strong>; buttons open the application calendar until the two Dodo links are in the config</td>
+<td>https://webinar.sellwithtantra.com/tantra-plans/100k-mrr-club/join/ and <code>?from=trial</code></td>
+</tr>
+<tr>
+<td>Funnel Readiness Score: 6 questions, score out of 100, one route, sent to the CRM as <code>readiness_scored</code></td>
+<td><strong>Live</strong>, linked from the plans page</td>
+<td>https://webinar.sellwithtantra.com/tantra-plans/score/</td>
+</tr>
+<tr>
+<td>PRD with every decision (D1 to D8 decided, D9 to D13 open)</td>
+<td>Done</td>
 <td><code>PRD.md</code></td>
 </tr>
 <tr>
-<td>Placement strategy: 3 doors, 25 placements, what we leave alone</td>
+<td>Placement strategy, 7 message sequences (CL-O is now the 7 day Academy trial)</td>
+<td>Done; sequences not yet built in the CRM</td>
+<td><code>PLACEMENT_STRATEGY.md</code>, <code>SEQUENCES.md</code></td>
+</tr>
+<tr>
+<td>Member system spec, curriculum (34 videos, self-paced, coaches)</td>
 <td>Done</td>
-<td><code>PLACEMENT_STRATEGY.md</code></td>
+<td><code>BUILD_SYSTEM.md</code>, <code>CURRICULUM.md</code></td>
 </tr>
 <tr>
-<td>Message sequences: 7 sequences, full copy</td>
-<td>Done, not yet built in the CRM</td>
-<td><code>SEQUENCES.md</code></td>
-</tr>
-<tr>
-<td>The member's system: hub and spokes, first touch to bank, build plan, what the team must ready</td>
+<td>34 voice scripts, 34 slide decks (218 slides), voice text</td>
 <td>Done</td>
-<td><code>BUILD_SYSTEM.md</code></td>
+<td><code>scripts/</code>, <code>slides/</code>, <code>tools/</code></td>
 </tr>
 <tr>
-<td>Curriculum: the analysis (41 build steps, 34 videos), the map, weekly rhythm, Build Score and Funnel Score</td>
-<td>Done</td>
-<td><code>CURRICULUM.md</code></td>
+<td>Voice clone: guide, 3 minute sample script, generator</td>
+<td>Waiting on Adi's sample and clone</td>
+<td><code>VOICE_CLONE_GUIDE.md</code>, <code>VOICE_SAMPLE_SCRIPT.md</code>, <code>tools/voice_generate.py</code></td>
 </tr>
 <tr>
-<td>34 voice scripts with slide pointers, shot lists and checklists</td>
-<td>Done</td>
-<td><code>scripts/V01</code> to <code>V34</code>, guide in <code>scripts/SCRIPT_GUIDE.md</code></td>
+<td>$5M and $10M ARR Club implementation and coaching structure</td>
+<td>Draft for Adi (card 78)</td>
+<td><code>ENTERPRISE_PROGRAM.md</code></td>
 </tr>
 <tr>
-<td>White slides (HTML decks plus 1920x1080 PNGs)</td>
-<td>Built from the scripts</td>
-<td><code>slides/</code>, PNGs via <code>node tools/build_slides.mjs</code></td>
+<td>Coaching calls in the CRM (weekly group call with four 15 minute slots on one Meet link; one to one series)</td>
+<td>Spec on a CRM branch (card 77)</td>
+<td><code>docs/crm/PRD_2026_11_13_CLUB_COACHING_CALLS.md</code> in adisuja/tantra-crm</td>
 </tr>
 <tr>
-<td>Voice text for the clone, chunked</td>
-<td>Built from the scripts</td>
-<td><code>python3 tools/voice_text.py</code></td>
-</tr>
-<tr>
-<td>Club landing page upgrade (P1): 7 days, the course, two scores, fit check, FAQ</td>
-<td>Built in <code>deliverables/13-15a-26-20-pages/src/pages/plans.mjs</code>; not published</td>
-<td>Review after Adi publishes: https://webinar.sellwithtantra.com/tantra-plans/100k-mrr-club/</td>
+<td>Retire the Tantra Enterprise plan everywhere</td>
+<td>Task (card 76)</td>
+<td>n/a</td>
 </tr>
 </tbody>
 </table>
+<p>Pages deploy with the GitHub workflow "Deploy funnel" (Actions, Run workflow, on the branch that holds the change), because a cloud session cannot upload page files to Cloudflare directly.</p>
 <h2>Pending Tasks (in order)</h2>
 <table>
 <thead>
@@ -295,79 +328,67 @@
 <tbody>
 <tr>
 <td>1</td>
-<td>Answer decisions D1 to D8 (card 73)</td>
+<td>Create the two Dodo payment links and paste them into <code>funnel-config.json &gt; tantra_plans.club_100k.checkout</code> (pay_in_full, monthly), then run Deploy funnel</td>
 <td>Adi</td>
 <td>n/a</td>
 </tr>
 <tr>
 <td>2</td>
-<td>Publish the club page upgrade (<code>bash deliverables/13-15a-26-20-pages/publish.sh</code> after merge)</td>
+<td>Voice: record the sample, create the clone, send the Voice ID, add the API key through the secure form</td>
 <td>Adi</td>
-<td>Review</td>
+<td>n/a</td>
 </tr>
 <tr>
 <td>3</td>
-<td>P0 placements: recording page three routes (P5), confirmation page OS credit box (P3, needs D2), plans page score link (P2, needs the score page)</td>
-<td>Bhaskar</td>
-<td>D2, D8</td>
+<td>Open decisions D9 to D13 (card 73)</td>
+<td>Adi</td>
+<td>n/a</td>
 </tr>
 <tr>
 <td>4</td>
-<td>Deck slide W1 "Three Ways to Get This Built", moderator line W2, WebinarJam CTA W3, before Thursday 19 November</td>
-<td>Adi</td>
-<td>n/a</td>
+<td>Coaching calls: connect team@growthclubpro.com in the CRM, create the weekly event, then the slot page; then build the Coaching Series feature (card 77)</td>
+<td>Adi, CRM session</td>
+<td>D9</td>
 </tr>
 <tr>
 <td>5</td>
-<td>CRM: fields, pipeline stages, and sequences CL-W, CL-O, CL-T, CL-L, CL-A, CL-P, CL-M from <code>SEQUENCES.md</code>, in dry run first; closer script branch S1</td>
-<td>CRM session</td>
-<td>D1, D2</td>
+<td>Retire the Enterprise plan on pages, bonus hub, deck, CRM booking pages and usetantra.com (card 76)</td>
+<td>Bhaskar, CRM session, Bharath</td>
+<td>Price confirmation</td>
 </tr>
 <tr>
 <td>6</td>
-<td>Funnel Readiness Score page <code>/score/</code> (P8) writing <code>readiness_score</code> and <code>readiness_route</code> to the CRM</td>
-<td>Bhaskar + CRM session</td>
-<td>D8</td>
-</tr>
-<tr>
-<td>7</td>
-<td>Club checkout in Dodo: pay in full ($5,999 once, 6 months) and pay monthly ($1,999, then $999 a month), in USD, INR, GBP and EUR; a payment link per approved applicant</td>
-<td>Adi</td>
-<td>n/a (D1 answered)</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Tantra Academy in the Tantra app and automatic access on payment (card 75)</td>
+<td>Tantra Academy in the Tantra app: member access, the 7 day trial for $99 OS buyers, lock and link to the join page on day 8 (card 75)</td>
 <td>Bharath, Ben</td>
-<td>Spec in <code>BUILD_SYSTEM.md</code> R1, R2</td>
-</tr>
-<tr>
-<td>9</td>
-<td>Voice clone: 3 minute clean sample and written consent, provider account</td>
-<td>Adi</td>
-<td>D5</td>
-</tr>
-<tr>
-<td>10</td>
-<td>Record the 34 screen recordings on a demo workspace and edit (card 74)</td>
-<td>Nelbin</td>
-<td>Funnel OS member build (R3), demo workspace</td>
-</tr>
-<tr>
-<td>11</td>
-<td>Content OS per member workspace (R4), CRM starter template (R5), simpler mailbox delegation path (R6)</td>
-<td>Bharath, CRM session</td>
 <td>n/a</td>
 </tr>
 <tr>
-<td>12</td>
-<td>Coaching calls in the CRM (card 77): today, the no-code setup (team@growthclubpro.com connected, the weekly series with one Meet link set to Free, the 15 minute slot page); then the Coaching Series feature. Plus the WhatsApp group and the coach roster</td>
-<td>Adi, CRM session</td>
-<td>D7 for the coach roster</td>
+<td>7</td>
+<td>CRM: fields, stages, sequences CL-W, CL-O, CL-T, CL-L, CL-A, CL-P, CL-M from <code>SEQUENCES.md</code> in dry run first; club payment webhook into the pipeline</td>
+<td>CRM session</td>
+<td>Task 1</td>
 </tr>
 <tr>
-<td>13</td>
-<td>usetantra.com placements A1, A2 and in-app A3 to A6 (Usetantra repos: spec only from here)</td>
+<td>8</td>
+<td>Remaining placements: recording page three routes (P5), confirmation page trial box (P3), due diligence section (P6), deck slide W1 and WebinarJam CTA W3 before 19 November</td>
+<td>Bhaskar, deck owner</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Record the 34 screen recordings on a demo workspace, check every menu path, edit with the cloned voice (card 74)</td>
+<td>Nelbin</td>
+<td>Task 2</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Enterprise program: onboarding deck, 90 day plan template, weekly update, client board (card 78)</td>
+<td>Adi, Conor</td>
+<td>D13</td>
+</tr>
+<tr>
+<td>11</td>
+<td>usetantra.com placements A1, A2 and in-app A4 to A6</td>
 <td>Bharath, Ben</td>
 <td>n/a</td>
 </tr>
@@ -423,7 +444,7 @@
 </table>
 <p>Every placement below belongs to one of these doors. A placement that serves none of them is not built.</p>
 <h2>2. Placement Map</h2>
-<p>Priority: <strong>P0</strong> ship before the next webinar (Thursday 19 November), <strong>P1</strong> within 14 days, <strong>P2</strong> after the first cohort.
+<p>Priority: <strong>P0</strong> ship before the next webinar (Thursday 19 November), <strong>P1</strong> within 14 days, <strong>P2</strong> after the first 20 members.
 Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-15a-26-20-pages</code>, <code>33-bonus-books</code>), <strong>D</strong> deck (card 16), <strong>C</strong> Tantra CRM, <strong>A</strong> usetantra.com and the Tantra app (Usetantra repos: spec only, built by Bharath or Ben).</p>
 <h3>2.1 Pages we own (webinar.sellwithtantra.com and bonuses.sellwithtantra.com)</h3>
 <table>
@@ -457,7 +478,7 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 <tr>
 <td>P3</td>
 <td><code>/confirmation/</code> (after the $99 OS checkout)</td>
-<td>A box under Step 3 for paid buyers only (<code>?paid=1</code> or the Dodo return flag): "Your $99 counts toward your first club month for 7 days". Hidden for free registrants so the page stays about the seat</td>
+<td>A box under Step 3 for paid buyers only (<code>?paid=1</code> or the Dodo return flag): "Your 7 days in the Tantra Academy start now", with the sign in link. Hidden for free registrants so the page stays about the seat</td>
 <td>Up from OS</td>
 <td>P0</td>
 <td>F</td>
@@ -509,6 +530,14 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 <td>n/a</td>
 <td>n/a</td>
 <td>n/a</td>
+</tr>
+<tr>
+<td>P11</td>
+<td>New page <code>/tantra-plans/100k-mrr-club/join/</code> (live 13 Nov)</td>
+<td>Buy the club straight away: pay in full or monthly through Dodo, or book a call first. Also where the Academy sends people when their 7 day trial ends (<code>?from=trial</code>)</td>
+<td>All</td>
+<td>P0</td>
+<td>F</td>
 </tr>
 <tr>
 <td>P10</td>
@@ -633,7 +662,7 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 <tr>
 <td>A3</td>
 <td>Tantra app, sidebar</td>
-<td>An <strong>Academy</strong> item. Members see their course. Everyone else sees the curriculum with the first 3 videos open and the rest locked behind "Join the 100K MRR Club"</td>
+<td>An <strong>Academy</strong> item. Members and $99 RevOps OS buyers in their 7 day trial see the course. Everyone else, and anyone whose trial ended, sees the curriculum locked behind "Join the 100K MRR Club"</td>
 <td>Up from Pro</td>
 <td>P1</td>
 </tr>
@@ -671,12 +700,6 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>O1</td>
-<td>YouTube and LinkedIn</td>
-<td>Videos V01 to V03 of the course published free as lead magnets, each ending with the Funnel Readiness Score link</td>
-<td>P1</td>
-</tr>
 <tr>
 <td>O2</td>
 <td>LinkedIn posts (six senders)</td>
@@ -719,10 +742,10 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 </tr>
 <tr>
 <td>CL-O</td>
-<td>Paid $99 for the RevOps OS</td>
-<td>4 steps over 7 days: day 0 (with the delivery email), day 2, day 4, day 6 ("your $99 credit ends tomorrow")</td>
-<td>Application booked</td>
-<td>Booking</td>
+<td>Paid $99 for the RevOps OS (7 day Academy trial)</td>
+<td>5 steps: day 0 (trial starts), day 2, day 5 (2 days left), day 7 (ends tonight), day 9 (rejoin)</td>
+<td>Club joined</td>
+<td>Payment</td>
 </tr>
 <tr>
 <td>CL-T</td>
@@ -762,7 +785,7 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 </tbody>
 </table>
 <h2>4. The Funnel Readiness Score (lead scoring and routing)</h2>
-<p>One score routes everyone to the right offer, on the <code>/score/</code> page, on the club booking form and on the call.</p>
+<p>One score routes everyone to the right offer, on the score page (live 13 Nov: https://webinar.sellwithtantra.com/tantra-plans/score/, 6 questions), on the club booking form and on the call.</p>
 <table>
 <thead>
 <tr>
@@ -801,11 +824,11 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 <h2>5. What This Does Not Change</h2>
 <ul>
 <li>The registration page and the $99 upsell keep one job each.</li>
-<li>No invented scarcity. A seat cap per cohort appears only if Adi sets a real coaching capacity (decision D3 in the PRD).</li>
+<li>No invented scarcity. There are no cohorts (Adi 13 Nov): members start the day they join, so there is no seat cap to show.</li>
 <li>No results claim for the club until a member has one, in writing, with their OK.</li>
 </ul></div></details><details class="doc"><summary>SEQUENCES.md</summary><div class="md"><h1>100K MRR Club: Message Sequences (copy)</h1>
 <p>Sender: Adi, from the Tantra CRM (email from adi@jointantra.com, WhatsApp from +1 445 622 7661). Merge fields in <code>{{ }}</code>. Links are the CRM tracked links in <code>funnel-config.json &gt; tantra_plans.links</code>; add <code>utm_medium=&lt;sequence id&gt;</code> per step. Never put a price in a WhatsApp template header. US numbers get the Utility template variant (card 68 rule).</p>
-<p>Short names used below: <code>{{club_link}}</code> = club page, <code>{{apply_link}}</code> = club booking page, <code>{{score_link}}</code> = the Funnel Readiness Score page.</p>
+<p>Short names used below: <code>{{club_link}}</code> = club page, <code>{{apply_link}}</code> = club booking page, <code>{{join_link}}</code> = the join page with the two payment links, <code>{{score_link}}</code> = the Funnel Readiness Score page.</p>
 <hr />
 <h2>CL-W: Attended the webinar, did not book an Enterprise call</h2>
 <p><strong>Step 1, email, day 1, 09:00 local.</strong> Subject: The part I skipped on Thursday</p>
@@ -850,37 +873,35 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 </blockquote>
 <p>(Step 5 sends only while <code>tantra_plans.deadline_utc</code> is in the future; otherwise it is skipped.)</p>
 <hr />
-<h2>CL-O: Bought the $99 Tantra RevOps OS</h2>
-<p><strong>Step 1, email, day 0, 2 hours after the delivery email.</strong> Subject: You have the OS. Here's the shortcut.</p>
+<h2>CL-O: Bought the $99 Tantra RevOps OS (7 day Tantra Academy trial)</h2>
+<p>Adi, 13 November: a $99 RevOps OS buyer gets the whole Tantra Academy course for 7 days. It is the course alone (no coaching calls, no club systems) and it is the only trial we offer. On day 8 the Academy locks and shows the rejoin page, where they buy the club. <code>{{join_link}}</code> is that page: https://webinar.sellwithtantra.com/tantra-plans/100k-mrr-club/join/</p>
+<p><strong>Step 1, email, day 0, 2 hours after the delivery email.</strong> Subject: Your 7 days in the Tantra Academy start now</p>
 <blockquote>
 <p>{{first_name}},</p>
 <p>Your RevOps OS download is in the email before this one.</p>
-<p>One honest thing: the OS gives your assistant everything my team knows. It does not give you a deadline, or someone who tells you the landing page headline is the reason nobody books.</p>
-<p>That's what the 100K MRR Club adds. The 30 day course, weekly coaching and a check on every build. And for the next 7 days, the $99 you just paid comes off your first month.</p>
-<p>See what's included: {{club_link}}</p>
+<p>You also get something I don't sell on its own: 7 days of the full Tantra Academy course. It's 34 short screen recordings that walk through the whole build, from your first domain to your first payment. Sign in at usetantra.com and open Academy.</p>
+<p>Start with video 1 today. It's 7 minutes, and by the end of video 2 you'll have started the three clocks no software can speed up.</p>
 <p>Adi</p>
 </blockquote>
 <p><strong>Step 2, WhatsApp, day 2.</strong></p>
 <blockquote>
-<p>Hi {{first_name}}, did the OS load in your assistant OK? If you get stuck on setup, reply here. And if you want us checking your build every week, your $99 still counts toward the club for 5 more days: {{club_link}}</p>
+<p>Hi {{first_name}}, Adi here. How far are you in the Tantra Academy? Videos 9 and 10 (domains and mailboxes) are the ones most people get stuck on, so do those while you still have the course. 5 days left.</p>
 </blockquote>
-<p><strong>Step 3, email, day 4.</strong> Subject: The 3 places OS builds stall</p>
+<p><strong>Step 3, email, day 5.</strong> Subject: 2 days left in the Academy</p>
 <blockquote>
 <p>{{first_name}},</p>
-<p>When people build from the OS on their own, they stall in one of three places:</p>
-<ol>
-<li>Sending domains and mailboxes (the DNS records).</li>
-<li>Connecting payments so a sale lands in the CRM.</li>
-<li>Knowing which number to fix first once traffic starts.</li>
-</ol>
-<p>The club course has a video for each, and the weekly call covers whatever is left.</p>
-<p>Apply here: {{apply_link}}</p>
+<p>Your Academy access ends in 2 days.</p>
+<p>If you want to keep it, plus the weekly group coaching call and the Funnel OS, Content OS and Tantra Pro, that's the 100K MRR Club. You can join straight away here: {{join_link}}</p>
 <p>Adi</p>
 </blockquote>
-<p><strong>Step 4, email, day 6.</strong> Subject: Your $99 credit ends tomorrow</p>
+<p><strong>Step 4, email, day 7, 18:00 local.</strong> Subject: Your Academy access ends tonight</p>
 <blockquote>
-<p>{{first_name}}, short one. Your $99 credit toward the 100K MRR Club ends tomorrow at midnight UK time. After that the club is the normal price. Book your call: {{apply_link}}</p>
+<p>{{first_name}}, short one. Your Tantra Academy trial ends at midnight tonight. Your progress stays saved. To pick up where you left off, join the 100K MRR Club here: {{join_link}}</p>
 <p>Adi</p>
+</blockquote>
+<p><strong>Step 5, WhatsApp, day 9.</strong></p>
+<blockquote>
+<p>Hi {{first_name}}, your Academy trial has ended, but your progress is saved. Rejoin with the 100K MRR Club whenever you're ready: {{join_link}}</p>
 </blockquote>
 <hr />
 <h2>CL-T: Tantra Pro trial started</h2>
@@ -918,7 +939,7 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 </blockquote>
 <p><strong>Step 3, WhatsApp, day 30.</strong></p>
 <blockquote>
-<p>Hi {{first_name}}, Adi here. A new club cohort starts on {{club.next_cohort_date}}. If building in house is still the plan, here's the application: {{apply_link}}</p>
+<p>Hi {{first_name}}, Adi here. If building in house is still the plan, the 100K MRR Club is open any day and you start the course the day you join: {{join_link}}</p>
 </blockquote>
 <hr />
 <h2>CL-A: Club application booked</h2>
@@ -979,13 +1000,13 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 <td>2</td>
 <td>+24 h</td>
 <td>WhatsApp</td>
-<td>"Hi {{first_name}}, your club link from yesterday: {{checkout_link}}. Your cohort starts {{club.next_cohort_date}}."</td>
+<td>"Hi {{first_name}}, your club link from yesterday: {{checkout_link}}. You start the course the moment you join."</td>
 </tr>
 <tr>
 <td>3</td>
 <td>+72 h</td>
 <td>Email</td>
-<td>Subject: Holding your seat. Body: "I'm holding your place in the {{club.next_cohort_date}} cohort until Friday. Join here: {{checkout_link}}"</td>
+<td>Subject: Your link is still here. Body: "No rush, and no cohort to wait for: the day you join, the course and the weekly call open for you. Join here: {{checkout_link}}"</td>
 </tr>
 <tr>
 <td>4</td>
@@ -1010,7 +1031,7 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 <td>1</td>
 <td>On payment</td>
 <td>Email</td>
-<td>Subject: Welcome to the 100K MRR Club. Body: Academy sign in at usetantra.com, the Day 1 checklist, the WhatsApp group link, the kickoff booking link.</td>
+<td>Subject: Welcome to the 100K MRR Club. Body: Academy sign in at usetantra.com, the Day 1 checklist, the WhatsApp group link, the weekly group call invite, and the link to book a 15 minute slot on it.</td>
 </tr>
 <tr>
 <td>2</td>
@@ -1038,7 +1059,7 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 </tr>
 </tbody>
 </table></div></details><details class="doc"><summary>CURRICULUM.md</summary><div class="md"><h1>The 100K MRR Club Course: 34 Videos in 30 Days</h1>
-<p>Delivered inside the <strong>Tantra Academy</strong> in the Tantra app (usetantra.com). Every video is a screen recording with plain white slides (black text, Inter), voiced by Adi's cloned voice. Scripts: <code>scripts/V01</code> to <code>scripts/V34</code>. Slides: <code>slides/</code>.</p>
+<p>Delivered inside the <strong>Tantra Academy</strong> in the Tantra app (usetantra.com), self-paced: members start the day they join. $99 RevOps OS buyers get the whole course for 7 days as the only trial. Every video is a screen recording with plain white slides (black text, Inter), voiced by Adi's cloned voice. Scripts: <code>scripts/V01</code> to <code>scripts/V34</code>. Slides: <code>slides/</code>.</p>
 <h2>How We Got to 34 (the analysis)</h2>
 <p>We counted every build step in three sources and grouped them by how much screen time each one takes to show:</p>
 <table>
@@ -1408,8 +1429,8 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 <tbody>
 <tr>
 <td>Day 0</td>
-<td>Kickoff call (45 min, group): the 30 day map and the Day 0 clocks</td>
-<td>Group call</td>
+<td>The day they join (no cohorts): video V01 and V02, the Day 0 clocks, the WhatsApp group</td>
+<td>Academy</td>
 </tr>
 <tr>
 <td>Day 1 and Day 2</td>
@@ -1436,7 +1457,9 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 <h2>The Two Scores Members See</h2>
 <p><strong>Build Score (out of 100, weeks 1 and 2).</strong> Every video ends with a short "Done when" checklist. Each finished item adds points. Weights: Start 5, Decide 15, Infrastructure 15, CRM and Money 20, Build 25, Traffic 20. A member at 100 has a tested, live funnel. Coaches see every member's score on one board and chase anyone below 60 by the end of Day 2.</p>
 <p><strong>Funnel Score (weeks 2 to 4).</strong> The six stage rates from the dashboard (visit, sign-up, show-up, booking, close, rebooking), each shown against the member's own previous week, never against another business. The weekly call starts with the lowest one.</p>
-<p>Both scores live on the member's Academy page and in the CRM (contact fields <code>build_score</code> and <code>funnel_worst_step</code>), so the coach, the member and the weekly report read the same numbers.</p></div></details><details class="doc"><summary>BUILD_SYSTEM.md</summary><div class="md"><h1>The Member's System: How Every Piece Connects</h1>
+<p>Both scores live on the member's Academy page and in the CRM (contact fields <code>build_score</code> and <code>funnel_worst_step</code>), so the coach, the member and the weekly report read the same numbers.</p>
+<h2>The Coaches (internal, never on public pages)</h2>
+<p>Adi: content and strategy. Bhaskar: automations and the Tantra AI infrastructure. Scott: NEPQ and sales scripts for every channel. Conor: sales process and Tantra CRM automations.</p></div></details><details class="doc"><summary>BUILD_SYSTEM.md</summary><div class="md"><h1>The Member's System: How Every Piece Connects</h1>
 <p>This is what a 100K MRR Club member ends up with, and how the Funnel OS chat runs the other systems. The course videos teach it; this page is the spec the team builds against.</p>
 <h2>1. The Systems and Who Does What</h2>
 <table>
@@ -1605,7 +1628,7 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 <tbody>
 <tr>
 <td>Start the clocks</td>
-<td>Day 0 (the day they pay)</td>
+<td>Day 0 (the day they join; there are no cohorts)</td>
 <td>Payment verification applied for, outreach domains bought, mailboxes and calendar senders created and warming, WhatsApp templates submitted, Tantra Pro trial on</td>
 <td>V01, V02</td>
 </tr>
@@ -1635,7 +1658,7 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 </tr>
 </tbody>
 </table>
-<h2>4. What the Tantra Team Must Have Ready Before Cohort 1</h2>
+<h2>4. What the Tantra Team Must Have Ready Before the First Member</h2>
 <table>
 <thead>
 <tr>
@@ -1648,13 +1671,13 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 <tbody>
 <tr>
 <td>R1</td>
-<td>Tantra Academy inside the Tantra app: course, modules, video player, per video checklist, Build Score, member access by plan</td>
-<td>Members need one place to learn</td>
+<td>Tantra Academy inside the Tantra app: course, modules, video player, per video checklist, Build Score, access by plan. Two access types: club member (while paid) and 7 day trial for $99 RevOps OS buyers (course only); on day 8 the trial is restricted and the Academy links to https://webinar.sellwithtantra.com/tantra-plans/100k-mrr-club/join/?from=trial, progress kept</td>
+<td>Members need one place to learn; the trial is the only trial (Adi 13 Nov)</td>
 <td>Bharath, Ben (Usetantra repo)</td>
 </tr>
 <tr>
 <td>R2</td>
-<td>Academy access granted automatically when the club payment lands (CRM webhook or Dodo subscription event)</td>
+<td>Access granted automatically: the club payment (pay in full or monthly) grants member access; the $99 RevOps OS payment grants the 7 day trial; a cancelled monthly plan restricts access (CRM webhook or Dodo events)</td>
 <td>No manual enrolment</td>
 <td>Bharath, Ben + CRM</td>
 </tr>
@@ -1690,7 +1713,7 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 </tr>
 <tr>
 <td>R8</td>
-<td>Coaching calls in the Tantra CRM, all sent from team@growthclubpro.com (card 77): the 100K MRR Club weekly group call (60 minutes, one Meet link, four 15 minute slots members book); weekly one to one calls for each $5M and $10M ARR Club client, each with its own fixed Meet link; reminders; members added on payment. Plus the WhatsApp group and the coach roster</td>
+<td>Coaching calls in the Tantra CRM, all sent from team@growthclubpro.com (card 77): the 100K MRR Club weekly group call (60 minutes, one Meet link, four 15 minute slots members book); weekly one to one calls for each $5M and $10M ARR Club client, each with its own fixed Meet link; reminders; members added on payment. Plus the WhatsApp group. Coaches: Adi (content and strategy), Bhaskar (automations and Tantra AI infrastructure), Scott (NEPQ and sales scripts), Conor (sales process and CRM automations)</td>
 <td>The coaching promise (Adi 13 Nov)</td>
 <td>Adi, CRM session</td>
 </tr>
@@ -1701,4 +1724,4 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 <td>Nelbin (edit), Adi (voice consent and sample)</td>
 </tr>
 </tbody>
-</table></div></details><details class="doc"><summary>Files for import or upload (37)</summary><ul class="files"><li><a href="cards/files/72-100k-mrr-club/slides/V01.html" target="_blank" rel="noopener">slides/V01.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V02.html" target="_blank" rel="noopener">slides/V02.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V03.html" target="_blank" rel="noopener">slides/V03.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V04.html" target="_blank" rel="noopener">slides/V04.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V05.html" target="_blank" rel="noopener">slides/V05.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V06.html" target="_blank" rel="noopener">slides/V06.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V07.html" target="_blank" rel="noopener">slides/V07.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V08.html" target="_blank" rel="noopener">slides/V08.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V09.html" target="_blank" rel="noopener">slides/V09.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V10.html" target="_blank" rel="noopener">slides/V10.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V11.html" target="_blank" rel="noopener">slides/V11.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V12.html" target="_blank" rel="noopener">slides/V12.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V13.html" target="_blank" rel="noopener">slides/V13.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V14.html" target="_blank" rel="noopener">slides/V14.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V15.html" target="_blank" rel="noopener">slides/V15.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V16.html" target="_blank" rel="noopener">slides/V16.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V17.html" target="_blank" rel="noopener">slides/V17.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V18.html" target="_blank" rel="noopener">slides/V18.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V19.html" target="_blank" rel="noopener">slides/V19.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V20.html" target="_blank" rel="noopener">slides/V20.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V21.html" target="_blank" rel="noopener">slides/V21.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V22.html" target="_blank" rel="noopener">slides/V22.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V23.html" target="_blank" rel="noopener">slides/V23.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V24.html" target="_blank" rel="noopener">slides/V24.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V25.html" target="_blank" rel="noopener">slides/V25.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V26.html" target="_blank" rel="noopener">slides/V26.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V27.html" target="_blank" rel="noopener">slides/V27.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V28.html" target="_blank" rel="noopener">slides/V28.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V29.html" target="_blank" rel="noopener">slides/V29.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V30.html" target="_blank" rel="noopener">slides/V30.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V31.html" target="_blank" rel="noopener">slides/V31.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V32.html" target="_blank" rel="noopener">slides/V32.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V33.html" target="_blank" rel="noopener">slides/V33.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V34.html" target="_blank" rel="noopener">slides/V34.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/index.html" target="_blank" rel="noopener">slides/index.html</a></li><li><a href="cards/files/72-100k-mrr-club/tools/build_slides.mjs" target="_blank" rel="noopener">tools/build_slides.mjs</a></li><li><a href="cards/files/72-100k-mrr-club/tools/voice_text.py" target="_blank" rel="noopener">tools/voice_text.py</a></li></ul></details>
+</table></div></details><details class="doc"><summary>Files for import or upload (38)</summary><ul class="files"><li><a href="cards/files/72-100k-mrr-club/slides/V01.html" target="_blank" rel="noopener">slides/V01.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V02.html" target="_blank" rel="noopener">slides/V02.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V03.html" target="_blank" rel="noopener">slides/V03.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V04.html" target="_blank" rel="noopener">slides/V04.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V05.html" target="_blank" rel="noopener">slides/V05.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V06.html" target="_blank" rel="noopener">slides/V06.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V07.html" target="_blank" rel="noopener">slides/V07.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V08.html" target="_blank" rel="noopener">slides/V08.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V09.html" target="_blank" rel="noopener">slides/V09.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V10.html" target="_blank" rel="noopener">slides/V10.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V11.html" target="_blank" rel="noopener">slides/V11.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V12.html" target="_blank" rel="noopener">slides/V12.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V13.html" target="_blank" rel="noopener">slides/V13.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V14.html" target="_blank" rel="noopener">slides/V14.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V15.html" target="_blank" rel="noopener">slides/V15.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V16.html" target="_blank" rel="noopener">slides/V16.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V17.html" target="_blank" rel="noopener">slides/V17.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V18.html" target="_blank" rel="noopener">slides/V18.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V19.html" target="_blank" rel="noopener">slides/V19.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V20.html" target="_blank" rel="noopener">slides/V20.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V21.html" target="_blank" rel="noopener">slides/V21.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V22.html" target="_blank" rel="noopener">slides/V22.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V23.html" target="_blank" rel="noopener">slides/V23.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V24.html" target="_blank" rel="noopener">slides/V24.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V25.html" target="_blank" rel="noopener">slides/V25.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V26.html" target="_blank" rel="noopener">slides/V26.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V27.html" target="_blank" rel="noopener">slides/V27.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V28.html" target="_blank" rel="noopener">slides/V28.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V29.html" target="_blank" rel="noopener">slides/V29.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V30.html" target="_blank" rel="noopener">slides/V30.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V31.html" target="_blank" rel="noopener">slides/V31.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V32.html" target="_blank" rel="noopener">slides/V32.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V33.html" target="_blank" rel="noopener">slides/V33.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/V34.html" target="_blank" rel="noopener">slides/V34.html</a></li><li><a href="cards/files/72-100k-mrr-club/slides/index.html" target="_blank" rel="noopener">slides/index.html</a></li><li><a href="cards/files/72-100k-mrr-club/tools/build_slides.mjs" target="_blank" rel="noopener">tools/build_slides.mjs</a></li><li><a href="cards/files/72-100k-mrr-club/tools/voice_generate.py" target="_blank" rel="noopener">tools/voice_generate.py</a></li><li><a href="cards/files/72-100k-mrr-club/tools/voice_text.py" target="_blank" rel="noopener">tools/voice_text.py</a></li></ul></details>

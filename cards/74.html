@@ -1,4 +1,54 @@
-<details class="doc" open><summary>scripts/SCRIPT_GUIDE.md</summary><div class="md"><h1>How Every Course Script Is Written</h1>
+<details class="doc" open><summary>VOICE_CLONE_GUIDE.md</summary><div class="md"><h1>Voice Clone: What I Need From You, Step by Step</h1>
+<p>The course has 34 videos and about 44,000 spoken words (about 5.6 hours). Your cloned voice reads every script. Here is the whole process. Your part takes about 30 minutes today.</p>
+<h2>Why You Upload It Yourself</h2>
+<p>The voice provider (ElevenLabs is my pick: it has the most natural long-form narration and an API I can run the scripts through) only lets the owner of a voice clone it, and it checks that by asking <strong>you</strong> to read a short line in the app. So the sample goes straight into your own account, not to me. That also keeps your voice files out of our repos and chats.</p>
+<h2>Step 1: Record the Sample (15 minutes)</h2>
+<ol>
+<li>Use the same microphone you use for the webinar. Sit 15 to 20 cm from it, in a quiet room with soft furnishings (no echo, no fan, no music).</li>
+<li>Open <code>VOICE_SAMPLE_SCRIPT.md</code> (in this card). Read it once out loud to warm up, then record it in one take. It is about 3 minutes.</li>
+<li>Speak the way you speak on the webinar: same energy, same pace. Do not perform. Keep natural pauses.</li>
+<li>Do not clean it up: no noise removal, no music, no compression. Export as WAV, or MP3 at 192 kbps or higher.</li>
+<li>Name it <code>adi-voice-sample-01.wav</code>.</li>
+</ol>
+<h2>Step 2: Create the Clone (10 minutes)</h2>
+<ol>
+<li>Sign in or sign up at https://elevenlabs.io with the Tantra Google account (use the Tantra Brave profile).</li>
+<li>Pick a paid plan. The Creator plan covers the instant clone test. All 34 videos need roughly 250,000 characters, so check the plan's monthly credits on the pricing page before you start. One month on a larger plan is usually cheaper than two months on a small one.</li>
+<li>Go to <strong>Voices</strong>, then <strong>Create a voice</strong>, then <strong>Instant Voice Clone</strong>.</li>
+<li>Name it "Adi (Tantra Academy)". Upload <code>adi-voice-sample-01.wav</code>. Tick the box confirming it is your voice and you consent to cloning it. Save.</li>
+<li>Copy the <strong>Voice ID</strong> from the voice's settings. It is not a secret: send it to me in chat.</li>
+</ol>
+<h2>Step 3: Give Me Access to Generate (2 minutes)</h2>
+<p>When I ask for it, a secure form appears in this session for an ElevenLabs API key (ElevenLabs: Profile, then API Keys, then Create, with Text to Speech access only). You paste the key into the form, never into the chat. I never see it: the session's network adds it to my requests.</p>
+<h2>Step 4: I Generate and You Listen (I do this)</h2>
+<ol>
+<li>I generate V01 and V10 first (the welcome and the hardest setup video) and send them to you.</li>
+<li>You listen to both. If the voice is right, I generate all 34. If it sounds off (flat, wrong accent, odd pauses), we go to Step 5.</li>
+</ol>
+<h2>Step 5 (only if needed): The Professional Clone</h2>
+<p>The instant clone works from minutes of audio. The professional clone trains on at least 30 minutes and sounds closer to you over long videos.
+1. Record yourself reading scripts V01 to V04 aloud, about 30 minutes, with the same set-up as Step 1. That gives the clone your real teaching voice, and it also gives us real-voice versions of those 4 videos.
+2. ElevenLabs: Voices, Create a voice, <strong>Professional Voice Clone</strong>. Upload the files and complete the voice check it asks for. Training takes a few hours.
+3. Send me the new Voice ID and I regenerate.</p>
+<h2>Your Consent, on Record</h2>
+<p>Reply in chat with this line (edit it if you want): "I, Adithya Murali, consent to Tantra using an AI clone of my voice to narrate the Tantra Academy course videos." I add it to card 74 with the date.</p>
+<h2>How I Generate (for the team)</h2>
+<ul>
+<li><code>python3 tools/voice_text.py</code> writes the narration text per video, with the slide and screen cues removed, in parts of at most 2,400 characters (<code>site/voice-text/</code>).</li>
+<li><code>python3 tools/voice_generate.py --voice-id &lt;id&gt; --only V01,V10</code> voices those videos into <code>site/voice-mp3/</code>. Leave out <code>--only</code> for all 34. <code>--dry-run</code> shows what would be sent and the character count.</li>
+<li>The ElevenLabs key never sits in a file: in a cloud session the network adds it; on a Mac, put it in <code>~/.config/tantra/keys/elevenlabs.env</code> as <code>ELEVENLABS_API_KEY=...</code>.</li>
+</ul></div></details><details class="doc"><summary>VOICE_SAMPLE_SCRIPT.md</summary><div class="md"><h1>Voice Sample Script (read aloud, about 3 minutes)</h1>
+<p>Read it in one take, in your webinar voice. The lines mix short and long sentences, numbers, questions and product names, so the clone learns how you say all of them.</p>
+<hr />
+<p>Hi, I'm Adi, and welcome to the Tantra Academy.</p>
+<p>Most funnels don't fail because the idea is bad. They fail in the setup. Somebody spends three weeks picking tools, never sends a single invite, and calls it a failed experiment. I've watched that happen more times than I can count. So this course does it the other way around.</p>
+<p>In the next thirty days, you're going to build the same system my team builds for clients. Day one, your offer, your buyer and your list. Day two, your pages, your payments and your follow-ups, all tested with two fake leads before a real person ever sees them. By day seven, you have traffic coming in from LinkedIn, calendar invites, WhatsApp and content.</p>
+<p>Does that sound like a lot? It is. That's why every step is a screen recording. You watch me click, then you click. If something doesn't match your screen, stop the video and ask in the group.</p>
+<p>Here's the one number I want you to remember. Customers equal sign-ups, times show-up rate, times booking rate, times close rate. Four numbers. When revenue is low, one of them is the reason, and our job every week is to find it and fix only that one.</p>
+<p>Let me give you an example. Say a thousand people see your invite. A hundred and twenty click. Fifty-four sign up, thirty show up, three book a call, and two buy. Which step is broken? Not the traffic. Not the page. It's the booking rate. So we change the offer slide, or the booking page, and nothing else, and we measure again next week.</p>
+<p>You'll use four tools. The Funnel OS, where you plan and build everything by chat. Tantra, for outreach on email, LinkedIn and WhatsApp. The Tantra CRM, where every lead, booking and payment lands. And the Content OS, which writes and publishes your posts.</p>
+<p>One more thing. Some steps run on their own clock. New mailboxes need at least fourteen days to warm up. Payment accounts take a few business days to verify. So we start those today, on day zero, before anything else.</p>
+<p>Right. Open video two, and let's start the clocks.</p></div></details><details class="doc"><summary>scripts/SCRIPT_GUIDE.md</summary><div class="md"><h1>How Every Course Script Is Written</h1>
 <p>Read this fully before writing a script. One file per video: <code>scripts/V&lt;NN&gt;-&lt;slug&gt;.md</code>.</p>
 <h2>Format (the slide builder parses it, keep it exact)</h2>
 <pre><code># V07: Pick Your Funnel and Write Your Event Line
