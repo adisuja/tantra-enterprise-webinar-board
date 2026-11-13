@@ -785,6 +785,13 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 </tbody>
 </table>
 <h2>4. The Funnel Readiness Score (lead scoring and routing)</h2>
+<p><strong>In plain words.</strong> After the webinar, people ask the same question: "which plan is right for me?" Today the only answer is a sales call, so the closers spend time on people who should have started a $99 trial, and miss the ones who should be on a $17,999 call. The score answers that question without a call: 6 questions, one minute, one recommendation.</p>
+<p><strong>What it does for the funnel.</strong>
+1. <strong>Routes people.</strong> A small business with no list goes to Tantra Pro, not to a call. A founder with a team and a proven offer goes to the 100K MRR Club. A company past roughly $0.5M a year with budget goes to the $5M or $10M ARR Club call.
+2. <strong>Briefs the closer.</strong> The score and the six answers go to the CRM as the event <code>readiness_scored</code>. A closer opening the call sees revenue band, who builds, budget and hours before saying hello.
+3. <strong>Splits the follow-up.</strong> In the CRM, follow-ups can branch on the route: a Pro route gets the trial reminder, a club route gets the club sequence, a done for you route gets a call from the account owner.</p>
+<p><strong>Where it shows up.</strong> The plans page ("Not sure? Take the 1 minute Funnel Readiness Score", live). Step 4 of the post-webinar email (CL-W, day 5). The moderator's answer in the webinar chat when someone asks "which plan?". The questions on the club booking page.</p>
+<p><strong>What is not done yet.</strong> The page is live and sends the event, but the CRM does not yet copy the score onto the contact or branch any sequence on it. That is a CRM set-up step (card 79 session). If Adi prefers, the page can come off the plans page: nothing else depends on it.</p>
 <p>One score routes everyone to the right offer, on the score page (live 13 Nov: https://webinar.sellwithtantra.com/tantra-plans/score/, 6 questions), on the club booking form and on the call.</p>
 <table>
 <thead>
@@ -799,7 +806,7 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 <td>0 to 25</td>
 </tr>
 <tr>
-<td>Who would build it (me, my team, an agency, nobody yet)</td>
+<td>Who would build it (me, our own team, an agency, nobody yet)</td>
 <td>0 to 20</td>
 </tr>
 <tr>
@@ -820,7 +827,7 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 </tr>
 </tbody>
 </table>
-<p>Routing: score below 40 and budget under $5K goes to Tantra Pro. Score 40 to 79, or "my team builds it", goes to the club. Score 80 and above with budget of $10K or more goes to Enterprise. The CRM stores <code>readiness_score</code>, <code>readiness_route</code> and the six answers on the contact, and the closer sees them before the call.</p>
+<p>Routing: score below 40 and budget under $5K goes to Tantra Pro. Score 40 to 79, or "our own team builds it", goes to the club. Score 80 and above with budget of $10K or more goes to Enterprise. The CRM stores <code>readiness_score</code>, <code>readiness_route</code> and the six answers on the contact, and the closer sees them before the call.</p>
 <h2>5. What This Does Not Change</h2>
 <ul>
 <li>The registration page and the $99 upsell keep one job each.</li>
@@ -834,17 +841,17 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 <p><strong>Step 1, email, day 1, 09:00 local.</strong> Subject: The part I skipped on Thursday</p>
 <blockquote>
 <p>{{first_name}},</p>
-<p>On Thursday I showed you the six stages my team builds for clients. Then I asked what would stop you.</p>
+<p>On Thursday I showed you the six stages our expert team builds for clients. Then I asked what would stop you.</p>
 <p>A lot of you said the same thing: "I want this, but I want my own team to build it."</p>
 <p>That's a good instinct. The people who own their funnel can fix it on a Tuesday afternoon without waiting for anyone.</p>
-<p>So here's the route I didn't have time for. It's called the 100K MRR Club. You get the same systems my team uses (the Funnel OS, the Content OS and Tantra Pro), a 30 day course, and a coach checking your build every week. Your team builds. We make sure it works.</p>
+<p>So here's the route I didn't have time for. It's called the 100K MRR Club. You get the same systems our expert team uses (the Funnel OS, the Content OS and Tantra Pro), a 30 day course, and a coach checking your build every week. Your team builds. We make sure it works.</p>
 <p>The plan is simple: build and test in 2 days, traffic by day 7, then small changes every day until the deals come in.</p>
 <p>Here's what's inside: {{club_link}}</p>
 <p>Adi</p>
 </blockquote>
 <p><strong>Step 2, WhatsApp, day 2, 11:00 local.</strong></p>
 <blockquote>
-<p>Hi {{first_name}}, Adi here. Quick one: if you'd rather build the funnel in house than have my team build it, the 100K MRR Club is the route. 2 days to build, traffic by day 7. Details: {{club_link}}</p>
+<p>Hi {{first_name}}, Adi here. Quick one: if you'd rather build the funnel in house than have our expert team build it, the 100K MRR Club is the route. 2 days to build, traffic by day 7. Details: {{club_link}}</p>
 </blockquote>
 <p><strong>Step 3, email, day 3.</strong> Subject: What your first 7 days look like</p>
 <blockquote>

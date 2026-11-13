@@ -1,5 +1,13 @@
 <details class="doc" open><summary>VOICE_CLONE_GUIDE.md</summary><div class="md"><h1>Voice Clone: What I Need From You, Step by Step</h1>
 <p>The course has 34 videos and about 44,000 spoken words (about 5.6 hours). Your cloned voice reads every script. Here is the whole process. Your part takes about 30 minutes today.</p>
+<h2>The Plan (Adi 13 November: record a clip, send it in the chat; compare open source with ElevenLabs)</h2>
+<ol>
+<li><strong>Adi records</strong> the consent line and the 3 minute script from this page: https://claude.ai/artifact/3boHpnnwT1fP9wF2Gehhrj and sends the clip in the chat.</li>
+<li><strong>Open-source clone first</strong> (VOICE_OPTIONS.md): VoxCPM2 (Apache 2.0, free for commercial use) with Qwen3-TTS 1.7B as the fallback. A 10 to 20 second reference cut from the clip, one sentence or short paragraph at a time, the same reference and seed for every chunk. It needs a GPU: a rented RTX 4090 (about $1 to $3 for the whole course) or Adi's Mac overnight. This cloud session has no GPU.</li>
+<li><strong>A/B test</strong>: V01 and V10 voiced by VoxCPM2 and by an ElevenLabs instant clone, sent to Adi. He picks by ear.</li>
+<li><strong>All 34 videos</strong> voiced with the winner; <code>tools/mix_audio.sh</code> mixes each video's voice with an optional music bed (bed at -24 LUFS, ducked under the voice, final -16 LUFS). Music: licence-safe options in VOICE_OPTIONS.md section 5.</li>
+</ol>
+<p>The ElevenLabs route below stays as the fallback and the A/B comparison.</p>
 <h2>Why You Upload It Yourself</h2>
 <p>The voice provider (ElevenLabs is my pick: it has the most natural long-form narration and an API I can run the scripts through) only lets the owner of a voice clone it, and it checks that by asking <strong>you</strong> to read a short line in the app. So the sample goes straight into your own account, not to me. That also keeps your voice files out of our repos and chats.</p>
 <h2>Step 1: Record the Sample (15 minutes)</h2>
@@ -42,7 +50,7 @@
 <hr />
 <p>Hi, I'm Adi, and welcome to the Tantra Academy.</p>
 <p>Most funnels don't fail because the idea is bad. They fail in the setup. Somebody spends three weeks picking tools, never sends a single invite, and calls it a failed experiment. I've watched that happen more times than I can count. So this course does it the other way around.</p>
-<p>In the next thirty days, you're going to build the same system my team builds for clients. Day one, your offer, your buyer and your list. Day two, your pages, your payments and your follow-ups, all tested with two fake leads before a real person ever sees them. By day seven, you have traffic coming in from LinkedIn, calendar invites, WhatsApp and content.</p>
+<p>In the next thirty days, you're going to build the same system our expert team builds for clients. Day one, your offer, your buyer and your list. Day two, your pages, your payments and your follow-ups, all tested with two fake leads before a real person ever sees them. By day seven, you have traffic coming in from LinkedIn, calendar invites, WhatsApp and content.</p>
 <p>Does that sound like a lot? It is. That's why every step is a screen recording. You watch me click, then you click. If something doesn't match your screen, stop the video and ask in the group.</p>
 <p>Here's the one number I want you to remember. Customers equal sign-ups, times show-up rate, times booking rate, times close rate. Four numbers. When revenue is low, one of them is the reason, and our job every week is to find it and fix only that one.</p>
 <p>Let me give you an example. Say a thousand people see your invite. A hundred and twenty click. Fifty-four sign up, thirty show up, three book a call, and two buy. Which step is broken? Not the traffic. Not the page. It's the booking rate. So we change the offer slide, or the booking page, and nothing else, and we measure again next week.</p>
@@ -90,8 +98,13 @@ Plain paragraphs, read aloud by the cloned voice.
 <li>End every video with what to do next, in one or two sentences, and the next video's name.</li>
 </ul>
 <h2>Hard rules (a script that breaks one is rejected)</h2>
-<ol>
-<li><strong>No em dashes or en dashes.</strong> Use a full stop, comma, colon or "to".</li>
+<ol start="0">
+<li>
+<p><strong>Our team, never "my team".</strong> Who builds, coaches or supports is "our expert team" or "the Tantra team". Adi says "I" only about his own view or story.</p>
+</li>
+<li>
+<p><strong>No em dashes or en dashes.</strong> Use a full stop, comma, colon or "to".</p>
+</li>
 <li><strong>Banned words:</strong> leverage, unlock, seamless, game-changer, supercharge, delve, robust, elevate, end to end, patchwork, engineered system, one dashboard, revolutionary, skyrocket, effortless, guaranteed results, exclusive, proven, secret, don't miss, "in today's fast-paced world", "let's dive in", "buckle up". No claim that there is no offer (the three phrases banned in <code>deliverables/_shared/PROOF_PACK.md</code> section 5).</li>
 <li><strong>Funnel OS is the Funnel OS.</strong> It is a chat app. Never name the AI model, vendor or tool underneath it. Do not mention any AI coding tool by name.</li>
 <li><strong>Approved proof only.</strong> Allowed: 400+ brands, 10+ years, 21+ countries, 47+ industries. Growth Idea (Shweta's UK coaching group): 11 webinars May 2025 to Feb 2026, 765,105 reached, 6,517 registered, 1,384 live, 80 sales calls, 4 clients; best webinar 28 Aug 2025: 99,859 reached (98,000 by calendar invite), 1,990 registered, 321 live, 25 calls. FintechCircle (Susanne, London): outreach grew 10,000 to 20,046 to 30,000 invites; episode 4: 38,138 invites, 187 Yes and 221 Maybe RSVPs. Each client named at most once per video. Nothing else: no other client, no invented result, no member result.</li>
@@ -214,7 +227,7 @@ Plain paragraphs, read aloud by the cloned voice.
 <h2>Voice script</h2>
 <p>[SLIDE 1]
 You've probably bought a course before, watched the first three videos, and then life happened. The tools sat half set up, and the funnel never got a single visitor. This club is built so that doesn't happen to you. In the next seven minutes I'll show you exactly how the thirty days work, what you'll have at the end, and how to get help the moment you're stuck.</p>
-<p>I'm Adi. My team and I have spent more than ten years building outreach and funnels for over four hundred brands in more than twenty one countries. What you're about to do is the same build we run for clients, in the same order, with the same checks.</p>
+<p>I'm Adi. Together with our expert team, I've spent more than ten years building outreach and funnels for over four hundred brands in more than twenty one countries. What you're about to do is the same build we run for clients, in the same order, with the same checks.</p>
 <p>Here's the promise in plain words. In two days you build one funnel and test every step of it. From Day 3 you send traffic to it. And for the rest of the month you improve it a little every day, until people are booking calls and paying you.</p>
 <p>[SLIDE 2]
 Let me show you what you've joined.</p>
@@ -2176,7 +2189,7 @@ Start with the booked call reminders. If you build only one sequence today, buil
 <p>After a call that's held, the deal moves to Call Held, and then either Follow-Up, Proposal Sent, or Unqualified. Follow-Up gets a recap email the same day, in their words, with the next step. Then weekly follow-ups for high intent, every two weeks for medium. Funnel OS wrote the recap template. You fill in two lines after each call: their goal and the next step. That's two minutes, not twenty.</p>
 <p>Proposal Sent. A follow-up at forty-eight hours, another at seven days. Ask Funnel OS for a proposal template too, from the brief: their goal in their words, the situation, your method applied to them, scope, timeline, the investment, the guarantee and an expiry date. A proposal that takes ten minutes goes out the same day. One that takes an afternoon goes out next week, and next week the buyer has cooled. And the exit rule: the moment the deal moves to Proposal Accepted or Payment Completed, the follow-ups stop.</p>
 <p>[SCREEN: Tantra CRM &gt; a sequence &gt; the step picker &gt; Slack step selected &gt; message "New booking: first name, call time"]</p>
-<p>One step that helps a small team: the Slack step. I add one to the booked call sequence so my team channel gets a message when a call is booked. Same for a no-show. Nobody has to watch the pipeline to know something happened.</p>
+<p>One step that helps a small team: the Slack step. I add one to the booked call sequence so our team channel gets a message when a call is booked. Same for a no-show. Nobody has to watch the pipeline to know something happened.</p>
 <p>And Unqualified isn't a dead end. Those people get a warm, honest message about what comes next by email, and they stay on your long-term list. Some of them will be a fit in six months, and we'll keep them warm in video thirty-four.</p>
 <p>[SLIDE 4]
 Now the money. A sale counts only when the signed payment webhook arrives. Never from someone landing on a thank-you page. Anyone can open a thank-you page. Only your payment provider can send the signed webhook.</p>
