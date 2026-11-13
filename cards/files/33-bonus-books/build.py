@@ -267,7 +267,7 @@ def load_prompts():
 NAV = [('/', 'hub', 'Bonuses'), ('/playbook/', 'playbook', 'Playbook'), ('/library/', 'library', 'Template Library'), ('/prompts/', 'prompts', 'AI Prompts')]
 
 def page(title, key, body, css=(), js=(), extra=''):
-    nav = ''.join(f'<a href="{h}"{" aria-current=page" if k == key else ""}>{esc(n)}</a>' for h, k, n in NAV)
+    nav = ''.join(f'<a href="{h}"{" aria-current=page" if k == key else ""}{f" data-t-cta=bonus_{k}" if k != "hub" else ""}>{esc(n)}</a>' for h, k, n in NAV)
     name = {'hub': 'Your Webinar Bonuses', 'playbook': 'The B2B RevOps Playbook', 'library': 'The AI Funnel Prompt Library', 'prompts': 'The AI Funnel Prompt Library'}[key]
     links = ''.join(f'<link rel="stylesheet" href="/assets/{c}?v={V}">' for c in ('base.css', *css))
     scripts = ''.join(f'<script src="/assets/{j}?v={V}" defer></script>' for j in ('common.js', *js))
@@ -275,7 +275,7 @@ def page(title, key, body, css=(), js=(), extra=''):
 <html lang="en" data-v="{V}"{extra}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
 <title>{esc(title)} · Tantra</title><link rel="icon" href="/assets/img/tantra-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-{links}{scripts}</head>
+{links}{scripts}{CRM_TRACKER}</head>
 <body class="is-{key}"><a class="skip" href="#main">Skip to content</a>
 <header class="bar"><div class="bar__in"><a class="brand" href="/"><img class="m" src="/assets/img/tantra-mark-ink.png" alt="" width="45" height="30"><img class="w" src="/assets/img/tantra-word-ink.png" alt="Tantra" height="13"><span class="brand__sep"></span><span class="brand__name">{esc(name)}</span></a><nav class="bar__nav" aria-label="Bonuses">{nav}</nav></div><div class="progress"></div></header>
 {body}
@@ -290,29 +290,34 @@ def page(title, key, body, css=(), js=(), extra=''):
 # second; the channels with their real logos (iconify "logos" set, CC0, and vscode-icons for Outlook, in src/brands/);
 # the webinar follow-up flow (the CRM's own webinar sequences); a custom sequence; a full cold calendar invite; and the
 # three Tantra plans. Deadline, code and prices come from the funnel config so the hub and /tantra-plans/ always agree.
-# After the deadline the block stays; only the Pro discount (price, 25% tag, code, countdown) goes (?state=expired shows that state).
+# After the deadline the block stays; only the Pro discount (price, code, countdown) goes (?state=expired shows that state).
 TP = json.loads((HERE.parent / '_shared' / 'funnel-config.json').read_text())['tantra_plans']
+# Every offer link is a CRM tracked short link from funnel-config.json > tantra_plans.bonus_links (never a URL written here).
+# The personal calculator link (#p=...) is never shortened.
+BL = TP['bonus_links']
+# Tantra CRM tracking (Adi 2026-11-12, card 69): visits and data-t-cta clicks on the hub, /playbook/, /library/ and /prompts/.
+CRM_TRACKER = '<script src="https://crm-api.usetantra.com/t.js" data-brand-id="br_4179a834bb2a4b68be75" data-environment="production" async></script>'
 BRANDS = {p.stem: 'data:image/svg+xml;base64,' + __import__('base64').b64encode(p.read_bytes()).decode() for p in (SRC / 'brands').glob('*.svg')}
 
 def brand(name, alt, size=22):
     return f'<img class="bl" src="{BRANDS[name]}" alt="{esc(alt)}" width="{size}" height="{size}">'
 
 def promo_bar():
-    """Sticky offer bar on every bonus page (Adi 2026-11-12): live countdown, the Pro first-month price, 25% off and the code,
+    """Sticky offer bar on every bonus page (Adi 2026-11-12): live countdown, the Pro price for the first 3 months and the code,
     always in view. Minimises to a floating pill that keeps the countdown; gone once the deadline passes (?state=expired)."""
     pro = TP['pro']
     code = TP.get('coupon_code') or ''
-    cta = 'https://webinar.sellwithtantra.com' + TP['path'] + 'pro/?utm_source=bonus-hub&utm_medium=promo-bar&utm_campaign=tantra-plans'
+    cta = BL['pro_trial']   # Tantra Pro has no call: straight to the pricing page with the webinar code
     return f"""<aside class="pbar" id="pbar" data-deadline="{TP['deadline_utc']}" aria-label="Webinar offer" hidden>
   <div class="pbar__in">
     <span class="pbar__tag">Webinar offer</span>
     <div class="pbar__cd" aria-label="Time left"><span><b data-p="d">03</b><i>d</i></span><span><b data-p="h">00</b><i>h</i></span><span><b data-p="m">00</b><i>m</i></span><span><b data-p="s">00</b><i>s</i></span></div>
-    <p class="pbar__deal"><b>Tantra Pro ${pro['price_usd']}</b> <span>a month for 3 months</span> <s>${pro['list_usd']}</s> <em>25% off</em></p>
-    {f'<p class="pbar__code"><span>Code</span><code>{esc(code)}</code><button type="button" data-pcopy="{esc(code)}">Copy</button></p>' if code else ''}
-    <a class="pbar__cta" href="{cta}">Claim {pro['trial_days']} days free</a>
+    <p class="pbar__deal"><b>Tantra Pro ${pro['price_usd']}</b> <span>a month for the first 3 months, then ${pro['list_usd']}</span></p>
+    {f'<p class="pbar__code"><span>Code</span><code>{esc(code)}</code><button type="button" data-pcopy="{esc(code)}" data-t-cta="bonus_copy_code">Copy</button></p>' if code else ''}
+    <a class="pbar__cta" href="{esc(cta)}" data-t-cta="bonus_pro_trial">Claim {pro['trial_days']} days free</a>
     <button type="button" class="pbar__min" aria-label="Minimise the offer bar">&#215;</button>
   </div>
-  <button type="button" class="pbar__pill" aria-label="Show the webinar offer"><i></i><b data-p2>72h left</b><em>25% off</em></button>
+  <button type="button" class="pbar__pill" aria-label="Show the webinar offer"><i></i><b data-p2>72h left</b><em>${pro['price_usd']}/mo</em></button>
 </aside>
 <script>
 (function(){{var b=document.getElementById('pbar');if(!b)return;var end=Date.parse(b.dataset.deadline),k='tb_pbar_min',q=function(x){{return b.querySelector('[data-p='+x+']');}},z=function(n){{return (n<10?'0':'')+n;}};
@@ -333,8 +338,6 @@ var c=b.querySelector('[data-pcopy]');if(c)c.onclick=function(){{(navigator.clip
 
 def engine_offer():
     pro, club = TP['pro'], TP['club_100k']
-    site = 'https://webinar.sellwithtantra.com' + TP['path']
-    utm = '?utm_source=bonus-hub&utm_medium=bonus04&utm_campaign=tantra-plans'
     channels = [
         ('google-gmail', 'Gmail', 'Unlimited mailboxes, warmed up'),
         ('outlook', 'Outlook', 'Email from your Microsoft inbox'),
@@ -364,10 +367,12 @@ def engine_offer():
     ]
     sq = ''.join(f'<li><span class="sq__d">{d}</span>{brand(lg, "", 20)}<div><b>{t}</b><small>{s}</small></div>{f"<em>{c}</em>" if c else ""}</li>' for d, lg, t, s, c in seq)
     plans = f'''<div class="pls">
-      <a class="pl pl--ent" href="{site}enterprise/{utm}"><span class="pl__k">Done for you</span><b>Tantra Enterprise</b><span class="pl__p">Built, live and bringing in revenue</span><span class="pl__c">Join the $5M ARR Club</span></a>
-      <a class="pl pl--club" href="{site}100k-mrr-club/{utm}"><span class="pl__k">Build it with us</span><b>The 100K MRR Club</b><span class="pl__p">{esc(club['prices']['USD'])} {esc(club['per'])}</span><span class="pl__c">Apply for access</span></a>
-      <a class="pl pl--pro" href="{site}pro/{utm}"><span class="pl__k">Run it yourself</span><b>Tantra Pro</b><span class="pl__p"><span data-deal><s>${pro['list_usd']}</s> ${pro['price_usd']} a month for 3 months</span><span data-after>${pro['list_usd']} a month</span></span><span class="pl__c">Start {pro['trial_days']} days free</span></a>
-    </div>'''
+      <a class="pl pl--ent" href="{esc(BL['club_5m'])}" data-t-cta="bonus_club_5m"><span class="pl__k">Done for you</span><b>Tantra Enterprise</b><span class="pl__p">Built, live and backed by the Tantra 10X ROI Guarantee</span><span class="pl__c">Join the $5M ARR Club</span></a>
+      <a class="pl pl--ent" href="{esc(BL['club_10m'])}" data-t-cta="bonus_club_10m"><span class="pl__k">Done for you, at scale</span><b>The $10M ARR Club</b><span class="pl__p">Tantra Enterprise for companies going to $10M a year</span><span class="pl__c">Join the $10M ARR Club</span></a>
+      <a class="pl pl--club" href="{esc(BL['club_100k'])}" data-t-cta="bonus_club_100k"><span class="pl__k">Build it with us</span><b>The 100K MRR Club</b><span class="pl__p">{esc(club['prices']['USD'])} {esc(club['per'])}</span><span class="pl__c">Apply for access</span></a>
+      <a class="pl pl--pro" href="{esc(BL['pro_trial'])}" data-t-cta="bonus_pro_trial"><span class="pl__k">Run it yourself</span><b>Tantra Pro</b><span class="pl__p"><span data-deal><s>${pro['list_usd']}</s> ${pro['price_usd']} a month for the first 3 months, then ${pro['list_usd']}</span><span data-after>${pro['list_usd']} a month</span></span><span class="pl__c">Start {pro['trial_days']} days free</span></a>
+    </div>
+    <p class="pls__help">Not sure which plan fits you? <a href="{esc(BL['strategy_call'])}" data-t-cta="bonus_strategy_call">Book a free strategy call</a> and I will tell you straight.</p>'''
     return f'''<section class="eng" id="engine" data-deadline="{TP['deadline_utc']}" aria-labelledby="eng-h">
     <div class="eng__top">
       <p class="eng__badge">Bonus 04 · Webinar attendees only</p>
@@ -376,10 +381,10 @@ def engine_offer():
     <div class="eng__hero">
       <div>
         <h2 id="eng-h">The engine that filled this webinar is yours. <span>Free for {pro['trial_days']} days.</span></h2>
-        <p class="eng__lead">Email, LinkedIn, WhatsApp and cold calendar invites, run from one place, with every registrant followed up on autopilot. <span data-deal>Start before the timer hits zero and you pay <b>${pro['price_usd']} instead of ${pro['list_usd']}</b> a month for your first 3 months, 25% off.</span><span data-after>Start free today, then <b>${pro['list_usd']} a month</b>. Cancel any time.</span></p>
-        <div class="eng__cta"><a class="btn btn--primary btn--lg" href="{site}{utm}">See the Tantra plans</a><a class="eng__alt" href="{site}pro/{utm}">Start my {pro['trial_days']}-day free trial</a></div>
+        <p class="eng__lead">Email, LinkedIn, WhatsApp and cold calendar invites, run from one place, with every registrant followed up on autopilot. <span data-deal>Start before the timer hits zero and you pay <b>${pro['price_usd']} a month for the first 3 months, then ${pro['list_usd']}</b>.</span><span data-after>Start free today, then <b>${pro['list_usd']} a month</b>. Cancel any time.</span></p>
+        <div class="eng__cta"><a class="btn btn--primary btn--lg" href="{esc(BL['plans'])}" data-t-cta="bonus_plans">See the Tantra plans</a><a class="eng__alt" href="{esc(BL['pro_trial'])}" data-t-cta="bonus_pro_trial">Start my {pro['trial_days']}-day free trial</a></div>
       </div>
-      <div class="price"><p class="price__k"><span data-deal>Tantra Pro, webinar price</span><span data-after>Tantra Pro</span></p><p class="price__n"><s data-deal>${pro['list_usd']}</s><b data-deal>${pro['price_usd']}</b><b data-after>${pro['list_usd']}</b><small data-deal>/month for 3 months</small><small data-after>/month</small></p><p class="price__off"><span data-deal>25% off for 3 months, then ${pro['list_usd']}/month · </span>{pro['trial_days']} days free · cancel any time</p>{f'<p class="price__code" data-deal>Code <code>{esc(TP["coupon_code"])}</code></p>' if TP.get('coupon_code') else ''}</div>
+      <div class="price"><p class="price__k"><span data-deal>Tantra Pro, webinar price</span><span data-after>Tantra Pro</span></p><p class="price__n"><s data-deal>${pro['list_usd']}</s><b data-deal>${pro['price_usd']}</b><b data-after>${pro['list_usd']}</b><small data-deal>/month</small><small data-after>/month</small></p><p class="price__off"><span data-deal>${pro['price_usd']} a month for the first 3 months, then ${pro['list_usd']} · </span>{pro['trial_days']} days free · cancel any time</p>{f'<p class="price__code" data-deal>Code <code>{esc(TP["coupon_code"])}</code></p>' if TP.get('coupon_code') else ''}</div>
     </div>
 
     <div class="blk"><p class="blk__k">01 · Omnichannel outreach</p><h3>Every channel your buyers live in, from one engine</h3>
@@ -411,7 +416,7 @@ def engine_offer():
         </div>
       </div></div>
 
-    <div class="blk blk--plans"><p class="blk__k">Choose how you want it built</p><h3>Three Tantra plans<span data-deal>, at webinar prices until the timer ends</span></h3>{plans}</div>
+    <div class="blk blk--plans"><p class="blk__k">Choose how you want it built</p><h3>Four ways to get it built<span data-deal>, at webinar prices until the timer ends</span></h3>{plans}</div>
   </section>
   <script>
   (function(){{var s=document.getElementById('engine'),end=Date.parse(s.dataset.deadline),q=function(k){{return s.querySelector('[data-cd='+k+']');}},p=function(n){{return (n<10?'0':'')+n;}};
@@ -426,9 +431,9 @@ def hub():
   <h1>Build any B2B funnel, then let AI write every piece of it.</h1>
   <p class="hub__lead">All three bonuses from the webinar are here. Start with the playbook: it walks you through every task, in order, for the funnel you choose. Use the library and its prompts whenever a task asks you to write an element.</p>
   <div class="hub__books">
-    <a class="book" href="/playbook/"><img src="/assets/img/playbook-a.webp?v={V}" alt="Cover: The $1MN+ B2B RevOps Playbook" width="800" height="1200"><div><p class="book__n">Bonus 01</p><h2>The $1MN+ B2B RevOps Playbook</h2><p>Every task to plan, build, launch and run one of eight funnel types, step by step, with the prompt for each build.</p><span class="btn btn--primary">Open the playbook</span></div></a>
-    <a class="book" href="/library/"><img src="/assets/img/prompts-a.webp?v={V}" alt="Cover: The $1MN+ AI Funnel Prompt Library" width="800" height="1200"><div><p class="book__n">Bonus 02</p><h2>The $1MN+ AI Funnel Prompt Library</h2><p>Real funnel elements from B2B brands, sorted by stage, industry and offer, each with a prompt that rebuilds it for your brand in any AI assistant.</p><span class="btn btn--primary">Open the library</span></div></a>
-    <a class="book" id="calc" href="https://webinar.sellwithtantra.com/calculator/"><img src="/assets/img/calculator-a.jpg?v={V}" alt="Cover: AI RevOps Revenue Calculator" width="800" height="1200"><div><p class="book__n">Bonus 03</p><h2>Your AI RevOps Revenue Calculator</h2><p>The traffic, the KPI at every stage and the revenue your funnel needs, built from your own survey answers.</p><span class="btn btn--primary">Open my calculator</span></div></a>
+    <a class="book" href="/playbook/" data-t-cta="bonus_playbook"><img src="/assets/img/playbook-a.webp?v={V}" alt="Cover: The $1MN+ B2B RevOps Playbook" width="800" height="1200"><div><p class="book__n">Bonus 01</p><h2>The $1MN+ B2B RevOps Playbook</h2><p>Every task to plan, build, launch and run one of eight funnel types, step by step, with the prompt for each build.</p><span class="btn btn--primary">Open the playbook</span></div></a>
+    <a class="book" href="/library/" data-t-cta="bonus_library"><img src="/assets/img/prompts-a.webp?v={V}" alt="Cover: The $1MN+ AI Funnel Prompt Library" width="800" height="1200"><div><p class="book__n">Bonus 02</p><h2>The $1MN+ AI Funnel Prompt Library</h2><p>Real funnel elements from B2B brands, sorted by stage, industry and offer, each with a prompt that rebuilds it for your brand in any AI assistant.</p><span class="btn btn--primary">Open the library</span></div></a>
+    <a class="book" id="calc" href="https://webinar.sellwithtantra.com/calculator/" data-t-cta="bonus_calculator"><img src="/assets/img/calculator-a.jpg?v={V}" alt="Cover: AI RevOps Revenue Calculator" width="800" height="1200"><div><p class="book__n">Bonus 03</p><h2>Your AI RevOps Revenue Calculator</h2><p>The traffic, the KPI at every stage and the revenue your funnel needs, built from your own survey answers.</p><span class="btn btn--primary">Open my calculator</span></div></a>
   </div>
   {engine_offer()}
   <script>
@@ -444,7 +449,7 @@ def hub():
 def library_page(data):
     n_el, n_ty = len(data['elements']), sum(len(c['types']) for c in data['categories'])
     body = f'''<main id="main" class="lib">
-  <div class="lib__top"><div><h1>The $1MN+ AI Funnel Prompt Library</h1><p>{n_el} real funnel elements from {len(data['brands'])} B2B funnels, in {n_ty} types that follow the playbook. Read an example, then copy its prompt: your AI assistant rebuilds it for your brand.</p></div><a class="btn" href="/prompts/#setup">Start with the setup prompt</a></div>
+  <div class="lib__top"><div><h1>The $1MN+ AI Funnel Prompt Library</h1><p>{n_el} real funnel elements from {len(data['brands'])} B2B funnels, in {n_ty} types that follow the playbook. Read an example, then copy its prompt: your AI assistant rebuilds it for your brand.</p></div><a class="btn" href="/prompts/#setup" data-t-cta="bonus_prompts">Start with the setup prompt</a></div>
   <div class="bar2"><div class="seg seg--i" role="group" aria-label="Industry"></div><select class="sel sel--o" aria-label="Offer type"></select><input class="search" type="search" placeholder="Search every element" aria-label="Search every element"></div>
   <div class="panes">
     <aside class="rail" aria-label="Element types"><nav></nav></aside>

@@ -1,0 +1,7 @@
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>Item 67: Razorpay reKYC, international payments, then the main gateway</h1>
+<p>Everything for this task lives on board card 67 (tasks/tasks.json). This folder holds the files the switch will need.</p>
+<ol>
+<li>reKYC: the signed and sealed authorisation (Razorpay's Power of Attorney template, GrowthClub Marketing LLP letterhead) is on Adi's Mac only (~/Downloads/GrowthClub_Razorpay_POA_Signed.pdf; rebuilt by CEO/razorpay-poa/build_poa.py). It is never committed: it carries a signature and the LLP seal.</li>
+<li>International payments: requested from the Razorpay dashboard (Account and Settings, International payments) once reKYC is in.</li>
+<li>Gateway switch: once both show Approved, the funnel checkout (today Dodo Payments: offer.vip_checkout_url and the Tantra Pro pricing link in deliverables/_shared/funnel-config.json) moves to Razorpay. The plan for the switch is written here when it starts.</li>
+</ol></div></details>
