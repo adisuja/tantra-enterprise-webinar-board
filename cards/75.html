@@ -1,0 +1,266 @@
+<details class="doc" open><summary>BUILD_SYSTEM.md</summary><div class="md"><h1>The Member's System: How Every Piece Connects</h1>
+<p>This is what a 100K MRR Club member ends up with, and how the Funnel OS chat runs the other systems. The course videos teach it; this page is the spec the team builds against.</p>
+<h2>1. The Systems and Who Does What</h2>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Job</th>
+<th>How Funnel OS reaches it</th>
+<th>Member sets up once</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Funnel OS</strong> (chat app)</td>
+<td>The member's workspace. Holds the Funnel Brief, writes every asset, builds and deploys pages, drafts campaigns and sequences, reads numbers back, runs the weekly review</td>
+<td>n/a (it is the hub)</td>
+<td>A project, the Funnel Brief, the connections below</td>
+</tr>
+<tr>
+<td><strong>Tantra app</strong> (usetantra.com)</td>
+<td>Outreach: cold email, LinkedIn, WhatsApp, calendar invites, omnichannel sequences, reply inbox</td>
+<td>Tantra REST API, webhooks and the Tantra MCP server; API key from Connectors &gt; API Keys</td>
+<td>Tantra Pro plan, mailboxes through Google delegation, LinkedIn sign in, WhatsApp QR, calendar senders</td>
+</tr>
+<tr>
+<td><strong>Tantra CRM</strong> (crm.usetantra.com)</td>
+<td>Contacts, pipelines, booking pages, sequences (email, WhatsApp, SMS, AI call, task, Slack), tracked links, payment connections, dashboards</td>
+<td>The CRM MCP tools and API key</td>
+<td>A workspace, Slack (optional), WhatsApp sender, the tracking snippet domain</td>
+</tr>
+<tr>
+<td><strong>Content OS</strong> (content.usetantra.com)</td>
+<td>Content context, batches, images, approval, publishing to every channel</td>
+<td>Content OS API key</td>
+<td>Publishing accounts per channel (LinkedIn, X, Instagram, YouTube, TikTok, company pages)</td>
+</tr>
+<tr>
+<td><strong>Payments</strong></td>
+<td>Checkout and money in the bank</td>
+<td>Provider API key (Dodo, Razorpay or a Stripe restricted key) and a signed webhook into the CRM</td>
+<td>Business verification, bank account, product and price</td>
+</tr>
+<tr>
+<td><strong>Cloudflare</strong></td>
+<td>Domains, DNS, page hosting</td>
+<td>API token with Zone, DNS, Redirect, Registrar, Workers and D1 permissions</td>
+<td>Account, billing, registrant contact</td>
+</tr>
+<tr>
+<td><strong>Google Workspace</strong></td>
+<td>Sending mailboxes and calendar invite senders</td>
+<td>Through Tantra (delegation)</td>
+<td>Workspace accounts on outreach domains</td>
+</tr>
+<tr>
+<td><strong>Analytics</strong></td>
+<td>GA4, Clarity</td>
+<td>Service account on GA4; snippet on pages</td>
+<td>Property and project IDs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The approval rule.</strong> Funnel OS drafts and prepares everything. It never sends, launches a campaign, buys a domain, charges a card or deletes anything until the member types an approval in their own words in the chat. Every such step is logged in the Funnel Brief.</p>
+<h2>2. From First Touch to Money in the Bank</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Event</th>
+<th>From</th>
+<th>To</th>
+<th>What changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Prospect gets a touch (email, LinkedIn, calendar invite, WhatsApp, post, ad)</td>
+<td>Tantra app, Content OS, ads</td>
+<td>Prospect</td>
+<td>Link is a CRM tracked short link with UTMs</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Click</td>
+<td>Tracked link</td>
+<td>Landing page</td>
+<td>CRM records source, campaign, A or B</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Sign-up (form) or calendar RSVP Yes or Maybe</td>
+<td>Page form, Tantra RSVP webhook</td>
+<td>Tantra CRM</td>
+<td>Contact created, tag <code>registered</code>, deal at Form Filled, consents saved</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Confirmation and reminders</td>
+<td>Tantra CRM sequence</td>
+<td>Email, WhatsApp, AI call</td>
+<td>Steps stop on booking, purchase or STOP</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Attends, misses or watches replay</td>
+<td>Webinar platform or video page</td>
+<td>Tantra CRM</td>
+<td>Tag <code>attended</code>, <code>no-show</code> or <code>replay-watched</code>; branch sequences</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Reply</td>
+<td>Tantra app reply webhook</td>
+<td>Tantra CRM</td>
+<td>Tag <code>replied</code>; task for a same day answer with the booking link</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Books a call</td>
+<td>CRM booking page</td>
+<td>Tantra CRM</td>
+<td>Deal to Call Scheduled; pre-call sequence; Slack alert</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Call held, qualified, proposal sent</td>
+<td>Closer in the CRM</td>
+<td>Tantra CRM</td>
+<td>Stage moves; proposal follow-ups at 48 h and 7 days</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Pays</td>
+<td>Dodo, Razorpay or Stripe checkout</td>
+<td>Signed webhook to the Tantra CRM</td>
+<td>Deal to Payment Completed with value; buyer leaves every chasing sequence; welcome sequence starts</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Money lands</td>
+<td>Provider payout</td>
+<td>Member's bank</td>
+<td>Payout schedule per provider; the CRM Revenue dashboard shows collected revenue</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Did not buy</td>
+<td>Tantra CRM</td>
+<td>Long-term nurture</td>
+<td>Weekly letter, WhatsApp twin, next event invite, reactivation at 90 days</td>
+</tr>
+</tbody>
+</table>
+<p>Rule taught in V13: tools report events and events move deals. Any deal a person had to move by hand marks a step that is not wired.</p>
+<h2>3. The Build Plan</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Days</th>
+<th>Outcome</th>
+<th>Videos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start the clocks</td>
+<td>Day 0 (the day they pay)</td>
+<td>Payment verification applied for, outreach domains bought, mailboxes and calendar senders created and warming, WhatsApp templates submitted, Tantra Pro trial on</td>
+<td>V01, V02</td>
+</tr>
+<tr>
+<td>Decide and connect</td>
+<td>Day 1</td>
+<td>Funnel Brief approved, list loaded, domains and DNS live, Tantra connected (mailboxes, LinkedIn, WhatsApp, calendar), CRM pipeline and booking page live</td>
+<td>V03 to V14</td>
+</tr>
+<tr>
+<td>Build, deploy, test</td>
+<td>Day 2</td>
+<td>Payments in test mode, tracking, pages deployed, conversion step built, nurture and sales sequences live in dry run, test run passed, first experiments written</td>
+<td>V15 to V22</td>
+</tr>
+<tr>
+<td>Launch traffic</td>
+<td>Days 3 to 7</td>
+<td>LinkedIn, calendar invites, WhatsApp to opted-in contacts, warm list and content running; ads built paused; first 24 hour check</td>
+<td>V23 to V29</td>
+</tr>
+<tr>
+<td>Optimise to revenue</td>
+<td>Weeks 2 to 4</td>
+<td>Cold email starts day 14; daily replies; weekly worst step and one experiment; sales calls, proposals, payments</td>
+<td>V30 to V34</td>
+</tr>
+</tbody>
+</table>
+<h2>4. What the Tantra Team Must Have Ready Before Cohort 1</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Item</th>
+<th>Why</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>Tantra Academy inside the Tantra app: course, modules, video player, per video checklist, Build Score, member access by plan</td>
+<td>Members need one place to learn</td>
+<td>Bharath, Ben (Usetantra repo)</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>Academy access granted automatically when the club payment lands (CRM webhook or Dodo subscription event)</td>
+<td>No manual enrolment</td>
+<td>Bharath, Ben + CRM</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>Funnel OS member build: connectors for Tantra, Tantra CRM, Content OS, Cloudflare, Dodo, Razorpay, Stripe, GA4; the approval rule; the Funnel Brief template; the weekly review prompt</td>
+<td>The hub the course runs on</td>
+<td>Adi</td>
+</tr>
+<tr>
+<td>R4</td>
+<td>Content OS multi-member: one workspace per member, their own publishing accounts</td>
+<td>Members cannot share our accounts (one account per person)</td>
+<td>Bharath</td>
+</tr>
+<tr>
+<td>R5</td>
+<td>Tantra CRM workspace per member with a starter template: default pipeline, tags, fields, booking page, the seven standard sequences, the dashboard</td>
+<td>Saves Day 1 an hour</td>
+<td>CRM session</td>
+</tr>
+<tr>
+<td>R6</td>
+<td>A simpler mailbox delegation path, or a done with you 30 minute slot for V10</td>
+<td>Card 69: delegation still needs technical knowledge</td>
+<td>Bharath</td>
+</tr>
+<tr>
+<td>R7</td>
+<td>Club checkout: Dodo subscription product at $1,999 a month (USD, INR, GBP, EUR prices), payment link per approved applicant</td>
+<td>Payment after the application call</td>
+<td>Adi (Dodo)</td>
+</tr>
+<tr>
+<td>R8</td>
+<td>Coaching ops: kickoff call slot, weekly group call slot, check-in booking page, WhatsApp group, coach roster</td>
+<td>The coaching promise</td>
+<td>Adi, Nelbin</td>
+</tr>
+<tr>
+<td>R9</td>
+<td>Recorded videos: 34 screen recordings matched to the scripts, voiced with the cloned voice, slides inserted</td>
+<td>The course</td>
+<td>Nelbin (edit), Adi (voice consent and sample)</td>
+</tr>
+</tbody>
+</table></div></details>
