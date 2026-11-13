@@ -57,8 +57,7 @@ for (const page of pages) {
   console.log('built', page.route);
 }
 if (ics) fs.writeFileSync(path.join(out, 'assets', 'webinar.ics'), ics);
-// LinkedInBot may read pages so links shared on LinkedIn (profile Featured, posts) get a preview; everyone else stays out (card 29, 13 Nov).
-fs.writeFileSync(path.join(out, 'robots.txt'), 'User-agent: LinkedInBot\nAllow: /\n\nUser-agent: *\nDisallow: /\n');
+fs.writeFileSync(path.join(out, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
 fs.writeFileSync(path.join(out, '.nojekyll'), '');
 // The upsell page moved from /vip/ to /funnelos/ (Adi 2026-11-08). Old links keep working, query string included.
 fs.mkdirSync(path.join(out, 'vip'), { recursive: true });
