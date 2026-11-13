@@ -1,0 +1,95 @@
+{
+  "_about": "Every word on the v2 images. Edit here, then: node deliverables/29-linkedin-profile-branding/v2/build.mjs. No em or en dashes anywhere. No label text on images (Adi 2026-11-13). Caption test (Adi 2026-11-13): four captions, caption_by_asset says which asset carries which. caption_round1 is the earlier round, rendered in shots/captions/round1/.",
+  "cover": {
+    "line1": "Cold Traffic In.",
+    "line2": "Money in the Bank Out.",
+    "bar": "AI chases the leads. You count the deposits."
+  },
+  "company_cover": {
+    "line1": "Cold Traffic In.",
+    "line2": "Money in the Bank Out.",
+    "bar": "AI chases the leads. You count the deposits."
+  },
+  "workshop": {
+    "headline": "Watch Cold Traffic Turn Into Booked Calls. Live.",
+    "sub": "60 minutes with Adi. We build the whole funnel on screen. You keep the playbook.",
+    "cta": "Save my seat",
+    "host": "Hosted by Adi, Founder of Tantra",
+    "link": "https://webinar.sellwithtantra.com/",
+    "featured_title": "Attend Our Live AI RevOps Workshop",
+    "featured_description": "60 minutes, live with Adi. Watch a cold list turn into booked sales calls, then take the playbook, prompts and calculator home."
+  },
+  "consult": {
+    "headline": "Book an AI Revenue Strategy Consultation",
+    "sub": "Show us your funnel. We show you where the money leaks and which parts AI should run.",
+    "cta": "Pick a time",
+    "card_title": "AI RevOps Strategy Consultation",
+    "link": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation",
+    "featured_title": "Book an AI Revenue Strategy Consultation",
+    "featured_description": "45 minutes with a Tantra strategist. We find where your pipeline leaks and map which parts AI should run for you."
+  },
+  "caption_round1": [
+    {
+      "line1": "Cold List In.",
+      "line2": "Booked Calls Out.",
+      "bar": "AI sends every invite, reminder and follow up."
+    },
+    {
+      "line1": "Stop Chasing Leads.",
+      "line2": "Start Closing Them.",
+      "bar": "AI does the follow up. Your team takes the calls."
+    },
+    {
+      "line1": "More Sales Calls.",
+      "line2": "Same Sales Team.",
+      "bar": "AI handles everything between the click and the call."
+    },
+    {
+      "line1": "Strangers on Monday.",
+      "line2": "Sales Calls by Friday.",
+      "bar": "The AI revenue system behind 400+ brands."
+    },
+    {
+      "line1": "Your Leads Went Cold.",
+      "line2": "AI Warms Them Up.",
+      "bar": "No lead left without a follow up. Ever."
+    }
+  ],
+  "captions": {
+    "haunt": {
+      "lines": [
+        "Our AI Haunts",
+        "Your Audience Until"
+      ],
+      "em": [
+        "They Pay You."
+      ],
+      "size": 44,
+      "bar": ""
+    },
+    "pipeline": {
+      "line1": "Your Pipeline Called.",
+      "line2": "It's Hungry.",
+      "bar": "AI feeds it booked calls every single week."
+    },
+    "read": {
+      "line1": "Leads Left on Read?",
+      "line2": "Not on Our Watch.",
+      "bar": "AI follows up until they reply."
+    },
+    "blankets": {
+      "line1": "Cold Leads?",
+      "line2": "We Bring Blankets.",
+      "bar": "AI warms them up until they book a call."
+    }
+  },
+  "caption_by_asset": {
+    "adi": "haunt",
+    "nelbin": "haunt",
+    "bhaskar": "pipeline",
+    "bharath": "pipeline",
+    "aquila": "read",
+    "company": "pipeline",
+    "ben": "blankets"
+  }
+}
