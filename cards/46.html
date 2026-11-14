@@ -17,6 +17,7 @@
 </ul>
 <h2>Deploy</h2>
 <p><code>node deliverables/13-15a-26-20-pages/build.mjs</code>, then from <code>worker/</code>: <code>CLOUDFLARE_ACCOUNT_ID=e51d1fda77a8f98fb670b2c106bd8a33 npx wrangler deploy</code>.</p>
+<p>Deploy only from a branch that contains the latest <code>main</code> (<code>git fetch origin &amp;&amp; git merge origin/main</code> first). Several sessions deploy this one Worker; a deploy from an older branch silently undoes everything newer. On 14 Nov a deploy from a card 72 branch removed the weekly date roll forward, the CRM attribution fields, the registration dedupe and the consent banner for a few minutes. After deploying, check https://jointantra.com/confirmation/ shows next Thursday's date and the cookie banner appears in a private window.</p>
 <h2>CRM sync into Tantra (card 41, live 8 November)</h2>
 <p>Every funnel event updates one contact per person in Adi's Tantra workspace (api.usetantra.com, key in <code>~/.config/tantra/keys/tantra-api.env</code>, Worker secret <code>TANTRA_API_KEY</code>), matched by email, in the list "Enterprise Webinar registrants" (id 6af0c488fcb23ba374595221). The Tantra CRM (crm.usetantra.com) pulls Tantra contacts into its lead board by lead stage.</p>
 <table>

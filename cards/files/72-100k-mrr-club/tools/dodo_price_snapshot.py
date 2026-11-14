@@ -15,7 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 CFG = ROOT / 'deliverables' / '_shared' / 'funnel-config.json'
-KEY = os.environ['DODO_PAYMENTS_API_KEY']
+KEY = os.environ.get('DODO_PAYMENTS_API_KEY') or [l.split('=', 1)[1].strip().strip('"\'') for l in (Path.home() / '.config' / 'tantra' / 'keys' / 'dodo.env').read_text().splitlines() if l.startswith('DODO_PAYMENTS_API_KEY=')][0]
 COUNTRY = {'INR': 'IN', 'GBP': 'GB', 'EUR': 'DE'}
 SYM = {'USD': '$', 'INR': '₹', 'GBP': '£', 'EUR': '€'}
 
@@ -60,10 +60,16 @@ def main():
         for cur, cc in COUNTRY.items():
             m[cur] = fmt(cur, preview(pid, cc)['recurring_breakup']['subtotal'])
         T[key]['renewal'] = m
-    # One-time prices without a Dodo product yet: the same rates, marked as estimates.
+    # One-time prices: from Dodo's preview once the product exists (dodo_finish.py stores its id as dodo_full_product);
+    # until then the same rates, marked as estimates.
+    snap['estimated'] = []
     for key, usd in (('club_100k', 599900), ('enterprise', 1799900), ('club_10m', 2499700)):
-        T[key]['prices'] = {'USD': fmt('USD', usd), **{cur: fmt(cur, usd * r) for cur, r in snap['rates'].items()}}
-    snap['estimated'] = ['club_100k.prices', 'enterprise.prices', 'club_10m.prices']
+        pid = T[key].get('dodo_full_product')
+        if pid:
+            T[key]['prices'] = {'USD': fmt('USD', usd), **{cur: fmt(cur, preview(pid, cc)['current_breakup']['subtotal']) for cur, cc in COUNTRY.items()}}
+        else:
+            T[key]['prices'] = {'USD': fmt('USD', usd), **{cur: fmt(cur, usd * r) for cur, r in snap['rates'].items()}}
+            snap['estimated'].append(f'{key}.prices')
     T['dodo_snapshot'] = snap
     CFG.write_text(json.dumps(d, indent=2, ensure_ascii=False) + '\n')
     print(json.dumps({'first': first, 'then': then, 'rates': snap['rates'], 'tax': snap['tax_rate_pct']}, ensure_ascii=False))
