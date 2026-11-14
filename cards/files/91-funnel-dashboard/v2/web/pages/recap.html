@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Recap · __TITLE__</title>
+<style>
+/* A 1080 x 1350 animated post, built on the content kit's timeline engine (tantra-content,
+   kits/content/batches/b3_common.py). Same contract: <body data-dur> and window.seek(t), so
+   kits/content/anim.py can record it to MP4 and GIF. In the browser it plays on a loop. */
+:root{--ink:#0b0d12;--paper:#f7f8fb;--mute:#5b6472;--line:#e2e8f0;--a:#6d4aff;--b:#22d3ee;--gold:#d4a72c;--sans:"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:#0b0d12}
+body{display:grid;place-items:center;overflow:hidden;font-family:var(--sans)}
+.stage{position:absolute;left:50%;top:calc(50% - 26px);width:1080px;height:1350px;transform-origin:center;background:var(--paper);overflow:hidden;color:var(--ink);border-radius:28px}
+.bg{position:absolute;inset:0;background:radial-gradient(900px 700px at 90% -10%,color-mix(in srgb,var(--a) 22%,transparent),transparent 70%),radial-gradient(800px 600px at -10% 110%,color-mix(in srgb,var(--b) 18%,transparent),transparent 70%)}
+.top{position:absolute;left:72px;right:72px;top:64px;display:flex;align-items:center;gap:16px}
+.mk{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;color:#fff;font:700 22px var(--sans);background:linear-gradient(120deg,var(--a),var(--b))}
+.top b{font:700 26px var(--sans)}.top span{display:block;font:500 21px var(--sans);color:var(--mute)}
+.when{margin-left:auto;font:600 20px var(--sans);padding:10px 18px;border-radius:99px;background:#fff;box-shadow:inset 0 0 0 1.5px var(--line)}
+h1{position:absolute;left:72px;right:72px;top:190px;font:300 88px/0.98 var(--sans);letter-spacing:-.045em}
+h1 em{font-style:normal;background:linear-gradient(120deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:400}
+.hero{position:absolute;left:72px;top:420px}
+.hero .n{font:200 240px/.85 var(--sans);letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+.hero .l{font:600 26px var(--sans);color:var(--mute);margin-top:14px}
+.flow{position:absolute;left:72px;right:72px;top:760px}
+.st{display:grid;grid-template-columns:220px 1fr 150px;align-items:center;gap:20px;height:78px;border-top:1.5px solid var(--line)}
+.st .k{font:600 24px var(--sans)}.st .k small{display:block;font:500 18px var(--sans);color:var(--mute)}
+.st .bar{height:22px;border-radius:0 8px 8px 0;background:linear-gradient(90deg,var(--a),var(--b));transform-origin:left center}
+.st .v{font:300 46px var(--sans);letter-spacing:-.04em;text-align:right;font-variant-numeric:tabular-nums}
+.st.money .bar{background:linear-gradient(90deg,var(--gold),#f3cf6b)}
+.note{position:absolute;left:72px;right:72px;bottom:150px;font:500 30px/1.3 var(--sans);color:var(--ink)}
+.note b{font-weight:700}
+.foot{position:absolute;left:72px;right:72px;bottom:64px;display:flex;justify-content:space-between;font:500 20px var(--sans);color:var(--mute)}
+.sheen{position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.55),transparent 65%);transform:translateX(-140%);opacity:0;pointer-events:none}
+.ctl{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);display:flex;gap:8px;z-index:5}
+.ctl button,.ctl a{font:600 14px var(--sans);padding:9px 16px;border-radius:99px;border:0;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;text-decoration:none;backdrop-filter:blur(8px)}
+.ctl button:hover,.ctl a:hover{background:rgba(255,255,255,.22)}
+@media print{.ctl{display:none}}
+</style>
+</head>
+<body data-dur="11" data-hold0="0.8" data-w="1080" data-h="1350">
+<div class="stage" id="stage">
+  <div class="bg"></div>
+  <div class="top" data-a="up,0,.5"><div class="mk" id="mk"></div><div><b id="brand"></b><span id="funnel"></span></div><div class="when" id="when"></div></div>
+  <h1 data-a="blur,.25,.7" id="h1"></h1>
+  <div class="hero" data-a="up,.7,.6"><div class="n" id="heroN" data-n="0,0,.8,1.6">0</div><div class="l" id="heroL"></div></div>
+  <div class="flow" id="flow"></div>
+  <p class="note" data-a="up,4.6,.7" id="note"></p>
+  <div class="foot" data-a="fade,5.2,.6"><span id="foot1"></span><span id="foot2"></span></div>
+  <div class="sheen" data-a="sheen,5.6,1.1"></div>
+</div>
+<div class="ctl"><button id="replay">Play again</button><a id="back" href="/">Back to the dashboard</a></div>
+<script id="recap" type="application/json">/*__RECAP__*/</script>
+<script>
+(function(){
+  const R = JSON.parse(document.getElementById('recap').textContent);
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s==null?'':s);
+  document.documentElement.style.setProperty('--a', R.colors[0]); document.documentElement.style.setProperty('--b', R.colors[1]);
+  $('mk').textContent = R.initials; $('brand').textContent = R.brand; $('funnel').textContent = R.funnel; $('when').textContent = R.when;
+  $('h1').innerHTML = esc(R.headline_a).replace(/[<>&]/g,'') + ' <em>' + esc(R.headline_b).replace(/[<>&]/g,'') + '</em>';
+  const hero = $('heroN'); hero.dataset.n = '0,' + (R.hero.v || 0) + ',.8,1.6'; hero.dataset.fmt = R.hero.fmt || 'int'; $('heroL').textContent = R.hero.label;
+  const max = Math.max(...R.stages.map(s => s.v || 0), 1);
+  $('flow').innerHTML = R.stages.map((s, i) => { const at = 1.6 + i * .42; const w = s.v == null ? 0 : Math.max(1.5, Math.sqrt(s.v / max) * 100);
+    return `<div class="st${s.money ? ' money' : ''}" data-a="up,${at.toFixed(2)},.45"><div class="k">${s.label.replace(/[<>&]/g,'')}<small>${(s.sub||'').replace(/[<>&]/g,'')}</small></div><div><div class="bar" style="width:${w}%" data-a="grow,${(at+.15).toFixed(2)},.7"></div></div><div class="v" ${s.v==null?'':`data-n="0,${s.v},${(at+.15).toFixed(2)},.9" data-fmt="${s.fmt||'int'}"`}>${s.v==null?'n/a':'0'}</div></div>`; }).join('');
+  $('note').textContent = R.note || ''; $('foot1').textContent = R.foot_left; $('foot2').textContent = R.foot_right;
+  if (R.back) $('back').href = R.back;
+
+  // ---- the content kit's timeline engine (b3_common.ENGINE), unchanged in behaviour ----
+  const B=document.body,HOLD0=+(B.dataset.hold0||0.8),OUT=+(B.dataset.out||0.5),GAP=0.15;
+  const cl=x=>Math.max(0,Math.min(1,x)),ease=x=>1-Math.pow(1-x,3),back=x=>{const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+  const FMT={int:v=>Math.round(v).toLocaleString('en-US'),pct1:v=>v.toFixed(1)+'%',money:v=>R.cur+Math.round(v).toLocaleString('en-US'),k:v=>Math.round(v)+'K'};
+  function fx(el,f,p,raw){const s=el.style;
+   if(f==='fade'){s.opacity=p} else if(f==='up'){s.opacity=p;s.transform=`translateY(${(1-p)*28}px)`}
+   else if(f==='pop'){s.opacity=cl(raw*3);s.transform=`scale(${raw<=0?0.6:0.6+0.4*back(raw)})`}
+   else if(f==='blur'){s.opacity=p;s.filter=p>=1?'none':`blur(${(1-p)*14}px)`}
+   else if(f==='grow'){s.transformOrigin='left center';s.transform=`scaleX(${p})`}
+   else if(f==='sheen'){s.opacity=(raw>0&&raw<1)?1:0;s.transform=`translateX(${-140+raw*280}%)`}}
+  window.BT=t=>t-(HOLD0+OUT+GAP);
+  window.seek=function(t){let g=null;if(t<HOLD0)g=1;else if(t<HOLD0+OUT)g=1-ease((t-HOLD0)/OUT);const bt=window.BT(t);
+   document.querySelectorAll('[data-a]').forEach(el=>{const a=el.dataset.a.split(',');const f=a[0],at=+a[1]||0,d=+a[2]||0.45;
+    const raw=g!==null?(f==='sheen'?0:g):cl((bt-at)/d);fx(el,f,ease(raw),raw)});
+   document.querySelectorAll('[data-n]').forEach(el=>{const a=el.dataset.n.split(',').map(Number);
+    const p=g!==null?g:ease(cl((bt-a[2])/(a[3]||1)));el.textContent=(FMT[el.dataset.fmt||'int'])(a[0]+(a[1]-a[0])*p)});};
+
+  // ---- live playback in the browser (a recorder calls window.seek itself) ----
+  const fit=()=>{ const s=Math.min(innerWidth/1080,(innerHeight-80)/1350,1); $('stage').style.transform=`translate(-50%,-50%) scale(${s})`; }; fit(); addEventListener('resize',fit);
+  const dur=+B.dataset.dur; let t0=null, raf=null;
+  const play=()=>{ cancelAnimationFrame(raf); t0=null; const loop=ts=>{ if(t0===null) t0=ts; const t=((ts-t0)/1000)%(dur+1.5); window.seek(Math.min(t, dur)); raf=requestAnimationFrame(loop); }; raf=requestAnimationFrame(loop); };
+  if(navigator.webdriver && !/[?&]still=1/.test(location.search)){ const S=$('stage').style; S.transform='none'; S.left='0'; S.top='0'; document.querySelector('.ctl').style.display='none'; }
+  if(!/[?&]still=1/.test(location.search) && !navigator.webdriver) play(); else window.seek(dur);
+  $('replay').onclick=play;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+{ "name": "tantra-dashboard", "private": true, "type": "module", "scripts": { "build": "node build.cjs", "deploy": "node build.cjs && wrangler deploy" } }
