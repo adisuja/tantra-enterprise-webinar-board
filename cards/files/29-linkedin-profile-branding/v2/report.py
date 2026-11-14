@@ -25,7 +25,9 @@ find = lambda name: next(v for k, v in sec.items() if k.startswith(name))
 
 PEOPLE = [('adi', 'Adithya Murali', 'Leading the team'), ('bhaskar', 'Bhaskar', 'Leading marketing & product'),
           ('aquila', 'Aquila Eldho', 'Leading automations'), ('bharath', 'Bharath', 'Leading development'),
-          ('ben', 'Ben Basil Tomy', 'Leading development'), ('nelbin', 'Nelbin', 'Leading marketing ops')]
+          ('ben', 'Ben Basil Tomy', 'Leading development'), ('nelbin', 'Nelbin', 'Leading marketing ops'),
+          ('scott', 'Scott McArthur', 'Evangelist'), ('conor', 'Conor Norton', 'Evangelist')]
+NOPHOTO = {'scott', 'conor'}  # no photo yet: their cover only (the team strips stand in for them)
 COVERS = [('strips-violet', 'A2: face strips, violet grade', True), ('strips', 'A1: face strips, natural colour', False),
           ('panels', 'B1: side profiles on violet panels', False), ('glow', 'B2: side profiles on the dark background', False), ('tiles', 'B3: side profiles on stacked bright tiles (earlier, does not blend)', False)]
 
@@ -42,14 +44,14 @@ people = ''
 for k, name, title in PEOPLE:
     body = find(name.split()[0])
     people += f'''<section id="{k}"><h3>{e(name)}: {e(title)} @ Tantra</h3>
-<div class="pc">{img(f'assets/{k}-photo-1200.png', name + ' photo')}<div>{img(f'assets/{k}-cover-1584x396.png', name + ' cover')}</div></div>
-{dl((f'assets/{k}-cover-1584x396@2x.png', 'Cover, upload this (3168 x 792)'), (f'assets/{k}-photo-1200.png', 'Profile photo 1200 x 1200'), (f'shots/mock-{k}.png', 'How the cover looks on LinkedIn'))}
+<div class="pc">{'' if k in NOPHOTO else img(f'assets/{k}-photo-1200.png', name + ' photo')}<div>{img(f'assets/{k}-cover-1584x396.png', name + ' cover')}</div></div>
+{dl(*[x for x in ((f'assets/{k}-cover-1584x396@2x.png', 'Cover, upload this (3168 x 792)'), None if k in NOPHOTO else (f'assets/{k}-photo-1200.png', 'Profile photo 1200 x 1200'), (f'shots/mock-{k}.png', 'How the cover looks on LinkedIn')) if x])}
 <details><summary>{e(name)}'s fields: headline, About, experience, skills</summary>{md(body)}</details></section>'''
 
 covers = ''.join(f'''<div class="opt{' pick' if pick else ''}"><h4>{e(label)}{' (chosen)' if pick else ''}</h4>{img(f'assets/tantra-company-cover-{v}-1200x200.png', label)}
 {dl((f'assets/tantra-company-cover-{v}-4200x700.png', 'Upload size 4200 x 700'), (f'assets/tantra-company-cover-{v}-1200x200.png', '1200 x 200'), (f'assets/tantra-collage-{v}-1330x700.png', 'Collage alone'))}</div>''' for v, label, pick in COVERS)
 
-WHO = {'adi': 'Adi', 'nelbin': 'Nelbin', 'bhaskar': 'Bhaskar', 'bharath': 'Bharath', 'aquila': 'Aquila', 'ben': 'Ben', 'company': 'Tantra company page'}
+WHO = {'adi': 'Adi', 'nelbin': 'Nelbin', 'bhaskar': 'Bhaskar', 'bharath': 'Bharath', 'aquila': 'Aquila', 'ben': 'Ben', 'scott': 'Scott', 'conor': 'Conor', 'company': 'Tantra company page'}
 test = ''.join(f"<tr><td>{e(' '.join(c['lines'] + c['em']) if 'lines' in c else c['line1'] + ' ' + c['line2'])}</td><td>{e(c.get('bar') or 'none, one size')}</td><td>{', '.join(WHO[a] for a, kk in copy['caption_by_asset'].items() if kk == key)}</td></tr>" for key, c in copy['captions'].items())
 caps = ''.join(f'''<div class="opt"><h4>Round 1, option {i + 1}: {e(o['line1'])} {e(o['line2'])} / {e(o['bar'])}</h4>{img(f'shots/captions/round1/caption-{i + 1}-adi.png')}</div>''' for i, o in enumerate(copy['caption_round1']))
 cur = copy['cover']

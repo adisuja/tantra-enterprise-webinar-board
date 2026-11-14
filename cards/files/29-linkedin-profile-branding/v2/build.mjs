@@ -119,6 +119,29 @@ function cover(k, cap) {
 </div>`;
 }
 
+// Evangelists (Scott, Conor; Adi 2026-11-14): no photo yet, so the team's violet face strips stand where the person
+// and the side profile go. Same caption block and logo chips as every other cover; the LinkedIn photo zone stays clear.
+function evangelistCover(k, cap) {
+  const c = { ...copy.cover, ...(cap || {}) }, W = 1584, H = 396;
+  return `<div class="fit" id="cap" style="width:${W}px;height:${H}px">
+  <div class="grid" style="-webkit-mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.6) 30%,transparent 50%)"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 520px 300px at 760px 430px,rgba(109,74,255,.45),transparent 70%),radial-gradient(ellipse 520px 260px at 1300px -60px,rgba(109,74,255,.18),transparent 70%)"></div>
+  ${trafficSvg(520, H, 520, 300)}
+  <img src="${u('tantra-mark-white.png')}" style="position:absolute;left:36px;top:24px;height:72px;filter:drop-shadow(0 0 14px rgba(255,214,150,.35))">
+  <img src="${u('tantra-word-white.png')}" style="position:absolute;left:130px;top:46px;height:30px">
+  <div style="position:absolute;right:0;top:0;width:640px;height:${H}px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 26%)">
+    <img src="${ASSET('tantra-collage-strips-violet-1330x700.png')}" style="position:absolute;right:0;top:0;height:${H}px;width:${Math.round(H * 1330 / 700)}px">
+  </div>
+  <div style="position:absolute;left:520px;top:${c.lines ? 44 : 58}px;width:540px">
+    ${c.lines ? `<div class="h" style="font-size:${c.size}px;white-space:nowrap;line-height:1.04">${c.lines.join('<br>')}<br><em>${c.em.join('<br>')}</em></div>`
+    : `<div class="h" style="font-size:47px;white-space:nowrap">${c.line1}<br><em>${c.line2}</em></div>`}
+    ${c.bar ? `<div class="bar" style="font-size:20px;padding:9px 14px;margin-top:20px">${c.bar}</div>` : ''}
+    ${chips(['google', 'amazon', 'techstars', 'upgrad', 'licious', 'leapwork', 'dataguard', 'cavli'], 4, 122, 46, 2600, 28, 10, `margin-top:${c.bar ? 22 : 24}px`)}
+  </div>
+  ${guide(SAFE.cover)}
+</div>`;
+}
+
 // Collage A, face strips (Adi's first reference): each strip is a slice of one person's AI avatar face, eyes and smiles aligned.
 // grade 'natural' keeps skin tones and darkens toward the edges; 'violet' grades every strip into the brand violet.
 function collageStrips(grade) {
@@ -270,6 +293,7 @@ const browser = await chromium.launch();
 const CAP = (k) => copy.captions[copy.caption_by_asset[k]];
 const jobs = [
   ...Object.keys(PEOPLE).map((k) => [`${k}-cover-1584x396`, cover(k, CAP(k)), 1584, 396]),
+  ...['scott', 'conor'].map((k) => [`${k}-cover-1584x396`, evangelistCover(k, CAP(k)), 1584, 396]),
   ...Object.entries(COMPANY_VARIANTS).map(([v, f]) => [`tantra-collage-${v}`, f(), 380, 200, [[3.5, '-1330x700']]]),
   ...Object.keys(COMPANY_VARIANTS).map((v) => [`tantra-company-cover-${v}`, companyCover(v, CAP('company')), 1200, 200, [[1, '-1200x200'], [3.5, '-4200x700']]]),
 

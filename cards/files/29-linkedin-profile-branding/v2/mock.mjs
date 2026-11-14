@@ -9,12 +9,13 @@ const card = (cover, w, ratio, ph, phx, phTop, name, round = true, photo) => `<d
  <div style="position:relative;height:${ph - (w / ratio - phTop) + 90}px;padding:0 ${phx}px">
   <div style="position:absolute;left:${phx}px;top:${phTop - w / ratio}px;width:${ph}px;height:${ph}px;border-radius:${round ? '50%' : '6px'};border:4px solid #fff;background:${photo ? `url(${A(photo)}) center/cover` : '#cfd5dd'};box-sizing:border-box"></div>
   <div style="position:absolute;left:${phx}px;bottom:24px;font-size:${w > 500 ? 24 : 20}px;font-weight:700;color:#191919">${name}</div></div></div>`;
-const ppl = { adi: 'Adithya Murali', aquila: 'Aquila Eldho', ben: 'Ben Basil Tomy', bharath: 'Bharath', nelbin: 'Nelbin', bhaskar: 'Bhaskar' };
+const ppl = { adi: 'Adithya Murali', aquila: 'Aquila Eldho', ben: 'Ben Basil Tomy', bharath: 'Bharath', nelbin: 'Nelbin', bhaskar: 'Bhaskar', scott: 'Scott McArthur', conor: 'Conor Norton' };
+const NOPHOTO = new Set(['scott', 'conor']); // no photo yet: a grey placeholder where LinkedIn shows theirs
 const b = await chromium.launch(); fs.mkdirSync(path.join(HERE, 'shots'), { recursive: true });
 for (const [k, n] of Object.entries(ppl)) {
   const html = `<body style="margin:24px;background:#f4f2ee"><div style="display:flex;gap:28px;align-items:flex-start">
-   ${card(`assets/${k}-cover-1584x396.png`, 804, 4, 160, 24, 89, n, true, PHOTO[k] || `src/cutouts/${k}.png`)}
-   ${card(`assets/${k}-cover-1584x396.png`, 390, 4, 112, 16, 40, n, true, PHOTO[k] || `src/cutouts/${k}.png`)}</div></body>`;
+   ${card(`assets/${k}-cover-1584x396.png`, 804, 4, 160, 24, 89, n, true, NOPHOTO.has(k) ? null : (PHOTO[k] || `src/cutouts/${k}.png`))}
+   ${card(`assets/${k}-cover-1584x396.png`, 390, 4, 112, 16, 40, n, true, NOPHOTO.has(k) ? null : (PHOTO[k] || `src/cutouts/${k}.png`))}</div></body>`;
   const p = await b.newPage({ viewport: { width: 1290, height: 470 } }); await p.setContent(html);
   fs.writeFileSync(path.join(HERE, '.build', 'mock.html'), html); await p.goto(A('.build/mock.html'));
   await p.screenshot({ path: path.join(HERE, `shots/mock-${k}.png`) }); await p.close();

@@ -144,6 +144,63 @@ for p in v1['people']:
             "**About** (" + check('', ab, 2600) + "):", "", "```text", ab, "```", "",
             "**Experience description** (" + check('', desc, 2000) + "):", "", "```text", desc, "```", ""]
 
+# Evangelists (Adi 2026-11-14): Scott and Conor, title "Evangelist" at the Tantra page. No AI avatar or photo yet, so
+# their covers use the team face strips (build.mjs evangelistCover). Their links are the full jointantra.com UTM
+# links (LONG); CRM short links can be added later. Never mention how they are paid.
+EVANGELIST_SYSTEM = ("→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts\n"
+                     "→ Capture: registration and booking pages that feed one CRM\n"
+                     "→ Nurture: email and WhatsApp reminders and follow ups that run on their own\n"
+                     "→ Conversion: a weekly live session that ends in booked sales calls\n"
+                     "→ Pipeline: every booking, call and proposal tracked to the deal")
+EVANGELISTS = [
+    {'key': 'scott', 'name': 'Scott McArthur',
+     'headline': 'Evangelist @ Tantra | I help B2B founders turn cold traffic into booked sales calls with AI RevOps | 400+ brands, 21+ countries | Join our live AI RevOps workshop: link below 👇',
+     'skills': ['B2B Sales', 'Sales Strategy', 'RevOps', 'Lead Generation', 'Consultative Selling'],
+     'about': ("Most founders I speak with don't have a lead problem. They have a follow up problem.\n\n"
+               "The traffic is there. People visit, download, register, even reply once. Then nobody gets back to them at the right moment, and the pipeline quietly goes cold.\n\n"
+               "I'm an Evangelist at Tantra. I spend my days with B2B founders and revenue leaders, looking at how their pipeline actually runs, stage by stage, and showing them where AI can take over the repetitive work.\n\n"
+               "Tantra builds AI revenue systems with B2B teams:\n" + EVANGELIST_SYSTEM + "\n\n"
+               "The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\n"
+               "If you want to see the whole system working before you talk to anyone, join our live AI RevOps workshop. If you'd rather talk it through for your own business, book a strategy consultation and we'll map where your pipeline leaks."),
+     'role': "I work with B2B founders and revenue leaders to map how their pipeline runs today, and which parts AI should run for them."},
+    {'key': 'conor', 'name': 'Conor Norton',
+     'headline': 'Evangelist @ Tantra | AI RevOps for B2B teams: more booked calls from the traffic you already have | 400+ brands, 21+ countries | Join our live AI RevOps workshop: link below 👇',
+     'skills': ['Business Development', 'B2B Sales', 'Sales Funnel Strategy', 'CRM', 'Lead Generation'],
+     'about': ("Every week I talk to B2B teams who are doing everything right on paper. The posts go out, the ads run, the inbox fills up. And the number that matters, booked calls with the right people, barely moves.\n\n"
+               "Almost every time, the gap sits between the first click and the first conversation. Reminders that never went out. Follow ups that depend on someone remembering. Leads that went cold in a spreadsheet.\n\n"
+               "I'm an Evangelist at Tantra. My job is to understand how your revenue engine works today and show you, plainly, which parts AI can run for you and which still need your team.\n\n"
+               "What Tantra builds with you:\n" + EVANGELIST_SYSTEM + "\n\n"
+               "The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\n"
+               "The easiest way to see it is our live AI RevOps workshop: we take the whole funnel apart on screen. Or book a strategy consultation and we'll look at your numbers together."),
+     'role': "I help B2B teams see where their pipeline leaks between the first click and the first call, and what AI can run for them."},
+]
+for ev in EVANGELISTS:
+    k = ev['key']
+    ab = ev['about'] + ("\n\nTwo ways in:\n→ Join the live AI RevOps workshop: " + LONG(k, 'about') +
+                        "\n→ Book an AI revenue strategy consultation: " + LONG(k, 'about', 'consultation'))
+    desc = (ev['role'] + "\n\nTantra builds AI revenue systems with B2B teams: traffic, capture, nurture, the live session and the pipeline, "
+            "wired into one CRM with one weekly number for every stage. The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries."
+            f"\n\nSee it live: {LONG(k, 'role')}")
+    h = ev['headline']
+    out += [f"## {ev['name']} (Evangelist, your own LinkedIn profile)", "",
+            "| Field | Value | Check |", "| --- | --- | --- |",
+            "| Profile photo | Keep your current photo if it is a clear, front facing headshot (a branded one can be made from a photo you share) | |",
+            f"| Cover | `assets/{k}-cover-1584x396.png` (the team, the caption and client logos), caption: {capline(k)} | Verified in desktop and phone mock (`shots/mock-{k}.png`) |",
+            f"| Headline | {h.replace('|', '\\|')} | {check('', h, 220)} |",
+            "| Experience title | Evangelist | Adi 2026-11-14; company field = the Tantra page |",
+            "| Location | Keep your own | |",
+            f"| Top skills (5) | {', '.join(ev['skills'])} | Add the same five to the Tantra role's skills |", "",
+            f"**Links for {ev['name'].split()[0]}** (organic traffic goes to jointantra.com; every link carries its own utm_content):", "",
+            "Use these links as they are, in every place listed. Never shorten them or drop the utm parameters.", "",
+            "| Where | Short link (use this) | Lands on (UTMs added by the CRM) |", "| --- | --- | --- |",
+            *[f"| {lab} | {LONG(k, w, kd)} | {LONG(k, w, kd)} |" for lab, w, kd in [
+                ('Featured 1, workshop', 'featured', 'workshop'), ('Featured 2, consultation', 'featured', 'consultation'),
+                ('Contact info website (Company)', 'website', 'workshop'), ('Contact info website (Other)', 'website', 'consultation'),
+                ('About, workshop line', 'about', 'workshop'), ('About, consultation line', 'about', 'consultation'),
+                ('Role description and role media, workshop', 'role', 'workshop'), ('Role media, consultation', 'role', 'consultation')]], "",
+            "**About** (" + check('', ab, 2600) + "):", "", "```text", ab, "```", "",
+            "**Experience description** (" + check('', desc, 2000) + "):", "", "```text", desc, "```", ""]
+
 cab = fill(co['about']).replace("Our team has built", "Our team has built").replace('Start with the webinar: ' + 'https://webinar.sellwithtantra.com', f"Start with the live workshop: {SHORT}tantra-aw\nOr book an AI revenue strategy consultation: {SHORT}tantra-ac")
 out += ["## Tantra Company Page (https://www.linkedin.com/company/13588687/)", "",
         "Card 06 (`deliverables/06-company-page/ADMIN_STEPS.md`) has the click path and LinkedIn's rename rules. v2 changes only the cover, the button and the About ending.", "",
