@@ -245,7 +245,15 @@
 <td>Adi</td>
 </tr>
 </tbody>
-</table></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Card 72: The 100K MRR Club (offer, placement, course, membership)</h1>
+</table>
+<h2>10. Decided by Adi (13 November 2026, round 4)</h2>
+<ul>
+<li>The Tantra Academy is presented on its own: seven modules that follow the playbook, each with its own visual, and a full curriculum page (https://jointantra.com/tantra-plans/academy/).</li>
+<li>No scores anywhere: the Build Score, the Funnel Score and the Funnel Readiness Score are gone. The course call schedule is not shown on pages.</li>
+<li>Coaches by name on the pages, with their portraits: Adi (content and strategy), Bhaskar (automations and the Tantra AI infrastructure), Scott (NEPQ and sales scripts for every channel), Conor (sales process and CRM automations), plus Aquila (automation support) and Nelbin (operations and member support). Portraits are made from each person's own photo; until a photo arrives the card shows their initial.</li>
+<li>100K MRR Club members get the weekly group coaching call and one coaching slot a week, booked with whichever coach their build needs.</li>
+<li>Pages more compact: tighter spacing, the booking calendar stays in view, more imagery, fewer words per block. The proof wall image is gone.</li>
+</ul></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Card 72: The 100K MRR Club (offer, placement, course, membership)</h1>
 <p>Adi's brief, 13 November 2026: work out where the 100K MRR Club (Funnel OS + Content OS + Tantra Pro with a weekly group coaching call; since 13 November: $5,999 once for 6 months of access, or $1,999 the first month then $999 a month) is offered across the websites and the funnel, write the message sequences, design how the course is delivered, analyse both versions of the RevOps playbook and the onboarding centre to decide how many course videos are needed, script every video for a cloned voice with plain white slides, and plan the membership sign-up into the Tantra Academy in the Tantra app. A member should build, deploy and test in 2 days, drive traffic within a week, and optimise every day until closed revenue lands in the bank, with everything run from the Funnel OS chat.</p>
 <h2>Where We Are (13 November 2026, evening)</h2>
 <table>
@@ -784,7 +792,8 @@ Owner key: <strong>F</strong> funnel pages in this repo (<code>deliverables/13-1
 </tr>
 </tbody>
 </table>
-<h2>4. The Funnel Readiness Score (lead scoring and routing)</h2>
+<h2>4. The Funnel Readiness Score: REMOVED (Adi, 13 Nov 2026)</h2>
+<p>Adi removed the score: the page now forwards to the plans page and nothing links to it. The text below is kept for the record only.</p>
 <p><strong>In plain words.</strong> After the webinar, people ask the same question: "which plan is right for me?" Today the only answer is a sales call, so the closers spend time on people who should have started a $99 trial, and miss the ones who should be on a $17,999 call. The score answers that question without a call: 6 questions, one minute, one recommendation.</p>
 <p><strong>What it does for the funnel.</strong>
 1. <strong>Routes people.</strong> A small business with no list goes to Tantra Pro, not to a call. A founder with a team and a proven offer goes to the 100K MRR Club. A company past roughly $0.5M a year with budget goes to the $5M or $10M ARR Club call.
@@ -1451,8 +1460,8 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 </tr>
 <tr>
 <td>Weekly</td>
-<td>Four 15 minute slots inside that hour: a member books one when they want the call on their own build (experiment log, next week's change)</td>
-<td>Booked in the Tantra CRM, same Meet link</td>
+<td>One coaching slot a week, booked with whichever coach the build needs (Adi, Bhaskar, Scott or Conor)</td>
+<td>Booked in the Tantra CRM</td>
 </tr>
 <tr>
 <td>Daily</td>
@@ -1461,12 +1470,63 @@ Days 4 to 7: traffic. You watch registrations, replies and bookings arrive in th
 </tr>
 </tbody>
 </table>
-<h2>The Two Scores Members See</h2>
-<p><strong>Build Score (out of 100, weeks 1 and 2).</strong> Every video ends with a short "Done when" checklist. Each finished item adds points. Weights: Start 5, Decide 15, Infrastructure 15, CRM and Money 20, Build 25, Traffic 20. A member at 100 has a tested, live funnel. Coaches see every member's score on one board and chase anyone below 60 by the end of Day 2.</p>
-<p><strong>Funnel Score (weeks 2 to 4).</strong> The six stage rates from the dashboard (visit, sign-up, show-up, booking, close, rebooking), each shown against the member's own previous week, never against another business. The weekly call starts with the lowest one.</p>
-<p>Both scores live on the member's Academy page and in the CRM (contact fields <code>build_score</code> and <code>funnel_worst_step</code>), so the coach, the member and the weekly report read the same numbers.</p>
-<h2>The Coaches (internal, never on public pages)</h2>
-<p>Adi: content and strategy. Bhaskar: automations and the Tantra AI infrastructure. Scott: NEPQ and sales scripts for every channel. Conor: sales process and Tantra CRM automations.</p></div></details><details class="doc"><summary>BUILD_SYSTEM.md</summary><div class="md"><h1>The Member's System: How Every Piece Connects</h1>
+<h2>The Tantra Academy Modules (Adi 13 Nov: follow the playbook)</h2>
+<p>The 34 videos are grouped the way the RevOps playbook runs: set up, decide, build the six stages, launch, run. Each module ends with a working part of the funnel. Source of the pages: <code>13-15a-26-20-pages/src/data/academy.json</code> (built from the scripts; each video's outcome is its "Done when" line). Live: https://jointantra.com/tantra-plans/academy/</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Playbook</th>
+<th>Videos</th>
+<th>What the member has at the end</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Set Up</td>
+<td>Phase 0 of the playbook</td>
+<td>V01, V02, V03, V09, V10, V11, V12</td>
+<td>Your accounts, domains, mailboxes, calendar senders, LinkedIn and WhatsApp connected, and the clocks that take days started on Day 0.</td>
+</tr>
+<tr>
+<td>2. Decide</td>
+<td>Phase 1: the decisions</td>
+<td>V04, V05, V06, V07, V08</td>
+<td>Your offer, method, buyer, list size, funnel and event line decided once and written into the Funnel Brief.</td>
+</tr>
+<tr>
+<td>3. Landing and Nurture</td>
+<td>Stages 2 and 3</td>
+<td>V16, V17, V19</td>
+<td>Tracking, your landing and thank-you pages live on your domain, and every confirmation and reminder running.</td>
+</tr>
+<tr>
+<td>4. Conversion and Revenue</td>
+<td>Stages 4 and 5</td>
+<td>V18, V13, V14, V15, V20</td>
+<td>The conversion step, your CRM pipeline, booking pages, payments and the sales automations that take a lead to paid.</td>
+</tr>
+<tr>
+<td>5. Traffic</td>
+<td>Stage 1</td>
+<td>V23, V24, V25, V26, V27, V28</td>
+<td>Outreach on email, LinkedIn and calendar invites, the Content OS publishing every week, and ads built to a target cost.</td>
+</tr>
+<tr>
+<td>6. Launch</td>
+<td>Phase 3: go live</td>
+<td>V21, V22, V29</td>
+<td>Two test leads through every step, your first experiments written down, and launch day with the first 24 hour check.</td>
+</tr>
+<tr>
+<td>7. Run and Grow</td>
+<td>Phase 3 and Stage 6</td>
+<td>V30, V31, V32, V33, V34</td>
+<td>The weekly loop that turns traffic into closed revenue: the dashboard, the worst step, experiments, sales calls and long-term nurture.</td>
+</tr>
+</tbody>
+</table>
+<p>Scores removed (Adi 13 Nov): there is no Build Score, Funnel Score or Funnel Readiness Score. Each video ends with a plain checklist.</p></div></details><details class="doc"><summary>BUILD_SYSTEM.md</summary><div class="md"><h1>The Member's System: How Every Piece Connects</h1>
 <p>This is what a 100K MRR Club member ends up with, and how the Funnel OS chat runs the other systems. The course videos teach it; this page is the spec the team builds against.</p>
 <h2>1. The Systems and Who Does What</h2>
 <table>

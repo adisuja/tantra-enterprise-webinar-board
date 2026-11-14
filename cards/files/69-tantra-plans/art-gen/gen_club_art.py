@@ -19,9 +19,12 @@ def post(url, body):
 def get(path):
     return json.load(urllib.request.urlopen(urllib.request.Request('https://api.kie.ai' + path, headers=H), timeout=120, context=CTX))
 
-def upload():
-    b64 = base64.b64encode((HERE / 'ref' / 'tantra.png').read_bytes()).decode()
-    return post('https://kieai.redpandaai.co/api/file-base64-upload', {'base64Data': f'data:image/png;base64,{b64}', 'uploadPath': 'tantra-plans-ref', 'fileName': 'tantra.png'})['data']['downloadUrl']
+AVATAR = HERE.parent.parent / '13-15a-26-20-pages' / 'src' / 'assets' / 'img' / 'adi-avatar.jpg'
+
+def upload(path=HERE / 'ref' / 'tantra.png'):
+    mime = 'image/jpeg' if path.suffix.lower() in ('.jpg', '.jpeg') else 'image/png'
+    b64 = base64.b64encode(path.read_bytes()).decode()
+    return post('https://kieai.redpandaai.co/api/file-base64-upload', {'base64Data': f'data:{mime};base64,{b64}', 'uploadPath': 'tantra-plans-ref', 'fileName': path.name})['data']['downloadUrl']
 
 BASE = ("The reference image is the Tantra logo (a circuit tree growing out of a glowing head): reproduce it faithfully where it appears, never invent a different logo. "
         "Absolutely no text, letters, words, numbers or watermark anywhere. Premium 3D product render, cinematic studio lighting, ultra clean, "
@@ -108,9 +111,55 @@ JOBS.update({
                            " The left half of the frame is calm dark negative space."),
 })
 
+# Tantra Academy module set: one consistent studio, one hero object each, no logo, no charts.
+ACADEMY = ("Absolutely no text, letters, words, numbers, symbols, logos or watermark anywhere, no screens with writing, no charts, no arrows, no floating UI. "
+           "Ultra-premium 3D product still, like a luxury watch or Apple product campaign photograph: one single hero object, a clear focal point, restraint and calm. "
+           "Always the same dark studio: a near-black seamless background (#07080c) that falls off to pure black at every edge, the hero object resting on a low "
+           "dark honed basalt stone plinth with a subtle soft reflection, seen from a low camera angle slightly below eye level, 85mm lens, shallow depth of field. "
+           "Lighting identical in every image of the set: a deep violet (#6d4aff) key light from the upper left, a thin warm champagne gold rim light from behind right "
+           "tracing the edges, faint haze, velvet shadows. Real materials only: smoked and clear optical glass, dark brushed titanium, matte black metal, polished stone, "
+           "fine gold details. Generous dark space around the object, nothing cropped, 4:3 frame. Subject: ")
+JOBS.update({
+    'academy-m1': ACADEMY + ("a precise low control console of dark brushed titanium with a row of five small rounded glass modules shaped like miniature mailboxes plugged into it, "
+                             "each linked to the console by a neat, gently curved glowing violet cable, the cables tidy and parallel. A single small gold key rests on top of the console. "
+                             "Order, everything set up and connected."),
+    'academy-m2': ACADEMY + ("a thick slab of dark smoked glass lying at a slight angle, with a fine glowing violet line diagram engraved inside it like an architectural blueprint "
+                             "of interlocking rectangles and circles (pure geometry, no writing). A precise brushed-steel drafting compass stands open on the slab, and a single "
+                             "polished gold pin marks one point of the diagram. Deciding, designing with intent."),
+    'academy-m3': ACADEMY + ("a tall thin slab of clear glass standing upright on the plinth like a small monolith or a page, inside it one softly glowing rounded rectangle shape "
+                             "like an empty form field and a smaller glowing pill shape beneath it, nothing written. Around it, four or five small smooth glass speech-bubble "
+                             "shapes float in one gentle graceful arc, catching the champagne rim light. Welcome, conversation, nurture."),
+    'academy-m4': ACADEMY + ("side by side on the plinth: a round sleek glass dial like a premium rotary booking knob with a dark titanium core and fine unnumbered tick marks, and a "
+                             "matte black metal payment card standing on its edge with a bevelled gold edge, blank. A single thin golden thread of light arcs from the dial to "
+                             "the card, connecting them. Conversion, a booking becoming revenue, elegant and quiet."),
+    'academy-m5': ACADEMY + ("a single precision optical glass lens shaped like a shallow funnel, held in a slim dark titanium ring on a short stand. Five thin, clean beams of "
+                             "light (violet, lilac and champagne) arrive from different directions out of the darkness and enter the lens, and they converge into one single "
+                             "intensely bright small point of light just below it, on the plinth. Focus, many sources into one."),
+    'academy-m6': ACADEMY + ("a heavy dark smoked-glass launch switch block with a single large round push button ringed by a glowing violet light ring. Beside it a short neat "
+                             "vertical column of exactly five small round glass indicator lights set in a slim titanium strip, every one of them lit warm and steady, none dark. "
+                             "Ready, everything checked, the moment before launch."),
+    'academy-m7': ACADEMY + ("a precision instrument: a round dial gauge of dark brushed titanium with fine unnumbered tick marks and a single glowing violet segment on its arc, "
+                             "standing beside a small sculptural model of a pipeline made of glowing glass tubes and small glass nodes. A round magnifying lens in a thin gold "
+                             "frame hovers over one node of the pipeline, enlarging it. Running, measuring, refining."),
+    'adi-coach': ("The reference image is a photograph of a real man named Adi. Create a new premium portrait photograph of exactly this same man: keep his face, facial "
+                  "structure, skin tone, eyes, nose, beard shape, hairline and hairstyle, age and ethnicity exactly as in the reference, photorealistic, no beautifying, "
+                  "no smoothing, no changes to his identity. Only one person in the image. Chest-up portrait, body at a slight three-quarter angle, face toward the camera, "
+                  "confident and warm natural smile. He wears dark smart-casual clothing: a charcoal-black knit or open-collar dark shirt under a dark tailored jacket. "
+                  "Dark studio with a near-black background (#07080c) fading to black at the edges, a warm soft key light on his face from the front left, a violet (#6d4aff) "
+                  "rim light from behind outlining his hair and shoulders, soft depth of field, 85mm lens, editorial magazine portrait quality, real skin texture. "
+                  "Absolutely no logo, no text, letters, numbers or watermark. 4:3 landscape frame with him slightly right of centre."),
+})
+
+def refs(job, logo):
+    if job == 'adi-coach':
+        return [upload(AVATAR)]
+    return [] if job.startswith('academy-m') else [logo]
+
 def run(name, url):
     job = name.split('.')[0]
-    t = post('https://api.kie.ai/api/v1/jobs/createTask', {'model': 'nano-banana-pro', 'input': {'prompt': JOBS[job], 'image_input': [url], 'aspect_ratio': '16:9' if job.endswith('-banner') else '4:3', 'resolution': '2K', 'output_format': 'png'}})
+    t = post('https://api.kie.ai/api/v1/jobs/createTask', {'model': 'nano-banana-pro', 'input': {'prompt': JOBS[job], 'image_input': refs(job, url), 'aspect_ratio': '16:9' if job.endswith('-banner') else '4:3', 'resolution': '2K', 'output_format': 'png'}})
+    if not t.get('data'):
+        return False, f'{name} create failed {t}'
     tid = t['data']['taskId']
     for _ in range(150):
         time.sleep(6)
