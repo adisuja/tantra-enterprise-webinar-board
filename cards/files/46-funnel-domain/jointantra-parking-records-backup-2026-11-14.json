@@ -1,0 +1,18 @@
+[
+ {
+  "id": "f2d72a1d82199588962ee6aaa5eec1a1",
+  "type": "A",
+  "name": "jointantra.com",
+  "content": "192.64.119.44",
+  "proxied": true,
+  "ttl": 1
+ },
+ {
+  "id": "fc2632295cfdaf69011edb7f41006dea",
+  "type": "CNAME",
+  "name": "www.jointantra.com",
+  "content": "parkingpage.namecheap.com",
+  "proxied": true,
+  "ttl": 1
+ }
+]
