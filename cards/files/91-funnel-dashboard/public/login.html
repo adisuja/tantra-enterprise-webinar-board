@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sign in · Tantra Funnels</title>
+<link rel="icon" href="/favicon.png">
+<script src="/themes.js"></script>
+<link rel="stylesheet" href="/app.css">
+<style>
+  body { min-height: 100vh; display: grid; place-items: center; padding: 16px; position: relative; }
+  body::before { content: ''; position: fixed; inset: 0; background: var(--grad); opacity: .16; pointer-events: none; }
+  .box { position: relative; width: min(400px, 100%); background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow-lg); padding: 30px 28px; }
+  .box::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; border-radius: 20px 20px 0 0; background: var(--grad); }
+  .box img { height: 20px; }
+  .box h1 { margin: 22px 0 6px; }
+  .box p { margin: 0 0 20px; color: var(--ink-2); }
+  .box .btn { width: 100%; justify-content: center; height: 44px; margin-top: 14px; }
+  .box .input { height: 44px; }
+  #msg { min-height: 20px; margin-top: 10px; }
+</style>
+</head>
+<body>
+<form class="box" id="f">
+  <img class="logo-light" src="/tantra-word-ink.png" alt="Tantra">
+  <img class="logo-dark" src="/tantra-word-white.png" alt="Tantra">
+  <h1>Funnel dashboard</h1>
+  <p>Live numbers for every Tantra funnel. Sign in with the team password.</p>
+  <div class="field">
+    <label for="pw">Password</label>
+    <input class="input" id="pw" name="password" type="password" autocomplete="current-password" required autofocus>
+  </div>
+  <button class="btn primary" type="submit">Sign in</button>
+  <div id="msg" class="err-msg" role="alert"></div>
+</form>
+<script src="/login.js"></script>
+
+</body>
+</html>

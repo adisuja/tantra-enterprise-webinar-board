@@ -1,0 +1,12 @@
+{
+  "name": "tantra-dashboard",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.cjs",
+    "deploy": "node build.cjs && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.161.0"
+  }
+}

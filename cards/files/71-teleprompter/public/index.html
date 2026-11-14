@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0d12">
+<meta name="description" content="Tantra Teleprompter: read your script to camera on one phone and control it from another. Works in any mobile browser.">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<title>Tantra Teleprompter</title>
+<link rel="stylesheet" href="/style.css">
+<style>
+  .code { font-family: var(--display); font-weight: 600; font-size: 40px; letter-spacing: 6px; line-height: 1; }
+  .codebox { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 6px 0 4px; }
+  .session { border-color: var(--volt); box-shadow: 0 0 0 1px rgba(109, 74, 255, 0.35), 0 12px 40px rgba(109, 74, 255, 0.18); }
+  .stepnum { color: var(--iris); font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+  #text { min-height: 34vh; }
+  .or { color: var(--muted); font-size: 13px; margin: 12px 0 6px; }
+  .note { background: rgba(194, 65, 12, 0.18); border: 1px solid var(--ember); color: #ffc4ad; padding: 10px 12px; border-radius: 12px; margin: 12px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brandbar">
+    <a class="lockup" href="/" aria-label="Tantra Teleprompter home"><img class="mark" src="/tantra-mark.png" alt=""><img class="word" src="/tantra-word.png" alt="Tantra"></a>
+    <span class="product">Teleprompter</span>
+    <span class="right"></span>
+  </div>
+
+  <div style="margin:26px 0 8px">
+    <div class="eyebrow">For webinars, VSLs and talking head videos</div>
+    <h1>Read to camera. Control it from your phone.</h1>
+    <p class="lead">Add your script, generate a code, and open that code on two phones: one on the teleprompter glass, one in your hand. It runs in the browser, so there's nothing to install.</p>
+  </div>
+
+  <div class="note" id="missing" hidden></div>
+
+  <!-- The current session, once there is one -->
+  <div class="card session" id="session" hidden>
+    <div class="stepnum">Your code</div>
+    <div class="codebox">
+      <span class="code" id="code"></span>
+      <button class="btn" id="copyCode" type="button">Copy</button>
+    </div>
+    <p class="muted small" style="margin:6px 0 0">Open this code on both phones. Anyone with the code can see these scripts and control the prompter.</p>
+
+    <div class="links" style="margin-top:12px">
+      <div class="card" style="margin:0">
+        <h2 style="margin-top:0">Prompter phone</h2>
+        <p class="muted small">The phone on the teleprompter glass. Scan this with it.</p>
+        <div class="qr" id="qrPrompter"></div>
+        <a class="btn block" id="openPrompter" href="#" style="margin-top:10px">Open prompter on this phone</a>
+      </div>
+      <div class="card" style="margin:0">
+        <h2 style="margin-top:0">Remote phone</h2>
+        <p class="muted small">The phone in your hand. Scan this with it.</p>
+        <div class="qr" id="qrRemote"></div>
+        <a class="btn primary block" id="openRemote" href="#" style="margin-top:10px">Open remote on this phone</a>
+      </div>
+    </div>
+
+    <label class="small muted" for="scriptPick" style="display:block;margin-top:14px">Script on the prompter</label>
+    <select id="scriptPick" style="margin-top:6px"></select>
+    <a class="btn block" id="openScripts" href="#" style="margin-top:10px">Add or edit scripts in this code</a>
+    <p class="muted small" id="hint" style="margin:10px 0 0"></p>
+  </div>
+
+  <!-- Start a session: script first, then the code -->
+  <div class="card" id="start">
+    <div class="stepnum">Step 1</div>
+    <h2 style="margin-top:4px" id="startTitle">Add your script</h2>
+    <input id="title" type="text" placeholder="Title (optional)" style="margin-bottom:10px">
+    <textarea id="text" placeholder="Paste your script here.&#10;&#10;# A line starting with # becomes a section you can jump to.&#10;[Words in square brackets] show as cues you don't read out."></textarea>
+    <div class="row" style="margin-top:10px">
+      <label class="btn" for="file">Upload a file</label>
+      <input id="file" type="file" accept=".txt,.md,.markdown,.html,.htm,text/plain,text/markdown,text/html" hidden>
+      <span class="muted small">.txt or .md</span>
+    </div>
+    <div class="or">Or import a Google Doc shared as "Anyone with the link":</div>
+    <div class="row">
+      <input id="importUrl" type="url" class="grow" placeholder="https://docs.google.com/document/d/..." autocomplete="off" style="width:auto;flex:1 1 0">
+      <button class="btn" id="importBtn" type="button">Import</button>
+    </div>
+
+    <div class="stepnum" style="margin-top:20px">Step 2</div>
+    <button class="btn primary block" id="generate" type="button" style="margin-top:6px;min-height:56px;font-size:17px">Generate code</button>
+    <p class="muted small" id="genNote" style="margin:8px 0 0">Every new code is a fresh session. Scripts don't carry over between codes.</p>
+  </div>
+
+  <!-- Join an existing session -->
+  <div class="card">
+    <h2 style="margin-top:0">Have a code?</h2>
+    <div class="row">
+      <input id="joinCode" type="text" class="grow" placeholder="Enter code" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" style="width:auto;flex:1 1 0;text-transform:uppercase;font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:3px">
+      <button class="btn" id="join" type="button">Join</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <img src="/tantra-mark.png" alt="">
+    <span>Tantra Teleprompter. Made by <a href="https://usetantra.com" target="_blank" rel="noopener">Tantra</a>.</span>
+  </div>
+</div>
+<script src="/qrcode.js"></script>
+<script src="/importers.js"></script>
+<script src="/common.js"></script>
+<script>
+(async function () {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const toast = (msg) => { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 3000); };
+  let current = '';
+  let base = location.origin;
+
+  const missing = TP.cleanCode(TP.qs.get('missing'));
+  if (missing) { $('missing').hidden = false; $('missing').textContent = `There's no session with the code ${missing}. Check the code, or add a script and generate a new one. Sessions are cleared after a week without use.`; }
+
+  try {
+    const info = await TP.api('/api/info');
+    const isLocal = /^(localhost|127\.|\[::1\])/.test(location.hostname);
+    if (isLocal && info.lan.length) {
+      base = `http://${info.lan[0]}:${info.port}`;
+      $('hint').textContent = `You opened this on the computer, so the QR codes point to ${base}. Your phones need to be on the same Wi-Fi as this computer.`;
+    }
+  } catch (e) {}
+
+  async function showSession(code, quiet) {
+    let s;
+    try { s = await TP.api(TP.sessionPath(code)); }
+    catch (e) { if (!quiet) toast(e.message); return false; }
+    current = code;
+    TP.rememberCode(code);
+    history.replaceState(null, '', `/?code=${code}`);
+    $('session').hidden = false;
+    $('code').textContent = code;
+    const p = `${base}/prompter?code=${code}`;
+    const r = `${base}/remote?code=${code}`;
+    $('openPrompter').href = `/prompter?code=${code}`;
+    $('openRemote').href = `/remote?code=${code}`;
+    $('openScripts').href = `/scripts?code=${code}`;
+    $('qrPrompter').innerHTML = TP.qrSvg(p, 180);
+    $('qrRemote').innerHTML = TP.qrSvg(r, 180);
+    $('scriptPick').innerHTML = s.scripts.map((x) => `<option value="${TP.esc(x.id)}">${TP.esc(x.title)} (${x.words} words)</option>`).join('');
+    $('scriptPick').value = s.state.scriptId || '';
+    $('startTitle').textContent = 'Start a new session: add a script';
+    $('genNote').textContent = 'Generating again starts a fresh session with a new code. To add more scripts to this code, use Add or edit scripts.';
+    return true;
+  }
+
+  $('scriptPick').addEventListener('change', () => { if (current) TP.command(current, { type: 'script', id: $('scriptPick').value }).catch((e) => toast(e.message)); });
+  $('copyCode').addEventListener('click', async (e) => {
+    try { await navigator.clipboard.writeText(current); e.target.textContent = 'Copied'; setTimeout(() => { e.target.textContent = 'Copy'; }, 1500); } catch {}
+  });
+
+  // Step 1: the script
+  $('file').addEventListener('change', async (e) => {
+    const f = e.target.files[0]; if (!f) return;
+    const parsed = TPImport.parseImport(await f.text(), { filename: f.name });
+    if (!parsed.text.trim()) return toast('That file had no text I could use.');
+    $('title').value = parsed.title; $('text').value = parsed.text;
+    e.target.value = '';
+  });
+  $('importBtn').addEventListener('click', async () => {
+    const url = $('importUrl').value.trim();
+    if (!url) return toast('Paste a link first.');
+    $('importBtn').disabled = true;
+    try {
+      const parsed = await TP.api('/api/import', { body: { url } });
+      $('title').value = parsed.title; $('text').value = parsed.text;
+      toast('Imported. Check it, then generate your code.');
+    } catch (e) { toast(e.message); }
+    finally { $('importBtn').disabled = false; }
+  });
+
+  // Step 2: the code
+  $('generate').addEventListener('click', async () => {
+    if (!$('text').value.trim()) { toast('Add your script first.'); $('text').focus(); return; }
+    $('generate').disabled = true;
+    try {
+      const out = await TP.api('/api/sessions', { body: { title: $('title').value, text: $('text').value } });
+      $('title').value = ''; $('text').value = ''; $('importUrl').value = '';
+      $('missing').hidden = true;
+      await showSession(out.code);
+      $('session').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (e) { toast(e.message); }
+    finally { $('generate').disabled = false; }
+  });
+
+  // Join with a code
+  async function join() {
+    const code = TP.cleanCode($('joinCode').value);
+    if (!code) return toast('Enter a code first.');
+    if (await showSession(code)) { $('joinCode').value = ''; $('missing').hidden = true; $('session').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  }
+  $('join').addEventListener('click', join);
+  $('joinCode').addEventListener('keydown', (e) => { if (e.key === 'Enter') join(); });
+
+  // Back on the home page with a code in the link, or a code this phone used last: show that session.
+  const start = TP.codeFromUrl() || TP.lastCode();
+  if (start && start !== missing) await showSession(start, true);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && current) showSession(current, true); });
+})();
+</script>
+</body>
+</html>
