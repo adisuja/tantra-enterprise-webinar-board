@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0b0d12">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Remote | Tantra Teleprompter</title>
+<link rel="stylesheet" href="/style.css">
+<style>
+  body { -webkit-user-select: none; user-select: none; }
+  .wrap { padding-bottom: max(24px, env(safe-area-inset-bottom)); padding-top: max(12px, env(safe-area-inset-top)); }
+  .top { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+  .room { font-weight: 700; letter-spacing: 1px; color: var(--text); }
+  .status { color: var(--muted); font-size: 14px; }
+  .warn { background: rgba(194, 65, 12, 0.18); border: 1px solid var(--ember); color: #ffc4ad; padding: 10px 12px; border-radius: 10px; margin-top: 10px; display: none; }
+  .now { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
+  .now .sec { color: var(--iris); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+  .now .txt { margin-top: 4px; font-size: 15px; max-height: 4.4em; overflow: hidden; color: #dfe3e8; }
+  .bar { height: 6px; background: var(--panel-2); border-radius: 3px; margin-top: 10px; overflow: hidden; }
+  .bar > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--volt), var(--iris)); transition: width 0.3s; }
+  .meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; margin-top: 6px; }
+  #play { width: 100%; height: 30vh; min-height: 150px; max-height: 260px; margin-top: 14px; border-radius: 24px; border: none; font-family: var(--display); font-size: 34px; font-weight: 600; background: linear-gradient(160deg, var(--volt), var(--volt-deep)); color: #fff; letter-spacing: 0.06em; box-shadow: 0 10px 30px rgba(109, 74, 255, 0.35); }
+  #play.playing { background: var(--amber); color: var(--ink); box-shadow: 0 10px 30px rgba(251, 191, 36, 0.25); }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .big { min-height: 64px; font-size: 22px; border-radius: 16px; }
+  .speed { text-align: center; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; display: flex; flex-direction: column; justify-content: center; min-height: 64px; }
+  .speed b { font-family: var(--display); font-weight: 600; font-size: 30px; line-height: 1; }
+  .speed span { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+  input[type=range] { width: 100%; accent-color: var(--volt); margin: 14px 0 4px; height: 32px; }
+  details { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); margin-top: 12px; }
+  summary { padding: 14px; font-weight: 600; cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; float: right; color: var(--muted); }
+  details[open] summary::after { content: "\2212"; }
+  .inner { padding: 0 14px 14px; }
+  .sections button { display: block; width: 100%; text-align: left; background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px; margin: 6px 0; }
+  .sections button.cur { border-color: var(--volt); color: var(--iris); }
+  .set { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+  .set label { flex: 1; }
+  .set .btn { min-width: 52px; padding: 0 12px; }
+  .set output { min-width: 48px; text-align: center; font-weight: 700; }
+  .toggle.on { background: var(--volt); color: #fff; border-color: var(--volt); }
+  select { padding: 12px; }
+  .row select.grow { width: auto; flex: 1 1 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brandbar">
+    <a class="lockup" href="/" aria-label="Tantra Teleprompter home"><img class="mark" src="/tantra-mark.png" alt=""></a>
+    <span class="product" style="border:0;padding-left:0">Remote <span class="muted" style="font-family:var(--body);font-weight:500">Code <span class="room" id="room"></span></span></span>
+    <span class="right status"><span class="dot" id="dot"></span> <span id="statusText">Connecting</span></span>
+  </div>
+  <div class="warn" id="warn">The prompter phone is not connected. Open the prompter link on it and keep that page in front.</div>
+
+  <div class="row" style="margin-top:12px">
+    <select id="scriptSel" class="grow" aria-label="Script"></select>
+    <a class="btn" id="editLink" href="/scripts">Scripts</a>
+  </div>
+
+  <div class="now">
+    <div class="sec" id="secName">&nbsp;</div>
+    <div class="txt" id="nowText">&nbsp;</div>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="meta"><span id="pct">0%</span><span id="left"></span></div>
+  </div>
+
+  <button id="play" type="button">PLAY</button>
+
+  <div class="grid3">
+    <button class="btn big" id="slower" type="button" aria-label="Slower">&#8722;</button>
+    <div class="speed"><b id="speedVal">5</b><span>Speed</span></div>
+    <button class="btn big" id="faster" type="button" aria-label="Faster">+</button>
+  </div>
+  <input type="range" id="speedRange" min="1" max="30" step="0.5" aria-label="Speed">
+
+  <div class="grid3">
+    <button class="btn big" id="back" type="button">&#9650; Back</button>
+    <button class="btn big" id="dirBtn" type="button">&#8595; Fwd</button>
+    <button class="btn big" id="fwd" type="button">&#9660; Skip</button>
+  </div>
+  <p class="muted small" style="margin:6px 2px 0">Hold Back or Skip to keep the text moving. Both work while playing or paused.</p>
+
+  <details id="secBox">
+    <summary>Jump to a section</summary>
+    <div class="inner sections" id="sections"></div>
+  </details>
+
+  <details>
+    <summary>Display</summary>
+    <div class="inner">
+      <div class="set"><label>Text size</label><button class="btn" data-adj="fontSize" data-step="-4">A&#8722;</button><output id="o_fontSize"></output><button class="btn" data-adj="fontSize" data-step="4">A+</button></div>
+      <div class="set"><label>Side margins</label><button class="btn" data-adj="margin" data-step="-2">&#8722;</button><output id="o_margin"></output><button class="btn" data-adj="margin" data-step="2">+</button></div>
+      <div class="set"><label>Line spacing</label><button class="btn" data-adj="lineHeight" data-step="-0.1">&#8722;</button><output id="o_lineHeight"></output><button class="btn" data-adj="lineHeight" data-step="0.1">+</button></div>
+      <div class="set"><label>Reading line from top</label><button class="btn" data-adj="marker" data-step="-5">&#8722;</button><output id="o_marker"></output><button class="btn" data-adj="marker" data-step="5">+</button></div>
+      <div class="grid2">
+        <button class="btn toggle" id="mirrorX" type="button">Mirror left/right</button>
+        <button class="btn toggle" id="mirrorY" type="button">Flip upside down</button>
+      </div>
+      <div class="grid2">
+        <button class="btn toggle" id="alignLeft" type="button">Align left</button>
+        <button class="btn toggle" id="alignCenter" type="button">Align centre</button>
+      </div>
+      <div class="grid2">
+        <button class="btn" id="restart" type="button">Back to start</button>
+        <button class="btn" id="reconnect" type="button">Reconnect</button>
+      </div>
+    </div>
+  </details>
+  <div class="footer">
+    <img src="/tantra-mark.png" alt="">
+    <span>Tantra Teleprompter. Made by <a href="https://usetantra.com" target="_blank" rel="noopener">Tantra</a>.</span>
+  </div>
+</div>
+
+<script src="/importers.js"></script>
+<script src="/common.js"></script>
+<script>
+(function () {
+  'use strict';
+  const room = TP.requireCode();
+  TP.ensureSession(room).catch(() => {});
+  const $ = (id) => document.getElementById(id);
+  $('room').textContent = room;
+  $('editLink').href = `/scripts?code=${room}`;
+
+  let S = null, presence = { prompter: 0 }, blocks = [], loadedId = null, pos = { para: 0, progress: 0 };
+  let rtt = null, online = false;
+
+  function setStatus() {
+    $('dot').className = 'dot ' + (online ? 'online' : 'offline');
+    $('statusText').textContent = online ? (rtt != null ? `Live, ${rtt} ms` : 'Live') : 'Reconnecting';
+    $('warn').style.display = online && presence.prompter === 0 ? 'block' : 'none';
+  }
+
+  async function send(cmd) {
+    if (navigator.vibrate) navigator.vibrate(12);
+    try { rtt = await TP.command(room, cmd); setStatus(); }
+    catch (e) { toast('Not sent: ' + e.message); }
+  }
+
+  function toast(msg) {
+    const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
+    document.body.appendChild(t); setTimeout(() => t.remove(), 2500);
+  }
+
+  function renderState() {
+    if (!S) return;
+    $('play').textContent = S.playing ? 'PAUSE' : 'PLAY';
+    $('play').classList.toggle('playing', S.playing);
+    $('speedVal').textContent = String(S.speed);
+    $('speedRange').value = S.speed;
+    $('dirBtn').innerHTML = S.dir === 1 ? '&#8595; Fwd' : '&#8593; Rev';
+    for (const k of ['fontSize', 'margin', 'lineHeight', 'marker']) {
+      let v = S[k];
+      if (k === 'lineHeight') v = Number(v).toFixed(1);
+      if (k === 'margin' || k === 'marker') v = v + '%';
+      $('o_' + k).textContent = v;
+    }
+    $('mirrorX').classList.toggle('on', S.mirrorX);
+    $('mirrorY').classList.toggle('on', S.mirrorY);
+    $('alignLeft').classList.toggle('on', S.align === 'left');
+    $('alignCenter').classList.toggle('on', S.align === 'center');
+    if ($('scriptSel').value !== S.scriptId) $('scriptSel').value = S.scriptId || '';
+    if (S.scriptId !== loadedId) loadScript(S.scriptId);
+  }
+
+  async function loadScripts() {
+    try {
+      const list = await TP.api(TP.scriptsPath(room));
+      $('scriptSel').innerHTML = list.map((s) => `<option value="${TP.esc(s.id)}">${TP.esc(s.title)} (${s.words} words)</option>`).join('');
+      if (S) $('scriptSel').value = S.scriptId || '';
+    } catch (e) { toast(e.message); }
+  }
+
+  async function loadScript(id) {
+    loadedId = id;
+    if (!id) { blocks = []; renderSections(); return; }
+    try {
+      const sc = await TP.api(TP.scriptsPath(room, id));
+      blocks = TPImport.parseScript(sc.text);
+      renderSections(); renderPos();
+    } catch (e) { toast(e.message); }
+  }
+
+  function renderSections() {
+    const items = blocks.map((b, i) => ({ b, i })).filter((x) => x.b.type === 'h');
+    const box = $('sections');
+    if (!items.length) {
+      box.innerHTML = '<p class="muted small">No sections. Start a line with # in the script to make one.</p>';
+    } else {
+      box.innerHTML = items.map((x) => `<button type="button" data-para="${x.i}">${TP.esc(x.b.text)}</button>`).join('');
+    }
+    box.insertAdjacentHTML('afterbegin', '<button type="button" data-para="0">Start of script</button>');
+  }
+  $('sections').addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-para]'); if (!b) return;
+    send({ type: 'jump', para: Number(b.dataset.para) });
+  });
+
+  function renderPos() {
+    if (!blocks.length) return;
+    const i = Math.min(pos.para, blocks.length - 1);
+    let sec = '';
+    for (let k = i; k >= 0; k--) if (blocks[k].type === 'h') { sec = blocks[k].text; break; }
+    $('secName').textContent = sec || 'Start';
+    let cur = blocks[i];
+    if (cur && cur.type === 'h') cur = blocks.slice(i + 1).find((b) => b.type === 'p') || cur;
+    $('nowText').textContent = cur ? cur.text : '';
+    const pct = Math.round((pos.progress || 0) * 100);
+    $('bar').style.width = pct + '%';
+    $('pct').textContent = pct + '%';
+    const wordsLeft = blocks.slice(i).reduce((n, b) => n + (b.type === 'p' ? (b.text.match(/\S+/g) || []).length : 0), 0);
+    const mins = wordsLeft / 150;
+    $('left').textContent = mins < 1 ? 'Under a minute left' : `About ${Math.round(mins)} min left`;
+    document.querySelectorAll('#sections button').forEach((b) => b.classList.toggle('cur', b.dataset.para !== '0' && Number(b.dataset.para) === lastHeadingBefore(i)));
+  }
+  function lastHeadingBefore(i) { for (let k = i; k >= 0; k--) if (blocks[k].type === 'h') return k; return -1; }
+
+  // Buttons
+  $('play').addEventListener('click', () => { if (S) { S.playing = !S.playing; renderState(); } send({ type: 'toggle' }); });
+  $('slower').addEventListener('click', () => send({ type: 'speedBy', value: -1 }));
+  $('faster').addEventListener('click', () => send({ type: 'speedBy', value: 1 }));
+  $('speedRange').addEventListener('change', (e) => send({ type: 'speed', value: Number(e.target.value) }));
+  $('speedRange').addEventListener('input', (e) => { $('speedVal').textContent = e.target.value; });
+  $('dirBtn').addEventListener('click', () => send({ type: 'dir' }));
+  $('restart').addEventListener('click', () => { if (confirm('Go back to the start of the script?')) send({ type: 'restart' }); });
+  $('reconnect').addEventListener('click', () => { conn.reopen(); loadScripts(); });
+  $('mirrorX').addEventListener('click', () => send({ type: 'set', values: { mirrorX: !S.mirrorX } }));
+  $('mirrorY').addEventListener('click', () => send({ type: 'set', values: { mirrorY: !S.mirrorY } }));
+  $('alignLeft').addEventListener('click', () => send({ type: 'set', values: { align: 'left' } }));
+  $('alignCenter').addEventListener('click', () => send({ type: 'set', values: { align: 'center' } }));
+  document.querySelectorAll('[data-adj]').forEach((b) => b.addEventListener('click', () => {
+    const k = b.dataset.adj, step = Number(b.dataset.step);
+    const v = Math.round((Number(S[k]) + step) * 10) / 10;
+    send({ type: 'set', values: { [k]: v } });
+  }));
+  $('scriptSel').addEventListener('change', (e) => send({ type: 'script', id: e.target.value }));
+
+  // Hold to repeat for Back and Skip
+  function holdRepeat(el, lines) {
+    let timer = null, delay = null;
+    const stop = () => { clearTimeout(delay); clearInterval(timer); timer = delay = null; };
+    el.addEventListener('pointerdown', (e) => {
+      e.preventDefault(); stop();
+      send({ type: 'nudge', lines });
+      delay = setTimeout(() => { timer = setInterval(() => send({ type: 'nudge', lines }), 180); }, 400);
+    });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach((ev) => el.addEventListener(ev, stop));
+    el.addEventListener('contextmenu', (e) => e.preventDefault());
+  }
+  holdRepeat($('back'), -2);
+  holdRepeat($('fwd'), 2);
+
+  const conn = TP.connect(room, 'remote', {
+    status: (s) => { online = s === 'online'; setStatus(); },
+    state: (st) => {
+      const first = !S;
+      S = st;
+      if (first && st.anchor) pos = { ...pos, para: st.anchor.para };
+      renderState(); renderPos();
+    },
+    presence: (p) => { presence = p; setStatus(); },
+    pos: (p) => { pos = p; renderPos(); },
+    script: (m) => { if (m.id === loadedId) loadScript(m.id); loadScripts(); },
+  });
+  loadScripts();
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') loadScripts(); });
+  const wake = TP.keepAwake();
+  wake.on();
+  document.addEventListener('pointerup', () => wake.on(), { once: true });
+})();
+</script>
+</body>
+</html>
