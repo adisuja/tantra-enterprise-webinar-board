@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0d12">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<title>Scripts | Tantra Teleprompter</title>
+<link rel="stylesheet" href="/style.css">
+<style>
+  .list button { display: block; width: 100%; text-align: left; background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px; margin: 6px 0; }
+  .list button.cur { border-color: var(--accent); }
+  .list .t { font-weight: 600; }
+  .help { font-size: 13px; color: var(--muted); }
+  .help code { font-size: 13px; color: var(--text); }
+  #editor { display: none; }
+  .stats { font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brandbar">
+    <a class="lockup" href="/" aria-label="Tantra Teleprompter home"><img class="mark" src="/tantra-mark.png" alt=""><img class="word" src="/tantra-word.png" alt="Tantra"></a>
+    <span class="product">Teleprompter</span>
+    <span class="right"><a class="btn" id="remoteLink" href="/remote">Remote</a></span>
+  </div>
+  <h1>Scripts</h1>
+
+  <div id="library">
+    <div class="card">
+      <div class="row">
+        <button class="btn primary" id="newBtn" type="button">New script</button>
+        <label class="btn" for="file">Upload file</label>
+        <input id="file" type="file" accept=".txt,.md,.markdown,.html,.htm,text/plain,text/markdown,text/html" hidden>
+      </div>
+      <p class="help">Upload a .txt or .md file. For Word or Pages, copy the text and paste it into a new script.</p>
+    </div>
+
+    <div class="card">
+      <b>Import from a link</b>
+      <p class="help" style="margin-top:4px">A Google Doc shared as "Anyone with the link", or any page with text.</p>
+      <input id="importUrl" type="url" placeholder="https://docs.google.com/document/d/..." autocomplete="off">
+      <div class="row" style="margin-top:10px">
+        <button class="btn" id="importBtn" type="button">Import link</button>
+      </div>
+    </div>
+
+    <h2>Scripts in this code</h2>
+    <div class="list" id="list"><p class="muted">Loading</p></div>
+  </div>
+
+  <div id="editor">
+    <div class="card">
+      <input id="title" type="text" placeholder="Script title" style="font-weight:600;font-size:18px">
+      <div style="height:10px"></div>
+      <textarea id="text" spellcheck="true" placeholder="Paste or type your script here."></textarea>
+      <div class="stats" id="stats" style="margin-top:6px"></div>
+      <p class="help"><code># Section name</code> on its own line makes a section you can jump to. A blank line starts a new paragraph. <code>[like this]</code> shows a cue in blue that you don't read out.</p>
+      <div class="row">
+        <button class="btn primary" id="saveBtn" type="button">Save</button>
+        <button class="btn" id="useBtn" type="button">Save and send to prompter</button>
+        <button class="btn" id="closeBtn" type="button">Back to list</button>
+        <span class="grow"></span>
+        <button class="btn danger" id="delBtn" type="button">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <img src="/tantra-mark.png" alt="">
+    <span>Tantra Teleprompter. Made by <a href="https://usetantra.com" target="_blank" rel="noopener">Tantra</a>.</span>
+  </div>
+</div>
+<script src="/importers.js"></script>
+<script src="/common.js"></script>
+<script>
+(function () {
+  'use strict';
+  const room = TP.requireCode();
+  TP.ensureSession(room).catch(() => {});
+  const $ = (id) => document.getElementById(id);
+  $('remoteLink').href = `/remote?code=${room}`;
+  let current = null, roomScriptId = null, dirty = false;
+
+  function toast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 3000); }
+
+  async function refresh() {
+    try {
+      const [list, st] = await Promise.all([TP.api(TP.scriptsPath(room)), TP.api(TP.sessionPath(room))]);
+      roomScriptId = st.state.scriptId;
+      $('list').innerHTML = list.length ? list.map((s) => `<button type="button" data-id="${TP.esc(s.id)}" class="${s.id === roomScriptId ? 'cur' : ''}"><div class="t">${TP.esc(s.title)}${s.id === roomScriptId ? ' <span class="muted small">(on the prompter)</span>' : ''}</div><div class="muted small">${s.words} words, about ${Math.max(1, Math.round(s.words / 150))} min. Edited ${new Date(s.updatedAt).toLocaleString()}</div></button>`).join('') : '<p class="muted">No scripts yet.</p>';
+    } catch (e) { $('list').innerHTML = `<p class="muted">${TP.esc(e.message)}</p>`; }
+  }
+  $('list').addEventListener('click', async (e) => {
+    const b = e.target.closest('button[data-id]'); if (!b) return;
+    try { open(await TP.api(TP.scriptsPath(room, b.dataset.id))); } catch (err) { toast(err.message); }
+  });
+
+  function open(sc) {
+    current = sc; dirty = false;
+    $('title').value = sc.title || ''; $('text').value = sc.text || '';
+    $('delBtn').style.display = sc.id ? '' : 'none';
+    $('library').style.display = 'none'; $('editor').style.display = 'block';
+    stats(); window.scrollTo(0, 0);
+  }
+  function close() {
+    if (dirty && !confirm('You have changes that are not saved. Leave anyway?')) return;
+    $('editor').style.display = 'none'; $('library').style.display = 'block'; current = null; refresh();
+  }
+  function stats() {
+    const words = ($('text').value.match(/\S+/g) || []).length;
+    const secs = TPImport.parseScript($('text').value).filter((b) => b.type === 'h').length;
+    $('stats').textContent = `${words} words, ${secs} sections, about ${Math.max(1, Math.round(words / 150))} min at 150 words a minute`;
+  }
+  $('text').addEventListener('input', () => { dirty = true; stats(); });
+  $('title').addEventListener('input', () => { dirty = true; });
+
+  async function save() {
+    const body = { title: $('title').value.trim() || 'Untitled', text: $('text').value };
+    const path = TP.scriptsPath(room, current && current.id);
+    const saved = await TP.api(path, { body });
+    current = saved; dirty = false; $('delBtn').style.display = '';
+    return saved;
+  }
+  $('saveBtn').addEventListener('click', async () => { try { await save(); toast('Saved'); } catch (e) { toast(e.message); } });
+  $('useBtn').addEventListener('click', async () => {
+    try { const s = await save(); await TP.command(room, { type: 'script', id: s.id }); toast('Saved and sent to the prompter'); } catch (e) { toast(e.message); }
+  });
+  $('closeBtn').addEventListener('click', close);
+  $('delBtn').addEventListener('click', async () => {
+    if (!current || !current.id || !confirm(`Delete "${current.title}"?`)) return;
+    try { await TP.api(TP.scriptsPath(room, current.id), { method: 'DELETE' }); dirty = false; close(); } catch (e) { toast(e.message); }
+  });
+  $('newBtn').addEventListener('click', () => open({ title: '', text: '' }));
+
+  $('file').addEventListener('change', async (e) => {
+    const f = e.target.files[0]; if (!f) return;
+    const raw = await f.text();
+    const parsed = TPImport.parseImport(raw, { filename: f.name });
+    if (!parsed.text.trim()) return toast('That file had no text I could use.');
+    open({ title: parsed.title, text: parsed.text }); dirty = true;
+    e.target.value = '';
+  });
+
+  async function importLink(url) {
+    const btns = [$('importBtn')]; btns.forEach((b) => b.disabled = true);
+    try {
+      const parsed = await TP.api('/api/import', { body: { url } });
+      if (!parsed.text.trim()) throw new Error('That link had no text I could use.');
+      open({ title: parsed.title, text: parsed.text }); dirty = true;
+      toast('Imported. Check it, then save.');
+    } catch (e) { toast(e.message); }
+    finally { btns.forEach((b) => b.disabled = false); }
+  }
+  $('importBtn').addEventListener('click', () => { const u = $('importUrl').value.trim(); if (!u) return toast('Paste a link first.'); importLink(u); });
+  window.addEventListener('beforeunload', (e) => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+  refresh();
+})();
+</script>
+</body>
+</html>
