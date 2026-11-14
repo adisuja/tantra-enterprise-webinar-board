@@ -5,7 +5,7 @@ usage: python3 -I gen_club_art.py [name ...]   -> art/<name>.png, then webp 800/
        13-15a-26-20-pages/src/assets/img/plans/<name>-<w>.webp
        python3 -I gen_club_art.py --webp [name ...]  -> only (re)convert existing pngs
 """
-import base64, json, pathlib, ssl, sys, time, urllib.request, concurrent.futures as cf
+import os, base64, json, pathlib, ssl, sys, time, urllib.request, concurrent.futures as cf
 
 HERE = pathlib.Path(__file__).parent
 ART = HERE / 'art'
@@ -150,9 +150,35 @@ JOBS.update({
                   "Absolutely no logo, no text, letters, numbers or watermark. 4:3 landscape frame with him slightly right of centre."),
 })
 
+# Team portraits (Adi 2026-11-14): made only from each person's own photos. The photos stay out of the repo: they are
+# read from TEAM_REF_DIR (default ~/.config/tantra/team-ref) as <slug>-1.jpg, <slug>-2.jpg, ...
+TEAM_REF = pathlib.Path(os.environ.get('TEAM_REF_DIR', pathlib.Path.home() / '.config' / 'tantra' / 'team-ref'))
+TEAM_PEOPLE = {
+    'bhaskar': ('man', 'his', 'Keep his glasses exactly as in the reference.'),
+    'bharath': ('man', 'his', 'The references show him from several angles; keep his shaved head and beard exactly.'),
+    'aquila': ('woman', 'her', 'Keep her long dark hair as in the references.'),
+    'nelbin': ('man', 'his', 'Keep his hair, moustache and goatee exactly as in the reference.'),
+    'ben': ('man', 'his', 'Keep his hair and short beard exactly as in the reference.'),
+}
+def team_job(slug):
+    who, pos, extra = TEAM_PEOPLE[slug]
+    return (f"The reference images are photographs of one real {who}. Create a new premium portrait photograph of exactly this same {who}: keep {pos} face, facial "
+            f"structure, skin tone, eyes, nose, hair, facial hair, age and ethnicity exactly as in the references, photorealistic, no beautifying, no smoothing, "
+            f"no changes to {pos} identity. {extra} Only one person in the image. Chest-up portrait, body at a slight three-quarter angle, face toward the camera, "
+            f"relaxed confident natural smile. Dark smart-casual clothing: a charcoal-black knit or open-collar dark shirt, optionally under a dark tailored jacket. "
+            "Dark studio with a near-black background (#07080c) fading to black at the edges, a warm soft key light on the face from the front left, a violet (#6d4aff) "
+            "rim light from behind outlining the hair and shoulders, soft depth of field, 85mm lens, editorial magazine portrait quality, real skin texture. "
+            "Absolutely no logo, no text, letters, numbers or watermark. 4:3 landscape frame with the person slightly right of centre.")
+JOBS.update({f'{k}-coach': team_job(k) for k in TEAM_PEOPLE})
+
 def refs(job, logo):
     if job == 'adi-coach':
         return [upload(AVATAR)]
+    if job.endswith('-coach'):
+        files = sorted(TEAM_REF.glob(f"{job[:-6]}-*.jpg"))
+        if not files:
+            raise SystemExit(f'no reference photo for {job} in {TEAM_REF}')
+        return [upload(f) for f in files]
     return [] if job.startswith('academy-m') else [logo]
 
 def run(name, url):
