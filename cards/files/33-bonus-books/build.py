@@ -336,26 +336,6 @@ var c=b.querySelector('[data-pcopy]');if(c)c.onclick=function(){{(navigator.clip
 </script>"""
 
 
-
-# Club crests (card 72, Adi 2026-11-13): the same marks as the plans pages (13-15a-26-20-pages/src/pages/plans.mjs, crest()).
-CLUB_MARKS = {'k100': ('100K MRR Club', '100K', 'MRR', 'cm--100k'), 'm5': ('$5M ARR Club', '$5M', 'ARR', 'cm--5m'), 'm10': ('$10M ARR Club', '$10M', 'ARR', 'cm--10m')}
-
-
-def club_mark(k, size=44):
-    name, num, unit, cls = CLUB_MARKS[k]
-    g = f'cm{k}'
-    small = len(num) > 3
-    svg = (f'<svg class="cm__crest" viewBox="0 0 64 72" width="{size}" height="{round(size * 72 / 64)}" aria-hidden="true" focusable="false"><defs>'
-           f'<linearGradient id="{g}e" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="cm-s1"/><stop offset=".5" class="cm-s2"/><stop offset="1" class="cm-s3"/></linearGradient>'
-           f'<linearGradient id="{g}f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="cm-f1"/><stop offset="1" class="cm-f2"/></linearGradient></defs>'
-           f'<path d="M32 2 60 12v24c0 17-12 28-28 34C16 64 4 53 4 36V12z" fill="url(#{g}f)" stroke="url(#{g}e)" stroke-width="2.6"/>'
-           f'<path d="M32 8.5 54 16.5V36c0 13.4-9.3 22.4-22 27.3C19.3 58.4 10 49.4 10 36V16.5z" fill="none" stroke="url(#{g}e)" stroke-width=".9" opacity=".6"/>'
-           f'<path d="M25 22.5l7-5.5 7 5.5" fill="none" stroke="url(#{g}e)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
-           f'<text x="32" y="{41 if small else 42}" text-anchor="middle" class="cm__num" font-size="{14.5 if small else 17}" fill="url(#{g}e)">{esc(num)}</text>'
-           f'<text x="32" y="53.5" text-anchor="middle" class="cm__unit" font-size="6.6" fill="url(#{g}e)">{unit}</text></svg>')
-    return f'<span class="cm {cls}">{svg}<span class="cm__t"><small>The Tantra</small><b>{esc(name)}<sup class="tm">&#8482;</sup></b></span></span>'
-
-
 def engine_offer():
     pro, club = TP['pro'], TP['club_100k']
     channels = [
@@ -386,14 +366,10 @@ def engine_offer():
         ('Day 3', 'google-gmail', 'Email: last call', 'Then the sequence stops', 'If still no reply'),
     ]
     sq = ''.join(f'<li><span class="sq__d">{d}</span>{brand(lg, "", 20)}<div><b>{t}</b><small>{s}</small></div>{f"<em>{c}</em>" if c else ""}</li>' for d, lg, t, s, c in seq)
-    # Card 72 (Adi 2026-11-13): no separate Enterprise plan; each club has its crest and ™; prices in the visitor's currency.
-    ent, big = TP['enterprise'], TP['club_10m']
-    def prices(m):
-        return ''.join(f'<span data-price="{c}"{" hidden" if i else ""}>{esc(v)}</span>' for i, (c, v) in enumerate((k, v) for k, v in m.items() if not k.startswith('_')))
     plans = f'''<div class="pls">
-      <a class="pl pl--ent" href="{esc(BL['club_5m'])}" data-t-cta="bonus_club_5m">{club_mark('m5')}<span class="pl__k">Done for you</span><span class="pl__p"><b class="pl__amt">{prices(ent['prices'])}</b> for 6 months. Built, live and backed by the Tantra 10X ROI Guarantee</span><span class="pl__c">Join the $5M ARR Club&#8482;</span></a>
-      <a class="pl pl--ent pl--big" href="{esc(BL['club_10m'])}" data-t-cta="bonus_club_10m">{club_mark('m10')}<span class="pl__k">Done for you, at scale</span><span class="pl__p"><b class="pl__amt">{prices(big['prices'])}</b> for 6 months. For companies going to $10M a year</span><span class="pl__c">Join the $10M ARR Club&#8482;</span></a>
-      <a class="pl pl--club" href="{esc(BL['club_100k'])}" data-t-cta="bonus_club_100k">{club_mark('k100')}<span class="pl__k">Build it with our team</span><span class="pl__p"><b class="pl__amt">{prices(club['prices'])}</b> for 6 months, or {prices(club['monthly']['first'])} then {prices(club['monthly']['then'])} a month</span><span class="pl__c">Join the 100K MRR Club&#8482;</span></a>
+      <a class="pl pl--ent" href="{esc(BL['club_5m'])}" data-t-cta="bonus_club_5m"><span class="pl__k">Done for you</span><b>Tantra Enterprise</b><span class="pl__p">Built, live and backed by the Tantra 10X ROI Guarantee</span><span class="pl__c">Join the $5M ARR Club</span></a>
+      <a class="pl pl--ent" href="{esc(BL['club_10m'])}" data-t-cta="bonus_club_10m"><span class="pl__k">Done for you, at scale</span><b>The $10M ARR Club</b><span class="pl__p">Tantra Enterprise for companies going to $10M a year</span><span class="pl__c">Join the $10M ARR Club</span></a>
+      <a class="pl pl--club" href="{esc(BL['club_100k'])}" data-t-cta="bonus_club_100k"><span class="pl__k">Build it with us</span><b>The 100K MRR Club</b><span class="pl__p">{esc(club['prices']['USD'])} {esc(club['per'])}</span><span class="pl__c">Apply for access</span></a>
       <a class="pl pl--pro" href="{esc(BL['pro_trial'])}" data-t-cta="bonus_pro_trial"><span class="pl__k">Run it yourself</span><b>Tantra Pro</b><span class="pl__p"><span data-deal><s>${pro['list_usd']}</s> ${pro['price_usd']} a month for the first 3 months, then ${pro['list_usd']}</span><span data-after>${pro['list_usd']} a month</span></span><span class="pl__c">Start {pro['trial_days']} days free</span></a>
     </div>
     <p class="pls__help">Not sure which plan fits you? <a href="{esc(BL['strategy_call'])}" data-t-cta="bonus_strategy_call">Book a free strategy call</a> and I will tell you straight.</p>'''
