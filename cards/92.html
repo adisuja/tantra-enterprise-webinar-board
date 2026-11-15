@@ -1,0 +1,118 @@
+<details class="doc" open><summary>README.md</summary><div class="md"><h1>Card 92: the weekly webinar cycle</h1>
+<p>The webinar runs every Thursday at 11:00 UK time. This card makes the whole funnel move to the next session by itself, checks every part of it each week, and runs a fast end-to-end test inside the CRM. Daily or fortnightly runs work the same way: set <code>webinar.cadence</code> (<code>daily</code>, <code>weekly</code>, <code>fortnightly</code>) or <code>webinar.cadence_days</code> in <code>deliverables/_shared/funnel-config.json</code>. A week with no session goes in <code>webinar.skip_dates</code>.</p>
+<h2>What moves to the next session, and how</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>How it moves</th>
+<th>Who</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registration and funnel pages: date in the copy, countdowns, calendar buttons, the .ics file, the session sent with each registration</td>
+<td>The pages build picks the first session that has not ended (<code>nextSessionDate</code> in <code>13-15a-26-20-pages/src/lib.mjs</code>). The cycle rebuilds and deploys right after each session</td>
+<td>Automatic (GitHub Actions)</td>
+</tr>
+<tr>
+<td>WebinarJam session people are registered into</td>
+<td>The register Worker takes WebinarJam's first open date</td>
+<td>Automatic, while WebinarJam has future sessions. Adding sessions is a WebinarJam step (handoff prompt 2)</td>
+</tr>
+<tr>
+<td>WebinarJam webinar and its registration link (when a webinar gets a new one)</td>
+<td>One place: <code>46-funnel-domain/worker/wrangler.jsonc</code> vars <code>WJ_WEBINAR_ID</code>, <code>WJ_HASH</code>, <code>WJ_SLUG</code>, plus <code>webinar.join_url</code> in funnel-config.json. The check fails when the two disagree</td>
+<td>Whoever creates the webinar in WebinarJam (handoff prompt 2)</td>
+</tr>
+<tr>
+<td>Phone required</td>
+<td>Our form requires it, the register Worker refuses a registration without one, and the check reads the WebinarJam form's phone setting</td>
+<td>Set once in WebinarJam (handoff prompt 2)</td>
+</tr>
+<tr>
+<td>CRM reminders, bonuses, replay, AI calls</td>
+<td>CRM sequences use the weekly event rule (Thursday 11:00) and each person's registration time</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td>CRM tracking campaign on every message link (<code>webinar-YYYY-MM-DD</code>)</td>
+<td><code>cycle.mjs roll --apply</code> after each session</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td>WhatsApp Announcements group posts</td>
+<td>The scheduler tops up 21 days ahead from the weekly series</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td>Dashboard (dashboard.usetantra.com)</td>
+<td>Sessions every 7 days from the first date; rebuilds on its own timer</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td>Tantra Plans coupon and 72-hour deadline</td>
+<td>One coupon per webinar in Dodo, then <code>tantra_plans</code> in funnel-config.json</td>
+<td>Adi, each week (handoff prompt 3) until an evergreen coupon is chosen</td>
+</tr>
+<tr>
+<td>Cold calendar invites (<code>12-calendar-invites/calendar-import.csv</code>)</td>
+<td>Imported by hand into the Tantra app</td>
+<td>Senders' lead</td>
+</tr>
+<tr>
+<td>One-off reschedule campaigns (CRM stage Webinar Reschedule)</td>
+<td>Their sequences carry their own session date</td>
+<td>Whoever runs the reschedule; the check warns when that date has passed</td>
+</tr>
+</tbody>
+</table>
+<h2>The weekly timetable (workflow <code>Webinar weekly cycle</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>When (UTC)</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Every day 12:20</td>
+<td>If a session just ended: rebuild and deploy the pages for the next one, move the CRM tracking campaign on, then run the full check. Otherwise only check</td>
+</tr>
+<tr>
+<td>Monday 09:10</td>
+<td>Full check plus the fast end-to-end test (dry run)</td>
+</tr>
+<tr>
+<td>Wednesday 09:10</td>
+<td>Full check plus the fast end-to-end test, live to the team's test contacts when the repository variable <code>E2E_LIVE</code> is <code>1</code></td>
+</tr>
+<tr>
+<td>Any time</td>
+<td>Actions, Webinar weekly cycle, Run workflow: <code>check</code>, <code>roll</code>, <code>e2e</code>, <code>e2e-live</code> or <code>all</code></td>
+</tr>
+</tbody>
+</table>
+<p>Every run writes its report to the run's summary page and to the dashboard database (table <code>cycle_checks</code>), and fails (GitHub emails the owner) when a check fails.</p>
+<h2>What the check covers</h2>
+<p>Pages up and showing the next session; registration page date text; the .ics file; the Tantra Plans coupon deadline; WebinarJam's open sessions (at least 4 ahead); registrations since the last session reaching WebinarJam and the CRM; the CRM Webinar pipeline and stages; every webinar sequence's status, test mode, event rule and tracking campaign; one-off reschedule events in the past; every WhatsApp template used by an active sequence approved; senders running; AI calling on; the tracking pipeline healthy; the CRM funnel definition active; the dashboard rebuilt within a day; the funnel map's status date.</p>
+<h2>The fast end-to-end test in the CRM</h2>
+<p><code>node cycle.mjs e2e</code> (dry run) or <code>--live</code>:</p>
+<ol>
+<li>Makes or reuses the pipeline <strong>Webinar E2E test (fast)</strong> with the same stages as the Webinar pipeline.</li>
+<li>Copies every live webinar sequence into it as <strong>E2E fast: (name)</strong>, fresh from the real ones each run, with the session 12 minutes away and every timing squeezed (3 days becomes 8 minutes, 1 day 4, an hour or less 1). Tag triggers stay inside the test pipeline, so the real sequences never see a test deal.</li>
+<li>Creates three test deals: one goes to Attended (with the survey tag), one to Missed, one to Webinar Reschedule.</li>
+<li>Waits until every step has run, then fails any step that failed or was skipped for a reason that is not expected (no phone on a dry-run deal, a condition, consent).</li>
+<li>Checks the tracking events for the test deals, then deletes them.</li>
+</ol>
+<p>Dry run: test deals use example.com addresses and no phone, and the copies are in test mode, so nothing is sent. Live: the deals use <code>E2E_EMAIL</code> (with +e2e tags) and <code>E2E_PHONE</code>, the team's own, so every email, WhatsApp, SMS fallback and AI call really goes out to the team.</p>
+<h2>Run it by hand</h2>
+<pre><code>cd deliverables/92-weekly-cycle
+node cycle.mjs plan
+node cycle.mjs check
+node cycle.mjs roll            # preview
+node cycle.mjs roll --apply
+node cycle.mjs e2e             # dry run, about 25 minutes
+</code></pre>
+<p>Needs <code>TANTRA_CRM_API_KEY</code> and <code>CLOUDFLARE_API_TOKEN</code> in the environment (a Claude cloud session adds both through its proxy).</p></div></details><details class="doc"><summary>Files for import or upload (2)</summary><ul class="files"><li><a href="cards/files/92-weekly-cycle/config.json" target="_blank" rel="noopener">config.json</a></li><li><a href="cards/files/92-weekly-cycle/cycle.mjs" target="_blank" rel="noopener">cycle.mjs</a></li></ul></details>

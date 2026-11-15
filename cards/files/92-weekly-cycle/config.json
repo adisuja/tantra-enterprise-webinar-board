@@ -1,0 +1,45 @@
+{
+  "_about": "Card 92, the weekly webinar cycle. The session dates come from deliverables/_shared/funnel-config.json (webinar.first_date, cadence or cadence_days, start_time_local, timezone, skip_dates). This file lists what the cycle checks and rolls.",
+  "site": "https://webinar.sellwithtantra.com",
+  "pages": ["/", "/thank-you/", "/funnelos/", "/confirmation/", "/calculator/", "/recording/", "/tantra-plans/"],
+  "funnel_map": "https://tantra-funnel-map.growthcluborg.workers.dev/",
+  "dashboard_funnel": "enterprise-webinar",
+  "webinarjam": {
+    "_about": "The webinar ID, hash and slug come from deliverables/46-funnel-domain/worker/wrangler.jsonc vars (WJ_WEBINAR_ID, WJ_HASH, WJ_SLUG).",
+    "min_future_sessions": 4
+  },
+  "cloudflare": {
+    "account_id": "e51d1fda77a8f98fb670b2c106bd8a33",
+    "dashboard_db": "0efe3e93-0c7c-4557-a5bc-da54416ed6eb",
+    "registrations_db": "1dc18123-4492-4d77-80bc-52a4234dd2ab"
+  },
+  "crm": {
+    "api": "https://crm-api.usetantra.com",
+    "pipeline_id": "pl_f6ef920b69e34e5c8d16",
+    "tracking_funnel_id": "fun_b4a950603bec4715bfe0",
+    "utm_campaign_prefix": "webinar-",
+    "stages": ["Registered", "Attended", "Missed", "Webinar Reschedule", "Watched replay", "Call booked", "Purchased"],
+    "senders": ["wa:+14456227661", "u:acc_01m6ykwnjeeh2at6gh7ar0z9bb"],
+    "sequences": {
+      "Webinar: registered (confirmation and reminders)": { "status": "active", "weekly": true, "campaign": true },
+      "Webinar: survey done (report ready)": { "status": "active", "weekly": true, "campaign": true },
+      "Webinar: RevOps OS nudge (WA2)": { "status": "active", "weekly": true, "campaign": true },
+      "Webinar: OS purchased": { "status": "active", "weekly": true, "campaign": true },
+      "Webinar: attended (bonuses)": { "status": "active", "weekly": true, "campaign": true },
+      "Webinar: missed (replay)": { "status": "active", "weekly": true, "campaign": true },
+      "Webinar: AI calls (confirmation and reminder)": { "weekly": true, "campaign": true }
+    }
+  },
+  "e2e": {
+    "pipeline_name": "Webinar E2E test (fast)",
+    "prefix": "E2E fast: ",
+    "event_in_minutes": 12,
+    "max_wait_minutes": 25,
+    "include_drafts": ["Webinar: AI calls (confirmation and reminder)"],
+    "sample_join_url": "https://event.webinarjam.com/7222k8/go/live/e2etest",
+    "sample_replay_url": "https://event.webinarjam.com/7222k8/go/replay/e2etest",
+    "sample_report_url": "https://webinar.sellwithtantra.com/calculator/",
+    "sample_bonus_url": "https://bonuses.sellwithtantra.com/",
+    "ok_skip": ["No phone number", "no phone", "No email", "condition", "Outside", "consent", "not delivered to US", "already", "no mobile channel"]
+  }
+}

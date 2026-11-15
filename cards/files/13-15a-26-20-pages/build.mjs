@@ -40,7 +40,8 @@ for (const page of pages) {
   ctx.version = version;
   // The only values the browser needs. No keys, no personal data.
   ctx.client = {
-    webinar_date: ctx.known('webinar.first_date') ? ctx.get('webinar.first_date') : null,
+    // The session this build shows (card 92: the next one that has not ended at build time).
+    webinar_date: ctx.event ? ctx.event.date : ctx.known('webinar.first_date') ? ctx.get('webinar.first_date') : null,
     // Live, the form posts to the register Worker (item 17), never to the CRM directly.
     register_worker_url: ctx.known('integrations.register_worker_url') ? ctx.get('integrations.register_worker_url') : null,
     // LIVE mode only when both the Worker URL and the Turnstile site key are filled; otherwise the review stub.
