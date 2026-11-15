@@ -145,8 +145,8 @@ for p in v1['people']:
             "**Experience description** (" + check('', desc, 2000) + "):", "", "```text", desc, "```", ""]
 
 # Evangelists (Adi 2026-11-14): Scott and Conor, title "Evangelist" at the Tantra page. No AI avatar or photo yet, so
-# their covers use the team face strips (build.mjs evangelistCover). Their links are the full jointantra.com UTM
-# links (LONG); CRM short links can be added later. Never mention how they are paid.
+# their covers use the team face strips (build.mjs evangelistCover). Their 16 short links were created on 15 Nov in the
+# same campaign (scott-fw ... conor-rc), so they use L() like the six. Never mention how they are paid.
 EVANGELIST_SYSTEM = ("→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts\n"
                      "→ Capture: registration and booking pages that feed one CRM\n"
                      "→ Nurture: email and WhatsApp reminders and follow ups that run on their own\n"
@@ -176,11 +176,11 @@ EVANGELISTS = [
 ]
 for ev in EVANGELISTS:
     k = ev['key']
-    ab = ev['about'] + ("\n\nTwo ways in:\n→ Join the live AI RevOps workshop: " + LONG(k, 'about') +
-                        "\n→ Book an AI revenue strategy consultation: " + LONG(k, 'about', 'consultation'))
+    ab = ev['about'] + ("\n\nTwo ways in:\n→ Join the live AI RevOps workshop: " + L(k, 'about') +
+                        "\n→ Book an AI revenue strategy consultation: " + L(k, 'about', 'consultation'))
     desc = (ev['role'] + "\n\nTantra builds AI revenue systems with B2B teams: traffic, capture, nurture, the live session and the pipeline, "
             "wired into one CRM with one weekly number for every stage. The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries."
-            f"\n\nSee it live: {LONG(k, 'role')}")
+            f"\n\nSee it live: {L(k, 'role')}")
     h = ev['headline']
     out += [f"## {ev['name']} (Evangelist, your own LinkedIn profile)", "",
             "| Field | Value | Check |", "| --- | --- | --- |",
@@ -191,9 +191,9 @@ for ev in EVANGELISTS:
             "| Location | Keep your own | |",
             f"| Top skills (5) | {', '.join(ev['skills'])} | Add the same five to the Tantra role's skills |", "",
             f"**Links for {ev['name'].split()[0]}** (organic traffic goes to jointantra.com; every link carries its own utm_content):", "",
-            "Use these links as they are, in every place listed. Never shorten them or drop the utm parameters.", "",
+            "Use the short link in every place listed, Featured included: LinkedIn now previews go.usetantra.com (15 Nov).", "",
             "| Where | Short link (use this) | Lands on (UTMs added by the CRM) |", "| --- | --- | --- |",
-            *[f"| {lab} | {LONG(k, w, kd)} | {LONG(k, w, kd)} |" for lab, w, kd in [
+            *[f"| {lab} | {L(k, w, kd)} | {LONG(k, w, kd)} |" for lab, w, kd in [
                 ('Featured 1, workshop', 'featured', 'workshop'), ('Featured 2, consultation', 'featured', 'consultation'),
                 ('Contact info website (Company)', 'website', 'workshop'), ('Contact info website (Other)', 'website', 'consultation'),
                 ('About, workshop line', 'about', 'workshop'), ('About, consultation line', 'about', 'consultation'),

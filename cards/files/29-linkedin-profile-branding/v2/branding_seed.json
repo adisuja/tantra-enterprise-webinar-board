@@ -1,0 +1,1232 @@
+{
+ "projects": [
+  {
+   "person_key": "adi",
+   "name": "Adithya Murali",
+   "kind": "profile",
+   "profile_url": "https://www.linkedin.com/in/adisuja/",
+   "title": "Leading the team",
+   "campaign_id": "cmp_f427ef8e47514047be1d",
+   "channel_id": "chn_c1118abc4dc74c06a10b",
+   "context": {
+    "answers": {
+     "company": "Tantra",
+     "title": "Leading the team",
+     "offer": "Join the live AI RevOps workshop, or book an AI revenue strategy consultation",
+     "audience": "B2B founders and revenue leaders",
+     "pain": "Leads go cold between the first click and the first call",
+     "proof": "400+ brands, 47+ industries, 21+ countries. Client logos approved 7 Nov: Google, Amazon, Techstars, upGrad and the \"Brands We've Helped Grow\" set",
+     "role": "I founded Tantra and host our weekly live AI RevOps workshop.",
+     "links": "https://jointantra.com/ and https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation",
+     "voice": "\"I\" and \"you\", open on a specific pain, plain words, one focal action, no AI filler"
+    },
+    "sources": {
+     "company": "seed",
+     "title": "seed",
+     "offer": "seed",
+     "audience": "seed",
+     "pain": "seed",
+     "proof": "seed",
+     "role": "seed",
+     "links": "seed",
+     "voice": "seed"
+    },
+    "destinations": {
+     "workshop": "https://jointantra.com/",
+     "consultation": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation"
+    },
+    "links": {
+     "featured_workshop": "https://go.usetantra.com/l/adi-fw",
+     "featured_consultation": "https://go.usetantra.com/l/adi-fc",
+     "website_workshop": "https://go.usetantra.com/l/adi-ww",
+     "website_consultation": "https://go.usetantra.com/l/adi-wc",
+     "about_workshop": "https://go.usetantra.com/l/adi-aw",
+     "about_consultation": "https://go.usetantra.com/l/adi-ac",
+     "role_workshop": "https://go.usetantra.com/l/adi-rw",
+     "role_consultation": "https://go.usetantra.com/l/adi-rc"
+    },
+    "utm_campaign": "enterprise-webinar",
+    "seed": "card 29 PROFILE_SPEC.md and AUDIT.md, 15 Nov 2026"
+   },
+   "elements": {
+    "cover": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/adi-cover-1584x396.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1584,
+       "height": 396
+      }
+     },
+     "current": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/adi-cover-1584x396.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1584,
+       "height": 396
+      }
+     }
+    },
+    "caption": {
+     "reference": {
+      "options": [
+       "Our AI Haunts Your Audience Until They Pay You.",
+       "Your Pipeline Called. It's Hungry.",
+       "Leads Left on Read? Not on Our Watch.",
+       "Cold Leads? We Bring Blankets."
+      ],
+      "chosen": "Our AI Haunts Your Audience Until They Pay You."
+     },
+     "current": {
+      "options": [
+       "Our AI Haunts Your Audience Until They Pay You.",
+       "Your Pipeline Called. It's Hungry.",
+       "Leads Left on Read? Not on Our Watch.",
+       "Cold Leads? We Bring Blankets."
+      ],
+      "chosen": "Our AI Haunts Your Audience Until They Pay You."
+     }
+    },
+    "headline": {
+     "reference": "Leading the team @ Tantra | AI RevOps that turns cold traffic into booked calls and closed revenue | 400+ brands, 21+ countries | Join my live AI RevOps workshop: link below 👇",
+     "current": "Leading the team @ Tantra | AI RevOps that turns cold traffic into booked calls and closed revenue | 400+ brands, 21+ countries | Join my live AI RevOps workshop: link below 👇"
+    },
+    "about": {
+     "reference": "Referrals got you here. They won't get you to next year's number.\n\nYou know the pattern. A great month, then a quiet one. A pipeline that depends on who introduced you to whom. A marketing budget that produces leads nobody in sales wants to call.\n\nI've spent 10+ years fixing exactly this, for 400+ brands in 47+ industries across 21+ countries.\n\nHere's what I found: the companies with predictable revenue don't have better luck. They run one measured system:\n\n→ Traffic: calendar invites, cold email and LinkedIn, sent from their own accounts\n→ A registration page that feeds one CRM\n→ Reminders by email and WhatsApp, so registrants actually show up\n→ A live session that ends with the right people asking for a call\n→ One pipeline, and one weekly number for every stage\n\nFor a UK business-coaching group we built this around a webinar series. Across 11 webinars: 765,105 people reached, 6,517 registered, 80 sales calls booked.\n\nToday I run Tantra. We build that system with B2B teams, and AI now does most of the repetitive work: the invites, the reminders, the follow-ups.\n\nEvery Thursday at 11:00 UK time, I take it apart live, stage by stage, in 60 minutes. You'll see how the invites are written, how the reminders are timed, and how 45 minutes turns into booked calls.\n\nTwo ways in:\n→ Join the live AI RevOps workshop: https://go.usetantra.com/l/adi-aw\n→ Book an AI revenue strategy consultation: https://go.usetantra.com/l/adi-ac",
+     "current": "Referrals got you here. They won't get you to next year's number.\n\nYou know the pattern. A great month, then a quiet one. A pipeline that depends on who introduced you to whom. A marketing budget that produces leads nobody in sales wants to call.\n\nI've spent 10+ years fixing exactly this, for 400+ brands in 47+ industries across 21+ countries.\n\nHere's what I found: the companies with predictable revenue don't have better luck. They run one measured system:\n\n→ Traffic: calendar invites, cold email and LinkedIn, sent from their own accounts\n→ A registration page that feeds one CRM\n→ Reminders by email and WhatsApp, so registrants actually show up\n→ A live session that ends with the right people asking for a call\n→ One pipeline, and one weekly number for every stage\n\nFor a UK business-coaching group we built this around a webinar series. Across 11 webinars: 765,105 people reached, 6,517 registered, 80 sales calls booked.\n\nToday I run Tantra. We build that system with B2B teams, and AI now does most of the repetitive work: the invites, the reminders, the follow-ups.\n\nEvery Thursday at 11:00 UK time, I take it apart live, stage by stage, in 60 minutes. You'll see how the invites are written, how the reminders are timed, and how 45 minutes turns into booked calls.\n\nTwo ways in:\n→ Join the live AI RevOps workshop: https://go.usetantra.com/l/adi-aw\n→ Book an AI revenue strategy consultation: https://go.usetantra.com/l/adi-ac"
+    },
+    "role_title": {
+     "reference": "Leading the team",
+     "current": "Leading the team"
+    },
+    "role_description": {
+     "reference": "I founded Tantra and host our weekly live AI RevOps workshop.\n\nTantra builds AI revenue systems with B2B teams: traffic, capture, nurture, the live session and the pipeline, wired into one CRM with one weekly number for every stage. The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\nSee it live: https://go.usetantra.com/l/adi-rw",
+     "current": "I founded Tantra and host our weekly live AI RevOps workshop.\n\nTantra builds AI revenue systems with B2B teams: traffic, capture, nurture, the live session and the pipeline, wired into one CRM with one weekly number for every stage. The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\nSee it live: https://go.usetantra.com/l/adi-rw"
+    },
+    "skills": {
+     "reference": [
+      "AI RevOps",
+      "Webinar Marketing",
+      "Sales Funnel Strategy",
+      "RevOps",
+      "Lead Generation"
+     ],
+     "current": [
+      "AI RevOps",
+      "Webinar Marketing",
+      "Sales Funnel Strategy",
+      "RevOps",
+      "Lead Generation"
+     ]
+    },
+    "featured_1": {
+     "reference": {
+      "title": "Attend Our Live AI RevOps Workshop",
+      "description": "60 minutes, live with Adi. Watch a cold list turn into booked sales calls, then take the playbook, prompts and calculator home.",
+      "url": "https://go.usetantra.com/l/adi-fw",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-workshop-1200x627.png"
+     },
+     "current": {
+      "title": "Attend Our Live AI RevOps Workshop",
+      "description": "60 minutes, live with Adi. Watch a cold list turn into booked sales calls, then take the playbook, prompts and calculator home.",
+      "url": "https://go.usetantra.com/l/adi-fw",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-workshop-1200x627.png"
+     }
+    },
+    "featured_2": {
+     "reference": {
+      "title": "Book an AI Revenue Strategy Consultation",
+      "description": "45 minutes with a Tantra strategist. We find where your pipeline leaks and map which parts AI should run for you.",
+      "url": "https://go.usetantra.com/l/adi-fc",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-consultation-1200x627.png"
+     },
+     "current": {
+      "title": "Book an AI Revenue Strategy Consultation",
+      "description": "45 minutes with a Tantra strategist. We find where your pipeline leaks and map which parts AI should run for you.",
+      "url": "https://go.usetantra.com/l/adi-fc",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-consultation-1200x627.png"
+     }
+    },
+    "website_1": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/adi-ww",
+      "type": "Company"
+     },
+     "current": {
+      "url": "https://go.usetantra.com/l/adi-ww",
+      "type": "Company"
+     }
+    },
+    "website_2": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/adi-wc",
+      "type": "Other"
+     },
+     "current": {
+      "url": "https://go.usetantra.com/l/adi-wc",
+      "type": "Other"
+     }
+    },
+    "photo": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/adi-photo-1200.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1200,
+       "height": 1200
+      }
+     },
+     "current": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/adi-photo-1200.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1200,
+       "height": 1200
+      }
+     }
+    }
+   }
+  },
+  {
+   "person_key": "bhaskar",
+   "name": "Bhaskar",
+   "kind": "profile",
+   "profile_url": "https://www.linkedin.com/in/bhaskar-dev/",
+   "title": "Leading marketing & product",
+   "campaign_id": "cmp_f427ef8e47514047be1d",
+   "channel_id": "chn_c1118abc4dc74c06a10b",
+   "context": {
+    "answers": {
+     "company": "Tantra",
+     "title": "Leading marketing & product",
+     "offer": "Join the live AI RevOps workshop, or book an AI revenue strategy consultation",
+     "audience": "B2B founders and revenue leaders",
+     "pain": "Leads go cold between the first click and the first call",
+     "proof": "400+ brands, 47+ industries, 21+ countries. Client logos approved 7 Nov: Google, Amazon, Techstars, upGrad and the \"Brands We've Helped Grow\" set",
+     "role": "I lead marketing and product: the content, invites and webinars that book sales calls, and the numbers that show which ones do.",
+     "links": "https://jointantra.com/ and https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation",
+     "voice": "\"I\" and \"you\", open on a specific pain, plain words, one focal action, no AI filler"
+    },
+    "sources": {
+     "company": "seed",
+     "title": "seed",
+     "offer": "seed",
+     "audience": "seed",
+     "pain": "seed",
+     "proof": "seed",
+     "role": "seed",
+     "links": "seed",
+     "voice": "seed"
+    },
+    "destinations": {
+     "workshop": "https://jointantra.com/",
+     "consultation": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation"
+    },
+    "links": {
+     "featured_workshop": "https://go.usetantra.com/l/bhaskar-fw",
+     "featured_consultation": "https://go.usetantra.com/l/bhaskar-fc",
+     "website_workshop": "https://go.usetantra.com/l/bhaskar-ww",
+     "website_consultation": "https://go.usetantra.com/l/bhaskar-wc",
+     "about_workshop": "https://go.usetantra.com/l/bhaskar-aw",
+     "about_consultation": "https://go.usetantra.com/l/bhaskar-ac",
+     "role_workshop": "https://go.usetantra.com/l/bhaskar-rw",
+     "role_consultation": "https://go.usetantra.com/l/bhaskar-rc"
+    },
+    "utm_campaign": "enterprise-webinar",
+    "seed": "card 29 PROFILE_SPEC.md and AUDIT.md, 15 Nov 2026"
+   },
+   "elements": {
+    "cover": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/bhaskar-cover-1584x396.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1584,
+       "height": 396
+      }
+     }
+    },
+    "caption": {
+     "reference": {
+      "options": [
+       "Your Pipeline Called. It's Hungry.",
+       "Our AI Haunts Your Audience Until They Pay You.",
+       "Leads Left on Read? Not on Our Watch.",
+       "Cold Leads? We Bring Blankets."
+      ],
+      "chosen": "Your Pipeline Called. It's Hungry."
+     }
+    },
+    "headline": {
+     "reference": "Leading marketing & product @ Tantra | Marketing that books sales calls, not vanity leads | AI RevOps for B2B teams | Join our live AI RevOps workshop: link below 👇",
+     "current": "Co-Founder, GrowthClub.org | Architecting Agentic AI Revenue Engines for SaaS | Ex-Head of Growth @ Cavli Wireless | Advisor @ Budmore & Nxtaa Tech"
+    },
+    "about": {
+     "reference": "Your dashboard says 1,200 leads this quarter. Sales says they booked nine calls.\n\nIf you run marketing, you've sat in that meeting. Every channel is \"performing\", and nobody can tell you which post, invite or email put a real buyer on a call.\n\nI lead marketing and product at Tantra. My job is the opposite of vanity metrics: I track every touch from first invite to booked sales call, and I cut what doesn't move that number.\n\nThe channel I trust most is a weekly live AI RevOps workshop, because every step of it is measurable:\n\n→ Reached\n→ Registered\n→ Came live\n→ Booked a sales call\n\nFor a UK business-coaching group, the registration rate went from 0.23% on the first webinar to 2.0% on the best one. Behind it: a weekly analytics sheet and a 12-item experiment log.\n\nThat's what the team builds with B2B companies at Tantra: the outreach, the pages, the nurture, and the analytics sheet that tells you on Monday which number to fix.\n\nEvery Thursday at 11:00 UK time, our founder Adi walks through the whole funnel live in 60 minutes. Bring your own numbers. You'll leave knowing which stage of yours is leaking.\n\nTwo ways in:\n→ Join the live AI RevOps workshop: https://go.usetantra.com/l/bhaskar-aw\n→ Book an AI revenue strategy consultation: https://go.usetantra.com/l/bhaskar-ac"
+    },
+    "role_title": {
+     "reference": "Leading marketing & product"
+    },
+    "role_description": {
+     "reference": "I lead marketing and product: the content, invites and webinars that book sales calls, and the numbers that show which ones do.\n\nTantra builds AI revenue systems with B2B teams: traffic, capture, nurture, the live session and the pipeline, wired into one CRM with one weekly number for every stage. The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\nSee it live: https://go.usetantra.com/l/bhaskar-rw"
+    },
+    "skills": {
+     "reference": [
+      "Marketing Strategy",
+      "Webinar Marketing",
+      "Lead Generation",
+      "Content Marketing",
+      "Marketing Analytics"
+     ]
+    },
+    "featured_1": {
+     "reference": {
+      "title": "Attend Our Live AI RevOps Workshop",
+      "description": "60 minutes, live with Adi. Watch a cold list turn into booked sales calls, then take the playbook, prompts and calculator home.",
+      "url": "https://go.usetantra.com/l/bhaskar-fw",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-workshop-1200x627.png"
+     }
+    },
+    "featured_2": {
+     "reference": {
+      "title": "Book an AI Revenue Strategy Consultation",
+      "description": "45 minutes with a Tantra strategist. We find where your pipeline leaks and map which parts AI should run for you.",
+      "url": "https://go.usetantra.com/l/bhaskar-fc",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-consultation-1200x627.png"
+     }
+    },
+    "website_1": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/bhaskar-ww",
+      "type": "Company"
+     }
+    },
+    "website_2": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/bhaskar-wc",
+      "type": "Other"
+     }
+    },
+    "photo": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/bhaskar-photo-1200.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1200,
+       "height": 1200
+      }
+     }
+    }
+   }
+  },
+  {
+   "person_key": "nelbin",
+   "name": "Nelbin",
+   "kind": "profile",
+   "profile_url": "https://www.linkedin.com/in/nelbin-xav/",
+   "title": "Leading marketing ops",
+   "campaign_id": "cmp_f427ef8e47514047be1d",
+   "channel_id": "chn_c1118abc4dc74c06a10b",
+   "context": {
+    "answers": {
+     "company": "Tantra",
+     "title": "Leading marketing ops",
+     "offer": "Join the live AI RevOps workshop, or book an AI revenue strategy consultation",
+     "audience": "B2B founders and revenue leaders",
+     "pain": "Leads go cold between the first click and the first call",
+     "proof": "400+ brands, 47+ industries, 21+ countries. Client logos approved 7 Nov: Google, Amazon, Techstars, upGrad and the \"Brands We've Helped Grow\" set",
+     "role": "I run marketing operations: an owner, a checklist and a weekly number for every stage of every client funnel.",
+     "links": "https://jointantra.com/ and https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation",
+     "voice": "\"I\" and \"you\", open on a specific pain, plain words, one focal action, no AI filler"
+    },
+    "sources": {
+     "company": "seed",
+     "title": "seed",
+     "offer": "seed",
+     "audience": "seed",
+     "pain": "seed",
+     "proof": "seed",
+     "role": "seed",
+     "links": "seed",
+     "voice": "seed"
+    },
+    "destinations": {
+     "workshop": "https://jointantra.com/",
+     "consultation": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation"
+    },
+    "links": {
+     "featured_workshop": "https://go.usetantra.com/l/nelbin-fw",
+     "featured_consultation": "https://go.usetantra.com/l/nelbin-fc",
+     "website_workshop": "https://go.usetantra.com/l/nelbin-ww",
+     "website_consultation": "https://go.usetantra.com/l/nelbin-wc",
+     "about_workshop": "https://go.usetantra.com/l/nelbin-aw",
+     "about_consultation": "https://go.usetantra.com/l/nelbin-ac",
+     "role_workshop": "https://go.usetantra.com/l/nelbin-rw",
+     "role_consultation": "https://go.usetantra.com/l/nelbin-rc"
+    },
+    "utm_campaign": "enterprise-webinar",
+    "seed": "card 29 PROFILE_SPEC.md and AUDIT.md, 15 Nov 2026"
+   },
+   "elements": {
+    "cover": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/nelbin-cover-1584x396.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1584,
+       "height": 396
+      }
+     }
+    },
+    "caption": {
+     "reference": {
+      "options": [
+       "Our AI Haunts Your Audience Until They Pay You.",
+       "Your Pipeline Called. It's Hungry.",
+       "Leads Left on Read? Not on Our Watch.",
+       "Cold Leads? We Bring Blankets."
+      ],
+      "chosen": "Our AI Haunts Your Audience Until They Pay You."
+     }
+    },
+    "headline": {
+     "reference": "Leading marketing ops @ Tantra | An owner, a checklist and a weekly number for every funnel stage | AI RevOps for B2B teams | Live workshop: link below 👇",
+     "current": "I build things with AI & Automation and share what I learn along the way | Always learning and building."
+    },
+    "about": {
+     "reference": "The launch went fine. It's week six that breaks.\n\nYou've seen it. Week one gets everyone's attention. By week six the reminder didn't go out, the replay link is wrong, and nobody knows who was meant to follow up with the people who asked a question.\n\nFunnels rarely fail because of a bad idea. They fail because nobody owns the boring parts.\n\nI run marketing operations at Tantra. For every stage of a client's funnel I set three things:\n\n→ One owner\n→ One checklist\n→ One number we check every week\n\nThat's how a webinar keeps running instead of happening once. One client ran 11 webinars from May 2025 to February 2026, with a weekly analytics sheet and a 12-item experiment log behind them.\n\nIf you run operations, you know the real problem: work that depends on someone remembering.\n\nEvery Thursday at 11:00 UK time, our founder Adi takes the whole funnel apart live in 60 minutes, including the weekly rhythm that keeps it running.\n\nTwo ways in:\n→ Join the live AI RevOps workshop: https://go.usetantra.com/l/nelbin-aw\n→ Book an AI revenue strategy consultation: https://go.usetantra.com/l/nelbin-ac"
+    },
+    "role_title": {
+     "reference": "Leading marketing ops"
+    },
+    "role_description": {
+     "reference": "I run marketing operations: an owner, a checklist and a weekly number for every stage of every client funnel.\n\nTantra builds AI revenue systems with B2B teams: traffic, capture, nurture, the live session and the pipeline, wired into one CRM with one weekly number for every stage. The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\nSee it live: https://go.usetantra.com/l/nelbin-rw"
+    },
+    "skills": {
+     "reference": [
+      "Operations Management",
+      "RevOps",
+      "Process Improvement",
+      "Project Management",
+      "Marketing Operations"
+     ]
+    },
+    "featured_1": {
+     "reference": {
+      "title": "Attend Our Live AI RevOps Workshop",
+      "description": "60 minutes, live with Adi. Watch a cold list turn into booked sales calls, then take the playbook, prompts and calculator home.",
+      "url": "https://go.usetantra.com/l/nelbin-fw",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-workshop-1200x627.png"
+     }
+    },
+    "featured_2": {
+     "reference": {
+      "title": "Book an AI Revenue Strategy Consultation",
+      "description": "45 minutes with a Tantra strategist. We find where your pipeline leaks and map which parts AI should run for you.",
+      "url": "https://go.usetantra.com/l/nelbin-fc",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-consultation-1200x627.png"
+     }
+    },
+    "website_1": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/nelbin-ww",
+      "type": "Company"
+     }
+    },
+    "website_2": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/nelbin-wc",
+      "type": "Other"
+     }
+    },
+    "photo": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/nelbin-photo-1200.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1200,
+       "height": 1200
+      }
+     }
+    }
+   }
+  },
+  {
+   "person_key": "aquila",
+   "name": "Aquila Eldho",
+   "kind": "profile",
+   "profile_url": "https://www.linkedin.com/in/aquilaeldho/",
+   "title": "Leading automations",
+   "campaign_id": "cmp_f427ef8e47514047be1d",
+   "channel_id": "chn_c1118abc4dc74c06a10b",
+   "context": {
+    "answers": {
+     "company": "Tantra",
+     "title": "Leading automations",
+     "offer": "Join the live AI RevOps workshop, or book an AI revenue strategy consultation",
+     "audience": "B2B founders and revenue leaders",
+     "pain": "Leads go cold between the first click and the first call",
+     "proof": "400+ brands, 47+ industries, 21+ countries. Client logos approved 7 Nov: Google, Amazon, Techstars, upGrad and the \"Brands We've Helped Grow\" set",
+     "role": "I build the automation: the reminders, follow-ups and handoffs that run without a person.",
+     "links": "https://jointantra.com/ and https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation",
+     "voice": "\"I\" and \"you\", open on a specific pain, plain words, one focal action, no AI filler"
+    },
+    "sources": {
+     "company": "seed",
+     "title": "seed",
+     "offer": "seed",
+     "audience": "seed",
+     "pain": "seed",
+     "proof": "seed",
+     "role": "seed",
+     "links": "seed",
+     "voice": "seed"
+    },
+    "destinations": {
+     "workshop": "https://jointantra.com/",
+     "consultation": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation"
+    },
+    "links": {
+     "featured_workshop": "https://go.usetantra.com/l/aquila-fw",
+     "featured_consultation": "https://go.usetantra.com/l/aquila-fc",
+     "website_workshop": "https://go.usetantra.com/l/aquila-ww",
+     "website_consultation": "https://go.usetantra.com/l/aquila-wc",
+     "about_workshop": "https://go.usetantra.com/l/aquila-aw",
+     "about_consultation": "https://go.usetantra.com/l/aquila-ac",
+     "role_workshop": "https://go.usetantra.com/l/aquila-rw",
+     "role_consultation": "https://go.usetantra.com/l/aquila-rc"
+    },
+    "utm_campaign": "enterprise-webinar",
+    "seed": "card 29 PROFILE_SPEC.md and AUDIT.md, 15 Nov 2026"
+   },
+   "elements": {
+    "cover": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/aquila-cover-1584x396.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1584,
+       "height": 396
+      }
+     }
+    },
+    "caption": {
+     "reference": {
+      "options": [
+       "Leads Left on Read? Not on Our Watch.",
+       "Our AI Haunts Your Audience Until They Pay You.",
+       "Your Pipeline Called. It's Hungry.",
+       "Cold Leads? We Bring Blankets."
+      ],
+      "chosen": "Leads Left on Read? Not on Our Watch."
+     }
+    },
+    "headline": {
+     "reference": "Leading automations @ Tantra | I automate the reminders, follow ups and handoffs B2B teams still do by hand | AI RevOps | Live workshop: link below 👇",
+     "current": "Head of Automations at GrowthClub.org"
+    },
+    "about": {
+     "reference": "Someone registers for your webinar on Monday. By Thursday they've forgotten why.\n\nNobody sent the reminder. Or it went out at 2am their time. Or it landed in an inbox they check once a week.\n\nMost of what happens between \"registered\" and \"booked a call\" is repetitive work: reminders, follow-ups, handoffs to sales. None of it should depend on a person remembering.\n\nI build the automation at Tantra. My work sits in those gaps:\n\n→ Reminders by email and WhatsApp, timed to each registrant\n→ Follow-ups that change with what each person did: came live, left early, didn't show\n→ Handoffs that put a booked call in front of the right closer, with the context attached\n\nTantra now runs most of this across Gmail, LinkedIn and WhatsApp, from your own accounts.\n\nIn one client's best webinar, 1,990 people registered and 321 came live. That gap is where automation earns its keep.\n\nEvery Thursday at 11:00 UK time, our founder Adi shows the whole system live in 60 minutes, including exactly which parts AI runs and which still need you.\n\nTwo ways in:\n→ Join the live AI RevOps workshop: https://go.usetantra.com/l/aquila-aw\n→ Book an AI revenue strategy consultation: https://go.usetantra.com/l/aquila-ac"
+    },
+    "role_title": {
+     "reference": "Leading automations"
+    },
+    "role_description": {
+     "reference": "I build the automation: the reminders, follow-ups and handoffs that run without a person.\n\nTantra builds AI revenue systems with B2B teams: traffic, capture, nurture, the live session and the pipeline, wired into one CRM with one weekly number for every stage. The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\nSee it live: https://go.usetantra.com/l/aquila-rw"
+    },
+    "skills": {
+     "reference": [
+      "Marketing Automation",
+      "Workflow Automation",
+      "CRM",
+      "AI Agents",
+      "Email Marketing"
+     ]
+    },
+    "featured_1": {
+     "reference": {
+      "title": "Attend Our Live AI RevOps Workshop",
+      "description": "60 minutes, live with Adi. Watch a cold list turn into booked sales calls, then take the playbook, prompts and calculator home.",
+      "url": "https://go.usetantra.com/l/aquila-fw",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-workshop-1200x627.png"
+     }
+    },
+    "featured_2": {
+     "reference": {
+      "title": "Book an AI Revenue Strategy Consultation",
+      "description": "45 minutes with a Tantra strategist. We find where your pipeline leaks and map which parts AI should run for you.",
+      "url": "https://go.usetantra.com/l/aquila-fc",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-consultation-1200x627.png"
+     }
+    },
+    "website_1": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/aquila-ww",
+      "type": "Company"
+     }
+    },
+    "website_2": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/aquila-wc",
+      "type": "Other"
+     }
+    },
+    "photo": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/aquila-photo-1200.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1200,
+       "height": 1200
+      }
+     }
+    }
+   }
+  },
+  {
+   "person_key": "bharath",
+   "name": "Bharath",
+   "kind": "profile",
+   "profile_url": "https://www.linkedin.com/in/bkp31415/",
+   "title": "Leading development",
+   "campaign_id": "cmp_f427ef8e47514047be1d",
+   "channel_id": "chn_c1118abc4dc74c06a10b",
+   "context": {
+    "answers": {
+     "company": "Tantra",
+     "title": "Leading development",
+     "offer": "Join the live AI RevOps workshop, or book an AI revenue strategy consultation",
+     "audience": "B2B founders and revenue leaders",
+     "pain": "Leads go cold between the first click and the first call",
+     "proof": "400+ brands, 47+ industries, 21+ countries. Client logos approved 7 Nov: Google, Amazon, Techstars, upGrad and the \"Brands We've Helped Grow\" set",
+     "role": "I lead development: the stack, the integrations and the AI agents behind every Tantra funnel.",
+     "links": "https://jointantra.com/ and https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation",
+     "voice": "\"I\" and \"you\", open on a specific pain, plain words, one focal action, no AI filler"
+    },
+    "sources": {
+     "company": "seed",
+     "title": "seed",
+     "offer": "seed",
+     "audience": "seed",
+     "pain": "seed",
+     "proof": "seed",
+     "role": "seed",
+     "links": "seed",
+     "voice": "seed"
+    },
+    "destinations": {
+     "workshop": "https://jointantra.com/",
+     "consultation": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation"
+    },
+    "links": {
+     "featured_workshop": "https://go.usetantra.com/l/bharath-fw",
+     "featured_consultation": "https://go.usetantra.com/l/bharath-fc",
+     "website_workshop": "https://go.usetantra.com/l/bharath-ww",
+     "website_consultation": "https://go.usetantra.com/l/bharath-wc",
+     "about_workshop": "https://go.usetantra.com/l/bharath-aw",
+     "about_consultation": "https://go.usetantra.com/l/bharath-ac",
+     "role_workshop": "https://go.usetantra.com/l/bharath-rw",
+     "role_consultation": "https://go.usetantra.com/l/bharath-rc"
+    },
+    "utm_campaign": "enterprise-webinar",
+    "seed": "card 29 PROFILE_SPEC.md and AUDIT.md, 15 Nov 2026"
+   },
+   "elements": {
+    "cover": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/bharath-cover-1584x396.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1584,
+       "height": 396
+      }
+     }
+    },
+    "caption": {
+     "reference": {
+      "options": [
+       "Your Pipeline Called. It's Hungry.",
+       "Our AI Haunts Your Audience Until They Pay You.",
+       "Leads Left on Read? Not on Our Watch.",
+       "Cold Leads? We Bring Blankets."
+      ],
+      "chosen": "Your Pipeline Called. It's Hungry."
+     }
+    },
+    "headline": {
+     "reference": "Leading development @ Tantra | The CRM, integrations and AI agents behind every Tantra funnel | AI RevOps for B2B teams | Live workshop: link below 👇",
+     "current": "Co-Founder @ Tantra | Scaling Businesses with AI SaaS, Multi-Agent Workflows & Revenue Automations | Deep in the AI Stack Since 2017"
+    },
+    "about": {
+     "reference": "Your form tool, your webinar platform, your CRM and your email tool all say they \"integrate\". Then a lead registers and shows up in three of the four.\n\nMost B2B stacks leak at the joins. The lead isn't lost inside a tool. It's lost between two of them, and nobody notices until a sales rep asks why the CRM record is empty.\n\nI lead development at Tantra. I build the layer that connects it all:\n\n→ Every form, booking and webinar event posts to one CRM\n→ Every link is tagged by source, so you know which channel produced the call\n→ AI agents send the invites, reminders and follow-ups from your own Gmail, LinkedIn and WhatsApp\n\nOne record per person, from first invite to signed client. That's the whole idea.\n\nEvery Thursday at 11:00 UK time, our founder Adi maps the full funnel live in 60 minutes. If you own the stack, watch where each event goes and which system is the source of truth.\n\nTwo ways in:\n→ Join the live AI RevOps workshop: https://go.usetantra.com/l/bharath-aw\n→ Book an AI revenue strategy consultation: https://go.usetantra.com/l/bharath-ac"
+    },
+    "role_title": {
+     "reference": "Leading development"
+    },
+    "role_description": {
+     "reference": "I lead development: the stack, the integrations and the AI agents behind every Tantra funnel.\n\nTantra builds AI revenue systems with B2B teams: traffic, capture, nurture, the live session and the pipeline, wired into one CRM with one weekly number for every stage. The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\nSee it live: https://go.usetantra.com/l/bharath-rw"
+    },
+    "skills": {
+     "reference": [
+      "Software Architecture",
+      "CRM Integration",
+      "AI Agents",
+      "API Development",
+      "Cloud Infrastructure"
+     ]
+    },
+    "featured_1": {
+     "reference": {
+      "title": "Attend Our Live AI RevOps Workshop",
+      "description": "60 minutes, live with Adi. Watch a cold list turn into booked sales calls, then take the playbook, prompts and calculator home.",
+      "url": "https://go.usetantra.com/l/bharath-fw",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-workshop-1200x627.png"
+     }
+    },
+    "featured_2": {
+     "reference": {
+      "title": "Book an AI Revenue Strategy Consultation",
+      "description": "45 minutes with a Tantra strategist. We find where your pipeline leaks and map which parts AI should run for you.",
+      "url": "https://go.usetantra.com/l/bharath-fc",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-consultation-1200x627.png"
+     }
+    },
+    "website_1": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/bharath-ww",
+      "type": "Company"
+     }
+    },
+    "website_2": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/bharath-wc",
+      "type": "Other"
+     }
+    },
+    "photo": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/bharath-photo-1200.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1200,
+       "height": 1200
+      }
+     }
+    }
+   }
+  },
+  {
+   "person_key": "ben",
+   "name": "Ben Basil Tomy",
+   "kind": "profile",
+   "profile_url": "https://www.linkedin.com/in/ben-basil-tomy-5533b9218/",
+   "title": "Leading development",
+   "campaign_id": "cmp_f427ef8e47514047be1d",
+   "channel_id": "chn_c1118abc4dc74c06a10b",
+   "context": {
+    "answers": {
+     "company": "Tantra",
+     "title": "Leading development",
+     "offer": "Join the live AI RevOps workshop, or book an AI revenue strategy consultation",
+     "audience": "B2B founders and revenue leaders",
+     "pain": "Leads go cold between the first click and the first call",
+     "proof": "400+ brands, 47+ industries, 21+ countries. Client logos approved 7 Nov: Google, Amazon, Techstars, upGrad and the \"Brands We've Helped Grow\" set",
+     "role": "I build the pages, forms and tracking for client funnels, and the tests that decide what stays.",
+     "links": "https://jointantra.com/ and https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation",
+     "voice": "\"I\" and \"you\", open on a specific pain, plain words, one focal action, no AI filler"
+    },
+    "sources": {
+     "company": "seed",
+     "title": "seed",
+     "offer": "seed",
+     "audience": "seed",
+     "pain": "seed",
+     "proof": "seed",
+     "role": "seed",
+     "links": "seed",
+     "voice": "seed"
+    },
+    "destinations": {
+     "workshop": "https://jointantra.com/",
+     "consultation": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation"
+    },
+    "links": {
+     "featured_workshop": "https://go.usetantra.com/l/ben-fw",
+     "featured_consultation": "https://go.usetantra.com/l/ben-fc",
+     "website_workshop": "https://go.usetantra.com/l/ben-ww",
+     "website_consultation": "https://go.usetantra.com/l/ben-wc",
+     "about_workshop": "https://go.usetantra.com/l/ben-aw",
+     "about_consultation": "https://go.usetantra.com/l/ben-ac",
+     "role_workshop": "https://go.usetantra.com/l/ben-rw",
+     "role_consultation": "https://go.usetantra.com/l/ben-rc"
+    },
+    "utm_campaign": "enterprise-webinar",
+    "seed": "card 29 PROFILE_SPEC.md and AUDIT.md, 15 Nov 2026"
+   },
+   "elements": {
+    "cover": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/ben-cover-1584x396.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1584,
+       "height": 396
+      }
+     }
+    },
+    "caption": {
+     "reference": {
+      "options": [
+       "Cold Leads? We Bring Blankets.",
+       "Our AI Haunts Your Audience Until They Pay You.",
+       "Your Pipeline Called. It's Hungry.",
+       "Leads Left on Read? Not on Our Watch."
+      ],
+      "chosen": "Cold Leads? We Bring Blankets."
+     }
+    },
+    "headline": {
+     "reference": "Leading development @ Tantra | Pages, forms and tracking that turn clicks into booked calls | AI RevOps for B2B teams | Live workshop: link below 👇",
+     "current": "Backend Engineer | Node.js | AWS | Microservices | 3 Years Experience"
+    },
+    "about": {
+     "reference": "You spent three weeks on the landing page. Nobody can tell you if it worked.\n\nNo source tags on the links. A form that posts to an inbox. A thank-you page with no next step. The page \"launched\", and that's the last anyone heard of it.\n\nI build the pages and tracking for Tantra's client funnels:\n\n→ Registration, thank-you and replay pages\n→ Forms that post every sign-up straight to the CRM\n→ Source tags on every link, so each registration has a channel\n→ Tests that decide which version stays\n\nOne client tested a long landing page against a short one. The long page aimed for 70 registrations and got 96. Without the test, nobody would have known which one to keep.\n\nEvery Thursday at 11:00 UK time, our founder Adi takes the whole funnel apart live in 60 minutes, including the pages and what we measure on each one.\n\nTwo ways in:\n→ Join the live AI RevOps workshop: https://go.usetantra.com/l/ben-aw\n→ Book an AI revenue strategy consultation: https://go.usetantra.com/l/ben-ac"
+    },
+    "role_title": {
+     "reference": "Leading development"
+    },
+    "role_description": {
+     "reference": "I build the pages, forms and tracking for client funnels, and the tests that decide what stays.\n\nTantra builds AI revenue systems with B2B teams: traffic, capture, nurture, the live session and the pipeline, wired into one CRM with one weekly number for every stage. The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\nSee it live: https://go.usetantra.com/l/ben-rw"
+    },
+    "skills": {
+     "reference": [
+      "Web Development",
+      "Landing Page Optimization",
+      "Conversion Rate Optimization",
+      "A/B Testing",
+      "Web Analytics"
+     ]
+    },
+    "featured_1": {
+     "reference": {
+      "title": "Attend Our Live AI RevOps Workshop",
+      "description": "60 minutes, live with Adi. Watch a cold list turn into booked sales calls, then take the playbook, prompts and calculator home.",
+      "url": "https://go.usetantra.com/l/ben-fw",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-workshop-1200x627.png"
+     }
+    },
+    "featured_2": {
+     "reference": {
+      "title": "Book an AI Revenue Strategy Consultation",
+      "description": "45 minutes with a Tantra strategist. We find where your pipeline leaks and map which parts AI should run for you.",
+      "url": "https://go.usetantra.com/l/ben-fc",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-consultation-1200x627.png"
+     }
+    },
+    "website_1": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/ben-ww",
+      "type": "Company"
+     }
+    },
+    "website_2": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/ben-wc",
+      "type": "Other"
+     }
+    },
+    "photo": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/ben-photo-1200.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1200,
+       "height": 1200
+      }
+     }
+    }
+   }
+  },
+  {
+   "person_key": "scott",
+   "name": "Scott McArthur",
+   "kind": "profile",
+   "profile_url": null,
+   "title": "Evangelist",
+   "campaign_id": "cmp_f427ef8e47514047be1d",
+   "channel_id": "chn_c1118abc4dc74c06a10b",
+   "context": {
+    "answers": {
+     "company": "Tantra",
+     "title": "Evangelist",
+     "offer": "Join the live AI RevOps workshop, or book an AI revenue strategy consultation",
+     "audience": "B2B founders and revenue leaders",
+     "pain": "Leads go cold between the first click and the first call",
+     "proof": "400+ brands, 47+ industries, 21+ countries. Client logos approved 7 Nov: Google, Amazon, Techstars, upGrad and the \"Brands We've Helped Grow\" set",
+     "role": "I work with B2B founders and revenue leaders to map how their pipeline runs today, and which parts AI should run for them.",
+     "links": "https://jointantra.com/ and https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation",
+     "voice": "\"I\" and \"you\", open on a specific pain, plain words, one focal action, no AI filler"
+    },
+    "sources": {
+     "company": "seed",
+     "title": "seed",
+     "offer": "seed",
+     "audience": "seed",
+     "pain": "seed",
+     "proof": "seed",
+     "role": "seed",
+     "links": "seed",
+     "voice": "seed"
+    },
+    "destinations": {
+     "workshop": "https://jointantra.com/",
+     "consultation": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation"
+    },
+    "links": {
+     "featured_workshop": "https://go.usetantra.com/l/scott-fw",
+     "featured_consultation": "https://go.usetantra.com/l/scott-fc",
+     "website_workshop": "https://go.usetantra.com/l/scott-ww",
+     "website_consultation": "https://go.usetantra.com/l/scott-wc",
+     "about_workshop": "https://go.usetantra.com/l/scott-aw",
+     "about_consultation": "https://go.usetantra.com/l/scott-ac",
+     "role_workshop": "https://go.usetantra.com/l/scott-rw",
+     "role_consultation": "https://go.usetantra.com/l/scott-rc"
+    },
+    "utm_campaign": "enterprise-webinar",
+    "seed": "card 29 PROFILE_SPEC.md and AUDIT.md, 15 Nov 2026"
+   },
+   "elements": {
+    "cover": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/scott-cover-1584x396.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1584,
+       "height": 396
+      }
+     }
+    },
+    "caption": {
+     "reference": {
+      "options": [
+       "Leads Left on Read? Not on Our Watch.",
+       "Our AI Haunts Your Audience Until They Pay You.",
+       "Your Pipeline Called. It's Hungry.",
+       "Cold Leads? We Bring Blankets."
+      ],
+      "chosen": "Leads Left on Read? Not on Our Watch."
+     }
+    },
+    "headline": {
+     "reference": "Evangelist @ Tantra | I help B2B founders turn cold traffic into booked sales calls with AI RevOps | 400+ brands, 21+ countries | Join our live AI RevOps workshop: link below 👇"
+    },
+    "about": {
+     "reference": "Most founders I speak with don't have a lead problem. They have a follow up problem.\n\nThe traffic is there. People visit, download, register, even reply once. Then nobody gets back to them at the right moment, and the pipeline quietly goes cold.\n\nI'm an Evangelist at Tantra. I spend my days with B2B founders and revenue leaders, looking at how their pipeline actually runs, stage by stage, and showing them where AI can take over the repetitive work.\n\nTantra builds AI revenue systems with B2B teams:\n→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts\n→ Capture: registration and booking pages that feed one CRM\n→ Nurture: email and WhatsApp reminders and follow ups that run on their own\n→ Conversion: a weekly live session that ends in booked sales calls\n→ Pipeline: every booking, call and proposal tracked to the deal\n\nThe team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\nIf you want to see the whole system working before you talk to anyone, join our live AI RevOps workshop. If you'd rather talk it through for your own business, book a strategy consultation and we'll map where your pipeline leaks.\n\nTwo ways in:\n→ Join the live AI RevOps workshop: https://go.usetantra.com/l/scott-aw\n→ Book an AI revenue strategy consultation: https://go.usetantra.com/l/scott-ac"
+    },
+    "role_title": {
+     "reference": "Evangelist"
+    },
+    "role_description": {
+     "reference": "I work with B2B founders and revenue leaders to map how their pipeline runs today, and which parts AI should run for them.\n\nTantra builds AI revenue systems with B2B teams: traffic, capture, nurture, the live session and the pipeline, wired into one CRM with one weekly number for every stage. The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\nSee it live: https://go.usetantra.com/l/scott-rw"
+    },
+    "skills": {
+     "reference": [
+      "B2B Sales",
+      "Sales Strategy",
+      "RevOps",
+      "Lead Generation",
+      "Consultative Selling"
+     ]
+    },
+    "featured_1": {
+     "reference": {
+      "title": "Attend Our Live AI RevOps Workshop",
+      "description": "60 minutes, live with Adi. Watch a cold list turn into booked sales calls, then take the playbook, prompts and calculator home.",
+      "url": "https://go.usetantra.com/l/scott-fw",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-workshop-1200x627.png"
+     }
+    },
+    "featured_2": {
+     "reference": {
+      "title": "Book an AI Revenue Strategy Consultation",
+      "description": "45 minutes with a Tantra strategist. We find where your pipeline leaks and map which parts AI should run for you.",
+      "url": "https://go.usetantra.com/l/scott-fc",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-consultation-1200x627.png"
+     }
+    },
+    "website_1": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/scott-ww",
+      "type": "Company"
+     }
+    },
+    "website_2": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/scott-wc",
+      "type": "Other"
+     }
+    }
+   }
+  },
+  {
+   "person_key": "conor",
+   "name": "Conor Norton",
+   "kind": "profile",
+   "profile_url": null,
+   "title": "Evangelist",
+   "campaign_id": "cmp_f427ef8e47514047be1d",
+   "channel_id": "chn_c1118abc4dc74c06a10b",
+   "context": {
+    "answers": {
+     "company": "Tantra",
+     "title": "Evangelist",
+     "offer": "Join the live AI RevOps workshop, or book an AI revenue strategy consultation",
+     "audience": "B2B founders and revenue leaders",
+     "pain": "Leads go cold between the first click and the first call",
+     "proof": "400+ brands, 47+ industries, 21+ countries. Client logos approved 7 Nov: Google, Amazon, Techstars, upGrad and the \"Brands We've Helped Grow\" set",
+     "role": "I help B2B teams see where their pipeline leaks between the first click and the first call, and what AI can run for them.",
+     "links": "https://jointantra.com/ and https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation",
+     "voice": "\"I\" and \"you\", open on a specific pain, plain words, one focal action, no AI filler"
+    },
+    "sources": {
+     "company": "seed",
+     "title": "seed",
+     "offer": "seed",
+     "audience": "seed",
+     "pain": "seed",
+     "proof": "seed",
+     "role": "seed",
+     "links": "seed",
+     "voice": "seed"
+    },
+    "destinations": {
+     "workshop": "https://jointantra.com/",
+     "consultation": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation"
+    },
+    "links": {
+     "featured_workshop": "https://go.usetantra.com/l/conor-fw",
+     "featured_consultation": "https://go.usetantra.com/l/conor-fc",
+     "website_workshop": "https://go.usetantra.com/l/conor-ww",
+     "website_consultation": "https://go.usetantra.com/l/conor-wc",
+     "about_workshop": "https://go.usetantra.com/l/conor-aw",
+     "about_consultation": "https://go.usetantra.com/l/conor-ac",
+     "role_workshop": "https://go.usetantra.com/l/conor-rw",
+     "role_consultation": "https://go.usetantra.com/l/conor-rc"
+    },
+    "utm_campaign": "enterprise-webinar",
+    "seed": "card 29 PROFILE_SPEC.md and AUDIT.md, 15 Nov 2026"
+   },
+   "elements": {
+    "cover": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/conor-cover-1584x396.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 1584,
+       "height": 396
+      }
+     }
+    },
+    "caption": {
+     "reference": {
+      "options": [
+       "Cold Leads? We Bring Blankets.",
+       "Our AI Haunts Your Audience Until They Pay You.",
+       "Your Pipeline Called. It's Hungry.",
+       "Leads Left on Read? Not on Our Watch."
+      ],
+      "chosen": "Cold Leads? We Bring Blankets."
+     }
+    },
+    "headline": {
+     "reference": "Evangelist @ Tantra | AI RevOps for B2B teams: more booked calls from the traffic you already have | 400+ brands, 21+ countries | Join our live AI RevOps workshop: link below 👇"
+    },
+    "about": {
+     "reference": "Every week I talk to B2B teams who are doing everything right on paper. The posts go out, the ads run, the inbox fills up. And the number that matters, booked calls with the right people, barely moves.\n\nAlmost every time, the gap sits between the first click and the first conversation. Reminders that never went out. Follow ups that depend on someone remembering. Leads that went cold in a spreadsheet.\n\nI'm an Evangelist at Tantra. My job is to understand how your revenue engine works today and show you, plainly, which parts AI can run for you and which still need your team.\n\nWhat Tantra builds with you:\n→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts\n→ Capture: registration and booking pages that feed one CRM\n→ Nurture: email and WhatsApp reminders and follow ups that run on their own\n→ Conversion: a weekly live session that ends in booked sales calls\n→ Pipeline: every booking, call and proposal tracked to the deal\n\nThe team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\nThe easiest way to see it is our live AI RevOps workshop: we take the whole funnel apart on screen. Or book a strategy consultation and we'll look at your numbers together.\n\nTwo ways in:\n→ Join the live AI RevOps workshop: https://go.usetantra.com/l/conor-aw\n→ Book an AI revenue strategy consultation: https://go.usetantra.com/l/conor-ac"
+    },
+    "role_title": {
+     "reference": "Evangelist"
+    },
+    "role_description": {
+     "reference": "I help B2B teams see where their pipeline leaks between the first click and the first call, and what AI can run for them.\n\nTantra builds AI revenue systems with B2B teams: traffic, capture, nurture, the live session and the pipeline, wired into one CRM with one weekly number for every stage. The team behind it has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries.\n\nSee it live: https://go.usetantra.com/l/conor-rw"
+    },
+    "skills": {
+     "reference": [
+      "Business Development",
+      "B2B Sales",
+      "Sales Funnel Strategy",
+      "CRM",
+      "Lead Generation"
+     ]
+    },
+    "featured_1": {
+     "reference": {
+      "title": "Attend Our Live AI RevOps Workshop",
+      "description": "60 minutes, live with Adi. Watch a cold list turn into booked sales calls, then take the playbook, prompts and calculator home.",
+      "url": "https://go.usetantra.com/l/conor-fw",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-workshop-1200x627.png"
+     }
+    },
+    "featured_2": {
+     "reference": {
+      "title": "Book an AI Revenue Strategy Consultation",
+      "description": "45 minutes with a Tantra strategist. We find where your pipeline leaks and map which parts AI should run for you.",
+      "url": "https://go.usetantra.com/l/conor-fc",
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/featured-consultation-1200x627.png"
+     }
+    },
+    "website_1": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/conor-ww",
+      "type": "Company"
+     }
+    },
+    "website_2": {
+     "reference": {
+      "url": "https://go.usetantra.com/l/conor-wc",
+      "type": "Other"
+     }
+    }
+   }
+  },
+  {
+   "person_key": "tantra",
+   "name": "Tantra",
+   "kind": "page",
+   "profile_url": "https://www.linkedin.com/company/13588687/",
+   "campaign_id": "cmp_f427ef8e47514047be1d",
+   "channel_id": "chn_c1118abc4dc74c06a10b",
+   "context": {
+    "answers": {
+     "company": "Tantra",
+     "offer": "Register for the live AI RevOps workshop",
+     "audience": "B2B founders and revenue leaders",
+     "pain": "Leads go cold between the first click and the first call",
+     "proof": "400+ brands, 47+ industries, 21+ countries",
+     "links": "https://jointantra.com/ and https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation"
+    },
+    "destinations": {
+     "workshop": "https://jointantra.com/",
+     "consultation": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation"
+    },
+    "links": {
+     "about_workshop": "https://go.usetantra.com/l/tantra-aw",
+     "about_consultation": "https://go.usetantra.com/l/tantra-ac",
+     "button_workshop": "https://go.usetantra.com/l/tantra-btn"
+    },
+    "utm_campaign": "enterprise-webinar",
+    "seed": "card 29 and card 06, 15 Nov 2026"
+   },
+   "elements": {
+    "logo": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/company-page/assets/tantra-logo-400-light.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits"
+      }
+     },
+     "current": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/company-page/assets/tantra-logo-400-light.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits"
+      }
+     }
+    },
+    "cover": {
+     "reference": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/tantra-company-cover-strips-violet-4200x700.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 4200,
+       "height": 700
+      }
+     },
+     "current": {
+      "image": "https://adisuja.github.io/tantra-enterprise-webinar-pages/linkedin-profiles/v2/assets/tantra-company-cover-strips-violet-4200x700.png",
+      "meta": {
+       "checked": "card 29, checked by eye in the desktop and phone mock (13 to 14 Nov): no label text, logos inside chips, caption fits",
+       "width": 4200,
+       "height": 700
+      }
+     }
+    },
+    "caption": {
+     "reference": {
+      "options": [
+       "Your Pipeline Called. It's Hungry.",
+       "Our AI Haunts Your Audience Until They Pay You.",
+       "Leads Left on Read? Not on Our Watch.",
+       "Cold Leads? We Bring Blankets."
+      ],
+      "chosen": "Your Pipeline Called. It's Hungry."
+     },
+     "current": {
+      "options": [
+       "Your Pipeline Called. It's Hungry.",
+       "Our AI Haunts Your Audience Until They Pay You.",
+       "Leads Left on Read? Not on Our Watch.",
+       "Cold Leads? We Bring Blankets."
+      ],
+      "chosen": "Your Pipeline Called. It's Hungry."
+     }
+    },
+    "tagline": {
+     "reference": "AI revenue systems for B2B teams: the funnel, the outreach and the pipeline. See it live at our weekly webinar.",
+     "current": "AI revenue systems for B2B teams: the funnel, the outreach and the pipeline. See it live at our weekly webinar."
+    },
+    "overview": {
+     "reference": "Most B2B companies don't have a lead problem. They have a leak problem. Marketing counts leads, sales counts deals, and nobody owns what happens in between.\n\nTantra builds the in between: AI revenue systems that take a stranger from first invite to signed client, with one CRM and one weekly number for every stage.\n\nSee it working first. Every Thursday at 11:00 UK time, our founder Adi runs a live 60-minute webinar that takes the whole funnel apart:\n\n→ How to fill a session from a cold list with calendar invites, cold email and LinkedIn\n→ The email and WhatsApp reminders that get registrants into the room\n→ How 45 minutes becomes booked sales calls\n→ The weekly rhythm: one pipeline, one analytics sheet, one experiment log\n→ Which parts AI runs, and which still need you\n\nRegister with the button at the top of this page.\n\nWhat we build with your team:\n→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts\n→ Capture: registration and booking pages that feed one CRM\n→ Nurture: email and WhatsApp reminders and follow-ups\n→ Conversion: a weekly live webinar that ends in booked sales calls\n→ Pipeline: every booking, call and proposal tracked to the deal\n\nOur team has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries, over 10+ years.\n\nTwo ways to work with us:\n→ The Tantra platform: run outreach and nurture from your own accounts. Start at usetantra.com\n→ Tantra Enterprise: we build your funnel with you, coach your team for 3 months, and you get a year on the platform\n\nStart with the live workshop: https://go.usetantra.com/l/tantra-aw\nOr book an AI revenue strategy consultation: https://go.usetantra.com/l/tantra-ac",
+     "current": "Most B2B companies don't have a lead problem. They have a leak problem. Marketing counts leads, sales counts deals, and nobody owns what happens in between.\n\nTantra builds the in between: AI revenue systems that take a stranger from first invite to signed client, with one CRM and one weekly number for every stage.\n\nSee it working first. Every Thursday at 11:00 UK time, our founder Adi runs a live 60-minute webinar that takes the whole funnel apart:\n\n→ How to fill a session from a cold list with calendar invites, cold email and LinkedIn\n→ The email and WhatsApp reminders that get registrants into the room\n→ How 45 minutes becomes booked sales calls\n→ The weekly rhythm: one pipeline, one analytics sheet, one experiment log\n→ Which parts AI runs, and which still need you\n\nRegister with the button at the top of this page.\n\nWhat we build with your team:\n→ Traffic: calendar invites, cold email and LinkedIn, sent from your own accounts\n→ Capture: registration and booking pages that feed one CRM\n→ Nurture: email and WhatsApp reminders and follow-ups\n→ Conversion: a weekly live webinar that ends in booked sales calls\n→ Pipeline: every booking, call and proposal tracked to the deal\n\nOur team has built funnels and outreach for 400+ brands in 47+ industries across 21+ countries, over 10+ years.\n\nTwo ways to work with us:\n→ The Tantra platform: run outreach and nurture from your own accounts. Start at usetantra.com\n→ Tantra Enterprise: we build your funnel with you, coach your team for 3 months, and you get a year on the platform\n\nStart with the live workshop: https://go.usetantra.com/l/tantra-aw\nOr book an AI revenue strategy consultation: https://go.usetantra.com/l/tantra-ac"
+    },
+    "specialties": {
+     "reference": [
+      "AI RevOps",
+      "Revenue Operations",
+      "Webinar Funnels",
+      "B2B Lead Generation",
+      "Cold Email Outreach",
+      "Calendar Invite Outreach",
+      "LinkedIn Outreach",
+      "WhatsApp Nurture",
+      "Marketing Automation",
+      "Sales Pipeline Automation",
+      "CRM Integration",
+      "Funnel Analytics",
+      "AI Agents",
+      "Done-With-You Funnel Builds"
+     ],
+     "current": [
+      "AI RevOps",
+      "Revenue Operations",
+      "Webinar Funnels",
+      "B2B Lead Generation",
+      "Cold Email Outreach",
+      "Calendar Invite Outreach",
+      "LinkedIn Outreach",
+      "WhatsApp Nurture",
+      "Marketing Automation",
+      "Sales Pipeline Automation",
+      "CRM Integration",
+      "Funnel Analytics",
+      "AI Agents",
+      "Done-With-You Funnel Builds"
+     ]
+    },
+    "founded": {
+     "reference": "2018",
+     "current": "2018"
+    },
+    "button": {
+     "reference": {
+      "label": "Register",
+      "url": "https://go.usetantra.com/l/tantra-btn"
+     },
+     "current": {
+      "label": "Register",
+      "url": "https://go.usetantra.com/l/tantra-btn"
+     }
+    }
+   }
+  }
+ ]
+}
