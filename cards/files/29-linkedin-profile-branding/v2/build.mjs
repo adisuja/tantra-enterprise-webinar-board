@@ -315,6 +315,29 @@ for (const [name, body, w, h, scales] of jobs) {
     if (over.length) problems.push(`${name}: text overflow ${over.join(' | ')}`);
     fs.mkdirSync(path.dirname(path.join(OUT, name)), { recursive: true });
     await page.locator('#cap').screenshot({ path: path.join(OUT, `${name}${GUIDES ? '-guides' : ''}${suffix}.png`) });
+    // The layout the Tantra Brand checks read (POST /api/branding/projects/:id/assets meta), at design size (dsf 1).
+    // text: every line drawn; logos: each logo box inside its chip; caption: the headline and bar box; safe: where a
+    // caption may sit (right of LinkedIn's photo zone on covers). Boxes are [x, y, w, h] in design pixels.
+    if (!GUIDES && dsf === 1) {
+      const safeX = name.includes('-cover-1584') ? Math.max(...SAFE.cover.map((z) => z.x + z.w)) : name.includes('company-cover') ? Math.max(...SAFE.company.map((z) => z.x + z.w)) : 0;
+      const layout = await page.evaluate((safeX) => {
+        const cap = document.querySelector('#cap'); const c = cap.getBoundingClientRect();
+        const box = (r) => [Math.round(r.left - c.left), Math.round(r.top - c.top), Math.round(r.width), Math.round(r.height)];
+        const lines = (el) => (el?.innerText ?? '').split('\n').map((t) => t.trim()).filter(Boolean);
+        const capEls = [...cap.querySelectorAll('.h, .bar')];
+        let cb = null;
+        for (const e of capEls) { const r = e.getBoundingClientRect(); cb = cb ? { l: Math.min(cb.l, r.left), t: Math.min(cb.t, r.top), r: Math.max(cb.r, r.right), b: Math.max(cb.b, r.bottom) } : { l: r.left, t: r.top, r: r.right, b: r.bottom }; }
+        return {
+          width: Math.round(c.width), height: Math.round(c.height),
+          text: lines(cap),
+          logos: [...cap.querySelectorAll('.chip img')].map((i) => ({ box: box(i.getBoundingClientRect()), chip: box(i.closest('.chip').getBoundingClientRect()) })),
+          caption: cb ? { box: box({ left: cb.l, top: cb.t, width: cb.r - cb.l, height: cb.b - cb.t }), lines: capEls.flatMap(lines) } : null,
+          safe: [safeX, 0, Math.round(c.width) - safeX, Math.round(c.height)],
+        };
+      }, safeX);
+      if (!layout.caption) delete layout.caption;
+      fs.writeFileSync(path.join(OUT, `${name}${scales ? scales[0][1] : ''}.layout.json`), JSON.stringify(layout, null, 1));
+    }
     await page.close();
   }
 }

@@ -296,7 +296,7 @@ TP = json.loads((HERE.parent / '_shared' / 'funnel-config.json').read_text())['t
 # The personal calculator link (#p=...) is never shortened.
 BL = TP['bonus_links']
 # Tantra CRM tracking (Adi 2026-11-12, card 69): visits and data-t-cta clicks on the hub, /playbook/, /library/ and /prompts/.
-CRM_TRACKER = '<script src="https://crm-api.usetantra.com/t.js" data-brand-id="br_4179a834bb2a4b68be75" data-environment="production" async></script>'
+CRM_TRACKER = '<script src="https://crm-api.usetantra.com/t.js" data-brand-id="br_4179a834bb2a4b68be75" data-environment="production" data-page-id="tew-bonuses" async></script>'
 BRANDS = {p.stem: 'data:image/svg+xml;base64,' + __import__('base64').b64encode(p.read_bytes()).decode() for p in (SRC / 'brands').glob('*.svg')}
 
 def brand(name, alt, size=22):
@@ -397,7 +397,7 @@ def engine_offer():
       <a class="pl pl--pro" href="{esc(BL['pro_trial'])}" data-t-cta="bonus_pro_trial"><span class="pl__k">Run it yourself</span><b>Tantra Pro</b><span class="pl__p"><span data-deal><s>${pro['list_usd']}</s> ${pro['price_usd']} a month for the first 3 months, then ${pro['list_usd']}</span><span data-after>${pro['list_usd']} a month</span></span><span class="pl__c">Start {pro['trial_days']} days free</span></a>
     </div>
     <p class="pls__help">Not sure which plan fits you? <a href="{esc(BL['strategy_call'])}" data-t-cta="bonus_strategy_call">Book a free strategy call</a> and I will tell you straight.</p>'''
-    return f'''<section class="eng" id="engine" data-deadline="{TP['deadline_utc']}" aria-labelledby="eng-h">
+    return f'''<section class="eng" id="engine" data-block="engine" data-deadline="{TP['deadline_utc']}" aria-labelledby="eng-h">
     <div class="eng__top">
       <p class="eng__badge">Bonus 04 · Webinar attendees only</p>
       <div class="cd" data-deal aria-live="off"><p class="cd__l">This offer ends in</p><div class="cd__row"><span><b data-cd="d">03</b><i>days</i></span><span><b data-cd="h">00</b><i>hours</i></span><span><b data-cd="m">00</b><i>min</i></span><span><b data-cd="s">00</b><i>sec</i></span></div><p class="cd__w">{esc(TP['deadline_label'])}</p></div>

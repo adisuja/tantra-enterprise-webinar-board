@@ -230,8 +230,8 @@ Slice 3: call funnel template (outreach to booked call to won) and custom stage 
 <h2>Run, test, deploy</h2>
 <pre><code class="language-bash">cd deliverables/91-funnel-dashboard/v2/worker &amp;&amp; npm install &amp;&amp; npx wrangler deploy
 </code></pre>
-<p>From a cloud session the deploy uses the proxy-injected token: <code>CLOUDFLARE_API_TOKEN=proxy-injected npx wrangler deploy</code>. D1: <code>tantra-dashboard-v2</code> (own store), plus <code>tantra-webinar-registrations</code> and <code>tantra-crm</code> read with SELECT only. Secrets: <code>DASH_PASSWORD</code>, <code>SESSION_SECRET</code>, <code>ENC_KEY</code>.</p>
-<pre><code class="language-bash">node --test test/connectors/a.test.mjs test/connectors/b.test.mjs test/connectors/c.test.mjs
+<p>From a cloud session the deploy uses the proxy-injected token: <code>CLOUDFLARE_API_TOKEN=proxy-injected npx wrangler deploy</code>. D1: <code>tantra-dashboard-v2</code> (own store), plus <code>tantra-webinar-registrations</code> and <code>tantra-crm</code> read with SELECT only, and <code>tantra-dashboard</code> (binding <code>CHECKS</code>, the weekly cycle's <code>cycle_checks</code> runs, SELECT only) for the Weekly checks panel on the Overview (<code>GET /api/checks?funnel=&lt;id&gt;</code>). Secrets: <code>DASH_PASSWORD</code>, <code>SESSION_SECRET</code>, <code>ENC_KEY</code>.</p>
+<pre><code class="language-bash">node --test test/checks.test.mjs test/connectors/a.test.mjs test/connectors/b.test.mjs test/connectors/c.test.mjs
 </code></pre>
 <pre><code class="language-bash">node test/parity/run.mjs
 </code></pre>

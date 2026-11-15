@@ -92,7 +92,37 @@ function tdDecorate(){ const cv=document.getElementById('canvas'); if(!cv) retur
   if(S.view==='overview'&&S.w==null&&TD.missing&&TD.missing.length&&!cv.querySelector('.td-setup')){ const h=cv.querySelector('.hero, .ov, h1'); if(h){ const box=document.createElement('div'); box.className='td-setup rise';
       box.innerHTML=`<div class="sub"><b>${TD.missing.length===1?'One source':TD.missing.length+' sources'} would complete this funnel.</b> Sections that need them say "not tracked" until they are connected. Each refresh is hourly and stays inside every provider's limits.</div><div class="roles">${TD.missing.slice(0,6).map(m=>`<a class="td-cn" href="${tdInt(m.category)}">${esc(m.label)}</a>`).join('')}</div>`;
       (h.closest('.ov')||h).insertAdjacentElement('afterend',box); } }
-  tdDash(cv); tdMotion(cv); }
+  tdChecks(cv); tdDash(cv); tdMotion(cv); }
+/* ---------- weekly checks: the weekly cycle's runs for this funnel (GET /api/checks), on the Overview ---------- */
+let tdCk=null, tdCkBusy=false;
+const tdH = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// House rule: the product is never called "CRM" on screen; the cycle's report uses it as an area name.
+const tdCkT = s => tdH(String(s==null?'':s).replace(/\bTantra CRM\b/g,'Tantra').replace(/(^|[^\w./-])CRM\b/g,'$1Tantra'));
+const TD_CKS = {fail:'Fail',warn:'Warning',pass:'Pass',info:'Info'};
+const TD_CKK = {check:'Check',roll:'Roll',e2e:'End to end'};
+const tdCkPill = (st,n) => `<span class="pill tdc ${st}">${TD_CKS[st]||'Info'}${n!=null?` <b>${n}</b>`:''}</span>`;
+const tdCkWhen = iso => { const t=Date.parse(iso); return Number.isNaN(t)?'':new Date(t).toLocaleString(undefined,{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}); };
+const tdCkDay = d => d&&/^\d{4}-\d{2}-\d{2}$/.test(d)?new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short'}):(d||'n/a');
+const tdCkShort = d => d&&/^\d{4}-\d{2}-\d{2}$/.test(d)?new Date(d+'T12:00:00').toLocaleDateString(undefined,{day:'numeric',month:'short'}):(d||'n/a');
+function tdChecksHtml(){
+  const head=`<div class="sec-h"><div class="h2">Weekly checks</div><span class="sp"></span><span class="na" style="font-size:14px">Pages, registration, offer and tracking, checked before each session</span></div>`;
+  if(tdCk.error) return head+`<div class="state"><b>Weekly checks</b>Could not be loaded just now. Reload the page to try again.</div>`;
+  const R=tdCk.runs||[]; if(!R.length) return head+`<div class="state"><b>No weekly checks yet</b>Each run of the weekly cycle shows here: what passed, what needs a look and what failed.</div>`;
+  const L=R[0], bad=L.report.filter(r=>r.status==='fail'), wrn=L.report.filter(r=>r.status==='warn');
+  const verdict=L.failed?`<b class="dn">${L.failed} failing</b>`:L.warned?`<b>No failures</b>, ${L.warned} to look at`:`<b class="up">All clear</b>`;
+  const line=r=>`<div class="tdc-li">${tdCkPill(r.status)}<span class="a">${tdCkT(r.area)}</span><span class="t"><b>${tdCkT(r.name)}</b>${r.detail?`<small>${tdCkT(r.detail)}</small>`:''}</span></div>`;
+  const lines=bad.concat(wrn), CAP=10;
+  const list=lines.length?`<div class="tdc-list">${lines.slice(0,CAP).map(line).join('')}</div>${lines.length>CAP?`<details class="tdc-more"><summary>Show ${lines.length-CAP} more</summary><div class="tdc-list">${lines.slice(CAP).map(line).join('')}</div></details>`:''}`:`<p class="sub">Nothing failed or needs a look in the latest run.</p>`;
+  const rows=R.map((r,i)=>`<tr${i===0?' class="on"':''}><td class="l">${tdH(tdCkWhen(r.at))}<small class="tdc-k">${tdH(TD_CKK[r.kind]||r.kind)}</small></td><td class="l tdc-kc">${tdH(TD_CKK[r.kind]||r.kind)}</td><td class="l">${tdH(tdCkShort(r.session))}</td><td>${r.failed?tdCkPill('fail',r.failed):'<span class="na">0 failed</span>'}</td><td>${r.warned?tdCkPill('warn',r.warned):'<span class="na">0 warnings</span>'}</td><td>${tdCkPill('pass',r.passed)}</td></tr>`).join('');
+  return head+`<p class="q">Session of ${tdH(tdCkDay(L.session))}: ${verdict}.</p>
+   <p class="q-sub">Latest run: ${tdH(TD_CKK[L.kind]||L.kind)}, ${tdH(tdCkWhen(L.at))}.</p>
+   <div class="tdc-counts" role="group" aria-label="Latest run">${tdCkPill('fail',L.failed)}${tdCkPill('warn',L.warned)}${tdCkPill('pass',L.passed)}</div>
+   <h3 class="lbl tdc-h">Failing and warning checks</h3>${list}
+   <h3 class="lbl tdc-h">Last runs</h3><div class="tw"><table class="tdc-runs"><thead><tr><th class="l">Run</th><th class="l tdc-kc">Kind</th><th class="l">Session</th><th>Failed</th><th>Warnings</th><th>Passed</th></tr></thead><tbody>${rows}</tbody></table></div>`; }
+function tdChecks(cv){ if(S.view!=='overview'||S.w!=null||!TD.funnel||!TD.funnel.id||cv.querySelector('.td-checks')) return;
+  if(!tdCk){ if(!tdCkBusy){ tdCkBusy=true; fetch('/api/checks?funnel='+tdq(TD.funnel.id),{credentials:'same-origin'}).then(r=>r.ok?r.json():{error:true}).catch(()=>({error:true})).then(d=>{ tdCk=d||{error:true}; tdDecorate(); }); } return; }
+  const all=cv.querySelectorAll('section.os'), at=all[all.length-1]; if(!at) return;
+  const sec=document.createElement('section'); sec.className='os td-checks'; sec.setAttribute('aria-label','Weekly checks'); sec.innerHTML=tdChecksHtml(); at.insertAdjacentElement('afterend',sec); }
 /* House copy rule: no em or en dashes anywhere a reader sees. The kit writes " \u2014 " between clauses and
    "\u2014" for a figure that is not recorded; both are rewritten as the page draws. */
 function tdDash(root){ const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT); const fix=[]; let n; while((n=w.nextNode())) if(/[\u2013\u2014]/.test(n.nodeValue)) fix.push(n);

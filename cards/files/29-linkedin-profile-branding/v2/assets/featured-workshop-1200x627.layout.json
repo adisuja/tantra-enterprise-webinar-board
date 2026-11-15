@@ -1,0 +1,142 @@
+{
+ "width": 1200,
+ "height": 627,
+ "text": [
+  "Watch Cold Traffic Turn Into Booked Calls. Live.",
+  "60 minutes with Adi. We build the whole funnel on screen. You keep the playbook.",
+  "Save my seat",
+  "→",
+  "Hosted by Adi, Founder of Tantra"
+ ],
+ "logos": [
+  {
+   "box": [
+    66,
+    574,
+    89,
+    29
+   ],
+   "chip": [
+    46,
+    563,
+    128,
+    52
+   ]
+  },
+  {
+   "box": [
+    204,
+    575,
+    93,
+    28
+   ],
+   "chip": [
+    186,
+    563,
+    128,
+    52
+   ]
+  },
+  {
+   "box": [
+    336,
+    579,
+    108,
+    19
+   ],
+   "chip": [
+    326,
+    563,
+    128,
+    52
+   ]
+  },
+  {
+   "box": [
+    480,
+    576,
+    101,
+    26
+   ],
+   "chip": [
+    466,
+    563,
+    128,
+    52
+   ]
+  },
+  {
+   "box": [
+    633,
+    574,
+    73,
+    30
+   ],
+   "chip": [
+    606,
+    563,
+    128,
+    52
+   ]
+  },
+  {
+   "box": [
+    756,
+    578,
+    108,
+    20
+   ],
+   "chip": [
+    746,
+    563,
+    128,
+    52
+   ]
+  },
+  {
+   "box": [
+    896,
+    577,
+    108,
+    23
+   ],
+   "chip": [
+    886,
+    563,
+    128,
+    52
+   ]
+  },
+  {
+   "box": [
+    1050,
+    574,
+    81,
+    30
+   ],
+   "chip": [
+    1026,
+    563,
+    128,
+    52
+   ]
+  }
+ ],
+ "caption": {
+  "box": [
+   64,
+   58,
+   560,
+   177
+  ],
+  "lines": [
+   "Watch Cold Traffic Turn Into Booked Calls. Live."
+  ]
+ },
+ "safe": [
+  0,
+  0,
+  1200,
+  627
+ ]
+}
