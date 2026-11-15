@@ -984,6 +984,7 @@
 <li><strong>No co-host.</strong> Adi hosts alone; the moderator is behind the scenes and never speaks.</li>
 <li><strong>Personalisation.</strong> Adi decided templates use merge fields only (first name, company, role). The deck teaches AI for research, segmentation, list building and follow-up, never AI-written lines per invite.</li>
 </ul></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Item 16: The Tantra Enterprise Webinar Deck</h1>
+<p><strong>Current deck: V3 in <code>v3/</code> (15 Nov 2026).</strong> Live deck https://claude.ai/artifact/PpSBBuh39rX3TCRfshwhvP, script in <code>v3/SCRIPT.md</code>. The build below is the earlier version that the published review pages still use.</p>
 <p>74 slides (110 states with tabs): 45 minutes of teaching and invitation, then 15 minutes of Q and A on the last slide. Rebuilt 2026-11-05 a second time, after Adi asked for the reference recording to be followed as closely as possible: one slide per reference slide and one tab per reference tab state, in the reference's order and at about its minute (73 reference slides, 109 states, nothing dropped), plus one inserted slide, the one-slide offer at minute 20 (slide 35, before the minute-25 cutoff). Palette and type are Tantra's; copy and proof are ours. Adi hosts alone (no co-host). The four polls run as WebinarJam overlays on reference slides (14, 23, 69, 72), each with a small badge.</p>
 <table>
 <thead>
@@ -1056,7 +1057,69 @@ python3 compare.py /tmp/deckshots               # rebuilds ../compare/ (needs Pi
 <li>Slide 69 shows "12 months of the platform, included". The $1,188 value (12 months of Tantra Pro at $99 a month) is in the speaker notes only, until Adi confirms Enterprise's platform year is the Pro tier.</li>
 <li>Slide 40 notes: "many of you are here because of one" (a calendar invite): say it only if that week's traffic used calendar invites.</li>
 <li>Slide 31 is a labelled example: 50,000 buyers at 5 minutes of research each is about 4,170 hours, about 2 years at 40 hours a week.</li>
-</ul></div></details><details class="doc"><summary>RUN_OF_SHOW.md</summary><div class="md"><h1>Run of Show: the 60-Minute Tantra Enterprise Webinar</h1>
+</ul></div></details><details class="doc"><summary>v3/README.md</summary><div class="md"><h1>Item 16, V3: the showreel deck, its script and the slide export</h1>
+<p>V3 is the current webinar deck (15 Nov 2026). It follows the Quantum Scaling flow slide by slide with Tantra's own proof, Kie.ai art, real client logos and photos, and platform logos. It replaces the earlier build in <code>../deck/</code> for the live session; that build and its tools stay as they were, because the published review pages still point at them.</p>
+<ul>
+<li>Live deck (private claude.ai page, version 8): https://claude.ai/artifact/PpSBBuh39rX3TCRfshwhvP</li>
+<li>Script, spoken lines only (live doc): https://claude.ai/artifact/5wjkZDfV4wHgwkuJminTMG ; saved copy: <code>SCRIPT.md</code></li>
+<li>Slide by slide in Google Docs (heading, link and every line of on-screen text per slide): Tantra Consolidated Funnel Documentation, tab Tantra Enterprise Webinar &gt; Deck &amp; Script: https://docs.google.com/document/d/1p7-I7hMaHE3uJYw1oKz8VsJdpBwPi4hjzuZ_hgOnx-Q/edit?tab=t.4o43dvqk8gvv</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deck/index.html</code> (+ <code>deck/img</code>, <code>deck/assets</code>)</td>
+<td>The built deck, 74 slides, 47 build steps. Generated; edit <code>src/</code> and rebuild.</td>
+</tr>
+<tr>
+<td><code>src/</code></td>
+<td>Slides (<code>slides/a.html</code> to <code>e.html</code>), styles (<code>style.css</code>, <code>slides.css</code>, <code>v3.css</code>), engine and effects (<code>js/</code>), logo sprite.</td>
+</tr>
+<tr>
+<td><code>tools/build.py</code></td>
+<td>Builds <code>deck/</code> from <code>src/</code>: inlines Lexend and the logo sprite, writes the booking link and QR (<code>BOOK</code>, <code>BOOK_SHOW</code> at the top), lints for dashes and banned words.</td>
+</tr>
+<tr>
+<td><code>tools/fix1.py</code> to <code>fix8.py</code></td>
+<td>The design rounds applied to <code>src/</code>, in order (kept for the record; <code>src/</code> already contains them).</td>
+</tr>
+<tr>
+<td><code>tools/kie3.py</code>, <code>kie-log.json</code></td>
+<td>Kie.ai prompts and spend for the 39 images in <code>deck/img</code> (702 of 1,000 credits). The key comes from the proxy; none is stored.</td>
+</tr>
+<tr>
+<td><code>tools/assets.py</code></td>
+<td>Logos, client photos, bonus covers and the logo sprite, pulled from <code>deliverables/13-15a-26-20-pages/src/assets</code>.</td>
+</tr>
+<tr>
+<td><code>tools/qa-all.js</code>, <code>qa-real.js</code>, <code>qa-slow.js</code></td>
+<td>Playwright checks: every slide and build state with overlap, edge, clip and small-text checks; <code>qa-real.js</code> walks the deck with the arrow key at real speed in a 1440 x 900 window. They need <code>gsap</code> in <code>tools/node/node_modules</code> (<code>npm i gsap@3.12.5</code> there).</td>
+</tr>
+<tr>
+<td><code>tools/export2.js</code></td>
+<td>Exports every slide's text per build step (feeds <code>slides/slides-text.json</code>).</td>
+</tr>
+<tr>
+<td><code>slides/</code></td>
+<td>One 1280 x 720 image per slide (final build state) and <code>slides-text.json</code>, the text that went into the Google Doc.</td>
+</tr>
+<tr>
+<td><code>SCRIPT.md</code></td>
+<td>The talk track: spoken lines per slide, four chat posts (slides 36, 64, 73, 74), Q&amp;A answers. No polls.</td>
+</tr>
+<tr>
+<td><code>SHORT_LINKS_HANDOFF.md</code></td>
+<td>Paste-ready prompt for a session that makes 8 short branded booking links (4 slides, 4 chat posts).</td>
+</tr>
+</tbody>
+</table>
+<p>Rebuild: <code>python3 tools/build.py</code> (needs Pillow and segno). Check: <code>node tools/qa-real.js deck /tmp/qa 1440 900</code>, then look at every frame.</p>
+<p>Proof rules followed: approved proof only (PROOF_PACK, cases.json, testimonials verbatim); no Google, Amazon, Techstars or Motoz; no "$50M"; no guarantee, scarcity or deadline. The WhatsApp and GoHighLevel screenshots on the registration page are placeholders with invented data (<code>13-15a-26-20-pages/wa-replica/messages.json</code>, <code>ghl-replica/README.md</code>), so the deck does not use them.</p></div></details><details class="doc"><summary>RUN_OF_SHOW.md</summary><div class="md"><h1>Run of Show: the 60-Minute Tantra Enterprise Webinar</h1>
 <p>45 minutes of teaching and invitation, then 15 minutes of Q and A. One deck: <code>deck/index.html</code> (74 slides, 110 states with tabs), rebuilt 2026-11-05 to follow the reference recording slide by slide and at about its minute (<code>REFERENCE_MAP.md</code>). The offer lands at minute 20, before the minute-25 early-leaver cutoff. Polls, chat lines and offer cues word for word: <code>../21-engagement/ENGAGEMENT_PLAN.md</code>.</p>
 <p><strong>People.</strong> Adi hosts alone: the only person on camera and the only voice. There is no co-host. The moderator works behind the scenes, never on camera or mic (in WebinarJam Basic they take the second presenter seat with the camera off, because Basic has no Moderator role): launches polls and offers, posts chat lines, answers chat, sends Adi the question list in private chat. Adi confirms who moderates before each session.</p>
 <p><strong>Presenter keys.</strong> Right arrow or Space: next (on a tabbed slide it steps through the tabs first; the footer shows the tab counter and progress bar). N: speaker notes (each opens with the planned minute and the chat prompt). G or O: every slide. F: full screen. <code>?notes=1</code> on the URL opens with notes.</p>
@@ -1365,6 +1428,385 @@ python3 compare.py /tmp/deckshots               # rebuilds ../compare/ (needs Pi
 <li>A real monthly limit (slide 64 shows it under the button once <code>offer.fast_action_deadline</code> is real; nothing on screen until then): say nothing about limits.</li>
 <li>A guarantee: none exists. Slide 69's third card is the first step (the call and the proposal); the guarantee FILL is in the notes only. Never mention it.</li>
 <li>Our own measured numbers (slide 10, FILL in the notes only): registered, came live and calls booked for this funnel, once the first sessions have run.</li>
+</ul></div></details><details class="doc"><summary>v3/SCRIPT.md</summary><div class="md"><h1>Webinar Script: How 400+ Brands Use AI Funnels</h1>
+<p>Spoken lines only, with the chat posts for the four booking moments. Live doc: https://claude.ai/artifact/5wjkZDfV4wHgwkuJminTMG (revision 99, saved here 15 Nov 2026).</p>
+<p><strong>Slide 1</strong></p>
+<p>We're live. Welcome in. While a few more people join, drop in the chat where you're joining from and what your business sells. I'll read a few out.</p>
+<p>If you're deep in the AI rabbit hole but tired of the hype, and you want to apply something real, you're in the right room. I'll take you under the hood of the AI funnel system we run: what works, what doesn't, and the traps to avoid. You'll get out of this what you put in, so close Slack, close email, and stay with me.</p>
+<p><strong>Slide 2</strong></p>
+<p>Keep this interactive. Questions go in the chat as they come up, and we save time at the end for live Q&amp;A. One question for you first: what would need to happen in this session for it to be a win for you? Pop it in the chat and I'll tailor what I go deeper on.</p>
+<p><strong>Slide 3</strong></p>
+<p>Why does this matter now? We're at a real inflection point. What used to take big teams, heavy ops and thousands of hours of manual work can now run on systems.</p>
+<p>And there are going to be two kinds of founders. Consumers, who scroll, try every new tool and in ten years have nothing to show for it. And builders, who use this moment to build a system. This hour is for builders.</p>
+<p><strong>Slide 4</strong></p>
+<p>So here's the one question we're answering today. How do you scale without becoming the bottleneck? How do you use AI and webinars to get real conversations with real buyers, and real numbers, without every deal running through you?</p>
+<p><strong>Slide 5</strong></p>
+<p>Research, invites, reminders, follow-up. Each of those used to need people. Now they feed one system.</p>
+<p><strong>Slide 6</strong></p>
+<p>But look around: everyone's distracted. It's a new gold rush. A hundred times the opportunity, and a hundred times the distraction. Most founders don't know how to turn it into something that works inside their business.</p>
+<p><strong>Slide 7</strong></p>
+<p>So let me tell you what this isn't. It isn't how to use ChatGPT or Claude better. It isn't how to automate your content. If that's what you came for, no hard feelings. What I'll show you is how to build a system that uses AI to win real clients: reach the real buyers in your market and book real calls. Type 1 in the chat if that's what you want.</p>
+<p><strong>Slide 8</strong></p>
+<p>So why listen to me? I'm Adi, a serial founder in AI and RevOps. I started GrowthClub. I co-founded Quantum Scaling and grew it from zero to $6MN in ARR in three years, on content and webinars. Then I founded Tantra. Over ten years we've built funnels for 400+ brands, in 21+ countries and 47+ industries. Today you get the parts that work.</p>
+<p><strong>Slide 9</strong></p>
+<p>And you don't have to take my word for it. Shweta runs Growth Idea, a UK coaching group for owner-led businesses. Across 11 webinars: 80 sales calls, 765,105 people reached, and live attendance from 7 to 321. Sailesh Paul runs Neural IT, which serves US personal-injury law firms: 141,734 people reached at law firms, seven times more people live, from 17 to 127, and 6 sales calls booked.</p>
+<p>Here's the revenue it added. Cavli Wireless went from $1.5MN to $15MN in ARR. Appster hit $25MN in ARR in two years. Quantum Scaling went from zero to $6MN in three years. Kadima Careers grew from under $0.5MN to $1.8MN, wxrks from $2.5MN to $5MN, and BAMF added $1MN+ in ARR from one launch.</p>
+<p>And the pipeline it built. Rhenus Automation: 50+ MQLs in four months. FintechCircle: 17 sales calls in three episodes. Coinfirm: sales meetings from 4 to 14 a month, right up to its acquisition by Lukka. SalesTherapy: 6 sales calls from its very first webinar. Omniance: inbound conversations from 1 to 8 a month. Ecommerce Platforms: 7MN+ visits a year.</p>
+<p>This is what they say, in their own words. Read a few as they go past.</p>
+<p>And these are more of the 400+ brands we've built for, in 21+ countries and 47+ industries.</p>
+<p><strong>Slide 10</strong></p>
+<p>It's the same system we run on ourselves. Think about how you got here: an invite, a page, a WhatsApp reminder, this room. You're inside it right now.</p>
+<p><strong>Slide 11</strong></p>
+<p>Here's what you get from today, all sent to your WhatsApp and email: the $1MN+ B2B RevOps Playbook, the $1MN+ AI Funnel Prompt Library, your AI RevOps Revenue Calculator, which some of you already have, and a surprise bonus.</p>
+<p><strong>Slide 12</strong></p>
+<p>Here's the plan. The first ten minutes: what's holding back your revenue growth. Then thirty minutes on the three phases of the AI RevOps engine. Then 45 minutes of live Q&amp;A, where I answer all your questions live. My team is in the chat the whole time, so ask as you go.</p>
+<p><strong>Slide 13</strong></p>
+<p>How do you know this is for you? It works for B2B consultants, for agencies, for software and tech companies, and for expert-led businesses like coaching and training. Those logos are clients in each group. Type 1 in the chat if one of these four is you.</p>
+<p><strong>Slide 14</strong></p>
+<p>And who isn't it for? If you sell a $10 a month product, it isn't for you. If you haven't found product-market fit yet, or you just have an idea, it isn't for you yet. But if you have a proven offer, you're already making revenue and your pipeline swings between feast and famine, this is going to be very relevant.</p>
+<p><strong>Slide 15</strong></p>
+<p>So let's talk about where most founders get stuck. Most of us are fighting one, two or all three of these at the same time.</p>
+<p>Camp one: lead volume and quality. Not enough of the right buyers, and the ones who book aren't ready.</p>
+<p>Camp two: conversion mechanisms. Nothing warms buyers up before you ask for the call.</p>
+<p>Camp three: end-to-end AI orchestration and growth. No one system builds the funnel, runs it and improves it, so nothing compounds.</p>
+<p>Type 1, 2 or 3 in the chat: where are you today?</p>
+<p><strong>Slide 16</strong></p>
+<p>Camp one: lead volume and quality. It isn't consistent, and when you do get calls, they say "I never filled that in" or "pitch me". Zombie calls.</p>
+<p><strong>Slide 17</strong></p>
+<p>So you lean on referrals, on outreach when you find the time, on content that doesn't convert, maybe on an agency that overpromised. And you get feast or famine. Some months you're on top of the world: a few referrals, deals closing. Then three, four, five months of nothing, and you're wondering how you'll make payroll. Who here can relate?</p>
+<p><strong>Slide 18</strong></p>
+<p>Camp two: the conversion mechanism. Most people push cold buyers straight to "book a call", and the call has to do everything.</p>
+<p>But there are many ways to warm a buyer up before the ask: webinars, workshops, challenges, video sales letters, PDF guides, courses and launches, book-a-call pages, communities, a social following. Each fits a different buyer, and our Playbook covers all eight funnels.</p>
+<p><strong>Slide 19</strong></p>
+<p>Camp three: orchestration. The tools don't talk to each other, nobody runs the funnel day to day, and nothing gets tested, so nothing improves.</p>
+<p>What you need is one agentic system that builds every element of every stage, runs the daily and weekly operations, and tests every element to lift the number at each stage.</p>
+<p><strong>Slide 20</strong></p>
+<p>You make it up as you go. You chase the new trend. You do everything by hand. And you hope it works, because there's no dial you can turn up when you need more calls. Every new tactic starts you back at zero.</p>
+<p><strong>Slide 21</strong></p>
+<p>And here's the real cost. All your energy goes into cracking the code, instead of building the business you pictured when you started.</p>
+<p><strong>Slide 22</strong></p>
+<p>But all of these are symptoms of one thing. You don't have a system.</p>
+<p><strong>Slide 23</strong></p>
+<p>And that's what you get today: the Funnel OS. Every funnel has the same six stages: the traffic engine, landing and registration, multi-channel nurture, the conversion mechanism, the revenue engine, and long-term nurture. Each has its own elements and its own number: visit rate, sign-up rate, show-up rate, booking rate, close rate and rebooking rate.</p>
+<p>The Funnel OS is one operating system that builds every element of every stage, runs it and tests it: the knowledge, data, prompts, templates, automations, benchmarks and revenue equations my team builds funnels with. It runs in Claude, ChatGPT or Gemini. I'll walk you through it in three phases.</p>
+<p>Phase one, the traffic engine: access your market. Find every active buyer in it, tens of thousands, not a few hundred. Phase two, invites and registration: capture their attention and pull them into your world. Phase three, nurture through to the sale and the follow-up: build trust with all of them at once, without a pile of manual outreach.</p>
+<p>So put your phone away. If you can't give this thirty minutes, you've got bigger problems than AI.</p>
+<p><strong>Slide 24</strong></p>
+<p>Phase one: access your market. Lock in here, because this is the part most people skip.</p>
+<p><strong>Slide 25</strong></p>
+<p>First question. Do you have access to your entire market? The email, the LinkedIn profile and the website of every ideal buyer you could sell to? Type yes or no in the chat. There's no wrong answer.</p>
+<p>For most businesses, the honest answer is no. "But Adi, I know who my customer is." I believe you.</p>
+<p><strong>Slide 26</strong></p>
+<p>So what do most people do? Either they buy a pile of data that's mostly junk, or they work their own small list: past clients and people who already know them. A sliver of the market.</p>
+<p><strong>Slide 27</strong></p>
+<p>Which means you're fishing out of a teacup next to an ocean. This is a numbers game. If your top of funnel was your whole market, what would your ceiling be? So the first thing we do, every time, is get access to all of it.</p>
+<p><strong>Slide 28</strong></p>
+<p>Here's how. We start with every source: data vendors, LinkedIn, company websites and your own CRM.</p>
+<p>Every source merged into one list, and verified. For Growth Idea's best webinar, that list reached 99,859 people.</p>
+<p>Now, every database has the same dirty secret: a lot of it is wrong. So an AI agent reads each company's real website.</p>
+<p>Take this one. Listed as a fit, but it's an interiors firm that sells to homeowners, not businesses. Wrong fit. Mislabelled. Cut it.</p>
+<p>Do that across the whole list and the junk goes. Only real buyers stay.</p>
+<p>And the list is built for you: cleaned, enriched, kept current, and it stays in your accounts.</p>
+<p><strong>Slide 29</strong></p>
+<p>But a clean list doesn't solve it on its own. Send the same message as Brandon here and it still converts like garbage. "Hi Sarah, I came across your firm and was really impressed. I help companies like yours 10x their revenue. Do you have 15 minutes this week?" Who gets these? When did you last reply to one? I ignore them, you ignore them. The bar is higher now.</p>
+<p><strong>Slide 30</strong></p>
+<p>So how does AI raise the bar? Take Priya, a founder on our list. Right now we know nothing about her. Zero context, no way to personalise.</p>
+<p>So AI reads every page of her website, and her LinkedIn.</p>
+<p>And it pulls the real details into a profile you can use. She advises CFOs on pricing. She just posted that her sales cycles doubled. She's hiring two account executives. That puts her in a segment.</p>
+<p>Then it does the same for every buyer on the list.</p>
+<p><strong>Slide 31</strong></p>
+<p>Here's why that matters. Say you have 100,000 buyers and the research takes ten minutes each. That's 16,667 hours: one person, full time, for about eight years. A system runs it in parallel, in the background, before a single invite goes out. Unscalable by hand. Trivial for a system.</p>
+<p><strong>Slide 32</strong></p>
+<p>So if you wanted to build phase one yourself, you'd need three things. One: access to the data, from every source, verified. Two: AI that qualifies and researches every record, from the website and LinkedIn. Three: something that runs all those agents in parallel without falling over, like the conductor of an orchestra.</p>
+<p><strong>Slide 33</strong></p>
+<p>But the list is only half the battle. Every buyer on it is drowning in noise, all day. So how do you turn that list into booked calls? That's what we really care about.</p>
+<p><strong>Slide 34</strong></p>
+<p>And it's not just me saying it. This is Tom Alfoldi, founder and CEO of Growth Factors by Appster.</p>
+<p>"I started talking to Adi and he showed me all the operating procedures they use. And obviously after seeing all the standard operating procedures, I was like, 'Wow, I wouldn't have written them myself.' I can't recommend the team enough. These guys know what they're doing."</p>
+<p>Appster is a Melbourne app development company. It reached $25MN in ARR in two years, with 21% of it from a new LinkedIn consulting line, and sales calls went from 10 to 60 a month.</p>
+<p><strong>Slide 35</strong></p>
+<p>Before phase two, let me tell you what we offer, so you know where this goes. It's called Tantra Enterprise. You get three months of 1:1 coaching and implementation, a done-with-you build of your funnel, a year of the Tantra platform, and the course, the community and group coaching calls.</p>
+<p>It's for you if you want it built with you and you have $10,000 or more to invest in the next 12 months. The price is $9,999. I won't say it again until we get to the numbers at the end.</p>
+<p><strong>Slide 36</strong></p>
+<p>That's one phase of three, and the best part is still ahead. If you're in camp one, two or three and you'd rather skip the line, scan the code or go to the link on screen and pick a time. It's a 45-minute strategy call with Conor or Scott on my team. We look at your pipeline and map this system onto your business, and you get a written proposal within one business day.</p>
+<p><strong>Post in chat:</strong> Want this built for your business? Book your AI RevOps Strategy Consultation with my team: https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation</p>
+<p><strong>Slide 37</strong></p>
+<p>"But Adi, I'm still not convinced." Fair enough. We haven't shown you yet how those contacts turn into real opportunities. That's phase two: capture attention.</p>
+<p><strong>Slide 38</strong></p>
+<p>Remember Brandon, our resident spammer? That's what most people do. They blast cold emails and LinkedIn DMs: "hey, quick question". If you're on the receiving end of these every day, when did you last reply to one?</p>
+<p><strong>Slide 39</strong></p>
+<p>I'm not saying don't do outreach. Outreach matters: you need enough eyeballs to grow. The question is how. So where is a decision maker's attention actually highest? This is one of the few blue-ocean channels left: not crowded, and plenty of fish.</p>
+<p><strong>Slide 40</strong></p>
+<p>Their calendar. It's the first thing they open every day, and the thing they protect.</p>
+<p>So instead of fighting the inbox, the invite goes onto the calendar. Not to a random meeting: to something useful, like this session.</p>
+<p>And the right person clicks Yes, and they're registered. Type CAL in the chat if a calendar invite brought you here.</p>
+<p><strong>Slide 41</strong></p>
+<p>"But Adi, isn't that intrusive?" Yes. So is every form of outbound: cold calls, cold emails, ads. Most channels beg for attention. It's like being stopped on the street by four or five strangers a day. This lands somewhere they already look, and it's relevant to them.</p>
+<p>"What about privacy rules?" Every invite carries a one-click No and a clear reason it's for them, and a No is never contacted again.</p>
+<p>You might think a colleague invited you today, or that you saw an ad. In fact we researched you the way I just showed you, and invited you because it fit. And you're here.</p>
+<p><strong>Slide 42</strong></p>
+<p>"Sounds great, Adi, but how do you actually use the leads?" Here's the how. Start with the clean, verified list from phase one.</p>
+<p><strong>Slide 43</strong></p>
+<p>Remember Priya? From the research we know who she is. She advises CFOs, her sales cycles doubled, and she sits in the B2B advisory segment.</p>
+<p>So she gets her segment's invite, written for firms like hers, with her name and company merged in. And a Yes, a Maybe and a No.</p>
+<p><strong>Slide 44</strong></p>
+<p>And it all comes down to one click.</p>
+<p>If it's a Yes, the whole follow-up runs itself: a confirmation with their join link, WhatsApp reminders, a calendar alert before it starts.</p>
+<p>If it's a No, they're marked do not contact, at once. No chasing, no nurturing, no "just following up". Clients tell us all the time, "I don't want to do hard selling." This is the opposite. It's like a handwritten card placed on their calendar, with an easy way out.</p>
+<p><strong>Slide 45</strong></p>
+<p>By hand, none of this scales. So the clean list goes in.</p>
+<p>And the sending is automated: thousands of invites from separate domains, never your main one, inside the buyer's working hours. For Growth Idea's best webinar, 98,000 calendar invites went out.</p>
+<p><strong>Slide 46</strong></p>
+<p>So phase two has three ingredients too. One: copy that already converted, from campaigns that booked calls. Two: made personal for each segment, from the phase one research. Three: sending that reaches thousands of buyers at once, safely.</p>
+<p><strong>Slide 47</strong></p>
+<p>Here's phase two at work. This is Shweta. She runs Growth Idea, an award-winning UK coaching group. Her first webinar reached 12,898 people: 30 registered and 7 came live.</p>
+<p>Her best webinar reached 99,859 people. 1,990 registered, 321 came live, they booked 25 sales calls and won 2 clients. Same business, same offer, 8.6 times the registration rate. Across all 11 webinars: 80 sales calls, 47 MQLs and 4 clients won. So what would you rather have: cold emails nobody answers, or a room full of buyers?</p>
+<p><strong>Slide 48</strong></p>
+<p>Phase three: build trust at scale. Phases one and two solve volume. Now for camps two and three: how do you build trust with tens of thousands of people, so that when they get on a call they already know who you are and what you do?</p>
+<p><strong>Slide 49</strong></p>
+<p>How do you turn attention into booked calls?</p>
+<p><strong>Slide 50</strong></p>
+<p>First, how do most people try to solve it? They go straight to "let's hop on a quick call". But that one call has to do everything: build trust, frame the problem, pitch the solution, handle objections and close. That's why sales cycles drag and close rates stay low. It's like pulling teeth.</p>
+<p>Most founders are proposing on the first date.</p>
+<p><strong>Slide 51</strong></p>
+<p>So stop forcing the call to do all the work. A webinar is a one-way sales conversation with hundreds of people at once. You teach once, to many. The people who book already know who you are, and they don't need convincing to take the call.</p>
+<p><strong>Slide 52</strong></p>
+<p>But a webinar only does that when it's engineered. People say "nobody shows up" or "it doesn't convert", and usually it's because it was winged. The ones that convert aren't creative. They're structured: a hook, the problem and what it costs, proof and story, the offer, then Q&amp;A. It's all in the Playbook you get today: what a great hook looks like, how to show proof, how to make the offer without being pushy. Type ROOM in the chat if you'd rather teach one room than pitch 50 calls.</p>
+<p><strong>Slide 53</strong></p>
+<p>Behind it sits what we've learned from 400+ brands over ten years: pages, invites, posts, decks and follow-ups. Those are real examples from our library behind me, with the names blurred.</p>
+<p><strong>Slide 54</strong></p>
+<p>"Sounds great, Adi, but how does this apply to me?" Every market is different. Your buyer, your price point, your offer.</p>
+<p><strong>Slide 55</strong></p>
+<p>So it starts with your business. Say you're a business coach selling a $3,000, 12-week group programme.</p>
+<p>That goes into the brain, built on the campaign data.</p>
+<p>For a coaching buyer, the session leans on the pain and the story. That's where it spends its time.</p>
+<p>Now say you sell enterprise IT and security at $90,000 a year. Those buyers care much more about the mechanics and the metrics, and they want more proof. Same structure; the weight moves.</p>
+<p><strong>Slide 56</strong></p>
+<p>But the best webinar is worthless if nobody shows up. So every channel nudges people in, on a timed schedule we split-test: email three days, one day and an hour out, WhatsApp a day, an hour and five minutes before, and a calendar alert as it starts. At Growth Idea's best webinar, 321 people came live, about 16% of registrants.</p>
+<p>Then a lot of funnels leak during the live session: no clear next step, nobody running the chat. So the chat is moderated and the booking link is one click away. That session booked 25 calls. Type 2 in the chat if no-shows are your biggest leak.</p>
+<p><strong>Slide 57</strong></p>
+<p>Here's the part that isn't AI. The AI gives you a strong first draft, from 400+ brands of campaigns. Our team does the one thing AI still can't do: apply taste.</p>
+<p>Would you trust an all-AI accounting firm with your taxes, with nobody checking? Type HUMAN in the chat if you'd want a person checking every line. So why trust your growth to AI alone? The human ear is what takes a webinar from good to great.</p>
+<p><strong>Slide 58</strong></p>
+<p>Then you tune it. Take Shweta's first webinar. Detect: only 0.23% of the people invited registered.</p>
+<p>Diagnose and fix: the invite and the page weren't landing. So we changed the event description, and tested a long landing page against a short one.</p>
+<p>Re-run: at her best webinar, 2.0% registered.</p>
+<p>And we run that loop on every number that counts: 2.0% registered at the best webinar, 21% of registrants came live across 11 webinars, and 5.8 sales calls for every 100 people live.</p>
+<p><strong>Slide 59</strong></p>
+<p>And you start live, because live converts best. Growth Idea's first webinar had 7 people live.</p>
+<p>You run it a few times and the session that converts best wins. Their best had 321 live.</p>
+<p>Then you lock it in and keep it running every week: 1,384 people came live across 11 webinars.</p>
+<p><strong>Slide 60</strong></p>
+<p>So phase three's ingredients: design and storytelling built for your offer, delivery and reminders that fill the room, and a loop that keeps your best session running every week, so it doesn't cost you a day each time.</p>
+<p><strong>Slide 61</strong></p>
+<p>Here's phase three at work. This is Susanne. She runs FintechCircle, a London fintech network. Episode one reached 10,000 people: 59 came live and one sales call was booked. Then the invites grew every episode, to 20,046, then 30,000, then 38,138. Live attendance went from 59 to 117 an episode, and calls from one an episode to nine. That's 17 sales calls across the first three episodes, and 175 people applied to her programme.</p>
+<p><strong>Slide 62</strong></p>
+<p>That's all three phases. Let me pull the whole thing together, with one client's real numbers.</p>
+<p><strong>Slide 63</strong></p>
+<p>Growth Idea, 11 webinars. 765,105 people reached.</p>
+<p>6,517 registered: about 0.85%.</p>
+<p>1,384 came live: 21% of the people who registered.</p>
+<p>80 sales calls: about 6 for every 100 people live.</p>
+<p>And 4 clients won. That's what it looks like over ten months, not one lucky webinar.</p>
+<p><strong>Slide 64</strong></p>
+<p>Like I said at the start, there are two kinds of founders: consumers and builders. Builders get in front of thousands of buyers at once, with a system. If you're in camp one, two or three and you want that, scan the code or go to the link on screen. On the call we map this onto your business, and you leave with a roadmap whether or not you work with us.</p>
+<p><strong>Post in chat:</strong> You've seen the whole machine. Book your AI RevOps Strategy Consultation and we'll map it to your business: https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation</p>
+<p><strong>Slide 65</strong></p>
+<p>Those were the steady numbers. Now the ceiling. This is Jacek. He ran Rhenus Automation, the enterprise automation unit of the Rhenus Group. Their deals came from the network and trade fairs, with nothing coming in every week. Same machine, outreach and webinars, pointed at enterprise buyers: 50+ marketing-qualified leads in four months, sales calls from 3 to 15 a month, 60 enterprise registrants per webinar, and his LinkedIn following grew four times, to 6,000.</p>
+<p>And it works across industries. In software, Cavli Wireless went from $1.5MN to $15MN in ARR. In agencies, Appster hit $25MN in ARR in two years. In coaching, Growth Idea booked 80 sales calls from webinars. In consulting, Neural IT got seven times more people live. In media, Ecommerce Platforms reached 7MN+ visits a year. And for authors, iKrshna hit number one on the Kindle Store in three weeks.</p>
+<p><strong>Slide 66</strong></p>
+<p>So let me walk you through how we build this with you. You don't have to work with us, but this is what it takes either way.</p>
+<p>One: lead infrastructure. Your whole market, pulled and checked by AI, and your sending domains and inboxes set up safely.</p>
+<p>Two: distribution. Calendar invites, email, LinkedIn and WhatsApp, sent from Tantra at scale.</p>
+<p>Three: the webinar. The AI brain and our copywriters build the session, the page and the assets with you.</p>
+<p>Four: follow-up. Reminders and follow-up on every channel, wired into your calendar and your CRM.</p>
+<p>And all of it connected into one machine that's yours.</p>
+<p><strong>Slide 67</strong></p>
+<p>So how does it work? Phase one, month one: we do the heavy lifting with you. Your list, domains, pages and session, built side by side.</p>
+<p>Phase two, months two and three: it goes live and gets dialled in, tuned every week with coaching. "But Adi, I'm not a great speaker." That's exactly what this phase is for.</p>
+<p>Phase three, to month twelve: proven and humming. You run it, and the platform and the calls stay with you.</p>
+<p><strong>Slide 68</strong></p>
+<p>The first weeks take the most of your time. Then it drops, while your sessions keep running.</p>
+<p><strong>Slide 69</strong></p>
+<p>"But Adi, what does it cost?" Less than you'd think, and you own it. Tantra Enterprise is $9,999. That covers three months of coaching and implementation, the build, and a year of the platform. It's built in your own accounts: your pages, your CRM, your domains. We're not an agency charging a retainer forever. The first step is one call, then a written proposal within one business day.</p>
+<p><strong>Slide 70</strong></p>
+<p>"But Adi, I can just do this in Claude." Good luck. You'd need the data and lists, the sending infrastructure, the AI brain, the webinar and content, the follow-up automation, and the tracking and tuning. That's months of work, and you're still guessing what works.</p>
+<p>Then you need the team to run it: a copywriter, an integration specialist, a data analyst, a funnel strategist, a designer and an automation engineer. Six hires to find, onboard and manage.</p>
+<p>Or you build it with people who've done it for 400+ brands. Type 1 in the chat if you've tried building it alone.</p>
+<p><strong>Slide 71</strong></p>
+<p>"Still not convinced, Adi." Fair. What do most people do with AI? They ask ChatGPT, Claude or Gemini. Those are trained on the whole internet, so you get their best guess.</p>
+<p>Ours is trained on results: campaigns from 400+ brands, and what actually booked calls. You don't spend 45 minutes re-explaining your context. It already knows what works.</p>
+<p><strong>Slide 72</strong></p>
+<p>Before we wrap, sit with this for a second. The real risk isn't "what if this doesn't work?" It's that a competitor builds this first. They reach your market first, build trust first, and close the deal before you've spoken to the buyer. Attention compounds. If you're not early, you're late.</p>
+<p><strong>Slide 73</strong></p>
+<p>So how long can you afford not to? Here's what happens when you book. It's 45 minutes with Conor or Scott. We look at your pipeline, find what's breaking, and map this system onto your business. If it's a fit, we show you how we'd build it with you, and you get a written proposal within one business day. If it's not, you still leave with a clear plan.</p>
+<p>And your bonuses are on their way to your WhatsApp and email: the Playbook, the Prompt Library, your Revenue Calculator and the surprise.</p>
+<p>Scan the code or go to the link on screen, and type BOOKED in the chat once it's in your calendar.</p>
+<p><strong>Post in chat:</strong> Book your 45-minute AI RevOps Strategy Consultation here: https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation Type BOOKED once it's in your calendar.</p>
+<p><strong>Slide 74</strong></p>
+<p>Alright, let's get into your questions. Tell me what you sell and who you sell to, and I'll tell you honestly whether this fits. Type your question in the chat now.</p>
+<p><strong>Post in chat:</strong> Q&amp;A is open. Still deciding? Book your AI RevOps Strategy Consultation: https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>What to say</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Do I need my own list or audience?</td>
+<td>No. Phase one builds the list from your whole market: data vendors, LinkedIn and company websites, checked by AI. Your CRM helps, but it isn't required.</td>
+</tr>
+<tr>
+<td>Will this work for my industry?</td>
+<td>It fits best when you sell B2B, at a higher ticket, to a market you can find online: consultants, agencies, software, expert-led businesses. Tell me what you sell and I'll give you a straight answer.</td>
+</tr>
+<tr>
+<td>What if my buyers aren't at a desk?</td>
+<td>Then the calendar channel is a weak fit, because it relies on people who live in their calendar. We'll say so on the call and point you to a better channel.</td>
+</tr>
+<tr>
+<td>How big does my market need to be?</td>
+<td>There's no fixed number. For reference, Growth Idea sent 12,000 to 120,000 invites per webinar, FintechCircle 10,000 to 38,138 per episode, and Neural IT 10,000 to 50,000 per session.</td>
+</tr>
+<tr>
+<td>Do I have to change my tools?</td>
+<td>Mostly no. Sending runs on Google Workspace, on separate domains, never your main one. The live room can be Zoom or WebinarGeek, and it mirrors into HubSpot or GoHighLevel if you use them.</td>
+</tr>
+<tr>
+<td>What does it cost, all in?</td>
+<td>Tantra Enterprise is $9,999: three months of coaching and implementation, the build, and a year of the platform. Tools you bring, like Zoom or a CRM, stay on your own accounts.</td>
+</tr>
+<tr>
+<td>How fast will I see results?</td>
+<td>It depends on your list and your offer, so I won't guess here. The build runs over the first three months, and the call maps your timeline.</td>
+</tr>
+<tr>
+<td>Is there a guarantee or a refund?</td>
+<td>No. What you get is an honest read on the call: if it doesn't fit, we tell you.</td>
+</tr>
+<tr>
+<td>Is it a long contract?</td>
+<td>No retainer. One price for three months of coaching and implementation, plus a year of the platform.</td>
+</tr>
+</tbody>
+</table>
+<p>Here's the bottom line. The problem we solve is a pipeline you can predict, full of people who already trust you before the call. If that's your problem, book the call. Even if we're not the right fit, you'll leave with a clear plan. Thanks for staying with me. See you on the call.</p></div></details><details class="doc"><summary>v3/SHORT_LINKS_HANDOFF.md</summary><div class="md"><h1>Handoff: short, branded booking links for the webinar deck and chat</h1>
+<p>Paste everything below into a new session that has access to <code>adisuja/tantra-enterprise-webinar-workspace</code> and the Cloudflare account that runs the funnel domain.</p>
+<hr />
+<h2>The job</h2>
+<p>The live webinar deck shows our booking link on four slides, and the moderator posts it in the chat four times. Today every one of them is this long URL:</p>
+<p><code>https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation</code></p>
+<p>It's too long to read off a slide, it wraps onto two lines, and it doesn't look like ours. Make one short, branded link for each placement below, so people can type it from the screen and the CRM shows which slide or chat post brought each booking.</p>
+<h2>What every short link must do</h2>
+<ol>
+<li>Look like ours and read cleanly: lowercase, one or two plain words after the slash, nothing random like <code>x7Kq2</code>. On a slide it shows without <code>https://</code> or <code>www</code>. It should fit on one line at large type: aim for 25 characters or fewer, <code>sellwithtantra.com/book</code> for example.</li>
+<li>Redirect (302) to the live booking page, with the tracking tags for that placement (table below). Keep <code>utm_source=webinar_deck</code> for the slides, so it matches card 53.</li>
+<li>Use a domain we already own. In this order:
+   - the apex <code>sellwithtantra.com</code>, if it can point at the funnel Worker without breaking anything already on it (check DNS and current use first);
+   - otherwise paths on <code>webinar.sellwithtantra.com</code>, which runs the Cloudflare Worker <code>tantra-webinar-site</code> (deploy steps in <code>deliverables/46-funnel-domain/README.md</code>; account id is in that README);
+   - <code>usetantra.com/&lt;slug&gt;</code> only if Adi says yes, since it's the main site.
+   No bit.ly or other generic shorteners.</li>
+<li>Don't change or remove anything that already works on those domains (registration, <code>/api/register</code>, the other pages).</li>
+</ol>
+<h2>Every link to make</h2>
+<p>Booking page (live, Tantra CRM Group Calendar, Conor and Scott, 45 minutes): <code>https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation</code></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Placement</th>
+<th>How people use it</th>
+<th>Suggested short link</th>
+<th>Redirect target: booking page plus these tags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Deck slide 36, first booking slide (after phase one: "Want this built for your business?")</td>
+<td>Read off the screen, and scanned from the QR code</td>
+<td><code>sellwithtantra.com/build</code></td>
+<td><code>?utm_source=webinar_deck&amp;utm_medium=webinar&amp;utm_campaign=enterprise_webinar&amp;utm_content=slide36</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Deck slide 64, after all three phases ("we map it to your business")</td>
+<td>Screen and QR</td>
+<td><code>sellwithtantra.com/map</code></td>
+<td><code>?utm_source=webinar_deck&amp;utm_medium=webinar&amp;utm_campaign=enterprise_webinar&amp;utm_content=slide64</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Deck slide 73, the main booking slide ("what happens when you book")</td>
+<td>Screen and QR</td>
+<td><code>sellwithtantra.com/book</code></td>
+<td><code>?utm_source=webinar_deck&amp;utm_medium=webinar&amp;utm_campaign=enterprise_webinar&amp;utm_content=slide73</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Deck slide 74, the Q&amp;A slide (stays up for the whole Q&amp;A)</td>
+<td>Screen and QR</td>
+<td><code>sellwithtantra.com/call</code></td>
+<td><code>?utm_source=webinar_deck&amp;utm_medium=webinar&amp;utm_campaign=enterprise_webinar&amp;utm_content=slide74</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Chat post at slide 36</td>
+<td>Clicked in the webinar chat</td>
+<td><code>sellwithtantra.com/build-now</code></td>
+<td><code>?utm_source=webinar_chat&amp;utm_medium=webinar&amp;utm_campaign=enterprise_webinar&amp;utm_content=slide36</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Chat post at slide 64</td>
+<td>Clicked in the chat</td>
+<td><code>sellwithtantra.com/map-now</code></td>
+<td><code>?utm_source=webinar_chat&amp;utm_medium=webinar&amp;utm_campaign=enterprise_webinar&amp;utm_content=slide64</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Chat post at slide 73</td>
+<td>Clicked in the chat</td>
+<td><code>sellwithtantra.com/book-now</code></td>
+<td><code>?utm_source=webinar_chat&amp;utm_medium=webinar&amp;utm_campaign=enterprise_webinar&amp;utm_content=slide73</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Chat post at slide 74</td>
+<td>Clicked in the chat</td>
+<td><code>sellwithtantra.com/call-now</code></td>
+<td><code>?utm_source=webinar_chat&amp;utm_medium=webinar&amp;utm_campaign=enterprise_webinar&amp;utm_content=slide74</code></td>
+</tr>
+</tbody>
+</table>
+<p>The slugs are suggestions. Change them if a better word reads more clearly, but keep every slide link different from every other, and keep them easy to say out loud ("go to sellwithtantra dot com slash book").</p>
+<p>Already tagged and not shown to anyone, so only shorten these if it's easy (card 53 lists them):
+- WebinarJam live room offer buttons <code>cta1_soft</code>, <code>cta2_checkpoint</code>, <code>cta3_main</code>: <code>?utm_source=webinarjam_live_room&amp;utm_content=&lt;offer&gt;</code>
+- WebinarJam emails "The replay is ready" and "Your bonuses (and the password)": <code>?utm_source=webinarjam_email</code>
+- CRM bonus WhatsApp "Webinar: attended (bonuses)": <code>?utm_source=webinar_whatsapp</code></p>
+<h2>Check before you report back</h2>
+<ul>
+<li>Open every short link with <code>curl -sI</code> and in a browser. Each one must reach the booking page with its own tags intact, on desktop and phone.</li>
+<li>Scan a QR code made from each deck link (1 to 4) with a phone.</li>
+<li>Confirm the registration page, <code>/api/register</code> and every other page on the domain still work.</li>
+</ul>
+<h2>Send back exactly this</h2>
+<ol>
+<li>A table: placement, short link as it should be printed, full redirect target, the HTTP status and final URL from your check.</li>
+<li>This block filled in, so the deck and the script can be updated in one pass:</li>
+</ol>
+<pre><code class="language-json">{
+  &quot;slide36&quot;: &quot;&quot;, &quot;slide64&quot;: &quot;&quot;, &quot;slide73&quot;: &quot;&quot;, &quot;slide74&quot;: &quot;&quot;,
+  &quot;chat36&quot;: &quot;&quot;, &quot;chat64&quot;: &quot;&quot;, &quot;chat73&quot;: &quot;&quot;, &quot;chat74&quot;: &quot;&quot;
+}
+</code></pre>
+<h2>Rules</h2>
+<ul>
+<li>Don't commit, push or open PRs unless Adi asks.</li>
+<li>Never print or commit keys. Keys live in <code>~/.config/tantra/keys/</code> and Worker secrets.</li>
+<li>No en dashes or em dashes in anything you write, and keep the copy plain and human.</li>
 </ul></div></details><details class="doc"><summary>EVAL.md</summary><div class="md"><h1>EVAL: item 16, webinar deck (written before the build)</h1>
 <p>Done means every point below is checked and marked.</p>
 <ol>
@@ -1400,4 +1842,4 @@ python3 compare.py /tmp/deckshots               # rebuilds ../compare/ (needs Pi
 <li>[x] No competitor wording: 6-word overlap with the srt is 0, and the on-slide text was read against the frames (the critic's five near-copies and eleven copied eyebrows were rewritten).</li>
 </ol>
 <p>Result 2026-11-05 (rebuild): <code>build.mjs</code>: 74 slides, 110 states, 4 polls, 15 chat prompts, ends at minute 60. <code>probe.mjs</code>: all 74 slides (every tab) clean. 110 compare images regenerated and viewed. 6-word overlap: 0. Item 21 re-exported (<code>engagement.json</code>; ENGAGEMENT_PLAN tables; exporter reads a slide's <code>poll</code>; cue 2 now 35:00 to 38:00; fixtures shifted) and its test passes; item 17 cue lines updated and its 23 tests pass. Fidelity critic (Fable): first pass failed with 7 missing states, 1 misfiled slide, 5 copied lines and 11 copied eyebrows, plus visual fixes; all fixed, then the title Adi picked applied and every remaining eyebrow that matched a reference slide reworded. A second critic pass was requested and had not reported back at hand-off. Scan on 16 and 21: 0 failures, 0 warnings.</p>
-<p>Final round 2026-11-05 (lead, Fable critic and consistency audit): no FILL text on screen anywhere (slide 10's card lists what we measure; FILL in notes only); case-study clients shown with real published photos, "Founder &amp; CEO, Growth Idea" / "Founder &amp; Chair, FintechCircle" and logos (slides 9, 47, 61, 65; the pages' assets, logos set white for the dark ground); personalisation taught as merge fields only (first name, company, role), with AI for research, segments, list building and follow-up; the 98,000 + "personal line" pairing removed (slide 31 is now a labelled 50,000-buyer example); reference labels reworded (pipeline chart, next-step callout, "Get them in" tab, moderator chat, "Pick a time", the by-hand card headers); slide 58 tab 4 labels each figure's basis; Tom Alfoldi's photo is the pages' 4:5 crop in a narrower frame; the journey footer only on tab 1; slide 74 shows one counter; 400+ brands from config everywhere. Overlap with the srt: 0 at 6 words and 0 at 5 words. <code>probe.mjs</code>: all 74 slides clean. 110 compare images regenerated.</p></div></details><details class="doc"><summary>Files for import or upload (8)</summary><ul class="files"><li><a href="cards/files/16-deck/deck/assets/adi-avatar.jpg" target="_blank" rel="noopener">deck/assets/adi-avatar.jpg</a></li><li><a href="cards/files/16-deck/deck/assets/fintechcircle-white.png" target="_blank" rel="noopener">deck/assets/fintechcircle-white.png</a></li><li><a href="cards/files/16-deck/deck/assets/growth-idea-white.png" target="_blank" rel="noopener">deck/assets/growth-idea-white.png</a></li><li><a href="cards/files/16-deck/deck/assets/shweta.jpg" target="_blank" rel="noopener">deck/assets/shweta.jpg</a></li><li><a href="cards/files/16-deck/deck/assets/susanne.jpg" target="_blank" rel="noopener">deck/assets/susanne.jpg</a></li><li><a href="cards/files/16-deck/deck/assets/tantra-mark-white.png" target="_blank" rel="noopener">deck/assets/tantra-mark-white.png</a></li><li><a href="cards/files/16-deck/deck/assets/tom-alfoldi.jpg" target="_blank" rel="noopener">deck/assets/tom-alfoldi.jpg</a></li><li><a href="cards/files/16-deck/deck/index.html" target="_blank" rel="noopener">deck/index.html</a></li></ul></details>
+<p>Final round 2026-11-05 (lead, Fable critic and consistency audit): no FILL text on screen anywhere (slide 10's card lists what we measure; FILL in notes only); case-study clients shown with real published photos, "Founder &amp; CEO, Growth Idea" / "Founder &amp; Chair, FintechCircle" and logos (slides 9, 47, 61, 65; the pages' assets, logos set white for the dark ground); personalisation taught as merge fields only (first name, company, role), with AI for research, segments, list building and follow-up; the 98,000 + "personal line" pairing removed (slide 31 is now a labelled 50,000-buyer example); reference labels reworded (pipeline chart, next-step callout, "Get them in" tab, moderator chat, "Pick a time", the by-hand card headers); slide 58 tab 4 labels each figure's basis; Tom Alfoldi's photo is the pages' 4:5 crop in a narrower frame; the journey footer only on tab 1; slide 74 shows one counter; 400+ brands from config everywhere. Overlap with the srt: 0 at 6 words and 0 at 5 words. <code>probe.mjs</code>: all 74 slides clean. 110 compare images regenerated.</p></div></details><details class="doc"><summary>Files for import or upload (107)</summary><ul class="files"><li><a href="cards/files/16-deck/deck/assets/adi-avatar.jpg" target="_blank" rel="noopener">deck/assets/adi-avatar.jpg</a></li><li><a href="cards/files/16-deck/deck/assets/fintechcircle-white.png" target="_blank" rel="noopener">deck/assets/fintechcircle-white.png</a></li><li><a href="cards/files/16-deck/deck/assets/growth-idea-white.png" target="_blank" rel="noopener">deck/assets/growth-idea-white.png</a></li><li><a href="cards/files/16-deck/deck/assets/shweta.jpg" target="_blank" rel="noopener">deck/assets/shweta.jpg</a></li><li><a href="cards/files/16-deck/deck/assets/susanne.jpg" target="_blank" rel="noopener">deck/assets/susanne.jpg</a></li><li><a href="cards/files/16-deck/deck/assets/tantra-mark-white.png" target="_blank" rel="noopener">deck/assets/tantra-mark-white.png</a></li><li><a href="cards/files/16-deck/deck/assets/tom-alfoldi.jpg" target="_blank" rel="noopener">deck/assets/tom-alfoldi.jpg</a></li><li><a href="cards/files/16-deck/deck/index.html" target="_blank" rel="noopener">deck/index.html</a></li><li><a href="cards/files/16-deck/v3/deck/files.json" target="_blank" rel="noopener">v3/deck/files.json</a></li><li><a href="cards/files/16-deck/v3/deck/index.html" target="_blank" rel="noopener">v3/deck/index.html</a></li><li><a href="cards/files/16-deck/v3/slides/s01.jpg" target="_blank" rel="noopener">v3/slides/s01.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s02.jpg" target="_blank" rel="noopener">v3/slides/s02.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s03.jpg" target="_blank" rel="noopener">v3/slides/s03.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s04.jpg" target="_blank" rel="noopener">v3/slides/s04.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s05.jpg" target="_blank" rel="noopener">v3/slides/s05.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s06.jpg" target="_blank" rel="noopener">v3/slides/s06.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s07.jpg" target="_blank" rel="noopener">v3/slides/s07.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s08.jpg" target="_blank" rel="noopener">v3/slides/s08.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s09.jpg" target="_blank" rel="noopener">v3/slides/s09.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s10.jpg" target="_blank" rel="noopener">v3/slides/s10.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s11.jpg" target="_blank" rel="noopener">v3/slides/s11.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s12.jpg" target="_blank" rel="noopener">v3/slides/s12.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s13.jpg" target="_blank" rel="noopener">v3/slides/s13.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s14.jpg" target="_blank" rel="noopener">v3/slides/s14.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s15.jpg" target="_blank" rel="noopener">v3/slides/s15.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s16.jpg" target="_blank" rel="noopener">v3/slides/s16.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s17.jpg" target="_blank" rel="noopener">v3/slides/s17.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s18.jpg" target="_blank" rel="noopener">v3/slides/s18.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s19.jpg" target="_blank" rel="noopener">v3/slides/s19.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s20.jpg" target="_blank" rel="noopener">v3/slides/s20.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s21.jpg" target="_blank" rel="noopener">v3/slides/s21.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s22.jpg" target="_blank" rel="noopener">v3/slides/s22.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s23.jpg" target="_blank" rel="noopener">v3/slides/s23.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s24.jpg" target="_blank" rel="noopener">v3/slides/s24.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s25.jpg" target="_blank" rel="noopener">v3/slides/s25.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s26.jpg" target="_blank" rel="noopener">v3/slides/s26.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s27.jpg" target="_blank" rel="noopener">v3/slides/s27.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s28.jpg" target="_blank" rel="noopener">v3/slides/s28.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s29.jpg" target="_blank" rel="noopener">v3/slides/s29.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s30.jpg" target="_blank" rel="noopener">v3/slides/s30.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s31.jpg" target="_blank" rel="noopener">v3/slides/s31.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s32.jpg" target="_blank" rel="noopener">v3/slides/s32.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s33.jpg" target="_blank" rel="noopener">v3/slides/s33.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s34.jpg" target="_blank" rel="noopener">v3/slides/s34.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s35.jpg" target="_blank" rel="noopener">v3/slides/s35.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s36.jpg" target="_blank" rel="noopener">v3/slides/s36.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s37.jpg" target="_blank" rel="noopener">v3/slides/s37.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s38.jpg" target="_blank" rel="noopener">v3/slides/s38.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s39.jpg" target="_blank" rel="noopener">v3/slides/s39.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s40.jpg" target="_blank" rel="noopener">v3/slides/s40.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s41.jpg" target="_blank" rel="noopener">v3/slides/s41.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s42.jpg" target="_blank" rel="noopener">v3/slides/s42.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s43.jpg" target="_blank" rel="noopener">v3/slides/s43.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s44.jpg" target="_blank" rel="noopener">v3/slides/s44.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s45.jpg" target="_blank" rel="noopener">v3/slides/s45.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s46.jpg" target="_blank" rel="noopener">v3/slides/s46.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s47.jpg" target="_blank" rel="noopener">v3/slides/s47.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s48.jpg" target="_blank" rel="noopener">v3/slides/s48.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s49.jpg" target="_blank" rel="noopener">v3/slides/s49.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s50.jpg" target="_blank" rel="noopener">v3/slides/s50.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s51.jpg" target="_blank" rel="noopener">v3/slides/s51.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s52.jpg" target="_blank" rel="noopener">v3/slides/s52.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s53.jpg" target="_blank" rel="noopener">v3/slides/s53.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s54.jpg" target="_blank" rel="noopener">v3/slides/s54.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s55.jpg" target="_blank" rel="noopener">v3/slides/s55.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s56.jpg" target="_blank" rel="noopener">v3/slides/s56.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s57.jpg" target="_blank" rel="noopener">v3/slides/s57.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s58.jpg" target="_blank" rel="noopener">v3/slides/s58.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s59.jpg" target="_blank" rel="noopener">v3/slides/s59.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s60.jpg" target="_blank" rel="noopener">v3/slides/s60.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s61.jpg" target="_blank" rel="noopener">v3/slides/s61.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s62.jpg" target="_blank" rel="noopener">v3/slides/s62.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s63.jpg" target="_blank" rel="noopener">v3/slides/s63.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s64.jpg" target="_blank" rel="noopener">v3/slides/s64.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s65.jpg" target="_blank" rel="noopener">v3/slides/s65.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s66.jpg" target="_blank" rel="noopener">v3/slides/s66.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s67.jpg" target="_blank" rel="noopener">v3/slides/s67.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s68.jpg" target="_blank" rel="noopener">v3/slides/s68.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s69.jpg" target="_blank" rel="noopener">v3/slides/s69.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s70.jpg" target="_blank" rel="noopener">v3/slides/s70.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s71.jpg" target="_blank" rel="noopener">v3/slides/s71.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s72.jpg" target="_blank" rel="noopener">v3/slides/s72.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s73.jpg" target="_blank" rel="noopener">v3/slides/s73.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/s74.jpg" target="_blank" rel="noopener">v3/slides/s74.jpg</a></li><li><a href="cards/files/16-deck/v3/slides/slides-text.json" target="_blank" rel="noopener">v3/slides/slides-text.json</a></li><li><a href="cards/files/16-deck/v3/tools/assets.py" target="_blank" rel="noopener">v3/tools/assets.py</a></li><li><a href="cards/files/16-deck/v3/tools/build.py" target="_blank" rel="noopener">v3/tools/build.py</a></li><li><a href="cards/files/16-deck/v3/tools/export-slides.js" target="_blank" rel="noopener">v3/tools/export-slides.js</a></li><li><a href="cards/files/16-deck/v3/tools/export2.js" target="_blank" rel="noopener">v3/tools/export2.js</a></li><li><a href="cards/files/16-deck/v3/tools/fix1.py" target="_blank" rel="noopener">v3/tools/fix1.py</a></li><li><a href="cards/files/16-deck/v3/tools/fix2.py" target="_blank" rel="noopener">v3/tools/fix2.py</a></li><li><a href="cards/files/16-deck/v3/tools/fix3.py" target="_blank" rel="noopener">v3/tools/fix3.py</a></li><li><a href="cards/files/16-deck/v3/tools/fix4.py" target="_blank" rel="noopener">v3/tools/fix4.py</a></li><li><a href="cards/files/16-deck/v3/tools/fix5.py" target="_blank" rel="noopener">v3/tools/fix5.py</a></li><li><a href="cards/files/16-deck/v3/tools/fix6.py" target="_blank" rel="noopener">v3/tools/fix6.py</a></li><li><a href="cards/files/16-deck/v3/tools/fix7.py" target="_blank" rel="noopener">v3/tools/fix7.py</a></li><li><a href="cards/files/16-deck/v3/tools/fix8.py" target="_blank" rel="noopener">v3/tools/fix8.py</a></li><li><a href="cards/files/16-deck/v3/tools/kie-log.json" target="_blank" rel="noopener">v3/tools/kie-log.json</a></li><li><a href="cards/files/16-deck/v3/tools/kie3.py" target="_blank" rel="noopener">v3/tools/kie3.py</a></li><li><a href="cards/files/16-deck/v3/tools/patch_fx.py" target="_blank" rel="noopener">v3/tools/patch_fx.py</a></li><li><a href="cards/files/16-deck/v3/tools/qa-all.js" target="_blank" rel="noopener">v3/tools/qa-all.js</a></li><li><a href="cards/files/16-deck/v3/tools/qa-real.js" target="_blank" rel="noopener">v3/tools/qa-real.js</a></li><li><a href="cards/files/16-deck/v3/tools/qa-slow.js" target="_blank" rel="noopener">v3/tools/qa-slow.js</a></li><li><a href="cards/files/16-deck/v3/tools/qa-steps.js" target="_blank" rel="noopener">v3/tools/qa-steps.js</a></li><li><a href="cards/files/16-deck/v3/tools/qa.js" target="_blank" rel="noopener">v3/tools/qa.js</a></li><li><a href="cards/files/16-deck/v3/tools/sheet.py" target="_blank" rel="noopener">v3/tools/sheet.py</a></li><li><a href="cards/files/16-deck/v3/tools/sheets.py" target="_blank" rel="noopener">v3/tools/sheets.py</a></li></ul></details>
