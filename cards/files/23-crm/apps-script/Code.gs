@@ -234,14 +234,14 @@ var SCHEMA = {
  "closers": [
   {
    "closer_name": "Conor",
-   "closer_email": "FILL_CONOR_EMAIL",
+   "closer_email": "conor@usetantra.com",
    "closer_whatsapp": "FILL_CONOR_WHATSAPP",
    "closer_calcom": "FILL_CONOR_CALCOM_USERNAME",
    "closer_call2_url": "FILL_CONOR_CALL2_URL"
   },
   {
    "closer_name": "Scott",
-   "closer_email": "FILL_SCOTT_EMAIL",
+   "closer_email": "scott@usetantra.com",
    "closer_whatsapp": "FILL_SCOTT_WHATSAPP",
    "closer_calcom": "FILL_SCOTT_CALCOM_USERNAME",
    "closer_call2_url": "FILL_SCOTT_CALL2_URL"
@@ -310,7 +310,7 @@ var SCHEMA = {
   },
   {
    "setting": "booking_url",
-   "value": "FILL_CALCOM_ROUND_ROBIN_URL",
+   "value": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation",
    "setting_note": "Cal.com round-robin link (item 19). Messages holding FILL_ never send."
   },
   {

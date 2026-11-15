@@ -215,7 +215,7 @@
    "show_at_minute": 20,
    "hide_at_minute": 25,
    "button_text": "Book My Call",
-   "link": "FILL_CALCOM_ROUND_ROBIN_URL?utm_source=webinarjam&utm_medium=live_offer&utm_content=cta1_soft"
+   "link": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation?utm_source=webinarjam&utm_medium=live_offer&utm_content=cta1_soft"
   },
   {
    "cta_id": "cta2_checkpoint",
@@ -224,7 +224,7 @@
    "show_at_minute": 35,
    "hide_at_minute": 38,
    "button_text": "Book My Call",
-   "link": "FILL_CALCOM_ROUND_ROBIN_URL?utm_source=webinarjam&utm_medium=live_offer&utm_content=cta2_checkpoint"
+   "link": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation?utm_source=webinarjam&utm_medium=live_offer&utm_content=cta2_checkpoint"
   },
   {
    "cta_id": "cta3_main",
@@ -233,7 +233,7 @@
    "show_at_minute": 44,
    "hide_at_minute": 60,
    "button_text": "Book My Call",
-   "link": "FILL_CALCOM_ROUND_ROBIN_URL?utm_source=webinarjam&utm_medium=live_offer&utm_content=cta3_main"
+   "link": "https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation?utm_source=webinarjam&utm_medium=live_offer&utm_content=cta3_main"
   }
  ]
 }

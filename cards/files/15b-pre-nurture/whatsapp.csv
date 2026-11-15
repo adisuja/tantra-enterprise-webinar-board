@@ -61,7 +61,7 @@ Join now: {{2}}
 Already in? Ignore this. Reply STOP to opt out.",{{1}}=first_name; {{2}}=join_url
 15B-X1,"event:quick_reply_cant_or_call_cant_attend | contact.quick_reply keyword CANT, an email reply to 15B-D1 saying they can't come, or a Vodex call with outcome cant_attend; sets track to replay (CRM_CONTRACT), which stops 15B-D1 to 15B-L10 and both calls; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Marketing",0,whatsapp,tew_cant_make_it_wa,,"Thanks for letting me know, {{1}}. I'll send you the recording after the session.
 
-If you'd rather talk now, book a 30-minute evaluation call with my team: {{2}}
+If you'd rather talk now, book a 45-minute evaluation call with my team: {{2}}
 
 Reply STOP to opt out.",{{1}}=first_name; {{2}}=booking_url
 15B-X2,"event:reply_cal_or_call_add_to_calendar | contact.quick_reply keyword CAL, or a Vodex call where the person asked for the calendar link; WhatsApp only 08:00 to 20:00 in the registrant's timezone (data.timezone, fallback webinar.timezone); outside it the email goes and the WhatsApp is skipped; template category Utility",0,whatsapp,tew_calendar_link_wa,,"Here's your calendar link, {{1}}. One tap adds the live session to your calendar: {{2}}

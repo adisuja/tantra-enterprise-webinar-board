@@ -1,4 +1,344 @@
-<details class="doc" open><summary>README.md</summary><div class="md"><h1>Card 46: the funnel live on webinar.sellwithtantra.com</h1>
+<details class="doc" open><summary>CLOUDFLARE_TOKEN.md</summary><div class="md"><h1>Cloudflare token for Claude cloud sessions</h1>
+<p>Created 12 November 2026. No token value or secret is in this file.</p>
+<ul>
+<li><strong>Token name:</strong> Claude cloud sessions: Tantra deploy</li>
+<li><strong>Token id:</strong> 45a19e87108ddbab37eb32b1c0dead3c (a User API token on growthcluborg@gmail.com)</li>
+<li><strong>Valid:</strong> 12 November 2026 to 12 November 2027 (23:59 UTC). Roll it on 5 November 2027.</li>
+<li><strong>IP filtering:</strong> none (cloud session IPs change)</li>
+<li><strong>Saved on the Mac:</strong> <code>~/.config/tantra/keys/cloudflare-claude-cloud.token</code> (mode 600). Not in any shell profile: Mac deploys keep using the wrangler OAuth login with <code>env -u CLOUDFLARE_API_TOKEN</code>.</li>
+<li><strong>How it was made:</strong> a short lived helper token (template "Create Additional Tokens", API Tokens Edit, 7 day expiry) was created in the dashboard, used once from the terminal to create this token with the exact policy below, then deleted (it now returns "Invalid API Token"). A direct dashboard API call was blocked by Cloudflare's firewall, so it was not used.</li>
+</ul>
+<h2>Inventory</h2>
+<p>One Cloudflare account holds everything: Growthcluborg@gmail.com's Account (<code>e51d1fda77a8f98fb670b2c106bd8a33</code>). No Tantra zone is in another account, so one token covers it.</p>
+<p>Zones in the account: sellwithtantra.com, usetantra.com, growthclubpro.com, growthclub.org, jointantra.com, jointantra.online, jointantra.space.</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Account or zone</th>
+<th>Permission it needs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tantra-webinar-site: custom domain webinar.sellwithtantra.com, static assets, cron every minute, D1 tantra-webinar-registrations, secrets</td>
+<td>account, sellwithtantra.com</td>
+<td>Workers Scripts, D1, SSL, DNS</td>
+</tr>
+<tr>
+<td>tantra-bonuses: custom domain bonuses.sellwithtantra.com, static assets, secrets</td>
+<td>account, sellwithtantra.com</td>
+<td>Workers Scripts, SSL, DNS</td>
+</tr>
+<tr>
+<td>sellwithtantra-apex-redirect: route sellwithtantra.com/*</td>
+<td>sellwithtantra.com</td>
+<td>Workers Routes</td>
+</tr>
+<tr>
+<td>tantra-os-checkout: KV OS_STORE</td>
+<td>account</td>
+<td>Workers Scripts, KV</td>
+</tr>
+<tr>
+<td>tantra-wa-scheduler: cron every minute, Durable Object WaPoster</td>
+<td>account</td>
+<td>Workers Scripts</td>
+</tr>
+<tr>
+<td>tantra-funnel-map: static assets</td>
+<td>account</td>
+<td>Workers Scripts</td>
+</tr>
+<tr>
+<td>tantra-crm-api (CRM, TANTRA-CRM repo and worktrees): custom domain crm-api.usetantra.com, D1 tantra-crm, 3 crons</td>
+<td>account, usetantra.com</td>
+<td>Workers Scripts, D1, SSL, DNS</td>
+</tr>
+<tr>
+<td>CRM link domains: code calls Cloudflare for SaaS custom hostnames and Workers routes on usetantra.com (uses its own CF_SAAS_TOKEN)</td>
+<td>usetantra.com</td>
+<td>SSL and Certificates, Workers Routes</td>
+</tr>
+<tr>
+<td>Pages project tantra-crm (crm.usetantra.com), plus 9 older Pages projects</td>
+<td>account</td>
+<td>Pages</td>
+</tr>
+<tr>
+<td>revops-centre (tantra-redesign): D1, R2 revops-context, Workflows, Browser binding, 2 crons</td>
+<td>account</td>
+<td>Workers Scripts, D1, R2, Browser Run</td>
+</tr>
+<tr>
+<td>tantra-board (D1, R2 tantra-board-files), tantra-referrals (D1), growthclubpro-pages (custom domain centre.growthclubpro.com)</td>
+<td>account, growthclubpro.com</td>
+<td>Workers Scripts, D1, R2, SSL, DNS</td>
+</tr>
+<tr>
+<td>Content engine: Cloudflare Tunnel tantra-content-engine (content.usetantra.com), R2 bucket tantra-content-engine for backups</td>
+<td>account, usetantra.com</td>
+<td>Cloudflare Tunnel, R2, DNS</td>
+</tr>
+<tr>
+<td>Turnstile widget "Tantra webinar registration"</td>
+<td>account</td>
+<td>Turnstile</td>
+</tr>
+<tr>
+<td>Outreach sending subdomains (connect, events, forum, live, meet, sessions, stage) as MX records</td>
+<td>sellwithtantra.com</td>
+<td>DNS</td>
+</tr>
+<tr>
+<td>Resend notify.usetantra.com: no records yet, zone is on Cloudflare</td>
+<td>usetantra.com</td>
+<td>DNS</td>
+</tr>
+<tr>
+<td>Email Routing: off on every zone</td>
+<td>none</td>
+<td>not needed</td>
+</tr>
+<tr>
+<td>Queues: none yet (kept for CRM and engine)</td>
+<td>account</td>
+<td>Queues</td>
+</tr>
+</tbody>
+</table>
+<p>Account totals today: 24 Workers, 7 D1 databases, 3 KV namespaces, 8 R2 buckets, 7 tunnels, 10 Pages projects, 1 Turnstile widget.</p>
+<p>Found and not covered: about 80 custom domains (revopsgrowth.com, webinarforge.com and others) are still attached to the May 2026 Workers tantra-webinar-standalone-page and tantra-webinar-standalone-pag-2, but none of those zones exists in any account the tokens can see. They look orphaned.</p>
+<h2>Permissions</h2>
+<p><strong>Account</strong> (Growthcluborg@gmail.com's Account only)</p>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workers Scripts: Edit</td>
+<td>Deploys, secrets, crons, Durable Objects, Workflows, custom domains</td>
+</tr>
+<tr>
+<td>Workers KV Storage: Edit</td>
+<td>OS_STORE and new namespaces</td>
+</tr>
+<tr>
+<td>D1: Edit</td>
+<td>Webinar, CRM, board, referrals databases and migrations</td>
+</tr>
+<tr>
+<td>Workers R2 Storage: Edit</td>
+<td>Board files, engine backups, revops-context, new buckets</td>
+</tr>
+<tr>
+<td>Queues: Edit</td>
+<td>Future CRM and engine queues</td>
+</tr>
+<tr>
+<td>Workers Tail: Read</td>
+<td><code>wrangler tail</code> on the live funnel</td>
+</tr>
+<tr>
+<td>Workers Observability: Read</td>
+<td>Worker logs</td>
+</tr>
+<tr>
+<td>Account Settings: Read</td>
+<td>Wrangler account lookup</td>
+</tr>
+<tr>
+<td>Account Analytics: Read</td>
+<td>Worker and request analytics</td>
+</tr>
+<tr>
+<td>Turnstile: Edit (Turnstile Sites Write)</td>
+<td>Registration form widget</td>
+</tr>
+<tr>
+<td>Cloudflare Pages: Edit</td>
+<td>CRM frontend crm.usetantra.com</td>
+</tr>
+<tr>
+<td>Cloudflare Tunnel: Edit</td>
+<td>Content engine tunnel</td>
+</tr>
+<tr>
+<td>Browser Run: Edit (was Browser Rendering)</td>
+<td>revops-centre browser binding</td>
+</tr>
+</tbody>
+</table>
+<p><strong>User:</strong> User Details: Read, Memberships: Read (wrangler whoami and account lookup).</p>
+<p><strong>Zone</strong> (sellwithtantra.com, usetantra.com, growthclubpro.com, jointantra.com, jointantra.online, jointantra.space)</p>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zone: Read</td>
+<td>Find zone ids</td>
+</tr>
+<tr>
+<td>DNS: Edit</td>
+<td>Resend records, sending subdomains, custom domain records</td>
+</tr>
+<tr>
+<td>Workers Routes: Edit</td>
+<td>Apex redirect and CRM link domain routes</td>
+</tr>
+<tr>
+<td>SSL and Certificates: Edit</td>
+<td>Custom domain and SaaS custom hostname certificates</td>
+</tr>
+<tr>
+<td>Zone Settings: Read</td>
+<td>Read zone setup</td>
+</tr>
+<tr>
+<td>Dynamic URL Redirects: Edit (the "Single Redirect" rules)</td>
+<td>Redirect rules on sellwithtantra.com</td>
+</tr>
+<tr>
+<td>Page Rules: Edit</td>
+<td>Page rules</td>
+</tr>
+<tr>
+<td>Cache Purge: Purge</td>
+<td>Purge after a deploy</td>
+</tr>
+<tr>
+<td>Analytics: Read</td>
+<td>Funnel traffic</td>
+</tr>
+</tbody>
+</table>
+<p>Left out on purpose: growthclub.org (company mail domain, no Tantra Worker on it), Email Routing permissions (not used).</p>
+<h2>Tests (read only, 12 November 2026)</h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Token verify</td>
+<td>PASS, active, expires 2027-11-12</td>
+</tr>
+<tr>
+<td>Workers scripts</td>
+<td>PASS (24)</td>
+</tr>
+<tr>
+<td>Workers custom domains</td>
+<td>PASS (80)</td>
+</tr>
+<tr>
+<td>KV</td>
+<td>PASS (3)</td>
+</tr>
+<tr>
+<td>D1</td>
+<td>PASS (7)</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>PASS (8 buckets)</td>
+</tr>
+<tr>
+<td>Queues</td>
+<td>PASS (0)</td>
+</tr>
+<tr>
+<td>Turnstile</td>
+<td>PASS (1)</td>
+</tr>
+<tr>
+<td>Pages</td>
+<td>PASS (10)</td>
+</tr>
+<tr>
+<td>Tunnels</td>
+<td>PASS (7)</td>
+</tr>
+<tr>
+<td>Workers Observability (telemetry keys query)</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Account, user, memberships</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Zones list</td>
+<td>PASS (all 7 visible, Zone Read applies to the 6 below)</td>
+</tr>
+<tr>
+<td>DNS, routes, rulesets, SSL packs, zone settings, page rules, custom hostnames on sellwithtantra.com, usetantra.com, growthclubpro.com, jointantra.com, jointantra.online, jointantra.space</td>
+<td>PASS on all 42</td>
+</tr>
+<tr>
+<td>Same checks on growthclub.org</td>
+<td>FAIL as intended (not in scope)</td>
+</tr>
+<tr>
+<td><code>wrangler whoami</code> with the token</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td><code>wrangler deployments list --name tantra-webinar-site</code></td>
+<td>PASS (10 deployments)</td>
+</tr>
+<tr>
+<td><code>wrangler d1 list</code></td>
+<td>PASS (7 databases)</td>
+</tr>
+</tbody>
+</table>
+<h2>Cloud environments (updated 15 November 2026)</h2>
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>claude.ai/code environment "Tantra Enterprise Webinar"</td>
+<td>Saved 13 November as network secret "Cloudflare: Tantra deploy" (api.cloudflare.com, Authorization, Bearer). Verified from a cloud session: active, expires 2027-11-12</td>
+</tr>
+<tr>
+<td>claude.ai/code environment "Tantra CRM"</td>
+<td>Saved as "Cloudflare API token (Tantra deploy)"</td>
+</tr>
+<tr>
+<td>claude.ai/code environment "tantra-content"</td>
+<td>Has an api.cloudflare.com secret named "Tantra Content Engine setup". Values are never shown, so check in Settings that it is this token and not an older one</td>
+</tr>
+<tr>
+<td>GitHub repository secret CLOUDFLARE_API_TOKEN on adisuja/tantra-enterprise-webinar-workspace</td>
+<td>Set 13 November from the key file. Used by the "Deploy funnel" workflow</td>
+</tr>
+</tbody>
+</table>
+<p>What the first cloud run showed (13 November):</p>
+<ul>
+<li>Wrangler needs <code>CLOUDFLARE_API_TOKEN</code> set to start: use any placeholder plus <code>CLOUDFLARE_ACCOUNT_ID=e51d1fda77a8f98fb670b2c106bd8a33</code>. The network secret replaces the Authorization header on the way out.</li>
+<li>Everything read only, code-only Worker deploys, D1, KV, R2 and DNS work from a cloud session.</li>
+<li>Static asset uploads do NOT: wrangler signs the asset upload with its own short lived token, and the proxy swaps it for this token, so <code>POST /workers/assets/upload</code> answers 401. Any Worker with an <code>assets</code> folder (the funnel site, the bonus site, the funnel map) deploys from GitHub Actions with the repository secret instead.</li>
+<li>Funnel site: Actions, "Deploy funnel", Run workflow (main). Hand started only; first live deploy 13 November 21:34 UTC (run 43511810791).</li>
+</ul></div></details><details class="doc"><summary>README.md</summary><div class="md"><h1>Card 46: the funnel live on webinar.sellwithtantra.com</h1>
 <p>Live since 8 November 2026: https://webinar.sellwithtantra.com/</p>
 <h2>What runs there</h2>
 <ul>
