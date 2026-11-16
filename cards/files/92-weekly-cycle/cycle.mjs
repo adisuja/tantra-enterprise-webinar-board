@@ -142,8 +142,12 @@ async function checkPages() {
     r.text.includes(label) ? pass('Pages', 'Registration page date text', label) : fail('Pages', 'Registration page date text', `"${label}" not on the page`);
   });
   await guard('Pages', 'Calendar file (.ics)', () => {
-    const r = http('GET', C.site + '/assets/webinar.ics', { raw: true });
-    const st = (r.text.match(/DTSTART:(\d{8})/) || [])[1];
+    // G-03: on Tantra Pages the calendar is inline on the confirmation page (data-ics or href="data:text/calendar...").
+    const r = http('GET', C.site + `/confirmation/?cycle=${Date.now()}`, { raw: true });
+    const uri = ((r.text || '').match(/(?:data-ics|href)="(data:text\/calendar[^"]*)"/) || [])[1] || '';
+    let ics = '';
+    try { ics = decodeURIComponent(uri.replace(/^data:text\/calendar[^,]*,/, '')); } catch { ics = ''; }
+    const st = (ics.match(/DTSTART(?:;[^:]*)?:(\d{8})/) || [])[1];
     st === want.replace(/-/g, '') ? pass('Pages', 'Calendar file (.ics)', `starts ${want}`) : fail('Pages', 'Calendar file (.ics)', `starts ${st || 'missing'}, should be ${want}`);
   });
   const plans = CFG.tantra_plans || {};
