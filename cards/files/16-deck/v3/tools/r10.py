@@ -134,8 +134,8 @@ def slides():
   </div>
   <aside class="notes"><p><b>Minute 3. QS slide 5.</b> 50 content formats; 10 have numbers proving pipeline growth. The resource giveaway: walk the line left to right. A real comment on Nelbin's post, the resource by LinkedIn DM, the follow-up email the next day, then the deal opens in the CRM for sales.</p></aside>
 </section>""")
-    feeds = [('n845', ['Erika Stanley', 'Matthew Burris', 'Scott Sutton']), ('b224', ['VAIBHAV SINGH', 'Carter Jay Bigelow', 'Ilsa Arslan']),
-             ('i449', ['Seth Mulli', 'Amber Cheema', 'Lian L.'])]
+    feeds = [('n845', ['James Yeo', 'Scott Lovingood', 'Scott Sutton']), ('b224', ['Goran Granić', 'Jules Johnson', 'Ricardo Pereira']),
+             ('i449', ['Elena Poughia', 'Tanay Saxena', 'Amber Cheema'])]
     ph6 = ''
     for i, (k, who) in enumerate(feeds):
         h = ios.li_real(R12[k], who, lines=2, img_h=0, pid=f's6-{i}')
@@ -143,10 +143,10 @@ def slides():
     S.append(f"""<!-- 5b EVERY PROFILE (QS 5), round 12 -->
 <section class="slide" id="s-stream" data-title="AI can now do insane stuff: content at scale" data-bg="dim" data-reel="10">
   {CAP}
-  <div class="kpi12" id="s6-k" data-a="stagger" data-d=".3"><div><b>1MN+</b><span>impressions a month</span></div><div><b>$200K</b><span>in pipeline</span></div></div>
+  <div class="kpi12" id="s6-k" data-a="stagger" data-d=".3"><div><b>0.5MN+</b><span>impressions a month</span></div><div><b>$100K</b><span>in pipeline value every month</span></div></div>
   <svg class="flow11" data-a="draw" data-d="1.6" data-st=".2" data-dur="1.1"><path data-from="#s6-0" data-to="#s6-k" data-side="t-b"/><path data-from="#s6-1" data-to="#s6-k" data-side="t-b"/><path data-from="#s6-2" data-to="#s6-k" data-side="t-b"/></svg>
   <div data-a="stagger" data-d=".7" data-st=".15">{ph6}</div>
-  <aside class="notes"><p><b>Minute 4. QS slide 5.</b> Same play across every team profile, every week: Nelbin, Ipsita, Bharath, Bhaskar and me. Every comment gets the resource by DM and email and lands in the CRM. Together: 1MN+ impressions a month and $200K in pipeline.</p></aside>
+  <aside class="notes"><p><b>Minute 4. QS slide 5.</b> Same play across every team profile, every week: Nelbin, Ipsita, Bharath, Bhaskar and me. Every comment gets the resource by DM and email and lands in the CRM. Together: 0.5MN+ impressions a month and $100K in pipeline value every month.</p></aside>
 </section>""")
     o1 = ios.li_dm('Rahul Mehta', None, [('day', 'Today'),
         ('Adithya Murali', 'av-adi.webp', '9:14 AM', "Saw your post on longer sales cycles, Rahul. We're running a live hour on exactly that this Thursday. Worth a seat?", None, False),

@@ -118,6 +118,8 @@ RX = ('<span class="li-em"><i class="e1"><svg viewBox="0 0 16 16"><path fill="#f
       '<i class="e3"><svg viewBox="0 0 16 16"><path fill="#fff" d="M8 13.2 3.3 8.6a2.8 2.8 0 0 1 4-4L8 5.3l.7-.7a2.8 2.8 0 0 1 4 4L8 13.2Z"/></svg></i></span>')
 
 def comment(c, hl=False, author=None):
+    nd = lambda x: re.sub(r'\s*[\u2013\u2014]\s*', ', ', x) if x else x
+    c = dict(c, text=nd(c['text']), reply=nd(c.get('reply')), head=nd(c.get('head')))
     deg = f' <span>• {E(c["deg"])}</span>' if c.get('deg') else ''
     head = f'<small>{E(c["head"])}</small>' if c.get('head') else ''
     rep = ''
@@ -141,6 +143,7 @@ def li_real(d, picks, hl=None, lines=3, img_h=190, cls='', pid='', views=None):
     if len(body) < 2:
         body = re.split(r'(?<=[.!?]) (?=[A-Z(])', src)
     tx = ''.join(f'<p>{E(l)}</p>' for l in body[:lines])
+    rest = ''.join(f'<p>{E(l)}</p>' for l in body[lines:])
     cs, used = '', set()
     for n in picks:
         c = next((c for c in d['list'] if c['name'] == n and id(c) not in used), None)
@@ -153,7 +156,7 @@ def li_real(d, picks, hl=None, lines=3, img_h=190, cls='', pid='', views=None):
     nav = f'<div class="li-nav">{ic("back")}<span class="li-srch">Search</span>{ic("dots")}</div>'
     au = (f'<div class="li-post"><div class="li-au">{av(d["author"], d["avatar"], 48)}<div><b>{E(d["author"])} <span>• 1st</span></b>'
           f'<small class="li-hd">{E(d["head"])}</small><small>{E(d["age"])} • {ic("globe")}</small></div></div>'
-          f'<div class="li-tx">{tx}<p class="li-more">...more</p></div></div>{img}')
+          f'<div class="li-tx">{tx}<div class="li-rest">{rest}</div><button class="li-more no-nav" type="button">...more</button></div></div>{img}')
     soc = (f'<div class="li-post"><div class="li-rx">{RX}{d["reactions"]:,}<span class="li-rc">{d["comments"]:,} comments{rp}</span></div>{vw}'
            f'<div class="li-act"><span>{ic("like")}Like</span><span>{ic("comment")}Comment</span><span>{ic("repost")}Repost</span><span>{ic("send")}Send</span></div></div>')
     sort = '<div class="li-sort">Most relevant <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></div>'
