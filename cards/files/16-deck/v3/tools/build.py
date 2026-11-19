@@ -1,4 +1,4 @@
-"""Assemble the V3 deck: deck/index.html with Lexend and the platform logo sprite inlined, QR codes, a copy lint,
+"""Assemble the V3 deck: deck/index.html with Inter, Instrument Serif and the platform logo sprite inlined, QR codes, a copy lint,
 and deck/files.json listing every image the page references (for publishing)."""
 import base64, json, os, re
 import segno
@@ -8,14 +8,20 @@ SRC, OUT, TOOLS = ROOT + '/src', ROOT + '/deck', ROOT + '/tools'
 BOOK = 'https://crm.usetantra.com/book/tantra/ai-revops-strategy-consultation?utm_source=webinar_deck'
 # The link printed on the CTA slides. Swap in the short link once it exists, e.g. 'sellwithtantra.com/call'.
 BOOK_SHOW = 'crm.usetantra.com/book/tantra/<br>ai-revops-strategy-consultation'
-PARTS = ('a', 'b', 'c', 'd', 'e')
+PARTS = ('a0', 'a', 'b', 'c', 'd', 'e')
 
 def b64(p):
     return base64.b64encode(open(p, 'rb').read()).decode()
 
 def fonts():
-    return '\n'.join('@font-face{font-family:"Lexend";src:url(data:font/woff2;base64,%s) format("woff2");font-weight:%d;font-style:normal;font-display:block}'
-                     % (b64(f'{TOOLS}/lexend-latin-{w}-normal.woff2'), w) for w in (400, 600))
+    # Light theme (round 9): Inter for everything, Instrument Serif italic for the accent words, as on usetantra.com/salesmaster
+    return ('@font-face{font-family:"Inter";src:url(data:font/woff2;base64,%s) format("woff2");font-weight:100 900;font-style:normal;font-display:block}\n'
+            '@font-face{font-family:"Instrument Serif";src:url(data:font/woff2;base64,%s) format("woff2");font-weight:400;font-style:italic;font-display:block}'
+            % (b64(f'{TOOLS}/inter-latin-var.woff2'), b64(f'{TOOLS}/instrument-serif-latin-italic.woff2')))
+
+# The living logo (head, branches and the signal layer that js/logo.js draws over them)
+LOGO = ('<span class="tl2" aria-hidden="true"><span class="tl2-aura"></span><img class="tl2-head" src="assets/logo/head2.webp" alt="">'
+        '<img class="tl2-br" src="assets/logo/branches2.webp" alt=""></span>')
 
 def qr_block():
     q = segno.make(BOOK, error='m')
@@ -44,13 +50,16 @@ def lint(page):
     return out
 
 def main():
-    css = '\n'.join(open(f'{SRC}/{f}').read() for f in ('style.css', 'slides.css', 'v3.css'))
+    import subprocess, sys
+    subprocess.run([sys.executable, TOOLS + '/logo3.py'], check=True); subprocess.run([sys.executable, TOOLS + '/r10.py'], check=True)
+    css = '\n'.join(open(f'{SRC}/{f}').read() for f in ('style.css', 'slides.css', 'v3.css', 'light.css', 'r10.css', 'premium.css', 'ios.css'))
     slides = ''.join(open(f'{SRC}/slides/{p}.html').read() for p in PARTS)
-    slides = slides.replace('{{BOOK_SHOW}}', BOOK_SHOW).replace('{{BOOK}}', BOOK).replace('{{QR}}', qr_block())
+    slides = slides.replace('{{BOOK_SHOW}}', BOOK_SHOW).replace('{{BOOK}}', BOOK).replace('{{QR}}', qr_block()).replace('{{LOGO}}', LOGO)
     n = slides.count('<section class="slide')
     sprite = open(SRC + '/logos.svg').read()
-    js = '\n'.join(open(f'{SRC}/js/{f}.js').read() for f in ('field', 'gl', 'fx', 'engine'))
-    page = f'''<title>Tantra RevOps Workshop</title>
+    js = '\n'.join(open(f'{SRC}/js/{f}.js').read() for f in ('field', 'gl', 'fx', 'flow', 'engine', 'logo', 'logo3'))
+    routes = open(SRC + '/logo-routes.json').read().strip()
+    page = f'''<title>Tantra Enterprise Webinar Deck</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="How 400+ brands use AI funnels to generate $100K to $300K monthly: the live workshop deck.">
 <style>
@@ -63,7 +72,11 @@ def main():
     <canvas id="field" aria-hidden="true"></canvas>
 {slides}
     <div id="sweep" aria-hidden="true"></div>
-    <div id="hud" aria-hidden="true"><span class="hudlogo"><img class="mk" src="assets/tantra-mark-white.webp" alt=""><img class="wd" src="assets/tantra-word.webp" alt=""></span><span class="count">1</span></div>
+    <div id="hud" aria-hidden="true">
+      <span class="hudlogo"><img class="mk" src="assets/logo/tantra-logo.webp" alt=""><span class="wd">Tantra</span></span>
+      <span class="pos"><span class="pos-mark"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.6L19.5 10l-5.7 1.6L12 17l-1.8-5.4L4.5 10l5.7-1.4z"/></svg></span><span class="pos-a">The world's first</span><span class="pos-b">End-to-end AI RevOps orchestration system</span></span>
+      <span class="count">1</span>
+    </div>
     <div id="grain" aria-hidden="true"></div>
   </div>
   <nav id="ui" aria-label="Deck controls">
@@ -80,6 +93,7 @@ def main():
   <div id="help" hidden><b>Right arrow, Space</b> next · <b>Left arrow</b> back<br><b>N</b> notes · <b>G</b> all slides<br><b>R</b> reel · <b>F</b> full screen<br><b>B</b> black screen · <b>H</b> help</div>
   <div id="black" hidden></div>
 </div>
+<script type="application/json" id="tl-routes">{routes}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 {js}
